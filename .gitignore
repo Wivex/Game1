@@ -1,4 +1,4 @@
-# folders
+# DIRECTORIES
 .vs/
 Game1/obj/
 Properties/
@@ -6,8 +6,12 @@ Game1/bin/
 Game1/Content/bin/
 Game1/Content/obj/
 
-# file types
+# FILE TYPES
 *.sln
 *.manifest
 *.mgcb
 *.csproj
+
+
+# SPECIFIC FILES
+Game1/Icon.ico
