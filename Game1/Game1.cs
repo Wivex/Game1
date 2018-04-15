@@ -1,83 +1,133 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+#region File Description
+//-----------------------------------------------------------------------------
+// Game.cs
+//
+// Microsoft XNA Community Game Platform
+// Copyright (C) Microsoft Corporation. All rights reserved.
+//-----------------------------------------------------------------------------
+#endregion
+
+using System;
+using GameStateManagement;
+using Microsoft.Xna.Framework;
 
 namespace Game1
 {
     /// <summary>
-    /// This is the main type for your game.
+    /// Sample showing how to manage different game states, with transitions
+    /// between menu screens, a loading screen, the game itself, and a pause
+    /// menu. This main game class is extremely simple: all the interesting
+    /// stuff happens in the ScreenManager component.
     /// </summary>
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        ScreenManager screenManager;
+        ScreenFactory screenFactory;
 
+        /// <summary>
+        /// The main game constructor.
+        /// </summary>
         public Game1()
         {
-            graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            graphics = new GraphicsDeviceManager(this);
+            TargetElapsedTime = TimeSpan.FromTicks(333333);
+
+#if WINDOWS_PHONE
+            graphics.IsFullScreen = true;
+
+            // Choose whether you want a landscape or portait game by using one of the two helper functions.
+            InitializeLandscapeGraphics();
+            // InitializePortraitGraphics();
+#endif
+
+            // Create the screen factory and add it to the Services
+            screenFactory = new ScreenFactory();
+            Services.AddService(typeof(IScreenFactory), screenFactory);
+
+            // Create the screen manager component.
+            screenManager = new ScreenManager(this);
+            Components.Add(screenManager);
+
+#if WINDOWS_PHONE
+            // Hook events on the PhoneApplicationService so we're notified of the application's life cycle
+            Microsoft.Phone.Shell.PhoneApplicationService.Current.Launching += 
+                new EventHandler<Microsoft.Phone.Shell.LaunchingEventArgs>(GameLaunching);
+            Microsoft.Phone.Shell.PhoneApplicationService.Current.Activated += 
+                new EventHandler<Microsoft.Phone.Shell.ActivatedEventArgs>(GameActivated);
+            Microsoft.Phone.Shell.PhoneApplicationService.Current.Deactivated += 
+                new EventHandler<Microsoft.Phone.Shell.DeactivatedEventArgs>(GameDeactivated);
+#else
+            // On Windows and Xbox we just add the initial screens
+            AddInitialScreens();
+#endif
         }
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
-        protected override void Initialize()
+        private void AddInitialScreens()
         {
-            // TODO: Add your initialization logic here
+            // Activate the first screens.
+            screenManager.AddScreen(new BackgroundScreen(), null);
 
-            base.Initialize();
-        }
-
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
-        protected override void LoadContent()
-        {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // TODO: use this.Content to load your game content here
-        }
-
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// game-specific content.
-        /// </summary>
-        protected override void UnloadContent()
-        {
-            // TODO: Unload any non ContentManager content here
-        }
-
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Update(GameTime gameTime)
-        {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
-            // TODO: Add your update logic here
-
-            base.Update(gameTime);
+            // We have different menus for Windows Phone to take advantage of the touch interface
+#if WINDOWS_PHONE
+            screenManager.AddScreen(new PhoneMainMenuScreen(), null);
+#else
+            screenManager.AddScreen(new MainMenuScreen(), null);
+#endif
         }
 
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            graphics.GraphicsDevice.Clear(Color.Black);
 
-            // TODO: Add your drawing code here
-
+            // The real drawing happens inside the screen manager component.
             base.Draw(gameTime);
         }
+
+#if WINDOWS_PHONE
+        /// <summary>
+        /// Helper method to the initialize the game to be a portrait game.
+        /// </summary>
+        private void InitializePortraitGraphics()
+        {
+            graphics.PreferredBackBufferWidth = 480;
+            graphics.PreferredBackBufferHeight = 800;
+        }
+
+        /// <summary>
+        /// Helper method to initialize the game to be a landscape game.
+        /// </summary>
+        private void InitializeLandscapeGraphics()
+        {
+            graphics.PreferredBackBufferWidth = 800;
+            graphics.PreferredBackBufferHeight = 480;
+        }
+
+        void GameLaunching(object sender, Microsoft.Phone.Shell.LaunchingEventArgs e)
+        {
+            AddInitialScreens();
+        }
+
+        void GameActivated(object sender, Microsoft.Phone.Shell.ActivatedEventArgs e)
+        {
+            // Try to deserialize the screen manager
+            if (!screenManager.Activate(e.IsApplicationInstancePreserved))
+            {
+                // If the screen manager fails to deserialize, add the initial screens
+                AddInitialScreens();
+            }
+        }
+
+        void GameDeactivated(object sender, Microsoft.Phone.Shell.DeactivatedEventArgs e)
+        {
+            // Serialize the screen manager when the game deactivated
+            screenManager.Deactivate();
+        }
+#endif
     }
 }
