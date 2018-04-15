@@ -3,7 +3,6 @@ using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 namespace Game1
 {
@@ -15,6 +14,7 @@ namespace Game1
     class GameplayScreen : GameScreen
     {
         #region FIELDS
+
         ContentManager content;
         SpriteFont gameFont;
 
@@ -27,7 +27,6 @@ namespace Game1
 
         float pauseAlpha;
 
-        InputAction pauseAction;
         #endregion
 
         #region INITIALIZATION
@@ -40,34 +39,32 @@ namespace Game1
             TransitionOnTime = TimeSpan.FromSeconds(1.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
 
-            pauseAction = new InputAction(new[] {Buttons.Start, Buttons.Back}, new[] {Keys.Escape}, true);
+            //pauseAction = new InputAction(new[] {Keys.Escape}, true);
         }
 
 
         /// <summary>
         /// Load graphics content for the game.
         /// </summary>
-        public override void Activate(bool instancePreserved)
+        public override void Activate()
         {
-            if (!instancePreserved)
-            {
-                if (content == null)
-                    content = new ContentManager(ScreenManager.Game.Services, "Content");
+            if (content == null)
+                content = new ContentManager(ScreenManager.Game.Services, "Content");
 
-                gameFont = content.Load<SpriteFont>("gamefont");
-                ship = content.Load<Texture2D>("blueships1");
+            gameFont = content.Load<SpriteFont>("gamefont");
+            ship = content.Load<Texture2D>("blueships1");
 
-                // A real game would probably have more content than this sample, so
-                // it would take longer to load. We simulate that by delaying for a
-                // while, giving you a chance to admire the beautiful loading screen.
-#if !WINDOWS_UAP
-                Thread.Sleep(1000);
-#endif
-                // once the load has finished, we use ResetElapsedTime to tell the game's
-                // timing mechanism that we have just finished a very long frame, and that
-                // it should not try to catch up.
-                ScreenManager.Game.ResetElapsedTime();
-            }
+            // A real game would probably have more content than this sample, so
+            // it would take longer to load. We simulate that by delaying for a
+            // while, giving you a chance to admire the beautiful loading screen.
+
+            // NOTE: manual loading delay
+            Thread.Sleep(1000);
+
+            // once the load has finished, we use ResetElapsedTime to tell the game's
+            // timing mechanism that we have just finished a very long frame, and that
+            // it should not try to catch up.
+            ScreenManager.Game.ResetElapsedTime();
         }
 
 
@@ -91,7 +88,7 @@ namespace Game1
         /// or if you tab away to a different application.
         /// </summary>
         public override void Update(GameTime gameTime, bool otherScreenHasFocus,
-                                                       bool coveredByOtherScreen)
+            bool coveredByOtherScreen)
         {
             base.Update(gameTime, otherScreenHasFocus, false);
 
@@ -106,71 +103,31 @@ namespace Game1
                 // Apply some random jitter to make the enemy move around.
                 const float randomization = 10;
 
-                enemyPosition.X += (float)(random.NextDouble() - 0.5) * randomization;
-                enemyPosition.Y += (float)(random.NextDouble() - 0.5) * randomization;
+                enemyPosition.X += (float) (random.NextDouble() - 0.5) * randomization;
+                enemyPosition.Y += (float) (random.NextDouble() - 0.5) * randomization;
 
                 // Apply a stabilizing force to stop the enemy moving off the screen.
                 var targetPosition = new Vector2(
-                    ScreenManager.GraphicsDevice.Viewport.Width / 2 - gameFont.MeasureString("Insert Gameplay Here").X / 2, 
+                    ScreenManager.GraphicsDevice.Viewport.Width / 2 -
+                    gameFont.MeasureString("Insert Gameplay Here").X / 2,
                     200);
 
                 enemyPosition = Vector2.Lerp(enemyPosition, targetPosition, 0.05f);
 
                 // TODO: this game isn't very fun! You could probably improve
                 // it by inserting something more interesting in this space :-)
-            
-            }
-        }
 
-
-        /// <summary>
-        /// Lets the game respond to player input. Unlike the Update method,
-        /// this will only be called when the gameplay screen is active.
-        /// </summary>
-        public override void HandleInput(InputState input)
-        {
-            if (input == null)
-                throw new ArgumentNullException("input");
-
-            // CHECK
-            var keyboardState = input.CurrentKeyboardState;
-
-            if (pauseAction.Evaluate(input))
-            {
-                ScreenManager.AddScreen(new PauseMenuScreen());
-            }
-            else
-            {
-                // Otherwise move the player position.
-                var movement = Vector2.Zero;
-
-                if (keyboardState.IsKeyDown(Keys.Left))
-                    movement.X--;
-
-                if (keyboardState.IsKeyDown(Keys.Right))
-                    movement.X++;
-
-                if (keyboardState.IsKeyDown(Keys.Up))
-                    movement.Y--;
-
-                if (keyboardState.IsKeyDown(Keys.Down))
-                    movement.Y++;
-
-                if (movement.Length() > 1)
-                    movement.Normalize();
-
-                playerPosition += movement * 8f;
             }
         }
 
         /// <summary>
         /// Draws the gameplay screen.
         /// </summary>
-        public override void Draw(GameTime gameTime)
+        public override void Draw()
         {
             // This game has a blue background. Why? Because!
             ScreenManager.GraphicsDevice.Clear(ClearOptions.Target,
-                                               Color.CornflowerBlue, 0, 0);
+                Color.CornflowerBlue, 0, 0);
 
             // Our player and enemy are both actually just text strings.
             var spriteBatch = ScreenManager.SpriteBatch;
@@ -180,16 +137,16 @@ namespace Game1
             spriteBatch.DrawString(gameFont, "// TODO", playerPosition, Color.Green);
 
             spriteBatch.DrawString(gameFont, "Insert Gameplay Here",
-                                   enemyPosition, Color.DarkRed);
+                enemyPosition, Color.DarkRed);
 
             spriteBatch.Draw(ship, playerPosition, Color.White);
 
             spriteBatch.End();
 
             // If the game is transitioning on or off, fade it out to black.
-            if (TransitionPosition > 0 || pauseAlpha > 0)
+            if (VisibilityState > 0 || pauseAlpha > 0)
             {
-                var alpha = MathHelper.Lerp(1f - TransitionAlpha, 1f, pauseAlpha / 2);
+                var alpha = MathHelper.Lerp(1f - VisibilityAlpha, 1f, pauseAlpha / 2);
 
                 ScreenManager.FadeBackBufferToBlack(alpha);
             }

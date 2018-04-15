@@ -48,7 +48,7 @@ namespace Game1
         /// The constructor is private: loading screens should
         /// be activated via the static Load method instead.
         /// </summary>
-        private LoadingScreen(ScreenManager screenManager, bool loadingIsSlow,
+        private LoadingScreen(bool loadingIsSlow,
                               GameScreen[] screensToLoad)
         {
             this.loadingIsSlow = loadingIsSlow;
@@ -68,8 +68,7 @@ namespace Game1
                 screen.ExitScreen();
 
             // Create and activate the loading screen.
-            var loadingScreen = new LoadingScreen(screenManager,
-                                                            loadingIsSlow,
+            var loadingScreen = new LoadingScreen(loadingIsSlow,
                                                             screensToLoad);
 
             screenManager.AddScreen(loadingScreen);
@@ -114,7 +113,7 @@ namespace Game1
         /// <summary>
         /// Draws the loading screen.
         /// </summary>
-        public override void Draw(GameTime gameTime)
+        public override void Draw()
         {
             // If we are the only active screen, that means all the previous screens
             // must have finished transitioning off. We check for this in the Draw
@@ -146,7 +145,7 @@ namespace Game1
                 var textSize = font.MeasureString(message);
                 var textPosition = (viewportSize - textSize) / 2;
 
-                var color = Color.White * TransitionAlpha;
+                var color = Color.White * VisibilityAlpha;
 
                 // Draw the text.
                 spriteBatch.Begin();

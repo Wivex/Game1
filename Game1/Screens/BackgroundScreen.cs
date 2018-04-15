@@ -1,20 +1,7 @@
-#region File Description
-//-----------------------------------------------------------------------------
-// BackgroundScreen.cs
-//
-// Microsoft XNA Community Game Platform
-// Copyright (C) Microsoft Corporation. All rights reserved.
-//-----------------------------------------------------------------------------
-#endregion
-
-#region USING STATEMENTS
-
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-
-#endregion
 
 namespace Game1
 {
@@ -26,15 +13,11 @@ namespace Game1
     class BackgroundScreen : GameScreen
     {
         #region FIELDS
-
-        ContentManager content;
-        Texture2D backgroundTexture;
-
+        public ContentManager Content { get; set; }
+        public Texture2D BackgroundTexture { get; set; }
         #endregion
 
         #region INITIALIZATION
-
-
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -44,7 +27,7 @@ namespace Game1
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
         }
 
-
+        /// <inheritdoc />
         /// <summary>
         /// Loads graphics content for this screen. The background texture is quite
         /// big, so we use our own local ContentManager to load it. This allows us
@@ -52,15 +35,12 @@ namespace Game1
         /// used the shared ContentManager provided by the Game class, the content
         /// would remain loaded forever.
         /// </summary>
-        public override void Activate(bool instancePreserved)
+        public override void Activate()
         {
-            if (!instancePreserved)
-            {
-                if (content == null)
-                    content = new ContentManager(ScreenManager.Game.Services, "Content");
+            if (Content == null)
+                Content = new ContentManager(ScreenManager.Game.Services, "Content");
 
-                backgroundTexture = content.Load<Texture2D>("background");
-            }
+            BackgroundTexture = Content.Load<Texture2D>("background");
         }
 
 
@@ -69,7 +49,7 @@ namespace Game1
         /// </summary>
         public override void Unload()
         {
-            content.Unload();
+            Content.Unload();
         }
 
 
@@ -95,7 +75,7 @@ namespace Game1
         /// <summary>
         /// Draws the background screen.
         /// </summary>
-        public override void Draw(GameTime gameTime)
+        public override void Draw()
         {
             var spriteBatch = ScreenManager.SpriteBatch;
             var viewport = ScreenManager.GraphicsDevice.Viewport;
@@ -103,8 +83,8 @@ namespace Game1
 
             spriteBatch.Begin();
 
-            spriteBatch.Draw(backgroundTexture, fullscreen,
-                             new Color(TransitionAlpha, TransitionAlpha, TransitionAlpha));
+            spriteBatch.Draw(BackgroundTexture, fullscreen,
+                             new Color(VisibilityAlpha, VisibilityAlpha, VisibilityAlpha));
 
             spriteBatch.End();
         }
