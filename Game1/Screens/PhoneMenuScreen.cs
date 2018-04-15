@@ -30,10 +30,7 @@ namespace Game1
         /// <summary>
         /// Gets the list of buttons, so derived classes can add or change the menu contents.
         /// </summary>
-        protected IList<Button> MenuButtons
-        {
-            get { return menuButtons; }
-        }
+        protected IList<Button> MenuButtons => menuButtons;
 
         /// <summary>
         /// Creates the PhoneMenuScreen with a particular title.
@@ -47,10 +44,7 @@ namespace Game1
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
 
             // Create the menuCancel action
-            menuCancel = new InputAction(new Buttons[] { Buttons.Back }, null, true);
-
-            // We need tap gestures to hit the buttons
-            EnabledGestures = GestureType.Tap;
+            menuCancel = new InputAction(new[] { Buttons.Back }, null, true);
         }
 
         public override void Activate(bool instancePreserved)

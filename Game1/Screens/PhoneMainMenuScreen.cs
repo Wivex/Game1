@@ -7,8 +7,8 @@
 //-----------------------------------------------------------------------------
 #endregion
 
-using Microsoft.Xna.Framework;
 using System;
+using Microsoft.Xna.Framework;
 
 namespace Game1
 {

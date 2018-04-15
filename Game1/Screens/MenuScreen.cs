@@ -7,14 +7,14 @@
 //-----------------------------------------------------------------------------
 #endregion
 
-#region Using Statements
+#region USING STATEMENTS
+
 using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input.Touch;
 using Microsoft.Xna.Framework.Input;
-using GameStateManagement;
+
 #endregion
 
 namespace Game1
@@ -25,10 +25,10 @@ namespace Game1
     /// </summary>
     abstract class MenuScreen : GameScreen
     {
-        #region Fields
+        #region FIELDS
 
         List<MenuEntry> menuEntries = new List<MenuEntry>();
-        int selectedEntry = 0;
+        int selectedEntry;
         string menuTitle;
 
         InputAction menuUp;
@@ -38,22 +38,18 @@ namespace Game1
 
         #endregion
 
-        #region Properties
+        #region PROPERTIES
 
 
         /// <summary>
         /// Gets the list of menu entries, so derived classes can add
         /// or change the menu contents.
         /// </summary>
-        protected IList<MenuEntry> MenuEntries
-        {
-            get { return menuEntries; }
-        }
-
+        protected IList<MenuEntry> MenuEntries => menuEntries;
 
         #endregion
 
-        #region Initialization
+        #region INITIALIZATION
 
 
         /// <summary>
@@ -67,44 +63,37 @@ namespace Game1
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
 
             menuUp = new InputAction(
-                new Buttons[] { Buttons.DPadUp, Buttons.LeftThumbstickUp }, 
-                new Keys[] { Keys.Up },
+                new[] { Buttons.DPadUp, Buttons.LeftThumbstickUp }, 
+                new[] { Keys.Up },
                 true);
             menuDown = new InputAction(
-                new Buttons[] { Buttons.DPadDown, Buttons.LeftThumbstickDown },
-                new Keys[] { Keys.Down },
+                new[] { Buttons.DPadDown, Buttons.LeftThumbstickDown },
+                new[] { Keys.Down },
                 true);
             menuSelect = new InputAction(
-                new Buttons[] { Buttons.A, Buttons.Start },
-                new Keys[] { Keys.Enter, Keys.Space },
+                new[] { Buttons.A, Buttons.Start },
+                new[] { Keys.Enter, Keys.Space },
                 true);
             menuCancel = new InputAction(
-                new Buttons[] { Buttons.B, Buttons.Back },
-                new Keys[] { Keys.Escape },
+                new[] { Buttons.B, Buttons.Back },
+                new[] { Keys.Escape },
                 true);
         }
 
 
         #endregion
 
-        #region Handle Input
+        #region HANDLE INPUT
 
 
         /// <summary>
         /// Responds to user input, changing the selected entry and accepting
         /// or cancelling the menu.
         /// </summary>
-        public override void HandleInput(GameTime gameTime, InputState input)
+        public override void HandleInput(InputState input)
         {
-            // For input tests we pass in our ControllingPlayer, which may
-            // either be null (to accept input from any player) or a specific index.
-            // If we pass a null controlling player, the InputState helper returns to
-            // us which player actually provided the input. We pass that through to
-            // OnSelectEntry and OnCancel, so they can tell which player triggered them.
-            PlayerIndex playerIndex;
-
             // Move to the previous menu entry?
-            if (menuUp.Evaluate(input, ControllingPlayer, out playerIndex))
+            if (menuUp.Evaluate(input))
             {
                 selectedEntry--;
 
@@ -113,7 +102,7 @@ namespace Game1
             }
 
             // Move to the next menu entry?
-            if (menuDown.Evaluate(input, ControllingPlayer, out playerIndex))
+            if (menuDown.Evaluate(input))
             {
                 selectedEntry++;
 
@@ -121,13 +110,13 @@ namespace Game1
                     selectedEntry = 0;
             }
 
-            if (menuSelect.Evaluate(input, ControllingPlayer, out playerIndex))
+            if (menuSelect.Evaluate(input))
             {
-                OnSelectEntry(selectedEntry, playerIndex);
+                OnSelectEntry(selectedEntry);
             }
-            else if (menuCancel.Evaluate(input, ControllingPlayer, out playerIndex))
+            else if (menuCancel.Evaluate(input))
             {
-                OnCancel(playerIndex);
+                OnCancel();
             }
         }
 
@@ -135,16 +124,16 @@ namespace Game1
         /// <summary>
         /// Handler for when the user has chosen a menu entry.
         /// </summary>
-        protected virtual void OnSelectEntry(int entryIndex, PlayerIndex playerIndex)
+        protected virtual void OnSelectEntry(int entryIndex)
         {
-            menuEntries[entryIndex].OnSelectEntry(playerIndex);
+            menuEntries[entryIndex].OnSelectEntry();
         }
 
 
         /// <summary>
         /// Handler for when the user has cancelled the menu.
         /// </summary>
-        protected virtual void OnCancel(PlayerIndex playerIndex)
+        protected virtual void OnCancel()
         {
             ExitScreen();
         }
@@ -153,15 +142,15 @@ namespace Game1
         /// <summary>
         /// Helper overload makes it easy to use OnCancel as a MenuEntry event handler.
         /// </summary>
-        protected void OnCancel(object sender, PlayerIndexEventArgs e)
+        protected void OnCancel(object sender, EventArgs e)
         {
-            OnCancel(e.PlayerIndex);
+            OnCancel();
         }
 
 
         #endregion
 
-        #region Update and Draw
+        #region UPDATE & DRAW
 
 
         /// <summary>
@@ -173,15 +162,15 @@ namespace Game1
             // Make the menu slide into place during transitions, using a
             // power curve to make things look more interesting (this makes
             // the movement slow down as it nears the end).
-            float transitionOffset = (float)Math.Pow(TransitionPosition, 2);
+            var transitionOffset = (float)Math.Pow(TransitionPosition, 2);
 
             // start at Y = 175; each X value is generated per entry
-            Vector2 position = new Vector2(0f, 175f);
+            var position = new Vector2(0f, 175f);
 
             // update each menu entry's location in turn
-            for (int i = 0; i < menuEntries.Count; i++)
+            for (var i = 0; i < menuEntries.Count; i++)
             {
-                MenuEntry menuEntry = menuEntries[i];
+                var menuEntry = menuEntries[i];
                 
                 // each entry is to be centered horizontally
                 position.X = ScreenManager.GraphicsDevice.Viewport.Width / 2 - menuEntry.GetWidth(this) / 2;
@@ -209,9 +198,9 @@ namespace Game1
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
 
             // Update each nested MenuEntry object.
-            for (int i = 0; i < menuEntries.Count; i++)
+            for (var i = 0; i < menuEntries.Count; i++)
             {
-                bool isSelected = IsActive && (i == selectedEntry);
+                var isSelected = IsActive && i == selectedEntry;
 
                 menuEntries[i].Update(this, isSelected, gameTime);
             }
@@ -226,18 +215,18 @@ namespace Game1
             // make sure our entries are in the right place before we draw them
             UpdateMenuEntryLocations();
 
-            GraphicsDevice graphics = ScreenManager.GraphicsDevice;
-            SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
-            SpriteFont font = ScreenManager.Font;
+            var graphics = ScreenManager.GraphicsDevice;
+            var spriteBatch = ScreenManager.SpriteBatch;
+            var font = ScreenManager.Font;
 
             spriteBatch.Begin();
 
             // Draw each menu entry in turn.
-            for (int i = 0; i < menuEntries.Count; i++)
+            for (var i = 0; i < menuEntries.Count; i++)
             {
-                MenuEntry menuEntry = menuEntries[i];
+                var menuEntry = menuEntries[i];
 
-                bool isSelected = IsActive && (i == selectedEntry);
+                var isSelected = IsActive && i == selectedEntry;
 
                 menuEntry.Draw(this, isSelected, gameTime);
             }
@@ -245,13 +234,13 @@ namespace Game1
             // Make the menu slide into place during transitions, using a
             // power curve to make things look more interesting (this makes
             // the movement slow down as it nears the end).
-            float transitionOffset = (float)Math.Pow(TransitionPosition, 2);
+            var transitionOffset = (float)Math.Pow(TransitionPosition, 2);
 
             // Draw the menu title centered on the screen
-            Vector2 titlePosition = new Vector2(graphics.Viewport.Width / 2, 80);
-            Vector2 titleOrigin = font.MeasureString(menuTitle) / 2;
-            Color titleColor = new Color(192, 192, 192) * TransitionAlpha;
-            float titleScale = 1.25f;
+            var titlePosition = new Vector2(graphics.Viewport.Width / 2, 80);
+            var titleOrigin = font.MeasureString(menuTitle) / 2;
+            var titleColor = new Color(192, 192, 192) * TransitionAlpha;
+            var titleScale = 1.25f;
 
             titlePosition.Y -= transitionOffset * 100;
 

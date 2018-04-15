@@ -1,18 +1,6 @@
-#region File Description
-//-----------------------------------------------------------------------------
-// MenuEntry.cs
-//
-// XNA Community Game Platform
-// Copyright (C) Microsoft Corporation. All rights reserved.
-//-----------------------------------------------------------------------------
-#endregion
-
-#region Using Statements
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using GameStateManagement;
-#endregion
 
 namespace Game1
 {
@@ -24,13 +12,7 @@ namespace Game1
     /// </summary>
     class MenuEntry
     {
-        #region Fields
-
-        /// <summary>
-        /// The text rendered for this entry.
-        /// </summary>
-        string text;
-
+        #region FIELDS
         /// <summary>
         /// Tracks a fading selection effect on the entry.
         /// </summary>
@@ -38,62 +20,36 @@ namespace Game1
         /// The entries transition out of the selection effect when they are deselected.
         /// </remarks>
         float selectionFade;
-
-        /// <summary>
-        /// The position at which the entry is drawn. This is set by the MenuScreen
-        /// each frame in Update.
-        /// </summary>
-        Vector2 position;
-
         #endregion
 
-        #region Properties
-
-
+        #region PROPERTIES
         /// <summary>
         /// Gets or sets the text of this menu entry.
         /// </summary>
-        public string Text
-        {
-            get { return text; }
-            set { text = value; }
-        }
-
+        public string Text { get; set; }
 
         /// <summary>
         /// Gets or sets the position at which to draw this menu entry.
         /// </summary>
-        public Vector2 Position
-        {
-            get { return position; }
-            set { position = value; }
-        }
-
-
+        public Vector2 Position { get; set; }
         #endregion
 
         #region Events
-
-
         /// <summary>
         /// Event raised when the menu entry is selected.
         /// </summary>
-        public event EventHandler<PlayerIndexEventArgs> Selected;
-
+        public event EventHandler Selected;
 
         /// <summary>
         /// Method for raising the Selected event.
         /// </summary>
-        protected internal virtual void OnSelectEntry(PlayerIndex playerIndex)
+        protected internal virtual void OnSelectEntry()
         {
-            if (Selected != null)
-                Selected(this, new PlayerIndexEventArgs(playerIndex));
+            Selected?.Invoke(this, new EventArgs());
         }
-
-
         #endregion
 
-        #region Initialization
+        #region INITIALIZATION
 
 
         /// <summary>
@@ -101,13 +57,13 @@ namespace Game1
         /// </summary>
         public MenuEntry(string text)
         {
-            this.text = text;
+            Text = text;
         }
 
 
         #endregion
 
-        #region Update and Draw
+        #region UPDATE & DRAW
 
 
         /// <summary>
@@ -115,16 +71,10 @@ namespace Game1
         /// </summary>
         public virtual void Update(MenuScreen screen, bool isSelected, GameTime gameTime)
         {
-            // there is no such thing as a selected item on Windows Phone, so we always
-            // force isSelected to be false
-#if WINDOWS_PHONE
-            isSelected = false;
-#endif
-
             // When the menu selection changes, entries gradually fade between
             // their selected and deselected appearance, rather than instantly
             // popping to the new state.
-            float fadeSpeed = (float)gameTime.ElapsedGameTime.TotalSeconds * 4;
+            var fadeSpeed = (float)gameTime.ElapsedGameTime.TotalSeconds * 4;
 
             if (isSelected)
                 selectionFade = Math.Min(selectionFade + fadeSpeed, 1);
@@ -138,33 +88,27 @@ namespace Game1
         /// </summary>
         public virtual void Draw(MenuScreen screen, bool isSelected, GameTime gameTime)
         {
-            // there is no such thing as a selected item on Windows Phone, so we always
-            // force isSelected to be false
-#if WINDOWS_PHONE
-            isSelected = false;
-#endif
-
             // Draw the selected entry in yellow, otherwise white.
-            Color color = isSelected ? Color.Yellow : Color.White;
+            var color = isSelected ? Color.Yellow : Color.White;
 
             // Pulsate the size of the selected menu entry.
-            double time = gameTime.TotalGameTime.TotalSeconds;
+            var time = gameTime.TotalGameTime.TotalSeconds;
             
-            float pulsate = (float)Math.Sin(time * 6) + 1;
+            var pulsate = (float)Math.Sin(time * 6) + 1;
 
-            float scale = 1 + pulsate * 0.05f * selectionFade;
+            var scale = 1 + pulsate * 0.05f * selectionFade;
 
             // Modify the alpha to fade text out during transitions.
             color *= screen.TransitionAlpha;
 
             // Draw text, centered on the middle of each line.
-            ScreenManager screenManager = screen.ScreenManager;
-            SpriteBatch spriteBatch = screenManager.SpriteBatch;
-            SpriteFont font = screenManager.Font;
+            var screenManager = screen.ScreenManager;
+            var spriteBatch = screenManager.SpriteBatch;
+            var font = screenManager.Font;
 
-            Vector2 origin = new Vector2(0, font.LineSpacing / 2);
+            var origin = new Vector2(0, font.LineSpacing / 2);
 
-            spriteBatch.DrawString(font, text, position, color, 0,
+            spriteBatch.DrawString(font, Text, Position, color, 0,
                                    origin, scale, SpriteEffects.None, 0);
         }
 

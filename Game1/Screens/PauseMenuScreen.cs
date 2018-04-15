@@ -7,9 +7,10 @@
 //-----------------------------------------------------------------------------
 #endregion
 
-#region Using Statements
-using Microsoft.Xna.Framework;
+#region USING STATEMENTS
 #endregion
+
+using System;
 
 namespace Game1
 {
@@ -19,7 +20,7 @@ namespace Game1
     /// </summary>
     class PauseMenuScreen : MenuScreen
     {
-        #region Initialization
+        #region INITIALIZATION
 
 
         /// <summary>
@@ -29,8 +30,8 @@ namespace Game1
             : base("Paused")
         {
             // Create our menu entries.
-            MenuEntry resumeGameMenuEntry = new MenuEntry("Resume Game");
-            MenuEntry quitGameMenuEntry = new MenuEntry("Quit Game");
+            var resumeGameMenuEntry = new MenuEntry("Resume Game");
+            var quitGameMenuEntry = new MenuEntry("Quit Game");
             
             // Hook up menu event handlers.
             resumeGameMenuEntry.Selected += OnCancel;
@@ -44,21 +45,21 @@ namespace Game1
 
         #endregion
 
-        #region Handle Input
+        #region HANDLE INPUT
 
 
         /// <summary>
         /// Event handler for when the Quit Game menu entry is selected.
         /// </summary>
-        void QuitGameMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+        void QuitGameMenuEntrySelected(object sender, EventArgs e)
         {
             const string message = "Are you sure you want to quit this game?";
 
-            MessageBoxScreen confirmQuitMessageBox = new MessageBoxScreen(message);
+            var confirmQuitMessageBox = new MessageBoxScreen(message);
 
             confirmQuitMessageBox.Accepted += ConfirmQuitMessageBoxAccepted;
 
-            ScreenManager.AddScreen(confirmQuitMessageBox, ControllingPlayer);
+            ScreenManager.AddScreen(confirmQuitMessageBox);
         }
 
 
@@ -67,7 +68,7 @@ namespace Game1
         /// you want to quit" message box. This uses the loading screen to
         /// transition from the game back to the main menu screen.
         /// </summary>
-        void ConfirmQuitMessageBoxAccepted(object sender, PlayerIndexEventArgs e)
+        void ConfirmQuitMessageBoxAccepted(object sender, EventArgs e)
         {
             LoadingScreen.Load(ScreenManager, false, null, new BackgroundScreen(),
                                                            new MainMenuScreen());

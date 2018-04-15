@@ -8,9 +8,7 @@
 #endregion
 
 using System;
-using GameStateManagement;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace Game1
 {
@@ -148,12 +146,12 @@ namespace Game1
         public void Draw(GameScreen screen)
         {
             // Grab some common items from the ScreenManager
-            SpriteBatch spriteBatch = screen.ScreenManager.SpriteBatch;
-            SpriteFont font = screen.ScreenManager.Font;
-            Texture2D blank = screen.ScreenManager.BlankTexture;
+            var spriteBatch = screen.ScreenManager.SpriteBatch;
+            var font = screen.ScreenManager.Font;
+            var blank = screen.ScreenManager.BlankTexture;
 
             // Compute the button's rectangle
-            Rectangle r = new Rectangle(
+            var r = new Rectangle(
                 (int)Position.X,
                 (int)Position.Y,
                 (int)Size.X,
@@ -181,8 +179,8 @@ namespace Game1
                 BorderColor * Alpha);
 
             // Draw the text centered in the button
-            Vector2 textSize = font.MeasureString(Text);
-            Vector2 textPosition = new Vector2(r.Center.X, r.Center.Y) - textSize / 2f;
+            var textSize = font.MeasureString(Text);
+            var textPosition = new Vector2(r.Center.X, r.Center.Y) - textSize / 2f;
             textPosition.X = (int)textPosition.X;
             textPosition.Y = (int)textPosition.Y;
             spriteBatch.DrawString(font, Text, textPosition, TextColor * Alpha);

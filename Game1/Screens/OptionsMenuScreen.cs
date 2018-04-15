@@ -7,9 +7,10 @@
 //-----------------------------------------------------------------------------
 #endregion
 
-#region Using Statements
-using Microsoft.Xna.Framework;
+#region USING STATEMENTS
 #endregion
+
+using System;
 
 namespace Game1
 {
@@ -20,7 +21,7 @@ namespace Game1
     /// </summary>
     class OptionsMenuScreen : MenuScreen
     {
-        #region Fields
+        #region FIELDS
 
         MenuEntry ungulateMenuEntry;
         MenuEntry languageMenuEntry;
@@ -31,13 +32,13 @@ namespace Game1
         {
             BactrianCamel,
             Dromedary,
-            Llama,
+            Llama
         }
 
         static Ungulate currentUngulate = Ungulate.Dromedary;
 
         static string[] languages = { "C#", "French", "Deoxyribonucleic acid" };
-        static int currentLanguage = 0;
+        static int currentLanguage;
 
         static bool frobnicate = true;
 
@@ -45,7 +46,7 @@ namespace Game1
 
         #endregion
 
-        #region Initialization
+        #region INITIALIZATION
 
 
         /// <summary>
@@ -62,7 +63,7 @@ namespace Game1
 
             SetMenuEntryText();
 
-            MenuEntry back = new MenuEntry("Back");
+            var back = new MenuEntry("Back");
 
             // Hook up menu event handlers.
             ungulateMenuEntry.Selected += UngulateMenuEntrySelected;
@@ -94,13 +95,13 @@ namespace Game1
 
         #endregion
 
-        #region Handle Input
+        #region HANDLE INPUT
 
 
         /// <summary>
         /// Event handler for when the Ungulate menu entry is selected.
         /// </summary>
-        void UngulateMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+        void UngulateMenuEntrySelected(object sender, EventArgs e)
         {
             currentUngulate++;
 
@@ -114,7 +115,7 @@ namespace Game1
         /// <summary>
         /// Event handler for when the Language menu entry is selected.
         /// </summary>
-        void LanguageMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+        void LanguageMenuEntrySelected(object sender, EventArgs e)
         {
             currentLanguage = (currentLanguage + 1) % languages.Length;
 
@@ -125,7 +126,7 @@ namespace Game1
         /// <summary>
         /// Event handler for when the Frobnicate menu entry is selected.
         /// </summary>
-        void FrobnicateMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+        void FrobnicateMenuEntrySelected(object sender, EventArgs e)
         {
             frobnicate = !frobnicate;
 
@@ -136,7 +137,7 @@ namespace Game1
         /// <summary>
         /// Event handler for when the Elf menu entry is selected.
         /// </summary>
-        void ElfMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+        void ElfMenuEntrySelected(object sender, EventArgs e)
         {
             elf++;
 

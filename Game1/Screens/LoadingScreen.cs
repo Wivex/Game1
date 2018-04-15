@@ -7,11 +7,11 @@
 //-----------------------------------------------------------------------------
 #endregion
 
-#region Using Statements
+#region USING STATEMENTS
+
 using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using GameStateManagement;
+
 #endregion
 
 namespace Game1
@@ -32,7 +32,7 @@ namespace Game1
     /// </summary>
     class LoadingScreen : GameScreen
     {
-        #region Fields
+        #region FIELDS
 
         bool loadingIsSlow;
         bool otherScreensAreGone;
@@ -41,7 +41,7 @@ namespace Game1
 
         #endregion
 
-        #region Initialization
+        #region INITIALIZATION
 
 
         /// <summary>
@@ -61,26 +61,24 @@ namespace Game1
         /// <summary>
         /// Activates the loading screen.
         /// </summary>
-        public static void Load(ScreenManager screenManager, bool loadingIsSlow,
-                                PlayerIndex? controllingPlayer,
-                                params GameScreen[] screensToLoad)
+        public static void Load(ScreenManager screenManager, bool loadingIsSlow, params GameScreen[] screensToLoad)
         {
             // Tell all the current screens to transition off.
-            foreach (GameScreen screen in screenManager.GetScreens())
+            foreach (var screen in screenManager.GetScreens())
                 screen.ExitScreen();
 
             // Create and activate the loading screen.
-            LoadingScreen loadingScreen = new LoadingScreen(screenManager,
+            var loadingScreen = new LoadingScreen(screenManager,
                                                             loadingIsSlow,
                                                             screensToLoad);
 
-            screenManager.AddScreen(loadingScreen, controllingPlayer);
+            screenManager.AddScreen(loadingScreen);
         }
 
 
         #endregion
 
-        #region Update and Draw
+        #region UPDATE & DRAW
 
 
         /// <summary>
@@ -97,11 +95,11 @@ namespace Game1
             {
                 ScreenManager.RemoveScreen(this);
 
-                foreach (GameScreen screen in screensToLoad)
+                foreach (var screen in screensToLoad)
                 {
                     if (screen != null)
                     {
-                        ScreenManager.AddScreen(screen, ControllingPlayer);
+                        ScreenManager.AddScreen(screen);
                     }
                 }
 
@@ -123,8 +121,8 @@ namespace Game1
             // method, rather than in Update, because it isn't enough just for the
             // screens to be gone: in order for the transition to look good we must
             // have actually drawn a frame without them before we perform the load.
-            if ((ScreenState == ScreenState.Active) &&
-                (ScreenManager.GetScreens().Length == 1))
+            if (ScreenState == ScreenState.Active &&
+                ScreenManager.GetScreens().Length == 1)
             {
                 otherScreensAreGone = true;
             }
@@ -137,18 +135,18 @@ namespace Game1
             // to bother drawing the message.
             if (loadingIsSlow)
             {
-                SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
-                SpriteFont font = ScreenManager.Font;
+                var spriteBatch = ScreenManager.SpriteBatch;
+                var font = ScreenManager.Font;
 
                 const string message = "Loading...";
 
                 // Center the text in the viewport.
-                Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
-                Vector2 viewportSize = new Vector2(viewport.Width, viewport.Height);
-                Vector2 textSize = font.MeasureString(message);
-                Vector2 textPosition = (viewportSize - textSize) / 2;
+                var viewport = ScreenManager.GraphicsDevice.Viewport;
+                var viewportSize = new Vector2(viewport.Width, viewport.Height);
+                var textSize = font.MeasureString(message);
+                var textPosition = (viewportSize - textSize) / 2;
 
-                Color color = Color.White * TransitionAlpha;
+                var color = Color.White * TransitionAlpha;
 
                 // Draw the text.
                 spriteBatch.Begin();

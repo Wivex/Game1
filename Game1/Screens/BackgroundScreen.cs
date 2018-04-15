@@ -7,12 +7,13 @@
 //-----------------------------------------------------------------------------
 #endregion
 
-#region Using Statements
+#region USING STATEMENTS
+
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using GameStateManagement;
+
 #endregion
 
 namespace Game1
@@ -24,14 +25,14 @@ namespace Game1
     /// </summary>
     class BackgroundScreen : GameScreen
     {
-        #region Fields
+        #region FIELDS
 
         ContentManager content;
         Texture2D backgroundTexture;
 
         #endregion
 
-        #region Initialization
+        #region INITIALIZATION
 
 
         /// <summary>
@@ -74,7 +75,7 @@ namespace Game1
 
         #endregion
 
-        #region Update and Draw
+        #region UPDATE & DRAW
 
 
         /// <summary>
@@ -96,9 +97,9 @@ namespace Game1
         /// </summary>
         public override void Draw(GameTime gameTime)
         {
-            SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
-            Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
-            Rectangle fullscreen = new Rectangle(0, 0, viewport.Width, viewport.Height);
+            var spriteBatch = ScreenManager.SpriteBatch;
+            var viewport = ScreenManager.GraphicsDevice.Viewport;
+            var fullscreen = new Rectangle(0, 0, viewport.Width, viewport.Height);
 
             spriteBatch.Begin();
 

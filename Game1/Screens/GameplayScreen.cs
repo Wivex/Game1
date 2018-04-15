@@ -1,21 +1,9 @@
-#region File Description
-//-----------------------------------------------------------------------------
-// GameplayScreen.cs
-//
-// Microsoft XNA Community Game Platform
-// Copyright (C) Microsoft Corporation. All rights reserved.
-//-----------------------------------------------------------------------------
-#endregion
-
-#region Using Statements
 using System;
 using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using GameStateManagement;
-#endregion
 
 namespace Game1
 {
@@ -26,8 +14,7 @@ namespace Game1
     /// </summary>
     class GameplayScreen : GameScreen
     {
-        #region Fields
-
+        #region FIELDS
         ContentManager content;
         SpriteFont gameFont;
 
@@ -41,11 +28,9 @@ namespace Game1
         float pauseAlpha;
 
         InputAction pauseAction;
-
         #endregion
 
-        #region Initialization
-
+        #region INITIALIZATION
 
         /// <summary>
         /// Constructor.
@@ -55,10 +40,7 @@ namespace Game1
             TransitionOnTime = TimeSpan.FromSeconds(1.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
 
-            pauseAction = new InputAction(
-                new Buttons[] { Buttons.Start, Buttons.Back },
-                new Keys[] { Keys.Escape },
-                true);
+            pauseAction = new InputAction(new[] {Buttons.Start, Buttons.Back}, new[] {Keys.Escape}, true);
         }
 
 
@@ -86,25 +68,6 @@ namespace Game1
                 // it should not try to catch up.
                 ScreenManager.Game.ResetElapsedTime();
             }
-
-#if WINDOWS_PHONE
-            if (Microsoft.Phone.Shell.PhoneApplicationService.Current.State.ContainsKey("PlayerPosition"))
-            {
-                playerPosition = (Vector2)Microsoft.Phone.Shell.PhoneApplicationService.Current.State["PlayerPosition"];
-                enemyPosition = (Vector2)Microsoft.Phone.Shell.PhoneApplicationService.Current.State["EnemyPosition"];
-            }
-#endif
-        }
-
-
-        public override void Deactivate()
-        {
-#if WINDOWS_PHONE
-            Microsoft.Phone.Shell.PhoneApplicationService.Current.State["PlayerPosition"] = playerPosition;
-            Microsoft.Phone.Shell.PhoneApplicationService.Current.State["EnemyPosition"] = enemyPosition;
-#endif
-
-            base.Deactivate();
         }
 
 
@@ -114,17 +77,12 @@ namespace Game1
         public override void Unload()
         {
             content.Unload();
-
-#if WINDOWS_PHONE
-            Microsoft.Phone.Shell.PhoneApplicationService.Current.State.Remove("PlayerPosition");
-            Microsoft.Phone.Shell.PhoneApplicationService.Current.State.Remove("EnemyPosition");
-#endif
         }
 
 
         #endregion
 
-        #region Update and Draw
+        #region UPDATE & DRAW
 
 
         /// <summary>
@@ -152,7 +110,7 @@ namespace Game1
                 enemyPosition.Y += (float)(random.NextDouble() - 0.5) * randomization;
 
                 // Apply a stabilizing force to stop the enemy moving off the screen.
-                Vector2 targetPosition = new Vector2(
+                var targetPosition = new Vector2(
                     ScreenManager.GraphicsDevice.Viewport.Width / 2 - gameFont.MeasureString("Insert Gameplay Here").X / 2, 
                     200);
 
@@ -169,37 +127,22 @@ namespace Game1
         /// Lets the game respond to player input. Unlike the Update method,
         /// this will only be called when the gameplay screen is active.
         /// </summary>
-        public override void HandleInput(GameTime gameTime, InputState input)
+        public override void HandleInput(InputState input)
         {
             if (input == null)
                 throw new ArgumentNullException("input");
 
-            // Look up inputs for the active player profile.
-            int playerIndex = (int)ControllingPlayer.Value;
+            // CHECK
+            var keyboardState = input.CurrentKeyboardState;
 
-            KeyboardState keyboardState = input.CurrentKeyboardStates[playerIndex];
-            GamePadState gamePadState = input.CurrentGamePadStates[playerIndex];
-
-            // The game pauses either if the user presses the pause button, or if
-            // they unplug the active gamepad. This requires us to keep track of
-            // whether a gamepad was ever plugged in, because we don't want to pause
-            // on PC if they are playing with a keyboard and have no gamepad at all!
-            bool gamePadDisconnected = !gamePadState.IsConnected &&
-                                       input.GamePadWasConnected[playerIndex];
-
-            PlayerIndex player;
-            if (pauseAction.Evaluate(input, ControllingPlayer, out player) || gamePadDisconnected)
+            if (pauseAction.Evaluate(input))
             {
-#if WINDOWS_PHONE
-                ScreenManager.AddScreen(new PhonePauseScreen(), ControllingPlayer);
-#else
-                ScreenManager.AddScreen(new PauseMenuScreen(), ControllingPlayer);
-#endif
+                ScreenManager.AddScreen(new PauseMenuScreen());
             }
             else
             {
                 // Otherwise move the player position.
-                Vector2 movement = Vector2.Zero;
+                var movement = Vector2.Zero;
 
                 if (keyboardState.IsKeyDown(Keys.Left))
                     movement.X--;
@@ -213,26 +156,12 @@ namespace Game1
                 if (keyboardState.IsKeyDown(Keys.Down))
                     movement.Y++;
 
-                Vector2 thumbstick = gamePadState.ThumbSticks.Left;
-
-                movement.X += thumbstick.X;
-                movement.Y -= thumbstick.Y;
-
-                if (input.TouchState.Count > 0)
-                {
-                    Vector2 touchPosition = input.TouchState[0].Position;
-                    Vector2 direction = touchPosition - playerPosition;
-                    direction.Normalize();
-                    movement += direction;
-                }
-
                 if (movement.Length() > 1)
                     movement.Normalize();
 
                 playerPosition += movement * 8f;
             }
         }
-
 
         /// <summary>
         /// Draws the gameplay screen.
@@ -244,7 +173,7 @@ namespace Game1
                                                Color.CornflowerBlue, 0, 0);
 
             // Our player and enemy are both actually just text strings.
-            SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
+            var spriteBatch = ScreenManager.SpriteBatch;
 
             spriteBatch.Begin();
 
@@ -260,7 +189,7 @@ namespace Game1
             // If the game is transitioning on or off, fade it out to black.
             if (TransitionPosition > 0 || pauseAlpha > 0)
             {
-                float alpha = MathHelper.Lerp(1f - TransitionAlpha, 1f, pauseAlpha / 2);
+                var alpha = MathHelper.Lerp(1f - TransitionAlpha, 1f, pauseAlpha / 2);
 
                 ScreenManager.FadeBackBufferToBlack(alpha);
             }

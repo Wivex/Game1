@@ -8,7 +8,6 @@
 #endregion
 
 using System;
-using GameStateManagement;
 
 namespace Game1
 {
