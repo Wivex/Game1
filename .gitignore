@@ -1,0 +1,10 @@
+# folders
+.vs/
+Game1/obj/
+Properties/
+
+# file types
+*.sln
+*.manifest
+*.mgcb
+*.csproj
