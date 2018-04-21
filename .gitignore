@@ -1,5 +1,6 @@
 # DIRECTORIES
 .vs/
+packages/
 Game1/obj/
 Properties/
 Game1/bin/
@@ -11,7 +12,4 @@ Game1/Content/obj/
 *.manifest
 *.mgcb
 *.csproj
-
-
-# SPECIFIC FILES
-Game1/Icon.ico
+*.user
