@@ -12,7 +12,7 @@
     <ShadowOffset Null="true" />
     <Padding Null="true" />
     <SpaceBefore Null="true" />
-    <SpaceAfter Null="true" />
+    <SpaceAfter>0 0</SpaceAfter>
     <ShadowScale Null="true" />
   </Asset>
         

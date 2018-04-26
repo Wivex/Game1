@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography;
-using GeonBit.UI;
+﻿using GeonBit.UI;
 using GeonBit.UI.Entities;
 using Microsoft.Xna.Framework;
 
@@ -10,9 +9,9 @@ namespace Game1.UI.Panels
         public static void Init(Vector2 size, Game1 game)
         {
             // create panel and add to list of screenPanels and manager
-            var mainMenuPanel = new Panel(size)
+            var mainMenuPanel = new PanelBrownThick(size)
             {
-                Padding = new Vector2(30,30)
+                Padding = new Vector2(30, 30)
             };
             // add to list of panels to b able to hide all others?
             game.ScreenPanels.Add(mainMenuPanel);

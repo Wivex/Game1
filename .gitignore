@@ -13,3 +13,4 @@ Game1/Content/obj/
 *.mgcb
 *.csproj
 *.user
+Game1/packages.config

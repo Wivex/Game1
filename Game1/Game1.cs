@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Game1.Objects.Units;
 using Game1.UI.Panels;
 using GeonBit.UI;
 using GeonBit.UI.Entities;
@@ -26,6 +27,8 @@ namespace Game1
                 PreferredBackBufferHeight = (int)GameScreenResolution.Y
             };
 
+            var hero = new Hero();
+
             Window.Position =
                 new Point(
                     GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 2 - graphics.PreferredBackBufferWidth / 2,
@@ -39,6 +42,7 @@ namespace Game1
         protected override void Initialize()
         {
             // UI manager default initialization (don't bother, leave as it is)
+            //UserInterface.Initialize(Content,BuiltinThemes.lowres);
             UserInterface.Initialize(Content, "custom");
             UserInterface.Active.UseRenderTarget = true;
             UserInterface.Active.IncludeCursorInRenderTarget = false;
@@ -57,7 +61,6 @@ namespace Game1
             UserInterface.Active.Root.AddChild(background);
 
             Panel_MainMenu.Init(new Vector2(450, 410), this);
-            Panel_Debug.Init(new Vector2(400, 500), this);
         }
 
         /// <summary>
