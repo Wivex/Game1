@@ -55,7 +55,7 @@ namespace Game1.UI.Panels
             var menuTab = buttonTabs.AddTab(menuButton, menuPanel);
 
             // initialize military tab panel
-            Tab_Military.Init(game, militaryTab.TabPanel);
+            Tab_Military.Init(militaryTab.TabPanel);
         }
     }
 }

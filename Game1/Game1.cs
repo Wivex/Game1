@@ -1,11 +1,12 @@
 using System.Collections.Generic;
-using Game1.Objects.Units;
+using Game1.Concepts;
 using Game1.UI.Panels;
 using GeonBit.UI;
 using GeonBit.UI.Entities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using XMLData;
 
 namespace Game1
 {
@@ -27,8 +28,6 @@ namespace Game1
                 PreferredBackBufferHeight = (int)GameScreenResolution.Y
             };
 
-            var hero = new Hero();
-
             Window.Position =
                 new Point(
                     GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 2 - graphics.PreferredBackBufferWidth / 2,
@@ -41,14 +40,18 @@ namespace Game1
         /// </summary>
         protected override void Initialize()
         {
-            // UI manager default initialization (don't bother, leave as it is)
-            //UserInterface.Initialize(Content,BuiltinThemes.lowres);
+            // set current game session as global reference
+            Globals.Game = this;
+
+            var hero = Content.Load<HeroData>("File");
+
+            // Loads GeonUI textures and sets defaults
             UserInterface.Initialize(Content, "custom");
             UserInterface.Active.UseRenderTarget = true;
             UserInterface.Active.IncludeCursorInRenderTarget = false;
             SpriteBatch = new SpriteBatch(GraphicsDevice);
             
-            // main UI logic entry
+            // main UI entry
             InitUI();
         }
 

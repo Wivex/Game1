@@ -7,6 +7,6 @@ namespace Game1.Objects
     {
         public string SlotName { get; set; }
 
-        public Dictionary<string, Stat> Stats { get; } = new Dictionary<string, Stat>();
+        public Dictionary<string, int> Stats { get; } = new Dictionary<string, int>();
     }
 }

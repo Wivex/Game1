@@ -1,16 +1,17 @@
 ﻿using System.Collections.Generic;
 using Game1.Concepts;
+using Game1.Objects.Units;
 
 namespace Game1.Objects
 {
     public abstract class Unit : Entity
     {
-        public Dictionary<string, Stat> Stats { get; } = new Dictionary<string, Stat>
+        public Dictionary<string, int> Stats { get; } = new Dictionary<string, int>()
         {
-            {"Health", new Stat("Health", 100)},
-            {"Attack", new Stat("Attack", 10)},
-            {"Defence", new Stat("Defence", 5)},
-            {"Speed", new Stat("Speed", 3)}
+            {Stat.Health, 100},
+            {Stat.Attack, 10},
+            {Stat.Defence, 0},
+            {Stat.Speed, 10}
         };
     }
 }
