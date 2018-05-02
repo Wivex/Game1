@@ -3,6 +3,5 @@
     public abstract class Item : Entity
     {
         public uint Cost { get; set; }
-        public float DropChance { get; set; }
     }
 }

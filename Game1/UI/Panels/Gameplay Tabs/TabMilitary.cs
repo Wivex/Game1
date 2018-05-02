@@ -4,12 +4,23 @@ using Game1.Concepts;
 using Game1.Objects.Units;
 using GeonBit.UI.Entities;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace Game1.UI.Panels
 {
-    public static class Tab_Military
+    public static class TabMilitary
     {
+        /// <summary>
+        /// Updates everything on military Tab
+        /// </summary>
+        public static void Update()
+        {
+            foreach (var expedition in Globals.Expeditions)
+            {
+                expedition.Value.Update();
+            }
+        }
+
+        #region UI
         public static void Init(PanelEmpty parentPanel)
         {
             // left panel with hero selection
@@ -26,24 +37,25 @@ namespace Game1.UI.Panels
                     Anchor.CenterRight);
 
             // TODO: add reference here
-            var heroes = new List<Hero> {new Hero(), new Hero(), new Hero(), new Hero(), new Hero()};
+            var heroes = new List<Hero> {new Hero("John","Warrior"), new Hero("Igor", "Monk") };
+            var enemies = new List<Hero> { new Hero("Bandit Warrior", "Warrior"), new Hero("Bandit Monk", "Monk") };
 
             var panelTabs = new PanelTabs_ButtonPanel(heroesPanel, tabsPanel);
             parentPanel.AddChild(panelTabs);
             // x+2 is an offset for bad drawing of VerticalScrollbar
             var heroPanelSize = new Vector2(heroesPanel.SizeInternal.X + 2, (int) parentPanel.Size.Y / 3);
-            foreach (var hero in heroes)
+            for (var i = 0; i < heroes.Count; i++)
             {
                 var heroPanel = new ButtonPanel(heroPanelSize);
-                InitHeroPanel(heroPanel, hero);
+                InitHeroPanel(heroPanel, heroes[i], enemies[i]);
                 // Vector2(6, 0) is an offset for bad overlapping of VerticalScrollbar
                 var detailsPanel = new PanelBlackThin(tabsPanel.SizeInternal - new Vector2(6, 0), Anchor.CenterRight);
                 panelTabs.AddTab(heroPanel, detailsPanel);
-                InitDetailsPanel(detailsPanel, hero);
+                InitDetailsPanel(detailsPanel, heroes[i], enemies[i]);
             }
         }
 
-        public static void InitHeroPanel(PanelEmpty parentPanel, Hero hero)
+        public static void InitHeroPanel(PanelEmpty parentPanel, Hero hero, Hero enemy)
         {
             // hero icon
             // use panel for image to draw borders
@@ -51,7 +63,7 @@ namespace Game1.UI.Panels
                 new PanelBrownThick(
                     new Vector2((int) (parentPanel.SizeInternal.Y * 0.4f), (int) (parentPanel.SizeInternal.Y * 0.4f)),
                     Anchor.TopLeft);
-            var heroImage = new Image(Globals.Game.Content.Load<Texture2D>("warrior"), heroImagePanel.SizeInternal);
+            var heroImage = new Image(hero.Texture, heroImagePanel.SizeInternal);
             // inheritParentState = true, to pass click event from image to parent panel
             heroImagePanel.AddChild(heroImage, true);
             parentPanel.AddChild(heroImagePanel, true);
@@ -59,7 +71,7 @@ namespace Game1.UI.Panels
             // object icon
             var objectImagePanel = new PanelBrownThick(heroImagePanel.Size,
                 Anchor.TopRight);
-            var objectImage = new Image(Globals.Game.Content.Load<Texture2D>("monk"), objectImagePanel.SizeInternal);
+            var objectImage = new Image(enemy.Texture, objectImagePanel.SizeInternal);
             objectImagePanel.AddChild(objectImage, true);
             parentPanel.AddChild(objectImagePanel, true);
 
@@ -76,13 +88,13 @@ namespace Game1.UI.Panels
                 var healthBarUnit =
                     new ProgressBar(0, (uint) hero.Stats["Health"], progressBarSize, Anchor.TopLeft)
                     {
-                        Caption = {Text = "50/100"}
+                        Caption = {Text = hero.Stats["Health"].ToString()}
                     };
                 barsPanel.AddChild(healthBarUnit, true);
 
                 var healthBarEnemy =
-                    new ProgressBar(0, (uint) hero.Stats["Health"], progressBarSize, Anchor.TopRight);
-                healthBarEnemy.Caption.Text = "50/100";
+                    new ProgressBar(0, (uint) enemy.Stats["Health"], progressBarSize, Anchor.TopRight);
+                healthBarEnemy.Caption.Text = enemy.Stats["Health"].ToString();
                 barsPanel.AddChild(healthBarEnemy, true);
 
                 var energyBarUnit =
@@ -168,7 +180,7 @@ namespace Game1.UI.Panels
             parentPanel.AddChild(expPanel, true);
         }
 
-        public static void InitDetailsPanel(PanelEmpty parentPanel, Hero hero)
+        public static void InitDetailsPanel(PanelEmpty parentPanel, Hero hero, Hero enemy)
         {
             // hero details panel (left)
             var heroDetailsPanel =
@@ -253,9 +265,9 @@ namespace Game1.UI.Panels
                     Anchor.BottomLeft);
                 middlePanel.AddChild(ring1Panel);
 
-                var heroImagePanel = new PanelBlackThin(new Vector2(equipmentPanelWidth*2, equipmentPanelWidth*2));
+                var heroImagePanel = new PanelEmpty(new Vector2(equipmentPanelWidth*2, equipmentPanelWidth*2));
                 middlePanel.AddChild(heroImagePanel);
-                var heroImage = new Image(Globals.Game.Content.Load<Texture2D>("warrior"), heroImagePanel.SizeInternal);
+                var heroImage = new Image(hero.Texture, heroImagePanel.SizeInternal);
                 heroImagePanel.AddChild(heroImage);
 
                 var hand2Panel = new PanelBlackThin(new Vector2(equipmentPanelWidth, equipmentPanelWidth),
@@ -325,5 +337,6 @@ namespace Game1.UI.Panels
             parentPanel.AddChild(inventoryPanel);
             InitInventoryPanel(inventoryPanel, hero);
         }
+        #endregion
     }
 }

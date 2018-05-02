@@ -2,7 +2,7 @@
 
 namespace Game1.Objects
 {
-    public class Consumable
+    public class Consumable : Item
     {
         public List<string> Effects { get; set; }
     }

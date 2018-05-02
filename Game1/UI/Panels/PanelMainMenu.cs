@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 
 namespace Game1.UI.Panels
 {
-    public static class Panel_MainMenu
+    public static class PanelMainMenu
     {
         public static void Init(Vector2 size, Game1 game)
         {
@@ -20,7 +20,11 @@ namespace Game1.UI.Panels
             mainMenuPanel.AddChild(new HorizontalLine());
             mainMenuPanel.AddChild(new Button("New Game")
             {
-                OnClick = entity => { Panel_Gameplay.Init(game); }
+                OnClick = entity =>
+                {
+                    PanelGameplay.Init(game);
+                    game.GameplayRunning = true;
+                }
             });
             mainMenuPanel.AddChild(new Button("Load Game")
             {

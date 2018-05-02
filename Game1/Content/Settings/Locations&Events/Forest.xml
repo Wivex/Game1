@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:XMLData="XMLData">
+	<Asset Type="XMLData:LocationData">
+		<Name>Forest</Name>
+		<TextureName>Missing</TextureName>
+		<Events>
+			<Item>
+				<Name>EnemyEncounter</Name>
+				<TextureName>Missing</TextureName>
+				<ChanceToOccur>1</ChanceToOccur>
+				<StartAt>0</StartAt>
+				<MinFrequency>2</MinFrequency>
+			</Item>
+		</Events>		
+		<Enemies>
+			<Item>
+				<Key>BanditWarrior</Key>
+				<Value>1</Value>
+			</Item>
+		</Enemies>
+	</Asset>
+</XnaContent>

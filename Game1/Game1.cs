@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Game1.Concepts;
 using Game1.UI.Panels;
@@ -15,7 +16,8 @@ namespace Game1
         public Vector2 GameScreenResolution { get; set; } = new Vector2(1280, 720);
         public List<Panel> ScreenPanels { get; } = new List<Panel>();
         public SpriteBatch SpriteBatch { get; set; }
-        
+        public bool GameplayRunning { get; set; }
+
         /// <summary>
         /// Sets content root dir, default resolution and screen position
         /// </summary>
@@ -42,8 +44,13 @@ namespace Game1
         {
             // set current game session as global reference
             Globals.Game = this;
+            Globals.MissingTexture = Content.Load<Texture2D>("MissingTexture");
 
-            var hero = Content.Load<HeroData>("File");
+            // set the Tick intervals
+            //TargetElapsedTime = TimeSpan.FromSeconds(1);
+
+            // generate xml template based on pre initialized data class
+            //new LocationData().GenerateTemplate(@"C:\Users\wivex_000\Google Диск\Game Workshop\Game1\Game1\Content\Settings\Locations\Location.xml");
 
             // Loads GeonUI textures and sets defaults
             UserInterface.Initialize(Content, "custom");
@@ -63,7 +70,7 @@ namespace Game1
             var background = new Image(Content.Load<Texture2D>("background temp"), GameScreenResolution, anchor: Anchor.Center);
             UserInterface.Active.Root.AddChild(background);
 
-            Panel_MainMenu.Init(new Vector2(450, 410), this);
+            PanelMainMenu.Init(new Vector2(450, 410), this);
         }
 
         /// <summary>
@@ -87,19 +94,19 @@ namespace Game1
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // make sure window is focused
-            if (!IsActive)
-                return;
-
-            // exit on escape
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            // update all gameplay tabs
+            if (GameplayRunning)
+                UpdateTabs();
 
             // update UI
             UserInterface.Active.Update(gameTime);
-
             // call base update
             base.Update(gameTime);
+        }
+
+        public void UpdateTabs()
+        {
+            TabMilitary.Update();
         }
 
         /// <summary>

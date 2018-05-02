@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 
 namespace Game1.UI.Panels
 {
-    public static class Panel_Gameplay
+    public static class PanelGameplay
     {
         public static void Init(Game1 game)
         {
@@ -55,7 +55,7 @@ namespace Game1.UI.Panels
             var menuTab = buttonTabs.AddTab(menuButton, menuPanel);
 
             // initialize military tab panel
-            Tab_Military.Init(militaryTab.TabPanel);
+            TabMilitary.Init(militaryTab.TabPanel);
         }
     }
 }

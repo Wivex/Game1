@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:XMLData="XMLData">
+	<Asset Type="XMLData:ClassData">
+		<Name>Ranger</Name>
+		<TextureName>Ranger</TextureName>
+		<ClassStats>
+			<Item>
+				<Key>Health</Key>
+				<Value>120</Value>
+			</Item>
+			<Item>
+				<Key>Attack</Key>
+				<Value>12</Value>
+			</Item>
+			<Item>
+				<Key>Defence</Key>
+				<Value>10</Value>
+			</Item>
+			<Item>
+				<Key>Speed</Key>
+				<Value>10</Value>
+			</Item>
+		</ClassStats>
+		<ClassAbilities>
+		</ClassAbilities>
+		<ClassEquipment>
+		</ClassEquipment>
+	</Asset>
+</XnaContent>

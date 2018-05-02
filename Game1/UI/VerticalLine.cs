@@ -1,6 +1,4 @@
-﻿using System;
-using GeonBit.UI;
-using GeonBit.UI.Entities;
+﻿using GeonBit.UI.Entities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
