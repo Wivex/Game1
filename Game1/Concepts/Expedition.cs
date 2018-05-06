@@ -1,5 +1,6 @@
 ﻿using System;
 using Game1.Objects.Units;
+using Game1.UI.Panels;
 
 namespace Game1.Concepts
 {
@@ -39,20 +40,22 @@ namespace Game1.Concepts
             Hero = hero;
             Destination = new Location(destination);
             Location = Destination;
-            Globals.Expeditions.Add(hero,this);
+            Event = new Travelling(Location);
+            Globals.ExpeditionsDict.Add(hero.ID,this);
+            TabExpeditions.Reference.AddExpeditionTab(this);
         }
 
         public void Update()
         {
             Length++;
-            if (Event == null) TryNewEvent();
+            if (Event.GetType() == typeof(Travelling)) TryNewEvent();
             else
             {
                 Event.Update();
             }
         }
 
-        public Event TryNewEvent()
+        public void TryNewEvent()
         {
             foreach (var eventData in Location.LocationData.Events)
             {
@@ -63,8 +66,7 @@ namespace Game1.Concepts
                             Event = new EnemyEncounter(Hero, Location);
                             break;
                         default:
-                            // TODO: change to smth else
-                            Event = new EnemyEncounter(Hero, Location);
+                            Event = new Travelling(Location);
                             break;
                     }
             }

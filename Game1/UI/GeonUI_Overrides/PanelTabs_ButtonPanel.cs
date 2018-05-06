@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Game1.UI;
+using Microsoft.Xna.Framework;
 
 namespace GeonBit.UI.Entities
 {
@@ -40,10 +41,17 @@ namespace GeonBit.UI.Entities
         /// <summary>
         /// Create the panel tabs.
         /// </summary>
-        public PanelTabs_ButtonPanel(PanelEmpty tabSelectionPanel, PanelEmpty tabAreaPanel)
+        public PanelTabs_ButtonPanel(PanelEmpty parentPanel)
         {
-            TabSelectionPanel = tabSelectionPanel;
-            TabAreaPanel = tabAreaPanel;
+            TabSelectionPanel =
+                new PanelEmpty(new Vector2((int)parentPanel.SizeInternal.X / 3, parentPanel.SizeInternal.Y),
+                    Anchor.CenterLeft)
+                {
+                    PanelOverflowBehavior = PanelOverflowBehavior.VerticalScroll
+                };
+            TabAreaPanel =
+                new PanelEmpty(new Vector2(parentPanel.SizeInternal.X - TabSelectionPanel.Size.X, TabSelectionPanel.Size.Y),
+                    Anchor.CenterRight);
             AddChild(TabSelectionPanel);
             AddChild(TabAreaPanel);
         }

@@ -17,7 +17,7 @@ namespace Game1.Objects.Units
 
             Name = name;
             Texture = Globals.TryLoadTexture(@"Textures/Enemies/", EnemyData.TextureName);
-            Stats = new Dictionary<string, int>(EnemyData.Stats);
+            BaseStats = new Dictionary<string, int>(EnemyData.Stats);
         }
 
         public void DropLoot(Hero hero)

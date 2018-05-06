@@ -17,6 +17,7 @@ namespace Game1
         public List<Panel> ScreenPanels { get; } = new List<Panel>();
         public SpriteBatch SpriteBatch { get; set; }
         public bool GameplayRunning { get; set; }
+        public float Timer { get; set; }
 
         /// <summary>
         /// Sets content root dir, default resolution and screen position
@@ -29,7 +30,7 @@ namespace Game1
                 PreferredBackBufferWidth = (int)GameScreenResolution.X,
                 PreferredBackBufferHeight = (int)GameScreenResolution.Y
             };
-
+            
             Window.Position =
                 new Point(
                     GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 2 - graphics.PreferredBackBufferWidth / 2,
@@ -43,14 +44,10 @@ namespace Game1
         protected override void Initialize()
         {
             // set current game session as global reference
-            Globals.Game = this;
-            Globals.MissingTexture = Content.Load<Texture2D>("MissingTexture");
-
-            // set the Tick intervals
-            //TargetElapsedTime = TimeSpan.FromSeconds(1);
+            Globals.Init(this);
 
             // generate xml template based on pre initialized data class
-            //new LocationData().GenerateTemplate(@"C:\Users\wivex_000\Google Диск\Game Workshop\Game1\Game1\Content\Settings\Locations\Location.xml");
+            //new EnemyData().GenerateTemplate(@"C:\Users\GNS\Google Диск\Game Workshop\Game1\Game1\Content\Settings\Enemies\Template.xml");
 
             // Loads GeonUI textures and sets defaults
             UserInterface.Initialize(Content, "custom");
@@ -67,7 +64,7 @@ namespace Game1
         /// </summary>        
         public void InitUI()
         {
-            var background = new Image(Content.Load<Texture2D>("background temp"), GameScreenResolution, anchor: Anchor.Center);
+            var background = new Image(Globals.TryLoadTexture("Textures/", "Background"), GameScreenResolution, anchor: Anchor.Center);
             UserInterface.Active.Root.AddChild(background);
 
             PanelMainMenu.Init(new Vector2(450, 410), this);
@@ -94,19 +91,24 @@ namespace Game1
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // update all gameplay tabs
-            if (GameplayRunning)
-                UpdateTabs();
-
-            // update UI
+            // update inputs, root panel, tooltips, select active panel
             UserInterface.Active.Update(gameTime);
-            // call base update
+
+            // TODO: proper implement as part of UserInterface.Active.Update(gameTime);
+            // update all gameplay tabs
+            if (Timer != gameTime.TotalGameTime.Seconds)
+            {
+                Timer = gameTime.TotalGameTime.Seconds;
+                if (GameplayRunning)
+                    UpdateTabs();
+            }
+
             base.Update(gameTime);
         }
 
         public void UpdateTabs()
         {
-            TabMilitary.Update();
+            //TabExpeditions.Reference.UpdateData();
         }
 
         /// <summary>

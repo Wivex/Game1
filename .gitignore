@@ -3,17 +3,12 @@
 packages/
 Game1/obj/
 Game1/bin/
-Game1/Properties
 Game1/Content/bin/
 Game1/Content/obj/
 XMLData/obj/
 XMLData/bin/
-XMLData/Properties
 
 # FILE TYPES
-*.sln
-*.manifest
 *.mgcb
-*.csproj
 *.user
-Game1/packages.config
+*.config

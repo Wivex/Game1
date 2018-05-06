@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{533E3EFA-3C40-43C0-968C-04179D6C21EA}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Game1</RootNamespace>
+    <AssemblyName>Game1</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MonoGamePlatform>Windows</MonoGamePlatform>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>default</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Various\VS files\Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Various\VS files\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Concepts\Class.cs" />
+    <Compile Include="Concepts\Effect.cs" />
+    <Compile Include="Concepts\Events\EnemyEncounter.cs" />
+    <Compile Include="Concepts\Events\Travelling.cs" />
+    <Compile Include="Concepts\Events\Event.cs" />
+    <Compile Include="Concepts\Expedition.cs" />
+    <Compile Include="Globals.cs" />
+    <Compile Include="Concepts\Location.cs" />
+    <Compile Include="Concepts\Slot.cs" />
+    <Compile Include="Concepts\Stat.cs" />
+    <Compile Include="Game1.cs" />
+    <Compile Include="Concepts\Ability.cs" />
+    <Compile Include="Objects\Items\Consumable.cs" />
+    <Compile Include="Concepts\Entity.cs" />
+    <Compile Include="Objects\Items\Equipment.cs" />
+    <Compile Include="Objects\Items\Item.cs" />
+    <Compile Include="Objects\Units\Enemy.cs" />
+    <Compile Include="Objects\Units\Hero.cs" />
+    <Compile Include="Objects\Units\Unit.cs" />
+    <Compile Include="UI\GeonUI_Overrides\ButtonNew.cs" />
+    <Compile Include="UI\GeonUI_Overrides\Panels.cs" />
+    <Compile Include="UI\GeonUI_Overrides\PanelTabs_Button.cs" />
+    <Compile Include="UI\Panels\Gameplay Tabs\TabDebug.cs" />
+    <Compile Include="UI\Panels\PanelMainMenu.cs" />
+    <Compile Include="UI\Panels\PanelGameplay.cs" />
+    <Compile Include="UI\Panels\Gameplay Tabs\TabExpeditions.cs" />
+    <Compile Include="UI\GeonUI_Overrides\PanelTabs_ButtonPanel.cs" />
+    <Compile Include="UI\VerticalLine.cs" />
+    <Compile Include="Various\VS files\Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="DataTypes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GeonBit.UI.3.1.0.2\lib\geonbitui\DataTypes.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GeonBit.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GeonBit.UI.3.1.0.2\lib\geonbitui\GeonBit.UI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MonoGame.Framework.Content.Pipeline">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\MSBuild\MonoGame\v3.0\Tools\MonoGame.Framework.Content.Pipeline.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Various\VS files\Icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <MonoGameContentReference Include="Content\Content.mgcb" />
+    <None Include="packages.config" />
+    <None Include="Various\VS files\app.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Engine\" />
+    <Folder Include="Various\Excluded\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\XMLData\XMLData.csproj">
+      <Project>{2548a589-3725-4cb1-813b-3af11da37d9b}</Project>
+      <Name>XMLData</Name>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

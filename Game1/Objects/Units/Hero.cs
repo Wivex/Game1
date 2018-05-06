@@ -7,6 +7,9 @@ namespace Game1.Objects.Units
 {
     public class Hero : Unit
     {
+        public static int UniqueID { get; set; }
+
+        public int ID { get; set; }
         public ClassData ClassData { get; set; }
         public int Experience { get; set; }
         public int Level { get; set; }
@@ -32,14 +35,15 @@ namespace Game1.Objects.Units
         {
             ClassData = Globals.Game.Content.Load<ClassData>(@"Settings/Classes/" + className);
 
+            ID = UniqueID++;
             Name = name;
             Texture = Globals.TryLoadTexture(@"Textures/Classes/", ClassData.TextureName);
-            Stats = new Dictionary<string, int>(ClassData.ClassStats);
+            BaseStats = new Dictionary<string, int>(ClassData.ClassStats);
 
-            Health = Stats[Stat.Health];
+            Health = BaseStats[Stat.Health];
 
             // add new hero to global reference
-            Globals.Heroes.Add(name,this);
+            Globals.HeroesDict.Add(ID,this);
         }
 
         public void Equip(Equipment item)

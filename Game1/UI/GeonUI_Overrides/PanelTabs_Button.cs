@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Game1.UI;
+using Game1.UI.GeonUI_Overrides;
 
 namespace GeonBit.UI.Entities
 {
@@ -12,7 +13,7 @@ namespace GeonBit.UI.Entities
         /// <summary>Contains the button and panel of a single tab in the PanelTabs.</summary>
         public class Tab
         {
-            public Button Button { get; }
+            public ButtonNew Button { get; }
             /// <summary>The tab panel.</summary>
             public PanelEmpty TabPanel { get; }
 
@@ -21,7 +22,7 @@ namespace GeonBit.UI.Entities
             /// </summary>
             /// <param name="tabPanel">Tab panel.</param>
             /// <param name="button">Tab button.</param>
-            public Tab(Button button, PanelEmpty tabPanel)
+            public Tab(ButtonNew button, PanelEmpty tabPanel)
             {
                 Button = button;
                 TabPanel = tabPanel;
@@ -51,34 +52,37 @@ namespace GeonBit.UI.Entities
         /// <summary>
         /// Add a new tab to the panel tabs.
         /// </summary>
-        public Tab AddTab(Button button, PanelEmpty tabPanel)
+        public Tab AddTab(ButtonNew button, PanelEmpty tabPanel)
         {
             var tab = new Tab(button, tabPanel);
             Tabs.Add(tab);
 
-            // initialize first tab as default active
-            if (ActiveTab == null)
-            {
-                ActiveTab = Tabs[0];
-                button.Checked = true;
-            }
-
             // hide all but active panels by default
-            if (tabPanel != ActiveTab.TabPanel)
-                tabPanel.Visible = false;
+            tabPanel.Visible = false;
 
             // attach event handler to the button
-            button.OnClick = entity =>
+            button.OnClick += entity =>
             {
                 // get self as a button
-                var clickedButton = (Button)entity;
-                // do nothing if clicked on active button
-                if (ActiveTab.Button == clickedButton) return;
-                // hide previous active tabPanel and uncheck its button
-                ActiveTab.TabPanel.Visible = false;
-                ActiveTab.Button.Checked = false;
-                // set new one
-                ActiveTab = tab;
+                var clickedButton = (ButtonNew) entity;
+                if (ActiveTab == null)
+                {
+                    ActiveTab = tab;
+                }
+                // skip if clicked the same tab again
+                else if (clickedButton.Checked)
+                {
+                    return;
+                }
+                else
+                {
+                    // hide previous active tabPanel and uncheck its button
+                    ActiveTab.TabPanel.Visible = false;
+                    ActiveTab.Button.Checked = false;
+                    // set new one
+                    ActiveTab = tab;
+                }
+
                 // show new active tabPanel and check its button
                 ActiveTab.TabPanel.Visible = true;
                 ActiveTab.Button.Checked = true;

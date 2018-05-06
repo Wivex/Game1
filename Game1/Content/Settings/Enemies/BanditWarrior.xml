@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <XnaContent xmlns:XMLData="XMLData">
-	<Asset Type="XMLData:ClassData">
+	<Asset Type="XMLData:EnemyData">
 		<Name>Bandit Warrior</Name>
 		<TextureName>Warrior</TextureName>
-		<ClassStats>
+		<XPReward>1</XPReward>
+		<Stats>
 			<Item>
 				<Key>Health</Key>
 				<Value>120</Value>
@@ -20,10 +21,8 @@
 				<Key>Speed</Key>
 				<Value>10</Value>
 			</Item>
-		</ClassStats>
-		<ClassAbilities>
-		</ClassAbilities>
-		<ClassEquipment>
-		</ClassEquipment>
+		</Stats>
+		<Abilities />
+		<DropTable />
 	</Asset>
 </XnaContent>

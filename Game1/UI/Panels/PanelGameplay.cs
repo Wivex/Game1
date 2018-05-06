@@ -1,4 +1,6 @@
-﻿using GeonBit.UI;
+﻿using Game1.Concepts;
+using Game1.UI.GeonUI_Overrides;
+using GeonBit.UI;
 using GeonBit.UI.Entities;
 using Microsoft.Xna.Framework;
 
@@ -24,38 +26,40 @@ namespace Game1.UI.Panels
             gameplayPanel.AddChild(buttonTabs);
 
             // initialize buttons for panel tabs
-            var militaryTabButton = new Button("Military", anchor: Anchor.AutoInline,
+            var expeditionsButton = new ButtonNew("Expeditions", anchor: Anchor.AutoInline,
                 size: new Vector2((int) buttonsPanel.SizeInternal.X / 4, buttonsPanel.SizeInternal.Y));
-            var button2 = new Button("RESERVED", anchor: Anchor.AutoInline,
+            var button2 = new ButtonNew("RESERVED", anchor: Anchor.AutoInline,
                 size: new Vector2((int) buttonsPanel.SizeInternal.X / 4, buttonsPanel.SizeInternal.Y))
             {
                 Disabled = true
             };
-            var button3 = new Button("RESERVED", anchor: Anchor.AutoInline,
+            var debugButton = new ButtonNew("Debug", anchor: Anchor.AutoInline,
+                size: new Vector2((int) buttonsPanel.SizeInternal.X / 4, buttonsPanel.SizeInternal.Y));
+            var menuButton = new ButtonNew("Menu", anchor: Anchor.AutoInline,
                 size: new Vector2((int) buttonsPanel.SizeInternal.X / 4, buttonsPanel.SizeInternal.Y))
             {
                 Disabled = true
             };
-            var menuButton = new Button("Menu", anchor: Anchor.AutoInline,
-                size: new Vector2((int) buttonsPanel.SizeInternal.X / 4, buttonsPanel.SizeInternal.Y))
-            {
-                Disabled = true
-            };
-            
+
             // initialize panels for panel tabs
-            var militaryPanel = new PanelEmpty(tabsPanel.SizeInternal);
+            var expeditionsPanel = new PanelEmpty(tabsPanel.SizeInternal);
             var panel2 = new PanelEmpty(tabsPanel.SizeInternal);
-            var panel3 = new PanelEmpty(tabsPanel.SizeInternal);
+            var debugPanel = new PanelEmpty(tabsPanel.SizeInternal);
             var menuPanel = new PanelEmpty(tabsPanel.SizeInternal);
 
             // initialize tabs for panel tabs
-            var militaryTab = buttonTabs.AddTab(militaryTabButton, militaryPanel);
+            var expeditionsTab = buttonTabs.AddTab(expeditionsButton, expeditionsPanel);
             var tab2 = buttonTabs.AddTab(button2, panel2);
-            var tab3 = buttonTabs.AddTab(button3, panel3);
+            var debugTab = buttonTabs.AddTab(debugButton, debugPanel);
             var menuTab = buttonTabs.AddTab(menuButton, menuPanel);
 
-            // initialize military tab panel
-            TabMilitary.Init(militaryTab.TabPanel);
+            var ExpeditionsTab = new TabExpeditions(expeditionsPanel);
+            expeditionsPanel.AddChild(ExpeditionsTab);
+
+            TabDebug.Init(debugPanel);
+
+            // click expedition button by default
+            expeditionsButton.DoClick();
         }
     }
 }
