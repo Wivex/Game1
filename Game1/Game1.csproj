@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -13,7 +13,8 @@
     <AssemblyName>Game1</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>Windows</MonoGamePlatform>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -42,12 +43,11 @@
     <ApplicationManifest>Various\VS files\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Concepts\Class.cs" />
-    <Compile Include="Concepts\Effect.cs" />
     <Compile Include="Concepts\Events\EnemyEncounter.cs" />
     <Compile Include="Concepts\Events\Travelling.cs" />
     <Compile Include="Concepts\Events\Event.cs" />
     <Compile Include="Concepts\Expedition.cs" />
+    <Compile Include="Engine\DataBase.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="Concepts\Location.cs" />
     <Compile Include="Concepts\Slot.cs" />
@@ -57,19 +57,24 @@
     <Compile Include="Objects\Items\Consumable.cs" />
     <Compile Include="Concepts\Entity.cs" />
     <Compile Include="Objects\Items\Equipment.cs" />
+    <Compile Include="Objects\Items\Loot.cs" />
     <Compile Include="Objects\Items\Item.cs" />
     <Compile Include="Objects\Units\Enemy.cs" />
     <Compile Include="Objects\Units\Hero.cs" />
     <Compile Include="Objects\Units\Unit.cs" />
+    <Compile Include="UI\FloatingText.cs" />
     <Compile Include="UI\GeonUI_Overrides\ButtonNew.cs" />
+    <Compile Include="UI\GeonUI_Overrides\IconNew.cs" />
     <Compile Include="UI\GeonUI_Overrides\Panels.cs" />
-    <Compile Include="UI\GeonUI_Overrides\PanelTabs_Button.cs" />
+    <Compile Include="UI\GeonUI_Overrides\ButtonTabs.cs" />
+    <Compile Include="UI\GeonUI_Overrides\ImageNew.cs" />
+    <Compile Include="UI\GeonUI_Overrides\ProgressBarNew.cs" />
     <Compile Include="UI\Panels\Gameplay Tabs\TabDebug.cs" />
+    <Compile Include="UI\Panels\PanelExpedition.cs" />
     <Compile Include="UI\Panels\PanelMainMenu.cs" />
     <Compile Include="UI\Panels\PanelGameplay.cs" />
     <Compile Include="UI\Panels\Gameplay Tabs\TabExpeditions.cs" />
-    <Compile Include="UI\GeonUI_Overrides\PanelTabs_ButtonPanel.cs" />
-    <Compile Include="UI\VerticalLine.cs" />
+    <Compile Include="UI\GeonUI_Overrides\ButtonPanelTabs.cs" />
     <Compile Include="Various\VS files\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -102,11 +107,11 @@
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Various\VS files\app.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Engine\" />
     <Folder Include="Various\Excluded\" />
   </ItemGroup>
   <ItemGroup>

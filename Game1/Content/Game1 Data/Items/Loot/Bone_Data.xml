@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:XMLData="XMLData">
+	<Asset Type="XMLData:ItemData">
+		<Name>Bone</Name>
+		<Cost>10</Cost>
+	</Asset>
+</XnaContent>

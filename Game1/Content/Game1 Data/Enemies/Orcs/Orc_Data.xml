@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:XMLData="XMLData">
+	<Asset Type="XMLData:EnemyData">
+		<Name>Orc</Name>
+		<Stats>
+			<Item>
+				<Key>Health</Key>
+				<Value>100</Value>
+			</Item>
+			<Item>
+				<Key>Attack</Key>
+				<Value>3</Value>
+			</Item>
+			<Item>
+				<Key>Defence</Key>
+				<Value>0</Value>
+			</Item>
+			<Item>
+				<Key>Resistance</Key>
+				<Value>0</Value>
+			</Item>
+			<Item>
+				<Key>Speed</Key>
+				<Value>9</Value>
+			</Item>
+		</Stats>
+		<Abilities>
+			<Item>
+				<Name>Fireball</Name>
+				<Damage>10</Damage>
+				<Cooldown>2</Cooldown>
+			</Item>
+		</Abilities>
+		<XPReward>1</XPReward>
+		<DropTable>
+			<Item>
+				<Key>Bone</Key>
+				<Value>0.5</Value>
+			</Item>
+		</DropTable>
+	</Asset>
+</XnaContent>

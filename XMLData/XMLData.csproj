@@ -48,7 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbilityData.cs" />
-    <Compile Include="ClassData.cs" />
+    <Compile Include="UnitData.cs" />
+    <Compile Include="HeroData.cs" />
     <Compile Include="EffectData.cs" />
     <Compile Include="EquipmentData.cs" />
     <Compile Include="ConsumableData.cs" />

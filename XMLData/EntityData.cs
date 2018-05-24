@@ -1,12 +1,12 @@
 ﻿using System.Xml;
 using Microsoft.Xna.Framework.Content.Pipeline.Serialization.Intermediate;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace XMLData
 {
     public abstract class EntityData
     {
         public string Name { get; set; } = "Noname";
-        public string TextureName { get; set; } = "Missing";
 
         /// <summary>
         /// Generate xml template based on pre-initialized data class

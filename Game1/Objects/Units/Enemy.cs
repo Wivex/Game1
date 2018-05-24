@@ -1,36 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
 using Game1.Concepts;
-using Microsoft.Xna.Framework.Graphics;
+using Game1.Mechanics;
 using XMLData;
 
 namespace Game1.Objects.Units
 {
     public class Enemy : Unit
     {
-        public EnemyData EnemyData { get; set; }
-        public int Experience { get; set; }
+        public override string DataClassPath => "Enemies";
 
-        public Enemy(string name)
+        public EnemyData XMLData { get; set; }
+
+        public Enemy(string xmlDataPath)
         {
-            EnemyData = Globals.Game.Content.Load<EnemyData>(@"Settings/Enemies/" + name);
+            var path = $"{DataClassPath}/{xmlDataPath}";
+            XMLData = Globals.TryLoadData<EnemyData>(path);
+            Texture = Globals.TryLoadTexture(path);
 
-            Name = name;
-            Texture = Globals.TryLoadTexture(@"Textures/Enemies/", EnemyData.TextureName);
-            BaseStats = new Dictionary<string, int>(EnemyData.Stats);
-        }
+            Name = XMLData.Name;
 
-        public void DropLoot(Hero hero)
-        {
-            var rng = new Random();
-            foreach (var item in EnemyData.DropTable)
+            Health = XMLData.Stats[Stat.Health];
+            Attack = XMLData.Stats[Stat.Attack];
+            Defence = XMLData.Stats[Stat.Defence];
+            Resistance = XMLData.Stats[Stat.Resistance];
+            Speed = XMLData.Stats[Stat.Speed];
+
+            foreach (var abilityData in XMLData.Abilities)
             {
-
-                if (rng.NextDouble() < item.Value)
-                {
-                    //hero.Inventory.Add(new Item());
-                }
+                Abilities.Add(new Ability(abilityData.Name));
             }
         }
+
+        //public void DropLoot(Hero hero)
+        //{
+        //    var rng = new Random();
+        //    foreach (var item in XMLData.DropTable)
+        //    {
+
+        //        if (rng.NextDouble() < item.Value)
+        //        {
+        //            //hero.Inventory.Add(new Item());
+        //        }
+        //    }
+        //}
     }
 }

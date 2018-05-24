@@ -7,18 +7,22 @@ namespace Game1.Objects
 {
     public class Equipment : Item
     {
-        public EquipmentData EquipmentData { get; set; }
-        public string SlotName { get; set; }
+        public override string DataClassPath => "Items/Equipment";
+
+        public EquipmentData XMLData { get; set; }
+        public string Slot { get; set; }
         public Dictionary<string, int> Stats { get; set; }
 
-        public Equipment(string name)
+        public Equipment(string xmlDataPath)
         {
-            EquipmentData = Globals.Game.Content.Load<EquipmentData>(@"Settings/Items/Equipment/" + name);
+            var path = $"{DataClassPath}/{xmlDataPath}";
+            XMLData = Globals.TryLoadData<EquipmentData>(path);
+            Texture = Globals.TryLoadTexture(path);
 
-            Name = name;
-            Texture = Globals.TryLoadTexture(@"Textures/Items/Equipment/", EquipmentData.TextureName);
-            SlotName = EquipmentData.SlotName;
-            Stats = new Dictionary<string, int>(EquipmentData.Stats);
+            Name = XMLData.Name;
+            Cost = XMLData.Cost;
+            Slot = XMLData.Slot;
+            Stats = new Dictionary<string, int>(XMLData.Stats);
         }
     }
 }

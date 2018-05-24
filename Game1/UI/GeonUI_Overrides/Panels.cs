@@ -18,6 +18,12 @@ namespace Game1.UI
         public PanelEmpty(Vector2 size, Anchor anchor = Anchor.Center, Vector2? offset = null) : base(size, anchor: anchor, offset: offset)
         {
             Skin = PanelSkin.None;
+
+            BeforeDraw += e => { UpdateChildrenVisibility(); };
+        }
+
+        public virtual void UpdateChildrenVisibility()
+        {
         }
     }
 
@@ -27,7 +33,7 @@ namespace Game1.UI
         public PanelBrownThick(Vector2 size, Anchor anchor = Anchor.Center, Vector2? offset = null) : base(size, anchor, offset: offset)
         {
             Skin = PanelSkin.Fancy;
-            Padding = new Vector2(7, 7);
+            Padding = new Vector2(9, 9);
         }
     }
 

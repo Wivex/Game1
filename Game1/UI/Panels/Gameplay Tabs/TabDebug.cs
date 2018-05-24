@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Game1.Concepts;
+﻿using Game1.Concepts;
 using Game1.Objects.Units;
 using GeonBit.UI.Entities;
 using Microsoft.Xna.Framework;
@@ -16,7 +14,7 @@ namespace Game1.UI.Panels
             {
                 OnClick = entity =>
                 {
-                    var hero = new Hero("John", "Warrior");
+                    var hero = new Hero("Warrior");
                     new Expedition(hero, "Forest");
                 }
             });

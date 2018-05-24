@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:XMLData="XMLData">
+	<Asset Type="XMLData:HeroData">
+		<Name>Warrior</Name>
+		<Stats>
+			<Item>
+				<Key>Health</Key>
+				<Value>120</Value>
+			</Item>
+			<Item>
+				<Key>Attack</Key>
+				<Value>10</Value>
+			</Item>
+			<Item>
+				<Key>Defence</Key>
+				<Value>0</Value>
+			</Item>
+			<Item>
+				<Key>Resistance</Key>
+				<Value>0</Value>
+			</Item>
+			<Item>
+				<Key>Speed</Key>
+				<Value>20</Value>
+			</Item>
+		</Stats>
+		<Abilities>
+			<Item>
+				<Name>Fireball</Name>
+				<Damage>10</Damage>
+				<Cooldown>2</Cooldown>
+			</Item>
+		</Abilities>
+		<Equipment>
+			<Item>
+				<Key>Health</Key>
+				<Value>12</Value>
+			</Item>
+		</Equipment>
+	</Asset>
+</XnaContent>

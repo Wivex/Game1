@@ -1,5 +1,4 @@
-﻿using Game1.Concepts;
-using Game1.UI.GeonUI_Overrides;
+﻿using Game1.UI.GeonUI_Overrides;
 using GeonBit.UI;
 using GeonBit.UI.Entities;
 using Microsoft.Xna.Framework;
@@ -22,7 +21,7 @@ namespace Game1.UI.Panels
             var tabsPanel =
                 new PanelBrownThin(new Vector2(gameplayPanel.Size.X, gameplayPanel.Size.Y - buttonsPanel.Size.Y),
                     Anchor.BottomCenter);
-            var buttonTabs = new PanelTabs_Button(buttonsPanel, tabsPanel);
+            var buttonTabs = new ButtonTabs(buttonsPanel, tabsPanel);
             gameplayPanel.AddChild(buttonTabs);
 
             // initialize buttons for panel tabs
@@ -53,7 +52,7 @@ namespace Game1.UI.Panels
             var debugTab = buttonTabs.AddTab(debugButton, debugPanel);
             var menuTab = buttonTabs.AddTab(menuButton, menuPanel);
 
-            var ExpeditionsTab = new TabExpeditions(expeditionsPanel);
+            var ExpeditionsTab = new TabExpeditions(expeditionsPanel.SizeInternal);
             expeditionsPanel.AddChild(ExpeditionsTab);
 
             TabDebug.Init(debugPanel);

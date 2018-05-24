@@ -1,5 +1,4 @@
-﻿using System;
-using Game1.Objects.Units;
+﻿using Game1.Objects.Units;
 using Game1.UI.Panels;
 
 namespace Game1.Concepts
@@ -32,6 +31,11 @@ namespace Game1.Concepts
         /// </summary>
         public Location Destination { get; set; }
 
+        /// <summary>
+        /// Associated panel for this expedition (floating text reference)
+        /// </summary>
+        public PanelExpedition ExpeditionPanel { get; set; }
+
         public int EnemiesSlain { get; set; }
         public int EXPGot { get; set; }
 
@@ -42,7 +46,7 @@ namespace Game1.Concepts
             Location = Destination;
             Event = new Travelling(Location);
             Globals.ExpeditionsDict.Add(hero.ID,this);
-            TabExpeditions.Reference.AddExpeditionTab(this);
+            Globals.TabExpeditions.AddExpeditionTab(this);
         }
 
         public void Update()
@@ -57,13 +61,13 @@ namespace Game1.Concepts
 
         public void TryNewEvent()
         {
-            foreach (var eventData in Location.LocationData.Events)
+            foreach (var eventData in Location.XMLData.Events)
             {
                 if (Globals.RNGesus.NextDouble()<eventData.ChanceToOccur)
                     switch (eventData.Name)
                     {
                         case "EnemyEncounter":
-                            Event = new EnemyEncounter(Hero, Location);
+                            Event = new EnemyEncounter(Hero, Location, ExpeditionPanel);
                             break;
                         default:
                             Event = new Travelling(Location);

@@ -1,4 +1,7 @@
-﻿namespace Game1.Objects
+﻿using Game1.Concepts;
+using XMLData;
+
+namespace Game1.Objects
 {
     public abstract class Item : Entity
     {

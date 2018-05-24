@@ -10,7 +10,7 @@
         public static string Boots { get; } = "Boots";
         public static string Ring1 { get; } = "Ring1";
         public static string Ring2 { get; } = "Ring2";
-        public static string Mainhand { get; } = "Mainhand";
-        public static string Offhand { get; } = "Offhand";
+        public static string MainHand { get; } = "MainHand";
+        public static string OffHand { get; } = "OffHand";
     }
 }
