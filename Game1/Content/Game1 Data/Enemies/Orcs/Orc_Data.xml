@@ -25,11 +25,7 @@
 			</Item>
 		</Stats>
 		<Abilities>
-			<Item>
-				<Name>Fireball</Name>
-				<Damage>10</Damage>
-				<Cooldown>2</Cooldown>
-			</Item>
+			<Item>Fireball</Item>
 		</Abilities>
 		<XPReward>1</XPReward>
 		<DropTable>

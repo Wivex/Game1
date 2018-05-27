@@ -15,7 +15,7 @@ namespace Game1.UI
         public TimeSpan LifeTime { get; set; }
         public TimeSpan ElapsedTime { get; set; } = TimeSpan.Zero;
         public PanelEmpty Panel { get; set; }
-        public Vector2 FloatingDestination { get; set; }
+        public Vector2 DestinationOffset { get; set; }
         public Vector2 CurrentOffset { get; set; }
 
         public FloatingText(string text, PanelEmpty panel, TimeSpan lifeTime)
@@ -24,7 +24,7 @@ namespace Game1.UI
             LifeTime = lifeTime;
             Panel = panel;
 
-            FloatingDestination = new Vector2(Globals.RNGesus.Next(-50, 50), Globals.RNGesus.Next(-50, 0));
+            DestinationOffset = new Vector2(Globals.RNGesus.Next(0, 10), -10);
 
             Texts.Add(this);
         }
@@ -45,18 +45,22 @@ namespace Game1.UI
             ElapsedTime += Globals.Game.TargetElapsedTime;
             if (ElapsedTime < LifeTime)
             {
-                LifeTimePercent = (float) (ElapsedTime.TotalMilliseconds / LifeTime.TotalMilliseconds);
-                CurrentOffset = new Vector2(FloatingDestination.X * LifeTimePercent,
-                    FloatingDestination.Y * LifeTimePercent);
                 // binds floating text to the panel, not entire UI
-                Panel.AfterDraw = e =>
+                Panel.AfterDraw += e =>
                 {
-                    var panelCenter = Panel.CalcInternalRect().Center.ToVector2();
-                    Globals.Game.SpriteBatch.Begin(blendState:BlendState.NonPremultiplied);
-                    Globals.Game.SpriteBatch.DrawString(GeonBit.UI.Resources.Fonts[1], Text,
-                        panelCenter + CurrentOffset,
-                        new Color(Color.Red, 1-LifeTimePercent));
-                    Globals.Game.SpriteBatch.End();
+                    if (Texts.Contains(this))
+                    {
+                        LifeTimePercent = (float)(ElapsedTime.TotalMilliseconds / LifeTime.TotalMilliseconds);
+                        CurrentOffset = new Vector2(DestinationOffset.X * LifeTimePercent,
+                            DestinationOffset.Y * LifeTimePercent);
+
+                        var panelCenter = Panel.CalcInternalRect().Center.ToVector2();
+                        Globals.Game.SpriteBatch.Begin(blendState: BlendState.NonPremultiplied);
+                        Globals.Game.SpriteBatch.DrawString(GeonBit.UI.Resources.Fonts[1], Text,
+                            panelCenter + CurrentOffset,
+                            new Color(Color.Red, 1 - LifeTimePercent));
+                        Globals.Game.SpriteBatch.End();
+                    }
                 };
             }
             else

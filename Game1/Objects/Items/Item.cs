@@ -1,10 +1,8 @@
-﻿using Game1.Concepts;
-using XMLData;
-
-namespace Game1.Objects
+﻿namespace Game1.Objects
 {
     public abstract class Item : Entity
     {
-        public uint Cost { get; set; }
+        public int Cost { get; set; }
+        public int Stacksize { get; set; }
     }
 }

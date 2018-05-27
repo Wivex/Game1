@@ -1,26 +1,20 @@
 ﻿using System.Collections.Generic;
 using Game1.Concepts;
+using Game1.Engine;
 using XMLData;
 
 namespace Game1.Objects
 {
     public class Consumable : Item
     {
-        public override string DataClassPath => "Items/Consumables";
-
         public ConsumableData XMLData { get; set; }
 
-        public List<string> Effects { get; set; }
-
-        public Consumable(string xmlDataPath)
+        public Consumable(string consumableName)
         {
-            var path = $"{DataClassPath}/{xmlDataPath}";
-            XMLData = Globals.TryLoadData<ConsumableData>(path);
-            Texture = Globals.TryLoadTexture(path);
-
-            Name = XMLData.Name;
-            Cost = XMLData.Cost;
-            Effects = new List<string>(XMLData.Effects);
+            Name = consumableName;
+            Stacksize = 10;
+            XMLData = DataBase.Consumables[consumableName].Item1;
+            Texture = DataBase.Consumables[consumableName].Item2;
         }
     }
 }

@@ -8,6 +8,8 @@ namespace Game1.UI
     /// </summary>
     public class PanelEmpty : Panel
     {
+        public virtual int PanelTextureBorderWidth { get; set; } = 0;
+
         /// <summary>
         /// Padding works as offset + 1 (new objects star at last pixel)
         /// </summary>
@@ -18,7 +20,8 @@ namespace Game1.UI
         public PanelEmpty(Vector2 size, Anchor anchor = Anchor.Center, Vector2? offset = null) : base(size, anchor: anchor, offset: offset)
         {
             Skin = PanelSkin.None;
-
+            // *2 for 2 pixels border draw
+            Padding = new Vector2(PanelTextureBorderWidth * 2, PanelTextureBorderWidth * 2);
             BeforeDraw += e => { UpdateChildrenVisibility(); };
         }
 
@@ -28,34 +31,37 @@ namespace Game1.UI
     }
 
     // padding works as offset + 1 (new objects star at last pixel)
-    public class PanelBrownThick : PanelEmpty
+    public class PanelBrownExternal : PanelEmpty
     {
-        public PanelBrownThick(Vector2 size, Anchor anchor = Anchor.Center, Vector2? offset = null) : base(size, anchor, offset: offset)
+        public override int PanelTextureBorderWidth { get; set; } = 2;
+
+        public PanelBrownExternal(Vector2 size, Anchor anchor = Anchor.Center, Vector2? offset = null) : base(size, anchor, offset)
         {
             Skin = PanelSkin.Fancy;
-            Padding = new Vector2(9, 9);
         }
     }
 
-    public class PanelBrownThin : PanelEmpty
+    public class PanelBrownInternal : PanelEmpty
     {
-        public PanelBrownThin(Vector2 size, Anchor anchor = Anchor.Center, Vector2? offset = null) : base(size, anchor, offset: offset)
+        public override int PanelTextureBorderWidth { get; set; } = 2;
+
+        public PanelBrownInternal(Vector2 size, Anchor anchor = Anchor.Center, Vector2? offset = null) : base(size, anchor, offset)
         {
             Skin = PanelSkin.Default;
-            Padding = new Vector2(3, 3);
         }
     }
 
-    public class PanelBlackThin : PanelEmpty
+    public class PanelBlack : PanelEmpty
     {
-        public PanelBlackThin(Vector2 size, Anchor anchor = Anchor.Center, Vector2? offset = null) : base(size, anchor, offset: offset)
+        public override int PanelTextureBorderWidth { get; set; } = 2;
+
+        public PanelBlack(Vector2 size, Anchor anchor = Anchor.Center, Vector2? offset = null) : base(size, anchor, offset)
         {
             Skin = PanelSkin.Simple;
-            Padding = new Vector2(3,3);
         }
     }
 
-    public class ButtonPanel : PanelEmpty
+    public class ButtonPanel : PanelBlack
     {
         public PanelSkin SkinChecked { get; set; }
         public PanelSkin SkinUnchecked { get; set; }
@@ -63,11 +69,10 @@ namespace Game1.UI
         // button value when in toggle mode
         public bool Checked { get; set; }
 
-        public ButtonPanel(Vector2 size, PanelSkin skinChecked = PanelSkin.Default, PanelSkin skinUnchecked = PanelSkin.Simple, Anchor anchor = Anchor.Auto, Vector2? offset = null) : base(size, anchor, offset)
+        public ButtonPanel(Vector2 size) : base(size, Anchor.Auto)
         {
-            SkinChecked = skinChecked;
-            Skin = SkinUnchecked = skinUnchecked;
-            Padding = new Vector2(3, 3);
+            SkinChecked = PanelSkin.Default;
+            SkinUnchecked = PanelSkin.Simple;
         }
 
         public void Check()

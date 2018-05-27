@@ -34,7 +34,7 @@ namespace Game1.Concepts
         /// <summary>
         /// Associated panel for this expedition (floating text reference)
         /// </summary>
-        public PanelExpedition ExpeditionPanel { get; set; }
+        public PanelExpeditionOverview ExpeditionOverviewPanel { get; set; }
 
         public int EnemiesSlain { get; set; }
         public int EXPGot { get; set; }
@@ -67,7 +67,7 @@ namespace Game1.Concepts
                     switch (eventData.Name)
                     {
                         case "EnemyEncounter":
-                            Event = new EnemyEncounter(Hero, Location, ExpeditionPanel);
+                            Event = new EnemyEncounter(Hero, Location, ExpeditionOverviewPanel);
                             break;
                         default:
                             Event = new Travelling(Location);

@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using Game1.Concepts;
+﻿using Game1.Concepts;
+using Game1.Engine;
 using Game1.Mechanics;
 using XMLData;
 
@@ -8,17 +7,13 @@ namespace Game1.Objects.Units
 {
     public class Enemy : Unit
     {
-        public override string DataClassPath => "Enemies";
-
         public EnemyData XMLData { get; set; }
 
-        public Enemy(string xmlDataPath)
+        public Enemy(string enemyName)
         {
-            var path = $"{DataClassPath}/{xmlDataPath}";
-            XMLData = Globals.TryLoadData<EnemyData>(path);
-            Texture = Globals.TryLoadTexture(path);
-
-            Name = XMLData.Name;
+            Name = enemyName;
+            XMLData = DataBase.Enemies[enemyName].Item1;
+            Texture = DataBase.Enemies[enemyName].Item2;
 
             Health = XMLData.Stats[Stat.Health];
             Attack = XMLData.Stats[Stat.Attack];
@@ -26,10 +21,8 @@ namespace Game1.Objects.Units
             Resistance = XMLData.Stats[Stat.Resistance];
             Speed = XMLData.Stats[Stat.Speed];
 
-            foreach (var abilityData in XMLData.Abilities)
-            {
-                Abilities.Add(new Ability(abilityData.Name));
-            }
+            foreach (var abilityName in XMLData.Abilities)
+                Abilities.Add(new Ability(abilityName));
         }
 
         //public void DropLoot(Hero hero)

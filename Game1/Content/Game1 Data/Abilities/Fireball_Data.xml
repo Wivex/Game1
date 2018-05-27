@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:XMLData="XMLData">
+	<Asset Type="XMLData:AbilityData">
+		<Name>Fireball</Name>
+		<Damage>20</Damage>
+		<Cooldown>3</Cooldown>
+	</Asset>
+</XnaContent>

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Game1.Engine;
 using Game1.Objects.Units;
 using Game1.UI.Panels;
 using Microsoft.Xna.Framework;
@@ -20,11 +19,6 @@ namespace Game1.Concepts
         public static Dictionary<int, Hero> HeroesDict { get; set; }= new Dictionary<int, Hero>();
         public static Dictionary<int, Expedition> ExpeditionsDict { get; set; } = new Dictionary<int, Expedition>();
         public static TabExpeditions TabExpeditions { get; set; }
-
-        /// <summary>
-        /// Number of UpdateData() calls per second
-        /// </summary>
-        public static TimeSpan GameTickPeriod { get; set; } = TimeSpan.FromSeconds(1);
         public static GameTime GameTime { get; set; }
 
         public static Texture2D MissingTexture { get; set; }
@@ -42,16 +36,14 @@ namespace Game1.Concepts
         /// <returns></returns>
         public static Texture2D TryLoadTexture(string texturePath)
         {
-            Texture2D texture;
             try
             {
-                texture = Game.Content.Load<Texture2D>($@"{DataPathBase}\{texturePath}");
+                return Game.Content.Load<Texture2D>(texturePath);
             }
             catch
             {
-                texture = MissingTexture;
+                return MissingTexture;
             }
-            return texture;
         }
 
         /// <summary>
@@ -63,11 +55,11 @@ namespace Game1.Concepts
         {
             try
             {
-                return Game.Content.Load<T>($@"{DataPathBase}\{dataPath} Data");
+                return Game.Content.Load<T>(dataPath);
             }
             catch
             {
-                throw new Exception($@"Can't load XMLData for {dataPath} Data");
+                throw new Exception($@"Can't load XMLData for {dataPath}");
             }
         }
     }

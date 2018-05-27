@@ -9,6 +9,6 @@ namespace XMLData
         /// </summary>
         public Dictionary<string, int> Stats { get; set; } = new Dictionary<string, int>();
 
-        public List<AbilityData> Abilities { get; set; } = new List<AbilityData>();
+        public List<string> Abilities { get; set; } = new List<string>();
     }
 }

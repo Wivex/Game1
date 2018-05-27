@@ -12,7 +12,7 @@
 		</Events>		
 		<Enemies>
 			<Item>
-				<Key>Orcs/Orc</Key>
+				<Key>Orc</Key>
 				<Value>0.5</Value>
 			</Item>
 		</Enemies>

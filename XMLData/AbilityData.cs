@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework.Graphics;
-
-namespace XMLData
+﻿namespace XMLData
 {
     public class AbilityData : EntityData
     {

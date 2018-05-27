@@ -3,7 +3,6 @@ using Game1.Objects;
 using Game1.Objects.Units;
 using Game1.UI;
 using Game1.UI.Panels;
-using GeonBit.UI.Entities;
 
 namespace Game1.Concepts
 {
@@ -11,22 +10,25 @@ namespace Game1.Concepts
     {
         public Hero Hero { get; set; }
         public Enemy Enemy { get; set; }
-        public PanelExpedition ExpeditionPanel { get; set; }
+        public PanelExpeditionOverview ExpeditionOverviewPanel { get; set; }
         public bool HeroTurnFirst { get; set; }
         public int Turn { get; set; }
-        public double APPerSecond { get; set; }
+        /// <summary>
+        /// 1 AP per second
+        /// </summary>
+        public double BaseAPGainRate { get; set; }
 
-        public EnemyEncounter(Hero hero, Location location, PanelExpedition expeditionPanel)
+        public EnemyEncounter(Hero hero, Location location, PanelExpeditionOverview expeditionOverviewPanel)
         {
             Hero = hero;
             Enemy = TrySpawnEnemy(location);
-            ExpeditionPanel = expeditionPanel;
+            ExpeditionOverviewPanel = expeditionOverviewPanel;
 
             Name = $"Battle with {Enemy.Name}.";
             Texture = Enemy.Texture;
             Globals.ExpeditionsDict[hero.ID].Enemy = Enemy;
 
-            APPerSecond = Globals.Game.TargetElapsedTime.TotalMilliseconds / 1000;
+            BaseAPGainRate = Globals.Game.TargetElapsedTime.TotalMilliseconds / 1000;
 
             InitCombat();
         }
@@ -65,16 +67,16 @@ namespace Game1.Concepts
         // TODO: add equipment and effects into equation
         public void TakeTurn(Unit actor, Unit target)
         {
-            actor.ActionPoints += actor.Speed * APPerSecond;
+            actor.ActionPoints += actor.Speed * BaseAPGainRate;
             if (actor.ActionPoints >= actor.ActionCost)
             {
                 actor.ActionPoints -= actor.ActionCost;
                 var damage = Math.Max(actor.Attack - target.Defence, 0);
                 target.Health -= damage;
 
-                var targetPanel = actor is Hero ? ExpeditionPanel.EventImagePanel : ExpeditionPanel.HeroImagePanel;
+                var targetPanel = actor is Hero ? ExpeditionOverviewPanel.EventImagePanel : ExpeditionOverviewPanel.HeroImagePanel;
 
-                new FloatingText("-" + damage, targetPanel, TimeSpan.FromSeconds(3));
+                new FloatingText("-" + damage, targetPanel, TimeSpan.FromSeconds(2));
             }
         }
 

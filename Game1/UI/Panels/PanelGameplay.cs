@@ -10,16 +10,16 @@ namespace Game1.UI.Panels
         public static void Init(Game1 game)
         {
             // initialize gameplay screen panel
-            var gameplayPanel = new Panel(game.GameScreenResolution, PanelSkin.None);
+            var gameplayPanel = new PanelBrownExternal(game.GameScreenResolution);
             game.ScreenPanels.Add(gameplayPanel);
             UserInterface.Active.AddEntity(gameplayPanel);
             game.ChangeActivePanel(gameplayPanel);
 
             // initialize panel tabs with buttons
             var buttonsPanel =
-                new PanelBrownThin(new Vector2(gameplayPanel.Size.X, Button.DefaultSize.Y), Anchor.TopCenter);
+                new PanelBrownInternal(new Vector2(gameplayPanel.SizeInternal.X, Button.DefaultSize.Y), Anchor.TopCenter);
             var tabsPanel =
-                new PanelBrownThin(new Vector2(gameplayPanel.Size.X, gameplayPanel.Size.Y - buttonsPanel.Size.Y),
+                new PanelBrownInternal(new Vector2(gameplayPanel.SizeInternal.X, gameplayPanel.SizeInternal.Y - buttonsPanel.Size.Y),
                     Anchor.BottomCenter);
             var buttonTabs = new ButtonTabs(buttonsPanel, tabsPanel);
             gameplayPanel.AddChild(buttonTabs);

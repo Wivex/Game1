@@ -10,11 +10,11 @@ namespace Game1.UI.Panels
         public static void Init(PanelEmpty parentPanel)
         {
             var debugButtonSize = new Vector2(200, 50);
-            parentPanel.AddChild(new Button("New Expedition",size: debugButtonSize)
+            parentPanel.AddChild(new Button("New Expedition", size: debugButtonSize)
             {
                 OnClick = entity =>
                 {
-                    var hero = new Hero("Warrior");
+                    var hero = new Hero("John", "Warrior");
                     new Expedition(hero, "Forest");
                 }
             });

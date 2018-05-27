@@ -1,6 +1,5 @@
 ﻿using System.Xml;
 using Microsoft.Xna.Framework.Content.Pipeline.Serialization.Intermediate;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace XMLData
 {

@@ -86,7 +86,7 @@ namespace Game1
         /// </summary>        
         public void InitUI()
         {
-            var background = new ImageNew(Globals.TryLoadTexture("Background"), GameScreenResolution);
+            var background = new ImageNew(Globals.TryLoadTexture($@"{Globals.DataPathBase}\Background"), GameScreenResolution);
             UserInterface.Active.Root.AddChild(background);
 
             PanelMainMenu.Init(new Vector2(450, 410), this);

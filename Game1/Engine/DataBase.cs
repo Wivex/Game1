@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Game1.Concepts;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using XMLData;
 
 namespace Game1.Engine
 {
     /// <summary>
-    /// Class that holds all XMLData loaded
+    /// Class that holds all XMLData and corresponding textures loaded
     /// </summary>
     public static class DataBase
     {
@@ -25,6 +21,7 @@ namespace Game1.Engine
         public static Dictionary<string, Tuple<ItemData, Texture2D>> Loot { get; set; } =
             new Dictionary<string, Tuple<ItemData, Texture2D>>();
         public static Dictionary<string, Tuple<LocationData, Texture2D>> Locations { get; set; } = new Dictionary<string, Tuple<LocationData, Texture2D>>();
+        public static Dictionary<string, Tuple<AbilityData, Texture2D>> Abilities { get; set; } = new Dictionary<string, Tuple<AbilityData, Texture2D>>();
 
         public static void Init()
         {
@@ -33,6 +30,8 @@ namespace Game1.Engine
             LoadData(Equipment, @"Items\Equipment");
             LoadData(Consumables, @"Items\Consumables");
             LoadData(Loot, @"Items\Loot");
+            LoadData(Locations, "Locations");
+            LoadData(Abilities, "Abilities");
         }
 
         public static void LoadData<T>(Dictionary<string, Tuple<T, Texture2D>> dataDict, string subDirPath)
@@ -41,8 +40,8 @@ namespace Game1.Engine
             {
                 var name = Path.GetFileNameWithoutExtension(file).Replace("_Data", "");
                 var filePath = file.Replace("Content\\", "").Replace(".xnb", "");
-                var XMLData = Globals.Game.Content.Load<T>(filePath);
-                var texture = Globals.Game.Content.Load<Texture2D>(filePath.Replace("_Data", ""));
+                var XMLData = Globals.TryLoadData<T>(filePath);
+                var texture = Globals.TryLoadTexture(filePath.Replace("_Data", ""));
                 dataDict.Add(name, Tuple.Create(XMLData, texture));
             }
         }

@@ -9,7 +9,7 @@ namespace Game1.UI.Panels
         public static void Init(Vector2 size, Game1 game)
         {
             // create panel and add to list of screenPanels and manager
-            var mainMenuPanel = new PanelBrownThick(size)
+            var mainMenuPanel = new PanelBrownExternal(size)
             {
                 Padding = new Vector2(30, 30)
             };
