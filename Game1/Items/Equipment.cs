@@ -12,9 +12,9 @@ namespace Game1.Objects
         public Equipment(string equipmentName)
         {
             Name = equipmentName;
-            Stacksize = 1;
-            XMLData = DataBase.Equipment[equipmentName].Item1;
-            Texture = DataBase.Equipment[equipmentName].Item2;
+            StackSize = 1;
+            XMLData = DB.Equipment[equipmentName].Item1;
+            Texture = DB.Equipment[equipmentName].Item2;
         }
     }
 }

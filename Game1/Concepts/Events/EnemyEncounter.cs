@@ -1,7 +1,6 @@
 ﻿using System;
 using Game1.Objects;
 using Game1.Objects.Units;
-using Game1.UI;
 using Game1.UI.Panels;
 
 namespace Game1.Concepts
@@ -11,8 +10,11 @@ namespace Game1.Concepts
         public Hero Hero { get; set; }
         public Enemy Enemy { get; set; }
         public PanelExpeditionOverview ExpeditionOverviewPanel { get; set; }
-        public bool HeroTurnFirst { get; set; }
-        public int Turn { get; set; }
+
+        public bool HeroTurnFirst => Enemy.Stats[Stat.Speed] < Hero.Stats[Stat.Speed]
+                                     || Enemy.Stats[Stat.Speed] == Hero.Stats[Stat.Speed] &&
+                                     Globals.RNGesus.Next(2) == 1;
+
         /// <summary>
         /// 1 AP per second
         /// </summary>
@@ -20,21 +22,20 @@ namespace Game1.Concepts
 
         public EnemyEncounter(Hero hero, Location location, PanelExpeditionOverview expeditionOverviewPanel)
         {
+            ExpeditionOverviewPanel = expeditionOverviewPanel;
             Hero = hero;
             Enemy = TrySpawnEnemy(location);
-            ExpeditionOverviewPanel = expeditionOverviewPanel;
+            Enemy.UnitPanel = ExpeditionOverviewPanel.EventImagePanel;
 
             Name = $"Battle with {Enemy.Name}.";
             Texture = Enemy.Texture;
             Globals.ExpeditionsDict[hero.ID].Enemy = Enemy;
 
             BaseAPGainRate = Globals.Game.TargetElapsedTime.TotalMilliseconds / 1000;
-
-            InitCombat();
         }
 
         // TODO: increase chance with each iteration?
-        public static Enemy TrySpawnEnemy(Location location)
+        public Enemy TrySpawnEnemy(Location location)
         {
             for (var tryIndex = 0; tryIndex < 100; tryIndex++)
             {
@@ -44,6 +45,7 @@ namespace Game1.Concepts
                         return new Enemy(enemyData.Key);
                 }
             }
+
             throw new Exception("Generating enemy takes too many tries");
         }
 
@@ -54,38 +56,54 @@ namespace Game1.Concepts
         {
             if (HeroTurnFirst)
             {
-                TakeTurn(Hero, Enemy);
-                TakeTurn(Enemy, Hero);
+                CombatTick(Hero, Enemy);
+                CombatTick(Enemy, Hero);
             }
             else
             {
-                TakeTurn(Enemy, Hero);
-                TakeTurn(Hero, Enemy);
+                CombatTick(Enemy, Hero);
+                CombatTick(Hero, Enemy);
             }
         }
 
-        // TODO: add equipment and effects into equation
-        public void TakeTurn(Unit actor, Unit target)
+        public void CombatTick(Unit actor, Unit target)
         {
-            actor.ActionPoints += actor.Speed * BaseAPGainRate;
+            actor.UpdateEffects();
+
+            actor.ActionPoints += actor.Stats[Stat.Speed].Value * BaseAPGainRate;
             if (actor.ActionPoints >= actor.ActionCost)
             {
                 actor.ActionPoints -= actor.ActionCost;
-                var damage = Math.Max(actor.Attack - target.Defence, 0);
-                target.Health -= damage;
-
-                var targetPanel = actor is Hero ? ExpeditionOverviewPanel.EventImagePanel : ExpeditionOverviewPanel.HeroImagePanel;
-
-                new FloatingText("-" + damage, targetPanel, TimeSpan.FromSeconds(2));
+                TakeAction(actor, target);
             }
         }
 
         // TODO: add equipment and effects into equation
-        public void InitCombat()
+        public void TakeAction(Unit actor, Unit target)
         {
-            // turn order roll
-            if (Enemy.Speed < Hero.Speed || Enemy.Speed == Hero.Speed && Globals.RNGesus.Next(2) == 1)
-                HeroTurnFirst = true;
+            var actionTaken = false;
+            foreach (var ability in actor.Abilities)
+            {
+                // use ability
+                if (ability.Ready && !actionTaken)
+                {
+                    ability.Use(actor, target);
+                    actionTaken = true;
+                }
+                else
+                    ability.Cooldown--;
+            }
+
+            // attack
+            if (!actionTaken)
+                Attack(actor, target);
+        }
+
+        public void Attack(Unit actor, Unit target)
+        {
+            var damage = new Damage(DamageType.Physical,
+                Math.Max(actor.Stats[Stat.Attack] - target.Stats[Stat.Defence], 0));
+            target.TakeDamage(damage);
         }
     }
 }

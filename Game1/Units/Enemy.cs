@@ -1,6 +1,7 @@
 ﻿using Game1.Concepts;
 using Game1.Engine;
 using Game1.Mechanics;
+using Game1.UI;
 using XMLData;
 
 namespace Game1.Objects.Units
@@ -9,17 +10,16 @@ namespace Game1.Objects.Units
     {
         public EnemyData XMLData { get; set; }
 
+        //public int MaxHealth => XMLData.Stats[Stat.Health];
+
         public Enemy(string enemyName)
         {
             Name = enemyName;
-            XMLData = DataBase.Enemies[enemyName].Item1;
-            Texture = DataBase.Enemies[enemyName].Item2;
+            XMLData = DB.Enemies[enemyName].Item1;
+            Texture = DB.Enemies[enemyName].Item2;
 
-            Health = XMLData.Stats[Stat.Health];
-            Attack = XMLData.Stats[Stat.Attack];
-            Defence = XMLData.Stats[Stat.Defence];
-            Resistance = XMLData.Stats[Stat.Resistance];
-            Speed = XMLData.Stats[Stat.Speed];
+            foreach (var statData in XMLData.Stats)
+                Stats.Add(statData.Key, new Stat(statData.Key, statData.Value));
 
             foreach (var abilityName in XMLData.Abilities)
                 Abilities.Add(new Ability(abilityName));

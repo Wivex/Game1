@@ -4,6 +4,6 @@ namespace XMLData
 {
     public class ConsumableData : ItemData
     {
-        public List<string> Effects { get; set; }
+        //public List<string> Effects { get; set; }
     }
 }

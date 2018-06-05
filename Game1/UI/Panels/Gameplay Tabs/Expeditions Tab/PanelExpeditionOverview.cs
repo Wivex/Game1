@@ -25,10 +25,11 @@ namespace Game1.UI.Panels
 
             // hero icon
             HeroImagePanel =
-                new PanelBrownInternal(
+                new PanelFramed(
                     new Vector2((int)(SizeInternal.Y * 0.4f), (int)(SizeInternal.Y * 0.4f)),
                     Anchor.TopLeft);
             AddChild(HeroImagePanel);
+            expedition.Hero.UnitPanel = HeroImagePanel;
             var heroImage = new ImageNew(expedition.Hero.Texture, HeroImagePanel.SizeInternal)
             {
                 ToolTipText = $@"{expedition.Hero.Name} the {expedition.Hero.XMLData.Name}"
@@ -36,7 +37,7 @@ namespace Game1.UI.Panels
             HeroImagePanel.AddChild(heroImage);
 
             // event icon
-            EventImagePanel = new PanelBrownInternal(HeroImagePanel.Size,
+            EventImagePanel = new PanelFramed(HeroImagePanel.Size,
                 Anchor.TopRight);
             AddChild(EventImagePanel);
             var eventImage = new ImageNew(expedition.Event.Texture, EventImagePanel.SizeInternal);
@@ -69,16 +70,23 @@ namespace Game1.UI.Panels
                 ConsumablePanels.Add(consumablePanel);
 
                 var consumableImage = new ImageZooming(consumablePanel.SizeInternal);
+                consumablePanel.AddChild(consumableImage);
+                var consumableStackSize = new Paragraph(string.Empty, Anchor.Center);
+                consumablePanel.AddChild(consumableStackSize);
+
                 consumableImage.BeforeDraw += e =>
                 {
                     var c = ConsumablePanels.IndexOf(consumablePanel);
                     if (c < Expedition.Hero.Consumables.Count)
                     {
-                        consumableImage.Texture = Expedition.Hero.Consumables[c].Texture;
-                        consumableImage.ToolTipText = Expedition.Hero.Consumables[c].Name;
+                        var consumable = Expedition.Hero.Consumables[c];
+                        consumableImage.Texture = consumable.Texture;
+                        consumableImage.ToolTipText = consumable.Name;
+                        consumableStackSize.Text = consumable.StackSize > 0
+                            ? consumable.StackSize.ToString()
+                            : string.Empty;
                     }
                 };
-                consumablePanel.AddChild(consumableImage);
             }
 
             AddChild(new HorizontalLine());
@@ -99,20 +107,28 @@ namespace Game1.UI.Panels
                 SkillPanels.Add(skillPanel);
 
                 var skillImage = new ImageZooming(skillPanel.SizeInternal, true);
-                skillImage.BeforeDraw += e =>
+                skillPanel.AddChild(skillImage);
+                var skillCooldownText = new Paragraph(string.Empty, Anchor.Center);
+                skillPanel.AddChild(skillCooldownText);
+
+                skillPanel.BeforeDraw += e =>
                 {
                     var s = SkillPanels.IndexOf(skillPanel);
                     if (s < Expedition.Hero.Abilities.Count)
                     {
-                        skillImage.Texture = Expedition.Hero.Abilities[s].Texture;
-                        skillImage.ToolTipText = Expedition.Hero.Abilities[s].Name;
+                        var ability = Expedition.Hero.Abilities[s];
+                        skillPanel.Disabled = !ability.Ready;
+                        skillImage.Texture = ability.Texture;
+                        skillImage.ToolTipText = ability.Name;
+                        skillCooldownText.Text = ability.Cooldown > 0
+                            ? ability.Cooldown.ToString()
+                            : string.Empty;
                     }
                 };
-                skillPanel.AddChild(skillImage);
             }
 
             // log panel
-            var logPanel = new PanelBrownInternal(new Vector2(skillsPanelHeight, skillsPanelHeight-1), Anchor.BottomRight);
+            var logPanel = new PanelFramed(new Vector2(skillsPanelHeight, skillsPanelHeight-1), Anchor.BottomRight);
             AddChild(logPanel);
 
             // money panel
@@ -129,17 +145,15 @@ namespace Game1.UI.Panels
             AddChild(expPanel);
 
             // propagate all internal children invents to this
-            foreach (var ent in GetChildren())
+            PropagateEventsFromAllChildren(this);
+        }
+
+        public void PropagateEventsFromAllChildren(Entity ent)
+        {
+            foreach (var child in ent.GetChildren())
             {
-                ent.PropagateEventsTo(this);
-                foreach (var entInternal in ent.GetChildren())
-                {
-                    entInternal.PropagateEventsTo(this);
-                    foreach (var entInternal2 in entInternal.GetChildren())
-                    {
-                        entInternal2.PropagateEventsTo(this);
-                    }
-                }
+                child.PropagateEventsTo(this);
+                PropagateEventsFromAllChildren(child);
             }
         }
 
@@ -157,7 +171,7 @@ namespace Game1.UI.Panels
             {
                 if (Expedition.Enemy != null)
                 {
-                    healthBarHero.Value = Expedition.Hero.Health;
+                    healthBarHero.Value = Expedition.Hero.Stats[Stat.Health].Value;
                     healthBarHero.Max = (uint)Expedition.Hero.XMLData.Stats[Stat.Health];
                     healthBarHero.Caption.Text = $"{healthBarHero.Value}/{healthBarHero.Max}";
                 }
@@ -173,7 +187,7 @@ namespace Game1.UI.Panels
             {
                 if (Expedition.Enemy != null)
                 {
-                    healthBarEnemy.Value = Expedition.Enemy.Health;
+                    healthBarEnemy.Value = Expedition.Enemy.Stats[Stat.Health].Value;
                     healthBarEnemy.Max = (uint)Expedition.Enemy.XMLData.Stats[Stat.Health];
                     healthBarEnemy.Caption.Text = $"{healthBarEnemy.Value}/{healthBarEnemy.Max}";
                 }

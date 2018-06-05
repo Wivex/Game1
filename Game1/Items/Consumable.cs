@@ -7,14 +7,15 @@ namespace Game1.Objects
 {
     public class Consumable : Item
     {
+        public override int MaxStackSize => 10;
+
         public ConsumableData XMLData { get; set; }
 
         public Consumable(string consumableName)
         {
             Name = consumableName;
-            Stacksize = 10;
-            XMLData = DataBase.Consumables[consumableName].Item1;
-            Texture = DataBase.Consumables[consumableName].Item2;
+            XMLData = DB.Consumables[consumableName].Item1;
+            Texture = DB.Consumables[consumableName].Item2;
         }
     }
 }

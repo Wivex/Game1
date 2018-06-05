@@ -4,12 +4,12 @@ namespace XMLData
 {
     public class EnemyData : UnitData
     {
-        public int XPReward { get; set; } = 1;
+        public int XPReward { get; set; }
 
         /// <summary>
         /// 
         /// (ItemName, DropChance)
         /// </summary>
-        public Dictionary<string, float> DropTable { get; set; } = new Dictionary<string, float>();
+        public Dictionary<string, float> DropTable { get; set; }
     }
 }

@@ -7,8 +7,8 @@ namespace XMLData
         /// <summary>
         /// Base stats for this enemy type
         /// </summary>
-        public Dictionary<string, int> Stats { get; set; } = new Dictionary<string, int>();
+        public Dictionary<string, int> Stats { get; set; }
 
-        public List<string> Abilities { get; set; } = new List<string>();
+        public List<string> Abilities { get; set; }
     }
 }

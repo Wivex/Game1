@@ -5,7 +5,7 @@ namespace XMLData
 {
     public abstract class EntityData
     {
-        public string Name { get; set; } = "Noname";
+        public string Name { get; set; }
 
         /// <summary>
         /// Generate xml template based on pre-initialized data class

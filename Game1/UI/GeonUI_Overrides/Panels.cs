@@ -1,4 +1,5 @@
-﻿using GeonBit.UI.Entities;
+﻿using System;
+using GeonBit.UI.Entities;
 using Microsoft.Xna.Framework;
 
 namespace Game1.UI
@@ -25,6 +26,12 @@ namespace Game1.UI
             BeforeDraw += e => { UpdateChildrenVisibility(); };
         }
 
+        public void InitFloatingText(string text, TimeSpan lifeTime)
+        {
+            new FloatingText(text, this, lifeTime);
+        }
+
+        // TODO: check if needed
         public virtual void UpdateChildrenVisibility()
         {
         }
@@ -58,6 +65,16 @@ namespace Game1.UI
         public PanelBlack(Vector2 size, Anchor anchor = Anchor.Center, Vector2? offset = null) : base(size, anchor, offset)
         {
             Skin = PanelSkin.Simple;
+        }
+    }
+
+    public class PanelFramed : PanelEmpty
+    {
+        public override int PanelTextureBorderWidth { get; set; } = 5;
+
+        public PanelFramed(Vector2 size, Anchor anchor = Anchor.Center, Vector2? offset = null) : base(size, anchor, offset)
+        {
+            Skin = PanelSkin.Golden;
         }
     }
 

@@ -1,14 +1,13 @@
-﻿namespace XMLData
+﻿using System.Collections.Generic;
+
+namespace XMLData
 {
     public class AbilityData : EntityData
     {
         public int Damage { get; set; }
         public int Cooldown { get; set; }
-        /// <summary>
-        /// used to counter enemy attack or ability
-        /// </summary>
-        //public bool IsCounter { get; }
-        //public Dictionary<string, int> SelfEffects { get; } = new Dictionary<string, int>();
-        //public Dictionary<string, int> EnemyEffects { get; } = new Dictionary<string, int>();
+        public bool IsCounter { get; set; }
+
+        public List<EffectData> Effects { get; set; }
     }
 }

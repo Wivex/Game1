@@ -11,8 +11,8 @@ namespace Game1.Concepts
         public Location(string locationName)
         {
             Name = locationName;
-            XMLData = DataBase.Locations[locationName].Item1;
-            Texture = DataBase.Locations[locationName].Item2;
+            XMLData = DB.Locations[locationName].Item1;
+            Texture = DB.Locations[locationName].Item2;
         }
     }
 }

@@ -44,10 +44,10 @@ namespace Game1
         {
             // set current game session as global reference
             Globals.Init(this);
-            DataBase.Init();
+            DB.Init();
 
             // generate xml template based on pre initialized data class
-            //new XMLData.HeroData().GenerateTemplate($@"{Content.RootDirectory}\Template.xml");
+            //new XMLData.AbilityData().GenerateTemplate($@"{Content.RootDirectory}\Template.xml");
 
             // Loads GeonUI textures and sets defaults
             UserInterface.Initialize(Content, "custom");

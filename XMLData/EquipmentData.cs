@@ -5,6 +5,6 @@ namespace XMLData
     public class EquipmentData : ItemData
     {
         public string Slot { get; set; }
-        public Dictionary<string, int> Stats { get; set; } = new Dictionary<string, int>();
+        public Dictionary<string, int> Stats { get; set; }
     }
 }

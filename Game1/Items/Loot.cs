@@ -6,14 +6,16 @@ namespace Game1.Objects
 {
     public class Loot : Item
     {
+        public override int MaxStackSize => 99;
+
         public ItemData XMLData { get; set; }
 
         public Loot(string lootName)
         {
             Name = lootName;
-            Stacksize = 99;
-            XMLData = DataBase.Loot[lootName].Item1;
-            Texture = DataBase.Loot[lootName].Item2;
+            StackSize = 99;
+            XMLData = DB.Loot[lootName].Item1;
+            Texture = DB.Loot[lootName].Item2;
         }
     }
 }

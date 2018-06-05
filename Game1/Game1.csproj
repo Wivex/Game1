@@ -43,25 +43,27 @@
     <ApplicationManifest>Various\VS files\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Concepts\Damage.cs" />
+    <Compile Include="Concepts\Effect.cs" />
     <Compile Include="Concepts\Events\EnemyEncounter.cs" />
     <Compile Include="Concepts\Events\Travelling.cs" />
     <Compile Include="Concepts\Events\Event.cs" />
     <Compile Include="Concepts\Expedition.cs" />
-    <Compile Include="Engine\DataBase.cs" />
+    <Compile Include="Engine\DB.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="Concepts\Location.cs" />
     <Compile Include="Concepts\Slot.cs" />
     <Compile Include="Concepts\Stat.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Concepts\Ability.cs" />
-    <Compile Include="Objects\Items\Consumable.cs" />
+    <Compile Include="Items\Consumable.cs" />
     <Compile Include="Concepts\Entity.cs" />
-    <Compile Include="Objects\Items\Equipment.cs" />
-    <Compile Include="Objects\Items\Loot.cs" />
-    <Compile Include="Objects\Items\Item.cs" />
-    <Compile Include="Objects\Units\Enemy.cs" />
-    <Compile Include="Objects\Units\Hero.cs" />
-    <Compile Include="Objects\Units\Unit.cs" />
+    <Compile Include="Items\Equipment.cs" />
+    <Compile Include="Items\Loot.cs" />
+    <Compile Include="Items\Item.cs" />
+    <Compile Include="Units\Enemy.cs" />
+    <Compile Include="Units\Hero.cs" />
+    <Compile Include="Units\Unit.cs" />
     <Compile Include="UI\FloatingText.cs" />
     <Compile Include="UI\GeonUI_Overrides\ButtonNew.cs" />
     <Compile Include="UI\GeonUI_Overrides\ImageZooming.cs" />

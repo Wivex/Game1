@@ -2,6 +2,7 @@
 using Game1.Concepts;
 using Game1.Engine;
 using Game1.Mechanics;
+using Game1.UI;
 using XMLData;
 
 namespace Game1.Objects.Units
@@ -39,14 +40,11 @@ namespace Game1.Objects.Units
             ID = HeroIndex++;
 
             Name = heroName;
-            XMLData = DataBase.Heroes[className].Item1;
-            Texture = DataBase.Heroes[className].Item2;
+            XMLData = DB.Heroes[className].Item1;
+            Texture = DB.Heroes[className].Item2;
 
-            Health = XMLData.Stats[Stat.Health];
-            Attack = XMLData.Stats[Stat.Attack];
-            Defence = XMLData.Stats[Stat.Defence];
-            Resistance = XMLData.Stats[Stat.Resistance];
-            Speed = XMLData.Stats[Stat.Speed];
+            foreach (var statData in XMLData.Stats)
+                Stats.Add(statData.Key, new Stat(statData.Key, statData.Value));
 
             foreach (var abilityName in XMLData.Abilities)
                 Abilities.Add(new Ability(abilityName));

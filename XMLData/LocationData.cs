@@ -4,10 +4,10 @@ namespace XMLData
 {
     public class LocationData : EntityData
     {
-        public List<EventData> Events { get; set; } = new List<EventData>();
+        public List<EventData> Events { get; set; }
         /// <summary>
         /// (EnemyName, ChanceToSpawn)
         /// </summary>
-        public Dictionary<string, float> Enemies { get; set; } = new Dictionary<string, float>();
+        public Dictionary<string, float> Enemies { get; set; }
     }
 }

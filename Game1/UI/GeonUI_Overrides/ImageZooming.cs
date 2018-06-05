@@ -10,7 +10,7 @@ namespace Game1.UI.GeonUI_Overrides
 
         public ImageZooming(Vector2 size, bool drawBorderPanel = false) : base(IconType.None, Anchor.Center, 1, drawBorderPanel, null)
         {
-            Size = drawBorderPanel ? size - new Vector2(BorderPanelWidth, BorderPanelWidth)*2 : size;
+            Size = drawBorderPanel ? size - new Vector2(BorderPanelWidth, BorderPanelWidth) * 2 : size;
             // initializtion required to make it being drawn
             ToolTipText = default(string);
         }

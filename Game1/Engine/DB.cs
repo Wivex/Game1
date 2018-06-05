@@ -10,7 +10,7 @@ namespace Game1.Engine
     /// <summary>
     /// Class that holds all XMLData and corresponding textures loaded
     /// </summary>
-    public static class DataBase
+    public static class DB
     {
         public static Dictionary<string, Tuple<HeroData, Texture2D>> Heroes { get; set; } = new Dictionary<string, Tuple<HeroData, Texture2D>>();
         public static Dictionary<string, Tuple<EnemyData, Texture2D>> Enemies { get; set; } = new Dictionary<string, Tuple<EnemyData, Texture2D>>();
