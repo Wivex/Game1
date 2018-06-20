@@ -32,7 +32,7 @@ namespace Game1.Mechanics
         public void Use(Unit actor, Unit target)
         {
             if (XMLData.Damage != 0)
-                target.TakeDamage(new Damage(DamageType.Magic, XMLData.Damage));
+                target.TakeDamage(new Damage(DamageType.Magic, XMLData.Damage),Texture);
             TryApplyEffects(actor, target);
             CDReset();
         }

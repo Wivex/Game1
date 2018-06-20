@@ -20,6 +20,7 @@ namespace Game1.Concepts
         public static Dictionary<int, Expedition> ExpeditionsDict { get; set; } = new Dictionary<int, Expedition>();
         public static TabExpeditions TabExpeditions { get; set; }
         public static GameTime GameTime { get; set; }
+        public static float GameSpeedMultiplier { get; set; } = 1f;
 
         public static Texture2D MissingTexture { get; set; }
 

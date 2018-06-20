@@ -11,6 +11,7 @@ namespace Game1.UI
         public static List<FloatingText> Texts = new List<FloatingText>();
 
         public string Text { get; set; }
+        public Texture2D Icon { get; set; }
         public float LifeTimePercent { get; set; }
         public TimeSpan LifeTime { get; set; }
         public TimeSpan ElapsedTime { get; set; } = TimeSpan.Zero;
@@ -18,9 +19,10 @@ namespace Game1.UI
         public Vector2 DestinationOffset { get; set; }
         public Vector2 CurrentOffset { get; set; }
 
-        public FloatingText(string text, PanelEmpty panel, TimeSpan lifeTime)
+        public FloatingText(string text, PanelEmpty panel, TimeSpan lifeTime, Texture2D icon = null)
         {
             Text = text;
+            Icon = icon;
             LifeTime = lifeTime;
             Panel = panel;
 
@@ -33,6 +35,7 @@ namespace Game1.UI
         {
             if (Texts.Count > 0)
             {
+                // not foreach because remove items
                 for (var i = 0; i < Texts.Count; i++)
                 {
                     Texts[i].DrawText();
@@ -50,11 +53,20 @@ namespace Game1.UI
                 {
                     if (Texts.Contains(this))
                     {
-                        LifeTimePercent = (float)(ElapsedTime.TotalMilliseconds / LifeTime.TotalMilliseconds);
+                        LifeTimePercent = (float) (ElapsedTime.TotalMilliseconds / LifeTime.TotalMilliseconds);
                         CurrentOffset = new Vector2(DestinationOffset.X * LifeTimePercent,
                             DestinationOffset.Y * LifeTimePercent);
 
                         var panelCenter = Panel.CalcInternalRect().Center.ToVector2();
+
+                        if (Icon != null)
+                        {
+                            Globals.Game.SpriteBatch.Begin(blendState: BlendState.AlphaBlend);
+                            Globals.Game.SpriteBatch.Draw(Icon, panelCenter + CurrentOffset,
+                                Color.White * (0.01f/ LifeTimePercent));
+                            Globals.Game.SpriteBatch.End();
+                        }
+
                         Globals.Game.SpriteBatch.Begin(blendState: BlendState.NonPremultiplied);
                         Globals.Game.SpriteBatch.DrawString(GeonBit.UI.Resources.Fonts[1], Text,
                             panelCenter + CurrentOffset,

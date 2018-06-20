@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text;
 using Game1.Concepts;
 using Game1.Engine;
 using Game1.UI;
@@ -8,6 +9,7 @@ using GeonBit.UI;
 using GeonBit.UI.Entities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Game1
 {
@@ -17,6 +19,7 @@ namespace Game1
         public List<Panel> ScreenPanels { get; } = new List<Panel>();
         public SpriteBatch SpriteBatch { get; set; }
         public bool GameplayRunning { get; set; }
+        public KeyboardState PreviousKeyboardState { get; set; }
 
         /// <summary>
         /// Sets content root dir, default resolution and screen position
@@ -124,7 +127,47 @@ namespace Game1
             // update inputs, root panel, tooltips, select active panel
             UserInterface.Active.Update(gameTime);
 
+            UpdateKeyboard();
+
             base.Update(gameTime);
+        }
+
+        public void UpdateKeyboard()
+        {
+            // Poll for current keyboard state
+            var keyboardState = Keyboard.GetState();
+
+            // If they hit esc, exit
+            if (keyboardState.IsKeyDown(Keys.Escape))
+                Exit();
+            if (keyboardState.IsKeyDown(Keys.Multiply))
+            {
+                Globals.GameSpeedMultiplier = 1f;
+            }
+            if (keyboardState.IsKeyDown(Keys.Add))
+            {
+                Globals.GameSpeedMultiplier = 3f;
+            }
+            if (keyboardState.IsKeyDown(Keys.Subtract))
+            {
+                Globals.GameSpeedMultiplier = 0.3f;
+            }
+            if (PreviousKeyboardState.IsKeyDown(Keys.Space) && keyboardState.IsKeyUp(Keys.Space))
+            {
+                Globals.GameSpeedMultiplier = Globals.GameSpeedMultiplier == 0f ? 1f : 0;
+            }
+
+            PreviousKeyboardState = keyboardState;
+
+            //// Print to debug console currently pressed keys
+            //var sb = new StringBuilder();
+            //foreach (var key in keyboardState.GetPressedKeys())
+            //    sb.Append("Key: ").Append(key).Append(" pressed ");
+
+            //if (sb.Length > 0)
+            //    System.Diagnostics.Debug.WriteLine(sb.ToString());
+            //else
+            //    System.Diagnostics.Debug.WriteLine("No Keys pressed");
         }
 
         public void UpdateTabs()

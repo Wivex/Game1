@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using Game1.Concepts;
+using Game1.Engine;
 using Game1.Mechanics;
 using Game1.Objects.Units;
 using Game1.UI;
+using Microsoft.Xna.Framework.Graphics;
+using Effect = Game1.Concepts.Effect;
 
 namespace Game1.Objects
 {
@@ -40,11 +43,11 @@ namespace Game1.Objects
             }
         }
 
-        public virtual void TakeDamage(Damage damage)
+        public virtual void TakeDamage(Damage damage, Texture2D icon = null)
         {
             Stats[Stat.Health].Value -= damage.Value;
             var damText = damage.Value > 0 ? $"-{damage.Value}" : $"+{damage.Value}";
-            UnitPanel.InitFloatingText(damText, TimeSpan.FromSeconds(2));
+            UnitPanel.InitFloatingText(damText, TimeSpan.FromSeconds(2), icon);
         }
     }
 }

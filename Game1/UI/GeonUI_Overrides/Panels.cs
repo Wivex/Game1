@@ -1,6 +1,7 @@
 ﻿using System;
 using GeonBit.UI.Entities;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Game1.UI
 {
@@ -26,9 +27,9 @@ namespace Game1.UI
             BeforeDraw += e => { UpdateChildrenVisibility(); };
         }
 
-        public void InitFloatingText(string text, TimeSpan lifeTime)
+        public void InitFloatingText(string text, TimeSpan lifeTime, Texture2D icon = null)
         {
-            new FloatingText(text, this, lifeTime);
+            new FloatingText(text, this, lifeTime, icon);
         }
 
         // TODO: check if needed

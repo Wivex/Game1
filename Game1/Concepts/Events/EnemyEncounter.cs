@@ -18,7 +18,8 @@ namespace Game1.Concepts
         /// <summary>
         /// 1 AP per second
         /// </summary>
-        public double BaseAPGainRate { get; set; }
+        public double BaseAPGainRate =>
+            Globals.Game.TargetElapsedTime.TotalMilliseconds / 1000 * Globals.GameSpeedMultiplier;
 
         public EnemyEncounter(Hero hero, Location location, PanelExpeditionOverview expeditionOverviewPanel)
         {
@@ -30,8 +31,6 @@ namespace Game1.Concepts
             Name = $"Battle with {Enemy.Name}.";
             Texture = Enemy.Texture;
             Globals.ExpeditionsDict[hero.ID].Enemy = Enemy;
-
-            BaseAPGainRate = Globals.Game.TargetElapsedTime.TotalMilliseconds / 1000;
         }
 
         // TODO: increase chance with each iteration?
