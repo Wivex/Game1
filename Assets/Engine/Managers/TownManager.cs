@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class TownManager : MonoBehaviour
 {
-    public ExpeditionManager EM;
     public Button newExpButtonPrefab;
     public Hero heroPrefab;
 
@@ -14,7 +13,16 @@ public class TownManager : MonoBehaviour
     public void CreateHero()
     {
         Instantiate(newExpButtonPrefab, transform);
-        var hero = Instantiate(heroPrefab, transform);
-        heroes.Add(hero);
+        heroes.Add(Instantiate(heroPrefab, transform));
+        Instantiate(newExpButtonPrefab, transform);
+        heroes.Add(Instantiate(heroPrefab, transform));
+        Instantiate(newExpButtonPrefab, transform);
+        heroes.Add(Instantiate(heroPrefab, transform));
+        Instantiate(newExpButtonPrefab, transform);
+        heroes.Add(Instantiate(heroPrefab, transform));
+        Instantiate(newExpButtonPrefab, transform);
+        heroes.Add(Instantiate(heroPrefab, transform));
+        Instantiate(newExpButtonPrefab, transform);
+        heroes.Add(Instantiate(heroPrefab, transform));
     }
 }

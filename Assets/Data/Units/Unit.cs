@@ -28,6 +28,7 @@ public class Unit : MonoBehaviour
     #region UI
     public Slider HPSlider, ManaSlider, InitSlider;
     public TextMeshProUGUI HPSliderText, ManaSliderText, InitSliderText;
+    public AssetManager AM;
     #endregion
 
     void Update()
@@ -45,7 +46,7 @@ public class Unit : MonoBehaviour
     public void TakeDamage(int damage)
     {
         curHealth -= damage;
-        var floatingText = Instantiate(AssetManager.AM.floatingTextPrefab, transform);
+        var floatingText = Instantiate(AM.floatingTextPrefab, transform);
         floatingText.GetComponent<TextMeshProUGUI>().text = $"-{damage}";
     }
 }

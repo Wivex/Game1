@@ -4,18 +4,16 @@ using UnityEngine;
 public class ExpeditionManager : MonoBehaviour
 {
     public Expedition expeditionPrefab;
-    public RectTransform expeditionsPanel;
-    public Location location;
+    public RectTransform contentPanel;
 
-    public static List<Expedition> expeditions;
+    public List<Expedition> expeditions;
 
     //, Location destination
     public void NewExpedition(Hero hero)
     {
-        Expedition expedition = Instantiate(expeditionPrefab, expeditionsPanel);
+        Expedition expedition = Instantiate(expeditionPrefab, contentPanel);
         //expedition.hero = 
         //expedition.transform.SetParent(expeditionsPanel.transform, false);
-
-
+        
     }
 }
