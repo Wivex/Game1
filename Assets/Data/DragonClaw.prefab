@@ -19,6 +19,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4546709333446100}
+  - component: {fileID: 114345448389540334}
+  - component: {fileID: 114718145643993100}
+  - component: {fileID: 114473179373334394}
+  - component: {fileID: 114196117874800802}
   m_Layer: 0
   m_Name: DragonClaw
   m_TagString: Untagged
@@ -39,3 +43,76 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114196117874800802
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1849285598076422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eb56ffd974c2e34ba1345a8ad79e070, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: 0
+  factor: 1
+--- !u!114 &114345448389540334
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1849285598076422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2712487bd4c46743a5e148e770e7593, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cost: 100
+  name: 
+  description: 
+--- !u!114 &114473179373334394
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1849285598076422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dcf99fa642ed5246b00eaa38520ad29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: 1
+  statsToAdd:
+    health: -5
+    healthRegen: 0
+    energy: 0
+    energyRegen: 0
+    initiative: 0
+    attack: 0
+    speed: 0
+    defence: 0
+    hazardResistance: 0
+    bleedResistance: 0
+--- !u!114 &114718145643993100
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1849285598076422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dcf99fa642ed5246b00eaa38520ad29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: 0
+  statsToAdd:
+    health: 9
+    healthRegen: 0
+    energy: 0
+    energyRegen: 0
+    initiative: 0
+    attack: 0
+    speed: 0
+    defence: 0
+    hazardResistance: 0
+    bleedResistance: 0

@@ -11,3 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50a5f28cc1438d1469e778a176d9b3aa, type: 3}
   m_Name: DataBase
   m_EditorClassIdentifier: 
+  classNameToStats:
+  - className: Warrior
+    stats: {fileID: 11400000, guid: aac13908c0f84654ea67ac3475d3c5e9, type: 2}
