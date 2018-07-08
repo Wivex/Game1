@@ -27,43 +27,43 @@ public class GameManager : MonoBehaviour
         //}
     }
 
-    public void CombatTick(Unit actor, Unit target)
-    {
-        actor.curInitiative += actor.speed * combatSpeed;
-        if (actor.curInitiative >= actor.maxInitiative)
-        {
-            actor.curInitiative -= actor.maxInitiative;
-            TakeAction(actor, target);
-        }
-    }
+    //public void CombatTick(Unit actor, Unit target)
+    //{
+    //    actor.curInitiative += actor.speed * combatSpeed;
+    //    if (actor.curInitiative >= actor.maxInitiative)
+    //    {
+    //        actor.curInitiative -= actor.maxInitiative;
+    //        TakeAction(actor, target);
+    //    }
+    //}
 
-    // TODO: add equipment and effects into equation
-    public void TakeAction(Unit actor, Unit target)
-    {
-        var actionTaken = false;
-        //foreach (var ability in actor.Abilities)
-        //{
-        //    // use ability
-        //    if (ability.Ready && !actionTaken)
-        //    {
-        //        ability.Use(actor, target);
-        //        actionTaken = true;
-        //    }
-        //    else
-        //        ability.Cooldown--;
-        //}
+    //// TODO: add equipment and effects into equation
+    //public void TakeAction(Unit actor, Unit target)
+    //{
+    //    var actionTaken = false;
+    //    //foreach (var ability in actor.Abilities)
+    //    //{
+    //    //    // use ability
+    //    //    if (ability.Ready && !actionTaken)
+    //    //    {
+    //    //        ability.Use(actor, target);
+    //    //        actionTaken = true;
+    //    //    }
+    //    //    else
+    //    //        ability.Cooldown--;
+    //    //}
 
-        // attack
-        if (!actionTaken)
-            Attack(actor, target);
-    }
+    //    // attack
+    //    if (!actionTaken)
+    //        Attack(actor, target);
+    //}
 
-    public void Attack(Unit actor, Unit target)
-    {
-        //var damage = new Damage(DamageType.Physical,
-        //    Math.Max(actor.Stats[Stat.Attack] - target.Stats[Stat.Defence], 0));
-        //target.TakeDamage(damage);
+    //public void Attack(Unit actor, Unit target)
+    //{
+    //    //var damage = new Damage(DamageType.Physical,
+    //    //    Math.Max(actor.Stats[Stat.Attack] - target.Stats[Stat.Defence], 0));
+    //    //target.TakeDamage(damage);
 
-        target.TakeDamage(actor.attack - target.defence);
-    }
+    //    target.TakeDamage(actor.attack - target.defence);
+    //}
 }

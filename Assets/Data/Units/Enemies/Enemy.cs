@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class Enemy : Unit
 {
-    public float spawnChance;
-    public Dictionary<float, string> lootTable;
+    //    public float spawnChance;
+    //    public Dictionary<float, string> lootTable;
 }

@@ -1,52 +1,93 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Unit : MonoBehaviour
+namespace Game
 {
-    public int maxHealth;
-    public int curHealth;
-    public int healthRegen;
-
-    public int maxMana;
-    public int curMana;
-    public int manaRegen;
-
-    public int maxInitiative = 100;
-    public float curInitiative;
-
-    public int attack;
-
-    public int speed;
-
-    public int defence;
-    public int hazardResistance;
-    public int bleedResistance;
-
-    #region UI
-    public Slider HPSlider, ManaSlider, InitSlider;
-    public TextMeshProUGUI HPSliderText, ManaSliderText, InitSliderText;
-    public AssetManager AM;
-    #endregion
-
-    void Update()
+    public class Unit : MonoBehaviour
     {
-        HPSliderText.text = $"{curHealth} / {maxHealth}";
-        HPSlider.value = (float)curHealth / maxHealth;
-        
-        ManaSliderText.text = $"{curMana} / {maxMana}";
-        ManaSlider.value = (float)curMana / maxMana;
+        public string unitClass;
+        public int level;
 
-        InitSliderText.text = $"{(int)curInitiative} / {maxInitiative}";
-        InitSlider.value = curInitiative / maxInitiative;
+        public UnitStats baseStats;
+        public UnitStats currentStats;
+
+        public EquipmentCollection Outfit = new EquipmentCollection();
+
+        public void CalculateBaseStats()
+        {
+            baseStats = DataBase.GetUnitBaseStats(unitClass, level);
+            foreach(var equip in Outfit)
+            {
+                foreach(var effect in equip.effects)
+                {
+                    effect.Apply(ref baseStats);
+                }
+            }
+        }
+
+        //public void TakeDamage(int damage)
+        //{
+        //    curHealth -= damage;
+        //    var floatingText = Instantiate(AM.floatingTextPrefab, transform);
+        //    floatingText.GetComponent<TextMeshProUGUI>().text = $"-{damage}";
+        //}
+
+        [System.Serializable]
+        public class EquipmentCollection : IEnumerable<Equipment>
+        {
+            [System.Serializable]
+            private struct SlotWithEquipment
+            {
+                public Slot slot;
+                public Equipment equipment;
+            }
+            [SerializeField]
+            private List<SlotWithEquipment> slots = new List<SlotWithEquipment>();
+
+            public Equipment this[Slot slot]
+            {
+                get { return slots.FirstOrDefault(s => s.slot == slot).equipment; }
+                set {
+                    var index = -1;
+                    for (int i = 0; i < slots.Count; i++)
+                        if (slots[i].slot == slot)
+                            index = i;
+                    if (index < 0)
+                        slots.Add(new SlotWithEquipment() { slot = slot, equipment = value });
+                    else
+                        slots[index] = new SlotWithEquipment() { slot = slot, equipment = value };
+                }
+            }
+
+            public IEnumerator<Equipment> GetEnumerator()
+            {
+                foreach (var s in slots)
+                    yield return s.equipment;
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                foreach (var s in slots)
+                    yield return s.equipment;
+            }
+        }
     }
 
-    public void TakeDamage(int damage)
+    public enum Slot
     {
-        curHealth -= damage;
-        var floatingText = Instantiate(AM.floatingTextPrefab, transform);
-        floatingText.GetComponent<TextMeshProUGUI>().text = $"-{damage}";
+        Head,
+        Amulet,
+        Body,
+        Belt,
+        Gloves,
+        Boots,
+        Ring1,
+        Ring2,
+        MainHand,
+        OffHand
     }
 }
