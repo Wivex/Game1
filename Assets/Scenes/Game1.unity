@@ -289,6 +289,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatSpeed: 0.1
   gameSpeed: 1
+  hero: {fileID: 0}
+  enemy: {fileID: 0}
 --- !u!4 &116506166
 Transform:
   m_ObjectHideFlags: 0
