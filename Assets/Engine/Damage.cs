@@ -1,7 +1,14 @@
-﻿public class Damage
+﻿public enum DamageType
 {
-    public DamageType DamageType { get; set; }
-    public int Value { get; set; }
+    Physical,
+    Hazardous,
+    Bleeding
+}
+
+public class Damage
+{
+    public DamageType DamageType;
+    public int Value;
 
     public Damage(DamageType type, int value)
     {
@@ -9,3 +16,4 @@
         Value = value;
     }
 }
+
