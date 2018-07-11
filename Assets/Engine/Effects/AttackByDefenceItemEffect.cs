@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-    public class AttackByDefenceEffect : Effect
+    public class AttackByDefenceItemEffect : ItemEffect
     {
         public float factor;
 

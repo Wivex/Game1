@@ -5,6 +5,12 @@
     Bleeding
 }
 
+public enum Target
+{
+    Self,
+    Other
+}
+
 public class Damage
 {
     public DamageType DamageType;

@@ -4,9 +4,15 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum HeroClass
+{
+    Warrior,
+    Mage,
+    Rogue
+}
+
 public class Hero : Unit
 {
-
     //public EquipmentCollection Outfit = new EquipmentCollection();
 
     //public void CalculateBaseStats()
@@ -16,7 +22,7 @@ public class Hero : Unit
     //    {
     //        foreach (var effect in equip.effects)
     //        {
-    //            effect.Apply(ref maxStats);
+    //            effect.OnEquip(ref maxStats);
     //        }
     //    }
     //}

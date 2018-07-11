@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
     //public void Attack(Unit actor, Unit target)
     //{
     //    //var damage = new Damage(DamageType.Physical,
-    //    //    Math.Max(actor.Stats[Stat.Attack] - target.Stats[Stat.Defence], 0));
+    //    //    Math.Max(actor.Stat[Stat.Attack] - target.Stat[Stat.Defence], 0));
     //    //target.TakeDamage(damage);
 
     //    target.TakeDamage(actor.attack - target.defence);

@@ -6,8 +6,6 @@ public class ItemData : ContentData
 {
     [Header("Item")]
     public bool stackable;
-    [DisabledIfNot("stackable")]
-    public int maxValue;
     [HiddenIfNot("stackable")]
-    public int maxStackSize;
+    public int maxStackSize = 1;
 }
