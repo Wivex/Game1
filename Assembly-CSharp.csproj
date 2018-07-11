@@ -67,7 +67,6 @@
     <Compile Include="Assets\Content\Items\Equipment\EquipmentData.cs" />
     <Compile Include="Assets\Content\Items\ItemData.cs" />
     <Compile Include="Assets\Content\Locations\Location.cs" />
-    <Compile Include="Assets\Content\Stats\HealthStat.cs" />
     <Compile Include="Assets\Content\Stats\Stat.cs" />
     <Compile Include="Assets\Content\Stats\StatModifier.cs" />
     <Compile Include="Assets\Content\Units\Enemies\Enemy.cs" />
@@ -76,8 +75,6 @@
     <Compile Include="Assets\Engine\CustomAttributes.cs" />
     <Compile Include="Assets\Engine\Damage.cs" />
     <Compile Include="Assets\Engine\DataBase.cs" />
-    <Compile Include="Assets\Engine\Effects\AddStatsItemEffect.cs" />
-    <Compile Include="Assets\Engine\Effects\AttackByDefenceItemEffect.cs" />
     <Compile Include="Assets\Engine\Effects\ItemEffect.cs" />
     <Compile Include="Assets\Engine\Expedition.cs" />
     <Compile Include="Assets\Engine\Floating Text\FloatingText.cs" />

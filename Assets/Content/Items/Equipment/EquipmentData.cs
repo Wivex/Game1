@@ -22,17 +22,17 @@ public class EquipmentData : ItemData
     public bool classRestricted;
     [HiddenIfNot("classRestricted")] public HeroClass reqClass;
 
-    public List<ItemEffect> effects;
+    public List<StatModifier> statModifiers;
 
-    public void OnEquip(Hero hero)
-    {
-        foreach (var effect in effects)
-            effect.OnEquip(hero);
-    }
+    //public void OnEquip(Hero hero)
+    //{
+    //    foreach (var effect in effects)
+    //        effect.OnEquip(hero);
+    //}
 
-    public void OnUnequip(Hero hero)
-    {
-        foreach (var effect in effects)
-            effect.OnUnequip(hero);
-    }
+    //public void OnUnequip(Hero hero)
+    //{
+    //    foreach (var effect in effects)
+    //        effect.OnUnequip(hero);
+    //}
 }

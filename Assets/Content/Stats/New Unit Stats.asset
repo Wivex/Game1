@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b88a2521cd7a274dbbd858bc2fa57df, type: 3}
+  m_Name: New Unit Stats
+  m_EditorClassIdentifier: 
+  health:
+    baseValue: 0
+    reqRecalculation: 0
+    lastValue: 0
+    lastBaseValue: -3.4028235e+38
+  healthRegen:
+    baseValue: 0
+    reqRecalculation: 0
+    lastValue: 0
+    lastBaseValue: -3.4028235e+38
+  energy:
+    baseValue: 0
+    reqRecalculation: 0
+    lastValue: 0
+    lastBaseValue: -3.4028235e+38
+  energyRegen:
+    baseValue: 0
+    reqRecalculation: 0
+    lastValue: 0
+    lastBaseValue: -3.4028235e+38
+  initiative:
+    baseValue: 0
+    reqRecalculation: 0
+    lastValue: 0
+    lastBaseValue: -3.4028235e+38
+  attack:
+    baseValue: 50
+    reqRecalculation: 0
+    lastValue: 0
+    lastBaseValue: -3.4028235e+38
+  speed:
+    baseValue: 0
+    reqRecalculation: 0
+    lastValue: 0
+    lastBaseValue: -3.4028235e+38
+  defence:
+    baseValue: 0
+    reqRecalculation: 0
+    lastValue: 0
+    lastBaseValue: -3.4028235e+38
+  hazardResistance:
+    baseValue: 0
+    reqRecalculation: 0
+    lastValue: 0
+    lastBaseValue: -3.4028235e+38
+  bleedResistance:
+    baseValue: 0
+    reqRecalculation: 0
+    lastValue: 0
+    lastBaseValue: -3.4028235e+38
