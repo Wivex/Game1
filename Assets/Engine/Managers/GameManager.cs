@@ -3,13 +3,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public Dictionary<int, Hero> heroes;
-
     public float combatSpeed = 0.1f;
     public float gameSpeed = 1;
-
-    public Hero hero;
-    public Enemy enemy;
 
     //bool HeroTurnFirst => enemy.speed < hero.speed || enemy.speed == hero.speed && Random.value < 0.5f;
 
