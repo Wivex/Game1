@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class DebugManager : MonoBehaviour {
     public TownManager TM;
-    public ExpeditionManager EM;
+    public HeroPanelManager EM;
 }

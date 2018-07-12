@@ -7,14 +7,24 @@ using UnityEngine.UI;
 
 public class Unit : MonoBehaviour
 {
-    public Stat damage;
-    public Stat health;
-    public UnitStats stats;
-    public Dictionary<int, UnitStats> levelStats;
+    [Header("Unit")]
+    public new string name;
+    public UnitData unitData;
+    public UnitStats curStats;
+
+    void Start()
+    {
+        SetStats();
+    }
 
     public void Equip(EquipmentData item)
     {
         //damage.AddModifier(item.statModifiers[])
+    }
+
+    public void SetStats()
+    {
+        //curStats = baseStats;
     }
 
 

@@ -13,6 +13,11 @@ public enum HeroClass
 
 public class Hero : Unit
 {
+    [Header("Hero")] public ClassData heroClass;
+
+    public int level;
+    public int gold;
+
     //public EquipmentCollection Outfit = new EquipmentCollection();
 
     //public void CalculateBaseStats()

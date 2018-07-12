@@ -11,12 +11,12 @@ public class HiddenIfNotAttribute : PropertyAttribute
     {
         this.condProperty = condProperty;
     }
-   
 }
 
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Class | AttributeTargets.Struct)]
 public class DisabledIfNotAttribute : HiddenIfNotAttribute
 {
     public DisabledIfNotAttribute(string condProperty) : base(condProperty) { }
-
 }
+
+public class DisabledAttribute : PropertyAttribute { }

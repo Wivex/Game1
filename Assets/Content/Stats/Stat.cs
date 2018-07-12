@@ -4,12 +4,12 @@ using System.Collections.Generic;
 [Serializable]
 public class Stat
 {
-    public float baseValue;
+    public int baseValue;
     public List<StatModifier> statModifiers;
 
-    private bool BaseValueChanged => Math.Abs(baseValue - lastBaseValue) > 0.01f;
+    private bool BaseValueChanged => baseValue != lastBaseValue;
     private bool reqRecalculation;
-    private float lastValue, lastBaseValue = float.MinValue;
+    private int lastValue, lastBaseValue = int.MinValue;
 
     public float Value
     {
@@ -30,7 +30,7 @@ public class Stat
         }
     }
 
-    public Stat(float baseValue) :this()
+    public Stat(int baseValue) :this()
     {
         this.baseValue = baseValue;
         //NOTE: needed?
@@ -60,10 +60,10 @@ public class Stat
         return reqRecalculation = statModifiers.RemoveAll(mod => mod.source == source) > 0;
     }
 
-    private float RecalculateValue()
+    private int RecalculateValue()
     {
         var newValue = baseValue;
-        var sumPercentAdd = 0f;
+        var sumPercentAdd = 0;
 
         for (var i = 0; i < statModifiers.Count; i++)
         {
@@ -79,8 +79,9 @@ public class Stat
                     //if we're at the end of the list OR the next modifer isn't of this type (all are sorted)
                     if (i + 1 >= statModifiers.Count || statModifiers[i + 1].type != StatModType.PercentAdd)
                     {
+                        //NOTE: optimize type changes?
                         //stop summing the additive multiplier
-                        newValue *= 1 + sumPercentAdd;
+                        newValue = (int)(newValue * (1 + (float)sumPercentAdd/100));
                         sumPercentAdd = 0;
                     }
 
@@ -93,6 +94,6 @@ public class Stat
             }
         }
 
-        return (float) Math.Round(newValue, 2);
+        return newValue;
     }
 }

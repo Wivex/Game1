@@ -1,13 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
-    public List<Canvas> canvases = new List<Canvas>();
+    public Canvas defaultActiveCanvas;
+    [Disabled] public List<Canvas> canvases = new List<Canvas>();
+    public List<Canvas> alwaysActiveCanvases = new List<Canvas>();
 
     /// <summary>
     /// automatically put direct children of this object (1 depth) into canvases list
@@ -20,7 +19,18 @@ public class CanvasManager : MonoBehaviour
         {
             var canvas = child.gameObject.GetComponent<Canvas>();
             if (canvas != null && !canvases.Contains(canvas))
+            {
                 canvases.Add(canvas);
+            }
+        }
+    }
+
+    void Start()
+    {
+        foreach (var canvas in canvases)
+        {
+            //disable unused canvases
+            canvas.enabled = alwaysActiveCanvases.Contains(canvas) || canvas == defaultActiveCanvas;
         }
     }
 
@@ -28,8 +38,10 @@ public class CanvasManager : MonoBehaviour
     {
         foreach (var canvas in canvases)
         {
-            canvas.enabled = false;
+            if (!alwaysActiveCanvases.Contains(canvas) && canvas != selectedCanvas)
+                canvas.enabled = false;
         }
+
         selectedCanvas.enabled = true;
     }
 }
