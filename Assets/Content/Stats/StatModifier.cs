@@ -5,6 +5,7 @@
     PercentMult
 }
 
+//NOTE: add stat type reference?
 public class StatModifier
 {
     // readonly to make parameters be set only by constructor
@@ -13,6 +14,7 @@ public class StatModifier
     //object can hold any possible source type
     public readonly object source;
     public readonly int order;
+    public bool affectsStatLimit;
 
     public StatModifier(int value, StatModType type, object source, int order)
     {

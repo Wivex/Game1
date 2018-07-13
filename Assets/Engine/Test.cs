@@ -26,7 +26,7 @@ using UnityEngine;
 
 //    public abstract class StatEffect
 //    {
-//        public abstract UnitStats Apply(UnitStats stats);
+//        public abstract StatValues Apply(StatValues stats);
 //    }
 
 
@@ -34,7 +34,7 @@ using UnityEngine;
 //    {
 //        public int additionalAttack;
 
-//        public override UnitStats Apply(UnitStats stats)
+//        public override StatValues Apply(StatValues stats)
 //        {
 //            stats.attack += additionalAttack;
 //            return stats;
@@ -44,7 +44,7 @@ using UnityEngine;
 //    {
 //        public int coeff;
 
-//        public override UnitStats Apply(UnitStats stats)
+//        public override StatValues Apply(StatValues stats)
 //        {
 //            stats.attack += stats.defence * coeff;
 //            return stats;

@@ -11,7 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 469fa1e8ad463a743a5a9e220adee842, type: 3}
   m_Name: WarriorClass
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 3d96780b570c9334c85e44e87ff5d2a1, type: 3}
-  name: Warrior
   classLevels:
-  - {fileID: 11400000, guid: 6f15e20910322c64cb1f3ac9615867cb, type: 2}
+  - {fileID: 11400000, guid: eeab0700902a97545bd1fad2320a4cf0, type: 2}

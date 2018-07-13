@@ -15,75 +15,45 @@ public enum StatType
 [Serializable]
 public class Stat
 {
-    public int baseValue;
+    public int maxValue, curValue;
     public List<StatModifier> modifiers = new List<StatModifier>();
 
-    private bool BaseValueChanged => baseValue != lastBaseValue;
-    private bool reqRecalculation;
-    private int lastValue, lastBaseValue = int.MinValue;
-
-    public float Value
+    public int MaxValue
     {
-        get
+        get { return maxValue; }
+        set
         {
-            if (BaseValueChanged)
-            {
-                lastBaseValue = baseValue;
-                reqRecalculation = true;
-            }
-
-            if (reqRecalculation)
-            {
-                lastValue = RecalculateValue();
-            }
-
-            return lastValue;
+            maxValue = value;
+            ApplyModifiers(maxValue);
         }
     }
 
-    public Stat(int baseValue) :this()
+    public int CurValue
     {
-        this.baseValue = baseValue;
+        get { return curValue; }
+        set
+        {
+            curValue = value;
+            ApplyModifiers(curValue);
+        }
     }
 
-    //NOTE: needed?
-    public Stat()
-    {
-    }
-
-    public void AddModifier(StatModifier mod)
-    {
-        modifiers.Add(mod);
-        modifiers.Sort(StatModifier.ModifierOrderComparison);
-        reqRecalculation = true;
-    }
-
-    public bool RemoveModifier(StatModifier mod)
-    {
-        return reqRecalculation = modifiers.Remove(mod);
-    }
-
-    public bool RemoveAllModsFromSource(object source)
-    {
-        return reqRecalculation = modifiers.RemoveAll(mod => mod.source == source) > 0;
-    }
-
-    private int RecalculateValue()
+    private void ApplyModifiers(int baseValue)
     {
         var newValue = baseValue;
-        var sumPercentAdd = 0;
 
+        var sumPercentAdd = 0;
         for (var i = 0; i < modifiers.Count; i++)
         {
-            var curMod = modifiers[i];
-            switch (curMod.type)
+            var mod = modifiers[i];
+            switch (mod.type)
             {
                 case StatModType.Flat:
-                    newValue += curMod.value;
+                    newValue += mod.value;
                     break;
                 case StatModType.PercentAdd:
                     //start adding together all modifiers of this type
-                    sumPercentAdd += curMod.value;
+                    sumPercentAdd += mod.value;
                     //if we're at the end of the list OR the next modifer isn't of this type (all are sorted)
                     if (i + 1 >= modifiers.Count || modifiers[i + 1].type != StatModType.PercentAdd)
                     {
@@ -94,13 +64,29 @@ public class Stat
                     }
                     break;
                 case StatModType.PercentMult:
-                    newValue *= 1 + curMod.value;
+                    newValue *= 1 + mod.value;
                     break;
                 default:
                     throw new NotImplementedException();
             }
         }
+    }
 
-        return newValue;
+    public void AddModifier(StatModifier mod)
+    {
+        modifiers.Add(mod);
+        modifiers.Sort(StatModifier.ModifierOrderComparison);
+    }
+
+    public void RemoveModifier(StatModifier mod)
+    {
+        modifiers.Remove(mod);
+        ApplyModifiers(maxValue);
+    }
+
+    public void RemoveAllModsFromSource(object source)
+    {
+        if (modifiers.RemoveAll(mod => mod.source == source) > 0)
+            ApplyModifiers(maxValue);
     }
 }

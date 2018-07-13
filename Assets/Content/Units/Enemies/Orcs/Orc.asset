@@ -8,16 +8,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9c170bcf7fb352498412810d405f199, type: 3}
-  m_Name: WarriorLvl1
+  m_Script: {fileID: 11500000, guid: 433be84bca0ae5a428fd846b355f14b5, type: 3}
+  m_Name: Orc
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 7589bc4291a4b42408d97cb9c30abfdc, type: 3}
+  name: Orc
   stats:
-    health: 100
+    health: 200
     mana: 0
-    attack: 0
-    speed: 0
-    defence: 0
-    hazardResistance: 0
-    bleedResistance: 0
+    attack: 13
+    speed: 7
+    defence: 2
+    hazardResistance: 1
+    bleedResistance: 1
   abilities:
   - {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
+  spawnChance: 1

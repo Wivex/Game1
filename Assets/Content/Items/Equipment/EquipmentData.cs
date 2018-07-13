@@ -24,15 +24,17 @@ public class EquipmentData : ItemData
 
     public List<StatModifier> statModifiers;
 
-    //public void Equip(Hero hero)
-    //{
-    //    foreach (var effect in effects)
-    //        effect.OnEquip(hero);
-    //}
+    public void Equip(Hero hero)
+    {
+        //foreach (var mod in statModifiers)
+        //{
+        //    hero.maxStats.attack.AddModifier(mod);
+        //}
+    }
 
     //public void Unequip(Hero hero)
     //{
-    //    foreach (var effect in effects)
+    //    foreach (var effect in statModifiers)
     //        effect.OnUnequip(hero);
     //}
 }

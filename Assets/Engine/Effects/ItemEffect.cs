@@ -9,7 +9,7 @@ public enum EffectType
 
 public abstract class ItemEffect : ScriptableObject
 {
-    public Stat Stat;
+    public StatOld StatOld;
     public int statChange;
 
     public abstract void OnEquip(Hero hero);

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -8,15 +9,14 @@ using UnityEngine.UI;
 public abstract class Unit : MonoBehaviour
 {
     [Header("Unit")]
-    public UnitStats curStats;
-    public UnitStats maxStats;
+    public Stat[] stats = new Stat[Enum.GetNames(typeof(StatType)).Length];
 
-    public void ModifyStat(StatType type, StatModifier mod)
+    public abstract void SetStats();
+
+    public void Start()
     {
-        curStats = new UnitStats(maxStats);
+        SetStats();
     }
-
-    //public abstract void SetStats();
 
     //public void TakeDamage(int damage)
     //{

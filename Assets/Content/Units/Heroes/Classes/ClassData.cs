@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Content/Data Templates/Classes/Class Data")]
-public class ClassData : ContentData
+public class ClassData : ScriptableObject
 {
-    public List<ClassLevelData> classLevels;
+    public List<UnitData> classLevels;
 }

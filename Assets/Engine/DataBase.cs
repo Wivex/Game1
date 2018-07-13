@@ -19,7 +19,7 @@ public class DataBase : ScriptableObject
 
     public void Init() { instance = this; }
 
-    public static UnitStats GetUnitBaseStats(string className, int level)
+    public static StatValues GetUnitBaseStats(string className, int level)
     {
         var entry = instance.classNameToStats.FirstOrDefault(c => c.className == className);
         return entry.stats.StatsPerLevel[level];

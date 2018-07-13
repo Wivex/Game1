@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -19,22 +20,19 @@ public class Hero : Unit
     public int level;
     public int gold;
 
-    public Dictionary<EquipmentSlot, EquipmentData> equipment = new Dictionary<EquipmentSlot, EquipmentData>()
-    {
-        {EquipmentSlot.Head, null},
-        {EquipmentSlot.Body, null},
-        {EquipmentSlot.Arms, null},
-        {EquipmentSlot.Boots, null},
-        {EquipmentSlot.Amulet, null},
-        {EquipmentSlot.Ring, null},
-        {EquipmentSlot.MainHand, null},
-        {EquipmentSlot.OffHand, null}
-    };
+    public EquipmentData[] equipment = new EquipmentData[Enum.GetNames(typeof(EquipmentSlot)).Length];
 
-    void Start()
+    public override void SetStats()
     {
-        curStats = classData.classLevels[level-1].stats;
+        stats[(int)StatType.Health].maxValue = classData.classLevels[level - 1].stats.health;
+        stats[(int)StatType.Mana].maxValue = classData.classLevels[level - 1].stats.mana;
+        stats[(int) StatType.Attack].maxValue = classData.classLevels[level - 1].stats.attack;
+        stats[(int)StatType.Defence].maxValue = classData.classLevels[level - 1].stats.defence;
+        stats[(int)StatType.Speed].maxValue = classData.classLevels[level - 1].stats.speed;
+        stats[(int)StatType.HResist].maxValue = classData.classLevels[level - 1].stats.hazardResistance;
+        stats[(int)StatType.BResist].maxValue = classData.classLevels[level - 1].stats.bleedResistance;
     }
+
 
     //public EquipmentCollection Outfit = new EquipmentCollection();
 
