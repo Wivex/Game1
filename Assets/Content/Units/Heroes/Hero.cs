@@ -13,10 +13,28 @@ public enum HeroClass
 
 public class Hero : Unit
 {
-    [Header("Hero")] public ClassData heroClass;
+    [Header("Hero")] public ClassData classData;
 
+    public new string name;
     public int level;
     public int gold;
+
+    public Dictionary<EquipmentSlot, EquipmentData> equipment = new Dictionary<EquipmentSlot, EquipmentData>()
+    {
+        {EquipmentSlot.Head, null},
+        {EquipmentSlot.Body, null},
+        {EquipmentSlot.Arms, null},
+        {EquipmentSlot.Boots, null},
+        {EquipmentSlot.Amulet, null},
+        {EquipmentSlot.Ring, null},
+        {EquipmentSlot.MainHand, null},
+        {EquipmentSlot.OffHand, null}
+    };
+
+    void Start()
+    {
+        curStats = classData.classLevels[level-1].stats;
+    }
 
     //public EquipmentCollection Outfit = new EquipmentCollection();
 

@@ -14,7 +14,7 @@ public enum EquipmentSlot
     OffHand
 }
 
-[CreateAssetMenu(menuName = "Content/Data Templates/Equipment")]
+[CreateAssetMenu(menuName = "Content/Data Templates/Items/Equipment Data")]
 public class EquipmentData : ItemData
 {
     [Header("Equipment")] public int cost;
@@ -24,13 +24,13 @@ public class EquipmentData : ItemData
 
     public List<StatModifier> statModifiers;
 
-    //public void OnEquip(Hero hero)
+    //public void Equip(Hero hero)
     //{
     //    foreach (var effect in effects)
     //        effect.OnEquip(hero);
     //}
 
-    //public void OnUnequip(Hero hero)
+    //public void Unequip(Hero hero)
     //{
     //    foreach (var effect in effects)
     //        effect.OnUnequip(hero);

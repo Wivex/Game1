@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,9 +8,10 @@ using TMPro;
 public class HeroPanelManager : MonoBehaviour
 {
     public Hero hero;
-    public Image heroImage;
+    public Image heroImage, goldImage;
     public TextMeshProUGUI heroName, className, attack,defence,speed,hResist,bResist,gold,health,mana,init,exp;
     public Slider healthBar, manaBar, initBar, expBar;
+    public List<Sprite> goldSprites;
 
     HeroPanelManager(Hero hero)
     {
@@ -18,9 +20,9 @@ public class HeroPanelManager : MonoBehaviour
 
     void Start()
     {
-        heroImage.sprite = hero.heroClass.icon;
+        heroImage.sprite = hero.classData.icon;
         heroName.text = hero.name;
-        className.text = hero.heroClass.name;
+        className.text = hero.classData.name;
     }
 
     void Update()
@@ -34,6 +36,16 @@ public class HeroPanelManager : MonoBehaviour
         //healthBar.value = hero.stats.health.Value;
         //health.text = $"{hero.stats.health.Value} / {hero.stats.health.Value}";
 
-        //gold.text = hero.gold.ToString();
+        gold.text = hero.gold.ToString();
+
+        //PERF: check?
+        var a = 0;
+        var i = 0;
+        while (hero.gold > a)
+        {
+            a = (int)Mathf.Pow(2, i++);
+            if (i >= goldSprites.Count-1) break;
+        }
+        goldImage.sprite = goldSprites[i];
     }
 }

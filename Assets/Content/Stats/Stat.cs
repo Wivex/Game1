@@ -1,11 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 
+public enum StatType
+{
+    Health,
+    Mana,
+    Attack,
+    Defence,
+    Speed,
+    HResist,
+    BResist
+}
+
 [Serializable]
 public class Stat
 {
     public int baseValue;
-    public List<StatModifier> statModifiers;
+    public List<StatModifier> modifiers = new List<StatModifier>();
 
     private bool BaseValueChanged => baseValue != lastBaseValue;
     private bool reqRecalculation;
@@ -33,31 +44,28 @@ public class Stat
     public Stat(int baseValue) :this()
     {
         this.baseValue = baseValue;
-        //NOTE: needed?
-        statModifiers = new List<StatModifier>();
     }
 
     //NOTE: needed?
     public Stat()
     {
-        statModifiers = new List<StatModifier>();
     }
 
     public void AddModifier(StatModifier mod)
     {
-        statModifiers.Add(mod);
-        statModifiers.Sort(StatModifier.ModifierOrderComparison);
+        modifiers.Add(mod);
+        modifiers.Sort(StatModifier.ModifierOrderComparison);
         reqRecalculation = true;
     }
 
     public bool RemoveModifier(StatModifier mod)
     {
-        return reqRecalculation = statModifiers.Remove(mod);
+        return reqRecalculation = modifiers.Remove(mod);
     }
 
     public bool RemoveAllModsFromSource(object source)
     {
-        return reqRecalculation = statModifiers.RemoveAll(mod => mod.source == source) > 0;
+        return reqRecalculation = modifiers.RemoveAll(mod => mod.source == source) > 0;
     }
 
     private int RecalculateValue()
@@ -65,9 +73,9 @@ public class Stat
         var newValue = baseValue;
         var sumPercentAdd = 0;
 
-        for (var i = 0; i < statModifiers.Count; i++)
+        for (var i = 0; i < modifiers.Count; i++)
         {
-            var curMod = statModifiers[i];
+            var curMod = modifiers[i];
             switch (curMod.type)
             {
                 case StatModType.Flat:
@@ -77,14 +85,13 @@ public class Stat
                     //start adding together all modifiers of this type
                     sumPercentAdd += curMod.value;
                     //if we're at the end of the list OR the next modifer isn't of this type (all are sorted)
-                    if (i + 1 >= statModifiers.Count || statModifiers[i + 1].type != StatModType.PercentAdd)
+                    if (i + 1 >= modifiers.Count || modifiers[i + 1].type != StatModType.PercentAdd)
                     {
                         //NOTE: optimize type changes?
                         //stop summing the additive multiplier
                         newValue = (int)(newValue * (1 + (float)sumPercentAdd/100));
                         sumPercentAdd = 0;
                     }
-
                     break;
                 case StatModType.PercentMult:
                     newValue *= 1 + curMod.value;

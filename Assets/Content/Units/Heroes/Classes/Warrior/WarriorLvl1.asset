@@ -11,20 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c170bcf7fb352498412810d405f199, type: 3}
   m_Name: WarriorLvl1
   m_EditorClassIdentifier: 
-  baseStats:
-    health:
-      baseValue: 100
-    mana:
-      baseValue: 50
-    attack:
-      baseValue: 10
-    speed:
-      baseValue: 10
-    defence:
-      baseValue: 5
-    hazardResistance:
-      baseValue: 0
-    bleedResistance:
-      baseValue: 0
+  stats:
+    health: 100
+    mana: 0
+    attack: 0
+    speed: 0
+    defence: 0
+    hazardResistance: 0
+    bleedResistance: 0
   abilities:
   - {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}

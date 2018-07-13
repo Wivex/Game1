@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemData : ContentData
+public abstract class ItemData : ContentData
 {
     [Header("Item")]
     public bool stackable;

@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Enemy : Unit
 {
-    [Header("Enemy")]
-    public float spawnChance;
-    //public Dictionary<float, string> lootTable;
+    [Header("Enemy")] public EnemyData enemyData;
+
+    //public override void SetStats()
+    //{
+    //    throw new System.NotImplementedException();
+    //}
 }

@@ -5,28 +5,18 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Unit : MonoBehaviour
+public abstract class Unit : MonoBehaviour
 {
     [Header("Unit")]
-    public new string name;
-    public UnitData unitData;
     public UnitStats curStats;
+    public UnitStats maxStats;
 
-    void Start()
+    public void ModifyStat(StatType type, StatModifier mod)
     {
-        SetStats();
+        curStats = new UnitStats(maxStats);
     }
 
-    public void Equip(EquipmentData item)
-    {
-        //damage.AddModifier(item.statModifiers[])
-    }
-
-    public void SetStats()
-    {
-        //curStats = baseStats;
-    }
-
+    //public abstract void SetStats();
 
     //public void TakeDamage(int damage)
     //{
