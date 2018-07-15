@@ -2,41 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum StatType
-{
-    Health,
-    Mana,
-    Attack,
-    Defence,
-    Speed,
-    HResist,
-    BResist
-}
-
 [Serializable]
-public class Stat
+public class StatChanging : Stat
 {
-    public int curValue;
-    [SerializeField]
-    protected int baseValue;
-    public List<StatModifier> modifiers = new List<StatModifier>();
+    public int maxValue;
+    private int lastMaxValue;
 
-    public virtual int BaseValue
+    public override int BaseValue
     {
         get { return baseValue; }
         set
         {
+            // adjust current value
+            curValue = Math.Max(curValue + (value - baseValue), 1);
             baseValue = value;
             Recalculate();
         }
     }
 
-    /// <summary>
-    /// reapply all mods to base value
-    /// </summary>
-    protected virtual void Recalculate()
+    protected override void Recalculate()
     {
-        curValue = baseValue;
+        lastMaxValue = maxValue;
+        maxValue = baseValue;
         var sumPercentAdd = 0;
         for (var i = 0; i < modifiers.Count; i++)
         {
@@ -44,7 +31,7 @@ public class Stat
             switch (mod.modifierType)
             {
                 case StatModType.Flat:
-                    curValue += mod.amount;
+                    maxValue += mod.amount;
                     break;
                 case StatModType.PercentAdd:
                     //start adding together all modifiers of this type
@@ -54,35 +41,19 @@ public class Stat
                     {
                         //NOTE: optimize type changes?
                         //stop summing the additive multiplier
-                        curValue = (int)(curValue * (1 + (float)sumPercentAdd/100));
+                        maxValue = (int)(maxValue * (1 + (float)sumPercentAdd/100));
                         sumPercentAdd = 0;
                     }
                     break;
                 case StatModType.PercentMult:
-                    curValue *= 1 + mod.amount;
+                    maxValue *= 1 + mod.amount;
                     break;
                 default:
                     throw new NotImplementedException();
             }
+
+            // adjust current value
+            curValue += maxValue - lastMaxValue;
         }
-    }
-
-    public void AddModifier(StatModifier mod)
-    {
-        modifiers.Add(mod);
-        modifiers.Sort(StatModifier.ModifierOrderComparison);
-        Recalculate();
-    }
-
-    public void RemoveModifier(StatModifier mod)
-    {
-        modifiers.Remove(mod);
-        Recalculate();
-    }
-
-    public void RemoveAllModsFromSource(object source)
-    {
-        if (modifiers.RemoveAll(mod => mod.source == source) > 0)
-            Recalculate();
     }
 }

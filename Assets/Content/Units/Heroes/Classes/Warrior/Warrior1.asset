@@ -14,7 +14,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 3d96780b570c9334c85e44e87ff5d2a1, type: 3}
   name: Warrior
   stats:
-    health: 494
+    health: 100
     mana: 5
     attack: 10
     speed: 10

@@ -1,4 +1,6 @@
-﻿public enum StatModType
+﻿using System;
+
+public enum StatModType
 {
     Flat,
     PercentAdd,
@@ -6,29 +8,30 @@
 }
 
 //NOTE: add stat type reference?
+[Serializable]
 public class StatModifier
 {
     // readonly to make parameters be set only by constructor
-    public readonly int value;
-    public readonly StatModType type;
+    public StatType stat;
+    public StatModType modifierType;
+    public int amount;
     //object can hold any possible source type
-    public readonly object source;
-    public readonly int order;
-    public bool affectsStatLimit;
+    public object source;
+    private int order;
 
-    public StatModifier(int value, StatModType type, object source, int order)
+    public StatModifier(int amount, StatModType modifierType, object source, int order)
     {
-        this.value = value;
-        this.type = type;
+        this.amount = amount;
+        this.modifierType = modifierType;
         this.source = source;
         this.order = order;
     }
 
-    public StatModifier(int value, StatModType type) : this(value, type, null, (int)type)
+    public StatModifier(int amount, StatModType modifierType) : this(amount, modifierType, null, (int)modifierType)
     {
     }
 
-    public StatModifier(int value, StatModType type, object source) : this(value, type, source, (int)type)
+    public StatModifier(int amount, StatModType modifierType, object source) : this(amount, modifierType, source, (int)modifierType)
     {
     }
 

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Content/Data Templates/Ability")]
+[CreateAssetMenu(menuName = "Content/Data/Ability")]
 public class AbilityData : ScriptableObject
 {
     public Sprite icon;

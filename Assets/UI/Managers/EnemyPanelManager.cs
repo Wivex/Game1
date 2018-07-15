@@ -35,16 +35,16 @@ public class EnemyPanelManager : MonoBehaviour
 
     void Update()
     {
-        attack.text = $"A: {enemy.stats[(int) StatType.Attack].maxValue}";
-        defence.text = $"D: {enemy.stats[(int) StatType.Defence].maxValue}";
-        speed.text = $"S: {enemy.stats[(int) StatType.Speed].maxValue}";
-        hResist.text = $"HR: {enemy.stats[(int) StatType.HResist].maxValue}";
-        bResist.text = $"BR: {enemy.stats[(int) StatType.BResist].maxValue}";
+        attack.text = $"A: {enemy.stats[(int) StatType.Attack].BaseValue}";
+        defence.text = $"D: {enemy.stats[(int) StatType.Defence].BaseValue}";
+        speed.text = $"S: {enemy.stats[(int) StatType.Speed].BaseValue}";
+        hResist.text = $"HR: {enemy.stats[(int) StatType.HResist].BaseValue}";
+        bResist.text = $"BR: {enemy.stats[(int) StatType.BResist].BaseValue}";
 
         healthBar.value = (float) enemy.stats[(int) StatType.Health].curValue /
-                          enemy.stats[(int) StatType.Health].maxValue;
-        health.text = $"{enemy.stats[(int) StatType.Health].curValue} / {enemy.stats[(int) StatType.Health].maxValue}";
-        manaBar.value = (float) enemy.stats[(int) StatType.Mana].curValue / enemy.stats[(int) StatType.Mana].maxValue;
-        mana.text = $"{enemy.stats[(int) StatType.Mana].curValue} / {enemy.stats[(int) StatType.Mana].maxValue}";
+                          enemy.stats[(int) StatType.Health].BaseValue;
+        health.text = $"{enemy.stats[(int) StatType.Health].curValue} / {enemy.stats[(int) StatType.Health].BaseValue}";
+        manaBar.value = (float) enemy.stats[(int) StatType.Mana].curValue / enemy.stats[(int) StatType.Mana].BaseValue;
+        mana.text = $"{enemy.stats[(int) StatType.Mana].curValue} / {enemy.stats[(int) StatType.Mana].BaseValue}";
     }
 }

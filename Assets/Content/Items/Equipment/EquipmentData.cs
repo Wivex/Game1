@@ -14,7 +14,7 @@ public enum EquipmentSlot
     OffHand
 }
 
-[CreateAssetMenu(menuName = "Content/Data Templates/Items/Equipment Data")]
+[CreateAssetMenu(menuName = "Content/Data/Items/Equipment Data")]
 public class EquipmentData : ItemData
 {
     [Header("Equipment")] public int cost;
@@ -22,14 +22,14 @@ public class EquipmentData : ItemData
     public bool classRestricted;
     [HiddenIfNot("classRestricted")] public HeroClass reqClass;
 
-    public List<StatModifier> statModifiers;
+    public StatModifier[] statModifiers;
 
     public void Equip(Hero hero)
     {
-        //foreach (var mod in statModifiers)
-        //{
-        //    hero.maxStats.attack.AddModifier(mod);
-        //}
+        foreach (var mod in statModifiers)
+        {
+            hero.stats[(int)mod.stat].AddModifier(mod);
+        }
     }
 
     //public void Unequip(Hero hero)

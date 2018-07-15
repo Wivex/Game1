@@ -24,14 +24,25 @@ public class Hero : Unit
 
     public override void SetStats()
     {
-        stats[(int)StatType.Health].maxValue = classData.classLevels[level - 1].stats.health;
-        stats[(int)StatType.Mana].maxValue = classData.classLevels[level - 1].stats.mana;
-        stats[(int) StatType.Attack].maxValue = classData.classLevels[level - 1].stats.attack;
-        stats[(int)StatType.Defence].maxValue = classData.classLevels[level - 1].stats.defence;
-        stats[(int)StatType.Speed].maxValue = classData.classLevels[level - 1].stats.speed;
-        stats[(int)StatType.HResist].maxValue = classData.classLevels[level - 1].stats.hazardResistance;
-        stats[(int)StatType.BResist].maxValue = classData.classLevels[level - 1].stats.bleedResistance;
+        stats[(int) StatType.Health].BaseValue = classData.classLevels[level - 1].stats.health;
+        stats[(int) StatType.Mana].BaseValue = classData.classLevels[level - 1].stats.mana;
+        stats[(int) StatType.Attack].BaseValue = classData.classLevels[level - 1].stats.attack;
+        stats[(int) StatType.Defence].BaseValue = classData.classLevels[level - 1].stats.defence;
+        stats[(int) StatType.Speed].BaseValue = classData.classLevels[level - 1].stats.speed;
+        stats[(int) StatType.HResist].BaseValue = classData.classLevels[level - 1].stats.hazardResistance;
+        stats[(int) StatType.BResist].BaseValue = classData.classLevels[level - 1].stats.bleedResistance;
+
+        stats[(int)StatType.Health].curValue = stats[(int) StatType.Health].BaseValue;
+        stats[(int)StatType.Mana].curValue=stats[(int) StatType.Mana].BaseValue;
+        stats[(int)StatType.Attack].curValue=stats[(int) StatType.Attack].BaseValue;
+        stats[(int)StatType.Defence].curValue=stats[(int) StatType.Defence].BaseValue;
+        stats[(int)StatType.Speed].curValue=stats[(int) StatType.Speed].BaseValue;
+        stats[(int)StatType.HResist].curValue=stats[(int) StatType.HResist].BaseValue;
+        stats[(int)StatType.BResist].curValue=stats[(int) StatType.BResist].BaseValue;
+
+        equipment[0].Equip(this);
     }
+
 
 
     //public EquipmentCollection Outfit = new EquipmentCollection();

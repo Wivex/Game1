@@ -27,16 +27,16 @@ public class HeroPanelManager : MonoBehaviour
 
     void Update()
     {
-        attack.text = $"A: {hero.stats[(int)StatType.Attack].maxValue}";
-        defence.text = $"D: {hero.stats[(int)StatType.Defence].maxValue}";
-        speed.text = $"S: {hero.stats[(int)StatType.Speed].maxValue}";
-        hResist.text = $"HR: {hero.stats[(int)StatType.HResist].maxValue}";
-        bResist.text = $"BR: {hero.stats[(int)StatType.BResist].maxValue}";
+        attack.text = $"A: {hero.stats[(int)StatType.Attack].BaseValue}";
+        defence.text = $"D: {hero.stats[(int)StatType.Defence].BaseValue}";
+        speed.text = $"S: {hero.stats[(int)StatType.Speed].BaseValue}";
+        hResist.text = $"HR: {hero.stats[(int)StatType.HResist].BaseValue}";
+        bResist.text = $"BR: {hero.stats[(int)StatType.BResist].BaseValue}";
 
-        healthBar.value = (float)hero.stats[(int)StatType.Health].curValue / hero.stats[(int)StatType.Health].maxValue;
-        health.text = $"{hero.stats[(int)StatType.Health].curValue} / {hero.stats[(int)StatType.Health].maxValue}";
-        manaBar.value = (float)hero.stats[(int)StatType.Mana].curValue / hero.stats[(int)StatType.Mana].maxValue;
-        mana.text = $"{hero.stats[(int)StatType.Mana].curValue} / {hero.stats[(int)StatType.Mana].maxValue}";
+        healthBar.value = (float)hero.stats[(int)StatType.Health].curValue / hero.stats[(int)StatType.Health].BaseValue;
+        health.text = $"{hero.stats[(int)StatType.Health].curValue} / {hero.stats[(int)StatType.Health].BaseValue}";
+        manaBar.value = (float)hero.stats[(int)StatType.Mana].curValue / hero.stats[(int)StatType.Mana].BaseValue;
+        mana.text = $"{hero.stats[(int)StatType.Mana].curValue} / {hero.stats[(int)StatType.Mana].BaseValue}";
 
         gold.text = hero.gold.ToString();
         //PERF: check performance?

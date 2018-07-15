@@ -9,7 +9,15 @@ using UnityEngine.UI;
 public abstract class Unit : MonoBehaviour
 {
     [Header("Unit")]
-    public Stat[] stats = new Stat[Enum.GetNames(typeof(StatType)).Length];
+    public Stat[] stats = {
+        new StatChanging(),
+        new StatChanging(),
+        new Stat(),
+        new Stat(),
+        new Stat(),
+        new Stat(),
+        new Stat(),
+    };
 
     public abstract void SetStats();
 
