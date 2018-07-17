@@ -8,13 +8,9 @@ public class CopyAssetPathContextMenu
     {
         if (Selection.activeObject != null)
         {
-            var assetPath = AssetDatabase.GetAssetPath(Selection.activeObject);
-            EditorGUIUtility.systemCopyBuffer = assetPath;
-            Debug.Log("Copied to Buffer:" + assetPath);
-        }
-        else
-        {
-            Debug.Log("Nothing selected.");
+            EditorGUIUtility.systemCopyBuffer = AssetDatabase.GetAssetPath(Selection.activeObject)
+                .Replace(@"Assets/Resources/", "")
+                .Replace(".asset", "");
         }
     }
 }

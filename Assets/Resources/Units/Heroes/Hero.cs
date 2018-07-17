@@ -16,8 +16,8 @@ public class Hero : Unit
 {
     [Header("Hero")] public ClassData classData;
 
-    public new string name;
-    public int level;
+    public string name;
+    public int level = 1;
     public int gold;
 
     public EquipmentData[] equipment = new EquipmentData[Enum.GetNames(typeof(EquipmentSlot)).Length];
@@ -25,7 +25,7 @@ public class Hero : Unit
     public Hero(string name)
     {
         this.name = name;
-        classData = Resources.Load<ClassData>("Assets/Content/Units/Heroes/Classes/Warrior/WarriorClass");
+        classData = Resources.Load<ClassData>("Units/Heroes/Classes/Warrior/WarriorClass");
     }
 
     public override void SetStats()
@@ -45,8 +45,6 @@ public class Hero : Unit
         stats[(int)StatType.Speed].curValue=stats[(int) StatType.Speed].BaseValue;
         stats[(int)StatType.HResist].curValue=stats[(int) StatType.HResist].BaseValue;
         stats[(int)StatType.BResist].curValue=stats[(int) StatType.BResist].BaseValue;
-
-        equipment[0].Equip(this);
     }
 
 

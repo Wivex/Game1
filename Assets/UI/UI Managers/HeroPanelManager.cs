@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -16,8 +17,11 @@ public class HeroPanelManager : UnitPanelManager
 
     void Start()
     {
+        // NOTE: check if safe
+        hero = ExpeditionManager.expeditions.Last().Key;
+        hero.SetStats();
         unit = hero;
-        unitImage.sprite = hero.classData.classLevels[hero.level-1].icon;
+        unitImage.sprite = hero.classData.classLevels[hero.level - 1].icon;
         unitName.text = hero.name;
         className.text = hero.classData.classLevels[hero.level - 1].name;
     }

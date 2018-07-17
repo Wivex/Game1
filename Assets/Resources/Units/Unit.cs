@@ -25,11 +25,6 @@ public abstract class Unit
 
     public abstract void SetStats();
 
-    public void Start()
-    {
-        SetStats();
-    }
-
     //public void TakeDamage(int damage)
     //{
     //    curHealth -= damage;

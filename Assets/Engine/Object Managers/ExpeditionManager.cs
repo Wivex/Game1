@@ -7,7 +7,8 @@ public class ExpeditionManager : MonoBehaviour
     HeroPanelManager heroPanel;
     EnemyPanelManager enemyPanel;
 
-    public List<Unit> heroes = new List<Unit>();
+    public static List<Unit> heroes = new List<Unit>();
+    public static Dictionary<Hero,Expedition> expeditions = new Dictionary<Hero, Expedition>();
 
     public float combatSpeed = 0.1f;
     public float gameSpeed = 1;
@@ -22,62 +23,12 @@ public class ExpeditionManager : MonoBehaviour
     public void StartNewExpedition(Hero hero)
     {
         var expeditionPanel = Instantiate(expeditionPanelPrefab);
-        expeditionPanel.SetParent(expeditionsListPanel);
+        expeditionPanel.SetParent(expeditionsListPanel, false);
+        expeditions.Add(hero, new Expedition(hero, Location.Dungeon));
     }
-
-    //bool HeroTurnFirst => enemy.speed < hero.speed || enemy.speed == hero.speed && Random.value < 0.5f;
 
     void FixedUpdate()
     {
-        //if (HeroTurnFirst)
-        //{
-        //    CombatTick(hero, enemy);
-        //    CombatTick(enemy, hero);
-        //}
-        //else
-        //{
-        //    CombatTick(enemy, hero);
-        //    CombatTick(hero, enemy);
-        //}
+
     }
-
-    //public void CombatTick(Unit actor, Unit target)
-    //{
-    //    actor.curInitiative += actor.speed * combatSpeed;
-    //    if (actor.curInitiative >= actor.maxInitiative)
-    //    {
-    //        actor.curInitiative -= actor.maxInitiative;
-    //        TakeAction(actor, target);
-    //    }
-    //}
-
-    //// TODO: add equipment and effects into equation
-    //public void TakeAction(Unit actor, Unit target)
-    //{
-    //    var actionTaken = false;
-    //    //foreach (var ability in actor.Abilities)
-    //    //{
-    //    //    // use ability
-    //    //    if (ability.Ready && !actionTaken)
-    //    //    {
-    //    //        ability.Use(actor, target);
-    //    //        actionTaken = true;
-    //    //    }
-    //    //    else
-    //    //        ability.Cooldown--;
-    //    //}
-
-    //    // attack
-    //    if (!actionTaken)
-    //        Attack(actor, target);
-    //}
-
-    //public void Attack(Unit actor, Unit target)
-    //{
-    //    //var damage = new Damage(DamageType.Physical,
-    //    //    Math.Max(actor.Stat[Stat.Attack] - target.Stat[Stat.Defence], 0));
-    //    //target.TakeDamage(damage);
-
-    //    target.TakeDamage(actor.attack - target.defence);
-    //}
 }
