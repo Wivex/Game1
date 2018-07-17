@@ -1,10 +1,29 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class ExpeditionManager : MonoBehaviour
 {
+    public RectTransform expeditionsListPanel, expeditionPanelPrefab;
+    HeroPanelManager heroPanel;
+    EnemyPanelManager enemyPanel;
+
+    public List<Unit> heroes = new List<Unit>();
+
     public float combatSpeed = 0.1f;
     public float gameSpeed = 1;
+
+    public void StartNewExpedition()
+    {
+        var hero = new Hero("Oswald");
+        heroes.Add(hero);
+        StartNewExpedition(hero);
+    }
+
+    public void StartNewExpedition(Hero hero)
+    {
+        var expeditionPanel = Instantiate(expeditionPanelPrefab);
+        expeditionPanel.SetParent(expeditionsListPanel);
+    }
 
     //bool HeroTurnFirst => enemy.speed < hero.speed || enemy.speed == hero.speed && Random.value < 0.5f;
 

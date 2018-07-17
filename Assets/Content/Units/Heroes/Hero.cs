@@ -22,6 +22,12 @@ public class Hero : Unit
 
     public EquipmentData[] equipment = new EquipmentData[Enum.GetNames(typeof(EquipmentSlot)).Length];
 
+    public Hero(string name)
+    {
+        this.name = name;
+        classData = Resources.Load<ClassData>("Assets/Content/Units/Heroes/Classes/Warrior/WarriorClass");
+    }
+
     public override void SetStats()
     {
         stats[(int) StatType.Health].BaseValue = classData.classLevels[level - 1].stats.health;

@@ -6,7 +6,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class Unit : MonoBehaviour
+[Serializable]
+public abstract class Unit
 {
     [Header("Unit")]
     public Stat[] stats = {
@@ -18,6 +19,9 @@ public abstract class Unit : MonoBehaviour
         new Stat(),
         new Stat(),
     };
+
+    public const int reqInitiative = 100;
+    public float curInitiative;
 
     public abstract void SetStats();
 

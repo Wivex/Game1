@@ -8,7 +8,7 @@ public class AbilityData : ScriptableObject
     public int damage;
     public int cooldown;
     public DamageType damageType;
-    public List<ItemEffect> effects;
+    //public List<ItemEffect> effects;
 
     //public void Use(Unit actor, Unit target)
     //{
