@@ -5,8 +5,8 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
-[Serializable]
 public abstract class Unit
 {
     [Header("Unit")]
@@ -25,10 +25,12 @@ public abstract class Unit
 
     public abstract void SetStats();
 
-    //public void TakeDamage(int damage)
-    //{
-    //    curHealth -= damage;
-    //    var floatingText = Instantiate(AM.floatingTextPrefab, transform);
-    //    floatingText.GetComponent<TextMeshProUGUI>().text = $"-{damage}";
-    //}
+    public void TakeDamage(Damage damage)
+    {
+        var floatingText = Object.Instantiate(Panel.floatingTextPrefab, Panel.unitImage.transform);
+        var textObject = floatingText.GetComponent<TextMeshProUGUI>();
+        textObject.text = $"-{damage.amount}";
+    }
+
+    public abstract UnitPanelManager Panel { get; }
 }

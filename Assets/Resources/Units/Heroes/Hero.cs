@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 public enum HeroClass
 {
@@ -12,6 +13,7 @@ public enum HeroClass
     Rogue
 }
 
+[Serializable]
 public class Hero : Unit
 {
     [Header("Hero")] public ClassData classData;
@@ -26,6 +28,16 @@ public class Hero : Unit
     {
         this.name = name;
         classData = Resources.Load<ClassData>("Units/Heroes/Classes/Warrior/WarriorClass");
+        SetStats();
+    }
+
+    public override UnitPanelManager Panel
+    {
+        get
+        {
+            var expedition = ExpeditionManager.expeditions[this];
+            return expedition.expeditionPanel.heroPanel;
+        }
     }
 
     public override void SetStats()
@@ -38,16 +50,14 @@ public class Hero : Unit
         stats[(int) StatType.HResist].BaseValue = classData.classLevels[level - 1].stats.hazardResistance;
         stats[(int) StatType.BResist].BaseValue = classData.classLevels[level - 1].stats.bleedResistance;
 
-        stats[(int)StatType.Health].curValue = stats[(int) StatType.Health].BaseValue;
-        stats[(int)StatType.Mana].curValue=stats[(int) StatType.Mana].BaseValue;
-        stats[(int)StatType.Attack].curValue=stats[(int) StatType.Attack].BaseValue;
-        stats[(int)StatType.Defence].curValue=stats[(int) StatType.Defence].BaseValue;
-        stats[(int)StatType.Speed].curValue=stats[(int) StatType.Speed].BaseValue;
-        stats[(int)StatType.HResist].curValue=stats[(int) StatType.HResist].BaseValue;
-        stats[(int)StatType.BResist].curValue=stats[(int) StatType.BResist].BaseValue;
+        stats[(int) StatType.Health].curValue = stats[(int) StatType.Health].BaseValue;
+        stats[(int) StatType.Mana].curValue = stats[(int) StatType.Mana].BaseValue;
+        stats[(int) StatType.Attack].curValue = stats[(int) StatType.Attack].BaseValue;
+        stats[(int) StatType.Defence].curValue = stats[(int) StatType.Defence].BaseValue;
+        stats[(int) StatType.Speed].curValue = stats[(int) StatType.Speed].BaseValue;
+        stats[(int) StatType.HResist].curValue = stats[(int) StatType.HResist].BaseValue;
+        stats[(int) StatType.BResist].curValue = stats[(int) StatType.BResist].BaseValue;
     }
-
-
 
     //public EquipmentCollection Outfit = new EquipmentCollection();
 

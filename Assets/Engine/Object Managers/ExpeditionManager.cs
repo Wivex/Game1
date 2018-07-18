@@ -3,15 +3,14 @@ using UnityEngine;
 
 public class ExpeditionManager : MonoBehaviour
 {
-    public RectTransform expeditionsListPanel, expeditionPanelPrefab;
-    HeroPanelManager heroPanel;
-    EnemyPanelManager enemyPanel;
+    public RectTransform expeditionsListPanel;
+    public ExpeditionPanelManager expeditionPanelPrefab;
 
     public static List<Unit> heroes = new List<Unit>();
     public static Dictionary<Hero,Expedition> expeditions = new Dictionary<Hero, Expedition>();
 
-    public float combatSpeed = 0.1f;
-    public float gameSpeed = 1;
+    public static float combatSpeed = 0.1f;
+    public static float gameSpeed = 1;
 
     public void StartNewExpedition()
     {
@@ -20,15 +19,24 @@ public class ExpeditionManager : MonoBehaviour
         StartNewExpedition(hero);
     }
 
+    // TODO: clean up assignment
     public void StartNewExpedition(Hero hero)
     {
-        var expeditionPanel = Instantiate(expeditionPanelPrefab);
-        expeditionPanel.SetParent(expeditionsListPanel, false);
-        expeditions.Add(hero, new Expedition(hero, Location.Dungeon));
+        var expManager = Instantiate(expeditionPanelPrefab);
+        expManager.transform.SetParent(expeditionsListPanel, false);
+
+        var expedition = new Expedition(expManager, hero, LocationType.Dungeon);
+        expeditions.Add(hero, expedition);
+
+        expManager.expedition = expedition;
+        expManager.expedition.situation = new SituationTravelling(expedition.location);
     }
 
     void FixedUpdate()
     {
-
+        foreach (var expedition in expeditions.Values)
+        {
+            expedition.Update();
+        }
     }
 }

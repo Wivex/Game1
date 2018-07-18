@@ -1,9 +1,18 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+public enum LocationType
+{
+    Forest,
+    Dungeon
+}
+
+[CreateAssetMenu(menuName = "Content/Data/Location Data")]
 public class LocationData : ScriptableObject
 {
-    public List<Enemy> enemies;
-    public List<Event> events;
-    public List<string> pointsOfInterest;
+    public new string name;
+    public LocationType type;
+    public SituationChanceToOccur[] situations;
+    public EnemySpawnChance[] enemies;
+    public PoiSpawnChance[] pointsOfInterest;
 }

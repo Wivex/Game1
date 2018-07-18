@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-public class FloatingText : MonoBehaviour {
+public class FloatingText : MonoBehaviour
+{
     public Animator animator;
 
     void Start()

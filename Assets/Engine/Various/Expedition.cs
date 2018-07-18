@@ -1,51 +1,57 @@
 ﻿using UnityEngine;
 
-public enum Location
-{
-    Forest,
-    Dungeon
-}
-
-
 public class Expedition
 {
     public Hero hero;
-    public Event curEvent;
-    public Location curLocation, destLocation;
-    public RectTransform expeditionPanel;
+    public Situation situation;
+    public LocationData location;
+    public LocationType destination;
+    public ExpeditionPanelManager expeditionPanel;
 
-    public Expedition(Hero hero, Location destination)
+    public Expedition(ExpeditionPanelManager expeditionPanel, Hero hero, LocationType destination)
     {
+        this.expeditionPanel = expeditionPanel;
         this.hero = hero;
-        destLocation = destination;
-        curLocation = Location.Forest;
-        //Event = new Travelling(LocationData);
+        this.destination = destination;
+        location = Resources.Load<LocationData>("Locations/Forest");
+        situation = new SituationTravelling(location);
     }
 
     public void Update()
     {
-        //Length++;
-        //if (Event.GetType() == typeof(Travelling)) TryNewEvent();
-        //else
-        //{
-        //    Event.Update();
-        //}
+        if (situation.readyForNewSituation)
+        {
+            TryNewSituation();
+        }
+        else
+        {
+            situation.Update();
+        }
     }
 
-    public void TryNewEvent()
+    public void TryNewSituation()
     {
-        //foreach (var eventData in LocationData.XMLData.Events)
-        //{
-        //    if (Globals.RNGesus.NextDouble() < eventData.ChanceToOccur)
-        //        switch (eventData.Name)
-        //        {
-        //            case "EnemyEncounter":
-        //                Event = new EnemyEncounter(Hero, LocationData, ExpeditionOverviewPanel);
-        //                break;
-        //            default:
-        //                Event = new Travelling(LocationData);
-        //                break;
-        //        }
-        //}
+        foreach (var sit in location.situations)
+        {
+            if (Random.value < sit.chance)
+            {
+                switch (sit.SituationType)
+                {
+                    case SituationType.EnemyEncounter:
+                        situation = new SituationCombat(hero, location.enemies);
+                        expeditionPanel.enemyPanel.enemy = (situation as SituationCombat).enemy;
+                        expeditionPanel.enemyPanel.gameObject.SetActive(true);
+                        break;
+                    case SituationType.POIEncounter:
+                        //situation = new SituationCombat(location.enemies);
+                        expeditionPanel.enemyPanel.gameObject.SetActive(false);
+                        break;
+                    default:
+                        situation = new SituationTravelling(location);
+                        expeditionPanel.enemyPanel.gameObject.SetActive(false);
+                        break;
+                }
+            }
+        }
     }
 }

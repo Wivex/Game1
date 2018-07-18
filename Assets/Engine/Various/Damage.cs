@@ -1,4 +1,6 @@
-﻿public enum DamageType
+﻿using System;
+
+public enum DamageType
 {
     Physical,
     Hazardous,
@@ -11,15 +13,15 @@ public enum Target
     Other
 }
 
+[Serializable]
 public class Damage
 {
-    public DamageType DamageType;
-    public int Value;
+    public DamageType type;
+    public int amount;
 
-    public Damage(DamageType type, int value)
+    public Damage(DamageType type, int amount)
     {
-        DamageType = type;
-        Value = value;
+        this.type = type;
+        this.amount = amount;
     }
 }
-

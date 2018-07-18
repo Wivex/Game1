@@ -17,7 +17,7 @@ MonoBehaviour:
     health: 200
     mana: 0
     attack: 13
-    speed: 7
+    speed: 10
     defence: 2
     hazardResistance: 1
     bleedResistance: 1

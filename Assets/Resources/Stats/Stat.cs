@@ -85,4 +85,51 @@ public class Stat
         if (modifiers.RemoveAll(mod => mod.source == source) > 0)
             Recalculate();
     }
+
+    #region OPERATORS
+    public static bool operator <(Stat a, Stat b)
+    {
+        return a.curValue < b.curValue;
+    }
+    public static bool operator >(Stat a, Stat b)
+    {
+        return a.curValue > b.curValue;
+    }
+    public static int operator *(Stat a, Stat b)
+    {
+        return a.curValue * b.curValue;
+    }
+    public static int operator *(Stat a, int b)
+    {
+        return a.curValue * b;
+    }
+    public static int operator *(Stat a, double b)
+    {
+        return (int)(a.curValue * b);
+    }
+    public static int operator +(Stat a, Stat b)
+    {
+        return a.curValue + b.curValue;
+    }
+    public static int operator +(Stat a, int b)
+    {
+        return a.curValue + b;
+    }
+    public static int operator +(Stat a, double b)
+    {
+        return (int)(a.curValue + b);
+    }
+    public static int operator -(Stat a, Stat b)
+    {
+        return a.curValue - b.curValue;
+    }
+    public static int operator -(Stat a, int b)
+    {
+        return a.curValue - b;
+    }
+    public static int operator -(Stat a, double b)
+    {
+        return (int)(a.curValue - b);
+    }
+    #endregion
 }
