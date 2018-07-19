@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using Object = UnityEngine.Object;
 
 public enum HeroClass
 {
@@ -28,6 +23,7 @@ public class Hero : Unit
     {
         this.name = name;
         classData = Resources.Load<ClassData>("Units/Heroes/Classes/Warrior/WarriorClass");
+        SetAbilities();
         SetStats();
     }
 
@@ -42,13 +38,13 @@ public class Hero : Unit
 
     public override void SetStats()
     {
-        stats[(int) StatType.Health].BaseValue = classData.classLevels[level - 1].stats.health;
-        stats[(int) StatType.Mana].BaseValue = classData.classLevels[level - 1].stats.mana;
-        stats[(int) StatType.Attack].BaseValue = classData.classLevels[level - 1].stats.attack;
-        stats[(int) StatType.Defence].BaseValue = classData.classLevels[level - 1].stats.defence;
-        stats[(int) StatType.Speed].BaseValue = classData.classLevels[level - 1].stats.speed;
-        stats[(int) StatType.HResist].BaseValue = classData.classLevels[level - 1].stats.hazardResistance;
-        stats[(int) StatType.BResist].BaseValue = classData.classLevels[level - 1].stats.bleedResistance;
+        stats[(int) StatType.Health].BaseValue = classData.classLevels[level].stats.health;
+        stats[(int) StatType.Mana].BaseValue = classData.classLevels[level].stats.mana;
+        stats[(int) StatType.Attack].BaseValue = classData.classLevels[level].stats.attack;
+        stats[(int) StatType.Defence].BaseValue = classData.classLevels[level].stats.defence;
+        stats[(int) StatType.Speed].BaseValue = classData.classLevels[level].stats.speed;
+        stats[(int) StatType.HResist].BaseValue = classData.classLevels[level].stats.hazardResistance;
+        stats[(int) StatType.BResist].BaseValue = classData.classLevels[level].stats.bleedResistance;
 
         stats[(int) StatType.Health].curValue = stats[(int) StatType.Health].BaseValue;
         stats[(int) StatType.Mana].curValue = stats[(int) StatType.Mana].BaseValue;
@@ -57,6 +53,12 @@ public class Hero : Unit
         stats[(int) StatType.Speed].curValue = stats[(int) StatType.Speed].BaseValue;
         stats[(int) StatType.HResist].curValue = stats[(int) StatType.HResist].BaseValue;
         stats[(int) StatType.BResist].curValue = stats[(int) StatType.BResist].BaseValue;
+    }
+
+    public override void SetAbilities()
+    {
+        foreach (var abilityData in classData.classLevels[level].abilities)
+            abilities.Add(new Ability(abilityData));
     }
 
     //public EquipmentCollection Outfit = new EquipmentCollection();

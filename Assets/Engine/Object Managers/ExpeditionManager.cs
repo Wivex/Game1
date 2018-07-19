@@ -7,7 +7,7 @@ public class ExpeditionManager : MonoBehaviour
     public ExpeditionPanelManager expeditionPanelPrefab;
 
     public static List<Unit> heroes = new List<Unit>();
-    public static Dictionary<Hero,Expedition> expeditions = new Dictionary<Hero, Expedition>();
+    public static Dictionary<Hero, Expedition> expeditions = new Dictionary<Hero, Expedition>();
 
     public static float combatSpeed = 0.1f;
     public static float gameSpeed = 1;
@@ -29,14 +29,12 @@ public class ExpeditionManager : MonoBehaviour
         expeditions.Add(hero, expedition);
 
         expManager.expedition = expedition;
-        expManager.expedition.situation = new SituationTravelling(expedition.location);
+        expManager.expedition.situation = new SituationTravelling(expedition);
     }
 
     void FixedUpdate()
     {
         foreach (var expedition in expeditions.Values)
-        {
-            expedition.Update();
-        }
+            expedition.UpdateSituations();
     }
 }

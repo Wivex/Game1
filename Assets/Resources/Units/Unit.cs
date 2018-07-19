@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
 public abstract class Unit
@@ -20,6 +17,8 @@ public abstract class Unit
         new Stat(),
     };
 
+    public List<Ability> abilities = new List<Ability>();
+
     public const int reqInitiative = 100;
     public float curInitiative;
 
@@ -27,6 +26,7 @@ public abstract class Unit
     public bool Dead => stats[(int) StatType.Health].curValue <= 0;
 
     public abstract void SetStats();
+    public abstract void SetAbilities();
 
     public void TakeDamage(Damage damage)
     {

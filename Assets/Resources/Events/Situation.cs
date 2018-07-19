@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public enum SituationType
 {
@@ -10,23 +9,14 @@ public enum SituationType
 
 public abstract class Situation
 {
+    public Expedition expedition;
     public SituationType type;
     public RectTransform expSituationPanel;
-    public bool newLogEntry, readyForNewSituation;
+    public bool readyForNewSituation;
 
-    string log;
-    public string Log
+    protected Situation(Expedition expedition)
     {
-        set
-        {
-            newLogEntry = true;
-            log = value;
-        }
-        get
-        {
-            newLogEntry = false;
-            return log;
-        }
+        this.expedition = expedition;
     }
 
     public abstract void Update();

@@ -18,20 +18,15 @@ public class CanvasManager : MonoBehaviour
         foreach (var child in directChildren)
         {
             var canvas = child.gameObject.GetComponent<Canvas>();
-            if (canvas != null && !canvases.Contains(canvas))
-            {
-                canvases.Add(canvas);
-            }
+            if (canvas != null && !canvases.Contains(canvas)) canvases.Add(canvas);
         }
     }
 
     void Start()
     {
         foreach (var canvas in canvases)
-        {
-            //disable unused canvases
+        //disable unused canvases
             canvas.enabled = alwaysActiveCanvases.Contains(canvas) || canvas == defaultActiveCanvas;
-        }
     }
 
     public void ChangeActiveCanvas(Canvas selectedCanvas)

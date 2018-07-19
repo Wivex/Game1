@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public enum EquipmentSlot
 {
@@ -26,10 +24,7 @@ public class EquipmentData : ItemData
 
     public void Equip(Hero hero)
     {
-        foreach (var mod in statModifiers)
-        {
-            hero.stats[(int)mod.stat].AddModifier(mod);
-        }
+        foreach (var mod in statModifiers) hero.stats[(int)mod.stat].AddModifier(mod);
     }
 
     //public void Unequip(Hero hero)

@@ -14,19 +14,15 @@ public class Expedition
         this.hero = hero;
         this.destination = destination;
         location = Resources.Load<LocationData>("Locations/Forest");
-        situation = new SituationTravelling(location);
     }
 
-    public void Update()
+    public void UpdateSituations()
     {
+        if (situation == null) situation = new SituationTravelling(this);
         if (situation.readyForNewSituation)
-        {
             TryNewSituation();
-        }
         else
-        {
             situation.Update();
-        }
     }
 
     public void TryNewSituation()
@@ -34,11 +30,10 @@ public class Expedition
         foreach (var sit in location.situations)
         {
             if (Random.value < sit.chance)
-            {
                 switch (sit.SituationType)
                 {
                     case SituationType.EnemyEncounter:
-                        situation = new SituationCombat(hero, location.enemies);
+                        situation = new SituationCombat(this, location.enemies);
                         expeditionPanel.enemyPanel.enemy = (situation as SituationCombat).enemy;
                         expeditionPanel.enemyPanel.gameObject.SetActive(true);
                         break;
@@ -47,11 +42,10 @@ public class Expedition
                         expeditionPanel.enemyPanel.gameObject.SetActive(false);
                         break;
                     default:
-                        situation = new SituationTravelling(location);
+                        situation = new SituationTravelling(this);
                         expeditionPanel.enemyPanel.gameObject.SetActive(false);
                         break;
                 }
-            }
         }
     }
 }

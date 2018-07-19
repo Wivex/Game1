@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Name: WarriorClass
   m_EditorClassIdentifier: 
   classLevels:
+  - {fileID: 0}
   - {fileID: 11400000, guid: eeab0700902a97545bd1fad2320a4cf0, type: 2}

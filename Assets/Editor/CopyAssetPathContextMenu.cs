@@ -1,5 +1,4 @@
 ﻿using UnityEditor;
-using UnityEngine;
 
 public class CopyAssetPathContextMenu
 {
@@ -7,10 +6,8 @@ public class CopyAssetPathContextMenu
     public static void CopyAssetPath()
     {
         if (Selection.activeObject != null)
-        {
             EditorGUIUtility.systemCopyBuffer = AssetDatabase.GetAssetPath(Selection.activeObject)
                 .Replace(@"Assets/Resources/", "")
                 .Replace(".asset", "");
-        }
     }
 }

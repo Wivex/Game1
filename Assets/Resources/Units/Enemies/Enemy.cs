@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using TMPro;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 [Serializable]
 public class Enemy : Unit
@@ -15,6 +11,7 @@ public class Enemy : Unit
     public Enemy(EnemyData data)
     {
         enemyData = data;
+        SetAbilities();
         SetStats();
     }
 
@@ -22,9 +19,10 @@ public class Enemy : Unit
     {
         get
         {
-            var expedition = ExpeditionManager.expeditions.Values.FirstOrDefault(exp =>
-                exp.situation.type == SituationType.EnemyEncounter &&
-                (exp.situation as SituationCombat)?.enemy == this);
+            var expedition =
+                ExpeditionManager.expeditions.Values.FirstOrDefault(exp =>
+                    exp.situation.type == SituationType.EnemyEncounter &&
+                    (exp.situation as SituationCombat)?.enemy == this);
             return expedition?.expeditionPanel.enemyPanel;
         }
     }
@@ -38,5 +36,11 @@ public class Enemy : Unit
         stats[(int) StatType.Speed].BaseValue = enemyData.stats.speed;
         stats[(int) StatType.HResist].BaseValue = enemyData.stats.hazardResistance;
         stats[(int) StatType.BResist].BaseValue = enemyData.stats.bleedResistance;
+    }
+
+    public override void SetAbilities()
+    {
+        foreach (var abilityData in enemyData.abilities)
+            abilities.Add(new Ability(abilityData));
     }
 }

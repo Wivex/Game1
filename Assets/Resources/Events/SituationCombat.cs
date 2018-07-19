@@ -5,12 +5,12 @@ public class SituationCombat : Situation
     public Hero hero;
     public Enemy enemy;
 
-    public SituationCombat(Hero hero, EnemySpawnChance[] enemies)
+    public SituationCombat(Expedition expedition, EnemySpawnChance[] enemies) : base(expedition)
     {
-        this.hero = hero;
+        hero = expedition.hero;
         enemy = SpawnEnemy(enemies);
         type = SituationType.EnemyEncounter;
-        Log = $"Fighting with {enemy.enemyData.name}\n";
+        expedition.expeditionPanel.UpdateLog($"Fighting with {enemy.enemyData.name}");
     }
 
     bool HeroTurnFirst => enemy.stats[(int) StatType.Speed] < hero.stats[(int) StatType.Speed] ||
@@ -97,8 +97,14 @@ public class SituationCombat : Situation
 
     public void Attack(Unit actor, Unit target)
     {
-        target.TakeDamage(new Damage(DamageType.Physical,
-            actor.stats[(int) StatType.Attack] - target.stats[(int) StatType.Defence]));
+        var damage = new Damage(DamageType.Physical,
+            actor.stats[(int) StatType.Attack] - target.stats[(int) StatType.Defence]);
+
+        expedition.expeditionPanel.UpdateLog(actor is Hero
+            ? $"{hero.name} attacks {enemy.enemyData.name} for {damage.amount} {damage.type} damage."
+            : $"{enemy.enemyData.name} attacks {hero.name} for {damage.amount} {damage.type} damage.");
+
+        target.TakeDamage(damage);
     }
 
     public void Kill(Hero hero)

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 
 public class ExpeditionPanelManager : MonoBehaviour
@@ -10,18 +7,13 @@ public class ExpeditionPanelManager : MonoBehaviour
     public EnemyPanelManager enemyPanel;
     public HeroPanelManager heroPanel;
     public TextMeshProUGUI logText;
+    LogManager log;
     CanvasManager canvasManager;
 
-    void Start()
+    public void UpdateLog(string logEntry)
     {
-        logText.text = string.Empty;
-    }
-
-    void Update()
-    {
-        if (expedition.situation.newLogEntry)
-        {
-            logText.text += expedition.situation.Log;
-        }
+        if (log == null)
+            log = new LogManager(logText);
+        log.AddLogEntry(logEntry);
     }
 }

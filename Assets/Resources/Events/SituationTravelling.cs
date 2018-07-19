@@ -1,11 +1,8 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-
-public class SituationTravelling : Situation
+﻿public class SituationTravelling : Situation
 {
-    public SituationTravelling(LocationData location)
+    public SituationTravelling(Expedition expedition) : base(expedition)
     {
-        Log = $"Travelling trough {location.name}\n";
+        expedition.expeditionPanel.UpdateLog($"Travelling trough {expedition.location.name}");
         type = SituationType.Travelling;
         readyForNewSituation = true;
     }
