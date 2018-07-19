@@ -5,7 +5,7 @@ public class SituationTravelling : Situation
 {
     public SituationTravelling(LocationData location)
     {
-        Log = $"Travelling trough {location.name}";
+        Log = $"Travelling trough {location.name}\n";
         type = SituationType.Travelling;
         readyForNewSituation = true;
     }

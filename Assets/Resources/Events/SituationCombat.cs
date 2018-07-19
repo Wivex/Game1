@@ -10,6 +10,7 @@ public class SituationCombat : Situation
         this.hero = hero;
         enemy = SpawnEnemy(enemies);
         type = SituationType.EnemyEncounter;
+        Log = $"Fighting with {enemy.enemyData.name}\n";
     }
 
     bool HeroTurnFirst => enemy.stats[(int) StatType.Speed] < hero.stats[(int) StatType.Speed] ||
@@ -38,15 +39,28 @@ public class SituationCombat : Situation
 
     public override void Update()
     {
-        if (HeroTurnFirst)
+        if (hero.Dead)
         {
-            CombatTick(hero, enemy);
-            CombatTick(enemy, hero);
+            Kill(hero);
+            // TODO: stop situation
+        }
+        else if (enemy.Dead)
+        {
+            Kill(enemy);
+            readyForNewSituation = true;
         }
         else
         {
-            CombatTick(enemy, hero);
-            CombatTick(hero, enemy);
+            if (HeroTurnFirst)
+            {
+                CombatTick(hero, enemy);
+                CombatTick(enemy, hero);
+            }
+            else
+            {
+                CombatTick(enemy, hero);
+                CombatTick(hero, enemy);
+            }
         }
     }
 
@@ -85,5 +99,15 @@ public class SituationCombat : Situation
     {
         target.TakeDamage(new Damage(DamageType.Physical,
             actor.stats[(int) StatType.Attack] - target.stats[(int) StatType.Defence]));
+    }
+
+    public void Kill(Hero hero)
+    {
+        // TODO: wait to cart items
+    }
+
+    public void Kill(Enemy enemy)
+    {
+        // TODO: drop loot, give exp
     }
 }

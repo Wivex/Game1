@@ -23,14 +23,16 @@ public abstract class Unit
     public const int reqInitiative = 100;
     public float curInitiative;
 
+    public abstract UnitPanelManager Panel { get; }
+    public bool Dead => stats[(int) StatType.Health].curValue <= 0;
+
     public abstract void SetStats();
 
     public void TakeDamage(Damage damage)
     {
+        stats[(int) StatType.Health].curValue = Math.Max(stats[(int)StatType.Health].curValue - damage.amount, 0); ;
         var floatingText = Object.Instantiate(Panel.floatingTextPrefab, Panel.unitImage.transform);
         var textObject = floatingText.GetComponent<TextMeshProUGUI>();
         textObject.text = $"-{damage.amount}";
     }
-
-    public abstract UnitPanelManager Panel { get; }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -11,24 +12,16 @@ public class ExpeditionPanelManager : MonoBehaviour
     public TextMeshProUGUI logText;
     CanvasManager canvasManager;
 
-    public void UpdateLog()
+    void Start()
     {
-        switch (expedition.situation.type)
-        {
-            case SituationType.EnemyEncounter:
-                logText.text = $"Fighting with {enemyPanel.enemy.enemyData.name}";
-                break;
-            case SituationType.Travelling:
-                logText.text = $"Travelling through {expedition.location.name}";
-                break;
-        }
+        logText.text = string.Empty;
+    }
 
-        //else
-        //{
-        //    if (expedition.situation.logIsUpdated)
-        //    {
-        //        logText.text += expedition.situation.Log;
-        //    }
-        //}
+    void Update()
+    {
+        if (expedition.situation.newLogEntry)
+        {
+            logText.text += expedition.situation.Log;
+        }
     }
 }

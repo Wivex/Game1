@@ -12,19 +12,19 @@ public abstract class Situation
 {
     public SituationType type;
     public RectTransform expSituationPanel;
-    public bool logIsUpdated, readyForNewSituation;
+    public bool newLogEntry, readyForNewSituation;
 
     string log;
     public string Log
     {
         set
         {
-            logIsUpdated = false;
+            newLogEntry = true;
             log = value;
         }
         get
         {
-            logIsUpdated = true;
+            newLogEntry = false;
             return log;
         }
     }
