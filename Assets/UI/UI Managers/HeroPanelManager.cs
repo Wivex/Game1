@@ -16,7 +16,7 @@ public class HeroPanelManager : UnitPanelManager
     void Start()
     {
         // NOTE: check if safe
-        hero = ExpeditionManager.expeditions.Last().Key;
+        hero = GameManager.expeditions.Last().Key;
         hero.SetStats();
         unit = hero;
         unitImage.sprite = hero.classData.classLevels[hero.level].icon;

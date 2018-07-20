@@ -14,7 +14,6 @@ public class Hero : Unit
     [Header("Hero")]
     public ClassData classData;
 
-    public string name;
     public int level = 1;
     public int gold;
 
@@ -24,6 +23,7 @@ public class Hero : Unit
     {
         this.name = name;
         classData = Resources.Load<ClassData>("Units/Heroes/Classes/Warrior/WarriorClass");
+        tacticsPreset = classData.classLevels[level].tacticsPreset;
         SetAbilities();
         SetStats();
     }
@@ -32,7 +32,7 @@ public class Hero : Unit
     {
         get
         {
-            var expedition = ExpeditionManager.expeditions[this];
+            var expedition = GameManager.expeditions[this];
             return expedition.expeditionPanel.heroPanel;
         }
     }

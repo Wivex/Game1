@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class ExpeditionManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     public RectTransform expeditionsListPanel;
     public ExpeditionPanelManager expeditionPanelPrefab;

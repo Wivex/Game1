@@ -11,6 +11,8 @@ public class Enemy : Unit
     public Enemy(EnemyData data)
     {
         enemyData = data;
+        name = data.name;
+        tacticsPreset = data.tacticsPreset;
         SetAbilities();
         SetStats();
     }
@@ -20,7 +22,7 @@ public class Enemy : Unit
         get
         {
             var expedition =
-                ExpeditionManager.expeditions.Values.FirstOrDefault(exp =>
+                GameManager.expeditions.Values.FirstOrDefault(exp =>
                     exp.situation.type == SituationType.EnemyEncounter &&
                     (exp.situation as SituationCombat)?.enemy == this);
             return expedition?.expeditionPanel.enemyPanel;

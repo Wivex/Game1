@@ -4,6 +4,7 @@ public class SituationCombat : Situation
 {
     public Hero hero;
     public Enemy enemy;
+    public Unit actor,target;
 
     public SituationCombat(Expedition expedition, EnemySpawnChance[] enemies) : base(expedition)
     {
@@ -53,58 +54,44 @@ public class SituationCombat : Situation
         {
             if (HeroTurnFirst)
             {
-                CombatTick(hero, enemy);
-                CombatTick(enemy, hero);
+                actor = hero;
+                target = enemy;
+                CombatTick();
+                actor = enemy;
+                target = hero;
+                CombatTick();
             }
             else
             {
-                CombatTick(enemy, hero);
-                CombatTick(hero, enemy);
+                actor = enemy;
+                target = hero;
+                CombatTick();
+                actor = hero;
+                target = enemy;
+                CombatTick();
             }
         }
     }
 
-    public void CombatTick(Unit actor, Unit target)
+    public void CombatTick()
     {
-        actor.curInitiative += actor.stats[(int) StatType.Speed].curValue * ExpeditionManager.combatSpeed;
+        actor.curInitiative += actor.stats[(int)StatType.Speed].curValue * GameManager.combatSpeed;
         if (actor.curInitiative >= Unit.reqInitiative)
         {
-            actor.curInitiative -= Unit.reqInitiative;
+            actor.curInitiative = 0;
             TakeAction(actor, target);
         }
     }
 
-    // TODO: add tactics implementation
     public void TakeAction(Unit actor, Unit target)
     {
-        var actionTaken = false;
-        //foreach (var ability in actor.Abilities)
-        //{
-        //    // use ability
-        //    if (ability.Ready && !actionTaken)
-        //    {
-        //        ability.Use(actor, target);
-        //        actionTaken = true;
-        //    }
-        //    else
-        //        ability.Cooldown--;
-        //}
-
-        // attack
-        if (!actionTaken)
-            Attack(actor, target);
-    }
-
-    public void Attack(Unit actor, Unit target)
-    {
-        var damage = new Damage(DamageType.Physical,
-            actor.stats[(int) StatType.Attack] - target.stats[(int) StatType.Defence]);
-
-        expedition.expeditionPanel.UpdateLog(actor is Hero
-            ? $"{hero.name} attacks {enemy.enemyData.name} for {damage.amount} {damage.type} damage."
-            : $"{enemy.enemyData.name} attacks {hero.name} for {damage.amount} {damage.type} damage.");
-
-        target.TakeDamage(damage);
+        foreach (var tactic in actor.tacticsPreset.tactics)
+        {
+            // skip tactic if not all triggers are triggered
+            if (tactic.triggers.Exists(trigger => !trigger.IsTriggered(hero, enemy, actor)))
+                continue;
+            tactic.action.DoAction(this);
+        }
     }
 
     public void Kill(Hero hero)

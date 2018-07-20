@@ -18,9 +18,11 @@ public abstract class Unit
     };
 
     public List<Ability> abilities = new List<Ability>();
+    public TacticsPreset tacticsPreset;
 
     public const int reqInitiative = 100;
     public float curInitiative;
+    public string name;
 
     public abstract UnitPanelManager Panel { get; }
     public bool Dead => stats[(int) StatType.Health].curValue <= 0;
