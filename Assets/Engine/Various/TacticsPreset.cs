@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class Tactic
+public class TacticsPreset
 {
-    public List<TacticTrigger> triggers;
-    public TacticAction action;
+    public List<Tactic> tactics;
 }
