@@ -7,4 +7,5 @@ public class UnitData : ContentData
     [Header("Unit Data")]
     public StatValues stats;
     public List<AbilityData> abilities;
+    public Tactic tactic;
 }

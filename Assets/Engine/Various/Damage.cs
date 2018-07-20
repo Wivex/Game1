@@ -7,12 +7,6 @@ public enum DamageType
     Bleeding
 }
 
-public enum Target
-{
-    Self,
-    Other
-}
-
 [Serializable]
 public class Damage
 {

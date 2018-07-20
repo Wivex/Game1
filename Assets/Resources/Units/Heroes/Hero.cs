@@ -11,7 +11,8 @@ public enum HeroClass
 [Serializable]
 public class Hero : Unit
 {
-    [Header("Hero")] public ClassData classData;
+    [Header("Hero")]
+    public ClassData classData;
 
     public string name;
     public int level = 1;

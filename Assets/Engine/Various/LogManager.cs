@@ -5,7 +5,7 @@ using TMPro;
 [Serializable]
 public class LogManager
 {
-    const int maxEntries = 8;
+    const int maxEntries = 20;
 
     public TextMeshProUGUI logDrawer;
     public Queue<string> log;

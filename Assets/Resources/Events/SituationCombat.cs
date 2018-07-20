@@ -66,7 +66,7 @@ public class SituationCombat : Situation
 
     public void CombatTick(Unit actor, Unit target)
     {
-        actor.curInitiative += actor.stats[(int) StatType.Speed] * ExpeditionManager.combatSpeed;
+        actor.curInitiative += actor.stats[(int) StatType.Speed].curValue * ExpeditionManager.combatSpeed;
         if (actor.curInitiative >= Unit.reqInitiative)
         {
             actor.curInitiative -= Unit.reqInitiative;
