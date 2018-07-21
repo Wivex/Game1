@@ -74,8 +74,9 @@ public class TacticTrigger
                         return StatsCheck(hero);
                     case Target.Enemy:
                         return StatsCheck(enemy);
+                    default:
+                        throw new ArgumentException();
                 }
-                break;
             case TriggerType.EnemyType:
                 return enemy.enemyData == enemyData;
             case TriggerType.HeroCondition:
@@ -88,9 +89,8 @@ public class TacticTrigger
             case TriggerType.MinTurnDelay:
                 throw new NotImplementedException();
             default:
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentException();
         }
-        throw new ArgumentOutOfRangeException();
     }
 
     #region CHECKS
@@ -99,16 +99,12 @@ public class TacticTrigger
         switch (comparisonType)
         {
             case ComparisonType.LessOrEqual:
-                if (unit.stats[(int) stat].curValue <= statValue)
-                    return true;
-                break;
+                return unit.stats[(int) stat].curValue <= statValue;
             case ComparisonType.More:
-                if (unit.stats[(int) stat].curValue > statValue)
-                    return true;
-                break;
+                return unit.stats[(int) stat].curValue > statValue;
+            default:
+                throw new ArgumentException();
         }
-
-        throw new ArgumentOutOfRangeException();
     }
     #endregion
 }

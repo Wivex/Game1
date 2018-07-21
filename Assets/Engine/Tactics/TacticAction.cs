@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum ActionType
@@ -28,22 +29,37 @@ public class TacticAction
                 Attack(situation);
                 break;
             case ActionType.UseAbility:
+                UseAbility(situation);
                 break;
             case ActionType.UseConsumable:
                 throw new NotImplementedException();
         }
-        throw new ArgumentOutOfRangeException();
     }
 
-    #region MyRegion
+    #region ACTIONS
     public void Attack(SituationCombat situation)
     {
         var damage = new Damage(DamageType.Physical,
-            situation.actor.stats[(int)StatType.Attack] - situation.target.stats[(int)StatType.Defence]);
+            situation.actor.stats[(int)StatType.Attack].curValue, situation.target);
 
         situation.expedition.expeditionPanel.UpdateLog(
             $"{situation.actor.name} attacks {situation.target.name} for {damage.amount} {damage.type} damage.");
         situation.target.TakeDamage(damage);
+    }
+    
+    public void UseAbility(SituationCombat situation)
+    {
+        var usedAbility = situation.actor.abilities.Find(abil => abil.abilityData == abilityData);
+        if (abilityData.damage != 0)
+        {
+            var damage = new Damage(abilityData.damageType,
+                abilityData.damage, situation.target);
+
+            situation.expedition.expeditionPanel.UpdateLog(
+                $"{situation.actor.name} uses {abilityData.name} on {situation.target.name} for {damage.amount} {damage.type} damage.");
+            situation.target.TakeDamage(damage);
+        }
+        usedAbility.curCooldown = abilityData.cooldown;
     }
     #endregion
 }

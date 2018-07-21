@@ -23,3 +23,32 @@ MonoBehaviour:
     bleedResistance: 2
   abilities:
   - {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
+  tacticsPreset:
+    presetName: Warrior 1
+    tactics:
+    - triggers:
+      - triggerType: 5
+        target: 0
+        stat: 0
+        statTriggerType: 0
+        comparisonType: 0
+        statValue: 0
+        abilityData: {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
+        enemyData: {fileID: 0}
+        minTurn: 0
+      action:
+        actionType: 2
+        abilityData: {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
+    - triggers:
+      - triggerType: 2
+        target: 0
+        stat: 0
+        statTriggerType: 0
+        comparisonType: 0
+        statValue: 0
+        abilityData: {fileID: 0}
+        enemyData: {fileID: 11400000, guid: 2767f6c8f66d2fd45ad505de3208fc8b, type: 2}
+        minTurn: 0
+      action:
+        actionType: 1
+        abilityData: {fileID: 0}

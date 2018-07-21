@@ -47,7 +47,7 @@ public class StatChanging : Stat
                     maxValue *= 1 + mod.amount;
                     break;
                 default:
-                    throw new NotImplementedException();
+                    throw new ArgumentException();
             }
 
             // adjust current value

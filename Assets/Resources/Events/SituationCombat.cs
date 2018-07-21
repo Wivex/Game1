@@ -79,11 +79,12 @@ public class SituationCombat : Situation
         if (actor.curInitiative >= Unit.reqInitiative)
         {
             actor.curInitiative = 0;
-            TakeAction(actor, target);
+            UpdateActorCooldowns();
+            ActorMove();
         }
     }
 
-    public void TakeAction(Unit actor, Unit target)
+    public void ActorMove()
     {
         foreach (var tactic in actor.tacticsPreset.tactics)
         {
@@ -91,6 +92,16 @@ public class SituationCombat : Situation
             if (tactic.triggers.Exists(trigger => !trigger.IsTriggered(hero, enemy, actor)))
                 continue;
             tactic.action.DoAction(this);
+            break;
+        }
+    }
+
+    public void UpdateActorCooldowns()
+    {
+        foreach (var ability in actor.abilities)
+        {
+            if (ability.curCooldown > 0)
+                ability.curCooldown--;
         }
     }
 

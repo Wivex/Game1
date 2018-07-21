@@ -23,35 +23,20 @@ MonoBehaviour:
     bleedResistance: 1
   abilities:
   - {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
-  TacticsPreset:
+  tacticsPreset:
+    presetName: 
     tactics:
     - triggers:
-      - triggerType: 2
+      - triggerType: 0
+        target: 0
         stat: 0
-        statTriggerType: 1
-        statValue: 25
+        statTriggerType: 0
+        comparisonType: 0
+        statValue: 0
         abilityData: {fileID: 0}
         enemyData: {fileID: 0}
         minTurn: 0
       action:
         actionType: 1
         abilityData: {fileID: 0}
-    - triggers:
-      - triggerType: 1
-        stat: 0
-        statTriggerType: 0
-        statValue: 20
-        abilityData: {fileID: 0}
-        enemyData: {fileID: 0}
-        minTurn: 0
-      - triggerType: 2
-        stat: 0
-        statTriggerType: 0
-        statValue: 0
-        abilityData: {fileID: 0}
-        enemyData: {fileID: 11400000}
-        minTurn: 0
-      action:
-        actionType: 2
-        abilityData: {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
   spawnChance: 1

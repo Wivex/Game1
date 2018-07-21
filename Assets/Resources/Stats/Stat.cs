@@ -62,7 +62,7 @@ public class Stat
                     curValue *= 1 + mod.amount;
                     break;
                 default:
-                    throw new NotImplementedException();
+                    throw new ArgumentException();
             }
         }
     }
