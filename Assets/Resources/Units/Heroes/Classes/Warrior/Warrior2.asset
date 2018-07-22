@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b3c11a860b8b84eac84e8e0217507b, type: 3}
+  m_Name: Warrior2
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 3d96780b570c9334c85e44e87ff5d2a1, type: 3}
+  name: Warrior
+  stats:
+    health: 110
+    mana: 5
+    attack: 10
+    speed: 10
+    defence: 5
+    hazardResistance: 2
+    bleedResistance: 2
+  abilities:
+  - {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
+  tacticsPreset:
+    presetName: Warrior 1
+    tactics:
+    - triggers:
+      - triggerType: 5
+        target: 0
+        stat: 0
+        statTriggerType: 0
+        comparisonType: 0
+        statValue: 0
+        abilityData: {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
+        enemyData: {fileID: 0}
+        minTurn: 0
+      action:
+        actionType: 2
+        abilityData: {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
+    - triggers:
+      - triggerType: 2
+        target: 0
+        stat: 0
+        statTriggerType: 0
+        comparisonType: 0
+        statValue: 0
+        abilityData: {fileID: 0}
+        enemyData: {fileID: 11400000, guid: 2767f6c8f66d2fd45ad505de3208fc8b, type: 2}
+        minTurn: 0
+      action:
+        actionType: 1
+        abilityData: {fileID: 0}
