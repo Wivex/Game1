@@ -1,11 +1,13 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using SubjectNerd.Utilities;
+using UnityEngine;
 
-[CreateAssetMenu(menuName = "Content/Data/Ability")]
+[CreateAssetMenu(menuName = "Content/Data/Ability Data")]
 public class AbilityData : ScriptableObject
 {
     public Sprite icon;
-    public int damage;
+    public new string name;
     public int cooldown;
-    public DamageType damageType;
-    //public List<ItemEffect> effects;
+    [Reorderable("Effect")]
+    public List<Effect> effects;
 }

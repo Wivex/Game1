@@ -14,8 +14,7 @@ public class SituationCombat : Situation
         expedition.expeditionPanel.UpdateLog($"Fighting with {enemy.enemyData.name}");
     }
 
-    bool HeroTurnFirst => enemy.stats[(int) StatType.Speed] < hero.stats[(int) StatType.Speed] ||
-                          enemy.stats[(int) StatType.Speed] == hero.stats[(int) StatType.Speed] && Random.value < 0.5f;
+    bool HeroTurnFirst => hero.stats[(int)StatType.Speed] >= enemy.stats[(int)StatType.Speed];
 
     // TODO: increase chance with each iteration?
     public Enemy SpawnEnemy(EnemySpawnChance[] enemies)
@@ -79,13 +78,14 @@ public class SituationCombat : Situation
         if (actor.curInitiative >= Unit.reqInitiative)
         {
             actor.curInitiative = 0;
-            UpdateActorCooldowns();
             ActorMove();
         }
     }
 
     public void ActorMove()
     {
+        UpdateActorCooldowns();
+        UpdateActorEffects();
         foreach (var tactic in actor.tacticsPreset.tactics)
         {
             // skip tactic if not all triggers are triggered
@@ -102,6 +102,17 @@ public class SituationCombat : Situation
         {
             if (ability.curCooldown > 0)
                 ability.curCooldown--;
+        }
+    }
+
+    public void UpdateActorEffects()
+    {
+        var effects = actor.curEffects;
+        for (var i = effects.Count - 1; i >= 0; i--)
+        {
+            effects[i].curDuration--;
+            if (effects[i].curDuration == 0)
+                effects.RemoveAt(i);
         }
     }
 

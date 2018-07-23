@@ -93,8 +93,8 @@ namespace SubjectNerd.Utilities
 
 				ReorderableList propList = new ReorderableList(
 					property.serializedObject, property,
-					draggable: true, displayHeader: false,
-					displayAddButton: true, displayRemoveButton: true)
+					true, false,
+					true, true)
 				{
 					headerHeight = 5
 				};
@@ -129,11 +129,11 @@ namespace SubjectNerd.Utilities
 #endif
 				};
 
-				// Unity 5.3 onwards allows reorderable lists to have variable element heights
+                // Unity 5.3 onwards allows reorderable lists to have variable element heights
 #if UNITY_5_3_OR_NEWER
-				propList.elementHeightCallback = index => ElementHeightCallback(property, index);
+                propList.elementHeightCallback = index => ElementHeightCallback(property, index);
 
-				propList.drawElementBackgroundCallback = (rect, index, active, focused) =>
+                propList.drawElementBackgroundCallback = (rect, index, active, focused) =>
 				{
 					if (styleHighlight == null)
 						styleHighlight = GUI.skin.FindStyle("MeTransitionSelectHead");
@@ -171,7 +171,8 @@ namespace SubjectNerd.Utilities
 				// Draw the reorderable list for the property
 				if (property.isExpanded)
 				{
-					int newArraySize = EditorGUILayout.IntField("Size", property.arraySize);
+				    //int newArraySize = EditorGUILayout.IntField("Size", property.arraySize);
+                    int newArraySize = property.arraySize;
 					if (newArraySize != property.arraySize)
 						property.arraySize = newArraySize;
 					propIndex[property.propertyPath].DoLayoutList();

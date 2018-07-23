@@ -17,7 +17,7 @@ public class Enemy : Unit
         SetStats();
     }
 
-    public override UnitPanelManager Panel
+    public override UnitPanelManager unitPanel
     {
         get
         {

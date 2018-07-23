@@ -5,4 +5,5 @@ public class EnemyData : UnitData
 {
     [Header("Enemy")]
     public float spawnChance;
+    public int spawnInterval;
 }

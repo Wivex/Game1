@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Class | AttributeTargets.Struct)]
@@ -28,11 +29,11 @@ public class ShownIfEnumValueAttribute : PropertyAttribute
     //The name of the bool field that will be in control
     public string enumPropertyName;
     //The value of the enum field that will be in control
-    public int enumValue;
+    public List<int> enumValues;
 
-    public ShownIfEnumValueAttribute(string enumPropertyName, int enumValue)
+    public ShownIfEnumValueAttribute(string enumPropertyName, params int[] enumValues)
     {
         this.enumPropertyName = enumPropertyName;
-        this.enumValue = enumValue;
+        this.enumValues = new List<int>(enumValues);
     }
 }

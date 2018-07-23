@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -12,15 +13,4 @@ public class Ability
     {
         this.abilityData = abilityData;
     }
-
-    //public void TryApplyEffects(Unit actor, Unit target)
-    //{
-    //    foreach (var effect in effects)
-    //    {
-    //        //if (effect.XMLData.TargetSelf)
-    //        //    actor.effects.Add(effect);
-    //        //else
-    //        //    target.effects.Add(effect);
-    //    }
-    //}
 }

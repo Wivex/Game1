@@ -24,7 +24,8 @@ public class TacticAction
         switch (actionType)
         {
             case ActionType.Flee:
-                throw new NotImplementedException();
+                Flee(situation);
+                break;
             case ActionType.Attack:
                 Attack(situation);
                 break;
@@ -37,6 +38,11 @@ public class TacticAction
     }
 
     #region ACTIONS
+    public void Flee(SituationCombat situation)
+    {
+        LogEvent(situation, $"{situation.actor.name} flees from combat.");
+    }
+
     public void Attack(SituationCombat situation)
     {
         var damage = new Damage(DamageType.Physical,
@@ -50,16 +56,13 @@ public class TacticAction
     public void UseAbility(SituationCombat situation)
     {
         var usedAbility = situation.actor.abilities.Find(abil => abil.abilityData == abilityData);
-        if (abilityData.damage != 0)
-        {
-            var damage = new Damage(abilityData.damageType,
-                abilityData.damage, situation.target);
-
-            situation.expedition.expeditionPanel.UpdateLog(
-                $"{situation.actor.name} uses {abilityData.name} on {situation.target.name} for {damage.amount} {damage.type} damage.");
-            situation.target.TakeDamage(damage);
-        }
+        foreach (var effect in usedAbility.abilityData.effects) effect.ApplyEffect(situation);
         usedAbility.curCooldown = abilityData.cooldown;
+    }
+
+    public void LogEvent(SituationCombat situation, string text)
+    {
+        situation.expedition.expeditionPanel.UpdateLog(text);
     }
     #endregion
 }

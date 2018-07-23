@@ -28,7 +28,7 @@ public class Hero : Unit
         SetStats();
     }
 
-    public override UnitPanelManager Panel
+    public override UnitPanelManager unitPanel
     {
         get
         {

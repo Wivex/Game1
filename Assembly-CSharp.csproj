@@ -62,7 +62,14 @@
   <ItemGroup>
     <Compile Include="Assets\3rd-Party\SubjectNerd's InspectorTools\EditScriptableAttribute.cs" />
     <Compile Include="Assets\3rd-Party\SubjectNerd's InspectorTools\ReorderableAttribute.cs" />
+    <Compile Include="Assets\Engine\Effects\Effect.cs" />
     <Compile Include="Assets\Engine\Managers\GameManager.cs" />
+    <Compile Include="Assets\Engine\Situations\Situation.cs" />
+    <Compile Include="Assets\Engine\Situations\SituationCombat.cs" />
+    <Compile Include="Assets\Engine\Situations\SituationTravelling.cs" />
+    <Compile Include="Assets\Engine\Stats\Stat.cs" />
+    <Compile Include="Assets\Engine\Stats\StatChanging.cs" />
+    <Compile Include="Assets\Engine\Stats\StatModifier.cs" />
     <Compile Include="Assets\Engine\Tactics\Tactic.cs" />
     <Compile Include="Assets\Engine\Tactics\TacticAction.cs" />
     <Compile Include="Assets\Engine\Tactics\TacticsPreset.cs" />
@@ -76,15 +83,9 @@
     <Compile Include="Assets\Resources\Abilities\Ability.cs" />
     <Compile Include="Assets\Resources\Abilities\AbilityData.cs" />
     <Compile Include="Assets\Resources\ContentData.cs" />
-    <Compile Include="Assets\Resources\Events\Situation.cs" />
-    <Compile Include="Assets\Resources\Events\SituationCombat.cs" />
-    <Compile Include="Assets\Resources\Events\SituationTravelling.cs" />
     <Compile Include="Assets\Resources\Items\Equipment\EquipmentData.cs" />
     <Compile Include="Assets\Resources\Items\ItemData.cs" />
     <Compile Include="Assets\Resources\Locations\LocationData.cs" />
-    <Compile Include="Assets\Resources\Stats\Stat.cs" />
-    <Compile Include="Assets\Resources\Stats\StatChanging.cs" />
-    <Compile Include="Assets\Resources\Stats\StatModifier.cs" />
     <Compile Include="Assets\Resources\Units\Enemies\Enemy.cs" />
     <Compile Include="Assets\Resources\Units\Enemies\EnemyData.cs" />
     <Compile Include="Assets\Resources\Units\Heroes\Classes\ClassData.cs" />

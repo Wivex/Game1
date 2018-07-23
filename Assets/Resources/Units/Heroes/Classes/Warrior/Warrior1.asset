@@ -40,7 +40,7 @@ MonoBehaviour:
         actionType: 2
         abilityData: {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
     - triggers:
-      - triggerType: 2
+      - triggerType: 0
         target: 0
         stat: 0
         statTriggerType: 0

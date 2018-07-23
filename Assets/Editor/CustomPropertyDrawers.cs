@@ -95,7 +95,7 @@ public class ShownIfEnumValuePropertyDrawer : PropertyDrawer
         var enumProperty = property.serializedObject.FindProperty(enumPath);
         var enumIndex = enumProperty?.enumValueIndex;
 
-        return IsSupportedPropertyType(enumProperty) && enumIndex == attr.enumValue;
+        return IsSupportedPropertyType(enumProperty) && attr.enumValues.Contains((int)enumIndex);
     }
 
     protected bool IsSupportedPropertyType(SerializedProperty sourcePropertyValue)
