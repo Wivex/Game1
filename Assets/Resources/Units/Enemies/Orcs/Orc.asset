@@ -23,10 +23,42 @@ MonoBehaviour:
     bleedResistance: 1
   abilities:
   - {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
+  - {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
   tacticsPreset:
     presetName: 
     tactics:
     - triggers:
+      - triggerType: 1
+        target: 0
+        stat: 0
+        statTriggerType: 0
+        comparisonType: 0
+        statValue: 0
+        abilityData: {fileID: 0}
+        enemyData: {fileID: 0}
+        minTurn: 0
+      action:
+        actionType: 0
+        abilityData: {fileID: 0}
+    - triggers:
+      - triggerType: 1
+        target: 0
+        stat: 0
+        statTriggerType: 0
+        comparisonType: 0
+        statValue: 0
+        abilityData: {fileID: 0}
+        enemyData: {fileID: 0}
+        minTurn: 0
+      - triggerType: 0
+        target: 0
+        stat: 0
+        statTriggerType: 0
+        comparisonType: 0
+        statValue: 0
+        abilityData: {fileID: 0}
+        enemyData: {fileID: 0}
+        minTurn: 0
       - triggerType: 0
         target: 0
         stat: 0
@@ -37,6 +69,37 @@ MonoBehaviour:
         enemyData: {fileID: 0}
         minTurn: 0
       action:
-        actionType: 1
+        actionType: 0
+        abilityData: {fileID: 0}
+    - triggers:
+      - triggerType: 1
+        target: 0
+        stat: 0
+        statTriggerType: 0
+        comparisonType: 0
+        statValue: 0
+        abilityData: {fileID: 0}
+        enemyData: {fileID: 0}
+        minTurn: 0
+      - triggerType: 0
+        target: 0
+        stat: 0
+        statTriggerType: 0
+        comparisonType: 0
+        statValue: 0
+        abilityData: {fileID: 0}
+        enemyData: {fileID: 0}
+        minTurn: 0
+      - triggerType: 0
+        target: 0
+        stat: 0
+        statTriggerType: 0
+        comparisonType: 0
+        statValue: 0
+        abilityData: {fileID: 0}
+        enemyData: {fileID: 0}
+        minTurn: 0
+      action:
+        actionType: 0
         abilityData: {fileID: 0}
   spawnChance: 1

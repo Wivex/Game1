@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SubjectNerd.Utilities;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Content/Data/Unit Data")]
