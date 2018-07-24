@@ -49,16 +49,52 @@ public abstract class Unit
         textObject.color = Color.green;
     }
     
-    public void ApplyEffect(Effect effect)
+    public void AddEffect(Effect effect)
     {
         switch (effect.effectType)
         {
-            case EffectType.StatChange:
-                effect.AffectHealth(situation);
+            case EffectType.StatDirectChange:
+                switch (effect.stat)
+                {
+                    case StatType.Health:
+                        AffectHealth(effect);
+                        break;
+                    case StatType.Mana:
+                        break;
+                    default:
+                        throw new NotImplementedException();
+                        break;
+                }
                 break;
             case EffectType.StatModifier:
                 effect.ApplyStatModifier(situation);
                 break;
         }
     }
-}
+
+    void AffectHealth(Effect effect)
+    {
+        switch (effect.durationType)
+        {
+            case DurationType.Instant:
+                if (effect.value > 0)
+                    DamageTarget(situation);
+                if (value < 0)
+                    switch (target)
+                    {
+                        case Target.Self:
+                            situation.actor.Heal(value);
+                            break;
+                        case Target.Foe:
+                            situation.target.Heal(value);
+                            break;
+                    }
+                break;
+            case DurationType.Persistent:
+                situation.hero.curEffects.Add(this);
+                break;
+            case DurationType.Repeating:
+                ApplyStatModifier(situation);
+                break;
+        }
+    }

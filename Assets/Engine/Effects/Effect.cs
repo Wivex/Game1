@@ -3,7 +3,7 @@ using UnityEngine;
 
 public enum EffectType
 {
-    StatChange,
+    StatDirectChange,
     StatModifier
 }
 
@@ -26,7 +26,7 @@ public class Effect
 
     public Target target;
     public EffectType effectType;
-    [ShownIfEnumValue("effectType", (int)EffectType.StatChange)]
+    [ShownIfEnumValue("effectType", (int)EffectType.StatDirectChange)]
     public DamageType damageType;
     [ShownIfEnumValue("effectType", (int)EffectType.StatModifier)]
     public StatModType statModType;
@@ -47,11 +47,11 @@ public class Effect
     {
         switch (target)
         {
-            case Target.Hero:
-                situation.hero.ApplyEffect(this);
+            case Target.Self:
+                situation.actor.AddEffect(this);
                 break;
-            case Target.Enemy:
-                situation.enemy.ApplyEffect(this);
+            case Target.Foe:
+                situation.target.AddEffect(this);
                 break;
         }
     }
@@ -94,11 +94,11 @@ public class Effect
                 if (value < 0)
                     switch (target)
                     {
-                        case Target.Hero:
-                            situation.hero.Heal(value);
+                        case Target.Self:
+                            situation.actor.Heal(value);
                             break;
-                        case Target.Enemy:
-                            situation.enemy.Heal(value);
+                        case Target.Foe:
+                            situation.target.Heal(value);
                             break;
                     }
                 break;
@@ -115,13 +115,13 @@ public class Effect
     {
         switch (target)
         {
-            case Target.Hero:
-                situation.hero.stats[(int)stat]
+            case Target.Self:
+                situation.actor.stats[(int)stat]
                     .AddModifier(new StatModifier(value, statModType));
                 situation.hero.curEffects.Add(this);
                 break;
-            case Target.Enemy:
-                situation.enemy.stats[(int)stat]
+            case Target.Foe:
+                situation.target.stats[(int)stat]
                     .AddModifier(new StatModifier(value, statModType));
                 situation.enemy.curEffects.Add(this);
                 break;
@@ -132,12 +132,12 @@ public class Effect
     {
         switch (target)
         {
-            case Target.Hero:
-                situation.hero.TakeDamage(new Damage(damageType, value,
+            case Target.Self:
+                situation.actor.TakeDamage(new Damage(damageType, value,
                     situation.hero));
                 break;
-            case Target.Enemy:
-                situation.enemy.TakeDamage(new Damage(damageType, value,
+            case Target.Foe:
+                situation.target.TakeDamage(new Damage(damageType, value,
                     situation.enemy));
                 break;
         }

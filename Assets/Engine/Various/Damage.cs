@@ -27,16 +27,19 @@ public class Damage
 
     int CalculateDamage(DamageType type, int amount, Unit target)
     {
+        var protectionValue = 0;
         switch (type)
         {
             case DamageType.Physical:
-                return Math.Max(amount - target.stats[(int) StatType.Defence].curValue, 0);
+                protectionValue = target.stats[(int) StatType.Defence].curValue;
+                break;
             case DamageType.Hazardous:
-                return Math.Max(amount - target.stats[(int) StatType.HResist].curValue, 0);
+                protectionValue = target.stats[(int) StatType.HResist].curValue;
+                break;
             case DamageType.Bleeding:
-                return Math.Max(amount - target.stats[(int) StatType.BResist].curValue, 0);
-            default:
-                throw new ArgumentException();
+                protectionValue = target.stats[(int) StatType.BResist].curValue;
+                break;
         }
+        return Math.Max(amount - protectionValue, 0);
     }
 }
