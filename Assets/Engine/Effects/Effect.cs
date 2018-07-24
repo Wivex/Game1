@@ -38,41 +38,43 @@ public class Effect
 
     public int amount;
 
-    public Effect(AbilityData abilityData)
+    public void ApplyEffect(SituationCombat situation, Unit unit, AbilityData abilityData)
     {
         name = abilityData.name;
         icon = abilityData.icon;
         curDuration = duration;
         curDelay = delay;
-    }
 
-    public void ApplyEffect(Unit unit)
-    {
         if (effectApplyType != EffectApplyType.Delayed)
-            ProcEffect(unit);
+            ProcEffect(situation, unit);
         if (effectApplyType != EffectApplyType.Instant)
             unit.curEffects.Add(this);
     }
 
-    public void ProcEffect(Unit unit)
+    public void ProcEffect(SituationCombat situation, Unit unit)
     {
         switch (effectOnStatsType)
         {
             case EffectOnStatsType.Damage:
-                unit.TakeDamage(new Damage(damageType, amount));
+                var dam = unit.TakeDamage(new Damage(damageType, amount));
+                LogEvent(situation, $"{unit.name} suffered from {name} effect for {dam} {damageType} damage.");
                 break;
             case EffectOnStatsType.Heal:
                 unit.Heal(amount);
+                LogEvent(situation, $"{unit.name} healed from {name} effect for {amount} health.");
                 break;
             case EffectOnStatsType.StatModifier:
                 // add modifier only once
                 if (!unit.curEffects.Contains(this))
+                {
                     unit.stats[(int)stat].AddModifier(new StatModifier(amount, statModType, this));
+                    LogEvent(situation, $"{unit.name} got {amount} change in {stat} from {name} effect.");
+                }
                 break;
         }
     }
 
-    public void UpdateEffect(Unit unit)
+    public void UpdateEffect(SituationCombat situation, Unit unit)
     {
         if (effectApplyType == EffectApplyType.Delayed)
         {
@@ -80,7 +82,7 @@ public class Effect
         }
         else
         {
-            ProcEffect(unit);
+            ProcEffect(situation, unit);
             if (--curDuration < 0) RemoveEffect(unit);
         }
     }
@@ -91,5 +93,10 @@ public class Effect
             unit.stats[(int) stat].RemoveAllModsFromSource(this);
 
         unit.curEffects.Remove(this);
+    }
+
+    public void LogEvent(SituationCombat situation, string text)
+    {
+        situation.expedition.expeditionPanel.UpdateLog(text);
     }
 }

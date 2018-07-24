@@ -45,19 +45,20 @@ public class TacticAction
     {
         var damage = new Damage(DamageType.Physical,
             situation.actor.stats[(int) StatType.Attack].curValue);
-        situation.target.TakeDamage(damage);
+        var dam = situation.target.TakeDamage(damage);
 
         situation.expedition.expeditionPanel.UpdateLog(
-            $"{situation.actor.name} attacks {situation.target.name} for {damage.amount} {damage.type} damage.");
+            $"{situation.actor.name} attacks {situation.target.name} for {dam} {damage.type} damage.");
     }
 
     public void UseAbility(SituationCombat situation)
     {
+        LogEvent(situation, $"{situation.actor.name} used {abilityData.name} on {situation.target.name}.");
         var usedAbility = situation.actor.abilities.Find(abil => abil.abilityData == abilityData);
         foreach (var effect in usedAbility.abilityData.effects)
         {
             var target = effect.target == Target.Self ? situation.actor : situation.target;
-            effect.ApplyEffect(target);
+            effect.ApplyEffect(situation, target, usedAbility.abilityData);
         }
         // +1 adjustment, because after each turm all cooldowns are decreased by 1 (even on used ability)
         usedAbility.curCooldown = abilityData.cooldown + 1;
@@ -67,6 +68,5 @@ public class TacticAction
     {
         situation.expedition.expeditionPanel.UpdateLog(text);
     }
-
     #endregion
 }

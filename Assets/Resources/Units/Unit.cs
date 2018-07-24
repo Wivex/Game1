@@ -31,7 +31,7 @@ public abstract class Unit
     public abstract void SetStats();
     public abstract void SetAbilities();
 
-    public void TakeDamage(Damage damage)
+    public int TakeDamage(Damage damage)
     {
         var protectionValue = 0;
         switch (damage.type)
@@ -53,6 +53,8 @@ public abstract class Unit
         var textObject = floatingText.GetComponent<TextMeshProUGUI>();
         textObject.text = $"-{healthLoss}";
         textObject.color = Color.red;
+
+        return healthLoss;
     }
 
     public void Heal(int amount)

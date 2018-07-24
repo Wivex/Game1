@@ -64,6 +64,7 @@
     <Compile Include="Assets\3rd-Party\SubjectNerd's InspectorTools\ReorderableAttribute.cs" />
     <Compile Include="Assets\Engine\Effects\Effect.cs" />
     <Compile Include="Assets\Engine\Managers\GameManager.cs" />
+    <Compile Include="Assets\Engine\Managers\InputManager.cs" />
     <Compile Include="Assets\Engine\Situations\Situation.cs" />
     <Compile Include="Assets\Engine\Situations\SituationCombat.cs" />
     <Compile Include="Assets\Engine\Situations\SituationTravelling.cs" />
@@ -80,7 +81,6 @@
     <Compile Include="Assets\Engine\Various\Expedition.cs" />
     <Compile Include="Assets\Engine\Various\LogManager.cs" />
     <Compile Include="Assets\Engine\Various\StatValues.cs" />
-    <Compile Include="Assets\InputManager.cs" />
     <Compile Include="Assets\Resources\Abilities\Ability.cs" />
     <Compile Include="Assets\Resources\Abilities\AbilityData.cs" />
     <Compile Include="Assets\Resources\ContentData.cs" />

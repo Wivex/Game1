@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public static Dictionary<Hero, Expedition> expeditions = new Dictionary<Hero, Expedition>();
 
     public static float combatSpeed = 0.05f;
+    public static float oldCombatSpeed;
 
     public void StartNewExpedition()
     {

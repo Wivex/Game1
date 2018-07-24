@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32a229b002926149832f9d63fa5075d, type: 3}
   m_Name: Forest
   m_EditorClassIdentifier: 
-  name: 
+  name: Forest
   type: 0
   situations:
   - chance: 0.491

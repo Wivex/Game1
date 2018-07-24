@@ -90,7 +90,7 @@ public class SituationCombat : Situation
     public void UpdateActorEffects()
     {
         for (var i = actor.curEffects.Count - 1; i >= 0; i--)
-            actor.curEffects[i].UpdateEffect(actor);
+            actor.curEffects[i].UpdateEffect(this, actor);
     }
 
     public void UpdateActorTactics()
