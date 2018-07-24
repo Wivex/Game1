@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SituationCombat : Situation
 {
     public Hero hero;
     public Enemy enemy;
-    public Unit actor,target;
+    public Unit actor, target;
 
     public SituationCombat(Expedition expedition, EnemySpawnChance[] enemies) : base(expedition)
     {
@@ -12,29 +14,25 @@ public class SituationCombat : Situation
         enemy = SpawnEnemy(enemies);
         type = SituationType.EnemyEncounter;
         expedition.expeditionPanel.UpdateLog($"Fighting with {enemy.enemyData.name}");
+        ResetAllCooldowns();
     }
 
-    bool HeroTurnFirst => hero.stats[(int)StatType.Speed] >= enemy.stats[(int)StatType.Speed];
+    bool HeroTurnFirst => hero.stats[(int) StatType.Speed] >= enemy.stats[(int) StatType.Speed];
 
     // TODO: increase chance with each iteration?
     public Enemy SpawnEnemy(EnemySpawnChance[] enemies)
     {
         var tries = 0;
-        while (enemy == null)
+        while (enemy == null && tries++ < 100)
         {
             foreach (var e in enemies)
             {
                 if (Random.value < e.chance)
-                {
-                    Debug.Log($"Tries to spawn {e.enemyData.name}: {tries}");
                     return new Enemy(e.enemyData);
-                }
             }
-
-            tries++;
         }
 
-        return null;
+        throw new Exception("Too many tries to spawn enemy");
     }
 
     public override void Update()
@@ -74,7 +72,7 @@ public class SituationCombat : Situation
 
     public void CombatTick()
     {
-        actor.curInitiative += actor.stats[(int)StatType.Speed].curValue * GameManager.combatSpeed;
+        actor.curInitiative += actor.stats[(int) StatType.Speed].curValue * GameManager.combatSpeed;
         if (actor.curInitiative >= Unit.reqInitiative)
         {
             actor.curInitiative = 0;
@@ -84,12 +82,23 @@ public class SituationCombat : Situation
 
     public void ActorMove()
     {
-        UpdateActorCooldowns();
         UpdateActorEffects();
+        UpdateActorTactics();
+        UpdateActorCooldowns();
+    }
+
+    public void UpdateActorEffects()
+    {
+        for (var i = actor.curEffects.Count - 1; i >= 0; i--)
+            actor.curEffects[i].UpdateEffect(actor);
+    }
+
+    public void UpdateActorTactics()
+    {
         foreach (var tactic in actor.tacticsPreset.tactics)
         {
             // skip tactic if not all triggers are triggered
-            if (tactic.triggers.Exists(trigger => !trigger.IsTriggered(hero, enemy, actor)))
+            if (tactic.triggers.Exists(trigger => !trigger.IsTriggered(this)))
                 continue;
             tactic.action.DoAction(this);
             break;
@@ -105,15 +114,10 @@ public class SituationCombat : Situation
         }
     }
 
-    public void UpdateActorEffects()
+    public void ResetAllCooldowns()
     {
-        var effects = actor.curEffects;
-        for (var i = effects.Count - 1; i >= 0; i--)
-        {
-            effects[i].curDuration--;
-            if (effects[i].curDuration == 0)
-                effects.RemoveAt(i);
-        }
+        foreach (var ability in hero.abilities) ability.curCooldown = 0;
+        foreach (var ability in enemy.abilities) ability.curCooldown = 0;
     }
 
     public void Kill(Hero hero)

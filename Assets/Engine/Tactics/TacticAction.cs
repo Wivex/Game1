@@ -12,7 +12,8 @@ public enum ActionType
 public class TacticAction
 {
     public ActionType actionType;
-    [ShownIfEnumValue("actionType", (int)ActionType.UseAbility)]
+
+    [ShownIfEnumValue("actionType", (int) ActionType.UseAbility)]
     public AbilityData abilityData;
 
     public void DoAction(SituationCombat situation)
@@ -34,6 +35,7 @@ public class TacticAction
     }
 
     #region ACTIONS
+
     public void Flee(SituationCombat situation)
     {
         LogEvent(situation, $"{situation.actor.name} flees from combat.");
@@ -42,23 +44,29 @@ public class TacticAction
     public void Attack(SituationCombat situation)
     {
         var damage = new Damage(DamageType.Physical,
-            situation.actor.stats[(int)StatType.Attack].curValue, situation.target);
+            situation.actor.stats[(int) StatType.Attack].curValue);
+        situation.target.TakeDamage(damage);
 
         situation.expedition.expeditionPanel.UpdateLog(
             $"{situation.actor.name} attacks {situation.target.name} for {damage.amount} {damage.type} damage.");
-        situation.target.TakeDamage(damage);
     }
-    
+
     public void UseAbility(SituationCombat situation)
     {
         var usedAbility = situation.actor.abilities.Find(abil => abil.abilityData == abilityData);
-        foreach (var effect in usedAbility.abilityData.effects) effect.ApplyEffect(situation);
-        usedAbility.curCooldown = abilityData.cooldown;
+        foreach (var effect in usedAbility.abilityData.effects)
+        {
+            var target = effect.target == Target.Self ? situation.actor : situation.target;
+            effect.ApplyEffect(target);
+        }
+        // +1 adjustment, because after each turm all cooldowns are decreased by 1 (even on used ability)
+        usedAbility.curCooldown = abilityData.cooldown + 1;
     }
 
     public void LogEvent(SituationCombat situation, string text)
     {
         situation.expedition.expeditionPanel.UpdateLog(text);
     }
+
     #endregion
 }

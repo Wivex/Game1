@@ -70,7 +70,7 @@ public class TacticTrigger
                 throw new NotImplementedException();
             case TriggerType.AbilityReady:
                 return situation.actor.abilities.Exists(ability =>
-                    ability.abilityData == abilityData && ability.curCooldown == 0);
+                    ability.abilityData == abilityData && ability.curCooldown <= 0);
             default:
                 throw new ArgumentException();
         }

@@ -9,8 +9,7 @@ public class GameManager : MonoBehaviour
     public static List<Unit> heroes = new List<Unit>();
     public static Dictionary<Hero, Expedition> expeditions = new Dictionary<Hero, Expedition>();
 
-    public static float combatSpeed = 0.1f;
-    public static float gameSpeed = 1;
+    public static float combatSpeed = 0.05f;
 
     public void StartNewExpedition()
     {

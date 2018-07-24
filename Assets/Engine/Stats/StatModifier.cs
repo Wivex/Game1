@@ -27,10 +27,6 @@ public class StatModifier
         this.order = order;
     }
 
-    public StatModifier(int amount, StatModType modifierType) : this(amount, modifierType, null, (int)modifierType)
-    {
-    }
-
     public StatModifier(int amount, StatModType modifierType, object source) : this(amount, modifierType, source, (int)modifierType)
     {
     }
