@@ -63,7 +63,7 @@ public abstract class Unit
 
         var floatingText = Object.Instantiate(unitPanel.floatingTextPrefab, unitPanel.unitImage.transform);
         var textObject = floatingText.GetComponent<TextMeshProUGUI>();
-        textObject.text = $"+{Mathf.Abs(amount)}";
+        textObject.text = $"+{amount}";
         textObject.color = Color.green;
     }
 }

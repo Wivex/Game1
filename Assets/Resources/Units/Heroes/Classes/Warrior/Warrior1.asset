@@ -14,7 +14,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 3d96780b570c9334c85e44e87ff5d2a1, type: 3}
   name: Warrior
   stats:
-    health: 100
+    health: 1000
     mana: 5
     attack: 10
     speed: 10
@@ -34,8 +34,7 @@ MonoBehaviour:
         comparisonType: 0
         statValue: 0
         abilityData: {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
-        enemyData: {fileID: 0}
-        minTurn: 0
+        unitData: {fileID: 0}
       action:
         actionType: 2
         abilityData: {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
@@ -47,8 +46,7 @@ MonoBehaviour:
         comparisonType: 0
         statValue: 0
         abilityData: {fileID: 0}
-        enemyData: {fileID: 11400000, guid: 2767f6c8f66d2fd45ad505de3208fc8b, type: 2}
-        minTurn: 0
+        unitData: {fileID: 0}
       action:
         actionType: 1
         abilityData: {fileID: 0}

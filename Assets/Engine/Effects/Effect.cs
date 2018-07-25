@@ -45,10 +45,8 @@ public class Effect
         curDuration = duration;
         curDelay = delay;
 
-        if (effectApplyType != EffectApplyType.Delayed)
-            ProcEffect(situation, unit);
-        if (effectApplyType != EffectApplyType.Instant)
-            unit.curEffects.Add(this);
+        if (effectApplyType != EffectApplyType.Delayed) ProcEffect(situation, unit);
+        if (effectApplyType != EffectApplyType.Instant) unit.curEffects.Add(this);
     }
 
     public void ProcEffect(SituationCombat situation, Unit unit)
@@ -67,24 +65,21 @@ public class Effect
                 // add modifier only once
                 if (!unit.curEffects.Contains(this))
                 {
-                    unit.stats[(int)stat].AddModifier(new StatModifier(amount, statModType, this));
+                    unit.stats[(int) stat].AddModifier(new StatModifier(amount, statModType, this));
                     LogEvent(situation, $"{unit.name} got {amount} change in {stat} from {name} effect.");
                 }
+                else
+                    unit.curEffects.Add(this);
                 break;
         }
     }
 
     public void UpdateEffect(SituationCombat situation, Unit unit)
     {
-        if (effectApplyType == EffectApplyType.Delayed)
-        {
-            curDelay++;
-        }
-        else
-        {
-            ProcEffect(situation, unit);
-            if (--curDuration < 0) RemoveEffect(unit);
-        }
+        if (effectApplyType == EffectApplyType.Delayed && curDelay-- > 0) return;
+
+        ProcEffect(situation, unit);
+        if (--curDuration <= 0) RemoveEffect(unit);
     }
 
     public void RemoveEffect(Unit unit)

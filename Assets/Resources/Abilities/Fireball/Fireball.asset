@@ -13,18 +13,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 440c823411527c647af9f33c95297269, type: 3}
   name: Fireball
-  cooldown: 1
+  cooldown: 6
   effects:
   - name: Fireball
     icon: {fileID: 21300000, guid: 440c823411527c647af9f33c95297269, type: 3}
-    curDuration: 1
+    curDuration: 0
     curDelay: 0
     target: 1
     effectApplyType: 1
-    duration: 2
+    duration: 3
     delay: 0
-    effectOnStatsType: 0
+    effectOnStatsType: 2
     damageType: 1
-    stat: 0
+    stat: 2
     statModType: 0
-    amount: 20
+    amount: 5
