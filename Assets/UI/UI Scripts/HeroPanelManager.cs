@@ -9,8 +9,7 @@ public class HeroPanelManager : UnitPanelManager
     [Header("Hero")]
     public Hero hero;
     public Image goldImage;
-    public TextMeshProUGUI className,gold,exp;
-    public Slider expBar;
+    public TextMeshProUGUI className,gold;
     public List<Sprite> goldSprites;
 
     void Start()
