@@ -11,7 +11,7 @@ public enum EffectOnStatsType
 public enum EffectApplyType
 {
     Instant,
-    Continueous,
+    Continuous,
     Delayed
 }
 
@@ -24,7 +24,7 @@ public class Effect
 
     public Target target;
     public EffectApplyType effectApplyType;
-    [ShownIfEnumValue("effectApplyType", (int)EffectApplyType.Continueous, (int)EffectApplyType.Delayed)]
+    [ShownIfEnumValue("effectApplyType", (int)EffectApplyType.Continuous, (int)EffectApplyType.Delayed)]
     public int duration;
     [ShownIfEnumValue("effectApplyType", (int)EffectApplyType.Delayed)]
     public int delay;
@@ -45,7 +45,8 @@ public class Effect
         curDuration = duration;
         curDelay = delay;
 
-        if (effectApplyType != EffectApplyType.Delayed) ProcEffect(situation, unit);
+        if (effectApplyType == EffectApplyType.Instant ||
+            effectOnStatsType == EffectOnStatsType.StatModifier) ProcEffect(situation, unit);
         if (effectApplyType != EffectApplyType.Instant) unit.curEffects.Add(this);
     }
 
@@ -66,20 +67,21 @@ public class Effect
                 if (!unit.curEffects.Contains(this))
                 {
                     unit.stats[(int) stat].AddModifier(new StatModifier(amount, statModType, this));
-                    LogEvent(situation, $"{unit.name} got {amount} change in {stat} from {name} effect.");
+                    LogEvent(situation, $"{unit.name} got {ColoredValue(amount)} {stat} from {name} for {duration} turns.");
                 }
-                else
-                    unit.curEffects.Add(this);
                 break;
         }
     }
 
     public void UpdateEffect(SituationCombat situation, Unit unit)
     {
-        if (effectApplyType == EffectApplyType.Delayed && curDelay-- > 0) return;
+        if (effectApplyType == EffectApplyType.Delayed && curDelay-- > 0)
+            return;
 
-        ProcEffect(situation, unit);
-        if (--curDuration <= 0) RemoveEffect(unit);
+        if (curDuration-- > 0) ProcEffect(situation, unit);
+
+        if (curDuration <= 0)
+            RemoveEffect(unit);
     }
 
     public void RemoveEffect(Unit unit)
@@ -93,5 +95,12 @@ public class Effect
     public void LogEvent(SituationCombat situation, string text)
     {
         situation.expedition.expeditionPanel.UpdateLog(text);
+    }
+
+    string ColoredValue(int value)
+    {
+        if (value < 0) return $"<color=\"red\">-{value}</color>";
+        if (value > 0) return $"<color=\"green\">+{value}</color>";
+        return $"{value}";
     }
 }

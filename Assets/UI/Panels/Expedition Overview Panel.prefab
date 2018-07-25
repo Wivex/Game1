@@ -2723,9 +2723,13 @@ MonoBehaviour:
   hero:
     stats: []
     abilities: []
+    curEffects: []
+    tacticsPreset:
+      presetName: 
+      tactics: []
     curInitiative: 0
-    classData: {fileID: 0}
     name: 
+    classData: {fileID: 0}
     level: 0
     gold: 0
     equipment: []
@@ -5989,7 +5993,12 @@ MonoBehaviour:
   enemy:
     stats: []
     abilities: []
+    curEffects: []
+    tacticsPreset:
+      presetName: 
+      tactics: []
     curInitiative: 0
+    name: 
     enemyData: {fileID: 0}
   enemyName: {fileID: 114508165371808902}
 --- !u!114 &114846026661647356
