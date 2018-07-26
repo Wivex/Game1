@@ -17,7 +17,8 @@ public class Hero : Unit
     public int level = 1;
     public int gold;
 
-    public EquipmentData[] equipment = new EquipmentData[Enum.GetNames(typeof(EquipmentSlot)).Length];
+    public EquipmentData[] inventory = new EquipmentData[Enum.GetNames(typeof(InventorySlot)).Length];
+    public ItemData[] backpack = new ItemData[20];
 
     public Hero(string name)
     {

@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 
-public enum EquipmentSlot
+public enum InventorySlot
 {
     Head,
     Body,
     Arms,
     Boots,
     Amulet,
-    Ring,
+    Belt,
+    Ring1,
+    Ring2,
     MainHand,
     OffHand
 }
@@ -16,7 +18,7 @@ public enum EquipmentSlot
 public class EquipmentData : ItemData
 {
     [Header("Equipment")] public int cost;
-    public EquipmentSlot slot;
+    public InventorySlot slot;
     public bool classRestricted;
     [HiddenIfNot("classRestricted")] public HeroClass reqClass;
 
@@ -24,12 +26,12 @@ public class EquipmentData : ItemData
 
     public void Equip(Hero hero)
     {
-        foreach (var mod in statModifiers) hero.stats[(int)mod.stat].AddModifier(mod);
+        foreach (var mod in statModifiers) hero.stats[(int) mod.stat].AddModifier(mod);
     }
 
-    //public void Unequip(Hero hero)
-    //{
-    //    foreach (var effect in statModifiers)
-    //        effect.OnUnequip(hero);
-    //}
+    public void Unequip(Hero hero)
+    {
+        foreach (var mod in statModifiers)
+            hero.stats[(int) mod.stat].RemoveAllModsFromSource(this);
+    }
 }

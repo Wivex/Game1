@@ -4,6 +4,7 @@ using TMPro;
 public class ExpeditionPanelManager : MonoBehaviour
 {
     public Expedition expedition;
+    public HeroInfoPanelManager heroInfoPanel;
     public EnemyPanelManager enemyPanel;
     public HeroPanelManager heroPanel;
     public TextMeshProUGUI logText;
