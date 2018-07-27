@@ -6,11 +6,40 @@ using TMPro;
 
 public class HeroPanelManager : UnitPanelManager
 {
-    [Header("Hero")]
+    [HideInInspector]
     public Hero hero;
+
+    [Header("Hero")]
     public Image goldImage;
     public TextMeshProUGUI className,gold;
     public List<Sprite> goldSprites;
+
+    public Transform backpackPanel;
+
+    [HideInInspector]
+    public Image[] inventorySlots,
+        backpackSlots,
+        effects,
+        abilities;
+
+    protected override void OnValidate()
+    {
+        backpackSlots = backpackPanel.gameObject.GetComponentsInChildren<Image>();
+    }
+
+    // NOTE: performance?
+    void UpdateInventoryPanel()
+    {
+        for (var i = 0; i < inventorySlots.Length; i++)
+            inventorySlots[i].sprite = hero.inventory[i].icon;
+    }
+
+    // NOTE: performance?
+    void UpdateBackpackPanel()
+    {
+        for (var i = 0; i < backpackSlots.Length; i++)
+            backpackSlots[i].sprite = hero.backpack[i].icon;
+    }
 
     void Start()
     {
@@ -37,5 +66,8 @@ public class HeroPanelManager : UnitPanelManager
             if (i >= goldSprites.Count-1) break;
         }
         goldImage.sprite = goldSprites[i];
+
+        UpdateInventoryPanel();
+        UpdateBackpackPanel();
     }
 }
