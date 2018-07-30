@@ -13,7 +13,6 @@ public class SituationCombat : Situation
         hero = expedition.hero;
         enemy = SpawnEnemy(enemies);
         type = SituationType.EnemyEncounter;
-        expedition.expeditionPanel.UpdateLog($"Fighting with {enemy.enemyData.name}");
         ResetAllCooldowns();
     }
 

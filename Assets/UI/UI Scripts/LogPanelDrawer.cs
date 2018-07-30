@@ -1,27 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using TMPro;
 
-[Serializable]
-public class LogManager
+public class LogPanelDrawer : MonoBehaviour
 {
     const int maxEntries = 20;
 
-    public TextMeshProUGUI logDrawer;
+    public TextMeshProUGUI logTextObject;
     public Queue<string> log;
 
-    public LogManager(TextMeshProUGUI logDrawer)
+    void Start()
     {
         log = new Queue<string>(maxEntries);
-        this.logDrawer = logDrawer;
-        logDrawer.text = string.Empty;
+        logTextObject.text = string.Empty;
     }
-    
+
     //NOTE: bad performance?
     void UpdateLog()
     {
-        logDrawer.text = string.Empty;
-        foreach (var logEntry in log) logDrawer.text += logEntry;
+        logTextObject.text = string.Empty;
+        foreach (var logEntry in log) logTextObject.text += logEntry;
     }
 
     public void AddLogEntry(string text)

@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using TMPro;
 
-public class EnemyPanelManager : UnitPanelManager
+public class EnemyPanelDrawer : UnitPanelDrawer
 {
     [Header("Enemy")] public Enemy enemy;
     public TextMeshProUGUI enemyName;
 
-    // NOTE: disabled by default?
-    void OnEnable()
+    public void SetEnemy(Enemy enemy)
     {
+        this.enemy = enemy;
         unit = enemy;
         unitImage.sprite = enemy.enemyData.icon;
         enemyName.text = enemy.enemyData.name;

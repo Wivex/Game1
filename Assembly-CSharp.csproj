@@ -79,7 +79,6 @@
     <Compile Include="Assets\Engine\Various\CustomAttributes.cs" />
     <Compile Include="Assets\Engine\Various\Damage.cs" />
     <Compile Include="Assets\Engine\Various\Expedition.cs" />
-    <Compile Include="Assets\Engine\Various\LogManager.cs" />
     <Compile Include="Assets\Engine\Various\StatValues.cs" />
     <Compile Include="Assets\Resources\Abilities\Ability.cs" />
     <Compile Include="Assets\Resources\Abilities\AbilityData.cs" />
@@ -96,10 +95,13 @@
     <Compile Include="Assets\UI\Floating Text\FloatingText.cs" />
     <Compile Include="Assets\UI\UI Scripts\CanvasManager.cs" />
     <Compile Include="Assets\UI\UI Scripts\ChildPanelsRemover.cs" />
-    <Compile Include="Assets\UI\UI Scripts\EnemyPanelManager.cs" />
-    <Compile Include="Assets\UI\UI Scripts\ExpeditionPanelManager.cs" />
-    <Compile Include="Assets\UI\UI Scripts\HeroPanelManager.cs" />
-    <Compile Include="Assets\UI\UI Scripts\UnitPanelManager.cs" />
+    <Compile Include="Assets\UI\UI Scripts\EnemyPanelDrawer.cs" />
+    <Compile Include="Assets\UI\UI Scripts\ExpeditionPanelDrawer.cs" />
+    <Compile Include="Assets\UI\UI Scripts\HeroPanelDrawer.cs" />
+    <Compile Include="Assets\UI\UI Scripts\LocationPanelDrawer.cs" />
+    <Compile Include="Assets\UI\UI Scripts\LogPanelDrawer.cs" />
+    <Compile Include="Assets\UI\UI Scripts\SituationPanelDrawer.cs" />
+    <Compile Include="Assets\UI\UI Scripts\UnitPanelDrawer.cs" />
     <None Include="Assets\3rd-Party\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\3rd-Party\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\3rd-Party\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />

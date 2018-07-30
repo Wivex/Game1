@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public RectTransform expeditionsListPanel;
-    public ExpeditionPanelManager expeditionPanelPrefab;
+    public ExpeditionPanelDrawer expPanel;
 
     public static List<Unit> heroes = new List<Unit>();
     public static Dictionary<Hero, Expedition> expeditions = new Dictionary<Hero, Expedition>();
@@ -22,14 +21,11 @@ public class GameManager : MonoBehaviour
     // TODO: clean up assignment
     public void StartNewExpedition(Hero hero)
     {
-        var expManager = Instantiate(expeditionPanelPrefab);
-        expManager.transform.SetParent(expeditionsListPanel, false);
-
-        var expedition = new Expedition(expManager, hero, LocationType.Dungeon);
+        var expedition = new Expedition(expPanel, hero, LocationType.Dungeon);
         expeditions.Add(hero, expedition);
 
-        expManager.expedition = expedition;
-        expManager.expedition.situation = new SituationTravelling(expedition);
+        expPanel.expedition = expedition;
+        expPanel.expedition.situation = new SituationTravelling(expedition);
     }
 
     void FixedUpdate()

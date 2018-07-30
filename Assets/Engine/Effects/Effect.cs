@@ -94,7 +94,7 @@ public class Effect
 
     public void LogEvent(SituationCombat situation, string text)
     {
-        situation.expedition.expeditionPanel.UpdateLog(text);
+        situation.expedition.UpdateLog(text);
     }
 
     string ColoredValue(int value)

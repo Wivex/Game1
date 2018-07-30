@@ -1,8 +1,9 @@
-﻿using TMPro;
+﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UnitPanelManager : MonoBehaviour
+public class UnitPanelDrawer : MonoBehaviour
 {
     [Header("Unit")] protected Unit unit;
     public Image unitImage;
@@ -20,10 +21,12 @@ public class UnitPanelManager : MonoBehaviour
         mana,
         initiative;
 
-    Image[] effects,
+    [Disabled]
+    public Image[] effects,
         abilities;
 
-    TextMeshProUGUI[] effectsDur,
+    [Disabled]
+    public TextMeshProUGUI[] effectsDur,
         abilitiesCD;
 
     public Slider healthBar, manaBar, initBar;
@@ -31,9 +34,12 @@ public class UnitPanelManager : MonoBehaviour
 
     protected virtual void OnValidate()
     {
-        effects = effectsPanel.gameObject.GetComponentsInChildren<Image>();
+        var childImages = new List<Image>();
+        effectsPanel.gameObject.GetComponentsInChildren(true, childImages);
+        effects = childImages.FindAll(image => image.gameObject.name.Contains("Image")).ToArray();
         effectsDur = effectsPanel.gameObject.GetComponentsInChildren<TextMeshProUGUI>();
-        abilities = abilitiesPanel.gameObject.GetComponentsInChildren<Image>();
+        abilitiesPanel.gameObject.GetComponentsInChildren(true, childImages);
+        abilities = childImages.FindAll(image => image.gameObject.name.Contains("Image")).ToArray();
         abilitiesCD = abilitiesPanel.gameObject.GetComponentsInChildren<TextMeshProUGUI>();
     }
 

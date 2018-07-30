@@ -5,7 +5,7 @@ using UnityEngine;
 [Serializable]
 public class Enemy : Unit
 {
-    EnemyPanelManager enemyPanel;
+    EnemyPanelDrawer enemyPanel;
     [Header("Enemy")] public EnemyData enemyData;
 
     public Enemy(EnemyData data)
@@ -17,7 +17,7 @@ public class Enemy : Unit
         SetStats();
     }
 
-    public override UnitPanelManager unitPanel
+    public override UnitPanelDrawer unitPanel
     {
         get
         {
@@ -25,7 +25,7 @@ public class Enemy : Unit
                 GameManager.expeditions.Values.FirstOrDefault(exp =>
                     exp.situation.type == SituationType.EnemyEncounter &&
                     (exp.situation as SituationCombat)?.enemy == this);
-            return expedition?.expeditionPanel.enemyPanel;
+            return expedition?.expeditionPanel.situationPanel.enemyPanel;
         }
     }
 

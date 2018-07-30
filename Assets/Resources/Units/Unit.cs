@@ -25,7 +25,7 @@ public abstract class Unit
     public float curInitiative;
     public string name;
 
-    public abstract UnitPanelManager unitPanel { get; }
+    public abstract UnitPanelDrawer unitPanel { get; }
     public bool Dead => stats[(int)StatType.Health].curValue <= 0;
 
     public abstract void SetStats();

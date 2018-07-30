@@ -4,16 +4,21 @@ public class Expedition
 {
     public Hero hero;
     public Situation situation;
-    public LocationData location;
+    public LocationData curLocation;
     public LocationType destination;
-    public ExpeditionPanelManager expeditionPanel;
+    public ExpeditionPanelDrawer expeditionPanel;
 
-    public Expedition(ExpeditionPanelManager expeditionPanel, Hero hero, LocationType destination)
+    public Expedition(ExpeditionPanelDrawer expeditionPanel, Hero hero, LocationType destination)
     {
         this.expeditionPanel = expeditionPanel;
         this.hero = hero;
         this.destination = destination;
-        location = Resources.Load<LocationData>("Locations/Forest");
+        curLocation = Resources.Load<LocationData>("Locations/Forest");
+    }
+
+    public void UpdateLog(string logEntry)
+    {
+        expeditionPanel.logPanel.AddLogEntry(logEntry);
     }
 
     public void UpdateSituations()
@@ -27,23 +32,25 @@ public class Expedition
 
     public void TryNewSituation()
     {
-        foreach (var sit in location.situations)
+        foreach (var sit in curLocation.situations)
         {
             if (Random.value < sit.chance)
                 switch (sit.SituationType)
                 {
+                    case SituationType.Travelling:
+                        situation = new SituationTravelling(this);
+                        expeditionPanel.situationPanel.InitLocationPanel(curLocation);
+                        UpdateLog($"Travelling trough {curLocation.name}");
+                        break;
                     case SituationType.EnemyEncounter:
-                        situation = new SituationCombat(this, location.enemies);
-                        expeditionPanel.enemyPanel.enemy = (situation as SituationCombat).enemy;
-                        expeditionPanel.enemyPanel.gameObject.SetActive(true);
+                        situation = new SituationCombat(this, curLocation.enemies);
+                        var enemy = (situation as SituationCombat).enemy;
+                        expeditionPanel.situationPanel.InitEnemyPanel(enemy);
+                        UpdateLog($"{hero.name} started combat with {enemy.enemyData.name}");
                         break;
                     case SituationType.POIEncounter:
                         //situation = new SituationCombat(location.enemies);
-                        expeditionPanel.enemyPanel.gameObject.SetActive(false);
-                        break;
-                    default:
-                        situation = new SituationTravelling(this);
-                        expeditionPanel.enemyPanel.gameObject.SetActive(false);
+                        //expeditionPanel.situationPanel.enemyPanel.gameObject.SetActive(false);
                         break;
                 }
         }

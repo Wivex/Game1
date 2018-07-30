@@ -29,12 +29,12 @@ public class Hero : Unit
         SetStats();
     }
 
-    public override UnitPanelManager unitPanel
+    public override UnitPanelDrawer unitPanel
     {
         get
         {
             var expedition = GameManager.expeditions[this];
-            return expedition.expeditionPanel.heroPanel;
+            return expedition.expeditionPanel.situationPanel.heroPanel;
         }
     }
 
@@ -79,7 +79,7 @@ public class Hero : Unit
     //    public int curExperience;
     //    public int reqExperience;
     //    public int level;
-    //    public int gold;
+    //    public int goldAmount;
 
     //    public Dictionary<Consumable, int> belt = new Dictionary<Consumable, int>(4);
     //    public List<Item> inventory = new List<Item>();

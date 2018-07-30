@@ -47,7 +47,7 @@ public class TacticAction
             situation.actor.stats[(int) StatType.Attack].curValue);
         var dam = situation.target.TakeDamage(damage);
 
-        situation.expedition.expeditionPanel.UpdateLog(
+        situation.expedition.UpdateLog(
             $"{situation.actor.name} attacks {situation.target.name} for {dam} {damage.type} damage.");
     }
 
@@ -66,7 +66,7 @@ public class TacticAction
 
     public void LogEvent(SituationCombat situation, string text)
     {
-        situation.expedition.expeditionPanel.UpdateLog(text);
+        situation.expedition.UpdateLog(text);
     }
     #endregion
 }
