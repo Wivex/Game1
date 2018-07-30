@@ -14,8 +14,7 @@ public class HeroPanelDrawer : UnitPanelDrawer
     public Transform backpackPanel,
         consumablesPanel;
 
-    [Disabled]
-    public Image[] inventorySlots,
+    Image[] inventorySlots,
         backpackSlots,
         consumables;
 
@@ -24,16 +23,17 @@ public class HeroPanelDrawer : UnitPanelDrawer
 
     protected override void OnValidate()
     {
+        base.OnValidate();
+
         var childImages = new List<Image>();
         backpackPanel.gameObject.GetComponentsInChildren(true, childImages);
         backpackSlots = childImages.FindAll(image => image.gameObject.name.Contains("Image")).ToArray();
         consumablesPanel.gameObject.GetComponentsInChildren(true, childImages);
         consumables = childImages.FindAll(image => image.gameObject.name.Contains("Image")).ToArray();
-
         consumablesCharges = consumablesPanel.gameObject.GetComponentsInChildren<TextMeshProUGUI>();
     }
 
-    public void SetHero(Hero hero)
+    public void Init(Hero hero)
     {
         this.hero = hero;
         unit = hero;
@@ -44,6 +44,8 @@ public class HeroPanelDrawer : UnitPanelDrawer
 
     protected override void Update()
     {
+        if (!hero.spawned) return;
+
         base.Update();
 
         //NOTE: check performance?

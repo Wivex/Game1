@@ -23,9 +23,6 @@ public class GameManager : MonoBehaviour
     {
         var expedition = new Expedition(expPanel, hero, LocationType.Dungeon);
         expeditions.Add(hero, expedition);
-
-        expPanel.expedition = expedition;
-        expPanel.expedition.situation = new SituationTravelling(expedition);
     }
 
     void FixedUpdate()

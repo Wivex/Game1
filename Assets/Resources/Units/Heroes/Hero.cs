@@ -25,8 +25,6 @@ public class Hero : Unit
         this.name = name;
         classData = Resources.Load<ClassData>("Units/Heroes/Classes/Warrior/WarriorClass");
         tacticsPreset = classData.classLevels[level].tacticsPreset;
-        SetAbilities();
-        SetStats();
     }
 
     public override UnitPanelDrawer unitPanel

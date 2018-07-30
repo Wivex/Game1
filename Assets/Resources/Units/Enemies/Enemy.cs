@@ -15,6 +15,7 @@ public class Enemy : Unit
         tacticsPreset = data.tacticsPreset;
         SetAbilities();
         SetStats();
+        spawned = true;
     }
 
     public override UnitPanelDrawer unitPanel

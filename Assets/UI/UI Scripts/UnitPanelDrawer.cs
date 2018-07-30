@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UnitPanelDrawer : MonoBehaviour
 {
-    [Header("Unit")] protected Unit unit;
+    [Header("Unit")]
+    protected Unit unit;
     public Image unitImage;
 
     public Transform effectsPanel,
@@ -21,16 +23,14 @@ public class UnitPanelDrawer : MonoBehaviour
         mana,
         initiative;
 
-    [Disabled]
-    public Image[] effects,
-        abilities;
-
-    [Disabled]
-    public TextMeshProUGUI[] effectsDur,
-        abilitiesCD;
-
     public Slider healthBar, manaBar, initBar;
     public FloatingText floatingTextPrefab;
+
+    Image[] effects,
+        abilities;
+
+    TextMeshProUGUI[] effectsDur,
+        abilitiesCD;
 
     protected virtual void OnValidate()
     {
@@ -67,15 +67,15 @@ public class UnitPanelDrawer : MonoBehaviour
         // update effects
         for (var i = 0; i < unit.curEffects.Count; i++)
         {
-            effects[i].sprite = unit.curEffects[i].icon;
-            effectsDur[i].text = unit.curEffects[i].curDuration.ToString();
+            effects[i].sprite = unit.curEffects.Count < i ? unit.curEffects[i].icon : null;
+            effectsDur[i].text = unit.curEffects.Count < i ? unit.curEffects[i].curDuration.ToString() : string.Empty;
         }
 
         // update effects
         for (var i = 0; i < unit.abilities.Count; i++)
         {
-            abilities[i].sprite = unit.abilities[i].abilityData.icon;
-            abilitiesCD[i].text = unit.abilities[i].curCooldown.ToString();
+            abilities[i].sprite = unit.abilities.Count < i ? unit.abilities[i].abilityData.icon : null;
+            abilitiesCD[i].text = unit.abilities.Count < i ? unit.abilities[i].curCooldown.ToString() : string.Empty;
         }
     }
 

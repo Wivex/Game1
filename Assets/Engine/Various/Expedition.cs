@@ -10,10 +10,11 @@ public class Expedition
 
     public Expedition(ExpeditionPanelDrawer expeditionPanel, Hero hero, LocationType destination)
     {
-        this.expeditionPanel = expeditionPanel;
         this.hero = hero;
         this.destination = destination;
         curLocation = Resources.Load<LocationData>("Locations/Forest");
+        this.expeditionPanel = expeditionPanel;
+        expeditionPanel.expedition = this;
     }
 
     public void UpdateLog(string logEntry)

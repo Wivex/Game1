@@ -13,7 +13,7 @@ public class SituationPanelDrawer : MonoBehaviour
     public void InitEnemyPanel(Enemy enemy)
     {
         canvasManager.ChangeActiveCanvas(enemyPanel.gameObject.GetComponent<Canvas>());
-        enemyPanel.SetEnemy(enemy);
+        enemyPanel.Init(enemy);
     }
 
     public void InitLocationPanel(LocationData location)
