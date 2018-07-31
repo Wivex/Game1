@@ -3,10 +3,9 @@ using SubjectNerd.Utilities;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Content/Data/Ability Data")]
-public class AbilityData : ScriptableObject
+public class AbilityData : ContentData
 {
-    public Sprite icon;
-    public new string name;
+    [Header("Ability")]
     public int cooldown;
     [Reorderable("Effect")]
     public List<Effect> effects;

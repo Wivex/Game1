@@ -5,7 +5,8 @@ using TMPro;
 
 public class HeroPanelDrawer : UnitPanelDrawer
 {
-    [Header("Hero")] public Hero hero;
+    [Header("Hero")]
+    public Hero hero;
     public Image curGoldImage;
     public TextMeshProUGUI classLevel, goldAmount, experience;
     public List<Sprite> goldSprites;
@@ -16,9 +17,10 @@ public class HeroPanelDrawer : UnitPanelDrawer
 
     Image[] inventorySlots,
         backpackSlots,
-        consumables;
+        consumableSlots;
 
-    [Disabled] TextMeshProUGUI[] consumablesCharges;
+    [Disabled]
+    TextMeshProUGUI[] consumablesCharges;
 
     public Slider expBar;
 
@@ -31,7 +33,7 @@ public class HeroPanelDrawer : UnitPanelDrawer
         backpackSlots = childImages.FindAll(image => image.gameObject.name.Contains("Image"))
             .ToArray();
         consumablesPanel.gameObject.GetComponentsInChildren(true, childImages);
-        consumables = childImages.FindAll(image => image.gameObject.name.Contains("Image"))
+        consumableSlots = childImages.FindAll(image => image.gameObject.name.Contains("Consumable"))
             .ToArray();
         inventoryPanel.gameObject.GetComponentsInChildren(true, childImages);
         inventorySlots = childImages.FindAll(image => image.gameObject.name.Contains("Image"))
@@ -98,6 +100,23 @@ public class HeroPanelDrawer : UnitPanelDrawer
             {
                 inventorySlots[i].sprite = hero.inventory[i].icon;
                 backpackSlots[i].color = Color.white;
+            }
+        }
+
+        // update consumables
+        for (var i = 0; i < consumableSlots.Length; i++)
+        {
+            if (hero.consumables[i] == null)
+            {
+                consumableSlots[i].sprite = null;
+                consumableSlots[i].color = Color.clear;
+                consumablesCharges[i].text = string.Empty;
+            }
+            else
+            {
+                consumableSlots[i].sprite = hero.consumables[i].consumableData.icon;
+                consumableSlots[i].color = Color.white;
+                consumablesCharges[i].text = hero.consumables[i].curCharges.ToString();
             }
         }
     }

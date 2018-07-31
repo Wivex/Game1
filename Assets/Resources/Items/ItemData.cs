@@ -6,4 +6,5 @@ public abstract class ItemData : ContentData
     public bool stackable;
     [HiddenIfNot("stackable")]
     public int maxStackSize = 1;
+    public int cost;
 }

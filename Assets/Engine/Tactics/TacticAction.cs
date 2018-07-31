@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 public enum ActionType
 {
@@ -15,6 +16,8 @@ public class TacticAction
 
     [ShownIfEnumValue("actionType", (int) ActionType.UseAbility)]
     public AbilityData abilityData;
+    [ShownIfEnumValue("actionType", (int)ActionType.UseConsumable)]
+    public ConsumableData consumableData;
 
     public void DoAction(SituationCombat situation)
     {
@@ -30,7 +33,8 @@ public class TacticAction
                 UseAbility(situation);
                 break;
             case ActionType.UseConsumable:
-                throw new NotImplementedException();
+                UseConsumable(situation);
+                break;
         }
     }
 
@@ -58,10 +62,23 @@ public class TacticAction
         foreach (var effect in usedAbility.abilityData.effects)
         {
             var target = effect.target == Target.Self ? situation.actor : situation.target;
-            effect.ApplyEffect(situation, target, usedAbility.abilityData);
+            effect.ApplyEffect(situation, target, usedAbility.abilityData.name, usedAbility.abilityData.icon);
         }
         // +1 adjustment, because after each turm all cooldowns are decreased by 1 (even on used ability)
         usedAbility.curCooldown = abilityData.cooldown + 1;
+    }
+
+    public void UseConsumable(SituationCombat situation)
+    {
+        LogEvent(situation, $"{situation.hero.name} used {consumableData.name} on {situation.target.name}.");
+        var usedConsumable = situation.hero.consumables.First(cons => cons.consumableData == consumableData);
+        foreach (var effect in usedConsumable.consumableData.effects)
+        {
+            var target = effect.target == Target.Self ? situation.actor : situation.target;
+            effect.ApplyEffect(situation, target, usedConsumable.consumableData.name, usedConsumable.consumableData.icon);
+        }
+        // +1 adjustment, because after each turm all cooldowns are decreased by 1 (even on used ability)
+        usedConsumable.curCharges--;
     }
 
     public void LogEvent(SituationCombat situation, string text)
