@@ -14,8 +14,8 @@ public class Hero : Unit
     [Header("Hero")]
     public ClassData classData;
 
-    public int level = 1;
-    public int gold;
+    public int level;
+    public int gold, experience;
 
     public EquipmentData[] inventory = new EquipmentData[Enum.GetNames(typeof(InventorySlot)).Length];
     public ItemData[] backpack = new ItemData[20];
@@ -25,6 +25,9 @@ public class Hero : Unit
         this.name = name;
         classData = Resources.Load<ClassData>("Units/Heroes/Classes/Warrior/WarriorClass");
         tacticsPreset = classData.classLevels[level].tacticsPreset;
+        SetAbilities();
+        SetStats();
+        spawned = true;
     }
 
     public override UnitPanelDrawer unitPanel

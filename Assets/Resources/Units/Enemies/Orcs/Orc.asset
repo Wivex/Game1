@@ -21,8 +21,7 @@ MonoBehaviour:
     defence: 2
     hazardResistance: 1
     bleedResistance: 1
-  abilities:
-  - {fileID: 0}
+  abilities: []
   tacticsPreset:
     presetName: 
     tactics:

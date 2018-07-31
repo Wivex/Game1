@@ -10,8 +10,10 @@ public enum InventorySlot
     Belt,
     Ring1,
     Ring2,
-    MainHand,
-    OffHand
+    MainHand1,
+    OffHand1,
+    MainHand2,
+    OffHand2
 }
 
 [CreateAssetMenu(menuName = "Content/Data/Items/Equipment Data")]

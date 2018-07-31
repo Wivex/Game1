@@ -5,4 +5,5 @@ using UnityEngine;
 public class ClassData : ScriptableObject
 {
     public List<UnitData> classLevels;
+    public List<int> expPerLevel;
 }

@@ -46,11 +46,11 @@ public class UnitPanelDrawer : MonoBehaviour
     protected virtual void Update()
     {
         // update stats
-        attack.text = $"A: {ColoredStat(unit.stats[(int)StatType.Attack])}";
-        defence.text = $"D: {ColoredStat(unit.stats[(int) StatType.Defence])}";
-        speed.text = $"S: {ColoredStat(unit.stats[(int) StatType.Speed])}";
-        hazardResist.text = $"HR: {ColoredStat(unit.stats[(int) StatType.HResist])}";
-        bleedResist.text = $"BR: {ColoredStat(unit.stats[(int) StatType.BResist])}";
+        attack.text = $"ATT: {ColoredStat(unit.stats[(int)StatType.Attack])}";
+        defence.text = $"DEF: {ColoredStat(unit.stats[(int) StatType.Defence])}";
+        speed.text = $"SPD: {ColoredStat(unit.stats[(int) StatType.Speed])}";
+        hazardResist.text = $"HRES: {ColoredStat(unit.stats[(int) StatType.HResist])}";
+        bleedResist.text = $"BRES: {ColoredStat(unit.stats[(int) StatType.BResist])}";
 
         // update stat bars
         healthBar.value = (float) unit.stats[(int) StatType.Health].curValue /
@@ -65,17 +65,37 @@ public class UnitPanelDrawer : MonoBehaviour
         initiative.text = $"{(int) unit.curInitiative} / {Unit.reqInitiative}";
 
         // update effects
-        for (var i = 0; i < unit.curEffects.Count; i++)
+        for (var i = 0; i < effects.Length; i++)
         {
-            effects[i].sprite = unit.curEffects.Count < i ? unit.curEffects[i].icon : null;
-            effectsDur[i].text = unit.curEffects.Count < i ? unit.curEffects[i].curDuration.ToString() : string.Empty;
+            if (i >= unit.curEffects.Count)
+            {
+                effects[i].sprite = null;
+                effects[i].color = Color.clear;
+                effectsDur[i].text = string.Empty;
+            }
+            else
+            {
+                effects[i].sprite = unit.curEffects[i].icon;
+                effects[i].color = Color.white;
+                effectsDur[i].text = unit.curEffects[i].curDuration.ToString();
+            }
         }
 
         // update effects
-        for (var i = 0; i < unit.abilities.Count; i++)
+        for (var i = 0; i < abilities.Length; i++)
         {
-            abilities[i].sprite = unit.abilities.Count < i ? unit.abilities[i].abilityData.icon : null;
-            abilitiesCD[i].text = unit.abilities.Count < i ? unit.abilities[i].curCooldown.ToString() : string.Empty;
+            if (i >= unit.abilities.Count)
+            {
+                abilities[i].sprite = null;
+                abilities[i].color = Color.clear;
+                abilitiesCD[i].text = string.Empty;
+            }
+            else
+            {
+                abilities[i].sprite = unit.abilities[i].abilityData.icon;
+                abilities[i].color = Color.white;
+                abilitiesCD[i].text = unit.abilities[i].curCooldown.ToString();
+            }
         }
     }
 

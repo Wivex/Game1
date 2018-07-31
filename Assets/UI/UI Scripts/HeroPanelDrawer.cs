@@ -5,21 +5,22 @@ using TMPro;
 
 public class HeroPanelDrawer : UnitPanelDrawer
 {
-    [Header("Hero")]
-    public Hero hero;
+    [Header("Hero")] public Hero hero;
     public Image curGoldImage;
-    public TextMeshProUGUI className,goldAmount;
+    public TextMeshProUGUI classLevel, goldAmount, experience;
     public List<Sprite> goldSprites;
 
     public Transform backpackPanel,
-        consumablesPanel;
+        consumablesPanel,
+        inventoryPanel;
 
     Image[] inventorySlots,
         backpackSlots,
         consumables;
 
-    [Disabled]
-    TextMeshProUGUI[] consumablesCharges;
+    [Disabled] TextMeshProUGUI[] consumablesCharges;
+
+    public Slider expBar;
 
     protected override void OnValidate()
     {
@@ -27,9 +28,14 @@ public class HeroPanelDrawer : UnitPanelDrawer
 
         var childImages = new List<Image>();
         backpackPanel.gameObject.GetComponentsInChildren(true, childImages);
-        backpackSlots = childImages.FindAll(image => image.gameObject.name.Contains("Image")).ToArray();
+        backpackSlots = childImages.FindAll(image => image.gameObject.name.Contains("Image"))
+            .ToArray();
         consumablesPanel.gameObject.GetComponentsInChildren(true, childImages);
-        consumables = childImages.FindAll(image => image.gameObject.name.Contains("Image")).ToArray();
+        consumables = childImages.FindAll(image => image.gameObject.name.Contains("Image"))
+            .ToArray();
+        inventoryPanel.gameObject.GetComponentsInChildren(true, childImages);
+        inventorySlots = childImages.FindAll(image => image.gameObject.name.Contains("Image"))
+            .ToArray();
         consumablesCharges = consumablesPanel.gameObject.GetComponentsInChildren<TextMeshProUGUI>();
     }
 
@@ -39,7 +45,7 @@ public class HeroPanelDrawer : UnitPanelDrawer
         unit = hero;
         unitImage.sprite = hero.classData.classLevels[hero.level].icon;
         unitName.text = hero.name;
-        className.text = hero.classData.classLevels[hero.level].name;
+        classLevel.text = $"Level {hero.level} {hero.classData.classLevels[hero.level].name}";
     }
 
     protected override void Update()
@@ -48,25 +54,51 @@ public class HeroPanelDrawer : UnitPanelDrawer
 
         base.Update();
 
+        // update exp bar
+        expBar.value = (float) hero.experience / hero.classData.expPerLevel[hero.level];
+        experience.text = $"{hero.experience} / {hero.classData.expPerLevel[hero.level]}";
+
+        // update gold
         //NOTE: check performance?
         goldAmount.text = hero.gold.ToString();
         var a = 0;
         var index = 0;
         while (hero.gold > a)
         {
-            a = (int)Mathf.Pow(2, index++);
-            if (index >= goldSprites.Count-1) break;
+            a = (int) Mathf.Pow(2, index++);
+            if (index >= goldSprites.Count - 1) break;
         }
+
         curGoldImage.sprite = goldSprites[index];
-        
+
         // update backpack
         for (var i = 0; i < backpackSlots.Length; i++)
-            backpackSlots[i].sprite = hero.backpack[i].icon;
+        {
+            if (i >= hero.backpack.Length || hero.backpack[i] == null)
+            {
+                backpackSlots[i].sprite = null;
+                backpackSlots[i].color = Color.clear;
+            }
+            else
+            {
+                backpackSlots[i].sprite = hero.backpack[i].icon;
+                backpackSlots[i].color = Color.white;
+            }
+        }
 
         // update inventory
         for (var i = 0; i < inventorySlots.Length; i++)
         {
-            inventorySlots[i].sprite = hero.inventory[i].icon;
+            if (hero.inventory[i] == null)
+            {
+                inventorySlots[i].sprite = null;
+                inventorySlots[i].color = Color.clear;
+            }
+            else
+            {
+                inventorySlots[i].sprite = hero.inventory[i].icon;
+                backpackSlots[i].color = Color.white;
+            }
         }
     }
 }

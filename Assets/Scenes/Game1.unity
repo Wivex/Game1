@@ -803,7 +803,7 @@ GameObject:
   - component: {fileID: 35118317}
   - component: {fileID: 35118316}
   m_Layer: 9
-  m_Name: OffHand Panel
+  m_Name: OffHand1 Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2222,7 +2222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411a9e74bd8411247badf6602b29ffc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultActiveCanvas: {fileID: 518801844}
+  defaultActiveCanvas: {fileID: 1899172359}
   canvases:
   - {fileID: 664696544}
   - {fileID: 518801844}
@@ -2287,7 +2287,7 @@ GameObject:
   - component: {fileID: 119596797}
   - component: {fileID: 119596796}
   m_Layer: 9
-  m_Name: OffHand Panel (1)
+  m_Name: OffHand2 Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2356,7 +2356,7 @@ GameObject:
   - component: {fileID: 121465606}
   - component: {fileID: 121465605}
   m_Layer: 9
-  m_Name: MainHand Panel
+  m_Name: MainHand1 Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4123,7 +4123,7 @@ GameObject:
   - component: {fileID: 239237974}
   - component: {fileID: 239237973}
   m_Layer: 9
-  m_Name: MainHand Panel (1)
+  m_Name: MainHand2 Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8338,17 +8338,6 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 2104314536}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Canvas, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 116506165}
-        m_MethodName: StartNewExpedition
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -13455,7 +13444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411a9e74bd8411247badf6602b29ffc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultActiveCanvas: {fileID: 1511960815}
+  defaultActiveCanvas: {fileID: 2104314536}
   canvases:
   - {fileID: 1511960815}
   - {fileID: 2104314536}
@@ -20591,6 +20580,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 116506165}
+        m_MethodName: StartNewExpedition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1586905237
@@ -22662,11 +22662,13 @@ MonoBehaviour:
     classData: {fileID: 0}
     level: 0
     gold: 0
+    experience: 0
     inventory: []
     backpack: []
   curGoldImage: {fileID: 813564241}
-  className: {fileID: 747486721}
+  classLevel: {fileID: 747486721}
   goldAmount: {fileID: 452772581}
+  experience: {fileID: 1731250612}
   goldSprites:
   - {fileID: 21300000, guid: 6985af93f6b9cb94a9ce632924a965bb, type: 3}
   - {fileID: 21300000, guid: 556d6dc410a77574d96821381895f604, type: 3}
@@ -22684,6 +22686,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 28c737126e4efc84cbe15ab8e6bf4d3a, type: 3}
   backpackPanel: {fileID: 1147217849}
   consumablesPanel: {fileID: 407934778}
+  inventoryPanel: {fileID: 1110258008}
+  expBar: {fileID: 1048261892}
 --- !u!223 &1737913113
 Canvas:
   m_ObjectHideFlags: 0
