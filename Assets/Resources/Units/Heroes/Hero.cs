@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum HeroClass
@@ -18,8 +19,8 @@ public class Hero : Unit
     public int gold, experience;
 
     public EquipmentData[] inventory = new EquipmentData[Enum.GetNames(typeof(InventorySlot)).Length];
-    public ItemData[] backpack = new ItemData[20];
-    public Consumable[] consumables = new Consumable[8];
+    public List<ItemData> backpack = new List<ItemData>();
+    public List<Consumable> consumables = new List<Consumable>();
 
     public Hero(string name)
     {

@@ -19,10 +19,13 @@ public enum InventorySlot
 [CreateAssetMenu(menuName = "Content/Data/Items/Equipment Data")]
 public class EquipmentData : ItemData
 {
-    [Header("Equipment")] public int cost;
+    [Header("Equipment")]
     public InventorySlot slot;
+
     public bool classRestricted;
-    [HiddenIfNot("classRestricted")] public HeroClass reqClass;
+
+    [HiddenIfNot("classRestricted")]
+    public HeroClass reqClass;
 
     public StatModifier[] statModifiers;
 

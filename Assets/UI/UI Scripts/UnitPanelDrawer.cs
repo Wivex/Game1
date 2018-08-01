@@ -8,6 +8,7 @@ public class UnitPanelDrawer : MonoBehaviour
 {
     [Header("Unit")]
     protected Unit unit;
+
     public Image unitImage;
 
     public Transform effectsPanel,
@@ -46,7 +47,7 @@ public class UnitPanelDrawer : MonoBehaviour
     protected virtual void Update()
     {
         // update stats
-        attack.text = $"ATT: {ColoredStat(unit.stats[(int)StatType.Attack])}";
+        attack.text = $"ATT: {ColoredStat(unit.stats[(int) StatType.Attack])}";
         defence.text = $"DEF: {ColoredStat(unit.stats[(int) StatType.Defence])}";
         speed.text = $"SPD: {ColoredStat(unit.stats[(int) StatType.Speed])}";
         hazardResist.text = $"HRES: {ColoredStat(unit.stats[(int) StatType.HResist])}";
@@ -81,7 +82,7 @@ public class UnitPanelDrawer : MonoBehaviour
             }
         }
 
-        // update effects
+        // update abilities
         for (var i = 0; i < abilities.Length; i++)
         {
             if (i >= unit.abilities.Count)
@@ -94,7 +95,9 @@ public class UnitPanelDrawer : MonoBehaviour
             {
                 abilities[i].sprite = unit.abilities[i].abilityData.icon;
                 abilities[i].color = Color.white;
-                abilitiesCD[i].text = unit.abilities[i].curCooldown.ToString();
+                abilitiesCD[i].text = unit.abilities[i].curCooldown != 0
+                    ? unit.abilities[i].curCooldown.ToString()
+                    : string.Empty;
             }
         }
     }

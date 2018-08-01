@@ -33,7 +33,7 @@ public class HeroPanelDrawer : UnitPanelDrawer
         backpackSlots = childImages.FindAll(image => image.gameObject.name.Contains("Image"))
             .ToArray();
         consumablesPanel.gameObject.GetComponentsInChildren(true, childImages);
-        consumableSlots = childImages.FindAll(image => image.gameObject.name.Contains("Consumable"))
+        consumableSlots = childImages.FindAll(image => image.gameObject.name.Contains("Image"))
             .ToArray();
         inventoryPanel.gameObject.GetComponentsInChildren(true, childImages);
         inventorySlots = childImages.FindAll(image => image.gameObject.name.Contains("Image"))
@@ -76,7 +76,7 @@ public class HeroPanelDrawer : UnitPanelDrawer
         // update backpack
         for (var i = 0; i < backpackSlots.Length; i++)
         {
-            if (i >= hero.backpack.Length || hero.backpack[i] == null)
+            if (i >= hero.backpack.Count)
             {
                 backpackSlots[i].sprite = null;
                 backpackSlots[i].color = Color.clear;
@@ -106,7 +106,7 @@ public class HeroPanelDrawer : UnitPanelDrawer
         // update consumables
         for (var i = 0; i < consumableSlots.Length; i++)
         {
-            if (hero.consumables[i] == null)
+            if (i >= hero.consumables.Count)
             {
                 consumableSlots[i].sprite = null;
                 consumableSlots[i].color = Color.clear;
