@@ -7,10 +7,10 @@ public enum LocationType
 }
 
 [CreateAssetMenu(menuName = "Content/Data/Location Data")]
-public class LocationData : ScriptableObject
+public class LocationData : ContentData
 {
-    public new string name;
-    public LocationType type;
+    [Header("Location")]
+    //public LocationType type;
     public SituationChanceToOccur[] situations;
     public EnemySpawnChance[] enemies;
     public PoiSpawnChance[] pointsOfInterest;

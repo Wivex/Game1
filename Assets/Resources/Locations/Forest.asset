@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Forest
   m_EditorClassIdentifier: 
   name: Forest
-  type: 0
+  icon: {fileID: 21300000, guid: baa293415312b4b45bc346be862e0da3, type: 3}
   situations:
   - chance: 0.491
     SituationType: 1
