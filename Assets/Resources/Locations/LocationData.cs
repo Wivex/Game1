@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public enum LocationType
 {
@@ -11,7 +12,7 @@ public class LocationData : ContentData
 {
     [Header("Location")]
     //public LocationType type;
-    public SituationChanceToOccur[] situations;
-    public EnemySpawnChance[] enemies;
-    public PoiSpawnChance[] pointsOfInterest;
+    public List<SituationChanceToOccur> situations;
+    public List<EnemySpawnChance> enemies;
+    public List<PoiSpawnChance> pointsOfInterest;
 }
