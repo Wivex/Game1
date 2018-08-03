@@ -12,6 +12,8 @@ public abstract class ChanceToOccur
 [Serializable]
 public class SituationChanceToOccur : ChanceToOccur
 {
+    public string name;
+    public Sprite icon;
     public SituationType SituationType;
 }
 

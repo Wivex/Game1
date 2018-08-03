@@ -9,6 +9,7 @@ public class UnitPanelDrawer : MonoBehaviour
     [Header("Unit")]
     protected Unit unit;
 
+    protected Canvas canvas;
     public Image unitImage;
 
     public Transform effectsPanel,
@@ -35,6 +36,8 @@ public class UnitPanelDrawer : MonoBehaviour
 
     protected virtual void OnValidate()
     {
+        canvas = GetComponent<Canvas>();
+
         var childImages = new List<Image>();
         effectsPanel.gameObject.GetComponentsInChildren(true, childImages);
         effects = childImages.FindAll(image => image.gameObject.name.Contains("Image")).ToArray();

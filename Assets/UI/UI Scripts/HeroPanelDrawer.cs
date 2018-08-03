@@ -52,7 +52,7 @@ public class HeroPanelDrawer : UnitPanelDrawer
 
     protected override void Update()
     {
-        if (!hero.spawned) return;
+        if (!canvas.enabled) return;
 
         base.Update();
 

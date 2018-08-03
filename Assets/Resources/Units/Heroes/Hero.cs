@@ -29,7 +29,6 @@ public class Hero : Unit
         tacticsPreset = classData.classLevels[level].tacticsPreset;
         SetAbilities();
         SetStats();
-        spawned = true;
     }
 
     public override UnitPanelDrawer unitPanel
@@ -37,7 +36,7 @@ public class Hero : Unit
         get
         {
             var expedition = GameManager.expeditions[this];
-            return expedition.expeditionPanel.situationPanel.heroPanel;
+            return expedition.expPanel.situationPanel.heroPanel;
         }
     }
 

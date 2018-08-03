@@ -16,7 +16,7 @@ public class EnemyPanelDrawer : UnitPanelDrawer
 
     protected override void Update()
     {
-        if (!enemy.spawned) return;
+        if (!canvas.enabled) return;
 
         base.Update();
     }

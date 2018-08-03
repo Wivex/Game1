@@ -15,6 +15,8 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: baa293415312b4b45bc346be862e0da3, type: 3}
   situations:
   - chance: 0.491
+    name: Enemy Encounter
+    icon: {fileID: 21300000, guid: 7589bc4291a4b42408d97cb9c30abfdc, type: 3}
     SituationType: 1
   enemies:
   - chance: 0.485

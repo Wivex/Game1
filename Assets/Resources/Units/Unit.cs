@@ -27,7 +27,6 @@ public abstract class Unit
 
     public abstract UnitPanelDrawer unitPanel { get; }
     public bool Dead => stats[(int)StatType.Health].curValue <= 0;
-    public bool spawned;
 
     public abstract void SetStats();
     public abstract void SetAbilities();

@@ -2407,14 +2407,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411a9e74bd8411247badf6602b29ffc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultActiveCanvas: {fileID: 1899172359}
   canvases:
   - {fileID: 664696544}
   - {fileID: 518801844}
   - {fileID: 647258249}
   - {fileID: 1899172359}
-  alwaysActiveCanvases:
-  - {fileID: 664696544}
+  defaultActiveCanvases:
+  - {fileID: 518801844}
+  alwaysActiveCanvases: []
 --- !u!114 &116656007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2459,6 +2459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fc71a61dd1ee0d44b508844e91548b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controlPanelCanvas: {fileID: 664696544}
   situationPanel: {fileID: 1899172363}
   logPanel: {fileID: 647258250}
 --- !u!1 &119596794
@@ -6994,7 +6995,6 @@ MonoBehaviour:
       tactics: []
     curInitiative: 0
     name: 
-    spawned: 0
     enemyData: {fileID: 0}
   enemyName: {fileID: 1974987805}
 --- !u!223 &395566707
@@ -7004,7 +7004,7 @@ Canvas:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 395566704}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 0}
@@ -14675,9 +14675,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411a9e74bd8411247badf6602b29ffc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultActiveCanvas: {fileID: 1448500113}
   canvases:
   - {fileID: 1059448245}
+  - {fileID: 1448500113}
+  defaultActiveCanvases:
   - {fileID: 1448500113}
   alwaysActiveCanvases: []
 --- !u!224 &937369510
@@ -16685,7 +16686,7 @@ Canvas:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1049159387}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 0}
@@ -16744,16 +16745,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   location: {fileID: 0}
-  locImage: {fileID: 0}
-  locName: {fileID: 0}
-  situationsPanel: {fileID: 0}
-  enemiesPanel: {fileID: 0}
-  situationsIcons: []
-  enemiesIcons: []
-  situationsName: []
-  situationsChance: []
-  enemiesName: []
-  enemiesChance: []
+  situationsPanel: {fileID: 377689431}
+  enemiesPanel: {fileID: 1569823555}
 --- !u!1 &1051869868
 GameObject:
   m_ObjectHideFlags: 0
@@ -17286,9 +17279,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411a9e74bd8411247badf6602b29ffc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultActiveCanvas: {fileID: 2104314536}
   canvases:
   - {fileID: 1511960815}
+  - {fileID: 2104314536}
+  defaultActiveCanvases:
   - {fileID: 2104314536}
   alwaysActiveCanvases:
   - {fileID: 1511960815}
@@ -26543,23 +26537,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 929372140}
-        m_MethodName: ChangeActiveCanvas
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1059448245}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Canvas, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 116506165}
-        m_MethodName: StartNewExpedition
+      - m_Target: {fileID: 929372134}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -29009,7 +28992,6 @@ MonoBehaviour:
       tactics: []
     curInitiative: 0
     name: 
-    spawned: 0
     classData: {fileID: 0}
     level: 0
     gold: 0
@@ -31667,13 +31649,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411a9e74bd8411247badf6602b29ffc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultActiveCanvas: {fileID: 1737913113}
   canvases:
   - {fileID: 1737913113}
   - {fileID: 395566707}
   - {fileID: 1049159389}
-  alwaysActiveCanvases:
-  - {fileID: 1737913113}
+  defaultActiveCanvases: []
+  alwaysActiveCanvases: []
 --- !u!114 &1899172363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31685,8 +31666,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdff31085baaca64eaca663f8e8a7a4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPanel: {fileID: 395566706}
   heroPanel: {fileID: 1737913112}
+  enemyPanel: {fileID: 395566706}
   locationPanel: {fileID: 1049159392}
   canvasManager: {fileID: 1899172362}
 --- !u!1 &1909290018

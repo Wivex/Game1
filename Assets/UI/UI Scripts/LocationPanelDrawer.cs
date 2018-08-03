@@ -8,22 +8,25 @@ public class LocationPanelDrawer : MonoBehaviour
     [HideInInspector]
     public LocationData location;
 
-    public Image locImage;
-    public TextMeshProUGUI locName;
+    Canvas canvas;
+    Image locImage;
+    TextMeshProUGUI locName;
 
     public Transform situationsPanel,
         enemiesPanel;
 
-    public List<Image> situationsIcons,
+    List<Image> situationsIcons,
         enemiesIcons;
 
-    public List<TextMeshProUGUI> situationsName,
+    List<TextMeshProUGUI> situationsName,
         situationsChance,
         enemiesName,
         enemiesChance;
 
     void OnValidate()
     {
+        canvas = GetComponent<Canvas>();
+
         var childImages = new List<Image>();
         var childTexts = new List<TextMeshProUGUI>();
 
@@ -42,6 +45,8 @@ public class LocationPanelDrawer : MonoBehaviour
 
     void Update()
     {
+        if (!canvas.enabled) return;
+
         // update situations
         for (var i = 0; i < situationsIcons.Count; i++)
         {
@@ -50,12 +55,33 @@ public class LocationPanelDrawer : MonoBehaviour
                 situationsIcons[i].sprite = null;
                 situationsIcons[i].color = Color.clear;
                 situationsName[i].text = string.Empty;
+                situationsChance[i].text = string.Empty;
             }
             else
             {
                 situationsIcons[i].sprite = location.situations[i].icon;
                 situationsIcons[i].color = Color.white;
                 situationsName[i].text = location.situations[i].name;
+                situationsChance[i].text = location.situations[i].chance.ToString();
+            }
+        }
+
+        // update enemies
+        for (var i = 0; i < enemiesIcons.Count; i++)
+        {
+            if (i >= location.enemies.Count)
+            {
+                enemiesIcons[i].sprite = null;
+                enemiesIcons[i].color = Color.clear;
+                enemiesName[i].text = string.Empty;
+                enemiesChance[i].text = string.Empty;
+            }
+            else
+            {
+                enemiesIcons[i].sprite = location.enemies[i].enemyData.icon;
+                enemiesIcons[i].color = Color.white;
+                enemiesName[i].text = location.enemies[i].enemyData.name;
+                enemiesChance[i].text = location.enemies[i].chance.ToString();
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -8,7 +9,7 @@ public class SituationCombat : Situation
     public Enemy enemy;
     public Unit actor, target;
 
-    public SituationCombat(Expedition expedition, EnemySpawnChance[] enemies) : base(expedition)
+    public SituationCombat(Expedition expedition, List<EnemySpawnChance> enemies) : base(expedition)
     {
         hero = expedition.hero;
         enemy = SpawnEnemy(enemies);
@@ -19,7 +20,7 @@ public class SituationCombat : Situation
     bool HeroTurnFirst => hero.stats[(int) StatType.Speed] >= enemy.stats[(int) StatType.Speed];
 
     // TODO: increase chance with each iteration?
-    public Enemy SpawnEnemy(EnemySpawnChance[] enemies)
+    public Enemy SpawnEnemy(List<EnemySpawnChance> enemies)
     {
         var tries = 0;
         while (enemy == null && tries++ < 100)
