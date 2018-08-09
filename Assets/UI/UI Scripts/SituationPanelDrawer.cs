@@ -12,7 +12,7 @@ public class SituationPanelDrawer : MonoBehaviour
 
     public void InitHeroPanel(Hero hero)
     {
-        canvasManager.AddCanvasesToDefaultActive(heroPanel.GetComponent<Canvas>());
+        canvasManager.AddCanvasesToAlwaysActive(heroPanel.GetComponent<Canvas>());
         heroPanel.Init(hero);
     }
 
