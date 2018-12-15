@@ -15,8 +15,6 @@ public class Expedition
         curLocation = Resources.Load<LocationData>("Locations/Forest/Forest");
         this.expPanel = expPanel;
         expPanel.expedition = this;
-        expPanel.GetComponent<CanvasManager>()
-            .AddCanvasesToAlwaysActive(expPanel.controlPanelCanvas);
         expPanel.situationPanel.InitHeroPanel(hero);
         situation = new SituationTravelling(this);
     }
