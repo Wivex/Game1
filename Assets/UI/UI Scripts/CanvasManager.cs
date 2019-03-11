@@ -7,8 +7,8 @@ public class CanvasManager : MonoBehaviour
     [Disabled]
     public List<Canvas> canvases = new List<Canvas>();
 
-    public List<Canvas> defaultEnabledCanvases;
-    public List<Canvas> alwaysEnabledCanvases = new List<Canvas>();
+    public List<Canvas> defaultActiveCanvases;
+    public List<Canvas> alwaysActiveCanvases = new List<Canvas>();
 
     /// <summary>
     /// automatically put direct children of this object (1 depth) into canvases list
@@ -30,23 +30,8 @@ public class CanvasManager : MonoBehaviour
         //set enabled status for canvases
         foreach (var canvas in canvases)
         {
-            canvas.enabled = alwaysEnabledCanvases.Contains(canvas) ||
-                             defaultEnabledCanvases.Contains(canvas);
-        }
-    }
-
-    /// <summary>
-    /// special method to operate with unity OnClick mouse event (1 parameter only)
-    /// </summary>
-    /// <param name="selectedCanvas"></param>
-    public void EnableCanvas(Canvas selectedCanvas)
-    {
-        foreach (var canvas in canvases)
-        {
-            if (canvas == selectedCanvas || alwaysEnabledCanvases.Contains(canvas))
-                canvas.enabled = true;
-            else
-                canvas.enabled = false;
+            canvas.enabled = alwaysActiveCanvases.Contains(canvas) ||
+                             defaultActiveCanvases.Contains(canvas);
         }
     }
 
@@ -54,17 +39,18 @@ public class CanvasManager : MonoBehaviour
     {
         foreach (var canvas in canvases)
         {
-            if (selectedCanvases.Contains(canvas) || alwaysEnabledCanvases.Contains(canvas))
+            if (selectedCanvases.Contains(canvas) || alwaysActiveCanvases.Contains(canvas))
                 canvas.enabled = true;
             else
                 canvas.enabled = false;
         }
     }
 
-    public void EnableCanvases(params Canvas[] selectedCanvases)
+    public void AddCanvasesToDefaultActive(params Canvas[] selectedCanvases)
     {
         foreach (var canvas in selectedCanvases)
         {
+            defaultActiveCanvases.Add(canvas);
             canvas.enabled = true;
         }
     }
@@ -73,7 +59,7 @@ public class CanvasManager : MonoBehaviour
     {
         foreach (var canvas in selectedCanvases)
         {
-            alwaysEnabledCanvases.Add(canvas);
+            alwaysActiveCanvases.Add(canvas);
             canvas.enabled = true;
         }
     }

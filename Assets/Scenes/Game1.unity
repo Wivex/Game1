@@ -2412,10 +2412,9 @@ MonoBehaviour:
   - {fileID: 518801844}
   - {fileID: 647258249}
   - {fileID: 1899172359}
-  defaultEnabledCanvases:
-  - {fileID: 1899172359}
-  alwaysEnabledCanvases:
-  - {fileID: 664696544}
+  defaultActiveCanvases:
+  - {fileID: 518801844}
+  alwaysActiveCanvases: []
 --- !u!114 &116656007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2460,6 +2459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fc71a61dd1ee0d44b508844e91548b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controlPanelCanvas: {fileID: 664696544}
   situationPanel: {fileID: 1899172363}
   logPanel: {fileID: 647258250}
 --- !u!1 &119596794
@@ -14678,9 +14678,9 @@ MonoBehaviour:
   canvases:
   - {fileID: 1059448245}
   - {fileID: 1448500113}
-  defaultEnabledCanvases:
+  defaultActiveCanvases:
   - {fileID: 1448500113}
-  alwaysEnabledCanvases: []
+  alwaysActiveCanvases: []
 --- !u!224 &937369510
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17282,9 +17282,9 @@ MonoBehaviour:
   canvases:
   - {fileID: 1511960815}
   - {fileID: 2104314536}
-  defaultEnabledCanvases:
+  defaultActiveCanvases:
   - {fileID: 2104314536}
-  alwaysEnabledCanvases:
+  alwaysActiveCanvases:
   - {fileID: 1511960815}
 --- !u!1 &1059475592
 GameObject:
@@ -23793,7 +23793,7 @@ GameObject:
   - component: {fileID: 1448500111}
   - component: {fileID: 1448500113}
   m_Layer: 8
-  m_Name: Main Menu Panel Background
+  m_Name: Main Menu Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26537,23 +26537,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 116506165}
-        m_MethodName: StartNewExpedition
+      - m_Target: {fileID: 1059448246}
+        m_MethodName: ChangeActiveCanvasess
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 929372140}
-        m_MethodName: EnableCanvas
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1059448245}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Canvas, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -31235,7 +31224,7 @@ GameObject:
   - component: {fileID: 1896470937}
   - component: {fileID: 1896470936}
   m_Layer: 5
-  m_Name: Hero Selection Panel
+  m_Name: Overview Button (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31664,8 +31653,8 @@ MonoBehaviour:
   - {fileID: 1737913113}
   - {fileID: 395566707}
   - {fileID: 1049159389}
-  defaultEnabledCanvases: []
-  alwaysEnabledCanvases: []
+  defaultActiveCanvases: []
+  alwaysActiveCanvases: []
 --- !u!114 &1899172363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35004,7 +34993,7 @@ GameObject:
   - component: {fileID: 2073584560}
   - component: {fileID: 2073584559}
   m_Layer: 5
-  m_Name: Log Panel Button
+  m_Name: Overview Button (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
