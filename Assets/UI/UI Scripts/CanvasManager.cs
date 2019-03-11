@@ -35,11 +35,11 @@ public class CanvasManager : MonoBehaviour
         }
     }
 
-    public void ChangeActiveCanvases(params Canvas[] selectedCanvases)
+    public void ChangeActiveCanvas(Canvas selectedCanvas)
     {
         foreach (var canvas in canvases)
         {
-            if (selectedCanvases.Contains(canvas) || alwaysActiveCanvases.Contains(canvas))
+            if (canvas == selectedCanvas || alwaysActiveCanvases.Contains(canvas))
                 canvas.enabled = true;
             else
                 canvas.enabled = false;

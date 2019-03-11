@@ -18,13 +18,13 @@ public class SituationPanelDrawer : MonoBehaviour
 
     public void InitEnemyPanel(Enemy enemy)
     {
-        canvasManager.ChangeActiveCanvases(enemyPanel.GetComponent<Canvas>());
+        canvasManager.ChangeActiveCanvas(enemyPanel.GetComponent<Canvas>());
         enemyPanel.Init(enemy);
     }
 
     public void InitLocationPanel(LocationData location)
     {
-        canvasManager.ChangeActiveCanvases(locationPanel.GetComponent<Canvas>());
+        canvasManager.ChangeActiveCanvas(locationPanel.GetComponent<Canvas>());
         locationPanel.location = location;
     }
 }
