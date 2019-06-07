@@ -3,9 +3,10 @@
 --- !u!181963792 &2655988077585873504
 Preset:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Panel Empty
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Panel Image
   m_TargetType:
     m_NativeTypeID: 114
     m_ManagedTypePPtr: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c,
@@ -19,10 +20,6 @@ Preset:
   - target: {fileID: 0}
     propertyPath: m_EditorHideFlags
     value: 0
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: m_Name
-    value: 
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_EditorClassIdentifier
@@ -50,7 +47,7 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_RaycastTarget
-    value: 1
+    value: 0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_OnCullStateChanged.m_PersistentCalls.m_Calls.Array.size
@@ -64,10 +61,10 @@ Preset:
   - target: {fileID: 0}
     propertyPath: m_Sprite
     value: 
-    objectReference: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_Type
-    value: 1
+    value: 0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_PreserveAspect
@@ -91,5 +88,9 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_FillOrigin
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_UseSpriteMesh
     value: 0
     objectReference: {fileID: 0}

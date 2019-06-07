@@ -26,8 +26,8 @@ public class GameManager : MonoBehaviour
         expPanel.situationPanel.heroPanel.Init(hero);
     }
 
-    void FixedUpdate()
-    {
+    private void FixedUpdate()
+    {   
         foreach (var expedition in expeditions.Values)
             expedition.UpdateSituations();
     }
