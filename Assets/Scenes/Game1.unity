@@ -18898,8 +18898,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 676493294}
-        m_MethodName: 
+      - m_Target: {fileID: 2104314535}
+        m_MethodName: ChangeActiveCanvas
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 875964836}
@@ -35062,12 +35062,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2104314535}
-        m_MethodName: ChangeActiveCanvas
-        m_Mode: 2
+      - m_Target: {fileID: 116506165}
+        m_MethodName: StartNewExpedition
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 2114174948}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Canvas, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
