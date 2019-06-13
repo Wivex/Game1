@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 
-public class SituationPanelDrawer : MonoBehaviour
+public class DetailsPanelDrawer : MonoBehaviour
 {
     public Situation situation;
 

@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class UnitPanelDrawer : MonoBehaviour
 {
-    [Header("Unit")]
     protected Unit unit;
 
     protected Canvas canvas;

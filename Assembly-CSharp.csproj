@@ -99,13 +99,15 @@
     <Compile Include="Assets\UI\Floating Text\FloatingText.cs" />
     <Compile Include="Assets\UI\UI Scripts\CanvasManager.cs" />
     <Compile Include="Assets\UI\UI Scripts\ChildPanelsRemover.cs" />
+    <Compile Include="Assets\UI\UI Scripts\DetailsPanelDrawer.cs" />
     <Compile Include="Assets\UI\UI Scripts\EnemyPanelDrawer.cs" />
     <Compile Include="Assets\UI\UI Scripts\ExpeditionPanelDrawer.cs" />
+    <Compile Include="Assets\UI\UI Scripts\ExpPreviewPanelDrawer.cs" />
     <Compile Include="Assets\UI\UI Scripts\HeroPanelDrawer.cs" />
     <Compile Include="Assets\UI\UI Scripts\LocationPanelDrawer.cs" />
     <Compile Include="Assets\UI\UI Scripts\LogPanelDrawer.cs" />
-    <Compile Include="Assets\UI\UI Scripts\SituationPanelDrawer.cs" />
     <Compile Include="Assets\UI\UI Scripts\UnitPanelDrawer.cs" />
+    <Compile Include="Assets\UIManager.cs" />
     <None Include="Assets\3rd-Party\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\3rd-Party\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\3rd-Party\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />

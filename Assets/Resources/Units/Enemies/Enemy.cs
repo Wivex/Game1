@@ -25,7 +25,7 @@ public class Enemy : Unit
                 GameManager.expeditions.Values.FirstOrDefault(exp =>
                     exp.situation.type == SituationType.EnemyEncounter &&
                     (exp.situation as SituationCombat)?.enemy == this);
-            return expedition?.expPanel.situationPanel.enemyPanel;
+            return expedition?.expPanel.detailsPanelDrawer.enemyPanel;
         }
     }
 

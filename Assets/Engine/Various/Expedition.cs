@@ -6,22 +6,25 @@ public class Expedition
     public Situation situation;
     public LocationData curLocation;
     public LocationType destination;
-    public ExpeditionPanelDrawer expPanel;
 
-    public Expedition(ExpeditionPanelDrawer expPanel, Hero hero, LocationType destination)
+    public ExpeditionPanelDrawer expPanel;
+    public ExpPreviewPanelDrawer expPreviewPanel;
+
+    public Expedition(Hero hero, LocationType destination)
     {
+        expPanel = UIManager.instance.expPanelDrawer;
+
         this.hero = hero;
         this.destination = destination;
         curLocation = Resources.Load<LocationData>("Locations/Forest/Forest");
-        this.expPanel = expPanel;
-        expPanel.expedition = this;
-        expPanel.situationPanel.InitHeroPanel(hero);
+        expPanel.selectedExp = this;
+        expPanel.detailsPanelDrawer.InitHeroPanel(hero);
         situation = new SituationTravelling(this);
     }
 
     public void UpdateLog(string logEntry)
     {
-        expPanel.logPanel.AddLogEntry(logEntry);
+        expPanel.logPanelDrawer.AddLogEntry(logEntry);
     }
 
     public void UpdateSituations()
@@ -41,18 +44,18 @@ public class Expedition
                 {
                     case SituationType.Travelling:
                         situation = new SituationTravelling(this);
-                        expPanel.situationPanel.InitLocationPanel(curLocation);
+                        expPanel.detailsPanelDrawer.InitLocationPanel(curLocation);
                         UpdateLog($"Travelling trough {curLocation.name}");
                         break;
                     case SituationType.EnemyEncounter:
                         situation = new SituationCombat(this, curLocation.enemies);
                         var enemy = (situation as SituationCombat).enemy;
-                        expPanel.situationPanel.InitEnemyPanel(enemy);
+                        expPanel.detailsPanelDrawer.InitEnemyPanel(enemy);
                         UpdateLog($"{hero.name} started combat with {enemy.enemyData.name}");
                         break;
                     case SituationType.POIEncounter:
                         //situation = new SituationCombat(location.enemies);
-                        //expPanel.situationPanel.enemyPanel.gameObject.SetActive(false);
+                        //expPanel.detailsPanelDrawer.enemyPanel.gameObject.SetActive(false);
                         break;
                 }
         }

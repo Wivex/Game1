@@ -4,14 +4,49 @@ using TMPro;
 
 public class ExpeditionPanelDrawer : MonoBehaviour
 {
-    public Expedition expedition;
+    public GameObject expPreviewPanelPrefab;
+    public Transform previewContentPanel;
+    public Expedition selectedExp;
+    public Canvas overviewCanvas, detailsCanvas, noExpCanvas;
+    public DetailsPanelDrawer detailsPanelDrawer;
+    public LogPanelDrawer logPanelDrawer;
 
-    public SituationPanelDrawer situationPanel;
-    public LogPanelDrawer logPanel;
+    CanvasManager cMan;
 
-    public void ShowSituationCheck(Canvas canvas)
+    // initializations
+    void Awake()
     {
-        var cMan = GetComponent<CanvasManager>();
-        cMan.ChangeActiveCanvas(GameManager.expeditions.Count > 0 ? canvas : cMan.defaultActiveCanvases.FirstOrDefault());
+        cMan = GetComponent<CanvasManager>();
+    }
+
+    // pre Update operations
+    void Start()
+    {
+        //initialize field
+        cMan = GetComponent<CanvasManager>();
+
+        // clean up preview panel from prefab templates
+        foreach (Transform child in previewContentPanel.parent.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+    }
+
+    public void TryShowOverviewPanel()
+    {
+        cMan.ChangeActiveCanvas(GameManager.expeditions.Count > 0 ? overviewCanvas : noExpCanvas);
+    }
+
+    public void ShowSelectedExpDetailsPanel(Expedition exp)
+    {
+        selectedExp = exp;
+        cMan.ChangeActiveCanvas(detailsCanvas);
+    }
+
+    public void AddExpedition(Expedition exp)
+    {
+        // generate new panel from prefab and make it child of content panel
+        var panel = Instantiate(expPreviewPanelPrefab, previewContentPanel);
+        panel.GetComponent<ExpPreviewPanelDrawer>().Init(exp);
     }
 }

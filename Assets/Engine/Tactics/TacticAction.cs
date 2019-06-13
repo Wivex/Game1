@@ -51,6 +51,8 @@ public class TacticAction
             situation.actor.stats[(int) StatType.Attack].curValue);
         var dam = situation.target.TakeDamage(damage);
 
+        //situation.expedition.expPreviewPanel.redrawFlags.health = true;
+
         situation.expedition.UpdateLog(
             $"{situation.actor.name} attacks {situation.target.name} for {dam} {damage.type} damage.");
     }
