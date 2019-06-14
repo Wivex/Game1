@@ -25,6 +25,7 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
     public Transform consumablesPanel;
     public Slider healthBar, manaBar, initBar, expBar;
     public Image heroImage, curGoldImage;
+    public Animator heroAnim;
 
     public TextMeshProUGUI heroName,
         level,
@@ -63,6 +64,8 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
         UpdateGold();
         UpdateStatBars();   
         UpdateConsumables();
+
+        heroAnim.SetTrigger("Start_travel");
     }
 
     //update UI panels
@@ -76,8 +79,8 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
             UpdateGold();
         if (redrawFlags.consumes)
             UpdateConsumables();
-        if (redrawFlags.statBars)
-            UpdateStatBars();
+
+        UpdateStatBars();
     }
 
     #region UI UPDATE METHODS

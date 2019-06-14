@@ -17,16 +17,9 @@ public class ExpeditionPanelDrawer : MonoBehaviour
     void Awake()
     {
         cMan = GetComponent<CanvasManager>();
-    }
-
-    // pre Update operations
-    void Start()
-    {
-        //initialize field
-        cMan = GetComponent<CanvasManager>();
 
         // clean up preview panel from prefab templates
-        foreach (Transform child in previewContentPanel.parent.transform)
+        foreach (Transform child in previewContentPanel.transform)
         {
             GameObject.Destroy(child.gameObject);
         }
