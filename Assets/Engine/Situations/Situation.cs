@@ -4,7 +4,7 @@ public enum SituationType
 {
     Travelling,
     EnemyEncounter,
-    POIEncounter
+    ObjectEncounter
 }
 
 public abstract class Situation

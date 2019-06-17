@@ -36,7 +36,7 @@ public class Hero : Unit
         get
         {
             var expedition = GameManager.expeditions[this];
-            return expedition.expPanel.detailsPanelDrawer.heroPanel;
+            return UIManager.instance.expPanelDrawer.detailsPanelDrawer.heroPanel;
         }
     }
 

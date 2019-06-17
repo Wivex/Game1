@@ -19,10 +19,7 @@ public class ExpeditionPanelDrawer : MonoBehaviour
         cMan = GetComponent<CanvasManager>();
 
         // clean up preview panel from prefab templates
-        foreach (Transform child in previewContentPanel.transform)
-        {
-            GameObject.Destroy(child.gameObject);
-        }
+        Destroy(previewContentPanel.transform.GetChild(0).gameObject);
     }
 
     public void TryShowOverviewPanel()
@@ -36,10 +33,13 @@ public class ExpeditionPanelDrawer : MonoBehaviour
         cMan.ChangeActiveCanvas(detailsCanvas);
     }
 
-    public void AddExpedition(Expedition exp)
+    /// <summary>
+    /// generate new preview panel from prefab and make it child of content panel
+    /// </summary>
+    public void NewPreviewPanel(Expedition exp)
     {
-        // generate new panel from prefab and make it child of content panel
         var panel = Instantiate(expPreviewPanelPrefab, previewContentPanel);
-        panel.GetComponent<ExpPreviewPanelDrawer>().Init(exp);
+        exp.expPreviewPanel = panel.GetComponent<ExpPreviewPanelDrawer>();
+        exp.expPreviewPanel.Init(exp);
     }
 }

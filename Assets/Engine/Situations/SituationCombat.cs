@@ -45,7 +45,6 @@ public class SituationCombat : Situation
         else if (enemy.Dead)
         {
             Kill(enemy);
-            readyForNewSituation = true;
         }
         else
         {
@@ -72,7 +71,7 @@ public class SituationCombat : Situation
 
     public void CombatTick()
     {
-        actor.curInitiative += actor.stats[(int) StatType.Speed].curValue * GameManager.combatSpeed;
+        actor.curInitiative += actor.stats[(int) StatType.Speed].curValue * GameManager.instance.combatSpeed;
         if (actor.curInitiative >= Unit.reqInitiative)
         {
             actor.curInitiative = 0;

@@ -3,8 +3,9 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -14,11 +15,11 @@ MonoBehaviour:
   name: Forest
   icon: {fileID: 21300000, guid: baa293415312b4b45bc346be862e0da3, type: 3}
   situations:
-  - chance: 0.491
+  - chance: 0.25
     name: Enemy Encounter
     icon: {fileID: 21300000, guid: 7589bc4291a4b42408d97cb9c30abfdc, type: 3}
     SituationType: 1
   enemies:
-  - chance: 0.485
+  - chance: 1
     enemyData: {fileID: 11400000, guid: 2767f6c8f66d2fd45ad505de3208fc8b, type: 2}
   pointsOfInterest: []

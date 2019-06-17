@@ -10,8 +10,7 @@ public struct ExpPreviewPanelRedrawFlags
     public bool heroImage,
         description,
         gold,
-        consumes,
-        statBars;
+        consumes;
     // eventPanel is redrawn every frame anyway
 }
 
@@ -19,13 +18,13 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
 {
     public const int reqInitiative = 100;
 
-    #region ASSIGNED IN EDITOR
+    #region SET IN INSPECTOR
 
     public List<Sprite> goldSprites;
     public Transform consumablesPanel;
     public Slider healthBar, manaBar, initBar, expBar;
     public Image heroImage, curGoldImage;
-    public Animator heroAnim;
+    public Animator heroAnim, eventAnim;
 
     public TextMeshProUGUI heroName,
         level,
@@ -38,7 +37,7 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
     #endregion
 
     //hide from inspector
-    internal ExpPreviewPanelRedrawFlags redrawFlags;
+    internal ExpPreviewPanelRedrawFlags redrawFlags = new ExpPreviewPanelRedrawFlags();
 
     Expedition exp;
     Hero hero;
@@ -64,8 +63,6 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
         UpdateGold();
         UpdateStatBars();   
         UpdateConsumables();
-
-        heroAnim.SetTrigger("Start_travel");
     }
 
     //update UI panels
@@ -152,7 +149,11 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.clickCount == 2)
         {
-            UIManager.instance.expPanelDrawer.ShowSelectedExpDetailsPanel(exp);
+            var expPanel = UIManager.instance.expPanelDrawer;
+
+            expPanel.selectedExp = exp;
+            expPanel.detailsPanelDrawer.InitHeroPanel(hero);
+            expPanel.ShowSelectedExpDetailsPanel(exp);
         }
     }
 }

@@ -67,6 +67,7 @@
     <Compile Include="Assets\Engine\Effects\Effect.cs" />
     <Compile Include="Assets\Engine\Managers\GameManager.cs" />
     <Compile Include="Assets\Engine\Managers\InputManager.cs" />
+    <Compile Include="Assets\Engine\Managers\UIManager.cs" />
     <Compile Include="Assets\Engine\Situations\Situation.cs" />
     <Compile Include="Assets\Engine\Situations\SituationCombat.cs" />
     <Compile Include="Assets\Engine\Situations\SituationTravelling.cs" />
@@ -107,7 +108,6 @@
     <Compile Include="Assets\UI\UI Scripts\LocationPanelDrawer.cs" />
     <Compile Include="Assets\UI\UI Scripts\LogPanelDrawer.cs" />
     <Compile Include="Assets\UI\UI Scripts\UnitPanelDrawer.cs" />
-    <Compile Include="Assets\UIManager.cs" />
     <None Include="Assets\3rd-Party\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\3rd-Party\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\3rd-Party\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />

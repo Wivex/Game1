@@ -8,8 +8,13 @@ public class GameManager : MonoBehaviour
     public static List<Unit> heroes = new List<Unit>();
     public static Dictionary<Hero, Expedition> expeditions = new Dictionary<Hero, Expedition>();
 
-    public static float combatSpeed = 0.05f;
-    public static float oldCombatSpeed;
+    [Header("Expedition Settings")]
+    [Tooltip("Minimal time in seconds between situations")]
+    public int minGracePeriod = 5;
+
+    // global initiative accumulation speed
+    internal float combatSpeed = 0.05f;
+    internal float oldCombatSpeed;
 
     //default initialization of Singleton instance
     void Awake()
@@ -34,15 +39,14 @@ public class GameManager : MonoBehaviour
         StartNewExpedition(hero);
     }
 
-    // TODO: clean up assignment
     public void StartNewExpedition(Hero hero)
     {
-        var expedition = new Expedition(hero, LocationType.Dungeon);
-        expeditions.Add(hero, expedition);
-        UIManager.instance.expPanelDrawer.AddExpedition(expedition);
+        var exp = new Expedition(hero, LocationType.Forest);
+        expeditions.Add(hero, exp);
+        UIManager.instance.expPanelDrawer.NewPreviewPanel(exp);
     }
 
-    private void FixedUpdate()
+    void Update()
     {   
         foreach (var expedition in expeditions.Values)
             expedition.UpdateSituations();
