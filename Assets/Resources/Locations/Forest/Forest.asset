@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Forest
   icon: {fileID: 21300000, guid: baa293415312b4b45bc346be862e0da3, type: 3}
   situations:
-  - chance: 0.25
+  - chance: 1
     name: Enemy Encounter
     icon: {fileID: 21300000, guid: 7589bc4291a4b42408d97cb9c30abfdc, type: 3}
     SituationType: 1

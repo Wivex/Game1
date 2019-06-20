@@ -24,7 +24,7 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
     public Transform consumablesPanel;
     public Slider healthBar, manaBar, initBar, expBar;
     public Image heroImage, curGoldImage;
-    public Animator heroAnim, eventAnim;
+    public Animator heroAnim, eventAnim, interAnim;
 
     public TextMeshProUGUI heroName,
         level,

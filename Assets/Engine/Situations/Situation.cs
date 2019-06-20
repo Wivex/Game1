@@ -12,7 +12,7 @@ public abstract class Situation
     public Expedition expedition;
     public SituationType type;
     public RectTransform expSituationPanel;
-    public bool readyForNewSituation;
+    public bool resolved;
 
     protected Situation(Expedition expedition)
     {

@@ -62,8 +62,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\3rd-Party\EventDelegate\EDFlagAttribute.cs" />
+    <Compile Include="Assets\3rd-Party\EventDelegate\EventDelegate.cs" />
+    <Compile Include="Assets\3rd-Party\EventDelegate\ReorderableList.cs" />
     <Compile Include="Assets\3rd-Party\SubjectNerd's InspectorTools\EditScriptableAttribute.cs" />
     <Compile Include="Assets\3rd-Party\SubjectNerd's InspectorTools\ReorderableAttribute.cs" />
+    <Compile Include="Assets\AnimationEventHandler.cs" />
     <Compile Include="Assets\Engine\Effects\Effect.cs" />
     <Compile Include="Assets\Engine\Managers\GameManager.cs" />
     <Compile Include="Assets\Engine\Managers\InputManager.cs" />

@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     internal float combatSpeed = 0.05f;
     internal float oldCombatSpeed;
 
+    readonly string[] heroNames = { "Peter", "Ron", "John", "Bob" };
+    int freeNameIndex;
+
     //default initialization of Singleton instance
     void Awake()
     {
@@ -32,9 +35,14 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    public string NewName()
+    {
+        return heroNames[freeNameIndex++];
+    }
+
     public void StartNewExpedition()
     {
-        var hero = new Hero("Oswald");
+        var hero = new Hero(NewName());
         heroes.Add(hero);
         StartNewExpedition(hero);
     }

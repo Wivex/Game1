@@ -62,6 +62,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\3rd-Party\EventDelegate\Editor\DrawerTools.cs" />
+    <Compile Include="Assets\3rd-Party\EventDelegate\Editor\EventDelegateDrawer.cs" />
+    <Compile Include="Assets\3rd-Party\EventDelegate\Editor\FlagDrawer.cs" />
+    <Compile Include="Assets\3rd-Party\EventDelegate\Editor\ReorderableDelegateDrawer.cs" />
     <Compile Include="Assets\3rd-Party\SubjectNerd's InspectorTools\Editor\ReorderableArrayInspector.cs" />
     <Compile Include="Assets\3rd-Party\SubjectNerd's InspectorTools\Editor\SerializedPropExtension.cs" />
     <Compile Include="Assets\Editor\CopyAssetPathContextMenu.cs" />

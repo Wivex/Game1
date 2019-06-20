@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public enum AnimTriggerType
+public enum AnimationTrigger
 {
-    HeroTravelling,
-    HeroIdle,
-    HeroEncounter
+    BeginEncounter,
+    EndEncounter,
+    AnimationEnded,
+    HeroTravelling
 }
 
 public class Expedition
@@ -57,7 +59,7 @@ public class Expedition
     {
         if (situation == null)
             InitTravellingSituation();
-        else if (GraceTimePassed())
+        else if (GraceTimePassed() && situation.resolved)
             TryNewSituation();
         else
             situation.Update();
@@ -65,7 +67,6 @@ public class Expedition
 
     public void TryNewSituation()
     {
-        Debug.Log("Tried new Sit");
         foreach (var sit in curLocation.situations)
         {
             if (Random.value < sit.chance)
@@ -95,8 +96,8 @@ public class Expedition
         UIManager.instance.expPanelDrawer.detailsPanelDrawer.InitLocationPanel(curLocation);
         UpdateLog($"Travelling trough {curLocation.name}");
         // start travelling animation
-        expPreviewPanel.heroAnim.SetTrigger(AnimTriggerType.HeroTravelling.ToString());
-        Debug.Log("Travelling");
+        //Debug.Log($"{hero.name} triggered {AnimationTrigger.HeroTravelling.ToString()}");
+        expPreviewPanel.heroAnim.SetTrigger(AnimationTrigger.HeroTravelling.ToString());
     }
 
     public void InitEnemyEncounterSituation()
@@ -105,8 +106,9 @@ public class Expedition
         var enemy = (situation as SituationCombat).enemy;
         UIManager.instance.expPanelDrawer.detailsPanelDrawer.InitEnemyPanel(enemy);
         UpdateLog($"{hero.name} started combat with {enemy.enemyData.name}");
-        expPreviewPanel.heroAnim.SetTrigger(AnimTriggerType.HeroEncounter.ToString());
-        expPreviewPanel.eventAnim.SetTrigger(AnimTriggerType.HeroEncounter.ToString());
-        Debug.Log("Encounter");
-    }
+        Debug.Log($"{hero.name} triggered {AnimationTrigger.BeginEncounter.ToString()}");
+        expPreviewPanel.heroAnim.SetTrigger(AnimationTrigger.BeginEncounter.ToString());
+        expPreviewPanel.eventAnim.SetTrigger(AnimationTrigger.BeginEncounter.ToString());
+        expPreviewPanel.interAnim.SetTrigger(AnimationTrigger.BeginEncounter.ToString());
+        }
 }
