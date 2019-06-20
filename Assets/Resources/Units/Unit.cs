@@ -25,7 +25,7 @@ public abstract class Unit
     public float curInitiative;
     public string name;
 
-    public abstract UnitPanelDrawer unitPanel { get; }
+    public Transform unitDetailsIcon, unitPreviewIcon;
     public bool Dead => stats[(int)StatType.Health].curValue <= 0;
 
     public abstract void SetStats();
@@ -49,10 +49,8 @@ public abstract class Unit
         var healthLoss= Math.Max(damage.amount - protectionValue, 0);
         stats[(int)StatType.Health].curValue = Math.Max(stats[(int)StatType.Health].curValue - healthLoss, 0);
 
-        var floatingText = Object.Instantiate(unitPanel.floatingTextPrefab, unitPanel.unitImage.transform);
-        var textObject = floatingText.GetComponent<TextMeshProUGUI>();
-        textObject.text = $"-{healthLoss}";
-        textObject.color = Color.red;
+        CreateFloatingText(unitDetailsIcon, -healthLoss);
+        CreateFloatingText(unitPreviewIcon, -healthLoss);
 
         return healthLoss;
     }
@@ -61,9 +59,24 @@ public abstract class Unit
     {
         stats[(int)StatType.Health].curValue = Mathf.Min(stats[(int)StatType.Health].curValue + amount, (stats[(int)StatType.Health] as StatChanging).maxValue);
 
-        var floatingText = Object.Instantiate(unitPanel.floatingTextPrefab, unitPanel.unitImage.transform);
+        CreateFloatingText(unitDetailsIcon, amount);
+        CreateFloatingText(unitPreviewIcon, amount);
+    }
+
+    void CreateFloatingText(Transform target, int value)
+    {
+        var floatingText = Object.Instantiate(UIManager.instance.floatingTextPrefab, target);
         var textObject = floatingText.GetComponent<TextMeshProUGUI>();
-        textObject.text = $"+{amount}";
-        textObject.color = Color.green;
+
+        if (value > 0)
+        {
+            textObject.text = $"+{value}";
+            textObject.color = Color.green;
+        }
+        if (value < 0)
+        {
+            textObject.text = $"{value}";
+            textObject.color = Color.red;
+        }
     }
 }

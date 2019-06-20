@@ -23,7 +23,7 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
     public List<Sprite> goldSprites;
     public Transform consumablesPanel;
     public Slider healthBar, manaBar, initBar, expBar;
-    public Image heroImage, curGoldImage;
+    public Image heroImage, curGoldImage, heroIcon, eventIcon, locationImage;
     public Animator heroAnim, eventAnim, interAnim;
 
     public TextMeshProUGUI heroName,
@@ -63,6 +63,11 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
         UpdateGold();
         UpdateStatBars();   
         UpdateConsumables();
+    }
+
+    public void NotifyAnimReady()
+    {
+        exp.situation.animPrepared = true;
     }
 
     //update UI panels

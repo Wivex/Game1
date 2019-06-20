@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
 
     public string NewName()
     {
+        if (freeNameIndex == heroNames.Length)
+            freeNameIndex = 0;
         return heroNames[freeNameIndex++];
     }
 
@@ -51,7 +53,6 @@ public class GameManager : MonoBehaviour
     {
         var exp = new Expedition(hero, LocationType.Forest);
         expeditions.Add(hero, exp);
-        UIManager.instance.expPanelDrawer.NewPreviewPanel(exp);
     }
 
     void Update()

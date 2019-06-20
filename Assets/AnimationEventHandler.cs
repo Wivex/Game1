@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class AnimationEventHandler : MonoBehaviour
 {
     public Animator[] targetAnimators;
+    public ReorderableEventList animationFinishedEvents;
 
     Animator anim;
 
@@ -32,12 +33,17 @@ public class AnimationEventHandler : MonoBehaviour
         }
     }
 
-    public void PauseAnimationFor(float sec)
+    public void RunAnimationFinishedEvents()
     {
-        StartCoroutine(Pause(sec));
+        EventDelegate.Execute(animationFinishedEvents.List);
     }
 
-    IEnumerator Pause(float sec)
+    public void PauseAnimationFor(float sec)
+    {
+        StartCoroutine(PauseCour(sec));
+    }
+
+    IEnumerator PauseCour(float sec)
     {
         anim.enabled = false;
         yield return new WaitForSeconds(sec);

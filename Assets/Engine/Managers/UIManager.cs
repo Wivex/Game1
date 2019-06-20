@@ -7,6 +7,8 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
     
     public ExpeditionPanelDrawer expPanelDrawer;
+    
+    public FloatingText floatingTextPrefab;
 
     //default initialization of Singleton instance
     void Awake()

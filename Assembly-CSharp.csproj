@@ -87,6 +87,7 @@
     <Compile Include="Assets\Engine\Various\Damage.cs" />
     <Compile Include="Assets\Engine\Various\Expedition.cs" />
     <Compile Include="Assets\Engine\Various\StatValues.cs" />
+    <Compile Include="Assets\RandomPositionOffset.cs" />
     <Compile Include="Assets\Resources\Abilities\Ability.cs" />
     <Compile Include="Assets\Resources\Abilities\AbilityData.cs" />
     <Compile Include="Assets\Resources\ContentData.cs" />

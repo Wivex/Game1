@@ -26,6 +26,9 @@ public class Expedition
     public Expedition(Hero hero, LocationType destination)
     {
         this.hero = hero;
+        UIManager.instance.expPanelDrawer.NewPreviewPanel(this);
+        hero.unitPreviewIcon = expPreviewPanel.heroIcon.transform;
+        hero.unitDetailsIcon = UIManager.instance.expPanelDrawer.detailsPanelDrawer.heroPanel.unitImage.transform;
         this.destination = destination;
         curLocation = Resources.Load<LocationData>("Locations/Forest/Forest");
         ResetTimers();
@@ -52,6 +55,7 @@ public class Expedition
             ResetTimers();
             return true;
         }
+
         return false;
     }
 
@@ -61,7 +65,7 @@ public class Expedition
             InitTravellingSituation();
         else if (GraceTimePassed() && situation.resolved)
             TryNewSituation();
-        else
+        else if (situation.animPrepared)
             situation.Update();
     }
 
@@ -84,6 +88,7 @@ public class Expedition
                         //expPanel.detailsPanelDrawer.enemyPanel.gameObject.SetActive(false);
                         break;
                 }
+
                 // if any situation occured, break sequence
                 return;
             }
@@ -110,5 +115,5 @@ public class Expedition
         expPreviewPanel.heroAnim.SetTrigger(AnimationTrigger.BeginEncounter.ToString());
         expPreviewPanel.eventAnim.SetTrigger(AnimationTrigger.BeginEncounter.ToString());
         expPreviewPanel.interAnim.SetTrigger(AnimationTrigger.BeginEncounter.ToString());
-        }
+    }
 }

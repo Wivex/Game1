@@ -13,6 +13,8 @@ public class SituationCombat : Situation
     {
         hero = expedition.hero;
         enemy = SpawnEnemy(enemies);
+        enemy.unitPreviewIcon = expedition.expPreviewPanel.eventIcon.transform;
+        enemy.unitDetailsIcon = UIManager.instance.expPanelDrawer.detailsPanelDrawer.enemyPanel.unitImage.transform;
         type = SituationType.EnemyEncounter;
         ResetAllCooldowns();
     }
