@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-public abstract class ItemData : ContentData
+public class ItemData : ContentData
 {
     [Header("Item")]
     public bool stackable;

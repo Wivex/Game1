@@ -21,7 +21,9 @@ MonoBehaviour:
     defence: 2
     hazardResistance: 1
     bleedResistance: 1
-  abilities: []
+  abilities:
+  - {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
+  - {fileID: 0}
   tacticsPreset:
     presetName: 
     tactics:
@@ -41,21 +43,15 @@ MonoBehaviour:
   spawnChance: 1
   spawnInterval: 0
   lootTable:
-  - dropChance: 0.2
-    lootAmountType: 0
-    fixedAmount: 1
-    minAmount: 1
-    maxAmount: 1
-    item: {fileID: 0}
-  - dropChance: 0.4
+  - dropChance: 0.071
     lootAmountType: 0
     fixedAmount: 1
     minAmount: 1
     maxAmount: 1
     item: {fileID: 11400000, guid: 409d6967efdd335409c309b558c3d431, type: 2}
-  - dropChance: 0.5
+  - dropChance: 0.2
     lootAmountType: 0
     fixedAmount: 1
     minAmount: 1
     maxAmount: 1
-    item: {fileID: 0}
+    item: {fileID: 11400000, guid: 6ca6cfd456c6923479238fd5460fd86a, type: 2}

@@ -8,6 +8,6 @@ using UnityEngine;
 public class TacticsPreset
 {
     public string presetName;
-    [Reorderable("Tactic")]
+    [Reorderable]
     public List<Tactic> tactics;
 }

@@ -13,11 +13,11 @@ public class LocationData : ContentData
 {
     [Header("Location")]
     //public LocationType type;
-    [Reorderable("Situation")]
+    [Reorderable]
     public List<SituationChanceToOccur> situations;
-    [Reorderable("Enemy")]
+    [Reorderable]
     public List<EnemySpawnChance> enemies;
-    [Reorderable("POI")]
+    [Reorderable]
     public List<PoiSpawnChance> pointsOfInterest;
     
     // TODO: optimize, to avoid sorting all objects each validation

@@ -7,6 +7,7 @@ public class UnitData : ContentData
 {
     [Header("Unit Data")]
     public StatValues stats;
+    [Reorderable]
     public List<AbilityData> abilities;
     public TacticsPreset tacticsPreset;
 }

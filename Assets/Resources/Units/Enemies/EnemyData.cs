@@ -8,18 +8,13 @@ public class EnemyData : UnitData
     [Header("Enemy")]
     public float spawnChance;
     public int spawnInterval;
-    [Reorderable("Loot")]
+    [Reorderable(true, "item")]
     public List<Loot> lootTable;
 
     // TODO: optimize, to avoid sorting all objects each validation
     // sort ascending by drop chance, for easier loot spawning
     void OnEnable()
     {
-        foreach (var loot in lootTable)
-        {
-            loot.
-        }
-
         lootTable.Sort((x, y) => y.dropChance.CompareTo(x.dropChance));
         lootTable.Reverse();
     }
