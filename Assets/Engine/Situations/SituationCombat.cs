@@ -128,6 +128,8 @@ public class SituationCombat : Situation
 
     public void Kill(Enemy enemy)
     {
-        // TODO: drop loot, give exp
+        // set killed animation
+        // loot transfer
+        // give exp
     }
 }

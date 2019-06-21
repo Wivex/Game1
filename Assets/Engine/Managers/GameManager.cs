@@ -10,10 +10,10 @@ public class GameManager : MonoBehaviour
 
     [Header("Expedition Settings")]
     [Tooltip("Minimal time in seconds between situations")]
-    public int minGracePeriod = 5;
+    public int minGracePeriod = 4;
 
     // global initiative accumulation speed
-    internal float combatSpeed = 0.05f;
+    internal float combatSpeed = 0.75f;
     internal float oldCombatSpeed;
 
     readonly string[] heroNames = { "Peter", "Ron", "John", "Bob" };

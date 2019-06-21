@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 433be84bca0ae5a428fd846b355f14b5, type: 3}
   m_Name: Orc
   m_EditorClassIdentifier: 
-  name: Orc
   icon: {fileID: 21300000, guid: 7589bc4291a4b42408d97cb9c30abfdc, type: 3}
   stats:
-    health: 1000
+    health: 100
     mana: 0
     attack: 13
     speed: 15
@@ -41,3 +40,22 @@ MonoBehaviour:
         consumableData: {fileID: 0}
   spawnChance: 1
   spawnInterval: 0
+  lootTable:
+  - dropChance: 0.2
+    lootAmountType: 0
+    fixedAmount: 1
+    minAmount: 1
+    maxAmount: 1
+    item: {fileID: 0}
+  - dropChance: 0.4
+    lootAmountType: 0
+    fixedAmount: 1
+    minAmount: 1
+    maxAmount: 1
+    item: {fileID: 11400000, guid: 409d6967efdd335409c309b558c3d431, type: 2}
+  - dropChance: 0.5
+    lootAmountType: 0
+    fixedAmount: 1
+    minAmount: 1
+    maxAmount: 1
+    item: {fileID: 0}
