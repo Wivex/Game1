@@ -107,8 +107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f21cec51927293a439a7d926018447c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetAnimators: []
-  animationFinishedEvents:
+  linkedAnimators: []
+  codeEvents:
     List: []
 --- !u!1 &1390370962167195418
 GameObject:
@@ -573,6 +573,80 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &1672673820065806997
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6225696669745498243}
+  - component: {fileID: 7829806874319145548}
+  - component: {fileID: 6721011212162123885}
+  m_Layer: 10
+  m_Name: Enemy Status Icon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6225696669745498243
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672673820065806997}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5781014536270753225}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -17.5, y: -17.5}
+  m_SizeDelta: {x: 35, y: 35}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &7829806874319145548
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672673820065806997}
+  m_CullTransparentMesh: 0
+--- !u!114 &6721011212162123885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672673820065806997}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 174e8cd327f2c554a9292bb0f8e4adff, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
 --- !u!1 &2498298191806596191
 GameObject:
   m_ObjectHideFlags: 0
@@ -1864,13 +1938,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f21cec51927293a439a7d926018447c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetAnimators:
+  linkedAnimators:
   - {fileID: 5637907592334002133}
   - {fileID: 1109310122}
-  animationFinishedEvents:
+  codeEvents:
     List:
-    - mEventName: Notify Situation of animation status
-      mShowGroup: 0
+    - mEventName: 
+      mShowGroup: 1
       mUpdateEntryList: 0
       mEntryList:
       - target: {fileID: 3303791443504163953}
@@ -1903,20 +1977,24 @@ MonoBehaviour:
         name: cullTransparentMesh
       - target: {fileID: 3303791443504163955}
         name: curGoldImage
-      - target: {fileID: 3303791443504163954}
+      - target: {fileID: 3303791443504163955}
         name: enabled
       - target: {fileID: 3303791443504163956}
+        name: enabled
+      - target: {fileID: 3303791443504163954}
         name: enabled
       - target: {fileID: 3303791443504163959}
         name: enabled
       - target: {fileID: 3303791443504163955}
-        name: enabled
+        name: enemyStatusIcon
       - target: {fileID: 3303791443504163952}
         name: eulerAngles
       - target: {fileID: 3303791443504163959}
         name: eventAlphaThreshold
       - target: {fileID: 3303791443504163955}
         name: eventAnim
+      - target: {fileID: 3303791443504163955}
+        name: eventIcon
       - target: {fileID: 3303791443504163955}
         name: expBar
       - target: {fileID: 3303791443504163955}
@@ -1948,16 +2026,18 @@ MonoBehaviour:
       - target: {fileID: 3303791443504163955}
         name: heroAnim
       - target: {fileID: 3303791443504163955}
+        name: heroIcon
+      - target: {fileID: 3303791443504163955}
         name: heroImage
       - target: {fileID: 3303791443504163955}
         name: heroName
       - target: {fileID: 3303791443504163956}
         name: hideFlags
-      - target: {fileID: 3303791443504163959}
+      - target: {fileID: 3303791443504163954}
         name: hideFlags
       - target: {fileID: 3303791443504163955}
         name: hideFlags
-      - target: {fileID: 3303791443504163954}
+      - target: {fileID: 3303791443504163959}
         name: hideFlags
       - target: {fileID: 3303791443504163953}
         name: hideFlags
@@ -1975,9 +2055,9 @@ MonoBehaviour:
         name: initBar
       - target: {fileID: 3303791443504163955}
         name: initiative
-      - target: {fileID: 3303791443504163956}
-        name: interactable
       - target: {fileID: 3303791443504163954}
+        name: interactable
+      - target: {fileID: 3303791443504163956}
         name: interactable
       - target: {fileID: 3303791443504163955}
         name: interAnim
@@ -1998,6 +2078,12 @@ MonoBehaviour:
       - target: {fileID: 3303791443504163952}
         name: localScale
       - target: {fileID: 3303791443504163955}
+        name: locationImage
+      - target: {fileID: 3303791443504163955}
+        name: lootAnim
+      - target: {fileID: 3303791443504163955}
+        name: lootIcon
+      - target: {fileID: 3303791443504163955}
         name: mana
       - target: {fileID: 3303791443504163955}
         name: manaBar
@@ -2007,19 +2093,19 @@ MonoBehaviour:
         name: material
       - target: {fileID: 3303791443504163958}
         name: materialCount
-      - target: {fileID: 3303791443504163952}
-        name: name
-      - target: {fileID: 3303791443504163954}
-        name: name
-      - target: {fileID: 3303791443504163956}
-        name: name
-      - target: {fileID: 3303791443504163959}
-        name: name
-      - target: {fileID: 3303791443504163953}
+      - target: {fileID: 3303791443504163958}
         name: name
       - target: {fileID: 3303791443504163955}
         name: name
-      - target: {fileID: 3303791443504163958}
+      - target: {fileID: 3303791443504163959}
+        name: name
+      - target: {fileID: 3303791443504163956}
+        name: name
+      - target: {fileID: 3303791443504163953}
+        name: name
+      - target: {fileID: 3303791443504163954}
+        name: name
+      - target: {fileID: 3303791443504163952}
         name: name
       - target: {fileID: 3303791443504163956}
         name: navigation
@@ -2049,11 +2135,11 @@ MonoBehaviour:
         name: right
       - target: {fileID: 3303791443504163952}
         name: rotation
-      - target: {fileID: 3303791443504163955}
-        name: runInEditMode
       - target: {fileID: 3303791443504163959}
         name: runInEditMode
       - target: {fileID: 3303791443504163956}
+        name: runInEditMode
+      - target: {fileID: 3303791443504163955}
         name: runInEditMode
       - target: {fileID: 3303791443504163952}
         name: sizeDelta
@@ -2063,17 +2149,17 @@ MonoBehaviour:
         name: spriteState
       - target: {fileID: 3303791443504163955}
         name: tag
-      - target: {fileID: 3303791443504163953}
-        name: tag
-      - target: {fileID: 3303791443504163954}
-        name: tag
-      - target: {fileID: 3303791443504163952}
-        name: tag
       - target: {fileID: 3303791443504163956}
+        name: tag
+      - target: {fileID: 3303791443504163953}
         name: tag
       - target: {fileID: 3303791443504163958}
         name: tag
       - target: {fileID: 3303791443504163959}
+        name: tag
+      - target: {fileID: 3303791443504163954}
+        name: tag
+      - target: {fileID: 3303791443504163952}
         name: tag
       - target: {fileID: 3303791443504163956}
         name: targetGraphic
@@ -2083,11 +2169,11 @@ MonoBehaviour:
         name: type
       - target: {fileID: 3303791443504163952}
         name: up
-      - target: {fileID: 3303791443504163955}
+      - target: {fileID: 3303791443504163959}
         name: useGUILayout
       - target: {fileID: 3303791443504163956}
         name: useGUILayout
-      - target: {fileID: 3303791443504163959}
+      - target: {fileID: 3303791443504163955}
         name: useGUILayout
       - target: {fileID: 3303791443504163959}
         name: useSpriteMesh
@@ -2186,7 +2272,7 @@ MonoBehaviour:
       - target: {fileID: 3303791443504163959}
         name: LayoutComplete ()
       - target: {fileID: 3303791443504163955}
-        name: NotifyAnimReady ()
+        name: NotifyAnimationFinished ()
       - target: {fileID: 3303791443504163959}
         name: OnAfterDeserialize ()
       - target: {fileID: 3303791443504163959}
@@ -2302,444 +2388,7 @@ MonoBehaviour:
       - target: {fileID: 3303791443504163959}
         name: UnregisterDirtyVerticesCallback (UnityAction action)
       mTarget: {fileID: 3303791443504163955}
-      mMethodName: NotifyAnimReady
-      mParameters: []
-      mCached: 0
-      oneShot: 0
-    - mEventName: Notify situation of animation status
-      mShowGroup: 0
-      mUpdateEntryList: 0
-      mEntryList:
-      - target: {fileID: 3303791443504163953}
-        name: active
-      - target: {fileID: 3303791443504163954}
-        name: alpha
-      - target: {fileID: 3303791443504163959}
-        name: alphaHitTestMinimumThreshold
-      - target: {fileID: 3303791443504163952}
-        name: anchoredPosition
-      - target: {fileID: 3303791443504163952}
-        name: anchoredPosition3D
-      - target: {fileID: 3303791443504163952}
-        name: anchorMax
-      - target: {fileID: 3303791443504163952}
-        name: anchorMin
-      - target: {fileID: 3303791443504163956}
-        name: animationTriggers
-      - target: {fileID: 3303791443504163954}
-        name: blocksRaycasts
-      - target: {fileID: 3303791443504163959}
-        name: color
-      - target: {fileID: 3303791443504163956}
-        name: colors
-      - target: {fileID: 3303791443504163955}
-        name: consumablesPanel
-      - target: {fileID: 3303791443504163958}
-        name: cull
-      - target: {fileID: 3303791443504163958}
-        name: cullTransparentMesh
-      - target: {fileID: 3303791443504163955}
-        name: curGoldImage
-      - target: {fileID: 3303791443504163954}
-        name: enabled
-      - target: {fileID: 3303791443504163956}
-        name: enabled
-      - target: {fileID: 3303791443504163959}
-        name: enabled
-      - target: {fileID: 3303791443504163955}
-        name: enabled
-      - target: {fileID: 3303791443504163952}
-        name: eulerAngles
-      - target: {fileID: 3303791443504163959}
-        name: eventAlphaThreshold
-      - target: {fileID: 3303791443504163955}
-        name: eventAnim
-      - target: {fileID: 3303791443504163955}
-        name: expBar
-      - target: {fileID: 3303791443504163955}
-        name: experience
-      - target: {fileID: 3303791443504163959}
-        name: fillAmount
-      - target: {fileID: 3303791443504163959}
-        name: fillCenter
-      - target: {fileID: 3303791443504163959}
-        name: fillClockwise
-      - target: {fileID: 3303791443504163959}
-        name: fillMethod
-      - target: {fileID: 3303791443504163959}
-        name: fillOrigin
-      - target: {fileID: 3303791443504163952}
-        name: forward
-      - target: {fileID: 3303791443504163955}
-        name: gold
-      - target: {fileID: 3303791443504163955}
-        name: goldSprites
-      - target: {fileID: 3303791443504163952}
-        name: hasChanged
-      - target: {fileID: 3303791443504163958}
-        name: hasPopInstruction
-      - target: {fileID: 3303791443504163955}
-        name: health
-      - target: {fileID: 3303791443504163955}
-        name: healthBar
-      - target: {fileID: 3303791443504163955}
-        name: heroAnim
-      - target: {fileID: 3303791443504163955}
-        name: heroImage
-      - target: {fileID: 3303791443504163955}
-        name: heroName
-      - target: {fileID: 3303791443504163956}
-        name: hideFlags
-      - target: {fileID: 3303791443504163959}
-        name: hideFlags
-      - target: {fileID: 3303791443504163955}
-        name: hideFlags
-      - target: {fileID: 3303791443504163954}
-        name: hideFlags
-      - target: {fileID: 3303791443504163953}
-        name: hideFlags
-      - target: {fileID: 3303791443504163952}
-        name: hideFlags
-      - target: {fileID: 3303791443504163958}
-        name: hideFlags
-      - target: {fileID: 3303791443504163952}
-        name: hierarchyCapacity
-      - target: {fileID: 3303791443504163954}
-        name: ignoreParentGroups
-      - target: {fileID: 3303791443504163956}
-        name: image
-      - target: {fileID: 3303791443504163955}
-        name: initBar
-      - target: {fileID: 3303791443504163955}
-        name: initiative
-      - target: {fileID: 3303791443504163956}
-        name: interactable
-      - target: {fileID: 3303791443504163954}
-        name: interactable
-      - target: {fileID: 3303791443504163955}
-        name: interAnim
-      - target: {fileID: 3303791443504163958}
-        name: isMask
-      - target: {fileID: 3303791443504163953}
-        name: isStatic
-      - target: {fileID: 3303791443504163953}
-        name: layer
-      - target: {fileID: 3303791443504163955}
-        name: level
-      - target: {fileID: 3303791443504163952}
-        name: localEulerAngles
-      - target: {fileID: 3303791443504163952}
-        name: localPosition
-      - target: {fileID: 3303791443504163952}
-        name: localRotation
-      - target: {fileID: 3303791443504163952}
-        name: localScale
-      - target: {fileID: 3303791443504163955}
-        name: mana
-      - target: {fileID: 3303791443504163955}
-        name: manaBar
-      - target: {fileID: 3303791443504163959}
-        name: maskable
-      - target: {fileID: 3303791443504163959}
-        name: material
-      - target: {fileID: 3303791443504163958}
-        name: materialCount
-      - target: {fileID: 3303791443504163952}
-        name: name
-      - target: {fileID: 3303791443504163954}
-        name: name
-      - target: {fileID: 3303791443504163956}
-        name: name
-      - target: {fileID: 3303791443504163959}
-        name: name
-      - target: {fileID: 3303791443504163953}
-        name: name
-      - target: {fileID: 3303791443504163955}
-        name: name
-      - target: {fileID: 3303791443504163958}
-        name: name
-      - target: {fileID: 3303791443504163956}
-        name: navigation
-      - target: {fileID: 3303791443504163952}
-        name: offsetMax
-      - target: {fileID: 3303791443504163952}
-        name: offsetMin
-      - target: {fileID: 3303791443504163956}
-        name: onClick
-      - target: {fileID: 3303791443504163959}
-        name: onCullStateChanged
-      - target: {fileID: 3303791443504163959}
-        name: overrideSprite
-      - target: {fileID: 3303791443504163952}
-        name: parent
-      - target: {fileID: 3303791443504163952}
-        name: pivot
-      - target: {fileID: 3303791443504163958}
-        name: popMaterialCount
-      - target: {fileID: 3303791443504163952}
-        name: position
-      - target: {fileID: 3303791443504163959}
-        name: preserveAspect
-      - target: {fileID: 3303791443504163959}
-        name: raycastTarget
-      - target: {fileID: 3303791443504163952}
-        name: right
-      - target: {fileID: 3303791443504163952}
-        name: rotation
-      - target: {fileID: 3303791443504163955}
-        name: runInEditMode
-      - target: {fileID: 3303791443504163959}
-        name: runInEditMode
-      - target: {fileID: 3303791443504163956}
-        name: runInEditMode
-      - target: {fileID: 3303791443504163952}
-        name: sizeDelta
-      - target: {fileID: 3303791443504163959}
-        name: sprite
-      - target: {fileID: 3303791443504163956}
-        name: spriteState
-      - target: {fileID: 3303791443504163955}
-        name: tag
-      - target: {fileID: 3303791443504163953}
-        name: tag
-      - target: {fileID: 3303791443504163954}
-        name: tag
-      - target: {fileID: 3303791443504163952}
-        name: tag
-      - target: {fileID: 3303791443504163956}
-        name: tag
-      - target: {fileID: 3303791443504163958}
-        name: tag
-      - target: {fileID: 3303791443504163959}
-        name: tag
-      - target: {fileID: 3303791443504163956}
-        name: targetGraphic
-      - target: {fileID: 3303791443504163956}
-        name: transition
-      - target: {fileID: 3303791443504163959}
-        name: type
-      - target: {fileID: 3303791443504163952}
-        name: up
-      - target: {fileID: 3303791443504163955}
-        name: useGUILayout
-      - target: {fileID: 3303791443504163956}
-        name: useGUILayout
-      - target: {fileID: 3303791443504163959}
-        name: useGUILayout
-      - target: {fileID: 3303791443504163959}
-        name: useSpriteMesh
-      - target: {fileID: 3303791443504163958}
-        name: add_onRequestRebuild (CanvasRenderer+OnRequestRebuild value)
-      - target: {fileID: 3303791443504163952}
-        name: add_reapplyDrivenProperties (RectTransform+ReapplyDrivenProperties value)
-      - target: {fileID: 3303791443504163959}
-        name: CalculateLayoutInputHorizontal ()
-      - target: {fileID: 3303791443504163959}
-        name: CalculateLayoutInputVertical ()
-      - target: {fileID: 3303791443504163958}
-        name: Clear ()
-      - target: {fileID: 3303791443504163953}
-        name: CreatePrimitive (PrimitiveType type)
-      - target: {fileID: 3303791443504163959}
-        name: CrossFadeAlpha (Single alpha, Single duration, Boolean ignoreTimeScale)
-      - target: {fileID: 3303791443504163959}
-        name: Cull (Rect clipRect, Boolean validRect)
-      - target: {fileID: 3303791443504163952}
-        name: DetachChildren ()
-      - target: {fileID: 3303791443504163958}
-        name: DisableRectClipping ()
-      - target: {fileID: 3303791443504163959}
-        name: DisableSpriteOptimizations ()
-      - target: {fileID: 3303791443504163958}
-        name: EnableRectClipping (Rect rect)
-      - target: {fileID: 3303791443504163952}
-        name: Find (String n)
-      - target: {fileID: 3303791443504163953}
-        name: Find (String name)
-      - target: {fileID: 3303791443504163952}
-        name: FindChild (String n)
-      - target: {fileID: 3303791443504163953}
-        name: FindGameObjectsWithTag (String tag)
-      - target: {fileID: 3303791443504163953}
-        name: FindGameObjectWithTag (String tag)
-      - target: {fileID: 3303791443504163956}
-        name: FindSelectable (Vector3 dir)
-      - target: {fileID: 3303791443504163956}
-        name: FindSelectableOnDown ()
-      - target: {fileID: 3303791443504163956}
-        name: FindSelectableOnLeft ()
-      - target: {fileID: 3303791443504163956}
-        name: FindSelectableOnRight ()
-      - target: {fileID: 3303791443504163956}
-        name: FindSelectableOnUp ()
-      - target: {fileID: 3303791443504163953}
-        name: FindWithTag (String tag)
-      - target: {fileID: 3303791443504163952}
-        name: ForceUpdateRectTransforms ()
-      - target: {fileID: 3303791443504163958}
-        name: GetAlpha ()
-      - target: {fileID: 3303791443504163952}
-        name: GetChild (Int32 index)
-      - target: {fileID: 3303791443504163952}
-        name: GetChildCount ()
-      - target: {fileID: 3303791443504163958}
-        name: GetColor ()
-      - target: {fileID: 3303791443504163952}
-        name: GetEnumerator ()
-      - target: {fileID: 3303791443504163958}
-        name: GetInheritedAlpha ()
-      - target: {fileID: 3303791443504163952}
-        name: GetLocalCorners (Vector3[] fourCornersArray)
-      - target: {fileID: 3303791443504163959}
-        name: GetModifiedMaterial (Material baseMaterial)
-      - target: {fileID: 3303791443504163959}
-        name: GetPixelAdjustedRect ()
-      - target: {fileID: 3303791443504163958}
-        name: GetPopMaterial (Int32 index)
-      - target: {fileID: 3303791443504163952}
-        name: GetSiblingIndex ()
-      - target: {fileID: 3303791443504163952}
-        name: GetWorldCorners (Vector3[] fourCornersArray)
-      - target: {fileID: 3303791443504163959}
-        name: GraphicUpdateComplete ()
-      - target: {fileID: 3303791443504163955}
-        name: Init (Expedition exp)
-      - target: {fileID: 3303791443504163959}
-        name: IsActive ()
-      - target: {fileID: 3303791443504163956}
-        name: IsActive ()
-      - target: {fileID: 3303791443504163952}
-        name: IsChildOf (Transform parent)
-      - target: {fileID: 3303791443504163959}
-        name: IsDestroyed ()
-      - target: {fileID: 3303791443504163956}
-        name: IsDestroyed ()
-      - target: {fileID: 3303791443504163956}
-        name: IsInteractable ()
-      - target: {fileID: 3303791443504163959}
-        name: IsRaycastLocationValid (Vector2 screenPoint, Camera eventCamera)
-      - target: {fileID: 3303791443504163954}
-        name: IsRaycastLocationValid (Vector2 sp, Camera eventCamera)
-      - target: {fileID: 3303791443504163959}
-        name: LayoutComplete ()
-      - target: {fileID: 3303791443504163955}
-        name: NotifyAnimReady ()
-      - target: {fileID: 3303791443504163959}
-        name: OnAfterDeserialize ()
-      - target: {fileID: 3303791443504163959}
-        name: OnBeforeSerialize ()
-      - target: {fileID: 3303791443504163959}
-        name: OnCullingChanged ()
-      - target: {fileID: 3303791443504163956}
-        name: OnDeselect (BaseEventData eventData)
-      - target: {fileID: 3303791443504163956}
-        name: OnMove (AxisEventData eventData)
-      - target: {fileID: 3303791443504163955}
-        name: OnPointerClick (PointerEventData eventData)
-      - target: {fileID: 3303791443504163956}
-        name: OnPointerClick (PointerEventData eventData)
-      - target: {fileID: 3303791443504163956}
-        name: OnPointerDown (PointerEventData eventData)
-      - target: {fileID: 3303791443504163956}
-        name: OnPointerEnter (PointerEventData eventData)
-      - target: {fileID: 3303791443504163956}
-        name: OnPointerExit (PointerEventData eventData)
-      - target: {fileID: 3303791443504163956}
-        name: OnPointerUp (PointerEventData eventData)
-      - target: {fileID: 3303791443504163959}
-        name: OnRebuildRequested ()
-      - target: {fileID: 3303791443504163956}
-        name: OnSelect (BaseEventData eventData)
-      - target: {fileID: 3303791443504163956}
-        name: OnSubmit (BaseEventData eventData)
-      - target: {fileID: 3303791443504163959}
-        name: ParentMaskStateChanged ()
-      - target: {fileID: 3303791443504163959}
-        name: PixelAdjustPoint (Vector2 point)
-      - target: {fileID: 3303791443504163953}
-        name: PlayAnimation (Object animation)
-      - target: {fileID: 3303791443504163959}
-        name: Raycast (Vector2 sp, Camera eventCamera)
-      - target: {fileID: 3303791443504163959}
-        name: Rebuild (CanvasUpdate update)
-      - target: {fileID: 3303791443504163959}
-        name: RecalculateClipping ()
-      - target: {fileID: 3303791443504163959}
-        name: RecalculateMasking ()
-      - target: {fileID: 3303791443504163959}
-        name: RegisterDirtyLayoutCallback (UnityAction action)
-      - target: {fileID: 3303791443504163959}
-        name: RegisterDirtyMaterialCallback (UnityAction action)
-      - target: {fileID: 3303791443504163959}
-        name: RegisterDirtyVerticesCallback (UnityAction action)
-      - target: {fileID: 3303791443504163958}
-        name: remove_onRequestRebuild (CanvasRenderer+OnRequestRebuild value)
-      - target: {fileID: 3303791443504163952}
-        name: remove_reapplyDrivenProperties (RectTransform+ReapplyDrivenProperties
-          value)
-      - target: {fileID: 3303791443504163952}
-        name: RotateAroundLocal (Vector3 axis, Single angle)
-      - target: {fileID: 3303791443504163953}
-        name: SampleAnimation (Object clip, Single time)
-      - target: {fileID: 3303791443504163956}
-        name: Select ()
-      - target: {fileID: 3303791443504163953}
-        name: SetActive (Boolean value)
-      - target: {fileID: 3303791443504163953}
-        name: SetActiveRecursively (Boolean state)
-      - target: {fileID: 3303791443504163959}
-        name: SetAllDirty ()
-      - target: {fileID: 3303791443504163958}
-        name: SetAlpha (Single alpha)
-      - target: {fileID: 3303791443504163958}
-        name: SetAlphaTexture (Texture texture)
-      - target: {fileID: 3303791443504163952}
-        name: SetAsFirstSibling ()
-      - target: {fileID: 3303791443504163952}
-        name: SetAsLastSibling ()
-      - target: {fileID: 3303791443504163959}
-        name: SetClipRect (Rect clipRect, Boolean validRect)
-      - target: {fileID: 3303791443504163958}
-        name: SetColor (Color color)
-      - target: {fileID: 3303791443504163952}
-        name: SetInsetAndSizeFromParentEdge (RectTransform+Edge edge, Single inset,
-          Single size)
-      - target: {fileID: 3303791443504163959}
-        name: SetLayoutDirty ()
-      - target: {fileID: 3303791443504163959}
-        name: SetMaterialDirty ()
-      - target: {fileID: 3303791443504163958}
-        name: SetMesh (Mesh mesh)
-      - target: {fileID: 3303791443504163959}
-        name: SetNativeSize ()
-      - target: {fileID: 3303791443504163958}
-        name: SetPopMaterial (Material material, Int32 index)
-      - target: {fileID: 3303791443504163952}
-        name: SetPositionAndRotation (Vector3 position, Quaternion rotation)
-      - target: {fileID: 3303791443504163952}
-        name: SetSiblingIndex (Int32 index)
-      - target: {fileID: 3303791443504163952}
-        name: SetSizeWithCurrentAnchors (RectTransform+Axis axis, Single size)
-      - target: {fileID: 3303791443504163958}
-        name: SetTexture (Texture texture)
-      - target: {fileID: 3303791443504163959}
-        name: SetVerticesDirty ()
-      - target: {fileID: 3303791443504163959}
-        name: StopAllCoroutines ()
-      - target: {fileID: 3303791443504163955}
-        name: StopAllCoroutines ()
-      - target: {fileID: 3303791443504163956}
-        name: StopAllCoroutines ()
-      - target: {fileID: 3303791443504163953}
-        name: StopAnimation ()
-      - target: {fileID: 3303791443504163959}
-        name: UnregisterDirtyLayoutCallback (UnityAction action)
-      - target: {fileID: 3303791443504163959}
-        name: UnregisterDirtyMaterialCallback (UnityAction action)
-      - target: {fileID: 3303791443504163959}
-        name: UnregisterDirtyVerticesCallback (UnityAction action)
-      mTarget: {fileID: 3303791443504163955}
-      mMethodName: NotifyAnimReady
+      mMethodName: NotifyAnimationFinished
       mParameters: []
       mCached: 0
       oneShot: 0
@@ -3977,7 +3626,7 @@ GameObject:
   - component: {fileID: 3303791443012745527}
   - component: {fileID: 4134596937462778331}
   m_Layer: 10
-  m_Name: Location Image
+  m_Name: Location Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5185,10 +4834,13 @@ MonoBehaviour:
   curGoldImage: {fileID: 3303791443485450573}
   heroIcon: {fileID: 2498298193292931375}
   eventIcon: {fileID: 5781014536270753231}
+  enemyStatusIcon: {fileID: 6721011212162123885}
   locationImage: {fileID: 3303791443012745527}
+  lootIcon: {fileID: 5635638075823049991}
   heroAnim: {fileID: 2498298193292931374}
   eventAnim: {fileID: 5637907592334002133}
   interAnim: {fileID: 1109310122}
+  lootAnim: {fileID: 8185118326827262231}
   heroName: {fileID: 3303791442686992590}
   level: {fileID: 3303791443196581925}
   gold: {fileID: 3303791444209562326}
@@ -5808,6 +5460,565 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3303791444235813551}
   m_CullTransparentMesh: 0
+--- !u!1 &4974955314439251607
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5334619973728319274}
+  - component: {fileID: 8722111134885992641}
+  - component: {fileID: 5635638075823049991}
+  - component: {fileID: 8185118326827262231}
+  - component: {fileID: 2498298191978433184}
+  m_Layer: 10
+  m_Name: Loot Icon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5334619973728319274
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4974955314439251607}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5781014536270753225}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 50, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &8722111134885992641
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4974955314439251607}
+  m_CullTransparentMesh: 0
+--- !u!114 &5635638075823049991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4974955314439251607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 65a745d79cc6b2d48b8b4ef9ff92054f, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!95 &8185118326827262231
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4974955314439251607}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 13a78267d7209234a83a4ac6fe6291bf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2498298191978433184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4974955314439251607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f21cec51927293a439a7d926018447c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedAnimators: []
+  codeEvents:
+    List:
+    - mEventName: 
+      mShowGroup: 1
+      mUpdateEntryList: 0
+      mEntryList:
+      - target: {fileID: 3303791443504163953}
+        name: active
+      - target: {fileID: 3303791443504163954}
+        name: alpha
+      - target: {fileID: 3303791443504163959}
+        name: alphaHitTestMinimumThreshold
+      - target: {fileID: 3303791443504163952}
+        name: anchoredPosition
+      - target: {fileID: 3303791443504163952}
+        name: anchoredPosition3D
+      - target: {fileID: 3303791443504163952}
+        name: anchorMax
+      - target: {fileID: 3303791443504163952}
+        name: anchorMin
+      - target: {fileID: 3303791443504163956}
+        name: animationTriggers
+      - target: {fileID: 3303791443504163954}
+        name: blocksRaycasts
+      - target: {fileID: 3303791443504163959}
+        name: color
+      - target: {fileID: 3303791443504163956}
+        name: colors
+      - target: {fileID: 3303791443504163955}
+        name: consumablesPanel
+      - target: {fileID: 3303791443504163958}
+        name: cull
+      - target: {fileID: 3303791443504163958}
+        name: cullTransparentMesh
+      - target: {fileID: 3303791443504163955}
+        name: curGoldImage
+      - target: {fileID: 3303791443504163955}
+        name: enabled
+      - target: {fileID: 3303791443504163956}
+        name: enabled
+      - target: {fileID: 3303791443504163954}
+        name: enabled
+      - target: {fileID: 3303791443504163959}
+        name: enabled
+      - target: {fileID: 3303791443504163955}
+        name: enemyStatusIcon
+      - target: {fileID: 3303791443504163952}
+        name: eulerAngles
+      - target: {fileID: 3303791443504163959}
+        name: eventAlphaThreshold
+      - target: {fileID: 3303791443504163955}
+        name: eventAnim
+      - target: {fileID: 3303791443504163955}
+        name: eventIcon
+      - target: {fileID: 3303791443504163955}
+        name: expBar
+      - target: {fileID: 3303791443504163955}
+        name: experience
+      - target: {fileID: 3303791443504163959}
+        name: fillAmount
+      - target: {fileID: 3303791443504163959}
+        name: fillCenter
+      - target: {fileID: 3303791443504163959}
+        name: fillClockwise
+      - target: {fileID: 3303791443504163959}
+        name: fillMethod
+      - target: {fileID: 3303791443504163959}
+        name: fillOrigin
+      - target: {fileID: 3303791443504163952}
+        name: forward
+      - target: {fileID: 3303791443504163955}
+        name: gold
+      - target: {fileID: 3303791443504163955}
+        name: goldSprites
+      - target: {fileID: 3303791443504163952}
+        name: hasChanged
+      - target: {fileID: 3303791443504163958}
+        name: hasPopInstruction
+      - target: {fileID: 3303791443504163955}
+        name: health
+      - target: {fileID: 3303791443504163955}
+        name: healthBar
+      - target: {fileID: 3303791443504163955}
+        name: heroAnim
+      - target: {fileID: 3303791443504163955}
+        name: heroIcon
+      - target: {fileID: 3303791443504163955}
+        name: heroImage
+      - target: {fileID: 3303791443504163955}
+        name: heroName
+      - target: {fileID: 3303791443504163956}
+        name: hideFlags
+      - target: {fileID: 3303791443504163954}
+        name: hideFlags
+      - target: {fileID: 3303791443504163955}
+        name: hideFlags
+      - target: {fileID: 3303791443504163959}
+        name: hideFlags
+      - target: {fileID: 3303791443504163953}
+        name: hideFlags
+      - target: {fileID: 3303791443504163952}
+        name: hideFlags
+      - target: {fileID: 3303791443504163958}
+        name: hideFlags
+      - target: {fileID: 3303791443504163952}
+        name: hierarchyCapacity
+      - target: {fileID: 3303791443504163954}
+        name: ignoreParentGroups
+      - target: {fileID: 3303791443504163956}
+        name: image
+      - target: {fileID: 3303791443504163955}
+        name: initBar
+      - target: {fileID: 3303791443504163955}
+        name: initiative
+      - target: {fileID: 3303791443504163954}
+        name: interactable
+      - target: {fileID: 3303791443504163956}
+        name: interactable
+      - target: {fileID: 3303791443504163955}
+        name: interAnim
+      - target: {fileID: 3303791443504163958}
+        name: isMask
+      - target: {fileID: 3303791443504163953}
+        name: isStatic
+      - target: {fileID: 3303791443504163953}
+        name: layer
+      - target: {fileID: 3303791443504163955}
+        name: level
+      - target: {fileID: 3303791443504163952}
+        name: localEulerAngles
+      - target: {fileID: 3303791443504163952}
+        name: localPosition
+      - target: {fileID: 3303791443504163952}
+        name: localRotation
+      - target: {fileID: 3303791443504163952}
+        name: localScale
+      - target: {fileID: 3303791443504163955}
+        name: locationImage
+      - target: {fileID: 3303791443504163955}
+        name: lootAnim
+      - target: {fileID: 3303791443504163955}
+        name: lootIcon
+      - target: {fileID: 3303791443504163955}
+        name: mana
+      - target: {fileID: 3303791443504163955}
+        name: manaBar
+      - target: {fileID: 3303791443504163959}
+        name: maskable
+      - target: {fileID: 3303791443504163959}
+        name: material
+      - target: {fileID: 3303791443504163958}
+        name: materialCount
+      - target: {fileID: 3303791443504163958}
+        name: name
+      - target: {fileID: 3303791443504163955}
+        name: name
+      - target: {fileID: 3303791443504163959}
+        name: name
+      - target: {fileID: 3303791443504163956}
+        name: name
+      - target: {fileID: 3303791443504163953}
+        name: name
+      - target: {fileID: 3303791443504163954}
+        name: name
+      - target: {fileID: 3303791443504163952}
+        name: name
+      - target: {fileID: 3303791443504163956}
+        name: navigation
+      - target: {fileID: 3303791443504163952}
+        name: offsetMax
+      - target: {fileID: 3303791443504163952}
+        name: offsetMin
+      - target: {fileID: 3303791443504163956}
+        name: onClick
+      - target: {fileID: 3303791443504163959}
+        name: onCullStateChanged
+      - target: {fileID: 3303791443504163959}
+        name: overrideSprite
+      - target: {fileID: 3303791443504163952}
+        name: parent
+      - target: {fileID: 3303791443504163952}
+        name: pivot
+      - target: {fileID: 3303791443504163958}
+        name: popMaterialCount
+      - target: {fileID: 3303791443504163952}
+        name: position
+      - target: {fileID: 3303791443504163959}
+        name: preserveAspect
+      - target: {fileID: 3303791443504163959}
+        name: raycastTarget
+      - target: {fileID: 3303791443504163952}
+        name: right
+      - target: {fileID: 3303791443504163952}
+        name: rotation
+      - target: {fileID: 3303791443504163959}
+        name: runInEditMode
+      - target: {fileID: 3303791443504163956}
+        name: runInEditMode
+      - target: {fileID: 3303791443504163955}
+        name: runInEditMode
+      - target: {fileID: 3303791443504163952}
+        name: sizeDelta
+      - target: {fileID: 3303791443504163959}
+        name: sprite
+      - target: {fileID: 3303791443504163956}
+        name: spriteState
+      - target: {fileID: 3303791443504163955}
+        name: tag
+      - target: {fileID: 3303791443504163956}
+        name: tag
+      - target: {fileID: 3303791443504163953}
+        name: tag
+      - target: {fileID: 3303791443504163958}
+        name: tag
+      - target: {fileID: 3303791443504163959}
+        name: tag
+      - target: {fileID: 3303791443504163954}
+        name: tag
+      - target: {fileID: 3303791443504163952}
+        name: tag
+      - target: {fileID: 3303791443504163956}
+        name: targetGraphic
+      - target: {fileID: 3303791443504163956}
+        name: transition
+      - target: {fileID: 3303791443504163959}
+        name: type
+      - target: {fileID: 3303791443504163952}
+        name: up
+      - target: {fileID: 3303791443504163959}
+        name: useGUILayout
+      - target: {fileID: 3303791443504163956}
+        name: useGUILayout
+      - target: {fileID: 3303791443504163955}
+        name: useGUILayout
+      - target: {fileID: 3303791443504163959}
+        name: useSpriteMesh
+      - target: {fileID: 3303791443504163958}
+        name: add_onRequestRebuild (CanvasRenderer+OnRequestRebuild value)
+      - target: {fileID: 3303791443504163952}
+        name: add_reapplyDrivenProperties (RectTransform+ReapplyDrivenProperties value)
+      - target: {fileID: 3303791443504163959}
+        name: CalculateLayoutInputHorizontal ()
+      - target: {fileID: 3303791443504163959}
+        name: CalculateLayoutInputVertical ()
+      - target: {fileID: 3303791443504163958}
+        name: Clear ()
+      - target: {fileID: 3303791443504163953}
+        name: CreatePrimitive (PrimitiveType type)
+      - target: {fileID: 3303791443504163959}
+        name: CrossFadeAlpha (Single alpha, Single duration, Boolean ignoreTimeScale)
+      - target: {fileID: 3303791443504163959}
+        name: Cull (Rect clipRect, Boolean validRect)
+      - target: {fileID: 3303791443504163952}
+        name: DetachChildren ()
+      - target: {fileID: 3303791443504163958}
+        name: DisableRectClipping ()
+      - target: {fileID: 3303791443504163959}
+        name: DisableSpriteOptimizations ()
+      - target: {fileID: 3303791443504163958}
+        name: EnableRectClipping (Rect rect)
+      - target: {fileID: 3303791443504163952}
+        name: Find (String n)
+      - target: {fileID: 3303791443504163953}
+        name: Find (String name)
+      - target: {fileID: 3303791443504163952}
+        name: FindChild (String n)
+      - target: {fileID: 3303791443504163953}
+        name: FindGameObjectsWithTag (String tag)
+      - target: {fileID: 3303791443504163953}
+        name: FindGameObjectWithTag (String tag)
+      - target: {fileID: 3303791443504163956}
+        name: FindSelectable (Vector3 dir)
+      - target: {fileID: 3303791443504163956}
+        name: FindSelectableOnDown ()
+      - target: {fileID: 3303791443504163956}
+        name: FindSelectableOnLeft ()
+      - target: {fileID: 3303791443504163956}
+        name: FindSelectableOnRight ()
+      - target: {fileID: 3303791443504163956}
+        name: FindSelectableOnUp ()
+      - target: {fileID: 3303791443504163953}
+        name: FindWithTag (String tag)
+      - target: {fileID: 3303791443504163952}
+        name: ForceUpdateRectTransforms ()
+      - target: {fileID: 3303791443504163958}
+        name: GetAlpha ()
+      - target: {fileID: 3303791443504163952}
+        name: GetChild (Int32 index)
+      - target: {fileID: 3303791443504163952}
+        name: GetChildCount ()
+      - target: {fileID: 3303791443504163958}
+        name: GetColor ()
+      - target: {fileID: 3303791443504163952}
+        name: GetEnumerator ()
+      - target: {fileID: 3303791443504163958}
+        name: GetInheritedAlpha ()
+      - target: {fileID: 3303791443504163952}
+        name: GetLocalCorners (Vector3[] fourCornersArray)
+      - target: {fileID: 3303791443504163959}
+        name: GetModifiedMaterial (Material baseMaterial)
+      - target: {fileID: 3303791443504163959}
+        name: GetPixelAdjustedRect ()
+      - target: {fileID: 3303791443504163958}
+        name: GetPopMaterial (Int32 index)
+      - target: {fileID: 3303791443504163952}
+        name: GetSiblingIndex ()
+      - target: {fileID: 3303791443504163952}
+        name: GetWorldCorners (Vector3[] fourCornersArray)
+      - target: {fileID: 3303791443504163959}
+        name: GraphicUpdateComplete ()
+      - target: {fileID: 3303791443504163955}
+        name: Init (Expedition exp)
+      - target: {fileID: 3303791443504163959}
+        name: IsActive ()
+      - target: {fileID: 3303791443504163956}
+        name: IsActive ()
+      - target: {fileID: 3303791443504163952}
+        name: IsChildOf (Transform parent)
+      - target: {fileID: 3303791443504163959}
+        name: IsDestroyed ()
+      - target: {fileID: 3303791443504163956}
+        name: IsDestroyed ()
+      - target: {fileID: 3303791443504163956}
+        name: IsInteractable ()
+      - target: {fileID: 3303791443504163959}
+        name: IsRaycastLocationValid (Vector2 screenPoint, Camera eventCamera)
+      - target: {fileID: 3303791443504163954}
+        name: IsRaycastLocationValid (Vector2 sp, Camera eventCamera)
+      - target: {fileID: 3303791443504163959}
+        name: LayoutComplete ()
+      - target: {fileID: 3303791443504163955}
+        name: NotifyAnimationFinished ()
+      - target: {fileID: 3303791443504163959}
+        name: OnAfterDeserialize ()
+      - target: {fileID: 3303791443504163959}
+        name: OnBeforeSerialize ()
+      - target: {fileID: 3303791443504163959}
+        name: OnCullingChanged ()
+      - target: {fileID: 3303791443504163956}
+        name: OnDeselect (BaseEventData eventData)
+      - target: {fileID: 3303791443504163956}
+        name: OnMove (AxisEventData eventData)
+      - target: {fileID: 3303791443504163955}
+        name: OnPointerClick (PointerEventData eventData)
+      - target: {fileID: 3303791443504163956}
+        name: OnPointerClick (PointerEventData eventData)
+      - target: {fileID: 3303791443504163956}
+        name: OnPointerDown (PointerEventData eventData)
+      - target: {fileID: 3303791443504163956}
+        name: OnPointerEnter (PointerEventData eventData)
+      - target: {fileID: 3303791443504163956}
+        name: OnPointerExit (PointerEventData eventData)
+      - target: {fileID: 3303791443504163956}
+        name: OnPointerUp (PointerEventData eventData)
+      - target: {fileID: 3303791443504163959}
+        name: OnRebuildRequested ()
+      - target: {fileID: 3303791443504163956}
+        name: OnSelect (BaseEventData eventData)
+      - target: {fileID: 3303791443504163956}
+        name: OnSubmit (BaseEventData eventData)
+      - target: {fileID: 3303791443504163959}
+        name: ParentMaskStateChanged ()
+      - target: {fileID: 3303791443504163959}
+        name: PixelAdjustPoint (Vector2 point)
+      - target: {fileID: 3303791443504163953}
+        name: PlayAnimation (Object animation)
+      - target: {fileID: 3303791443504163959}
+        name: Raycast (Vector2 sp, Camera eventCamera)
+      - target: {fileID: 3303791443504163959}
+        name: Rebuild (CanvasUpdate update)
+      - target: {fileID: 3303791443504163959}
+        name: RecalculateClipping ()
+      - target: {fileID: 3303791443504163959}
+        name: RecalculateMasking ()
+      - target: {fileID: 3303791443504163959}
+        name: RegisterDirtyLayoutCallback (UnityAction action)
+      - target: {fileID: 3303791443504163959}
+        name: RegisterDirtyMaterialCallback (UnityAction action)
+      - target: {fileID: 3303791443504163959}
+        name: RegisterDirtyVerticesCallback (UnityAction action)
+      - target: {fileID: 3303791443504163958}
+        name: remove_onRequestRebuild (CanvasRenderer+OnRequestRebuild value)
+      - target: {fileID: 3303791443504163952}
+        name: remove_reapplyDrivenProperties (RectTransform+ReapplyDrivenProperties
+          value)
+      - target: {fileID: 3303791443504163952}
+        name: RotateAroundLocal (Vector3 axis, Single angle)
+      - target: {fileID: 3303791443504163953}
+        name: SampleAnimation (Object clip, Single time)
+      - target: {fileID: 3303791443504163956}
+        name: Select ()
+      - target: {fileID: 3303791443504163953}
+        name: SetActive (Boolean value)
+      - target: {fileID: 3303791443504163953}
+        name: SetActiveRecursively (Boolean state)
+      - target: {fileID: 3303791443504163959}
+        name: SetAllDirty ()
+      - target: {fileID: 3303791443504163958}
+        name: SetAlpha (Single alpha)
+      - target: {fileID: 3303791443504163958}
+        name: SetAlphaTexture (Texture texture)
+      - target: {fileID: 3303791443504163952}
+        name: SetAsFirstSibling ()
+      - target: {fileID: 3303791443504163952}
+        name: SetAsLastSibling ()
+      - target: {fileID: 3303791443504163959}
+        name: SetClipRect (Rect clipRect, Boolean validRect)
+      - target: {fileID: 3303791443504163958}
+        name: SetColor (Color color)
+      - target: {fileID: 3303791443504163952}
+        name: SetInsetAndSizeFromParentEdge (RectTransform+Edge edge, Single inset,
+          Single size)
+      - target: {fileID: 3303791443504163959}
+        name: SetLayoutDirty ()
+      - target: {fileID: 3303791443504163959}
+        name: SetMaterialDirty ()
+      - target: {fileID: 3303791443504163958}
+        name: SetMesh (Mesh mesh)
+      - target: {fileID: 3303791443504163959}
+        name: SetNativeSize ()
+      - target: {fileID: 3303791443504163958}
+        name: SetPopMaterial (Material material, Int32 index)
+      - target: {fileID: 3303791443504163952}
+        name: SetPositionAndRotation (Vector3 position, Quaternion rotation)
+      - target: {fileID: 3303791443504163952}
+        name: SetSiblingIndex (Int32 index)
+      - target: {fileID: 3303791443504163952}
+        name: SetSizeWithCurrentAnchors (RectTransform+Axis axis, Single size)
+      - target: {fileID: 3303791443504163958}
+        name: SetTexture (Texture texture)
+      - target: {fileID: 3303791443504163959}
+        name: SetVerticesDirty ()
+      - target: {fileID: 3303791443504163959}
+        name: StopAllCoroutines ()
+      - target: {fileID: 3303791443504163955}
+        name: StopAllCoroutines ()
+      - target: {fileID: 3303791443504163956}
+        name: StopAllCoroutines ()
+      - target: {fileID: 3303791443504163953}
+        name: StopAnimation ()
+      - target: {fileID: 3303791443504163959}
+        name: UnregisterDirtyLayoutCallback (UnityAction action)
+      - target: {fileID: 3303791443504163959}
+        name: UnregisterDirtyMaterialCallback (UnityAction action)
+      - target: {fileID: 3303791443504163959}
+        name: UnregisterDirtyVerticesCallback (UnityAction action)
+      mTarget: {fileID: 3303791443504163955}
+      mMethodName: NotifyAnimationFinished
+      mParameters: []
+      mCached: 0
+      oneShot: 0
 --- !u!1 &5781014536270753226
 GameObject:
   m_ObjectHideFlags: 0
@@ -5837,7 +6048,9 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 5334619973728319274}
+  - {fileID: 6225696669745498243}
   m_Father: {fileID: 3303791443012745524}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

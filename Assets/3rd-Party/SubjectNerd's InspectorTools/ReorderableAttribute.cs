@@ -36,7 +36,7 @@ namespace SubjectNerd.Utilities
         /// Display a List/Array as a sortable list in the inspector
         /// </summary>
         /// <param name="useNameFromSO">Name array element in inspector based on SO name</param>
-        /// <param name="nestedPath">1-depth path to property with target SO</param>
+        /// <param name="nestedPath">x.y.z path to SO</param>
         public ReorderableAttribute(bool useNameFromSO = false, string nestedPath = "")
 		{
 			this.useNameFromSO = useNameFromSO;

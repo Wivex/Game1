@@ -5,10 +5,12 @@ using Random = UnityEngine.Random;
 
 public enum AnimationTrigger
 {
+    HeroTravelling,
     BeginEncounter,
     EndEncounter,
-    AnimationEnded,
-    HeroTravelling
+    RequiredAnimationEnded,
+    StartTransferLoot,
+    StopTransferLoot
 }
 
 public class Expedition
@@ -59,13 +61,13 @@ public class Expedition
         return false;
     }
 
-    public void UpdateSituations()
+    public void UpdateSituation()
     {
         if (situation == null)
             InitTravellingSituation();
-        else if (GraceTimePassed() && situation.resolved)
+        else if (GraceTimePassed() && situation.state == SituationState.Resolved)
             TryNewSituation();
-        else if (situation.animPrepared)
+        else if (situation.state == SituationState.Progressing)
             situation.Update();
     }
 

@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Hero_encounter
+  m_Name: HeroEncounter
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -774,9 +774,9 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 2
-    functionName: RunAnimationFinishedEvents
+    functionName: RunCodeEvents
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 0
+    intParameter: 3
     messageOptions: 0

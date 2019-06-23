@@ -93,9 +93,11 @@
     <Compile Include="Assets\Resources\ContentData.cs" />
     <Compile Include="Assets\Resources\Items\Consumables\Consumable.cs" />
     <Compile Include="Assets\Resources\Items\Consumables\ConsumableData.cs" />
+    <Compile Include="Assets\Resources\Items\Equipment\Equipment.cs" />
     <Compile Include="Assets\Resources\Items\Equipment\EquipmentData.cs" />
+    <Compile Include="Assets\Resources\Items\Item.cs" />
     <Compile Include="Assets\Resources\Items\ItemData.cs" />
-    <Compile Include="Assets\Resources\Items\Loot.cs" />
+    <Compile Include="Assets\Resources\Items\LootData.cs" />
     <Compile Include="Assets\Resources\Locations\LocationData.cs" />
     <Compile Include="Assets\Resources\Units\Enemies\Enemy.cs" />
     <Compile Include="Assets\Resources\Units\Enemies\EnemyData.cs" />

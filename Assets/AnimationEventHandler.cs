@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 public class AnimationEventHandler : MonoBehaviour
 {
-    public Animator[] targetAnimators;
-    public ReorderableEventList animationFinishedEvents;
+    public Animator[] linkedAnimators;
+    public ReorderableEventList codeEvents;
 
     Animator anim;
 
@@ -17,28 +17,20 @@ public class AnimationEventHandler : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    public void InformThatAnimating()
+    public void TriggerLinkedAnimators(AnimationTrigger trigger)
     {
-        foreach (var anim in targetAnimators)
+        foreach (var anim in linkedAnimators)
         {
-            anim.SetBool("animating", true);
+            anim.SetTrigger(trigger.ToString());
         }
     }
 
-    public void InformThatNotAnimating()
+    public void RunCodeEvents()
     {
-        foreach (var anim in targetAnimators)
-        {
-            anim.SetBool("animating", false);
-        }
+        EventDelegate.Execute(codeEvents.List);
     }
 
-    public void RunAnimationFinishedEvents()
-    {
-        EventDelegate.Execute(animationFinishedEvents.List);
-    }
-
-    public void PauseAnimationFor(float sec)
+    public void PauseAnimationForSecs(float sec)
     {
         StartCoroutine(PauseCour(sec));
     }

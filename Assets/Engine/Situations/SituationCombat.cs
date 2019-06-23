@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -8,6 +9,10 @@ public class SituationCombat : Situation
     public Hero hero;
     public Enemy enemy;
     public Unit actor, target;
+
+    bool looting;
+
+    List<ItemData> lootDrops;
 
     public SituationCombat(Expedition expedition, List<EnemySpawnChance> enemies) : base(expedition)
     {
@@ -123,13 +128,56 @@ public class SituationCombat : Situation
 
     public void Kill(Hero hero)
     {
-        // TODO: wait to cart items
+        // TODO: implement
     }
 
     public void Kill(Enemy enemy)
     {
-        // set killed animation
-        // loot transfer
-        // give exp
+        if (!looting)
+        {
+            // show "dead" status icon
+            expedition.expPreviewPanel.enemyStatusIcon.enabled = true;
+            // set up item transfer animation
+            looting = true;
+            // lock situation Updater until animation ends
+            state = SituationState.BusyAnimating;
+            SpawnLoot();
+            // start cycles of loot transfer
+            expedition.expPreviewPanel.lootAnim.SetTrigger(AnimationTrigger.StartTransferLoot.ToString());
+            // make combat icon disappear
+            expedition.expPreviewPanel.interAnim.SetTrigger(AnimationTrigger.EndEncounter.ToString());
+        }
+
+        // loot transfer process (run before each cycle)
+        if (lootDrops.Count > 0)
+        {
+            var loot = lootDrops.FirstOrDefault();
+            expedition.expPreviewPanel.lootIcon.sprite = loot.icon;
+            lootDrops.Remove(loot);
+        }
+        else
+        {
+            looting = false;
+            state = SituationState.Resolved;
+            // stop animating item transfer
+            expedition.expPreviewPanel.lootAnim.SetTrigger(AnimationTrigger.StartTransferLoot.ToString());
+            // hero continue travelling
+            expedition.expPreviewPanel.heroAnim.SetTrigger(AnimationTrigger.EndEncounter.ToString());
+            // hide enemy icon
+            expedition.expPreviewPanel.eventAnim.SetTrigger(AnimationTrigger.EndEncounter.ToString());
+            // hide "dead" status icon
+            expedition.expPreviewPanel.enemyStatusIcon.enabled = false;
+        }
+    }
+
+    public void SpawnLoot()
+    {
+        lootDrops = new List<ItemData>();
+        foreach (var loot in enemy.enemyData.lootTable)
+        {
+            // TODO: add stack count implementation
+            if (Random.value < loot.dropChance)
+                lootDrops.Add(loot.item);
+        }
     }
 }

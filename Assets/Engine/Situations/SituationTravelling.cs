@@ -3,7 +3,7 @@
     public SituationTravelling(Expedition expedition) : base(expedition)
     {
         type = SituationType.Travelling;
-        resolved = true;
+        state = SituationState.Resolved;
     }
 
     public override void Update()

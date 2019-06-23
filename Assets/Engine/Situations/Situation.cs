@@ -7,16 +7,26 @@ public enum SituationType
     ObjectEncounter
 }
 
+public enum SituationState
+{
+    Preparation,
+    Progressing,
+    BusyAnimating,
+    Resolved
+}
+
 public abstract class Situation
 {
     public Expedition expedition;
     public SituationType type;
     public RectTransform expSituationPanel;
-    public bool resolved, animPrepared;
+
+    internal SituationState state;
 
     protected Situation(Expedition expedition)
     {
         this.expedition = expedition;
+        state = SituationState.Preparation;
     }
 
     public abstract void Update();

@@ -10,7 +10,7 @@ public enum LootAmountType
 }
 
 [Serializable]
-public class Loot
+public class LootData
 {
     [Range(0,1)]
     public float dropChance;

@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public int minGracePeriod = 4;
 
     // global initiative accumulation speed
-    internal float combatSpeed = 0.75f;
+    internal float combatSpeed = 0.075f;
     internal float oldCombatSpeed;
 
     readonly string[] heroNames = { "Peter", "Ron", "John", "Bob" };
@@ -58,6 +58,6 @@ public class GameManager : MonoBehaviour
     void Update()
     {   
         foreach (var expedition in expeditions.Values)
-            expedition.UpdateSituations();
+            expedition.UpdateSituation();
     }
 }

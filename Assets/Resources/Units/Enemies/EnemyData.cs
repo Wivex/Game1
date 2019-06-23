@@ -9,7 +9,7 @@ public class EnemyData : UnitData
     public float spawnChance;
     public int spawnInterval;
     [Reorderable(true, "item")]
-    public List<Loot> lootTable;
+    public List<LootData> lootTable;
 
     // TODO: optimize, to avoid sorting all objects each validation
     // sort ascending by drop chance, for easier loot spawning
