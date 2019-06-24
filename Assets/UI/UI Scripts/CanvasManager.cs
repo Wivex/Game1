@@ -7,8 +7,8 @@ public class CanvasManager : MonoBehaviour
     [Disabled]
     public List<Canvas> canvases = new List<Canvas>();
 
-    public List<Canvas> defaultActiveCanvases;
-    public List<Canvas> alwaysActiveCanvases = new List<Canvas>();
+    public Canvas defaultCanvas;
+    public List<Canvas> staticCanvases = new List<Canvas>();
 
     /// <summary>
     /// automatically put direct children of this object (1 depth) into canvases list
@@ -30,8 +30,7 @@ public class CanvasManager : MonoBehaviour
         //set enabled status for canvases
         foreach (var canvas in canvases)
         {
-            canvas.enabled = alwaysActiveCanvases.Contains(canvas) ||
-                             defaultActiveCanvases.Contains(canvas);
+            canvas.enabled = staticCanvases.Contains(canvas) || canvas == defaultCanvas;
         }
     }
 
@@ -39,28 +38,7 @@ public class CanvasManager : MonoBehaviour
     {
         foreach (var canvas in canvases)
         {
-            if (canvas == selectedCanvas || alwaysActiveCanvases.Contains(canvas))
-                canvas.enabled = true;
-            else
-                canvas.enabled = false;
-        }
-    }
-
-    public void AddCanvasesToDefaultActive(params Canvas[] selectedCanvases)
-    {
-        foreach (var canvas in selectedCanvases)
-        {
-            defaultActiveCanvases.Add(canvas);
-            canvas.enabled = true;
-        }
-    }
-
-    public void AddCanvasesToAlwaysActive(params Canvas[] selectedCanvases)
-    {
-        foreach (var canvas in selectedCanvases)
-        {
-            alwaysActiveCanvases.Add(canvas);
-            canvas.enabled = true;
+            canvas.enabled = canvas == selectedCanvas || staticCanvases.Contains(canvas);
         }
     }
 }

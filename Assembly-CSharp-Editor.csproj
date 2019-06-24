@@ -64,6 +64,7 @@
     <Compile Include="Assets\3rd-Party\SubjectNerd's InspectorTools\Editor\SerializedPropExtension.cs" />
     <Compile Include="Assets\Editor\CopyAssetPathContextMenu.cs" />
     <Compile Include="Assets\Editor\CustomPropertyDrawers.cs" />
+    <Compile Include="Assets\Editor\uGUITools.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

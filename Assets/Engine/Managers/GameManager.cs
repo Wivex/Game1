@@ -11,15 +11,20 @@ public class GameManager : MonoBehaviour
     public static float combatSpeed = 0.05f;
     public static float oldCombatSpeed;
 
-    public void StartNewExpedition()
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
+    public void InitExpedition()
     {
         var hero = new Hero("Oswald");
         heroes.Add(hero);
-        StartNewExpedition(hero);
+        InitExpedition(hero);
     }
 
     // TODO: clean up assignment
-    public void StartNewExpedition(Hero hero)
+    public void InitExpedition(Hero hero)
     {
         var expedition = new Expedition(expPanel, hero, LocationType.Dungeon);
         expeditions.Add(hero, expedition);
