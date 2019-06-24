@@ -33,10 +33,9 @@ public class Expedition
         hero.unitDetailsIcon = UIManager.instance.expPanelDrawer.detailsPanelDrawer.heroPanel.unitImage.transform;
         this.destination = destination;
         curLocation = Resources.Load<LocationData>("Locations/Forest/Forest");
-        ResetTimers();
     }
 
-    public void ResetTimers()
+    public void ResetGraceTimers()
     {
         lastSituationRealTime = DateTime.Now;
         lastSituationInGameTimer = GameManager.instance.minGracePeriod;
@@ -54,7 +53,7 @@ public class Expedition
         if ((DateTime.Now - lastSituationRealTime).TotalSeconds > GameManager.instance.minGracePeriod &&
             lastSituationInGameTimer < 0)
         {
-            ResetTimers();
+            ResetGraceTimers();
             return true;
         }
 

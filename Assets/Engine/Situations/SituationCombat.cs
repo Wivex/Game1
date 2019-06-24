@@ -153,14 +153,16 @@ public class SituationCombat : Situation
         {
             var loot = lootDrops.FirstOrDefault();
             expedition.expPreviewPanel.lootIcon.sprite = loot.icon;
+            // lock situation Updater until animation ends
+            state = SituationState.BusyAnimating;
             lootDrops.Remove(loot);
         }
         else
         {
-            looting = false;
-            state = SituationState.Resolved;
+            // lock situation Updater until animation ends
+            state = SituationState.BusyAnimating;
             // stop animating item transfer
-            expedition.expPreviewPanel.lootAnim.SetTrigger(AnimationTrigger.StartTransferLoot.ToString());
+            expedition.expPreviewPanel.lootAnim.SetTrigger(AnimationTrigger.StopTransferLoot.ToString());
             // hero continue travelling
             expedition.expPreviewPanel.heroAnim.SetTrigger(AnimationTrigger.EndEncounter.ToString());
             // hide enemy icon

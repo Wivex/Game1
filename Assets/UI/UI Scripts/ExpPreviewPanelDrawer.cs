@@ -70,6 +70,14 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
         exp.situation.state = SituationState.Progressing;
     }
 
+    public void NotifySituationResolved()
+    {
+        // NOTE: special case hack
+        if (exp.situation.type != SituationType.Travelling)
+            exp.situation.state = SituationState.Resolved;
+        exp.ResetGraceTimers();
+    }
+
     //update UI panels
     void LateUpdate()
     {

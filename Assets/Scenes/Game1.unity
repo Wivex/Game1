@@ -2529,9 +2529,8 @@ MonoBehaviour:
   - {fileID: 2114174948}
   - {fileID: 1899172359}
   - {fileID: 518801844}
-  defaultActiveCanvases:
-  - {fileID: 518801844}
-  alwaysActiveCanvases: []
+  defaultCanvas: {fileID: 0}
+  staticCanvases: []
 --- !u!114 &116656007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15770,9 +15769,8 @@ MonoBehaviour:
   canvases:
   - {fileID: 1059448245}
   - {fileID: 1448500113}
-  defaultActiveCanvases:
-  - {fileID: 1448500113}
-  alwaysActiveCanvases: []
+  defaultCanvas: {fileID: 1448500113}
+  staticCanvases: []
 --- !u!224 &937369510
 RectTransform:
   m_ObjectHideFlags: 0
@@ -34283,8 +34281,9 @@ MonoBehaviour:
   - {fileID: 1049159389}
   - {fileID: 664696544}
   - {fileID: 647258249}
-  defaultActiveCanvases: []
-  alwaysActiveCanvases: []
+  defaultCanvas: {fileID: 1737913113}
+  staticCanvases:
+  - {fileID: 664696544}
 --- !u!114 &1899172363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38020,9 +38019,8 @@ MonoBehaviour:
   - {fileID: 875964836}
   - {fileID: 116656010}
   - {fileID: 2114174948}
-  defaultActiveCanvases:
-  - {fileID: 116656010}
-  alwaysActiveCanvases: []
+  defaultCanvas: {fileID: 0}
+  staticCanvases: []
 --- !u!223 &2104314536
 Canvas:
   m_ObjectHideFlags: 0

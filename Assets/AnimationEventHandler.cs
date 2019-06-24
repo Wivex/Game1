@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UIEventDelegate;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,6 +29,11 @@ public class AnimationEventHandler : MonoBehaviour
     public void RunCodeEvents()
     {
         EventDelegate.Execute(codeEvents.List);
+    }
+
+    public void RunSpecificCodeEvent(int index)
+    {
+        codeEvents.List[index].Execute();
     }
 
     public void PauseAnimationForSecs(float sec)
