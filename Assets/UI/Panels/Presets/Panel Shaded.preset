@@ -3,8 +3,9 @@
 --- !u!181963792 &2655988077585873504
 Preset:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: Panel Shaded
   m_TargetType:
     m_NativeTypeID: 114
@@ -19,10 +20,6 @@ Preset:
   - target: {fileID: 0}
     propertyPath: m_EditorHideFlags
     value: 0
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: m_Name
-    value: 
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_EditorClassIdentifier
@@ -50,7 +47,7 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_RaycastTarget
-    value: 1
+    value: 0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_OnCullStateChanged.m_PersistentCalls.m_Calls.Array.size
@@ -91,5 +88,9 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_FillOrigin
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_UseSpriteMesh
     value: 0
     objectReference: {fileID: 0}

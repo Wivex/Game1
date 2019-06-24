@@ -29,31 +29,18 @@ namespace SubjectNerd.Utilities
 	/// </summary>
 	public class ReorderableAttribute : PropertyAttribute
 	{
-		public string ElementHeader { get; protected set; }
-		public bool HeaderZeroIndex { get; protected set; }
-		public bool ElementSingleLine { get; protected set; }
+	    public bool useNameFromSO;
+        public string nestedPath;
 
-		/// <summary>
-		/// Display a List/Array as a sortable list in the inspector
-		/// </summary>
-		public ReorderableAttribute()
+        /// <summary>
+        /// Display a List/Array as a sortable list in the inspector
+        /// </summary>
+        /// <param name="useNameFromSO">Name array element in inspector based on SO name</param>
+        /// <param name="nestedPath">x.y.z path to SO</param>
+        public ReorderableAttribute(bool useNameFromSO = false, string nestedPath = "")
 		{
-			ElementHeader = string.Empty;
-			HeaderZeroIndex = false;
-			ElementSingleLine = false;
-		}
-
-		/// <summary>
-		/// Display a List/Array as a sortable list in the inspector
-		/// </summary>
-		/// <param name="headerString">Customize the element name in the inspector</param>
-		/// <param name="isZeroIndex">If false, start element list count from 1</param>
-		/// <param name="isSingleLine">Try to fit the array elements in a single line</param>
-		public ReorderableAttribute(string headerString = "", bool isZeroIndex = true, bool isSingleLine = false)
-		{
-			ElementHeader = headerString;
-			HeaderZeroIndex = isZeroIndex;
-			ElementSingleLine = isSingleLine;
-		}
+			this.useNameFromSO = useNameFromSO;
+		    this.nestedPath = nestedPath;
+        }
 	}
 }

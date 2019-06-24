@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class UnitPanelDrawer : MonoBehaviour
 {
-    [Header("Unit")]
     protected Unit unit;
 
     protected Canvas canvas;
@@ -26,7 +25,6 @@ public class UnitPanelDrawer : MonoBehaviour
         initiative;
 
     public Slider healthBar, manaBar, initBar;
-    public FloatingText floatingTextPrefab;
 
     Image[] effects,
         abilities;

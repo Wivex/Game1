@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Profiling;
 
 public class HeroPanelDrawer : UnitPanelDrawer
 {
@@ -24,6 +25,7 @@ public class HeroPanelDrawer : UnitPanelDrawer
 
     public Slider expBar;
 
+    // used to auto fill-in data in editor
     protected override void OnValidate()
     {
         base.OnValidate();
@@ -53,6 +55,8 @@ public class HeroPanelDrawer : UnitPanelDrawer
     protected override void Update()
     {
         if (!canvas.enabled) return;
+
+        Profiler.BeginSample("My Sample");
 
         base.Update();
 
@@ -119,5 +123,7 @@ public class HeroPanelDrawer : UnitPanelDrawer
                 consumablesCharges[i].text = hero.consumables[i].curCharges.ToString();
             }
         }
+
+        Profiler.EndSample();
     }
 }

@@ -4,7 +4,15 @@ public enum SituationType
 {
     Travelling,
     EnemyEncounter,
-    POIEncounter
+    ObjectEncounter
+}
+
+public enum SituationState
+{
+    Preparation,
+    Progressing,
+    BusyAnimating,
+    Resolved
 }
 
 public abstract class Situation
@@ -12,11 +20,13 @@ public abstract class Situation
     public Expedition expedition;
     public SituationType type;
     public RectTransform expSituationPanel;
-    public bool readyForNewSituation;
+
+    internal SituationState state;
 
     protected Situation(Expedition expedition)
     {
         this.expedition = expedition;
+        state = SituationState.Preparation;
     }
 
     public abstract void Update();

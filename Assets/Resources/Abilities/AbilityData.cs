@@ -7,6 +7,6 @@ public class AbilityData : ContentData
 {
     [Header("Ability")]
     public int cooldown;
-    [Reorderable("Effect")]
+    [Reorderable(true)]
     public List<Effect> effects;
 }

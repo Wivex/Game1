@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SubjectNerd.Utilities;
 using UnityEngine;
 
 public enum LocationType
@@ -12,7 +13,21 @@ public class LocationData : ContentData
 {
     [Header("Location")]
     //public LocationType type;
+    [Reorderable]
     public List<SituationChanceToOccur> situations;
+    [Reorderable]
     public List<EnemySpawnChance> enemies;
+    [Reorderable]
     public List<PoiSpawnChance> pointsOfInterest;
+    
+    // TODO: optimize, to avoid sorting all objects each validation
+    // sort ascending by spawn chance, for easier spawning
+    void OnEnable()
+    {
+        situations.Sort((x, y) => y.chance.CompareTo(x.chance));
+        situations.Reverse();
+
+        enemies.Sort((x, y) => y.chance.CompareTo(x.chance));
+        enemies.Reverse();
+    }
 }

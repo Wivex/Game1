@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-public abstract class ContentData : ScriptableObject
+public class ContentData : ScriptableObject
 {
-    public new string name;
     public Sprite icon;
 }

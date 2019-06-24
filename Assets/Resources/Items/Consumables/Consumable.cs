@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 
 [Serializable]
-public class Consumable
+public class Consumable : Item
 {
     public ConsumableData consumableData;
     public int curCharges;

@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [Serializable]
 public class Enemy : Unit
 {
-    EnemyPanelDrawer enemyPanel;
     [Header("Enemy")] public EnemyData enemyData;
 
     public Enemy(EnemyData data)
@@ -15,18 +16,6 @@ public class Enemy : Unit
         tacticsPreset = data.tacticsPreset;
         SetAbilities();
         SetStats();
-    }
-
-    public override UnitPanelDrawer unitPanel
-    {
-        get
-        {
-            var expedition =
-                GameManager.expeditions.Values.FirstOrDefault(exp =>
-                    exp.situation.type == SituationType.EnemyEncounter &&
-                    (exp.situation as SituationCombat)?.enemy == this);
-            return expedition?.expPanel.situationPanel.enemyPanel;
-        }
     }
 
     public override void SetStats()

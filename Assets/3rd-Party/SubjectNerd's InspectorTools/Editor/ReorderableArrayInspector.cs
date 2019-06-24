@@ -465,77 +465,32 @@ namespace SubjectNerd.Utilities
 			}
 		}
 
-		private void HandleReorderableOptions(ReorderableAttribute arrayAttr, SerializedProperty property, SortableListData data)
-		{
-			// Custom element header
-			if (string.IsNullOrEmpty(arrayAttr.ElementHeader) == false)
-			{
-				data.ElementHeaderCallback = i => string.Format("{0} {1}", arrayAttr.ElementHeader, (arrayAttr.HeaderZeroIndex ? i : i + 1));
-			}
+	    private void HandleReorderableOptions(ReorderableAttribute arrayAttr, SerializedProperty property,
+	        SortableListData data)
+	    {
+	        // Custom element header
+	        if (arrayAttr.useNameFromSO)
+	        {
+	            data.ElementHeaderCallback = i => $"{GetTitle(property, arrayAttr, i)}";
+	        }
+	    }
 
-			// Draw property as single line
-			if (arrayAttr.ElementSingleLine)
-			{
-				var list = data.GetPropertyList(property);
-#if UNITY_5_3_OR_NEWER
-				list.elementHeightCallback = index => EditorGUIUtility.singleLineHeight + 6;
-				list.drawElementBackgroundCallback = (rect, index, active, focused) =>
-				{
-					if (focused == false)
-						return;
-					if (styleHighlight == null)
-						styleHighlight = GUI.skin.FindStyle("MeTransitionSelectHead");
-					GUI.Box(rect, GUIContent.none, styleHighlight);
-				};
-#endif
 
-				list.drawElementCallback = (rect, index, active, focused) =>
-				{
-					var element = property.GetArrayElementAtIndex(index);
-					element.isExpanded = false;
+	    private string GetTitle(SerializedProperty property, ReorderableAttribute arrayAttr, int index)
+	    {
+	        var elemPropertyPath = arrayAttr.nestedPath != string.Empty
+	            ? $"{property.propertyPath}.Array.data[{index}].{arrayAttr.nestedPath}"
+	            : $"{property.propertyPath}.Array.data[{index}]";
+            var elemProperty = property.serializedObject.FindProperty(elemPropertyPath);
+	        return elemProperty.objectReferenceValue != null ? elemProperty.objectReferenceValue.name : string.Empty;
+	    }
 
-					int childCount = data.GetElementCount(property);
-					if (childCount < 1)
-						return;
-
-					rect.y += 3;
-					rect.height -= 6;
-
-					if (element.NextVisible(true))
-					{
-						float restoreWidth = EditorGUIUtility.labelWidth;
-						EditorGUIUtility.labelWidth /= childCount;
-
-						float padding = 5f;
-						float width = rect.width - padding * (childCount - 1);
-						width /= childCount;
-
-						Rect childRect = new Rect(rect) { width = width };
-						int depth = element.Copy().depth;
-						do
-						{
-							if (element.depth != depth)
-								break;
-
-							if (childCount <= 2)
-								EditorGUI.PropertyField(childRect, element, false);
-							else
-								EditorGUI.PropertyField(childRect, element, GUIContent.none, false);
-							childRect.x += width + padding;
-						} while (element.NextVisible(false));
-
-						EditorGUIUtility.labelWidth = restoreWidth;
-					}
-				};
-			}
-		}
-
-		/// <summary>
-		/// Given a SerializedProperty, return the automatic ReorderableList assigned to it if any
-		/// </summary>
-		/// <param name="property"></param>
-		/// <returns></returns>
-		protected ReorderableList GetSortableList(SerializedProperty property)
+	    /// <summary>
+        /// Given a SerializedProperty, return the automatic ReorderableList assigned to it if any
+        /// </summary>
+        /// <param name="property"></param>
+        /// <returns></returns>
+        protected ReorderableList GetSortableList(SerializedProperty property)
 		{
 			if (listIndex.Count == 0)
 				return null;

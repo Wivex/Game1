@@ -31,15 +31,6 @@ public class Hero : Unit
         SetStats();
     }
 
-    public override UnitPanelDrawer unitPanel
-    {
-        get
-        {
-            var expedition = GameManager.expeditions[this];
-            return expedition.expPanel.situationPanel.heroPanel;
-        }
-    }
-
     public override void SetStats()
     {
         stats[(int) StatType.Health].BaseValue = classData.classLevels[level].stats.health;

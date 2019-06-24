@@ -7,6 +7,6 @@ public class ConsumableData : ItemData
 {
     [Header("Consumable")]
     public int charges;
-    [Reorderable("Effect")]
+    [Reorderable]
     public List<Effect> effects;
 }

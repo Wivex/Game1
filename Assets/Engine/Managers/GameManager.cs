@@ -3,37 +3,61 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public ExpeditionPanelDrawer expPanel;
+    public static GameManager instance;
 
     public static List<Unit> heroes = new List<Unit>();
     public static Dictionary<Hero, Expedition> expeditions = new Dictionary<Hero, Expedition>();
 
-    public static float combatSpeed = 0.05f;
-    public static float oldCombatSpeed;
+    [Header("Expedition Settings")]
+    [Tooltip("Minimal time in seconds between situations")]
+    public int minGracePeriod = 4;
 
-    public void Quit()
+    // global initiative accumulation speed
+    internal float combatSpeed = 0.075f;
+    internal float oldCombatSpeed;
+
+    readonly string[] heroNames = { "Peter", "Ron", "John", "Bob" };
+    int freeNameIndex;
+
+    //default initialization of Singleton instance
+    void Awake()
     {
-        Application.Quit();
+        //Check if instance already exists
+        if (instance == null)
+            //if not, set instance to this
+            instance = this;
+        //If instance already exists and it's not this:
+        else if (instance != this)
+            //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of it.
+            Destroy(gameObject);
+
+        //Sets this to not be destroyed when reloading scene
+        DontDestroyOnLoad(gameObject);
     }
 
-    public void InitExpedition()
+    public string NewName()
     {
-        var hero = new Hero("Oswald");
+        if (freeNameIndex == heroNames.Length)
+            freeNameIndex = 0;
+        return heroNames[freeNameIndex++];
+    }
+
+    public void StartNewExpedition()
+    {
+        var hero = new Hero(NewName());
         heroes.Add(hero);
-        InitExpedition(hero);
+        StartNewExpedition(hero);
     }
 
-    // TODO: clean up assignment
-    public void InitExpedition(Hero hero)
+    public void StartNewExpedition(Hero hero)
     {
-        var expedition = new Expedition(expPanel, hero, LocationType.Dungeon);
-        expeditions.Add(hero, expedition);
-        expPanel.situationPanel.heroPanel.Init(hero);
+        var exp = new Expedition(hero, LocationType.Forest);
+        expeditions.Add(hero, exp);
     }
 
-    void FixedUpdate()
-    {
+    void Update()
+    {   
         foreach (var expedition in expeditions.Values)
-            expedition.UpdateSituations();
+            expedition.UpdateSituation();
     }
 }
