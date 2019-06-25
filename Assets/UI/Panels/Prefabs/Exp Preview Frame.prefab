@@ -1943,7 +1943,7 @@ MonoBehaviour:
   - {fileID: 1109310122}
   codeEvents:
     List:
-    - mEventName: notify animation finished
+    - mEventName: try start new situation
       mShowGroup: 1
       mUpdateEntryList: 0
       mEntryList:
@@ -2272,7 +2272,7 @@ MonoBehaviour:
       - target: {fileID: 3303791443504163959}
         name: LayoutComplete ()
       - target: {fileID: 3303791443504163955}
-        name: NotifyAnimationFinished ()
+        name: NotifyAnimationEnded ()
       - target: {fileID: 3303791443504163955}
         name: NotifySituationResolved ()
       - target: {fileID: 3303791443504163959}
@@ -2375,14 +2375,16 @@ MonoBehaviour:
         name: SetTexture (Texture texture)
       - target: {fileID: 3303791443504163959}
         name: SetVerticesDirty ()
-      - target: {fileID: 3303791443504163956}
-        name: StopAllCoroutines ()
       - target: {fileID: 3303791443504163955}
         name: StopAllCoroutines ()
       - target: {fileID: 3303791443504163959}
         name: StopAllCoroutines ()
+      - target: {fileID: 3303791443504163956}
+        name: StopAllCoroutines ()
       - target: {fileID: 3303791443504163953}
         name: StopAnimation ()
+      - target: {fileID: 3303791443504163955}
+        name: TryNewSituation ()
       - target: {fileID: 3303791443504163959}
         name: UnregisterDirtyLayoutCallback (UnityAction action)
       - target: {fileID: 3303791443504163959}
@@ -2390,11 +2392,11 @@ MonoBehaviour:
       - target: {fileID: 3303791443504163959}
         name: UnregisterDirtyVerticesCallback (UnityAction action)
       mTarget: {fileID: 3303791443504163955}
-      mMethodName: NotifyAnimationFinished
+      mMethodName: TryNewSituation
       mParameters: []
       mCached: 0
       oneShot: 0
-    - mEventName: notify situation resolved
+    - mEventName: notify animation ended
       mShowGroup: 1
       mUpdateEntryList: 0
       mEntryList:
@@ -2723,7 +2725,7 @@ MonoBehaviour:
       - target: {fileID: 3303791443504163959}
         name: LayoutComplete ()
       - target: {fileID: 3303791443504163955}
-        name: NotifyAnimationFinished ()
+        name: NotifyAnimationEnded ()
       - target: {fileID: 3303791443504163955}
         name: NotifySituationResolved ()
       - target: {fileID: 3303791443504163959}
@@ -2826,14 +2828,16 @@ MonoBehaviour:
         name: SetTexture (Texture texture)
       - target: {fileID: 3303791443504163959}
         name: SetVerticesDirty ()
-      - target: {fileID: 3303791443504163956}
-        name: StopAllCoroutines ()
       - target: {fileID: 3303791443504163955}
         name: StopAllCoroutines ()
       - target: {fileID: 3303791443504163959}
         name: StopAllCoroutines ()
+      - target: {fileID: 3303791443504163956}
+        name: StopAllCoroutines ()
       - target: {fileID: 3303791443504163953}
         name: StopAnimation ()
+      - target: {fileID: 3303791443504163955}
+        name: TryNewSituation ()
       - target: {fileID: 3303791443504163959}
         name: UnregisterDirtyLayoutCallback (UnityAction action)
       - target: {fileID: 3303791443504163959}
@@ -2841,7 +2845,7 @@ MonoBehaviour:
       - target: {fileID: 3303791443504163959}
         name: UnregisterDirtyVerticesCallback (UnityAction action)
       mTarget: {fileID: 3303791443504163955}
-      mMethodName: NotifySituationResolved
+      mMethodName: NotifyAnimationEnded
       mParameters: []
       mCached: 0
       oneShot: 0
@@ -6023,7 +6027,7 @@ MonoBehaviour:
   linkedAnimators: []
   codeEvents:
     List:
-    - mEventName: 
+    - mEventName: notify animation ended
       mShowGroup: 1
       mUpdateEntryList: 0
       mEntryList:
@@ -6339,9 +6343,9 @@ MonoBehaviour:
         name: IsActive ()
       - target: {fileID: 3303791443504163952}
         name: IsChildOf (Transform parent)
-      - target: {fileID: 3303791443504163959}
-        name: IsDestroyed ()
       - target: {fileID: 3303791443504163956}
+        name: IsDestroyed ()
+      - target: {fileID: 3303791443504163959}
         name: IsDestroyed ()
       - target: {fileID: 3303791443504163956}
         name: IsInteractable ()
@@ -6352,7 +6356,7 @@ MonoBehaviour:
       - target: {fileID: 3303791443504163959}
         name: LayoutComplete ()
       - target: {fileID: 3303791443504163955}
-        name: NotifyAnimationFinished ()
+        name: NotifyAnimationEnded ()
       - target: {fileID: 3303791443504163959}
         name: OnAfterDeserialize ()
       - target: {fileID: 3303791443504163959}
@@ -6453,14 +6457,16 @@ MonoBehaviour:
         name: SetTexture (Texture texture)
       - target: {fileID: 3303791443504163959}
         name: SetVerticesDirty ()
+      - target: {fileID: 3303791443504163956}
+        name: StopAllCoroutines ()
       - target: {fileID: 3303791443504163959}
         name: StopAllCoroutines ()
       - target: {fileID: 3303791443504163955}
         name: StopAllCoroutines ()
-      - target: {fileID: 3303791443504163956}
-        name: StopAllCoroutines ()
       - target: {fileID: 3303791443504163953}
         name: StopAnimation ()
+      - target: {fileID: 3303791443504163955}
+        name: TryNewSituation ()
       - target: {fileID: 3303791443504163959}
         name: UnregisterDirtyLayoutCallback (UnityAction action)
       - target: {fileID: 3303791443504163959}
@@ -6468,7 +6474,7 @@ MonoBehaviour:
       - target: {fileID: 3303791443504163959}
         name: UnregisterDirtyVerticesCallback (UnityAction action)
       mTarget: {fileID: 3303791443504163955}
-      mMethodName: NotifyAnimationFinished
+      mMethodName: NotifyAnimationEnded
       mParameters: []
       mCached: 0
       oneShot: 0
@@ -6484,6 +6490,7 @@ GameObject:
   - component: {fileID: 5781014536270753230}
   - component: {fileID: 5781014536270753231}
   - component: {fileID: 5637907592334002133}
+  - component: {fileID: 5531340070042326189}
   m_Layer: 13
   m_Name: Event Icon
   m_TagString: Untagged
@@ -6568,3 +6575,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5531340070042326189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5781014536270753226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f21cec51927293a439a7d926018447c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedAnimators: []
+  codeEvents:
+    List: []

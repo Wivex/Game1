@@ -10,9 +10,8 @@ public enum SituationType
 public enum SituationState
 {
     Preparing,
-    Updating,
-    Animating,
-    Resolved
+    RunningLogic,
+    RunningAnimation
 }
 
 public abstract class Situation
@@ -31,7 +30,7 @@ public abstract class Situation
 
     public void Resolve()
     {
-        state = SituationState.Resolved;
+        state = SituationState.RunningAnimation;
         expedition.ResetGraceTimers();
     }
 

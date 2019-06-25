@@ -65,17 +65,14 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
         UpdateConsumables();
     }
 
-    public void NotifyAnimationFinished()
+    public void NotifyAnimationEnded()
     {
-        exp.situation.state = SituationState.Updating;
+        exp.AnimationEnded();
     }
 
-    public void NotifySituationResolved()
+    public void TryNewSituation()
     {
-        // NOTE: special case hack
-        if (exp.situation.type != SituationType.Travelling)
-            exp.situation.state = SituationState.Resolved;
-        exp.ResetGraceTimers();
+        exp.TryNewSituation();
     }
 
     //update UI panels

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections;
 using UIEventDelegate;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class AnimationEventHandler : MonoBehaviour
 {
@@ -26,12 +22,12 @@ public class AnimationEventHandler : MonoBehaviour
         }
     }
 
-    public void RunCodeEvents()
+    public void RunAllCodeEvents()
     {
         EventDelegate.Execute(codeEvents.List);
     }
 
-    public void RunSpecificCodeEvent(int index)
+    public void RunCodeEventAtIndex(int index)
     {
         codeEvents.List[index].Execute();
     }

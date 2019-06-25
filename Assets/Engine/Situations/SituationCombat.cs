@@ -135,13 +135,11 @@ public class SituationCombat : Situation
     {
         if (!looting)
         {
-            // show "dead" status icon
-            expedition.expPreviewPanel.enemyStatusIcon.enabled = true;
             // set up item transfer animation
             looting = true;
-            // lock situation Updater until animation ends
-            state = SituationState.Animating;
             SpawnLoot();
+            // show "dead" status icon
+            expedition.expPreviewPanel.enemyStatusIcon.enabled = true;
             // start cycles of loot transfer
             expedition.expPreviewPanel.lootAnim.SetTrigger(AnimationTrigger.StartTransferLoot.ToString());
             // make combat icon disappear
@@ -151,16 +149,14 @@ public class SituationCombat : Situation
         // loot transfer process (run before each cycle)
         if (lootDrops.Count > 0)
         {
-            var loot = lootDrops.FirstOrDefault();
-            expedition.expPreviewPanel.lootIcon.sprite = loot.icon;
+            var item = lootDrops.FirstOrDefault();
+            expedition.expPreviewPanel.lootIcon.sprite = item.icon;
             // lock situation Updater until animation ends
-            state = SituationState.Animating;
-            lootDrops.Remove(loot);
+            state = SituationState.RunningAnimation;
+            lootDrops.Remove(item);
         }
         else
         {
-            // lock situation Updater until animation ends
-            state = SituationState.Animating;
             // stop animating item transfer
             expedition.expPreviewPanel.lootAnim.SetTrigger(AnimationTrigger.StopTransferLoot.ToString());
             // hero continue travelling
@@ -169,6 +165,7 @@ public class SituationCombat : Situation
             expedition.expPreviewPanel.eventAnim.SetTrigger(AnimationTrigger.EndEncounter.ToString());
             // hide "dead" status icon
             expedition.expPreviewPanel.enemyStatusIcon.enabled = false;
+            Resolve();
         }
     }
 

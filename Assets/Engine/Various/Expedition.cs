@@ -23,7 +23,7 @@ public class Expedition
     public ExpPreviewPanelDrawer expPreviewPanel;
 
     DateTime lastSituationRealTime;
-    float lastSituationInGameTimer;
+    float lastSituationGameTime;
 
     public Expedition(Hero hero, LocationType destination)
     {
@@ -33,13 +33,18 @@ public class Expedition
         hero.unitDetailsIcon = UIManager.instance.expPanelDrawer.detailsPanelDrawer.heroPanel.unitImage.transform;
         this.destination = destination;
         curLocation = Resources.Load<LocationData>("Locations/Forest/Forest");
+        ResetGraceTimers();
         InitTravellingSituation();
     }
 
-    public void ResetGraceTimers()
+    public bool GraceTimePassed =>
+        (DateTime.Now - lastSituationRealTime).TotalSeconds > GameManager.instance.minGracePeriod &&
+        Time.time - lastSituationGameTime > GameManager.instance.minGracePeriod;
+
+    public void UpdateSituation()
     {
-        lastSituationRealTime = DateTime.Now;
-        lastSituationInGameTimer = GameManager.instance.minGracePeriod;
+        if (situation.state == SituationState.RunningLogic)
+            situation.Update();
     }
 
     public void UpdateLog(string logEntry)
@@ -47,52 +52,47 @@ public class Expedition
         //expPanel.logPanelDrawer.AddLogEntry(logEntry);
     }
 
-    // TODO: check if correct
-    public bool GraceTimePassed()
+    public void ResetGraceTimers()
     {
-        lastSituationInGameTimer -= Time.deltaTime;
-        if ((DateTime.Now - lastSituationRealTime).TotalSeconds > GameManager.instance.minGracePeriod &&
-            lastSituationInGameTimer < 0)
-        {
-            ResetGraceTimers();
-            return true;
-        }
-
-        return false;
+        lastSituationRealTime = DateTime.Now;
+        lastSituationGameTime = Time.time;
     }
 
-    public void UpdateSituation()
+    public void AnimationEnded()
     {
-        if (GraceTimePassed() && situation.state == SituationState.Resolved)
-            TryNewSituation();
-        else if (situation.state == SituationState.Updating)
-            situation.Update();
+        situation.state = SituationState.RunningLogic;
     }
 
     public void TryNewSituation()
     {
-        foreach (var sit in curLocation.situations)
+        if (GraceTimePassed)
         {
-            if (Random.value < sit.chance)
+            foreach (var sit in curLocation.situations)
             {
-                switch (sit.SituationType)
+                if (Random.value < sit.chance)
                 {
-                    case SituationType.EnemyEncounter:
-                        InitEnemyEncounterSituation();
-                        break;
-                    case SituationType.ObjectEncounter:
-                        //situation = new SituationCombat(location.enemies);
-                        //expPanel.detailsPanelDrawer.enemyPanel.gameObject.SetActive(false);
-                        break;
-                    default:
-                        if (situation.type != SituationType.Travelling)
-                            InitTravellingSituation();
-                        break;
-                }
+                    switch (sit.SituationType)
+                    {
+                        case SituationType.EnemyEncounter:
+                            InitEnemyEncounterSituation();
+                            break;
+                        case SituationType.ObjectEncounter:
+                            //situation = new SituationCombat(location.enemies);
+                            //expPanel.detailsPanelDrawer.enemyPanel.gameObject.SetActive(false);
+                            break;
+                    }
 
-                // if any situation occured, break sequence
-                return;
+                    // if any situation occured, exit sequence
+                    return;
+                }
             }
+        }
+        // too early for new situation, travel for a bit
+        else
+        {
+            // if not already travelling
+            if (situation.type != SituationType.Travelling)
+                InitTravellingSituation();
         }
     }
 
