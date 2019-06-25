@@ -33,6 +33,7 @@ public class Expedition
         hero.unitDetailsIcon = UIManager.instance.expPanelDrawer.detailsPanelDrawer.heroPanel.unitImage.transform;
         this.destination = destination;
         curLocation = Resources.Load<LocationData>("Locations/Forest/Forest");
+        InitTravellingSituation();
     }
 
     public void ResetGraceTimers()
@@ -62,11 +63,9 @@ public class Expedition
 
     public void UpdateSituation()
     {
-        if (situation == null)
-            InitTravellingSituation();
-        else if (GraceTimePassed() && situation.state == SituationState.Resolved)
+        if (GraceTimePassed() && situation.state == SituationState.Resolved)
             TryNewSituation();
-        else if (situation.state == SituationState.Progressing)
+        else if (situation.state == SituationState.Updating)
             situation.Update();
     }
 
@@ -78,15 +77,16 @@ public class Expedition
             {
                 switch (sit.SituationType)
                 {
-                    case SituationType.Travelling:
-                        InitTravellingSituation();
-                        break;
                     case SituationType.EnemyEncounter:
                         InitEnemyEncounterSituation();
                         break;
                     case SituationType.ObjectEncounter:
                         //situation = new SituationCombat(location.enemies);
                         //expPanel.detailsPanelDrawer.enemyPanel.gameObject.SetActive(false);
+                        break;
+                    default:
+                        if (situation.type != SituationType.Travelling)
+                            InitTravellingSituation();
                         break;
                 }
 
@@ -101,8 +101,8 @@ public class Expedition
         situation = new SituationTravelling(this);
         UIManager.instance.expPanelDrawer.detailsPanelDrawer.InitLocationPanel(curLocation);
         UpdateLog($"Travelling trough {curLocation.name}");
-        // start travelling animation
         //Debug.Log($"{hero.name} triggered {AnimationTrigger.HeroTravelling.ToString()}");
+        // start travelling animation
         expPreviewPanel.heroAnim.SetTrigger(AnimationTrigger.HeroTravelling.ToString());
     }
 

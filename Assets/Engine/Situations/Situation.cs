@@ -9,9 +9,9 @@ public enum SituationType
 
 public enum SituationState
 {
-    Preparation,
-    Progressing,
-    BusyAnimating,
+    Preparing,
+    Updating,
+    Animating,
     Resolved
 }
 
@@ -26,7 +26,13 @@ public abstract class Situation
     protected Situation(Expedition expedition)
     {
         this.expedition = expedition;
-        state = SituationState.Preparation;
+        state = SituationState.Preparing;
+    }
+
+    public void Resolve()
+    {
+        state = SituationState.Resolved;
+        expedition.ResetGraceTimers();
     }
 
     public abstract void Update();

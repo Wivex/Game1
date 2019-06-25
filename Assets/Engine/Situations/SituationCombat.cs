@@ -140,7 +140,7 @@ public class SituationCombat : Situation
             // set up item transfer animation
             looting = true;
             // lock situation Updater until animation ends
-            state = SituationState.BusyAnimating;
+            state = SituationState.Animating;
             SpawnLoot();
             // start cycles of loot transfer
             expedition.expPreviewPanel.lootAnim.SetTrigger(AnimationTrigger.StartTransferLoot.ToString());
@@ -154,13 +154,13 @@ public class SituationCombat : Situation
             var loot = lootDrops.FirstOrDefault();
             expedition.expPreviewPanel.lootIcon.sprite = loot.icon;
             // lock situation Updater until animation ends
-            state = SituationState.BusyAnimating;
+            state = SituationState.Animating;
             lootDrops.Remove(loot);
         }
         else
         {
             // lock situation Updater until animation ends
-            state = SituationState.BusyAnimating;
+            state = SituationState.Animating;
             // stop animating item transfer
             expedition.expPreviewPanel.lootAnim.SetTrigger(AnimationTrigger.StopTransferLoot.ToString());
             // hero continue travelling

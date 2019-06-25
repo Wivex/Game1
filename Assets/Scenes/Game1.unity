@@ -34281,9 +34281,8 @@ MonoBehaviour:
   - {fileID: 1049159389}
   - {fileID: 664696544}
   - {fileID: 647258249}
-  defaultCanvas: {fileID: 1737913113}
-  staticCanvases:
-  - {fileID: 664696544}
+  defaultCanvas: {fileID: 0}
+  staticCanvases: []
 --- !u!114 &1899172363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39775,6 +39774,16 @@ PrefabInstance:
     - target: {fileID: 2498298191818632952, guid: 0ef2a3639d171854fbcdf840468e6e5e,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593920872979466855, guid: 0ef2a3639d171854fbcdf840468e6e5e,
+        type: 3}
+      propertyPath: codeEvents.List.Array.data[0].mUpdateEntryList
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593920872979466855, guid: 0ef2a3639d171854fbcdf840468e6e5e,
+        type: 3}
+      propertyPath: codeEvents.List.Array.data[1].mUpdateEntryList
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

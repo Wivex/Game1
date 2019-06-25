@@ -67,7 +67,7 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
 
     public void NotifyAnimationFinished()
     {
-        exp.situation.state = SituationState.Progressing;
+        exp.situation.state = SituationState.Updating;
     }
 
     public void NotifySituationResolved()
