@@ -163,8 +163,6 @@ public class SituationCombat : Situation
             expedition.expPreviewPanel.heroAnim.SetTrigger(AnimationTrigger.EndEncounter.ToString());
             // hide enemy icon
             expedition.expPreviewPanel.eventAnim.SetTrigger(AnimationTrigger.EndEncounter.ToString());
-            // hide "dead" status icon
-            expedition.expPreviewPanel.enemyStatusIcon.enabled = false;
             Resolve();
         }
     }

@@ -116,5 +116,7 @@ public class Expedition
         expPreviewPanel.heroAnim.SetTrigger(AnimationTrigger.BeginEncounter.ToString());
         expPreviewPanel.eventAnim.SetTrigger(AnimationTrigger.BeginEncounter.ToString());
         expPreviewPanel.interAnim.SetTrigger(AnimationTrigger.BeginEncounter.ToString());
+        // hide "dead" status icon
+        expPreviewPanel.enemyStatusIcon.enabled = false;
     }
 }
