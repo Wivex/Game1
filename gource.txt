@@ -1,0 +1,18 @@
+gource -1280x720 --max-file-lag -1 --font-size 32 --camera-mode track -bloom-multiplier 0.8 -bloom-intensity 0.7 -auto-skip-seconds 0.1 -highlight-all-users -hide filenames -stop-at-end -s 10 -user-scale 1.2 -output-ppm-stream "E:\gource.ppm" "C:\Users\wivex_000\Google Drive\Game Workshop\Game1"
+
+"C:\Program Files\ffmpeg\bin\ffmpeg.exe" -y -r 60 -f image2pipe -vcodec ppm -i "E:\gource.ppm" -vcodec wmv1 -r 60 -qscale 0 "E:\gource.avi"
+
+"C:\Program Files\ffmpeg\bin\ffmpeg.exe" -i "E:\gource.avi" -i "E:\music.mp3" -ab 192k -vcodec copy "E:\gource-final.avi"
+
+
+
+
+
+
+-title "Game1" -logo logo.png
+
+
+gource -1280x720 --camera-mode track --highlight-users --file-idle-time 0 -bloom-multiplier 0.8 --font-size 22 -bloom-intensity 0.7 -auto-skip-seconds 0.1 --follow-user wivex -hide filenames -stop-at-end --realtime --max-file-lag -1 -user-scale 1.5 -output-ppm-stream "E:\gource.ppm" "C:\Users\wivex_000\Game1"
+
+
+gource -1280x720 --max-file-lag -1 --font-size 32 --camera-mode track -bloom-multiplier 0.8 -bloom-intensity 0.7 -auto-skip-seconds 0.1 -highlight-all-users -hide filenames -stop-at-end -s 2000 -user-scale 1.2 -output-ppm-stream "E:\gource.ppm" "C:\Users\wivex_000\Game1"
