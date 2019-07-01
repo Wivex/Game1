@@ -7,10 +7,10 @@ using UnityEngine.UI;
 
 public struct ExpPreviewPanelRedrawFlags
 {
-    public bool heroImage,
-        description,
+    public bool description,
         gold,
         consumes;
+
     // eventPanel is redrawn every frame anyway
 }
 
@@ -58,7 +58,6 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
             .ToArray();
         consumablesCharges = consumablesPanel.gameObject.GetComponentsInChildren<TextMeshProUGUI>();
 
-        UpdateHeroImage();
         UpdateHeroDesc();
         UpdateGold();
         UpdateStatBars();   
@@ -78,8 +77,6 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
     //update UI panels
     void LateUpdate()
     {
-        if (redrawFlags.heroImage)
-            UpdateHeroImage();
         if (redrawFlags.description)
             UpdateHeroDesc();
         if (redrawFlags.gold)
@@ -91,11 +88,6 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
     }
 
     #region UI UPDATE METHODS
-
-    void UpdateHeroImage()
-    {
-        heroImage.sprite = hero.classData.classLevels[hero.level].icon;
-    }
 
     void UpdateHeroDesc()
     {
