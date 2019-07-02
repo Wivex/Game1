@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class MayorPanelDrawer : MonoBehaviour
 {
-    public TextMeshProUGUI noQuestsText, noExpText;
+    public TextMeshProUGUI noQuestsText, noExpText, timePlayedValue, sucExpValue, failedExpValue;
     public Transform questContentPanel, expContentPanel;
     public MonoBehaviour heroFramePrefab, questFramePrefab, expFramePrefab;
 
@@ -18,26 +18,24 @@ public class MayorPanelDrawer : MonoBehaviour
         questContentPanel.DestroyAllChildren();
         expContentPanel.DestroyAllChildren();
     }
-
-
-
-    public void Init()
+    
+    public void InitExpeditions()
     {
-        var freeHeroes = GameManager.instance.heroes.FindAll(hero => hero.state == HeroState.InRoster);
-
-        if (freeHeroes.Count > 0)
+        foreach (var location in GameManager.instance.startingLocations)
         {
-
+            var expPanel = expFramePrefab.Create<ExpeditionFrameDrawer>(expContentPanel);
+            expPanel.Init(location);
         }
     }
 
-    public void OnSelectExpedition()
+    public void OnExpeditionSelect()
     {
         var freeHeroes = FreeHeroes;
 
-        if (freeHeroes.Count > 0)
+        foreach (var hero in freeHeroes)
         {
-
+            //var heroPanel = Instantiate(heroFramePrefab, expContentPanel);
+            //heroPanel
         }
     }
 }

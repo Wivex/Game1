@@ -2,22 +2,15 @@
 using SubjectNerd.Utilities;
 using UnityEngine;
 
-public enum LocationType
-{
-    Forest,
-    Dungeon
-}
-
 [CreateAssetMenu(menuName = "Content/Data/Location Data")]
 public class LocationData : ContentData
 {
     [Header("Location")]
     //public LocationType type;
-    [Reorderable]
+    [Reorderable(ReordableNamingType.Variable, "name")]
     public List<SituationChanceToOccur> situations;
-    [Reorderable]
+    [Reorderable(ReordableNamingType.ScriptableObjectName, "enemyData")]
     public List<EnemySpawnChance> enemies;
-    [Reorderable]
     public List<PoiSpawnChance> pointsOfInterest;
     
     // TODO: optimize, to avoid sorting all objects each validation

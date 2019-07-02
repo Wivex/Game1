@@ -281,6 +281,7 @@
     <Compile Include="Assets\Engine\Various\Expedition.cs" />
     <Compile Include="Assets\Engine\Various\Extensions.cs" />
     <Compile Include="Assets\Engine\Various\StatValues.cs" />
+    <Compile Include="Assets\ExpeditionFrameDrawer.cs" />
     <Compile Include="Assets\Resources\Abilities\Ability.cs" />
     <Compile Include="Assets\Resources\Abilities\AbilityData.cs" />
     <Compile Include="Assets\Resources\ContentData.cs" />
@@ -342,40 +343,40 @@
     <None Include="Assets\3rd-Party\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\3rd-Party\unity-ui-extensions\Resources\Shaders\UI Particle MultiplyDouble.shader" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-hlapi.Editor">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-weaver.Editor">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/com.unity.multiplayer-weaver.Editor.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/ScriptAssemblies/com.unity.multiplayer-weaver.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.XR.LegacyInputHelpers">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.SpatialTracking">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.XR.LegacyInputHelpers">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-hlapi.Runtime">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

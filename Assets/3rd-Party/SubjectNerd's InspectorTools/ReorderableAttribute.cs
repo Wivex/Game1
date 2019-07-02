@@ -22,6 +22,13 @@ SOFTWARE.*/
 
 using UnityEngine;
 
+public enum ReordableNamingType
+{
+    None,
+    ScriptableObjectName,
+    Variable
+}
+
 namespace SubjectNerd.Utilities
 {
 	/// <summary>
@@ -29,17 +36,17 @@ namespace SubjectNerd.Utilities
 	/// </summary>
 	public class ReorderableAttribute : PropertyAttribute
 	{
-	    public bool useNameFromSO;
+	    public ReordableNamingType namingType;
         public string nestedPath;
 
         /// <summary>
         /// Display a List/Array as a sortable list in the inspector
         /// </summary>
-        /// <param name="useNameFromSO">Name array element in inspector based on SO name</param>
-        /// <param name="nestedPath">x.y.z path to SO</param>
-        public ReorderableAttribute(bool useNameFromSO = false, string nestedPath = "")
+        /// <param name="namingType">Name array element in inspector based on selected option</param>
+        /// <param name="nestedPath">x.y.z path to target</param>
+        public ReorderableAttribute(ReordableNamingType namingType = ReordableNamingType.None, string nestedPath = "")
 		{
-			this.useNameFromSO = useNameFromSO;
+			this.namingType = namingType;
 		    this.nestedPath = nestedPath;
         }
 	}
