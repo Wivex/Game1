@@ -1,12 +1,25 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+
+// NOTE: struct for easier saving?
+// TODO: implement usage in mayor panel
+public struct GameStatistics
+{
+    public float timePlayed;
+    public int totalExpeditions;
+    public int successfulExpeditions;
+    public int failedExpeditions;
+}
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public static List<Unit> heroes = new List<Unit>();
-    public static Dictionary<Hero, Expedition> expeditions = new Dictionary<Hero, Expedition>();
+    public List<Hero> heroes = new List<Hero>();
+    public Dictionary<Hero, Expedition> expeditions = new Dictionary<Hero, Expedition>();
+    // TODO: load previous values from save
+    public GameStatistics gameStats = new GameStatistics();
 
     [Header("Expedition Settings")]
     [Tooltip("Minimal time in seconds between situations")]
@@ -29,7 +42,6 @@ public class GameManager : MonoBehaviour
         //If instance already exists and it's not this:
         else if (instance != this)
             //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of it.
-            Destroy(gameObject);
 
         //Sets this to not be destroyed when reloading scene
         DontDestroyOnLoad(gameObject);

@@ -10,19 +10,6 @@ public class UIManager : MonoBehaviour
     
     public FloatingText floatingTextPrefab;
 
-    /// <summary>
-    /// destroys all children objects (clean up prefab templates)
-    /// </summary>
-    /// <param name="obj">Parent object</param>
-    public static void DestroyChildren(MonoBehaviour obj)
-    {
-        // clean up panel from debug leftovers
-        while (obj.transform.childCount > 0)
-        {
-            Destroy(obj.transform.GetChild(0).gameObject);
-        }
-    }
-
     //default initialization of Singleton instance
     void Awake()
     {

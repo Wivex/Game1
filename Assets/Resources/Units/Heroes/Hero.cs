@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum HeroState
+{
+    Recruitable,
+    InRoster,
+    OnExpedition
+}
+
 public enum HeroClass
 {
     Warrior,
@@ -21,6 +28,8 @@ public class Hero : Unit
     public EquipmentData[] inventory = new EquipmentData[Enum.GetNames(typeof(InventorySlot)).Length];
     public List<ItemData> backpack = new List<ItemData>();
     public List<Consumable> consumables = new List<Consumable>();
+
+    internal HeroState state;
 
     public Hero(string name)
     {

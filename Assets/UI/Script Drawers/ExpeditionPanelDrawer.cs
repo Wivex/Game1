@@ -24,7 +24,7 @@ public class ExpeditionPanelDrawer : MonoBehaviour
 
     public void TryShowOverviewPanel()
     {
-        cMan.ChangeActiveCanvas(GameManager.expeditions.Count > 0 ? overviewCanvas : noExpCanvas);
+        cMan.ChangeActiveCanvas(GameManager.instance.expeditions.Count > 0 ? overviewCanvas : noExpCanvas);
     }
 
     public void ShowSelectedExpDetailsPanel(Expedition exp)
