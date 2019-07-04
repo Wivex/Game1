@@ -29,7 +29,7 @@ public class Hero : Unit
     public List<ItemData> backpack = new List<ItemData>();
     public List<Consumable> consumables = new List<Consumable>();
 
-    internal HeroState state;
+    internal HeroState state = HeroState.Recruitable;
 
     public Hero(string name)
     {

@@ -306,6 +306,7 @@
     <Compile Include="Assets\UI\Script Drawers\LocationPanelDrawer.cs" />
     <Compile Include="Assets\UI\Script Drawers\LogPanelDrawer.cs" />
     <Compile Include="Assets\UI\Script Drawers\MayorPanelDrawer.cs" />
+    <Compile Include="Assets\UI\Script Drawers\TavernPanelDrawer.cs" />
     <Compile Include="Assets\UI\Script Drawers\UnitPanelDrawer.cs" />
     <None Include="Assets\3rd-Party\unity-ui-extensions\Resources\Shaders\UIAdditive.shader" />
     <None Include="Assets\3rd-Party\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
