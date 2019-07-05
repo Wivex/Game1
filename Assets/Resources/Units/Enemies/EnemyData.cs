@@ -8,7 +8,7 @@ public class EnemyData : UnitData
     [Header("Enemy")]
     public float spawnChance;
     public int spawnInterval;
-    [Reorderable(true, "item")]
+    [Reorderable(ReordableNamingType.ScriptableObjectName, "item")]
     public List<LootData> lootTable;
 
     // TODO: optimize, to avoid sorting all objects each validation

@@ -469,7 +469,7 @@ namespace SubjectNerd.Utilities
 	        SortableListData data)
 	    {
 	        // Custom element header
-	        if (arrayAttr.useNameFromSO)
+	        if (arrayAttr.namingType != ReordableNamingType.None)
 	        {
 	            data.ElementHeaderCallback = i => $"{GetTitle(property, arrayAttr, i)}";
 	        }
@@ -482,7 +482,15 @@ namespace SubjectNerd.Utilities
 	            ? $"{property.propertyPath}.Array.data[{index}].{arrayAttr.nestedPath}"
 	            : $"{property.propertyPath}.Array.data[{index}]";
             var elemProperty = property.serializedObject.FindProperty(elemPropertyPath);
-	        return elemProperty.objectReferenceValue != null ? elemProperty.objectReferenceValue.name : string.Empty;
+            switch (arrayAttr.namingType)
+            {
+                case ReordableNamingType.ScriptableObjectName:
+                    return elemProperty.objectReferenceValue != null ? elemProperty.objectReferenceValue.name : string.Empty;
+                case ReordableNamingType.Variable:
+                    return elemProperty.stringValue ?? string.Empty;
+                default:
+                    return string.Empty;
+            }
 	    }
 
 	    /// <summary>

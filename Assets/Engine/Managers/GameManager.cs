@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 // NOTE: struct for easier saving?
@@ -16,15 +17,15 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public List<Hero> heroes = new List<Hero>();
-    public Dictionary<Hero, Expedition> expeditions = new Dictionary<Hero, Expedition>();
-    // TODO: load previous values from save
-    public GameStatistics gameStats = new GameStatistics();
-
-    [Header("Expedition Settings")]
+    public List<LocationData> startingLocations = new List<LocationData>();
+    //[Header("Expedition Settings")]
     [Tooltip("Minimal time in seconds between situations")]
     public int minGracePeriod = 4;
 
+    internal List<Hero> heroes = new List<Hero>();
+    internal Dictionary<Hero, Expedition> expeditions = new Dictionary<Hero, Expedition>();
+    // TODO: load previous values from save
+    internal GameStatistics gameStats = new GameStatistics();
     // global initiative accumulation speed
     internal float combatSpeed = 0.075f;
     internal float oldCombatSpeed;
@@ -63,7 +64,7 @@ public class GameManager : MonoBehaviour
 
     public void StartNewExpedition(Hero hero)
     {
-        var exp = new Expedition(hero, LocationType.Forest);
+        var exp = new Expedition(hero, startingLocations.FirstOrDefault());
         expeditions.Add(hero, exp);
     }
 

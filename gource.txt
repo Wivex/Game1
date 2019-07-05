@@ -1,13 +1,13 @@
-gource -1280x720 --max-file-lag -1 --font-size 32 --camera-mode track -bloom-multiplier 0.8 -bloom-intensity 0.7 -auto-skip-seconds 0.1 -highlight-all-users -hide filenames -stop-at-end -s 10 -user-scale 1.2 -output-ppm-stream "E:\gource.ppm" "C:\Users\wivex_000\Google Drive\Game Workshop\Game1"
+gource -1280x720 --max-file-lag -1 --font-size 32 --camera-mode track -bloom-multiplier 0.8 -bloom-intensity 0.7 -auto-skip-seconds 0.1 -highlight-all-users -hide filenames -stop-at-end -s 10 -user-scale 1.2 -output-ppm-stream "E:\gource.ppm" .
 
-"C:\Program Files\ffmpeg\bin\ffmpeg.exe" -y -r 60 -f image2pipe -vcodec ppm -i "E:\gource.ppm" -vcodec wmv1 -r 60 -qscale 0 "E:\gource.avi"
+. -y -r 60 -f image2pipe -vcodec ppm -i "E:\gource.ppm" -vcodec wmv1 -r 60 -qscale 0 "E:\gource.avi"
 
-"C:\Program Files\ffmpeg\bin\ffmpeg.exe" -i "E:\gource.avi" -i "E:\music.mp3" -ab 192k -vcodec copy "E:\gource-final.avi"
-
-
+. -i "E:\gource.avi" -i "E:\music.mp3" -ab 192k -vcodec copy "E:\gource-final.avi"
 
 
 
+
+--start-date 2019-01-01
 
 -title "Game1" -logo logo.png
 

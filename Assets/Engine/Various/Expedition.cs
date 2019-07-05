@@ -18,14 +18,14 @@ public class Expedition
     public Hero hero;
     public Situation situation;
     public LocationData curLocation;
-    public LocationType destination;
+    public LocationData destination;
 
     public ExpPreviewPanelDrawer expPreviewPanel;
 
     DateTime lastSituationRealTime;
     float lastSituationGameTime;
 
-    public Expedition(Hero hero, LocationType destination)
+    public Expedition(Hero hero, LocationData destination)
     {
         this.hero = hero;
         UIManager.instance.expPanelDrawer.NewPreviewPanel(this);
