@@ -32,9 +32,12 @@ public class Expedition
         hero.unitPreviewIcon = expPreviewPanel.heroIcon.transform;
         hero.unitDetailsIcon = UIManager.instance.expPanelDrawer.detailsPanelDrawer.heroPanel.unitImage.transform;
         this.destination = destination;
-        curLocation = Resources.Load<LocationData>("Locations/Forest/Forest");
+        // TODO: add location transitions
+        curLocation = destination;
         ResetGraceTimers();
         InitTravellingSituation();
+
+        GameManager.instance.expeditions.Add(hero, this);
     }
 
     public bool GraceTimePassed =>
@@ -99,9 +102,9 @@ public class Expedition
     public void InitTravellingSituation()
     {
         situation = new SituationTravelling(this);
-        UIManager.instance.expPanelDrawer.detailsPanelDrawer.InitLocationPanel(curLocation);
-        UpdateLog($"Travelling trough {curLocation.name}");
-        //Debug.Log($"{hero.name} triggered {AnimationTrigger.HeroTravelling.ToString()}");
+        //UIManager.instance.expPanelDrawer.detailsPanelDrawer.InitLocationPanel(curLocation);
+        //UpdateLog($"Travelling trough {curLocation.name}");
+        Debug.Log($"{hero.name} triggered {AnimationTrigger.HeroTravelling.ToString()}");
         // start travelling animation
         expPreviewPanel.heroAnim.SetTrigger(AnimationTrigger.HeroTravelling.ToString());
     }
@@ -110,8 +113,8 @@ public class Expedition
     {
         situation = new SituationCombat(this, curLocation.enemies);
         var enemy = (situation as SituationCombat).enemy;
-        UIManager.instance.expPanelDrawer.detailsPanelDrawer.InitEnemyPanel(enemy);
-        UpdateLog($"{hero.name} started combat with {enemy.enemyData.name}");
+        //UIManager.instance.expPanelDrawer.detailsPanelDrawer.InitEnemyPanel(enemy);
+        //UpdateLog($"{hero.name} started combat with {enemy.enemyData.name}");
         Debug.Log($"{hero.name} triggered {AnimationTrigger.BeginEncounter.ToString()}");
         expPreviewPanel.heroAnim.SetTrigger(AnimationTrigger.BeginEncounter.ToString());
         expPreviewPanel.eventAnim.SetTrigger(AnimationTrigger.BeginEncounter.ToString());

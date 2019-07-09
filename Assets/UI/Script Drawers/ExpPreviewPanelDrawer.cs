@@ -60,7 +60,7 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
 
         UpdateHeroDesc();
         UpdateGold();
-        UpdateStatBars();   
+        UpdateStatBars();
         UpdateConsumables();
     }
 
@@ -102,7 +102,7 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
         var index = 0;
         while (hero.gold > a)
         {
-            a = (int)Mathf.Pow(2, index++);
+            a = (int) Mathf.Pow(2, index++);
             if (index >= goldSprites.Count - 1) break;
         }
 
@@ -130,17 +130,17 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
 
     void UpdateStatBars()
     {
-        healthBar.value = (float)hero.stats[(int)StatType.Health].curValue /
-                          hero.stats[(int)StatType.Health].curValue;
+        healthBar.value = (float) hero.stats[(int) StatType.Health].curValue /
+                          hero.stats[(int) StatType.Health].curValue;
         health.text =
-            $"{hero.stats[(int)StatType.Health].curValue} / {(hero.stats[(int)StatType.Health] as StatChanging).maxValue}";
-        manaBar.value = (float)hero.stats[(int)StatType.Mana].curValue /
-                        hero.stats[(int)StatType.Mana].curValue;
+            $"{hero.stats[(int) StatType.Health].curValue} / {(hero.stats[(int) StatType.Health] as StatChanging).maxValue}";
+        manaBar.value = (float) hero.stats[(int) StatType.Mana].curValue /
+                        hero.stats[(int) StatType.Mana].curValue;
         mana.text =
-            $"{hero.stats[(int)StatType.Mana].curValue} / {(hero.stats[(int)StatType.Mana] as StatChanging).maxValue}";
+            $"{hero.stats[(int) StatType.Mana].curValue} / {(hero.stats[(int) StatType.Mana] as StatChanging).maxValue}";
         initBar.value = hero.curInitiative / reqInitiative;
-        initiative.text = $"{(int)hero.curInitiative} / {reqInitiative}";
-        expBar.value = (float)hero.experience / hero.classData.expPerLevel[hero.level];
+        initiative.text = $"{(int) hero.curInitiative} / {reqInitiative}";
+        expBar.value = (float) hero.experience / hero.classData.expPerLevel[hero.level];
         experience.text = $"{hero.experience} / {hero.classData.expPerLevel[hero.level]}";
     }
 
@@ -149,13 +149,10 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
     // show details panel if preview is double clicked
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.clickCount == 2)
-        {
-            var expPanel = UIManager.instance.expPanelDrawer;
+        var expPanel = UIManager.instance.expPanelDrawer;
 
-            expPanel.selectedExp = exp;
-            expPanel.detailsPanelDrawer.InitHeroPanel(hero);
-            expPanel.ShowSelectedExpDetailsPanel(exp);
-        }
+        expPanel.selectedExp = exp;
+        expPanel.detailsPanelDrawer.InitHeroPanel(hero);
+        expPanel.ShowSelectedExpDetailsPanel(exp);
     }
 }

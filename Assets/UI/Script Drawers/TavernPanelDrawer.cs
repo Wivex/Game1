@@ -19,14 +19,12 @@ public class TavernPanelDrawer : MonoBehaviour
         recruitsContentPanel.DestroyAllChildren();
     }
 
-    public void Init()
+    public void InitPanel()
     {
-        //var freeHeroes = GameManager.instance.heroes.FindAll(hero => hero.state == HeroState.InRoster);
-
-        //if (freeHeroes.Count > 0)
-        //{
-
-        //}
+        foreach (var hero in FreeHeroes)
+        {
+            
+        }
     }
 
     public void OnHeroSelect()

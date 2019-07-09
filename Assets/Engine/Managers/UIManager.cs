@@ -7,7 +7,9 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
     
     public ExpeditionPanelDrawer expPanelDrawer;
-    
+    public MayorPanelDrawer mayorPanelDrawer;
+    public TavernPanelDrawer tavernPanelDrawer;
+
     public FloatingText floatingTextPrefab;
 
     //default initialization of Singleton instance

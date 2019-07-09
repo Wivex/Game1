@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public enum HeroState
 {
@@ -19,25 +20,41 @@ public enum HeroClass
 [Serializable]
 public class Hero : Unit
 {
-    [Header("Hero")]
-    public ClassData classData;
+    readonly string[] heroNames = { "Peter", "Ron", "John", "Bob" };
+    static int freeNameIndex;
 
-    public int level;
-    public int gold, experience;
-
-    public EquipmentData[] inventory = new EquipmentData[Enum.GetNames(typeof(InventorySlot)).Length];
-    public List<ItemData> backpack = new List<ItemData>();
-    public List<Consumable> consumables = new List<Consumable>();
-
+    internal ClassData classData;
+    internal int level, gold, experience;
+    internal Sprite portrait;
+    internal EquipmentData[] inventory = new EquipmentData[Enum.GetNames(typeof(InventorySlot)).Length];
+    internal List<ItemData> backpack = new List<ItemData>();
+    internal List<Consumable> consumables = new List<Consumable>();
     internal HeroState state = HeroState.Recruitable;
 
-    public Hero(string name)
+    public Hero(string name = default, Sprite portrait = default, HeroClass classType = default)
     {
-        this.name = name;
-        classData = Resources.Load<ClassData>("Units/Heroes/Classes/Warrior/WarriorClass");
+        this.name = name ?? RandomName();
+        this.portrait = portrait ?? RandomPortrait();
+        classData = Resources.Load<ClassData>($"Units/Heroes/Classes/{classType.ToString()}/{classType.ToString()}Class");
         tacticsPreset = classData.classLevels[level].tacticsPreset;
         SetAbilities();
         SetStats();
+
+        GameManager.instance.heroes.Add(this);
+    }
+
+    public string RandomName()
+    {
+        if (freeNameIndex == heroNames.Length)
+            freeNameIndex = 0;
+        return heroNames[freeNameIndex++];
+    }
+
+    public Sprite RandomPortrait()
+    {
+        var portraits = Resources.LoadAll<Sprite>($"Units/Heroes/Classes/Warrior/Portraits");
+        var rnd = Random.Range(0, portraits.Length - 1);
+        return portraits[rnd];
     }
 
     public override void SetStats()

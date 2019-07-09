@@ -281,7 +281,6 @@
     <Compile Include="Assets\Engine\Various\Expedition.cs" />
     <Compile Include="Assets\Engine\Various\Extensions.cs" />
     <Compile Include="Assets\Engine\Various\StatValues.cs" />
-    <Compile Include="Assets\ExpeditionFrameDrawer.cs" />
     <Compile Include="Assets\Resources\Abilities\Ability.cs" />
     <Compile Include="Assets\Resources\Abilities\AbilityData.cs" />
     <Compile Include="Assets\Resources\ContentData.cs" />
@@ -301,8 +300,10 @@
     <Compile Include="Assets\Resources\Units\UnitData.cs" />
     <Compile Include="Assets\UI\Script Drawers\DetailsPanelDrawer.cs" />
     <Compile Include="Assets\UI\Script Drawers\EnemyPanelDrawer.cs" />
+    <Compile Include="Assets\UI\Script Drawers\ExpeditionFrameDrawer.cs" />
     <Compile Include="Assets\UI\Script Drawers\ExpeditionPanelDrawer.cs" />
     <Compile Include="Assets\UI\Script Drawers\ExpPreviewPanelDrawer.cs" />
+    <Compile Include="Assets\UI\Script Drawers\HeroFrameDrawer.cs" />
     <Compile Include="Assets\UI\Script Drawers\HeroPanelDrawer.cs" />
     <Compile Include="Assets\UI\Script Drawers\LocationPanelDrawer.cs" />
     <Compile Include="Assets\UI\Script Drawers\LogPanelDrawer.cs" />

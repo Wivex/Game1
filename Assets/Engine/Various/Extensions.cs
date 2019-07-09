@@ -24,4 +24,26 @@ public static class Extensions
         var expPanel = Object.Instantiate(prefab, parent);
         return expPanel.GetComponent<T>();
     }
+
+    /// <summary>
+    /// performs SetActive operation for all child objects of type T for this object
+    /// </summary>
+    public static void SetActiveOfChildrenOfType<T>(this MonoBehaviour obj, bool state)
+    {
+        foreach (var child in obj.GetComponentsInChildren<T>())
+        {
+            (child as MonoBehaviour).gameObject.SetActive(state);
+        }
+    }
+
+    /// <summary>
+    /// performs SetActive operation for all child objects of type T for this object
+    /// </summary>
+    public static void SetActiveOfChildrenOfType<T>(this Transform obj, bool state)
+    {
+        foreach (var child in obj.GetComponentsInChildren<T>())
+        {
+            (child as MonoBehaviour).gameObject.SetActive(state);
+        }
+    }
 }
