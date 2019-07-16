@@ -22,21 +22,21 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 601
-        inSlope: -203.77495
-        outSlope: -203.77495
+        value: 530
+        inSlope: -360.34042
+        outSlope: -360.34042
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.13159268
+        outWeight: 0.24828002
       - serializedVersion: 3
         time: 1.25
-        value: 429.99997
-        inSlope: -42.78399
-        outSlope: -42.78399
+        value: 340
+        inSlope: 13.829336
+        outSlope: 13.829336
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.15384047
+        inWeight: 0.28826395
         outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -59,7 +59,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1.25
-        value: -0.000030517578
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -122,21 +122,21 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 601
-        inSlope: -203.77495
-        outSlope: -203.77495
+        value: 530
+        inSlope: -360.34042
+        outSlope: -360.34042
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.13159268
+        outWeight: 0.24828002
       - serializedVersion: 3
         time: 1.25
-        value: 429.99997
-        inSlope: -42.78399
-        outSlope: -42.78399
+        value: 340
+        inSlope: 13.829336
+        outSlope: 13.829336
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.15384047
+        inWeight: 0.28826395
         outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -159,7 +159,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1.25
-        value: -0.000030517578
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136

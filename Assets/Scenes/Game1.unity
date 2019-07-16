@@ -464,7 +464,7 @@ GameObject:
   - component: {fileID: 15845329}
   - component: {fileID: 15845331}
   - component: {fileID: 15845330}
-  m_Layer: 15
+  m_Layer: 31
   m_Name: No Idles MSG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2865,7 +2865,7 @@ GameObject:
   - component: {fileID: 120466609}
   - component: {fileID: 120466611}
   - component: {fileID: 120466610}
-  m_Layer: 31
+  m_Layer: 15
   m_Name: Successful expeditions value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3097,7 +3097,7 @@ GameObject:
   - component: {fileID: 124499401}
   - component: {fileID: 124499403}
   - component: {fileID: 124499402}
-  m_Layer: 15
+  m_Layer: 31
   m_Name: Content Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3661,7 +3661,7 @@ GameObject:
   - component: {fileID: 173485498}
   - component: {fileID: 173485500}
   - component: {fileID: 173485499}
-  m_Layer: 31
+  m_Layer: 15
   m_Name: Statistics Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3899,7 +3899,7 @@ GameObject:
   - component: {fileID: 193444198}
   - component: {fileID: 193444197}
   - component: {fileID: 193444196}
-  m_Layer: 15
+  m_Layer: 31
   m_Name: View Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4063,7 +4063,7 @@ GameObject:
   - component: {fileID: 203433973}
   - component: {fileID: 203433977}
   - component: {fileID: 203433976}
-  m_Layer: 31
+  m_Layer: 15
   m_Name: Quests Scroll Rect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5870,7 +5870,7 @@ GameObject:
   - component: {fileID: 246414250}
   - component: {fileID: 246414252}
   - component: {fileID: 246414251}
-  m_Layer: 31
+  m_Layer: 15
   m_Name: Successful expeditions label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6825,7 +6825,7 @@ GameObject:
   - component: {fileID: 319464722}
   - component: {fileID: 319464721}
   - component: {fileID: 319464720}
-  m_Layer: 31
+  m_Layer: 15
   m_Name: View Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7257,7 +7257,7 @@ GameObject:
   - component: {fileID: 334926220}
   - component: {fileID: 334926222}
   - component: {fileID: 334926221}
-  m_Layer: 31
+  m_Layer: 15
   m_Name: Time played label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9145,7 +9145,7 @@ GameObject:
   - component: {fileID: 424105841}
   - component: {fileID: 424105843}
   - component: {fileID: 424105842}
-  m_Layer: 31
+  m_Layer: 15
   m_Name: Content Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12041,7 +12041,7 @@ GameObject:
   - component: {fileID: 645397425}
   - component: {fileID: 645397427}
   - component: {fileID: 645397426}
-  m_Layer: 31
+  m_Layer: 15
   m_Name: Expeditions Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16088,6 +16088,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 905577466}
+        m_MethodName: InitPanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &845549935
@@ -17230,7 +17241,7 @@ GameObject:
   - component: {fileID: 905577468}
   - component: {fileID: 905577467}
   - component: {fileID: 905577466}
-  m_Layer: 15
+  m_Layer: 31
   m_Name: Tavern Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18318,7 +18329,7 @@ GameObject:
   - component: {fileID: 975130582}
   - component: {fileID: 975130584}
   - component: {fileID: 975130585}
-  m_Layer: 31
+  m_Layer: 15
   m_Name: Mayor Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18868,7 +18879,7 @@ GameObject:
   - component: {fileID: 982699225}
   - component: {fileID: 982699224}
   - component: {fileID: 982699223}
-  m_Layer: 15
+  m_Layer: 31
   m_Name: Recruits Scroll Rect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19163,7 +19174,7 @@ GameObject:
   - component: {fileID: 1007538900}
   - component: {fileID: 1007538902}
   - component: {fileID: 1007538901}
-  m_Layer: 31
+  m_Layer: 15
   m_Name: No Quests MSG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21403,7 +21414,7 @@ GameObject:
   - component: {fileID: 1081092356}
   - component: {fileID: 1081092358}
   - component: {fileID: 1081092357}
-  m_Layer: 31
+  m_Layer: 15
   m_Name: Quests Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21998,7 +22009,7 @@ GameObject:
   - component: {fileID: 1101164882}
   - component: {fileID: 1101164881}
   - component: {fileID: 1101164880}
-  m_Layer: 15
+  m_Layer: 31
   m_Name: Idles Scroll Rect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25970,7 +25981,7 @@ GameObject:
   - component: {fileID: 1270794782}
   - component: {fileID: 1270794784}
   - component: {fileID: 1270794783}
-  m_Layer: 31
+  m_Layer: 15
   m_Name: Time played value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27291,7 +27302,7 @@ GameObject:
   - component: {fileID: 1329911743}
   - component: {fileID: 1329911745}
   - component: {fileID: 1329911744}
-  m_Layer: 15
+  m_Layer: 31
   m_Name: No Recruits MSG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29138,7 +29149,7 @@ GameObject:
   - component: {fileID: 1455292409}
   - component: {fileID: 1455292408}
   - component: {fileID: 1455292407}
-  m_Layer: 31
+  m_Layer: 15
   m_Name: View Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31032,7 +31043,7 @@ GameObject:
   - component: {fileID: 1535412208}
   - component: {fileID: 1535412210}
   - component: {fileID: 1535412209}
-  m_Layer: 31
+  m_Layer: 15
   m_Name: No Exp MSG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31263,7 +31274,7 @@ GameObject:
   - component: {fileID: 1536604115}
   - component: {fileID: 1536604117}
   - component: {fileID: 1536604116}
-  m_Layer: 31
+  m_Layer: 15
   m_Name: Content Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34048,7 +34059,7 @@ GameObject:
   - component: {fileID: 1657080610}
   - component: {fileID: 1657080612}
   - component: {fileID: 1657080611}
-  m_Layer: 15
+  m_Layer: 31
   m_Name: Idles Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34814,7 +34825,7 @@ GameObject:
   - component: {fileID: 1699852300}
   - component: {fileID: 1699852302}
   - component: {fileID: 1699852301}
-  m_Layer: 31
+  m_Layer: 15
   m_Name: Statistics Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35410,7 +35421,7 @@ GameObject:
   - component: {fileID: 1725083895}
   - component: {fileID: 1725083897}
   - component: {fileID: 1725083896}
-  m_Layer: 15
+  m_Layer: 31
   m_Name: Recruits Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36678,7 +36689,7 @@ GameObject:
   - component: {fileID: 1752107774}
   - component: {fileID: 1752107773}
   - component: {fileID: 1752107772}
-  m_Layer: 15
+  m_Layer: 31
   m_Name: View Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36826,7 +36837,7 @@ GameObject:
   - component: {fileID: 1756425097}
   - component: {fileID: 1756425096}
   - component: {fileID: 1756425095}
-  m_Layer: 31
+  m_Layer: 15
   m_Name: Expeditions Scroll Rect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38780,7 +38791,7 @@ GameObject:
   - component: {fileID: 1873407191}
   - component: {fileID: 1873407193}
   - component: {fileID: 1873407192}
-  m_Layer: 15
+  m_Layer: 31
   m_Name: Content Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41550,7 +41561,7 @@ GameObject:
   - component: {fileID: 1974200736}
   - component: {fileID: 1974200738}
   - component: {fileID: 1974200737}
-  m_Layer: 31
+  m_Layer: 15
   m_Name: Failed expeditions value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42698,7 +42709,7 @@ GameObject:
   - component: {fileID: 2033711707}
   - component: {fileID: 2033711709}
   - component: {fileID: 2033711708}
-  m_Layer: 31
+  m_Layer: 15
   m_Name: Failed expeditions label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44639,7 +44650,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000010819, y: 0.0000046189}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1270.8201, y: 618.68}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2114174953
@@ -45389,6 +45400,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hero Portrait Frame
       objectReference: {fileID: 0}
+    - target: {fileID: 5794685255711995305, guid: b780c8db679df5c4f8dcbd7872e46b48,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 5794685255711995304, guid: b780c8db679df5c4f8dcbd7872e46b48,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -45493,6 +45509,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794685254794927570, guid: b780c8db679df5c4f8dcbd7872e46b48,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794685255496521921, guid: b780c8db679df5c4f8dcbd7872e46b48,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5794685255970044879, guid: b780c8db679df5c4f8dcbd7872e46b48,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b780c8db679df5c4f8dcbd7872e46b48, type: 3}
@@ -45935,36 +45966,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1793397593633314576, guid: 0ef2a3639d171854fbcdf840468e6e5e,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1793397593633314576, guid: 0ef2a3639d171854fbcdf840468e6e5e,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1793397594470578008, guid: 0ef2a3639d171854fbcdf840468e6e5e,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1793397594470578008, guid: 0ef2a3639d171854fbcdf840468e6e5e,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1793397595018512773, guid: 0ef2a3639d171854fbcdf840468e6e5e,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1793397595018512773, guid: 0ef2a3639d171854fbcdf840468e6e5e,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6193210280142813593, guid: 0ef2a3639d171854fbcdf840468e6e5e,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -45994,6 +45995,60 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5569710851515616795, guid: 0ef2a3639d171854fbcdf840468e6e5e,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9c0196a4e4c7b7044abbba726c9560bc,
+        type: 3}
+    - target: {fileID: 1109310120, guid: 0ef2a3639d171854fbcdf840468e6e5e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1109310120, guid: 0ef2a3639d171854fbcdf840468e6e5e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 225.00002
+      objectReference: {fileID: 0}
+    - target: {fileID: 1217093759815574411, guid: 0ef2a3639d171854fbcdf840468e6e5e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1217093759815574411, guid: 0ef2a3639d171854fbcdf840468e6e5e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -449.99997
+      objectReference: {fileID: 0}
+    - target: {fileID: 1217093759815574411, guid: 0ef2a3639d171854fbcdf840468e6e5e,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1350
+      objectReference: {fileID: 0}
+    - target: {fileID: 1217093759815574411, guid: 0ef2a3639d171854fbcdf840468e6e5e,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 225
+      objectReference: {fileID: 0}
+    - target: {fileID: 1390370963443823751, guid: 0ef2a3639d171854fbcdf840468e6e5e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1390370963443823751, guid: 0ef2a3639d171854fbcdf840468e6e5e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 5781014536270753225, guid: 0ef2a3639d171854fbcdf840468e6e5e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5781014536270753225, guid: 0ef2a3639d171854fbcdf840468e6e5e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 335.99997
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ef2a3639d171854fbcdf840468e6e5e, type: 3}
@@ -46008,6 +46063,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Expedition Frame
+      objectReference: {fileID: 0}
+    - target: {fileID: 6494300738454935204, guid: d9890017b4ba43544a6c0816efdf27c0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1654676613970996747, guid: d9890017b4ba43544a6c0816efdf27c0,
         type: 3}
@@ -46134,6 +46194,21 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5849857886937183239, guid: d9890017b4ba43544a6c0816efdf27c0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7563604318530865359, guid: d9890017b4ba43544a6c0816efdf27c0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2132034238464997880, guid: d9890017b4ba43544a6c0816efdf27c0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9890017b4ba43544a6c0816efdf27c0, type: 3}
 --- !u!1001 &2830907518949848005
@@ -46151,7 +46226,7 @@ PrefabInstance:
     - target: {fileID: 1835239676619468063, guid: 611786dae5d69594baa91c880edf3ecb,
         type: 3}
       propertyPath: m_Layer
-      value: 31
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1835239676619468062, guid: 611786dae5d69594baa91c880edf3ecb,
         type: 3}
@@ -46281,22 +46356,22 @@ PrefabInstance:
     - target: {fileID: 1835239676479593926, guid: 611786dae5d69594baa91c880edf3ecb,
         type: 3}
       propertyPath: m_Layer
-      value: 31
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1835239676344705913, guid: 611786dae5d69594baa91c880edf3ecb,
         type: 3}
       propertyPath: m_Layer
-      value: 31
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1835239676951347319, guid: 611786dae5d69594baa91c880edf3ecb,
         type: 3}
       propertyPath: m_Layer
-      value: 31
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1835239677319038308, guid: 611786dae5d69594baa91c880edf3ecb,
         type: 3}
       propertyPath: m_Layer
-      value: 31
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 611786dae5d69594baa91c880edf3ecb, type: 3}

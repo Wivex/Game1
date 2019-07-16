@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 public enum HeroState
 {
     Recruitable,
-    InRoster,
+    Idle,
     OnExpedition
 }
 

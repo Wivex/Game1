@@ -30,6 +30,9 @@ public class GameManager : MonoBehaviour
     internal float combatSpeed = 0.075f;
     internal float oldCombatSpeed;
 
+    internal static List<Hero> IdleHeroes => instance.heroes.FindAll(hero => hero.state == HeroState.Idle);
+    internal static List<Hero> RecruitableHeroes => instance.heroes.FindAll(hero => hero.state == HeroState.Recruitable);
+
     //default initialization of Singleton instance
     void Awake()
     {

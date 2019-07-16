@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32a229b002926149832f9d63fa5075d, type: 3}
   m_Name: Dry Plains
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 839ea940112e98c46a3d9e79ef52fa14, type: 3}
+  icon: {fileID: 0}
   situations:
-  - chance: 1
+  - chance: 0
     name: Enemy Encounter
     icon: {fileID: 21300000, guid: 7589bc4291a4b42408d97cb9c30abfdc, type: 3}
     SituationType: 1

@@ -27,4 +27,9 @@ public class UIManager : MonoBehaviour
         //Sets this to not be destroyed when reloading scene
         DontDestroyOnLoad(gameObject);
     }
+
+    internal static void RandomPositionWithinPanel(Transform t)
+    {
+        t.localPosition = new Vector3(1,1);
+    }
 }

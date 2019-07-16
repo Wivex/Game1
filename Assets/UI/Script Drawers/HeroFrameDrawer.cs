@@ -11,10 +11,12 @@ public class HeroFrameDrawer : MonoBehaviour, IPointerClickHandler
     public TextMeshProUGUI heroNameText, heroLevelText;
 
     internal Hero hero;
+    internal MonoBehaviour parentDrawer;
 
-    public void Init(Hero hero)
+    public void Init(Hero hero, MonoBehaviour parentDrawer)
     {
         this.hero = hero;
+        this.parentDrawer = parentDrawer;
         heroImage.sprite = hero.portrait;
         heroNameText.text = hero.name;
         heroLevelText.text = hero.level.ToString();
@@ -23,6 +25,7 @@ public class HeroFrameDrawer : MonoBehaviour, IPointerClickHandler
     // add OnClick event
     public void OnPointerClick(PointerEventData eventData)
     {
-        UIManager.instance.mayorPanelDrawer.OnHeroSelect(this);
+        (parentDrawer as MayorPanelDrawer)?.OnHeroSelect(this);
+        (parentDrawer as TavernPanelDrawer)?.OnHeroSelect(this);
     }
 }

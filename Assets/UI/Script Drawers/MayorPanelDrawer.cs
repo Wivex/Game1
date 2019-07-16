@@ -11,8 +11,6 @@ public class MayorPanelDrawer : MonoBehaviour
     public Transform questContentPanel, expContentPanel;
     public MonoBehaviour heroFramePrefab, questFramePrefab, expFramePrefab;
 
-    List<Hero> FreeHeroes => GameManager.instance.heroes.FindAll(hero => hero.state == HeroState.InRoster);
-
     Hero selHero;
     LocationData selLocation;
 
@@ -22,20 +20,13 @@ public class MayorPanelDrawer : MonoBehaviour
         questContentPanel.DestroyAllChildren();
         expContentPanel.DestroyAllChildren();
     }
-    
+
     public void InitPanel()
     {
-        // NOTE: temp debug feature
-
-        for (int i = 0; i < 3; i++)
-        {
-            new Hero {state = HeroState.InRoster};
-        }
-
         foreach (var location in GameManager.instance.startingLocations)
         {
             var expPanel = expFramePrefab.Create<ExpeditionFrameDrawer>(expContentPanel);
-            expPanel.Init(location);
+            expPanel.Init(location, this);
         }
     }
 
@@ -47,16 +38,17 @@ public class MayorPanelDrawer : MonoBehaviour
         expContentPanel.SetActiveOfChildrenOfType<ExpeditionFrameDrawer>(false);
 
         // init free heroes frames in the same content panel from prefabs
-        foreach (var hero in FreeHeroes)
+        foreach (var hero in GameManager.IdleHeroes)
         {
             var heroPanel = heroFramePrefab.Create<HeroFrameDrawer>(expContentPanel);
-            heroPanel.Init(hero);
+            heroPanel.Init(hero, this);
         }
     }
 
     public void OnHeroSelect(HeroFrameDrawer heroFrame)
     {
         selHero = heroFrame.hero;
+        selHero.state = HeroState.OnExpedition;
 
         // hide heroFrames in this content panel
         expContentPanel.SetActiveOfChildrenOfType<HeroFrameDrawer>(false);

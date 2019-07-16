@@ -16,7 +16,7 @@ public struct ExpPreviewPanelRedrawFlags
 
 public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
 {
-    public const int reqInitiative = 100;
+    public const int ReqInitiative = 100;
 
     #region SET IN INSPECTOR
 
@@ -45,10 +45,18 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
     Image[] consumableSlots;
     TextMeshProUGUI[] consumablesCharges;
 
+    int curFrameIndex, curZoneIndex, framesCount, zonesCount;
+    float maskWidth, locationWidth;
+
     public void Init(Expedition exp)
     {
         this.exp = exp;
         hero = exp.hero;
+
+        maskWidth = (locationImage.transform.parent as RectTransform).rect.width;
+        locationWidth = locationImage.rectTransform.rect.width;
+        framesCount = (int)(locationWidth / maskWidth);
+        zonesCount = exp.curLocation.zones.Count;
 
         //init consumables
         //auto assign all consumables slots to arrays
@@ -62,6 +70,26 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
         UpdateGold();
         UpdateStatBars();
         UpdateConsumables();
+    }
+
+    internal void ChangeLocationFrame()
+    {
+        if (curFrameIndex < framesCount)
+        {
+            // switch to next frame image
+            // localPosition is calculated relative to the parent's pivot (default position)
+            locationImage.transform.localPosition =
+                new Vector3(-maskWidth * curFrameIndex++, locationImage.transform.localPosition.y);
+        }
+        else
+        {
+            curFrameIndex = 0;
+            if (curZoneIndex < zonesCount)
+                // switch to next zone image
+                locationImage.sprite = exp.curLocation.zones[curZoneIndex];
+            else
+                curZoneIndex = 0;
+        }
     }
 
     public void NotifyAnimationEnded()
@@ -138,8 +166,8 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
                         hero.stats[(int) StatType.Mana].curValue;
         mana.text =
             $"{hero.stats[(int) StatType.Mana].curValue} / {(hero.stats[(int) StatType.Mana] as StatChanging).maxValue}";
-        initBar.value = hero.curInitiative / reqInitiative;
-        initiative.text = $"{(int) hero.curInitiative} / {reqInitiative}";
+        initBar.value = hero.curInitiative / ReqInitiative;
+        initiative.text = $"{(int) hero.curInitiative} / {ReqInitiative}";
         expBar.value = (float) hero.experience / hero.classData.expPerLevel[hero.level];
         experience.text = $"{hero.experience} / {hero.classData.expPerLevel[hero.level]}";
     }

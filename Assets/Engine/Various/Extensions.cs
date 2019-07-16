@@ -30,7 +30,7 @@ public static class Extensions
     /// </summary>
     public static void SetActiveOfChildrenOfType<T>(this MonoBehaviour obj, bool state)
     {
-        foreach (var child in obj.GetComponentsInChildren<T>())
+        foreach (var child in obj.GetComponentsInChildren<T>(true))
         {
             (child as MonoBehaviour).gameObject.SetActive(state);
         }
@@ -41,7 +41,7 @@ public static class Extensions
     /// </summary>
     public static void SetActiveOfChildrenOfType<T>(this Transform obj, bool state)
     {
-        foreach (var child in obj.GetComponentsInChildren<T>())
+        foreach (var child in obj.GetComponentsInChildren<T>(true))
         {
             (child as MonoBehaviour).gameObject.SetActive(state);
         }

@@ -11,10 +11,12 @@ public class ExpeditionFrameDrawer : MonoBehaviour, IPointerClickHandler
     public TextMeshProUGUI expLabel;
 
     internal LocationData locData;
+    internal MonoBehaviour parentDrawer;
 
-    public void Init(LocationData locData)
+    public void Init(LocationData locData, MonoBehaviour parentDrawer)
     {
         this.locData = locData;
+        this.parentDrawer = parentDrawer;
         locImage.sprite = locData.icon;
         expLabel.text = $"Explore\nthe {locData.name}";
     }
@@ -22,6 +24,6 @@ public class ExpeditionFrameDrawer : MonoBehaviour, IPointerClickHandler
     // add OnClick event
     public void OnPointerClick(PointerEventData eventData)
     {
-        UIManager.instance.mayorPanelDrawer.OnExpeditionSelect(this);
+        (parentDrawer as MayorPanelDrawer)?.OnExpeditionSelect(this);
     }
 }

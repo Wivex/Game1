@@ -35,7 +35,7 @@ public class Expedition
         // TODO: add location transitions
         curLocation = destination;
         ResetGraceTimers();
-        InitTravellingSituation();
+        TryNewSituation();
 
         GameManager.instance.expeditions.Add(hero, this);
     }
@@ -68,6 +68,8 @@ public class Expedition
 
     public void TryNewSituation()
     {
+        expPreviewPanel.ChangeLocationFrame();
+
         if (GraceTimePassed)
         {
             foreach (var sit in curLocation.situations)
@@ -90,11 +92,11 @@ public class Expedition
                 }
             }
         }
-        // too early for new situation, travel for a bit
+        // too early for new situation, continue travelling
         else
         {
             // if not already travelling
-            if (situation.type != SituationType.Travelling)
+            if (situation?.type != SituationType.Travelling)
                 InitTravellingSituation();
         }
     }
