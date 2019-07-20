@@ -1,14 +1,14 @@
 ﻿using System;
-using UnityEngine;
+using UIEventDelegate;
 using UnityEditor;
 using UnityEditorInternal;
-
-using UIEventDelegate;
+using UnityEngine;
+using Object = UnityEngine.Object;
 
 [CustomPropertyDrawer(typeof(ReorderableEventList), true)]
-public class ReorderableDelegateDrawer : UnityEditor.PropertyDrawer
+public class ReorderableDelegateDrawer : PropertyDrawer
 {
-	private UnityEditorInternal.ReorderableList list;
+    ReorderableList list;
 
     EventDelegate eventDelegate = new EventDelegate();
 
@@ -23,13 +23,13 @@ public class ReorderableDelegateDrawer : UnityEditor.PropertyDrawer
 
     const int lineHeight = 16;
 
-    private UnityEditorInternal.ReorderableList getList(SerializedProperty property)
+    ReorderableList getList(SerializedProperty property)
     {
         if (list == null)
         {
             list = new ReorderableList(property.serializedObject, property, true, true, true, true);
 
-            list.drawElementCallback = (UnityEngine.Rect rect, int index, bool isActive, bool isFocused) =>
+            list.drawElementCallback = (rect, index, isActive, isFocused) =>
             {
                 if (!mShowList)
                     return;
@@ -49,7 +49,7 @@ public class ReorderableDelegateDrawer : UnityEditor.PropertyDrawer
                 EditorGUI.PropertyField(rect, elemtProp, true);
             };
 
-            list.elementHeightCallback = (index) =>
+            list.elementHeightCallback = index =>
             {
                 if(!mShowList)
                     return 0;
@@ -107,7 +107,8 @@ public class ReorderableDelegateDrawer : UnityEditor.PropertyDrawer
                             {
                                 continue;
                             }
-                            else if (param.expectedType == typeof(Vector2) || param.expectedType == typeof(Vector3) || param.expectedType == typeof(Vector4))
+
+                            if (param.expectedType == typeof(Vector2) || param.expectedType == typeof(Vector3) || param.expectedType == typeof(Vector4))
                             {
                                 //TODO: use minimalist method
                                 lines += 2f;
@@ -115,7 +116,7 @@ public class ReorderableDelegateDrawer : UnityEditor.PropertyDrawer
                             }
                         }
 
-                        UnityEngine.Object obj = objProp.objectReferenceValue;
+                        Object obj = objProp.objectReferenceValue;
 
                         if (obj == null)
                             continue;
@@ -140,7 +141,7 @@ public class ReorderableDelegateDrawer : UnityEditor.PropertyDrawer
         return list;
 	}
 
-	public override float GetPropertyHeight(SerializedProperty property, UnityEngine.GUIContent label)
+	public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
 	{
         if(!mShowList)
             return lineHeight;
@@ -150,11 +151,10 @@ public class ReorderableDelegateDrawer : UnityEditor.PropertyDrawer
 
 		if (list == null)
 			return 0;
-		else
-			return list.GetHeight();
+	    return list.GetHeight();
 	}
 
-	public override void OnGUI(UnityEngine.Rect position, SerializedProperty property, UnityEngine.GUIContent label)
+	public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
 	{
         if(list == null)
         {

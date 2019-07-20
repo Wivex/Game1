@@ -9,7 +9,8 @@ public struct ExpPreviewPanelRedrawFlags
 {
     public bool description,
         gold,
-        consumes;
+        consumes,
+        zone;
 
     // eventPanel is redrawn every frame anyway
 }
@@ -37,7 +38,7 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
     #endregion
 
     //hide from inspector
-    internal ExpPreviewPanelRedrawFlags redrawFlags = new ExpPreviewPanelRedrawFlags();
+    internal ExpPreviewPanelRedrawFlags redrawFlags;
 
     Expedition exp;
     Hero hero;
@@ -45,18 +46,10 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
     Image[] consumableSlots;
     TextMeshProUGUI[] consumablesCharges;
 
-    int curFrameIndex, curZoneIndex, framesCount, zonesCount;
-    float maskWidth, locationWidth;
-
     public void Init(Expedition exp)
     {
         this.exp = exp;
         hero = exp.hero;
-
-        maskWidth = (locationImage.transform.parent as RectTransform).rect.width;
-        locationWidth = locationImage.rectTransform.rect.width;
-        framesCount = (int)(locationWidth / maskWidth);
-        zonesCount = exp.curLocation.zones.Count;
 
         //init consumables
         //auto assign all consumables slots to arrays
@@ -70,26 +63,6 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
         UpdateGold();
         UpdateStatBars();
         UpdateConsumables();
-    }
-
-    internal void ChangeLocationFrame()
-    {
-        if (curFrameIndex < framesCount)
-        {
-            // switch to next frame image
-            // localPosition is calculated relative to the parent's pivot (default position)
-            locationImage.transform.localPosition =
-                new Vector3(-maskWidth * curFrameIndex++, locationImage.transform.localPosition.y);
-        }
-        else
-        {
-            curFrameIndex = 0;
-            if (curZoneIndex < zonesCount)
-                // switch to next zone image
-                locationImage.sprite = exp.curLocation.zones[curZoneIndex];
-            else
-                curZoneIndex = 0;
-        }
     }
 
     public void NotifyAnimationEnded()
@@ -111,6 +84,8 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
             UpdateGold();
         if (redrawFlags.consumes)
             UpdateConsumables();
+        if (redrawFlags.zone)
+            UpdateZone();
 
         UpdateStatBars();
     }
@@ -121,6 +96,7 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
     {
         heroName.text = hero.name;
         level.text = $"Level {hero.level} {hero.classData.classLevels[hero.level].name}";
+        redrawFlags.description = false;
     }
 
     void UpdateGold()
@@ -135,6 +111,7 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
         }
 
         curGoldImage.sprite = goldSprites[index];
+        redrawFlags.gold = false;
     }
 
     void UpdateConsumables()
@@ -154,6 +131,7 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
                 consumablesCharges[i].text = hero.consumables[i].curCharges.ToString();
             }
         }
+        redrawFlags.consumes = false;
     }
 
     void UpdateStatBars()
@@ -170,6 +148,28 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
         initiative.text = $"{(int) hero.curInitiative} / {ReqInitiative}";
         expBar.value = (float) hero.experience / hero.classData.expPerLevel[hero.level];
         experience.text = $"{hero.experience} / {hero.classData.expPerLevel[hero.level]}";
+    }
+
+    void UpdateZone()
+    {
+        //locationImage.transform.localPosition =
+        //    new Vector3(-maskWidth * curFrameIndex++, locationImage.transform.localPosition.y);
+
+        //if (curZoneIndex < curArea.zonesPositions.Capacity)
+        //{
+        //    locationImage.transform.localPosition =
+        //        new Vector3(-maskWidth * curFrameIndex++, locationImage.transform.localPosition.y);
+        //}
+        //else
+        //{
+        //    curFrameIndex = 0;
+        //    if (curZoneIndex < areasCount)
+        //        // switch to next zone image
+        //        locationImage.sprite = exp.curLocation.zones[curZoneIndex];
+        //    else
+        //        curZoneIndex = 0;
+        //}
+        redrawFlags.zone = false;
     }
 
     #endregion

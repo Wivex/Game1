@@ -15,14 +15,15 @@ public enum AnimationTrigger
 
 public class Expedition
 {
+    public ExpPreviewPanelDrawer expPreviewPanel;
     public Hero hero;
     public Situation situation;
     public LocationData curLocation;
     public LocationData destination;
 
-    public ExpPreviewPanelDrawer expPreviewPanel;
-
+    LocationArea curArea;
     DateTime lastSituationRealTime;
+    int curZoneIndex, curAreaIndex;
     float lastSituationGameTime;
 
     public Expedition(Hero hero, LocationData destination)
@@ -34,11 +35,15 @@ public class Expedition
         this.destination = destination;
         // TODO: add location transitions
         curLocation = destination;
+        //curArea = curLocation.areas.FirstOrDefault(area => area.type == AreaType.Entrance && area.connectedLocations?.Any() == false);
+
         ResetGraceTimers();
         TryNewSituation();
 
         GameManager.instance.expeditions.Add(hero, this);
     }
+
+    LocationArea NewInterchangableArea => curLocation.areas.Find(area => area.type == AreaType.Interchangable && area != curArea);
 
     public bool GraceTimePassed =>
         (DateTime.Now - lastSituationRealTime).TotalSeconds > GameManager.instance.minGracePeriod &&
@@ -66,9 +71,28 @@ public class Expedition
         situation.state = SituationState.RunningLogic;
     }
 
+    void ChangeZone()
+    {
+        if (curZoneIndex++ >= curArea.zonesPositions.Capacity)
+        {
+            curZoneIndex = 0;
+            // go to next area
+            if (curAreaIndex++ >= curLocation.areas.Capacity)
+            {
+                curAreaIndex = 0;
+                // TODO: change location
+            }
+            else
+                curArea = NewInterchangableArea;
+        }
+
+        // set flag to redraw zone 
+        expPreviewPanel.redrawFlags.zone = true;
+    }
+
     public void TryNewSituation()
     {
-        expPreviewPanel.ChangeLocationFrame();
+        ChangeZone();
 
         if (GraceTimePassed)
         {

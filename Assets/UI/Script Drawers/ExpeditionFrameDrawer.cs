@@ -17,7 +17,7 @@ public class ExpeditionFrameDrawer : MonoBehaviour, IPointerClickHandler
     {
         this.locData = locData;
         this.parentDrawer = parentDrawer;
-        locImage.sprite = locData.icon;
+        locImage.sprite = locData.areas[0].areaImage;
         expLabel.text = $"Explore\nthe {locData.name}";
     }
 

@@ -19,7 +19,7 @@ public class HiddenIfNotPropertyDrawer : PropertyDrawer
         //Get the full relative property path of the sourcefield so we can have nested hiding
         //returns the property path of the property we want to apply the attribute to
         var propertyPath = property.propertyPath;
-        //changes the path to the conditionalsource property path
+        //changes the path to the conditional source property path
         var conditionPath = propertyPath.Replace(property.name, attr.condPropertyName);
         var sourcePropertyValue = property.serializedObject.FindProperty(conditionPath);
 

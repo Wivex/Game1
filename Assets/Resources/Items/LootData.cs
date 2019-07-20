@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using SubjectNerd.Utilities;
+//using SubjectNerd.Utilities;
 using UnityEngine;
 
 public enum LootAmountType

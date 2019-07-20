@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
-using SubjectNerd.Utilities;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Content/Data/Unit Data")]
-public class UnitData : ContentData
+public class UnitData : ScriptableObject
 {
     [Header("Unit Data")]
+    public Sprite icon;
     public StatValues stats;
-    [Reorderable]
     public List<AbilityData> abilities;
     public TacticsPreset tacticsPreset;
 }

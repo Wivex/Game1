@@ -25,8 +25,8 @@ using UnityEngine;
 public enum ReordableNamingType
 {
     None,
-    ScriptableObjectName,
-    Variable
+    ObjectName,
+    VariableValue
 }
 
 namespace SubjectNerd.Utilities

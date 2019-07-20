@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using SubjectNerd.Utilities;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Content/Data/Enemy Data")]
@@ -8,7 +7,7 @@ public class EnemyData : UnitData
     [Header("Enemy")]
     public float spawnChance;
     public int spawnInterval;
-    [Reorderable(ReordableNamingType.ScriptableObjectName, "item")]
+    //[Reorderable(ReordableNamingType.ObjectName, "item")]
     public List<LootData> lootTable;
 
     // TODO: optimize, to avoid sorting all objects each validation

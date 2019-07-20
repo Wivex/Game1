@@ -2623,7 +2623,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingLocations:
-  - {fileID: 11400000, guid: 79208d596075e4349b95247be0101bf7, type: 2}
+  - {fileID: 0}
   minGracePeriod: 5
 --- !u!4 &116506166
 Transform:
@@ -46000,7 +46000,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 9c0196a4e4c7b7044abbba726c9560bc,
+      objectReference: {fileID: 21300000, guid: 0574fb20788000740a0e3a2e3c35dd71,
         type: 3}
     - target: {fileID: 1109310120, guid: 0ef2a3639d171854fbcdf840468e6e5e, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -46013,12 +46013,12 @@ PrefabInstance:
     - target: {fileID: 1217093759815574411, guid: 0ef2a3639d171854fbcdf840468e6e5e,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 1217093759815574411, guid: 0ef2a3639d171854fbcdf840468e6e5e,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -449.99997
+      value: -900
       objectReference: {fileID: 0}
     - target: {fileID: 1217093759815574411, guid: 0ef2a3639d171854fbcdf840468e6e5e,
         type: 3}

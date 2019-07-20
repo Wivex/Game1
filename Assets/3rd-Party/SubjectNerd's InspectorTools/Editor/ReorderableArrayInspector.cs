@@ -21,7 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.*/
 
 // Uncomment the line below to turn all arrays into reorderable lists
-//#define LIST_ALL_ARRAYS
+#define LIST_ALL_ARRAYS
 
 // Uncomment the line below to make all ScriptableObject fields editable
 //#define EDIT_ALL_SCRIPTABLES
@@ -43,7 +43,7 @@ namespace SubjectNerd.Utilities
 	public class ReorderableArrayInspector : Editor
 	{
 		// Set this to true to turn every array in non custom inspectors into reorderable lists
-		private const bool LIST_ALL_ARRAYS = false;
+	    const bool LIST_ALL_ARRAYS = false;
 
 		protected static string GetGrandParentPath(SerializedProperty property)
 		{
@@ -58,14 +58,14 @@ namespace SubjectNerd.Utilities
 
 		protected static bool FORCE_INIT = false;
 		[DidReloadScripts]
-		private static void HandleScriptReload()
+		static void HandleScriptReload()
 		{
 			FORCE_INIT = true;
 
 			EditorApplication.delayCall = () => { EditorApplication.delayCall = () => { FORCE_INIT = false; }; };
 		}
 
-		private static GUIStyle styleHighlight;
+	    static GUIStyle styleHighlight;
 
 		/// <summary>
 		/// Internal class that manages ReorderableLists for each reorderable
@@ -76,9 +76,9 @@ namespace SubjectNerd.Utilities
 			public string Parent { get; private set; }
 			public Func<int, string> ElementHeaderCallback = null;
 
-			private readonly Dictionary<string, ReorderableList> propIndex = new Dictionary<string, ReorderableList>();
-			private readonly Dictionary<string, Action<SerializedProperty, Object[]>> propDropHandlers = new Dictionary<string, Action<SerializedProperty, Object[]>>();
-			private readonly Dictionary<string, int> countIndex = new Dictionary<string, int>();
+		    readonly Dictionary<string, ReorderableList> propIndex = new Dictionary<string, ReorderableList>();
+		    readonly Dictionary<string, Action<SerializedProperty, Object[]>> propDropHandlers = new Dictionary<string, Action<SerializedProperty, Object[]>>();
+		    readonly Dictionary<string, int> countIndex = new Dictionary<string, int>();
 
 			public SortableListData(string parent)
 			{
@@ -146,7 +146,7 @@ namespace SubjectNerd.Utilities
 				propIndex.Add(property.propertyPath, propList);
 			}
 
-			private float ElementHeightCallback(SerializedProperty property, int index)
+		    float ElementHeightCallback(SerializedProperty property, int index)
 			{
 				SerializedProperty arrayElement = property.GetArrayElementAtIndex(index);
 				float calculatedHeight = EditorGUI.GetPropertyHeight(arrayElement,
@@ -264,13 +264,13 @@ namespace SubjectNerd.Utilities
 
 		public bool isSubEditor;
 
-		private readonly GUILayoutOption uiExpandWidth = GUILayout.ExpandWidth(true);
-		private readonly GUILayoutOption uiWidth50 = GUILayout.Width(50);
-		private readonly GUIContent labelBtnCreate = new GUIContent("Create");
-		private GUIStyle styleEditBox;
+	    readonly GUILayoutOption uiExpandWidth = GUILayout.ExpandWidth(true);
+	    readonly GUILayoutOption uiWidth50 = GUILayout.Width(50);
+	    readonly GUIContent labelBtnCreate = new GUIContent("Create");
+	    GUIStyle styleEditBox;
 
-		private readonly List<SortableListData> listIndex = new List<SortableListData>();
-		private readonly Dictionary<string, Editor> editableIndex = new Dictionary<string, Editor>();
+	    readonly List<SortableListData> listIndex = new List<SortableListData>();
+	    readonly Dictionary<string, Editor> editableIndex = new Dictionary<string, Editor>();
 
 		protected bool alwaysDrawInspector = false;
 		protected bool isInitialized = false;
@@ -303,7 +303,8 @@ namespace SubjectNerd.Utilities
 		}
 
 		#region Initialization
-		private void OnEnable()
+
+	    void OnEnable()
 		{
 			InitInspector();
 		}
@@ -329,7 +330,7 @@ namespace SubjectNerd.Utilities
 		{
 			listIndex.Clear();
 			editableIndex.Clear();
-			Type typeScriptable = typeof(ScriptableObject);
+			Type typeScriptable = typeof(UnityEngine.ScriptableObject);
 
 			SerializedProperty iterProp = serializedObject.GetIterator();
 			// This iterator goes through all the child serialized properties, looking
@@ -341,7 +342,7 @@ namespace SubjectNerd.Utilities
 					if (iterProp.isArray && iterProp.propertyType != SerializedPropertyType.String)
 					{
 #if LIST_ALL_ARRAYS
-						bool canTurnToList = true
+					    bool canTurnToList = true;
 #else
 						bool canTurnToList = iterProp.HasAttribute<ReorderableAttribute>();
 #endif
@@ -398,7 +399,7 @@ namespace SubjectNerd.Utilities
 			}
 		}
 
-		private IEnumerable<MethodInfo> GetAllMethods(Type t)
+	    IEnumerable<MethodInfo> GetAllMethods(Type t)
 		{
 			if (t == null)
 				return Enumerable.Empty<MethodInfo>();
@@ -406,7 +407,7 @@ namespace SubjectNerd.Utilities
 			return t.GetMethods(binding).Concat(GetAllMethods(t.BaseType));
 		}
 
-		private void FindContextMenu()
+	    void FindContextMenu()
 		{
 			contextData.Clear();
 
@@ -441,7 +442,7 @@ namespace SubjectNerd.Utilities
 			}
 		}
 
-		private void CreateListData(SerializedProperty property)
+	    void CreateListData(SerializedProperty property)
 		{
 			string parent = GetGrandParentPath(property);
 
@@ -465,7 +466,7 @@ namespace SubjectNerd.Utilities
 			}
 		}
 
-	    private void HandleReorderableOptions(ReorderableAttribute arrayAttr, SerializedProperty property,
+	    void HandleReorderableOptions(ReorderableAttribute arrayAttr, SerializedProperty property,
 	        SortableListData data)
 	    {
 	        // Custom element header
@@ -476,7 +477,7 @@ namespace SubjectNerd.Utilities
 	    }
 
 
-	    private string GetTitle(SerializedProperty property, ReorderableAttribute arrayAttr, int index)
+	    string GetTitle(SerializedProperty property, ReorderableAttribute arrayAttr, int index)
 	    {
 	        var elemPropertyPath = arrayAttr.nestedPath != string.Empty
 	            ? $"{property.propertyPath}.Array.data[{index}].{arrayAttr.nestedPath}"
@@ -484,9 +485,9 @@ namespace SubjectNerd.Utilities
             var elemProperty = property.serializedObject.FindProperty(elemPropertyPath);
             switch (arrayAttr.namingType)
             {
-                case ReordableNamingType.ScriptableObjectName:
+                case ReordableNamingType.ObjectName:
                     return elemProperty.objectReferenceValue != null ? elemProperty.objectReferenceValue.name : string.Empty;
-                case ReordableNamingType.Variable:
+                case ReordableNamingType.VariableValue:
                     return elemProperty.stringValue ?? string.Empty;
                 default:
                     return string.Empty;
@@ -562,7 +563,8 @@ namespace SubjectNerd.Utilities
 
 		protected virtual void DrawInspector()
 		{
-			DrawPropertiesAll();
+			//DrawPropertiesAll();
+            DrawPropertiesExcept("type");
 		}
 
 		public override void OnInspectorGUI()
@@ -726,11 +728,11 @@ namespace SubjectNerd.Utilities
 		}
 
 		// Creates a new ScriptableObject via the default Save File panel
-		private ScriptableObject CreateAssetWithSavePrompt(Type type, string path)
+	    UnityEngine.ScriptableObject CreateAssetWithSavePrompt(Type type, string path)
 		{
 			path = EditorUtility.SaveFilePanelInProject("Save ScriptableObject", "New " + type.Name + ".asset", "asset", "Enter a file name for the ScriptableObject.", path);
 			if (path == "") return null;
-			ScriptableObject asset = ScriptableObject.CreateInstance(type);
+			UnityEngine.ScriptableObject asset = UnityEngine.ScriptableObject.CreateInstance(type);
 			AssetDatabase.CreateAsset(asset, path);
 			AssetDatabase.SaveAssets();
 			AssetDatabase.Refresh();
