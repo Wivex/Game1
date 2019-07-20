@@ -14,9 +14,9 @@ public class TacticAction
 {
     public ActionType actionType;
 
-    [ShownIfEnumValue("actionType", (int) ActionType.UseAbility)]
+    //[ShownIfEnumValue("actionType", (int) ActionType.UseAbility)]
     public AbilityData abilityData;
-    [ShownIfEnumValue("actionType", (int)ActionType.UseConsumable)]
+    //[ShownIfEnumValue("actionType", (int)ActionType.UseConsumable)]
     public ConsumableData consumableData;
 
     public void DoAction(SituationCombat situation)

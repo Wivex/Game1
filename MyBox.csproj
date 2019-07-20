@@ -62,7 +62,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\3rd-Party\MyBox\Attributes\ConditionalFieldAttribute.cs" />
     <Compile Include="Assets\3rd-Party\MyBox\Tools\Features\AutoSaveFeature.cs" />
     <Compile Include="Assets\3rd-Party\MyBox\Tools\Features\CleanEmptyDirectoriesFeature.cs" />
     <Compile Include="Assets\3rd-Party\MyBox\Tools\Features\SceneViewBookmarkHotkeys.cs" />

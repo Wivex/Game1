@@ -33,25 +33,25 @@ public class TacticTrigger
 {
     public TriggerType triggerType;
 
-    [ShownIfEnumValue("triggerType", (int) TriggerType.StatValue, (int)TriggerType.AbilityReady)]
+    //[ShownIfEnumValue("triggerType", (int) TriggerType.StatValue, (int)TriggerType.AbilityReady)]
     public Target target;
 
-    [ShownIfEnumValue("triggerType", (int) TriggerType.StatValue)]
+    //[ShownIfEnumValue("triggerType", (int) TriggerType.StatValue)]
     public StatType stat;
 
-    [ShownIfEnumValue("triggerType", (int) TriggerType.StatValue)]
+    //[ShownIfEnumValue("triggerType", (int) TriggerType.StatValue)]
     public StatTriggerType statTriggerType;
 
-    [ShownIfEnumValue("triggerType", (int) TriggerType.StatValue)]
+    //[ShownIfEnumValue("triggerType", (int) TriggerType.StatValue)]
     public ComparisonType comparisonType;
 
-    [ShownIfEnumValue("triggerType", (int) TriggerType.StatValue)]
+    //[ShownIfEnumValue("triggerType", (int) TriggerType.StatValue)]
     public int statValue;
 
-    [ShownIfEnumValue("triggerType", (int) TriggerType.AbilityReady)]
+    //[ShownIfEnumValue("triggerType", (int) TriggerType.AbilityReady)]
     public AbilityData abilityData;
 
-    [ShownIfEnumValue("triggerType", (int) TriggerType.FoeType)]
+    //[ShownIfEnumValue("triggerType", (int) TriggerType.FoeType)]
     public UnitData unitData;
 
     public bool IsTriggered(SituationCombat situation)

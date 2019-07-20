@@ -14,41 +14,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   areas:
   - areaImage: {fileID: 21300000, guid: 0574fb20788000740a0e3a2e3c35dd71, type: 3}
+    type: 2
     areaImageSize: {x: 1350, y: 225}
-    type: 0
-    connectedLocations: []
+    connectedLocations:
+    - {fileID: 0}
     zonesPositions:
     - {x: 0, y: 0}
     - {x: -450, y: 0}
     - {x: -900, y: -10}
   - areaImage: {fileID: 21300000, guid: e30c90a8ea3fac34ba8694fdb8cc920c, type: 3}
-    areaImageSize: {x: 0, y: 0}
     type: 0
+    areaImageSize: {x: 0, y: 0}
     connectedLocations: []
     zonesPositions: []
   - areaImage: {fileID: 21300000, guid: 844572e9d7a8d0d4a9ff1b16862115ff, type: 3}
-    areaImageSize: {x: 0, y: 0}
     type: 0
+    areaImageSize: {x: 0, y: 0}
     connectedLocations: []
     zonesPositions: []
   - areaImage: {fileID: 21300000, guid: 0b208ccc4e55ea44b92db6cafa6628b2, type: 3}
-    areaImageSize: {x: 0, y: 0}
     type: 0
+    areaImageSize: {x: 0, y: 0}
     connectedLocations: []
     zonesPositions: []
   - areaImage: {fileID: 21300000, guid: 11d1e3b6a9aee8d42bb61a50315da3f3, type: 3}
-    areaImageSize: {x: 0, y: 0}
     type: 0
+    areaImageSize: {x: 0, y: 0}
     connectedLocations: []
     zonesPositions: []
   - areaImage: {fileID: 21300000, guid: 53d095c4e6be5db4499b14f7cbce4d84, type: 3}
-    areaImageSize: {x: 0, y: 0}
     type: 0
+    areaImageSize: {x: 0, y: 0}
     connectedLocations: []
     zonesPositions: []
   - areaImage: {fileID: 21300000, guid: b099459b46550c247a761d12014bed81, type: 3}
-    areaImageSize: {x: 0, y: 0}
     type: 0
+    areaImageSize: {x: 0, y: 0}
     connectedLocations: []
     zonesPositions: []
   situations:

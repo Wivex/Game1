@@ -27,16 +27,16 @@ public class Effect
 
     public Target target;
     public EffectApplyType effectApplyType;
-    [ShownIfEnumValue("effectApplyType", (int) EffectApplyType.Continuous, (int) EffectApplyType.Delayed)]
+    //[ShownIfEnumValue("effectApplyType", (int) EffectApplyType.Continuous, (int) EffectApplyType.Delayed)]
     public int duration;
-    [ShownIfEnumValue("effectApplyType", (int) EffectApplyType.Delayed)]
+    //[ShownIfEnumValue("effectApplyType", (int) EffectApplyType.Delayed)]
     public int delay;
     public EffectOnStatsType effectOnStatsType;
-    [ShownIfEnumValue("effectOnStatsType", (int) EffectOnStatsType.Damage)]
+    //[ShownIfEnumValue("effectOnStatsType", (int) EffectOnStatsType.Damage)]
     public DamageType damageType;
-    [ShownIfEnumValue("effectOnStatsType", (int) EffectOnStatsType.StatModifier)]
+    //[ShownIfEnumValue("effectOnStatsType", (int) EffectOnStatsType.StatModifier)]
     public StatType stat;
-    [ShownIfEnumValue("effectOnStatsType", (int) EffectOnStatsType.StatModifier)]
+    //[ShownIfEnumValue("effectOnStatsType", (int) EffectOnStatsType.StatModifier)]
     public StatModType statModType;
 
     public int amount;

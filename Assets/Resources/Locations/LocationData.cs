@@ -17,12 +17,12 @@ public enum AreaType
 public class LocationArea
 {
     // not internal cause Reorderable needs it public for renaming of elements
-    [HideInInspector]
-    public Sprite areaImage;
-    public Vector2 areaImageSize;
+    [HideInInspector] public Sprite areaImage;
     public AreaType type;
 
-    [ConditionalField("type", AreaType.Exit)]
+    [HideIfNotEnumValues("type", AreaType.Exit, AreaType.Entrance)]
+    public Vector2 areaImageSize;
+
     public List<LocationData> connectedLocations;
     public List<Vector2> zonesPositions;
 }
