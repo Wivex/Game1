@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5388084897175163123}
   - component: {fileID: 8191601709936330317}
   - component: {fileID: 6239598894830879307}
-  m_Layer: 15
+  m_Layer: 31
   m_Name: Location Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 8287858730097304939}
   - component: {fileID: 283445296606505928}
   - component: {fileID: 699425520540278062}
-  m_Layer: 15
+  m_Layer: 31
   m_Name: Expedition Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000011444}
+  m_AnchoredPosition: {x: 0, y: -0.000015258789}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &283445296606505928
@@ -260,7 +260,8 @@ GameObject:
   - component: {fileID: 5204648956401603571}
   - component: {fileID: 2343268515238053665}
   - component: {fileID: 3836430352556659467}
-  m_Layer: 15
+  - component: {fileID: 8731840987994623744}
+  m_Layer: 31
   m_Name: Expedition Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -369,6 +370,20 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &8731840987994623744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6494300738454935204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3995b9d25d1e994c89d865b4824e927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locImage: {fileID: 8191601709936330317}
+  expLabel: {fileID: 699425520540278062}
 --- !u!1 &7563604318530865359
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,7 +396,7 @@ GameObject:
   - component: {fileID: 7563604318530865355}
   - component: {fileID: 7563604318530865354}
   - component: {fileID: 7563604318530865353}
-  m_Layer: 15
+  m_Layer: 31
   m_Name: Expedition Preview Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -10,19 +10,17 @@ public class CanvasManager : MonoBehaviour
     public Canvas defaultCanvas;
     public List<Canvas> staticCanvases = new List<Canvas>();
 
+    public List<Canvas> DirectSubCanvases => 
+        GetComponentsInChildren<Canvas>()
+            .Where(canvas => canvas.transform.parent == transform).ToList();
+
     /// <summary>
     /// automatically put direct children of this object (1 depth) into canvases list
     /// </summary>
     void OnValidate()
     {
-        var compTransform = GetComponent<Transform>();
-        var directChildren = GetComponentsInChildren<Transform>()
-            .Where(comp => comp.parent == compTransform);
-        foreach (var child in directChildren)
-        {
-            var canvas = child.gameObject.GetComponent<Canvas>();
-            if (canvas != null && !canvases.Contains(canvas)) canvases.Add(canvas);
-        }
+        canvases.Clear();
+        DirectSubCanvases.ForEach(canvas => canvases.Add(canvas));
     }
 
     void Start()
@@ -40,5 +38,10 @@ public class CanvasManager : MonoBehaviour
         {
             canvas.enabled = canvas == selectedCanvas || staticCanvases.Contains(canvas);
         }
+    }
+
+    public void HideSubCanvases()
+    {
+        DirectSubCanvases.ForEach(canvas => canvas.enabled = false);
     }
 }

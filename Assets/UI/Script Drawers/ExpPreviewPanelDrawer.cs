@@ -9,14 +9,15 @@ public struct ExpPreviewPanelRedrawFlags
 {
     public bool description,
         gold,
-        consumes;
+        consumes,
+        zone;
 
     // eventPanel is redrawn every frame anyway
 }
 
 public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
 {
-    public const int reqInitiative = 100;
+    public const int ReqInitiative = 100;
 
     #region SET IN INSPECTOR
 
@@ -37,7 +38,7 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
     #endregion
 
     //hide from inspector
-    internal ExpPreviewPanelRedrawFlags redrawFlags = new ExpPreviewPanelRedrawFlags();
+    internal ExpPreviewPanelRedrawFlags redrawFlags;
 
     Expedition exp;
     Hero hero;
@@ -60,7 +61,7 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
 
         UpdateHeroDesc();
         UpdateGold();
-        UpdateStatBars();   
+        UpdateStatBars();
         UpdateConsumables();
     }
 
@@ -83,6 +84,8 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
             UpdateGold();
         if (redrawFlags.consumes)
             UpdateConsumables();
+        if (redrawFlags.zone)
+            UpdateZone();
 
         UpdateStatBars();
     }
@@ -93,6 +96,7 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
     {
         heroName.text = hero.name;
         level.text = $"Level {hero.level} {hero.classData.classLevels[hero.level].name}";
+        redrawFlags.description = false;
     }
 
     void UpdateGold()
@@ -102,11 +106,12 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
         var index = 0;
         while (hero.gold > a)
         {
-            a = (int)Mathf.Pow(2, index++);
+            a = (int) Mathf.Pow(2, index++);
             if (index >= goldSprites.Count - 1) break;
         }
 
         curGoldImage.sprite = goldSprites[index];
+        redrawFlags.gold = false;
     }
 
     void UpdateConsumables()
@@ -126,22 +131,45 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
                 consumablesCharges[i].text = hero.consumables[i].curCharges.ToString();
             }
         }
+        redrawFlags.consumes = false;
     }
 
     void UpdateStatBars()
     {
-        healthBar.value = (float)hero.stats[(int)StatType.Health].curValue /
-                          hero.stats[(int)StatType.Health].curValue;
+        healthBar.value = (float) hero.stats[(int) StatType.Health].curValue /
+                          hero.stats[(int) StatType.Health].curValue;
         health.text =
-            $"{hero.stats[(int)StatType.Health].curValue} / {(hero.stats[(int)StatType.Health] as StatChanging).maxValue}";
-        manaBar.value = (float)hero.stats[(int)StatType.Mana].curValue /
-                        hero.stats[(int)StatType.Mana].curValue;
+            $"{hero.stats[(int) StatType.Health].curValue} / {(hero.stats[(int) StatType.Health] as StatChanging).maxValue}";
+        manaBar.value = (float) hero.stats[(int) StatType.Mana].curValue /
+                        hero.stats[(int) StatType.Mana].curValue;
         mana.text =
-            $"{hero.stats[(int)StatType.Mana].curValue} / {(hero.stats[(int)StatType.Mana] as StatChanging).maxValue}";
-        initBar.value = hero.curInitiative / reqInitiative;
-        initiative.text = $"{(int)hero.curInitiative} / {reqInitiative}";
-        expBar.value = (float)hero.experience / hero.classData.expPerLevel[hero.level];
+            $"{hero.stats[(int) StatType.Mana].curValue} / {(hero.stats[(int) StatType.Mana] as StatChanging).maxValue}";
+        initBar.value = hero.curInitiative / ReqInitiative;
+        initiative.text = $"{(int) hero.curInitiative} / {ReqInitiative}";
+        expBar.value = (float) hero.experience / hero.classData.expPerLevel[hero.level];
         experience.text = $"{hero.experience} / {hero.classData.expPerLevel[hero.level]}";
+    }
+
+    void UpdateZone()
+    {
+        //locationImage.transform.localPosition =
+        //    new Vector3(-maskWidth * curFrameIndex++, locationImage.transform.localPosition.y);
+
+        //if (curZoneIndex < curArea.zonesPositions.Capacity)
+        //{
+        //    locationImage.transform.localPosition =
+        //        new Vector3(-maskWidth * curFrameIndex++, locationImage.transform.localPosition.y);
+        //}
+        //else
+        //{
+        //    curFrameIndex = 0;
+        //    if (curZoneIndex < areasCount)
+        //        // switch to next zone image
+        //        locationImage.sprite = exp.curLocation.zones[curZoneIndex];
+        //    else
+        //        curZoneIndex = 0;
+        //}
+        redrawFlags.zone = false;
     }
 
     #endregion
@@ -149,13 +177,10 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
     // show details panel if preview is double clicked
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.clickCount == 2)
-        {
-            var expPanel = UIManager.instance.expPanelDrawer;
+        var expPanel = UIManager.instance.expPanelDrawer;
 
-            expPanel.selectedExp = exp;
-            expPanel.detailsPanelDrawer.InitHeroPanel(hero);
-            expPanel.ShowSelectedExpDetailsPanel(exp);
-        }
+        expPanel.selectedExp = exp;
+        expPanel.detailsPanelDrawer.InitHeroPanel(hero);
+        expPanel.ShowSelectedExpDetailsPanel(exp);
     }
 }

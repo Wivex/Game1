@@ -15,14 +15,15 @@ public enum AnimationTrigger
 
 public class Expedition
 {
+    public ExpPreviewPanelDrawer expPreviewPanel;
     public Hero hero;
     public Situation situation;
     public LocationData curLocation;
     public LocationData destination;
 
-    public ExpPreviewPanelDrawer expPreviewPanel;
-
+    LocationArea curArea;
     DateTime lastSituationRealTime;
+    int curZoneIndex, curAreaIndex;
     float lastSituationGameTime;
 
     public Expedition(Hero hero, LocationData destination)
@@ -32,10 +33,17 @@ public class Expedition
         hero.unitPreviewIcon = expPreviewPanel.heroIcon.transform;
         hero.unitDetailsIcon = UIManager.instance.expPanelDrawer.detailsPanelDrawer.heroPanel.unitImage.transform;
         this.destination = destination;
-        curLocation = Resources.Load<LocationData>("Locations/Forest/Forest");
+        // TODO: add location transitions
+        curLocation = destination;
+        //curArea = curLocation.areas.FirstOrDefault(area => area.type == AreaType.Entrance && area.connectedLocations?.Any() == false);
+
         ResetGraceTimers();
-        InitTravellingSituation();
+        TryNewSituation();
+
+        GameManager.instance.expeditions.Add(hero, this);
     }
+
+    LocationArea NewInterchangableArea => curLocation.areas.Find(area => area.interchangeable && area != curArea);
 
     public bool GraceTimePassed =>
         (DateTime.Now - lastSituationRealTime).TotalSeconds > GameManager.instance.minGracePeriod &&
@@ -63,8 +71,29 @@ public class Expedition
         situation.state = SituationState.RunningLogic;
     }
 
+    void ChangeZone()
+    {
+        if (curZoneIndex++ >= curArea.zonesPositions.Capacity)
+        {
+            curZoneIndex = 0;
+            // go to next area
+            if (curAreaIndex++ >= curLocation.areas.Capacity)
+            {
+                curAreaIndex = 0;
+                // TODO: change location
+            }
+            else
+                curArea = NewInterchangableArea;
+        }
+
+        // set flag to redraw zone 
+        expPreviewPanel.redrawFlags.zone = true;
+    }
+
     public void TryNewSituation()
     {
+        ChangeZone();
+
         if (GraceTimePassed)
         {
             foreach (var sit in curLocation.situations)
@@ -87,11 +116,11 @@ public class Expedition
                 }
             }
         }
-        // too early for new situation, travel for a bit
+        // too early for new situation, continue travelling
         else
         {
             // if not already travelling
-            if (situation.type != SituationType.Travelling)
+            if (situation?.type != SituationType.Travelling)
                 InitTravellingSituation();
         }
     }
@@ -99,9 +128,9 @@ public class Expedition
     public void InitTravellingSituation()
     {
         situation = new SituationTravelling(this);
-        UIManager.instance.expPanelDrawer.detailsPanelDrawer.InitLocationPanel(curLocation);
-        UpdateLog($"Travelling trough {curLocation.name}");
-        //Debug.Log($"{hero.name} triggered {AnimationTrigger.HeroTravelling.ToString()}");
+        //UIManager.instance.expPanelDrawer.detailsPanelDrawer.InitLocationPanel(curLocation);
+        //UpdateLog($"Travelling trough {curLocation.name}");
+        Debug.Log($"{hero.name} triggered {AnimationTrigger.HeroTravelling.ToString()}");
         // start travelling animation
         expPreviewPanel.heroAnim.SetTrigger(AnimationTrigger.HeroTravelling.ToString());
     }
@@ -110,8 +139,8 @@ public class Expedition
     {
         situation = new SituationCombat(this, curLocation.enemies);
         var enemy = (situation as SituationCombat).enemy;
-        UIManager.instance.expPanelDrawer.detailsPanelDrawer.InitEnemyPanel(enemy);
-        UpdateLog($"{hero.name} started combat with {enemy.enemyData.name}");
+        //UIManager.instance.expPanelDrawer.detailsPanelDrawer.InitEnemyPanel(enemy);
+        //UpdateLog($"{hero.name} started combat with {enemy.enemyData.name}");
         Debug.Log($"{hero.name} triggered {AnimationTrigger.BeginEncounter.ToString()}");
         expPreviewPanel.heroAnim.SetTrigger(AnimationTrigger.BeginEncounter.ToString());
         expPreviewPanel.eventAnim.SetTrigger(AnimationTrigger.BeginEncounter.ToString());

@@ -7,7 +7,9 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
     
     public ExpeditionPanelDrawer expPanelDrawer;
-    
+    public MayorPanelDrawer mayorPanelDrawer;
+    public TavernPanelDrawer tavernPanelDrawer;
+
     public FloatingText floatingTextPrefab;
 
     //default initialization of Singleton instance
@@ -24,5 +26,10 @@ public class UIManager : MonoBehaviour
 
         //Sets this to not be destroyed when reloading scene
         DontDestroyOnLoad(gameObject);
+    }
+
+    internal static void RandomPositionWithinPanel(Transform t)
+    {
+        t.localPosition = new Vector3(1,1);
     }
 }

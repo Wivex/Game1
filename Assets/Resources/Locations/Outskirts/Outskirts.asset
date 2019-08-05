@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32a229b002926149832f9d63fa5075d, type: 3}
+  m_Name: Outskirts
+  m_EditorClassIdentifier: 
+  areas:
+  - areaImage: {fileID: 21300000, guid: e30c90a8ea3fac34ba8694fdb8cc920c, type: 3}
+    interchangeable: 0
+    areaImageSize: {x: 1000, y: 725}
+    connectedLocations: []
+    zonesPositions:
+    - {x: -154, y: -87}
+    - {x: -464, y: 0}
+  - areaImage: {fileID: 21300000, guid: 5ff11c19f0669d849b20c2a6acc0a396, type: 3}
+    interchangeable: 1
+    areaImageSize: {x: 1350, y: 325}
+    connectedLocations: []
+    zonesPositions:
+    - {x: 0, y: -26}
+    - {x: -900, y: -60}
+  - areaImage: {fileID: 21300000, guid: fd85a0e2eeec4d6428d832c84da47a20, type: 3}
+    interchangeable: 1
+    areaImageSize: {x: 1350, y: 225}
+    connectedLocations: []
+    zonesPositions:
+    - {x: 0, y: 0}
+    - {x: -450, y: 0}
+    - {x: -900, y: -15}
+  - areaImage: {fileID: 21300000, guid: 910dfc7fcedbb2b4c83818b09d2d1805, type: 3}
+    interchangeable: 1
+    areaImageSize: {x: 1350, y: 225}
+    connectedLocations: []
+    zonesPositions:
+    - {x: -450, y: -10}
+    - {x: -900, y: -10}
+  - areaImage: {fileID: 21300000, guid: 5695a4b0bac09664db46ac0079102513, type: 3}
+    interchangeable: 1
+    areaImageSize: {x: 1350, y: 225}
+    connectedLocations: []
+    zonesPositions:
+    - {x: 0, y: 0}
+    - {x: -450, y: -33}
+    - {x: -900, y: 0}
+  - areaImage: {fileID: 21300000, guid: 29da79d50397efa4ebac85865d3d743f, type: 3}
+    interchangeable: 1
+    areaImageSize: {x: 1350, y: 225}
+    connectedLocations: []
+    zonesPositions:
+    - {x: 0, y: -13}
+    - {x: -450, y: 0}
+    - {x: -900, y: 0}
+  - areaImage: {fileID: 21300000, guid: f3152ad523dfaad409cd59748be16e39, type: 3}
+    interchangeable: 1
+    areaImageSize: {x: 1350, y: 225}
+    connectedLocations: []
+    zonesPositions:
+    - {x: 0, y: 0}
+    - {x: -900, y: -5}
+  - areaImage: {fileID: 21300000, guid: faf3dbff9a502214baf61be5b46e7b6b, type: 3}
+    interchangeable: 1
+    areaImageSize: {x: 0, y: 0}
+    connectedLocations: []
+    zonesPositions:
+    - {x: -450, y: 0}
+    - {x: -900, y: -5}
+  - areaImage: {fileID: 21300000, guid: d98f5bfeea0396f46ad3ade2922ee96b, type: 3}
+    interchangeable: 1
+    areaImageSize: {x: 1350, y: 225}
+    connectedLocations: []
+    zonesPositions:
+    - {x: -450, y: 0}
+  - areaImage: {fileID: 21300000, guid: 3dddc4029e5b1dc448b31f69a7a0e02c, type: 3}
+    interchangeable: 1
+    areaImageSize: {x: 1350, y: 225}
+    connectedLocations: []
+    zonesPositions:
+    - {x: 0, y: -5}
+    - {x: -450, y: 0}
+    - {x: -900, y: 0}
+  situations:
+  - chance: 0.2
+    name: Enemy Encounter
+    icon: {fileID: 0}
+    SituationType: 1
+  enemies: []
+  pointsOfInterest: []

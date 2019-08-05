@@ -62,7 +62,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\3rd-Party\AutoSave\Editor\AutoSaveExtension.cs" />
     <Compile Include="Assets\3rd-Party\EventDelegate\Editor\DrawerTools.cs" />
     <Compile Include="Assets\3rd-Party\EventDelegate\Editor\EventDelegateDrawer.cs" />
     <Compile Include="Assets\3rd-Party\EventDelegate\Editor\FlagDrawer.cs" />
@@ -686,6 +685,10 @@
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{7A8E2D87-BD4D-935C-C539-C3FF95D2C919}</Project>
       <Name>Assembly-CSharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="MyBox.csproj">
+      <Project>{23B67B9E-F155-A269-B54C-A9977236BCE6}</Project>
+      <Name>MyBox</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

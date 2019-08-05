@@ -10,32 +10,45 @@ public class TavernPanelDrawer : MonoBehaviour
     public Transform idlesContentPanel, recruitsContentPanel;
     public MonoBehaviour heroFramePrefab;
 
-    List<Hero> FreeHeroes => GameManager.instance.heroes.FindAll(hero => hero.state == HeroState.InRoster);
+    Hero selHero;
 
     // initializations
     void Awake()
     {
         idlesContentPanel.DestroyAllChildren();
         recruitsContentPanel.DestroyAllChildren();
-    }
 
-    public void Init()
-    {
-        //var freeHeroes = GameManager.instance.heroes.FindAll(hero => hero.state == HeroState.InRoster);
-
-        //if (freeHeroes.Count > 0)
-        //{
-
-        //}
-    }
-
-    public void OnHeroSelect()
-    {
-        var freeHeroes = FreeHeroes;
-
-        if (freeHeroes.Count > 0)
+        // NOTE: temp debug feature
+        for (var i = 0; i < 3; i++)
         {
+            new Hero();
+        }
+    }
 
+    public void InitPanel()
+    {
+        foreach (var hero in GameManager.IdleHeroes)
+        {
+            var heroPanel = heroFramePrefab.Create<HeroFrameDrawer>(idlesContentPanel);
+            heroPanel.Init(hero, this);
+        }
+
+        foreach (var hero in GameManager.RecruitableHeroes)
+        {
+            var heroPanel = heroFramePrefab.Create<HeroFrameDrawer>(recruitsContentPanel);
+            heroPanel.Init(hero, this);
+        }
+    }
+
+    public void OnHeroSelect(HeroFrameDrawer heroFrame)
+    {
+        selHero = heroFrame.hero;
+
+        if (selHero.state == HeroState.Recruitable)
+        {
+            // move to idles
+            heroFrame.transform.SetParent(idlesContentPanel);
+            selHero.state = HeroState.Idle;
         }
     }
 }

@@ -24,7 +24,7 @@ public class EquipmentData : ItemData
 
     public bool classRestricted;
 
-    [HiddenIfNot("classRestricted")]
+    [HideIfNot("classRestricted")]
     public HeroClass reqClass;
 
     public StatModifier[] statModifiers;

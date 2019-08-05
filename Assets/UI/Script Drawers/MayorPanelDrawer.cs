@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -10,7 +11,8 @@ public class MayorPanelDrawer : MonoBehaviour
     public Transform questContentPanel, expContentPanel;
     public MonoBehaviour heroFramePrefab, questFramePrefab, expFramePrefab;
 
-    List<Hero> FreeHeroes => GameManager.instance.heroes.FindAll(hero => hero.state == HeroState.InRoster);
+    Hero selHero;
+    LocationData selLocation;
 
     // initializations
     void Awake()
@@ -18,24 +20,41 @@ public class MayorPanelDrawer : MonoBehaviour
         questContentPanel.DestroyAllChildren();
         expContentPanel.DestroyAllChildren();
     }
-    
-    public void InitExpeditions()
+
+    public void InitPanel()
     {
         foreach (var location in GameManager.instance.startingLocations)
         {
             var expPanel = expFramePrefab.Create<ExpeditionFrameDrawer>(expContentPanel);
-            expPanel.Init(location);
+            expPanel.Init(location, this);
         }
     }
 
-    public void OnExpeditionSelect()
+    public void OnExpeditionSelect(ExpeditionFrameDrawer exp)
     {
-        var freeHeroes = FreeHeroes;
+        selLocation = exp.locData;
 
-        foreach (var hero in freeHeroes)
+        // hide expFrames in this content panel
+        expContentPanel.SetActiveOfChildrenOfType<ExpeditionFrameDrawer>(false);
+
+        // init free heroes frames in the same content panel from prefabs
+        foreach (var hero in GameManager.IdleHeroes)
         {
-            //var heroPanel = Instantiate(heroFramePrefab, expContentPanel);
-            //heroPanel
+            var heroPanel = heroFramePrefab.Create<HeroFrameDrawer>(expContentPanel);
+            heroPanel.Init(hero, this);
         }
+    }
+
+    public void OnHeroSelect(HeroFrameDrawer heroFrame)
+    {
+        selHero = heroFrame.hero;
+        selHero.state = HeroState.OnExpedition;
+
+        // hide heroFrames in this content panel
+        expContentPanel.SetActiveOfChildrenOfType<HeroFrameDrawer>(false);
+        // show expFrames in this content panel
+        expContentPanel.SetActiveOfChildrenOfType<ExpeditionFrameDrawer>(true);
+
+        GameManager.instance.StartNewExpedition(selHero, selLocation);
     }
 }
