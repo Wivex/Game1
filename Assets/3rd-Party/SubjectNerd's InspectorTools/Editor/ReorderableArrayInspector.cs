@@ -118,7 +118,28 @@ namespace SubjectNerd.Utilities
                     var propHeader = new GUIContent(targetElement.displayName);
                     if (ElementHeaderCallback != null)
                         propHeader.text = ElementHeaderCallback(index);
+
                     EditorGUI.PropertyField(rect, targetElement, propHeader, isExpanded);
+
+                    //var startingDepth = targetElement.depth;
+                    //float previousRectHeight = 0;
+                    //var subElemRect = new Rect(rect);
+
+                    //foreach (SerializedProperty prop in targetElement)
+                    //{
+                    //    if (prop.depth == startingDepth + 1)
+                    //    {
+                    //        if (prop.name != "connectedLocations")
+                    //        {
+                    //            subElemRect.y += previousRectHeight;
+                    //            //subElemRect.height =
+                    //            //    EditorGUI.GetPropertyHeight(targetElement, GUIContent.none, isExpanded);
+                    //            subElemRect.height = 16;
+                    //            EditorGUI.PropertyField(subElemRect, targetElement, propHeader, isExpanded);
+                    //            previousRectHeight = subElemRect.height;
+                    //        }
+                    //    }
+                    //}
 
                     // If drawing the selected element, use it to set the element height
                     // Element height seems to control selected background
@@ -134,7 +155,6 @@ namespace SubjectNerd.Utilities
 					}
 #endif
                 };
-
                 // Unity 5.3 onwards allows reorderable lists to have variable element heights
 #if UNITY_5_3_OR_NEWER
                 propList.elementHeightCallback = index => ElementHeightCallback(property, index);
@@ -152,6 +172,8 @@ namespace SubjectNerd.Utilities
                 propIndex.Add(property.propertyPath, propList);
             }
 
+            // TODO: apply offset of excluded elements
+            // returns height of each ReorderableArray element
             float ElementHeightCallback(SerializedProperty property, int index)
             {
                 var arrayElement = property.GetArrayElementAtIndex(index);

@@ -2,27 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using MyBox;
+using SubjectNerd.Utilities;
 //using SubjectNerd.Utilities;
 using UnityEngine;
-
-public enum AreaType
-{
-    Entrance,
-    Exit,
-    Interchangable,
-    Special
-}
 
 [Serializable]
 public class LocationArea
 {
     // not internal cause Reorderable needs it public for renaming of elements
     [HideInInspector] public Sprite areaImage;
-    public AreaType type;
-
-    [HideIfNotEnumValues("type", AreaType.Exit, AreaType.Entrance)]
+    public bool interchangeable;
     public Vector2 areaImageSize;
-
     public List<LocationData> connectedLocations;
     public List<Vector2> zonesPositions;
 }
@@ -30,11 +20,11 @@ public class LocationArea
 [CreateAssetMenu(menuName = "Content/Data/Location Data")]
 public class LocationData : ScriptableObject
 {
-    //[Reorderable(ReordableNamingType.ObjectName, "areaImage")]
+    [Reorderable(ReordableNamingType.ObjectName, "areaImage")]
     public List<LocationArea> areas;
-    //[Reorderable(ReordableNamingType.VariableValue, "name")]
+    [Reorderable(ReordableNamingType.VariableValue, "name")]
     public List<SituationChanceToOccur> situations;
-    //[Reorderable(ReordableNamingType.ObjectName, "enemyData")]
+    [Reorderable(ReordableNamingType.ObjectName, "enemyData")]
     public List<EnemySpawnChance> enemies;
     public List<PoiSpawnChance> pointsOfInterest;
 

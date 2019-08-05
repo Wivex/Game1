@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 
 [CustomPropertyDrawer(typeof(HideIfNotAttribute))]
-public class HiddenIfNotPropertyDrawer : PropertyDrawer
+public class HideIfNotPropertyDrawer : PropertyDrawer
 {
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
@@ -41,18 +41,52 @@ public class HiddenIfNotPropertyDrawer : PropertyDrawer
     }
 }
 
-
-[CustomPropertyDrawer(typeof(DisabledIfNotAttribute))]
-public class DisabledIfNotPropertyDrawer : HiddenIfNotPropertyDrawer
+/// <summary>
+/// cannot hide [Range] and other attribute-generated properties
+/// </summary>
+[CustomPropertyDrawer(typeof(HideIfNotEnumValuesAttribute))]
+public class HideIfNotEnumValuesPropertyDrawer : PropertyDrawer
 {
-    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+    float propertyHeight;
+
+    // removes empty space instead of "not drawn" property
+    public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
-        GUI.enabled = IsAllowed((DisabledIfNotAttribute) attribute, property);
-        EditorGUI.PropertyField(position, property, label, true);
-        GUI.enabled = true;
+        propertyHeight = IsAllowed((HideIfNotEnumValuesAttribute)attribute, property)
+            ? EditorGUI.GetPropertyHeight(property, label)
+            : -EditorGUIUtility.standardVerticalSpacing;
+        return propertyHeight;
     }
 
-    public override float GetPropertyHeight(SerializedProperty property, GUIContent label) => EditorGUI.GetPropertyHeight(property, label);
+    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+    {
+        if (propertyHeight > 0)
+            EditorGUI.PropertyField(position, property, label, true);
+    }
+
+    protected bool IsAllowed(HideIfNotEnumValuesAttribute attr, SerializedProperty property)
+    {
+        var propertyPath = property.propertyPath;
+        var enumPath = propertyPath.Replace(property.name, attr.enumPropertyName);
+        // find enum value through our property object
+        var enumProperty = property.serializedObject.FindProperty(enumPath);
+        var enumIndex = enumProperty?.enumValueIndex;
+
+        return IsSupportedPropertyType(enumProperty) && attr.enumValues.Contains((int)enumIndex);
+    }
+
+    protected bool IsSupportedPropertyType(SerializedProperty sourcePropertyValue)
+    {
+        switch (sourcePropertyValue?.propertyType)
+        {
+            case SerializedPropertyType.Enum:
+                return true;
+            default:
+                //Debug.LogError("Data type of the property used for conditional hiding [" + sourcePropertyValue.propertyType + "] is currently not supported");
+                //return false;
+                return true;
+        }
+    }
 }
 
 
@@ -70,50 +104,15 @@ public class DisabledDrawer : PropertyDrawer
         EditorGUI.GetPropertyHeight(property, label, true);
 }
 
-/// <summary>
-/// cannot hide [Range] and other attribute-generated properties
-/// </summary>
-[CustomPropertyDrawer(typeof(HideIfNotEnumValues))]
-public class ShownIfEnumValuePropertyDrawer : PropertyDrawer
+[CustomPropertyDrawer(typeof(DisabledIfNotAttribute))]
+public class DisabledIfNotPropertyDrawer : HideIfNotPropertyDrawer
 {
-    float propertyHeight;
-
-    // removes empty space instead of "not drawn" property
-    public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
-    {
-        propertyHeight = IsAllowed((HideIfNotEnumValues)attribute, property)
-            ? EditorGUI.GetPropertyHeight(property, label)
-            : -EditorGUIUtility.standardVerticalSpacing;
-        return propertyHeight;
-    }
-
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-        if (propertyHeight>0)
-            EditorGUI.PropertyField(position, property, label, true);
+        GUI.enabled = IsAllowed((DisabledIfNotAttribute) attribute, property);
+        EditorGUI.PropertyField(position, property, label, true);
+        GUI.enabled = true;
     }
 
-    protected bool IsAllowed(HideIfNotEnumValues attr, SerializedProperty property)
-    {
-        var propertyPath = property.propertyPath;
-        var enumPath = propertyPath.Replace(property.name, attr.enumPropertyName);
-        // find enum value through our property object
-        var enumProperty = property.serializedObject.FindProperty(enumPath);
-        var enumIndex = enumProperty?.enumValueIndex;
-
-        return IsSupportedPropertyType(enumProperty) && attr.enumValues.Contains((int) enumIndex);
-    }
-
-    protected bool IsSupportedPropertyType(SerializedProperty sourcePropertyValue)
-    {
-        switch (sourcePropertyValue?.propertyType)
-        {
-            case SerializedPropertyType.Enum:
-                return true;
-            default:
-                Debug.LogError("Data type of the property used for conditional hiding [" +
-                               sourcePropertyValue.propertyType + "] is currently not supported");
-                return false;
-        }
-    }
+    public override float GetPropertyHeight(SerializedProperty property, GUIContent label) => EditorGUI.GetPropertyHeight(property, label);
 }

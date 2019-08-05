@@ -43,7 +43,7 @@ public class Expedition
         GameManager.instance.expeditions.Add(hero, this);
     }
 
-    LocationArea NewInterchangableArea => curLocation.areas.Find(area => area.type == AreaType.Interchangable && area != curArea);
+    LocationArea NewInterchangableArea => curLocation.areas.Find(area => area.interchangeable && area != curArea);
 
     public bool GraceTimePassed =>
         (DateTime.Now - lastSituationRealTime).TotalSeconds > GameManager.instance.minGracePeriod &&

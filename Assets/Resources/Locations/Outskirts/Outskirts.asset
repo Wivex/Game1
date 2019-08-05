@@ -13,51 +13,83 @@ MonoBehaviour:
   m_Name: Outskirts
   m_EditorClassIdentifier: 
   areas:
-  - areaImage: {fileID: 21300000, guid: 0574fb20788000740a0e3a2e3c35dd71, type: 3}
-    type: 2
+  - areaImage: {fileID: 21300000, guid: e30c90a8ea3fac34ba8694fdb8cc920c, type: 3}
+    interchangeable: 0
+    areaImageSize: {x: 1000, y: 725}
+    connectedLocations: []
+    zonesPositions:
+    - {x: -154, y: -87}
+    - {x: -464, y: 0}
+  - areaImage: {fileID: 21300000, guid: 5ff11c19f0669d849b20c2a6acc0a396, type: 3}
+    interchangeable: 1
+    areaImageSize: {x: 1350, y: 325}
+    connectedLocations: []
+    zonesPositions:
+    - {x: 0, y: -26}
+    - {x: -900, y: -60}
+  - areaImage: {fileID: 21300000, guid: fd85a0e2eeec4d6428d832c84da47a20, type: 3}
+    interchangeable: 1
     areaImageSize: {x: 1350, y: 225}
-    connectedLocations:
-    - {fileID: 0}
+    connectedLocations: []
     zonesPositions:
     - {x: 0, y: 0}
     - {x: -450, y: 0}
+    - {x: -900, y: -15}
+  - areaImage: {fileID: 21300000, guid: 910dfc7fcedbb2b4c83818b09d2d1805, type: 3}
+    interchangeable: 1
+    areaImageSize: {x: 1350, y: 225}
+    connectedLocations: []
+    zonesPositions:
+    - {x: -450, y: -10}
     - {x: -900, y: -10}
-  - areaImage: {fileID: 21300000, guid: e30c90a8ea3fac34ba8694fdb8cc920c, type: 3}
-    type: 0
+  - areaImage: {fileID: 21300000, guid: 5695a4b0bac09664db46ac0079102513, type: 3}
+    interchangeable: 1
+    areaImageSize: {x: 1350, y: 225}
+    connectedLocations: []
+    zonesPositions:
+    - {x: 0, y: 0}
+    - {x: -450, y: -33}
+    - {x: -900, y: 0}
+  - areaImage: {fileID: 21300000, guid: 29da79d50397efa4ebac85865d3d743f, type: 3}
+    interchangeable: 1
+    areaImageSize: {x: 1350, y: 225}
+    connectedLocations: []
+    zonesPositions:
+    - {x: 0, y: -13}
+    - {x: -450, y: 0}
+    - {x: -900, y: 0}
+  - areaImage: {fileID: 21300000, guid: f3152ad523dfaad409cd59748be16e39, type: 3}
+    interchangeable: 1
+    areaImageSize: {x: 1350, y: 225}
+    connectedLocations: []
+    zonesPositions:
+    - {x: 0, y: 0}
+    - {x: -900, y: -5}
+  - areaImage: {fileID: 21300000, guid: faf3dbff9a502214baf61be5b46e7b6b, type: 3}
+    interchangeable: 1
     areaImageSize: {x: 0, y: 0}
     connectedLocations: []
-    zonesPositions: []
-  - areaImage: {fileID: 21300000, guid: 844572e9d7a8d0d4a9ff1b16862115ff, type: 3}
-    type: 0
-    areaImageSize: {x: 0, y: 0}
+    zonesPositions:
+    - {x: -450, y: 0}
+    - {x: -900, y: -5}
+  - areaImage: {fileID: 21300000, guid: d98f5bfeea0396f46ad3ade2922ee96b, type: 3}
+    interchangeable: 1
+    areaImageSize: {x: 1350, y: 225}
     connectedLocations: []
-    zonesPositions: []
-  - areaImage: {fileID: 21300000, guid: 0b208ccc4e55ea44b92db6cafa6628b2, type: 3}
-    type: 0
-    areaImageSize: {x: 0, y: 0}
+    zonesPositions:
+    - {x: -450, y: 0}
+  - areaImage: {fileID: 21300000, guid: 3dddc4029e5b1dc448b31f69a7a0e02c, type: 3}
+    interchangeable: 1
+    areaImageSize: {x: 1350, y: 225}
     connectedLocations: []
-    zonesPositions: []
-  - areaImage: {fileID: 21300000, guid: 11d1e3b6a9aee8d42bb61a50315da3f3, type: 3}
-    type: 0
-    areaImageSize: {x: 0, y: 0}
-    connectedLocations: []
-    zonesPositions: []
-  - areaImage: {fileID: 21300000, guid: 53d095c4e6be5db4499b14f7cbce4d84, type: 3}
-    type: 0
-    areaImageSize: {x: 0, y: 0}
-    connectedLocations: []
-    zonesPositions: []
-  - areaImage: {fileID: 21300000, guid: b099459b46550c247a761d12014bed81, type: 3}
-    type: 0
-    areaImageSize: {x: 0, y: 0}
-    connectedLocations: []
-    zonesPositions: []
+    zonesPositions:
+    - {x: 0, y: -5}
+    - {x: -450, y: 0}
+    - {x: -900, y: 0}
   situations:
-  - chance: 0
+  - chance: 0.2
     name: Enemy Encounter
-    icon: {fileID: 21300000, guid: 7589bc4291a4b42408d97cb9c30abfdc, type: 3}
+    icon: {fileID: 0}
     SituationType: 1
-  enemies:
-  - chance: 1
-    enemyData: {fileID: 11400000, guid: 2767f6c8f66d2fd45ad505de3208fc8b, type: 2}
+  enemies: []
   pointsOfInterest: []
