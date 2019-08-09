@@ -23,10 +23,29 @@ public class MayorPanelDrawer : MonoBehaviour
 
     public void InitPanel()
     {
+        // HACK: temp solution
+        // generate first explore expedition
         foreach (var location in GameManager.instance.startingLocations)
         {
             var expPanel = expFramePrefab.Create<ExpeditionFrameDrawer>(expContentPanel);
             expPanel.Init(location, this);
+        }
+
+        if (!GameManager.IdleHeroes.Any())
+        {
+            noQuestsText.text = "No idle heroes available.";
+            noQuestsText.gameObject.SetActive(true);
+            // hide exp. frames in this content panel
+            expContentPanel.SetActiveOfChildrenOfType<ExpeditionFrameDrawer>(false);
+            noExpText.text = "No idle heroes available.";
+            noExpText.gameObject.SetActive(true);
+        }
+        else
+        {
+            //HACK: temp solution
+            noQuestsText.text = "No available quests.";
+            noQuestsText.gameObject.SetActive(true);
+            noExpText.gameObject.SetActive(false);
         }
     }
 
@@ -34,14 +53,25 @@ public class MayorPanelDrawer : MonoBehaviour
     {
         selLocation = exp.locData;
 
-        // hide expFrames in this content panel
+        // hide exp. frames in this content panel
         expContentPanel.SetActiveOfChildrenOfType<ExpeditionFrameDrawer>(false);
 
-        // init free heroes frames in the same content panel from prefabs
-        foreach (var hero in GameManager.IdleHeroes)
+        if (GameManager.IdleHeroes.Any())
         {
-            var heroPanel = heroFramePrefab.Create<HeroFrameDrawer>(expContentPanel);
-            heroPanel.Init(hero, this);
+            noExpText.gameObject.SetActive(false);
+
+            // init free heroes frames in the same content panel from prefabs
+            foreach (var hero in GameManager.IdleHeroes)
+            {
+                var heroPanel = heroFramePrefab.Create<HeroFrameDrawer>(expContentPanel);
+                heroPanel.Init(hero, this);
+            }
+        }
+        else
+        {
+            // enable "no free heroes text"
+            noExpText.text = "No idle heroes available.";
+            noExpText.gameObject.SetActive(true);
         }
     }
 

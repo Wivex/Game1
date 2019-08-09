@@ -65,7 +65,6 @@
     <Compile Include="Assets\3rd-Party\EventDelegate\EDFlagAttribute.cs" />
     <Compile Include="Assets\3rd-Party\EventDelegate\EventDelegate.cs" />
     <Compile Include="Assets\3rd-Party\EventDelegate\ReorderableList.cs" />
-    <Compile Include="Assets\3rd-Party\ShowSpriteInInspector\SpritePropertyDrawer.cs" />
     <Compile Include="Assets\3rd-Party\SubjectNerd's InspectorTools\EditScriptableAttribute.cs" />
     <Compile Include="Assets\3rd-Party\SubjectNerd's InspectorTools\ReorderableAttribute.cs" />
     <Compile Include="Assets\3rd-Party\unity-ui-extensions\Examples\ComboBox\ComboBoxChanged.cs" />

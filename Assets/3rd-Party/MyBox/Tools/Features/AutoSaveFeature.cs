@@ -8,22 +8,22 @@ namespace MyBox.Internal
 	[InitializeOnLoad]
 	public class AutoSaveFeature
 	{
-		private const string MenuItemName = "Tools/MyBox/AutoSave on Play";
+        const string MenuItemName = "Tools/MyBox/AutoSave on Play";
 
-		private static bool IsEnabled
+        static bool IsEnabled
 		{
-			get { return MyBoxSettings.AutoSaveEnabled; }
-			set { MyBoxSettings.AutoSaveEnabled = value; }
-		}
+			get => MyBoxSettings.AutoSaveEnabled;
+            set => MyBoxSettings.AutoSaveEnabled = value;
+        }
 
 		[MenuItem(MenuItemName, priority = 100)]
-		private static void MenuItem()
+        static void MenuItem()
 		{
 			IsEnabled = !IsEnabled;
 		}
 
 		[MenuItem(MenuItemName, true)]
-		private static bool MenuItemValidation()
+        static bool MenuItemValidation()
 		{
 			Menu.SetChecked(MenuItemName, IsEnabled);
 			return true;
@@ -35,7 +35,7 @@ namespace MyBox.Internal
 			EditorApplication.playModeStateChanged += AutoSaveWhenPlaymodeStarts;
 		}
 
-		private static void AutoSaveWhenPlaymodeStarts(PlayModeStateChange obj)
+        static void AutoSaveWhenPlaymodeStarts(PlayModeStateChange obj)
 		{
 			if (!IsEnabled) return;
 

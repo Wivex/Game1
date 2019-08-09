@@ -71,19 +71,19 @@ public class Expedition
         situation.state = SituationState.RunningLogic;
     }
 
-    void ChangeZone()
+    void NextZone()
     {
+        // assign first area at start of exp.
+        if (curArea == null)
+        {
+            curArea = curLocation.areas.First();
+        }
+
+        // check if last zone in the area
         if (curZoneIndex++ >= curArea.zonesPositions.Capacity)
         {
+            curArea = NewInterchangableArea;
             curZoneIndex = 0;
-            // go to next area
-            if (curAreaIndex++ >= curLocation.areas.Capacity)
-            {
-                curAreaIndex = 0;
-                // TODO: change location
-            }
-            else
-                curArea = NewInterchangableArea;
         }
 
         // set flag to redraw zone 
@@ -92,7 +92,7 @@ public class Expedition
 
     public void TryNewSituation()
     {
-        ChangeZone();
+        NextZone();
 
         if (GraceTimePassed)
         {
@@ -100,7 +100,7 @@ public class Expedition
             {
                 if (Random.value < sit.chance)
                 {
-                    switch (sit.SituationType)
+                    switch (sit.type)
                     {
                         case SituationType.EnemyEncounter:
                             InitEnemyEncounterSituation();

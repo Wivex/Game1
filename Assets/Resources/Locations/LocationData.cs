@@ -22,7 +22,7 @@ public class LocationData : ScriptableObject
 {
     [Reorderable(ReordableNamingType.ObjectName, "areaImage")]
     public List<LocationArea> areas;
-    [Reorderable(ReordableNamingType.VariableValue, "name")]
+    [Reorderable(ReordableNamingType.VariableValue, "type")]
     public List<SituationChanceToOccur> situations;
     [Reorderable(ReordableNamingType.ObjectName, "enemyData")]
     public List<EnemySpawnChance> enemies;

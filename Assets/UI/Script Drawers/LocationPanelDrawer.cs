@@ -61,7 +61,7 @@ public class LocationPanelDrawer : MonoBehaviour
             {
                 situationsIcons[i].sprite = location.situations[i].icon;
                 situationsIcons[i].color = Color.white;
-                situationsName[i].text = location.situations[i].name;
+                situationsName[i].text = location.situations[i].type.ToString();
                 situationsChance[i].text = location.situations[i].chance.ToString();
             }
         }

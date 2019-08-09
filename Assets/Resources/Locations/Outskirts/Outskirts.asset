@@ -67,7 +67,7 @@ MonoBehaviour:
     - {x: -900, y: -5}
   - areaImage: {fileID: 21300000, guid: faf3dbff9a502214baf61be5b46e7b6b, type: 3}
     interchangeable: 1
-    areaImageSize: {x: 0, y: 0}
+    areaImageSize: {x: 1350, y: 225}
     connectedLocations: []
     zonesPositions:
     - {x: -450, y: 0}
@@ -88,8 +88,9 @@ MonoBehaviour:
     - {x: -900, y: 0}
   situations:
   - chance: 0.2
-    name: Enemy Encounter
+    type: 1
     icon: {fileID: 0}
-    SituationType: 1
-  enemies: []
+  enemies:
+  - chance: 1
+    enemyData: {fileID: 11400000, guid: 2767f6c8f66d2fd45ad505de3208fc8b, type: 2}
   pointsOfInterest: []

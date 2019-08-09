@@ -143,7 +143,7 @@ namespace SubjectNerd.Utilities
 
                     // If drawing the selected element, use it to set the element height
                     // Element height seems to control selected background
-#if UNITY_5_1 || UNITY_5_2
+                #if UNITY_5_1 || UNITY_5_2
 					if (index == propList.index)
 					{	
 						// Height might have changed when dealing with serialized class
@@ -156,7 +156,7 @@ namespace SubjectNerd.Utilities
 #endif
                 };
                 // Unity 5.3 onwards allows reorderable lists to have variable element heights
-#if UNITY_5_3_OR_NEWER
+            #if UNITY_5_3_OR_NEWER
                 propList.elementHeightCallback = index => ElementHeightCallback(property, index);
 
                 propList.drawElementBackgroundCallback = (rect, index, active, focused) =>
@@ -168,7 +168,7 @@ namespace SubjectNerd.Utilities
                     rect.height = ElementHeightCallback(property, index);
                     GUI.Box(rect, GUIContent.none, styleHighlight);
                 };
-#endif
+            #endif
                 propIndex.Add(property.propertyPath, propList);
             }
 
@@ -332,7 +332,7 @@ namespace SubjectNerd.Utilities
             isInitialized = false;
         }
 
-        #region Initialization
+    #region Initialization
 
         void OnEnable()
         {
@@ -371,9 +371,9 @@ namespace SubjectNerd.Utilities
                 {
                     if (iterProp.isArray && iterProp.propertyType != SerializedPropertyType.String)
                     {
-#if LIST_ALL_ARRAYS
+                    #if LIST_ALL_ARRAYS
                         var canTurnToList = true;
-#else
+                    #else
 						bool canTurnToList = iterProp.HasAttribute<ReorderableAttribute>();
 #endif
                         if (canTurnToList)
@@ -392,22 +392,22 @@ namespace SubjectNerd.Utilities
                         var isScriptable = propType.IsSubclassOf(typeScriptable);
                         if (isScriptable)
                         {
-#if EDIT_ALL_SCRIPTABLES
+                        #if EDIT_ALL_SCRIPTABLES
 							bool makeEditable = true;
 #else
                             var makeEditable = iterProp.HasAttribute<EditScriptableAttribute>();
-#endif
+                        #endif
 
                             if (makeEditable)
                             {
                                 Editor scriptableEditor = null;
                                 if (iterProp.objectReferenceValue != null)
                                 {
-#if UNITY_5_6_OR_NEWER
+                                #if UNITY_5_6_OR_NEWER
                                     CreateCachedEditorWithContext(iterProp.objectReferenceValue,
                                         serializedObject.targetObject, null,
                                         ref scriptableEditor);
-#else
+                                #else
 									CreateCachedEditor(iterProp.objectReferenceValue, null, ref scriptableEditor);
 #endif
                                     var reorderable = scriptableEditor as ReorderableArrayInspector;
@@ -497,8 +497,9 @@ namespace SubjectNerd.Utilities
             }
         }
 
-        void HandleReorderableOptions(ReorderableAttribute arrayAttr, SerializedProperty property,
-            SortableListData data)
+        void HandleReorderableOptions(ReorderableAttribute arrayAttr,
+                                      SerializedProperty property,
+                                      SortableListData data)
         {
             // Custom element header
             if (arrayAttr.namingType != ReordableNamingType.None)
@@ -521,7 +522,13 @@ namespace SubjectNerd.Utilities
                         ? elemProperty.objectReferenceValue.name
                         : string.Empty;
                 case ReordableNamingType.VariableValue:
-                    return elemProperty.stringValue ?? string.Empty;
+                    switch (elemProperty.propertyType)
+                    {
+                        case SerializedPropertyType.Enum:
+                            return elemProperty.enumDisplayNames[elemProperty.enumValueIndex];
+                        default:
+                            return elemProperty.stringValue ?? string.Empty;
+                    }
                 default:
                     return string.Empty;
             }
@@ -567,7 +574,7 @@ namespace SubjectNerd.Utilities
             return true;
         }
 
-        #endregion
+    #endregion
 
         protected bool InspectorGUIStart(bool force = false)
         {
@@ -776,7 +783,7 @@ namespace SubjectNerd.Utilities
             return asset;
         }
 
-        #region Helper functions
+    #region Helper functions
 
         /// <summary>
         /// Draw the default inspector, with the sortable arrays
@@ -887,6 +894,6 @@ namespace SubjectNerd.Utilities
             }
         }
 
-        #endregion
+    #endregion
     }
 }

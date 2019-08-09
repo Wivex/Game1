@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1835239676344705909}
   - component: {fileID: 1835239676344705914}
   - component: {fileID: 1835239676344705915}
-  m_Layer: 15
+  m_Layer: 31
   m_Name: Location Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,7 +66,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 839ea940112e98c46a3d9e79ef52fa14, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5695a4b0bac09664db46ac0079102513, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 1835239676479593922}
   - component: {fileID: 1835239676479593923}
   - component: {fileID: 1835239676479593920}
-  m_Layer: 15
+  m_Layer: 31
   m_Name: Location Preview Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 1835239676619468056}
   - component: {fileID: 1835239676619468057}
   - component: {fileID: 1835239676619468059}
-  m_Layer: 15
+  m_Layer: 31
   m_Name: Quest Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 1835239676951347318}
   - component: {fileID: 1835239676951347312}
   - component: {fileID: 1835239676951347313}
-  m_Layer: 15
+  m_Layer: 31
   m_Name: Quest Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,8 +334,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 41}
-  m_SizeDelta: {x: 0, y: -82}
+  m_AnchoredPosition: {x: 0, y: 42.22}
+  m_SizeDelta: {x: 0, y: -93.05}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1835239676951347312
 CanvasRenderer:
@@ -400,7 +400,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 20
   m_fontStyle: 1
-  m_textAlignment: 514
+  m_textAlignment: 258
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -468,7 +468,7 @@ GameObject:
   - component: {fileID: 1835239677319038311}
   - component: {fileID: 1835239677319038305}
   - component: {fileID: 1835239677319038310}
-  m_Layer: 15
+  m_Layer: 31
   m_Name: Quest Desc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -491,8 +491,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -30.110016}
-  m_SizeDelta: {x: 0, y: -60.22}
+  m_AnchoredPosition: {x: 0, y: -24.285}
+  m_SizeDelta: {x: 0, y: -58.38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1835239677319038305
 CanvasRenderer:
@@ -557,7 +557,7 @@ MonoBehaviour:
   m_fontSizeMin: 14
   m_fontSizeMax: 18
   m_fontStyle: 0
-  m_textAlignment: 514
+  m_textAlignment: 1026
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
