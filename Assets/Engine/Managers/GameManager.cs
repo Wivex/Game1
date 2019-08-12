@@ -15,6 +15,9 @@ public struct GameStatistics
 
 public class GameManager : MonoBehaviour
 {
+    /// <summary>
+    /// Instance used to change variables from inspector.
+    /// </summary>
     public static GameManager instance;
 
     public List<LocationData> startingLocations = new List<LocationData>();
@@ -22,16 +25,11 @@ public class GameManager : MonoBehaviour
     [Tooltip("Minimal time in seconds between situations")]
     public int minGracePeriod = 4;
 
-    internal List<Hero> heroes = new List<Hero>();
-    internal Dictionary<Hero, Expedition> expeditions = new Dictionary<Hero, Expedition>();
     // TODO: load previous values from save
     internal GameStatistics gameStats = new GameStatistics();
     // global initiative accumulation speed
     internal float combatSpeed = 0.075f;
     internal float oldCombatSpeed;
-
-    internal static List<Hero> IdleHeroes => instance.heroes.FindAll(hero => hero.state == HeroState.Idle);
-    internal static List<Hero> RecruitableHeroes => instance.heroes.FindAll(hero => hero.state == HeroState.Recruitable);
 
     //default initialization of Singleton instance
     void Awake()
@@ -48,19 +46,8 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void StartNewExpedition()
-    {
-        StartNewExpedition(new Hero(), startingLocations.FirstOrDefault());
-    }
-
-    public void StartNewExpedition(Hero hero, LocationData location)
-    {
-        var exp = new Expedition(hero, location);
-    }
-
     void Update()
-    {   
-        foreach (var expedition in expeditions.Values)
-            expedition.UpdateSituation();
+    {
+        ExpeditionManager.Update();
     }
 }

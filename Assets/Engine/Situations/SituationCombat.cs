@@ -24,7 +24,7 @@ public class SituationCombat : Situation
         ResetAllCooldowns();
     }
 
-    bool HeroTurnFirst => hero.stats[(int) StatType.Speed] >= enemy.stats[(int) StatType.Speed];
+    bool HeroTurnFirst => hero.baseStats[(int) StatType.Speed] >= enemy.baseStats[(int) StatType.Speed];
 
     // TODO: increase chance with each iteration?
     public Enemy SpawnEnemy(List<EnemySpawnChance> enemies)
@@ -78,7 +78,7 @@ public class SituationCombat : Situation
 
     public void CombatTick()
     {
-        actor.curInitiative += actor.stats[(int) StatType.Speed].curValue * GameManager.instance.combatSpeed;
+        actor.curInitiative += actor.baseStats[(int) StatType.Speed].curValue * GameManager.instance.combatSpeed;
         if (actor.curInitiative >= Unit.reqInitiative)
         {
             actor.curInitiative = 0;
@@ -95,8 +95,8 @@ public class SituationCombat : Situation
 
     public void UpdateActorEffects()
     {
-        for (var i = actor.curEffects.Count - 1; i >= 0; i--)
-            actor.curEffects[i].UpdateEffect();
+        for (var i = actor.effects.Count - 1; i >= 0; i--)
+            actor.effects[i].UpdateEffect();
     }
 
     public void UpdateActorTactics()

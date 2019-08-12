@@ -55,7 +55,7 @@ public class Effect
 
         if (effectApplyType == EffectApplyType.Instant ||
             effectOnStatsType == EffectOnStatsType.StatModifier) ProcEffect();
-        if (effectApplyType != EffectApplyType.Instant) targetUnit.curEffects.Add(this);
+        if (effectApplyType != EffectApplyType.Instant) targetUnit.effects.Add(this);
     }
 
     void ProcEffect()
@@ -73,9 +73,9 @@ public class Effect
                 break;
             case EffectOnStatsType.StatModifier:
                 // add modifier only once
-                if (!targetUnit.curEffects.Contains(this))
+                if (!targetUnit.effects.Contains(this))
                 {
-                    targetUnit.stats[(int) stat].AddModifier(new StatModifier(amount, statModType, this));
+                    targetUnit.baseStats[(int) stat].AddModifier(new StatModifier(amount, statModType, this));
                     AddEffectLogEntry(situation,
                         $"{targetUnit.name} got {ColoredValue(amount)} {stat} from {name} for {duration} turns.");
                 }
@@ -97,9 +97,9 @@ public class Effect
     public void RemoveEffect(Unit unit)
     {
         if (effectOnStatsType == EffectOnStatsType.StatModifier)
-            unit.stats[(int) stat].RemoveAllModsFromSource(this);
+            unit.baseStats[(int) stat].RemoveAllModsFromSource(this);
 
-        unit.curEffects.Remove(this);
+        unit.effects.Remove(this);
     }
 
     public void AddEffectLogEntry(SituationCombat situation, string text)

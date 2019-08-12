@@ -18,7 +18,7 @@ public class ExpeditionPanelDrawer : MonoBehaviour
     {
         cMan = GetComponent<CanvasManager>();
 
-        // clean up preview panel from prefab templates
+        // remove prefab template from content panel
         Destroy(previewContentPanel.transform.GetChild(0).gameObject);
     }
 

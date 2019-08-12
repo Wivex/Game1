@@ -48,28 +48,28 @@ public class UnitPanelDrawer : MonoBehaviour
     protected virtual void Update()
     {
         // update stats
-        attack.text = $"ATT: {ColoredStat(unit.stats[(int) StatType.Attack])}";
-        defence.text = $"DEF: {ColoredStat(unit.stats[(int) StatType.Defence])}";
-        speed.text = $"SPD: {ColoredStat(unit.stats[(int) StatType.Speed])}";
-        hazardResist.text = $"HRES: {ColoredStat(unit.stats[(int) StatType.HResist])}";
-        bleedResist.text = $"BRES: {ColoredStat(unit.stats[(int) StatType.BResist])}";
+        attack.text = $"ATT: {ColoredStat(unit.baseStats[(int) StatType.Attack])}";
+        defence.text = $"DEF: {ColoredStat(unit.baseStats[(int) StatType.Defence])}";
+        speed.text = $"SPD: {ColoredStat(unit.baseStats[(int) StatType.Speed])}";
+        hazardResist.text = $"HRES: {ColoredStat(unit.baseStats[(int) StatType.HResist])}";
+        bleedResist.text = $"BRES: {ColoredStat(unit.baseStats[(int) StatType.BResist])}";
 
         // update stat bars
-        healthBar.value = (float) unit.stats[(int) StatType.Health].curValue /
-                          unit.stats[(int) StatType.Health].curValue;
+        healthBar.value = (float) unit.baseStats[(int) StatType.Health].curValue /
+                          unit.baseStats[(int) StatType.Health].curValue;
         health.text =
-            $"{unit.stats[(int) StatType.Health].curValue} / {(unit.stats[(int) StatType.Health] as StatChanging).maxValue}";
-        manaBar.value = (float) unit.stats[(int) StatType.Mana].curValue /
-                        unit.stats[(int) StatType.Mana].curValue;
+            $"{unit.baseStats[(int) StatType.Health].curValue} / {(unit.baseStats[(int) StatType.Health] as StatChanging).maxValue}";
+        manaBar.value = (float) unit.baseStats[(int) StatType.Energy].curValue /
+                        unit.baseStats[(int) StatType.Energy].curValue;
         mana.text =
-            $"{unit.stats[(int) StatType.Mana].curValue} / {(unit.stats[(int) StatType.Mana] as StatChanging).maxValue}";
+            $"{unit.baseStats[(int) StatType.Energy].curValue} / {(unit.baseStats[(int) StatType.Energy] as StatChanging).maxValue}";
         initBar.value = unit.curInitiative / Unit.reqInitiative;
         initiative.text = $"{(int) unit.curInitiative} / {Unit.reqInitiative}";
 
         // update effects
         for (var i = 0; i < effects.Length; i++)
         {
-            if (i >= unit.curEffects.Count)
+            if (i >= unit.effects.Count)
             {
                 effects[i].sprite = null;
                 effects[i].color = Color.clear;
@@ -77,9 +77,9 @@ public class UnitPanelDrawer : MonoBehaviour
             }
             else
             {
-                effects[i].sprite = unit.curEffects[i].icon;
+                effects[i].sprite = unit.effects[i].icon;
                 effects[i].color = Color.white;
-                effectsDur[i].text = unit.curEffects[i].curDuration.ToString();
+                effectsDur[i].text = unit.effects[i].curDuration.ToString();
             }
         }
 

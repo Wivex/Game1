@@ -19,7 +19,7 @@ MonoBehaviour:
     connectedLocations: []
     zonesPositions:
     - {x: -154, y: -87}
-    - {x: -464, y: 0}
+    - {x: -464, y: -87}
   - areaImage: {fileID: 21300000, guid: 5ff11c19f0669d849b20c2a6acc0a396, type: 3}
     interchangeable: 1
     areaImageSize: {x: 1350, y: 325}
@@ -87,10 +87,16 @@ MonoBehaviour:
     - {x: -450, y: 0}
     - {x: -900, y: 0}
   situations:
-  - chance: 0.2
+  - chance: 0.65
+    type: 2
+    icon: {fileID: 0}
+  - chance: 0.65
     type: 1
     icon: {fileID: 0}
   enemies:
   - chance: 1
     enemyData: {fileID: 11400000, guid: 2767f6c8f66d2fd45ad505de3208fc8b, type: 2}
-  pointsOfInterest: []
+  - chance: 1
+    enemyData: {fileID: 11400000, guid: 2767f6c8f66d2fd45ad505de3208fc8b, type: 2}
+  pointsOfInterest:
+  - chance: 0

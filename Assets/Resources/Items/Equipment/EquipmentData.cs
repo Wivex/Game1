@@ -1,20 +1,5 @@
-﻿using UnityEngine;
-
-public enum InventorySlot
-{
-    Head,
-    Body,
-    Arms,
-    Boots,
-    Amulet,
-    Belt,
-    Ring1,
-    Ring2,
-    MainHand1,
-    OffHand1,
-    MainHand2,
-    OffHand2
-}
+﻿using System;
+using UnityEngine;
 
 [CreateAssetMenu(menuName = "Content/Data/Items/Equipment Data")]
 public class EquipmentData : ItemData
@@ -31,12 +16,12 @@ public class EquipmentData : ItemData
 
     public void Equip(Hero hero)
     {
-        foreach (var mod in statModifiers) hero.stats[(int) mod.stat].AddModifier(mod);
+        foreach (var mod in statModifiers) hero.baseStats[(int) mod.stat].AddModifier(mod);
     }
 
     public void Unequip(Hero hero)
     {
         foreach (var mod in statModifiers)
-            hero.stats[(int) mod.stat].RemoveAllModsFromSource(this);
+            hero.baseStats[(int) mod.stat].RemoveAllModsFromSource(this);
     }
 }

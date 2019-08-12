@@ -20,13 +20,17 @@ public enum HeroClass
 [Serializable]
 public class Hero : Unit
 {
+    //HACK: temp solution
+    // TODO: use Lexic name generator
     readonly string[] heroNames = { "Peter", "Ron", "John", "Bob" };
     static int freeNameIndex;
 
+    internal string name;
+    internal TacticsPreset tactics;
     internal ClassData classData;
     internal int level, gold, experience;
     internal Sprite portrait;
-    internal EquipmentData[] inventory = new EquipmentData[Enum.GetNames(typeof(InventorySlot)).Length];
+    internal EquipmentSheet equipment = new EquipmentSheet();
     internal List<ItemData> backpack = new List<ItemData>();
     internal List<Consumable> consumables = new List<Consumable>();
     internal HeroState state = HeroState.Recruitable;
@@ -36,9 +40,9 @@ public class Hero : Unit
         this.name = name ?? RandomName();
         this.portrait = portrait ?? RandomPortrait();
         classData = Resources.Load<ClassData>($"Units/Heroes/Classes/{classType.ToString()}/{classType.ToString()}Class");
-        tacticsPreset = classData.classLevels[level].tacticsPreset;
-        SetAbilities();
-        SetStats();
+        tactics = classData.classLevels[level].tacticsPreset;
+        InitAbilities();
+        this.InitStats();
 
         GameManager.instance.heroes.Add(this);
     }
@@ -57,26 +61,7 @@ public class Hero : Unit
         return portraits[rnd];
     }
 
-    public override void SetStats()
-    {
-        stats[(int) StatType.Health].BaseValue = classData.classLevels[level].stats.health;
-        stats[(int) StatType.Mana].BaseValue = classData.classLevels[level].stats.mana;
-        stats[(int) StatType.Attack].BaseValue = classData.classLevels[level].stats.attack;
-        stats[(int) StatType.Defence].BaseValue = classData.classLevels[level].stats.defence;
-        stats[(int) StatType.Speed].BaseValue = classData.classLevels[level].stats.speed;
-        stats[(int) StatType.HResist].BaseValue = classData.classLevels[level].stats.hazardResistance;
-        stats[(int) StatType.BResist].BaseValue = classData.classLevels[level].stats.bleedResistance;
-
-        stats[(int) StatType.Health].curValue = stats[(int) StatType.Health].BaseValue;
-        stats[(int) StatType.Mana].curValue = stats[(int) StatType.Mana].BaseValue;
-        stats[(int) StatType.Attack].curValue = stats[(int) StatType.Attack].BaseValue;
-        stats[(int) StatType.Defence].curValue = stats[(int) StatType.Defence].BaseValue;
-        stats[(int) StatType.Speed].curValue = stats[(int) StatType.Speed].BaseValue;
-        stats[(int) StatType.HResist].curValue = stats[(int) StatType.HResist].BaseValue;
-        stats[(int) StatType.BResist].curValue = stats[(int) StatType.BResist].BaseValue;
-    }
-
-    public override void SetAbilities()
+    public override void InitAbilities()
     {
         foreach (var abilityData in classData.classLevels[level].abilities)
             abilities.Add(new Ability(abilityData));

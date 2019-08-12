@@ -81,8 +81,8 @@ public class TacticTrigger
     {
         var unit = target == Target.Self ? situation.actor : situation.target;
         return comparisonType == ComparisonType.LessOrEqual
-            ? unit.stats[(int)stat].curValue <= statValue
-            : unit.stats[(int)stat].curValue > statValue;
+            ? unit.baseStats[(int)stat].curValue <= statValue
+            : unit.baseStats[(int)stat].curValue > statValue;
     }
 
     public bool AbilityReadyCheck(SituationCombat situation)

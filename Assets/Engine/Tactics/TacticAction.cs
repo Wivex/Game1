@@ -48,7 +48,7 @@ public class TacticAction
     public void Attack(SituationCombat situation)
     {
         var damage = new Damage(DamageType.Physical,
-            situation.actor.stats[(int) StatType.Attack].curValue);
+            situation.actor.baseStats[(int) StatType.Attack].curValue);
         var dam = situation.target.TakeDamage(damage);
 
         //situation.expedition.expPreviewPanel.redrawFlags.health = true;

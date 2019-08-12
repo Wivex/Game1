@@ -14,22 +14,22 @@ public class Enemy : Unit
         enemyData = data;
         name = data.name;
         tacticsPreset = data.tacticsPreset;
-        SetAbilities();
-        SetStats();
+        InitAbilities();
+        InitStats();
     }
 
-    public override void SetStats()
+    public override void InitStats()
     {
-        stats[(int) StatType.Health].BaseValue = enemyData.stats.health;
-        stats[(int) StatType.Mana].BaseValue = enemyData.stats.mana;
-        stats[(int) StatType.Attack].BaseValue = enemyData.stats.attack;
-        stats[(int) StatType.Defence].BaseValue = enemyData.stats.defence;
-        stats[(int) StatType.Speed].BaseValue = enemyData.stats.speed;
-        stats[(int) StatType.HResist].BaseValue = enemyData.stats.hazardResistance;
-        stats[(int) StatType.BResist].BaseValue = enemyData.stats.bleedResistance;
+        baseStats[(int) StatType.Health].BaseValue = enemyData.stats.health;
+        baseStats[(int) StatType.Energy].BaseValue = enemyData.stats.mana;
+        baseStats[(int) StatType.Attack].BaseValue = enemyData.stats.attack;
+        baseStats[(int) StatType.Defence].BaseValue = enemyData.stats.defence;
+        baseStats[(int) StatType.Speed].BaseValue = enemyData.stats.speed;
+        baseStats[(int) StatType.HResist].BaseValue = enemyData.stats.hazardResistance;
+        baseStats[(int) StatType.BResist].BaseValue = enemyData.stats.bleedResistance;
     }
 
-    public override void SetAbilities()
+    public override void InitAbilities()
     {
         foreach (var abilityData in enemyData.abilities)
             abilities.Add(new Ability(abilityData));

@@ -15,32 +15,30 @@ public enum AnimationTrigger
 
 public class Expedition
 {
-    public ExpPreviewPanelDrawer expPreviewPanel;
-    public Hero hero;
-    public Situation situation;
-    public LocationData curLocation;
-    public LocationData destination;
+    internal Hero hero;
+    internal Situation situation;
+    internal LocationData curLocation, destination;
+    internal LocationArea curArea;
+    internal int curZoneIndex;
 
-    LocationArea curArea;
     DateTime lastSituationRealTime;
-    int curZoneIndex, curAreaIndex;
     float lastSituationGameTime;
 
     public Expedition(Hero hero, LocationData destination)
     {
         this.hero = hero;
-        UIManager.instance.expPanelDrawer.NewPreviewPanel(this);
-        hero.unitPreviewIcon = expPreviewPanel.heroIcon.transform;
-        hero.unitDetailsIcon = UIManager.instance.expPanelDrawer.detailsPanelDrawer.heroPanel.unitImage.transform;
+        //UIManager.instance.expPanelDrawer.NewPreviewPanel(this);
+        //hero.unitPreviewIcon = expPreviewPanel.heroIcon.transform;
+        //hero.unitDetailsIcon = UIManager.instance.expPanelDrawer.detailsPanelDrawer.heroPanel.unitImage.transform;
         this.destination = destination;
         // TODO: add location transitions
         curLocation = destination;
-        //curArea = curLocation.areas.FirstOrDefault(area => area.type == AreaType.Entrance && area.connectedLocations?.Any() == false);
+        curArea = curLocation.areas.First();
+        // "-1" to get "0" as first value later
+        curZoneIndex = -1;
 
         ResetGraceTimers();
         TryNewSituation();
-
-        GameManager.instance.expeditions.Add(hero, this);
     }
 
     LocationArea NewInterchangableArea => curLocation.areas.Find(area => area.interchangeable && area != curArea);
@@ -71,16 +69,16 @@ public class Expedition
         situation.state = SituationState.RunningLogic;
     }
 
+    public void TryNewSituation()
+    {
+        NextZone();
+        NextSituation();
+    }
+
     void NextZone()
     {
-        // assign first area at start of exp.
-        if (curArea == null)
-        {
-            curArea = curLocation.areas.First();
-        }
-
         // check if last zone in the area
-        if (curZoneIndex++ >= curArea.zonesPositions.Capacity)
+        if (++curZoneIndex >= curArea.zonesPositions.Capacity)
         {
             curArea = NewInterchangableArea;
             curZoneIndex = 0;
@@ -90,10 +88,8 @@ public class Expedition
         expPreviewPanel.redrawFlags.zone = true;
     }
 
-    public void TryNewSituation()
+    void NextSituation()
     {
-        NextZone();
-
         if (GraceTimePassed)
         {
             foreach (var sit in curLocation.situations)

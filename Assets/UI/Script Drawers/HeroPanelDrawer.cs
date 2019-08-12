@@ -92,17 +92,17 @@ public class HeroPanelDrawer : UnitPanelDrawer
             }
         }
 
-        // update inventory
+        // update equipment
         for (var i = 0; i < inventorySlots.Length; i++)
         {
-            if (hero.inventory[i] == null)
+            if (hero.equipment[i] == null)
             {
                 inventorySlots[i].sprite = null;
                 inventorySlots[i].color = Color.clear;
             }
             else
             {
-                inventorySlots[i].sprite = hero.inventory[i].icon;
+                inventorySlots[i].sprite = hero.equipment[i].icon;
                 backpackSlots[i].color = Color.white;
             }
         }

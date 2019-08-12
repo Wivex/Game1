@@ -10,7 +10,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{7A8E2D87-BD4D-935C-C539-C3FF95D2C919}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -65,6 +66,23 @@
     <Compile Include="Assets\3rd-Party\EventDelegate\EDFlagAttribute.cs" />
     <Compile Include="Assets\3rd-Party\EventDelegate\EventDelegate.cs" />
     <Compile Include="Assets\3rd-Party\EventDelegate\ReorderableList.cs" />
+    <Compile Include="Assets\3rd-Party\Lexic Name Generator\Demo\NameGenDemo.cs" />
+    <Compile Include="Assets\3rd-Party\Lexic Name Generator\Scripts\NameGenerator.cs" />
+    <Compile Include="Assets\3rd-Party\Lexic Name Generator\Scripts\Names\AccessoryNames.cs" />
+    <Compile Include="Assets\3rd-Party\Lexic Name Generator\Scripts\Names\ArmorNames.cs" />
+    <Compile Include="Assets\3rd-Party\Lexic Name Generator\Scripts\Names\BaseNames.cs" />
+    <Compile Include="Assets\3rd-Party\Lexic Name Generator\Scripts\Names\CelticFemaleNames.cs" />
+    <Compile Include="Assets\3rd-Party\Lexic Name Generator\Scripts\Names\CelticMaleNames.cs" />
+    <Compile Include="Assets\3rd-Party\Lexic Name Generator\Scripts\Names\DemonFemaleNames.cs" />
+    <Compile Include="Assets\3rd-Party\Lexic Name Generator\Scripts\Names\DemonMaleNames.cs" />
+    <Compile Include="Assets\3rd-Party\Lexic Name Generator\Scripts\Names\ExampleNames.cs" />
+    <Compile Include="Assets\3rd-Party\Lexic Name Generator\Scripts\Names\FantasyFemaleNames.cs" />
+    <Compile Include="Assets\3rd-Party\Lexic Name Generator\Scripts\Names\FantasyFemaleNames2.cs" />
+    <Compile Include="Assets\3rd-Party\Lexic Name Generator\Scripts\Names\FantasyMaleNames.cs" />
+    <Compile Include="Assets\3rd-Party\Lexic Name Generator\Scripts\Names\FantasyMaleNames2.cs" />
+    <Compile Include="Assets\3rd-Party\Lexic Name Generator\Scripts\Names\KingNames.cs" />
+    <Compile Include="Assets\3rd-Party\Lexic Name Generator\Scripts\Names\TownNames.cs" />
+    <Compile Include="Assets\3rd-Party\Lexic Name Generator\Scripts\Names\WeaponNames.cs" />
     <Compile Include="Assets\3rd-Party\SubjectNerd's InspectorTools\EditScriptableAttribute.cs" />
     <Compile Include="Assets\3rd-Party\SubjectNerd's InspectorTools\ReorderableAttribute.cs" />
     <Compile Include="Assets\3rd-Party\unity-ui-extensions\Examples\ComboBox\ComboBoxChanged.cs" />
@@ -261,15 +279,20 @@
     <Compile Include="Assets\Engine\Effects\Effect.cs" />
     <Compile Include="Assets\Engine\Effects\Floating Text\FloatingText.cs" />
     <Compile Include="Assets\Engine\Managers\CanvasManager.cs" />
+    <Compile Include="Assets\Engine\Managers\TownManager.cs" />
     <Compile Include="Assets\Engine\Managers\GameManager.cs" />
     <Compile Include="Assets\Engine\Managers\InputManager.cs" />
     <Compile Include="Assets\Engine\Managers\UIManager.cs" />
+    <Compile Include="Assets\Engine\Managers\ExpeditionManager.cs" />
+    <Compile Include="Assets\Engine\Managers\UnitStatsManager.cs" />
     <Compile Include="Assets\Engine\Situations\Situation.cs" />
     <Compile Include="Assets\Engine\Situations\SituationCombat.cs" />
     <Compile Include="Assets\Engine\Situations\SituationTravelling.cs" />
+    <Compile Include="Assets\Engine\Stats\EquipmentSheet.cs" />
     <Compile Include="Assets\Engine\Stats\Stat.cs" />
     <Compile Include="Assets\Engine\Stats\StatChanging.cs" />
     <Compile Include="Assets\Engine\Stats\StatModifier.cs" />
+    <Compile Include="Assets\Engine\Stats\StatSheet.cs" />
     <Compile Include="Assets\Engine\Tactics\Tactic.cs" />
     <Compile Include="Assets\Engine\Tactics\TacticAction.cs" />
     <Compile Include="Assets\Engine\Tactics\TacticsPreset.cs" />
@@ -280,7 +303,6 @@
     <Compile Include="Assets\Engine\Various\Damage.cs" />
     <Compile Include="Assets\Engine\Various\Expedition.cs" />
     <Compile Include="Assets\Engine\Various\Extensions.cs" />
-    <Compile Include="Assets\Engine\Various\StatValues.cs" />
     <Compile Include="Assets\Resources\Abilities\Ability.cs" />
     <Compile Include="Assets\Resources\Abilities\AbilityData.cs" />
     <Compile Include="Assets\Resources\Items\Consumables\Consumable.cs" />
@@ -315,6 +337,7 @@
     <None Include="Assets\3rd-Party\unity-ui-extensions\Resources\Shaders\UI Particle AddSmooth.shader" />
     <None Include="Assets\3rd-Party\unity-ui-extensions\Resources\Shaders\UI Particle Premultiply Blend.shader" />
     <None Include="Assets\3rd-Party\unity-ui-extensions\Resources\Shaders\UISoftAdditive.shader" />
+    <None Include="Assets\3rd-Party\Lexic Name Generator\Readme.txt" />
     <None Include="Assets\3rd-Party\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\3rd-Party\unity-ui-extensions\Resources\Shaders\UIParticleHidden.shader" />
     <None Include="Assets\3rd-Party\unity-ui-extensions\Resources\Shaders\SoftMaskShader.shader" />
@@ -328,6 +351,7 @@
     <None Include="Assets\3rd-Party\unity-ui-extensions\Resources\Shaders\UILinearDodge.shader" />
     <None Include="Assets\3rd-Party\unity-ui-extensions\Resources\Shaders\UI Particle VertexLit Blended.shader" />
     <None Include="Assets\3rd-Party\unity-ui-extensions\Resources\Shaders\UI Particle AddMultiply.shader" />
+    <None Include="Assets\3rd-Party\Lexic Name Generator\License.txt" />
     <None Include="Assets\3rd-Party\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\3rd-Party\unity-ui-extensions\Resources\Shaders\UI Particle Blend.shader" />
     <None Include="Assets\3rd-Party\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
@@ -343,40 +367,40 @@
     <None Include="Assets\3rd-Party\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\3rd-Party\unity-ui-extensions\Resources\Shaders\UI Particle MultiplyDouble.shader" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-hlapi.Editor">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-weaver.Editor">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/com.unity.multiplayer-weaver.Editor.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/ScriptAssemblies/com.unity.multiplayer-weaver.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.XR.LegacyInputHelpers">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.SpatialTracking">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.XR.LegacyInputHelpers">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-hlapi.Runtime">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

@@ -17,6 +17,7 @@ public struct ExpPreviewPanelRedrawFlags
 
 public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
 {
+    //HACK: temp value
     public const int ReqInitiative = 100;
 
     #region SET IN INSPECTOR
@@ -87,6 +88,7 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
         if (redrawFlags.zone)
             UpdateZone();
 
+        // NOTE: updated each frame anyway?
         UpdateStatBars();
     }
 
@@ -136,14 +138,14 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
 
     void UpdateStatBars()
     {
-        healthBar.value = (float) hero.stats[(int) StatType.Health].curValue /
-                          hero.stats[(int) StatType.Health].curValue;
+        healthBar.value = (float) hero.baseStats[(int) StatType.Health].curValue /
+                          (hero.baseStats[(int) StatType.Health] as StatChanging).maxValue;
         health.text =
-            $"{hero.stats[(int) StatType.Health].curValue} / {(hero.stats[(int) StatType.Health] as StatChanging).maxValue}";
-        manaBar.value = (float) hero.stats[(int) StatType.Mana].curValue /
-                        hero.stats[(int) StatType.Mana].curValue;
+            $"{hero.baseStats[(int) StatType.Health].curValue} / {(hero.baseStats[(int) StatType.Health] as StatChanging).maxValue}";
+        manaBar.value = (float) hero.baseStats[(int) StatType.Energy].curValue /
+                        (hero.baseStats[(int) StatType.Energy] as StatChanging).maxValue;
         mana.text =
-            $"{hero.stats[(int) StatType.Mana].curValue} / {(hero.stats[(int) StatType.Mana] as StatChanging).maxValue}";
+            $"{hero.baseStats[(int) StatType.Energy].curValue} / {(hero.baseStats[(int) StatType.Energy] as StatChanging).maxValue}";
         initBar.value = hero.curInitiative / ReqInitiative;
         initiative.text = $"{(int) hero.curInitiative} / {ReqInitiative}";
         expBar.value = (float) hero.experience / hero.classData.expPerLevel[hero.level];
@@ -152,23 +154,9 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
 
     void UpdateZone()
     {
-        //locationImage.transform.localPosition =
-        //    new Vector3(-maskWidth * curFrameIndex++, locationImage.transform.localPosition.y);
-
-        //if (curZoneIndex < curArea.zonesPositions.Capacity)
-        //{
-        //    locationImage.transform.localPosition =
-        //        new Vector3(-maskWidth * curFrameIndex++, locationImage.transform.localPosition.y);
-        //}
-        //else
-        //{
-        //    curFrameIndex = 0;
-        //    if (curZoneIndex < areasCount)
-        //        // switch to next zone image
-        //        locationImage.sprite = exp.curLocation.zones[curZoneIndex];
-        //    else
-        //        curZoneIndex = 0;
-        //}
+        locationImage.sprite = exp.curArea.areaImage;
+        locationImage.rectTransform.sizeDelta = exp.curArea.areaImageSize;
+        locationImage.transform.localPosition = exp.curArea.zonesPositions[exp.curZoneIndex];
         redrawFlags.zone = false;
     }
 
