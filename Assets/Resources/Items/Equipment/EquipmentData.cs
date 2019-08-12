@@ -10,18 +10,18 @@ public class EquipmentData : ItemData
     public bool classRestricted;
 
     [HideIfNot("classRestricted")]
-    public HeroClass reqClass;
+    public ClassType reqClassType;
 
     public StatModifier[] statModifiers;
 
     public void Equip(Hero hero)
     {
-        foreach (var mod in statModifiers) hero.baseStats[(int) mod.stat].AddModifier(mod);
+        //foreach (var mod in statModifiers) hero.baseStats[(int) mod.stat].AddModifier(mod);
     }
 
     public void Unequip(Hero hero)
     {
-        foreach (var mod in statModifiers)
-            hero.baseStats[(int) mod.stat].RemoveAllModsFromSource(this);
+        //foreach (var mod in statModifiers)
+            //hero.baseStats[(int) mod.stat].RemoveAllModsFromSource(this);
     }
 }

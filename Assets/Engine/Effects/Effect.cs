@@ -60,27 +60,27 @@ public class Effect
 
     void ProcEffect()
     {
-        switch (effectOnStatsType)
-        {
-            case EffectOnStatsType.Damage:
-                var dam = targetUnit.TakeDamage(new Damage(damageType, amount));
-                AddEffectLogEntry(situation,
-                    $"{targetUnit.name} suffered from {name} effect for {dam} {damageType} damage.");
-                break;
-            case EffectOnStatsType.Heal:
-                targetUnit.Heal(amount);
-                AddEffectLogEntry(situation, $"{targetUnit.name} healed from {name} effect for {amount} health.");
-                break;
-            case EffectOnStatsType.StatModifier:
-                // add modifier only once
-                if (!targetUnit.effects.Contains(this))
-                {
-                    targetUnit.baseStats[(int) stat].AddModifier(new StatModifier(amount, statModType, this));
-                    AddEffectLogEntry(situation,
-                        $"{targetUnit.name} got {ColoredValue(amount)} {stat} from {name} for {duration} turns.");
-                }
-                break;
-        }
+        //switch (effectOnStatsType)
+        //{
+        //    case EffectOnStatsType.Damage:
+        //        var dam = targetUnit.TakeDamage(new Damage(damageType, amount));
+        //        AddEffectLogEntry(situation,
+        //            $"{targetUnit.name} suffered from {name} effect for {dam} {damageType} damage.");
+        //        break;
+        //    case EffectOnStatsType.Heal:
+        //        targetUnit.Heal(amount);
+        //        AddEffectLogEntry(situation, $"{targetUnit.name} healed from {name} effect for {amount} health.");
+        //        break;
+        //    case EffectOnStatsType.StatModifier:
+        //        // add modifier only once
+        //        if (!targetUnit.effects.Contains(this))
+        //        {
+        //            targetUnit.baseStats[(int) stat].AddModifier(new StatModifier(amount, statModType, this));
+        //            AddEffectLogEntry(situation,
+        //                $"{targetUnit.name} got {ColoredValue(amount)} {stat} from {name} for {duration} turns.");
+        //        }
+        //        break;
+        //}
     }
 
     public void UpdateEffect()
@@ -96,8 +96,8 @@ public class Effect
 
     public void RemoveEffect(Unit unit)
     {
-        if (effectOnStatsType == EffectOnStatsType.StatModifier)
-            unit.baseStats[(int) stat].RemoveAllModsFromSource(this);
+        //if (effectOnStatsType == EffectOnStatsType.StatModifier)
+        //    unit.baseStats[(int) stat].RemoveAllModsFromSource(this);
 
         unit.effects.Remove(this);
     }

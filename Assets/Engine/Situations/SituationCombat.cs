@@ -18,13 +18,13 @@ public class SituationCombat : Situation
     {
         hero = expedition.hero;
         enemy = SpawnEnemy(enemies);
-        enemy.unitPreviewIcon = expedition.expPreviewPanel.eventIcon.transform;
-        enemy.unitDetailsIcon = UIManager.instance.expPanelDrawer.detailsPanelDrawer.enemyPanel.unitImage.transform;
+        //enemy.unitPreviewIcon = expedition.expPreviewPanel.eventIcon.transform;
+        //enemy.unitDetailsIcon = UIManager.instance.expPanelDrawer.detailsPanelDrawer.enemyPanel.unitImage.transform;
         type = SituationType.EnemyEncounter;
         ResetAllCooldowns();
     }
 
-    bool HeroTurnFirst => hero.baseStats[(int) StatType.Speed] >= enemy.baseStats[(int) StatType.Speed];
+    //bool HeroTurnFirst => hero.baseStats[(int) StatType.Speed] >= enemy.baseStats[(int) StatType.Speed];
 
     // TODO: increase chance with each iteration?
     public Enemy SpawnEnemy(List<EnemySpawnChance> enemies)
@@ -44,46 +44,46 @@ public class SituationCombat : Situation
 
     public override void Update()
     {
-        if (hero.Dead)
+        //if (hero.Dead)
         {
             Kill(hero);
             // TODO: stop situation
         }
-        else if (enemy.Dead)
+        //else if (enemy.Dead)
         {
             Kill(enemy);
         }
-        else
-        {
-            if (HeroTurnFirst)
-            {
-                actor = hero;
-                target = enemy;
-                CombatTick();
-                actor = enemy;
-                target = hero;
-                CombatTick();
-            }
-            else
-            {
-                actor = enemy;
-                target = hero;
-                CombatTick();
-                actor = hero;
-                target = enemy;
-                CombatTick();
-            }
-        }
+        //else
+        //{
+        //    //if (HeroTurnFirst)
+        //    {
+        //        actor = hero;
+        //        target = enemy;
+        //        CombatTick();
+        //        actor = enemy;
+        //        target = hero;
+        //        CombatTick();
+        //    }
+        //    else
+        //    {
+        //        actor = enemy;
+        //        target = hero;
+        //        CombatTick();
+        //        actor = hero;
+        //        target = enemy;
+        //        CombatTick();
+        //    }
+        //}
     }
 
     public void CombatTick()
     {
-        actor.curInitiative += actor.baseStats[(int) StatType.Speed].curValue * GameManager.instance.combatSpeed;
-        if (actor.curInitiative >= Unit.reqInitiative)
-        {
-            actor.curInitiative = 0;
-            ActorMove();
-        }
+        //actor.curInitiative += actor.baseStats[(int) StatType.Speed].curValue * GameManager.settings.combatSpeed;
+        //if (actor.curInitiative >= Unit.reqInitiative)
+        //{
+        //    actor.curInitiative = 0;
+        //    ActorMove();
+        //}
     }
 
     public void ActorMove()
@@ -101,14 +101,14 @@ public class SituationCombat : Situation
 
     public void UpdateActorTactics()
     {
-        foreach (var tactic in actor.tacticsPreset.tactics)
-        {
-            // skip tactic if not all triggers are triggered
-            if (tactic.triggers.Exists(trigger => !trigger.IsTriggered(this)))
-                continue;
-            tactic.action.DoAction(this);
-            break;
-        }
+        //foreach (var tactic in actor.tacticsPreset.tactics)
+        //{
+        //    // skip tactic if not all triggers are triggered
+        //    if (tactic.triggers.Exists(trigger => !trigger.IsTriggered(this)))
+        //        continue;
+        //    tactic.action.DoAction(this);
+        //    break;
+        //}
     }
 
     public void UpdateActorCooldowns()
@@ -139,18 +139,18 @@ public class SituationCombat : Situation
             looting = true;
             SpawnLoot();
             // show "dead" status icon
-            expedition.expPreviewPanel.enemyStatusIcon.enabled = true;
-            // start cycles of loot transfer
-            expedition.expPreviewPanel.lootAnim.SetTrigger(AnimationTrigger.StartTransferLoot.ToString());
-            // make combat icon disappear
-            expedition.expPreviewPanel.interAnim.SetTrigger(AnimationTrigger.EndEncounter.ToString());
+            //expedition.expPreviewPanel.enemyStatusIcon.enabled = true;
+            //// start cycles of loot transfer
+            //expedition.expPreviewPanel.lootAnim.SetTrigger(AnimationTrigger.StartTransferLoot.ToString());
+            //// make combat icon disappear
+            //expedition.expPreviewPanel.interAnim.SetTrigger(AnimationTrigger.EndEncounter.ToString());
         }
 
         // loot transfer process (run before each cycle)
         if (lootDrops.Count > 0)
         {
             var item = lootDrops.FirstOrDefault();
-            expedition.expPreviewPanel.lootIcon.sprite = item.icon;
+            //expedition.expPreviewPanel.lootIcon.sprite = item.icon;
             // lock situation Updater until animation ends
             state = SituationState.RunningAnimation;
             lootDrops.Remove(item);
@@ -158,11 +158,11 @@ public class SituationCombat : Situation
         else
         {
             // stop animating item transfer
-            expedition.expPreviewPanel.lootAnim.SetTrigger(AnimationTrigger.StopTransferLoot.ToString());
-            // hero continue travelling
-            expedition.expPreviewPanel.heroAnim.SetTrigger(AnimationTrigger.EndEncounter.ToString());
-            // hide enemy icon
-            expedition.expPreviewPanel.eventAnim.SetTrigger(AnimationTrigger.EndEncounter.ToString());
+            //expedition.expPreviewPanel.lootAnim.SetTrigger(AnimationTrigger.StopTransferLoot.ToString());
+            //// hero continue travelling
+            //expedition.expPreviewPanel.heroAnim.SetTrigger(AnimationTrigger.EndEncounter.ToString());
+            //// hide enemy icon
+            //expedition.expPreviewPanel.eventAnim.SetTrigger(AnimationTrigger.EndEncounter.ToString());
             Resolve();
         }
     }

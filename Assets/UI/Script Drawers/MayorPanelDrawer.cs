@@ -25,28 +25,28 @@ public class MayorPanelDrawer : MonoBehaviour
     {
         // HACK: temp solution
         // generate first explore expedition
-        foreach (var location in GameManager.instance.startingLocations)
-        {
-            var expPanel = expFramePrefab.Create<ExpeditionFrameDrawer>(expContentPanel);
-            expPanel.Init(location, this);
-        }
+        //foreach (var location in GameManager.settings.startingLocations)
+        //{
+        //    var expPanel = expFramePrefab.Create<ExpeditionFrameDrawer>(expContentPanel);
+        //    expPanel.Init(location, this);
+        //}
 
-        if (!GameManager.IdleHeroes.Any())
-        {
-            noQuestsText.text = "No idle heroes available.";
-            noQuestsText.gameObject.SetActive(true);
-            // hide exp. frames in this content panel
-            expContentPanel.SetActiveOfChildrenOfType<ExpeditionFrameDrawer>(false);
-            noExpText.text = "No idle heroes available.";
-            noExpText.gameObject.SetActive(true);
-        }
-        else
-        {
-            //HACK: temp solution
-            noQuestsText.text = "No available quests.";
-            noQuestsText.gameObject.SetActive(true);
-            noExpText.gameObject.SetActive(false);
-        }
+        //if (!GameManager.IdleHeroes.Any())
+        //{
+        //    noQuestsText.text = "No idle heroes available.";
+        //    noQuestsText.gameObject.SetActive(true);
+        //    // hide exp. frames in this content panel
+        //    expContentPanel.SetActiveOfChildrenOfType<ExpeditionFrameDrawer>(false);
+        //    noExpText.text = "No idle heroes available.";
+        //    noExpText.gameObject.SetActive(true);
+        //}
+        //else
+        //{
+        //    //HACK: temp solution
+        //    noQuestsText.text = "No available quests.";
+        //    noQuestsText.gameObject.SetActive(true);
+        //    noExpText.gameObject.SetActive(false);
+        //}
     }
 
     public void OnExpeditionSelect(ExpeditionFrameDrawer exp)
@@ -56,23 +56,23 @@ public class MayorPanelDrawer : MonoBehaviour
         // hide exp. frames in this content panel
         expContentPanel.SetActiveOfChildrenOfType<ExpeditionFrameDrawer>(false);
 
-        if (GameManager.IdleHeroes.Any())
-        {
-            noExpText.gameObject.SetActive(false);
+        //if (GameManager.IdleHeroes.Any())
+        //{
+        //    noExpText.gameObject.SetActive(false);
 
-            // init free heroes frames in the same content panel from prefabs
-            foreach (var hero in GameManager.IdleHeroes)
-            {
-                var heroPanel = heroFramePrefab.Create<HeroFrameDrawer>(expContentPanel);
-                heroPanel.Init(hero, this);
-            }
-        }
-        else
-        {
-            // enable "no free heroes text"
-            noExpText.text = "No idle heroes available.";
-            noExpText.gameObject.SetActive(true);
-        }
+        //    // init free heroes frames in the same content panel from prefabs
+        //    foreach (var hero in GameManager.IdleHeroes)
+        //    {
+        //        var heroPanel = heroFramePrefab.Create<HeroFrameDrawer>(expContentPanel);
+        //        heroPanel.Init(hero, this);
+        //    }
+        //}
+        //else
+        //{
+        //    // enable "no free heroes text"
+        //    noExpText.text = "No idle heroes available.";
+        //    noExpText.gameObject.SetActive(true);
+        //}
     }
 
     public void OnHeroSelect(HeroFrameDrawer heroFrame)
@@ -85,6 +85,6 @@ public class MayorPanelDrawer : MonoBehaviour
         // show expFrames in this content panel
         expContentPanel.SetActiveOfChildrenOfType<ExpeditionFrameDrawer>(true);
 
-        GameManager.instance.StartNewExpedition(selHero, selLocation);
+        //GameManager.settings.StartNewExpedition(selHero, selLocation);
     }
 }

@@ -60,8 +60,8 @@ public class TacticTrigger
         {
             case TriggerType.Any:
                 return true;
-            case TriggerType.StatValue:
-                return StatValueCheck(situation);
+            //case TriggerType.StatValue:
+            //    return StatValueCheck(situation);
             case TriggerType.FoeType:
                 return situation.enemy.enemyData == unitData;
             case TriggerType.SelfCondition:
@@ -77,13 +77,13 @@ public class TacticTrigger
     }
 
     #region CHECKS
-    public bool StatValueCheck(SituationCombat situation)
-    {
-        var unit = target == Target.Self ? situation.actor : situation.target;
-        return comparisonType == ComparisonType.LessOrEqual
-            ? unit.baseStats[(int)stat].curValue <= statValue
-            : unit.baseStats[(int)stat].curValue > statValue;
-    }
+    //public bool StatValueCheck(SituationCombat situation)
+    //{
+    //    //var unit = target == Target.Self ? situation.actor : situation.target;
+    //    //return comparisonType == ComparisonType.LessOrEqual
+    //    //    ? unit.baseStats[(int)stat].curValue <= statValue
+    //    //    : unit.baseStats[(int)stat].curValue > statValue;
+    //}
 
     public bool AbilityReadyCheck(SituationCombat situation)
     {

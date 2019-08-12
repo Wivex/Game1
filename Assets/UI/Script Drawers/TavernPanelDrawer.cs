@@ -18,7 +18,7 @@ public class TavernPanelDrawer : MonoBehaviour
         idlesContentPanel.DestroyAllChildren();
         recruitsContentPanel.DestroyAllChildren();
 
-        // NOTE: temp debug feature
+        // HACK: temp debug feature
         for (var i = 0; i < 3; i++)
         {
             new Hero();
@@ -27,17 +27,17 @@ public class TavernPanelDrawer : MonoBehaviour
 
     public void InitPanel()
     {
-        foreach (var hero in GameManager.IdleHeroes)
-        {
-            var heroPanel = heroFramePrefab.Create<HeroFrameDrawer>(idlesContentPanel);
-            heroPanel.Init(hero, this);
-        }
+        //foreach (var hero in GameManager.IdleHeroes)
+        //{
+        //    var heroPanel = heroFramePrefab.Create<HeroFrameDrawer>(idlesContentPanel);
+        //    heroPanel.Init(hero, this);
+        //}
 
-        foreach (var hero in GameManager.RecruitableHeroes)
-        {
-            var heroPanel = heroFramePrefab.Create<HeroFrameDrawer>(recruitsContentPanel);
-            heroPanel.Init(hero, this);
-        }
+        //foreach (var hero in GameManager.RecruitableHeroes)
+        //{
+        //    var heroPanel = heroFramePrefab.Create<HeroFrameDrawer>(recruitsContentPanel);
+        //    heroPanel.Init(hero, this);
+        //}
     }
 
     public void OnHeroSelect(HeroFrameDrawer heroFrame)

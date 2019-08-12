@@ -43,11 +43,11 @@ public class Expedition
 
     LocationArea NewInterchangableArea => curLocation.areas.Find(area => area.interchangeable && area != curArea);
 
-    public bool GraceTimePassed =>
-        (DateTime.Now - lastSituationRealTime).TotalSeconds > GameManager.instance.minGracePeriod &&
-        Time.time - lastSituationGameTime > GameManager.instance.minGracePeriod;
+    //public bool GraceTimePassed =>
+    //    (DateTime.Now - lastSituationRealTime).TotalSeconds > GameManager.settings.minGracePeriod &&
+    //    Time.time - lastSituationGameTime > GameManager.settings.minGracePeriod;
 
-    public void UpdateSituation()
+    public void Update()
     {
         if (situation.state == SituationState.RunningLogic)
             situation.Update();
@@ -85,12 +85,12 @@ public class Expedition
         }
 
         // set flag to redraw zone 
-        expPreviewPanel.redrawFlags.zone = true;
+        //expPreviewPanel.redrawFlags.zone = true;
     }
 
     void NextSituation()
     {
-        if (GraceTimePassed)
+        //if (GraceTimePassed)
         {
             foreach (var sit in curLocation.situations)
             {
@@ -113,7 +113,7 @@ public class Expedition
             }
         }
         // too early for new situation, continue travelling
-        else
+        //else
         {
             // if not already travelling
             if (situation?.type != SituationType.Travelling)
@@ -128,7 +128,7 @@ public class Expedition
         //UpdateLog($"Travelling trough {curLocation.name}");
         Debug.Log($"{hero.name} triggered {AnimationTrigger.HeroTravelling.ToString()}");
         // start travelling animation
-        expPreviewPanel.heroAnim.SetTrigger(AnimationTrigger.HeroTravelling.ToString());
+        //expPreviewPanel.heroAnim.SetTrigger(AnimationTrigger.HeroTravelling.ToString());
     }
 
     public void InitEnemyEncounterSituation()
@@ -138,10 +138,10 @@ public class Expedition
         //UIManager.instance.expPanelDrawer.detailsPanelDrawer.InitEnemyPanel(enemy);
         //UpdateLog($"{hero.name} started combat with {enemy.enemyData.name}");
         Debug.Log($"{hero.name} triggered {AnimationTrigger.BeginEncounter.ToString()}");
-        expPreviewPanel.heroAnim.SetTrigger(AnimationTrigger.BeginEncounter.ToString());
-        expPreviewPanel.eventAnim.SetTrigger(AnimationTrigger.BeginEncounter.ToString());
-        expPreviewPanel.interAnim.SetTrigger(AnimationTrigger.BeginEncounter.ToString());
-        // hide "dead" status icon
-        expPreviewPanel.enemyStatusIcon.enabled = false;
+        //expPreviewPanel.heroAnim.SetTrigger(AnimationTrigger.BeginEncounter.ToString());
+        //expPreviewPanel.eventAnim.SetTrigger(AnimationTrigger.BeginEncounter.ToString());
+        //expPreviewPanel.interAnim.SetTrigger(AnimationTrigger.BeginEncounter.ToString());
+        //// hide "dead" status icon
+        //expPreviewPanel.enemyStatusIcon.enabled = false;
     }
 }

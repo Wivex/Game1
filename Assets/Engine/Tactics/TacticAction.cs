@@ -42,24 +42,24 @@ public class TacticAction
 
     public void Flee(SituationCombat situation)
     {
-        LogEvent(situation, $"{situation.actor.name} flees from combat.");
+        //LogEvent(situation, $"{situation.actor.name} flees from combat.");
     }
 
     public void Attack(SituationCombat situation)
     {
-        var damage = new Damage(DamageType.Physical,
-            situation.actor.baseStats[(int) StatType.Attack].curValue);
-        var dam = situation.target.TakeDamage(damage);
+        //var damage = new Damage(DamageType.Physical,
+        //    situation.actor.baseStats[(int) StatType.Attack].curValue);
+        //var dam = situation.target.TakeDamage(damage);
 
-        //situation.expedition.expPreviewPanel.redrawFlags.health = true;
+        ////situation.expedition.expPreviewPanel.redrawFlags.health = true;
 
-        situation.expedition.UpdateLog(
-            $"{situation.actor.name} attacks {situation.target.name} for {dam} {damage.type} damage.");
+        //situation.expedition.UpdateLog(
+        //    $"{situation.actor.name} attacks {situation.target.name} for {dam} {damage.type} damage.");
     }
 
     public void UseAbility(SituationCombat situation)
     {
-        LogEvent(situation, $"{situation.actor.name} used {abilityData.name} on {situation.target.name}.");
+        //LogEvent(situation, $"{situation.actor.name} used {abilityData.name} on {situation.target.name}.");
         var usedAbility = situation.actor.abilities.Find(abil => abil.abilityData == abilityData);
         foreach (var effect in usedAbility.abilityData.effects)
         {
@@ -72,7 +72,7 @@ public class TacticAction
 
     public void UseConsumable(SituationCombat situation)
     {
-        LogEvent(situation, $"{situation.hero.name} used {consumableData.name} on {situation.target.name}.");
+        //LogEvent(situation, $"{situation.hero.name} used {consumableData.name} on {situation.target.name}.");
         var usedConsumable = situation.hero.consumables.First(cons => cons.consumableData == consumableData);
         foreach (var effect in usedConsumable.consumableData.effects)
         {

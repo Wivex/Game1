@@ -95,16 +95,16 @@ public class HeroPanelDrawer : UnitPanelDrawer
         // update equipment
         for (var i = 0; i < inventorySlots.Length; i++)
         {
-            if (hero.equipment[i] == null)
-            {
-                inventorySlots[i].sprite = null;
-                inventorySlots[i].color = Color.clear;
-            }
-            else
-            {
-                inventorySlots[i].sprite = hero.equipment[i].icon;
-                backpackSlots[i].color = Color.white;
-            }
+            //if (hero.equipment[i] == null)
+            //{
+            //    inventorySlots[i].sprite = null;
+            //    inventorySlots[i].color = Color.clear;
+            //}
+            //else
+            //{
+            //    inventorySlots[i].sprite = hero.equipment[i].icon;
+            //    backpackSlots[i].color = Color.white;
+            //}
         }
 
         // update consumables

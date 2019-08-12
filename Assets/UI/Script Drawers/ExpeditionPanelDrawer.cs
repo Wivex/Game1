@@ -24,7 +24,7 @@ public class ExpeditionPanelDrawer : MonoBehaviour
 
     public void TryShowOverviewPanel()
     {
-        cMan.ChangeActiveCanvas(GameManager.instance.expeditions.Count > 0 ? overviewCanvas : noExpCanvas);
+        //cMan.ChangeActiveCanvas(GameManager.settings.expeditions.Count > 0 ? overviewCanvas : noExpCanvas);
     }
 
     public void ShowSelectedExpDetailsPanel(Expedition exp)
@@ -39,7 +39,7 @@ public class ExpeditionPanelDrawer : MonoBehaviour
     public void NewPreviewPanel(Expedition exp)
     {
         var panel = Instantiate(expPreviewPanelPrefab, previewContentPanel);
-        exp.expPreviewPanel = panel.GetComponent<ExpPreviewPanelDrawer>();
-        exp.expPreviewPanel.Init(exp);
+        //exp.expPreviewPanel = panel.GetComponent<ExpPreviewPanelDrawer>();
+        //exp.expPreviewPanel.Init(exp);
     }
 }

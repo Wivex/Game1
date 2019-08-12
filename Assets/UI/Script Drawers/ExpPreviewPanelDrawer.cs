@@ -138,16 +138,16 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
 
     void UpdateStatBars()
     {
-        healthBar.value = (float) hero.baseStats[(int) StatType.Health].curValue /
-                          (hero.baseStats[(int) StatType.Health] as StatChanging).maxValue;
-        health.text =
-            $"{hero.baseStats[(int) StatType.Health].curValue} / {(hero.baseStats[(int) StatType.Health] as StatChanging).maxValue}";
-        manaBar.value = (float) hero.baseStats[(int) StatType.Energy].curValue /
-                        (hero.baseStats[(int) StatType.Energy] as StatChanging).maxValue;
-        mana.text =
-            $"{hero.baseStats[(int) StatType.Energy].curValue} / {(hero.baseStats[(int) StatType.Energy] as StatChanging).maxValue}";
-        initBar.value = hero.curInitiative / ReqInitiative;
-        initiative.text = $"{(int) hero.curInitiative} / {ReqInitiative}";
+        //healthBar.value = (float) hero.baseStats[(int) StatType.Health].curValue /
+        //                  (hero.baseStats[(int) StatType.Health] as StatChanging).maxValue;
+        //health.text =
+        //    $"{hero.baseStats[(int) StatType.Health].curValue} / {(hero.baseStats[(int) StatType.Health] as StatChanging).maxValue}";
+        //manaBar.value = (float) hero.baseStats[(int) StatType.Energy].curValue /
+        //                (hero.baseStats[(int) StatType.Energy] as StatChanging).maxValue;
+        //mana.text =
+        //    $"{hero.baseStats[(int) StatType.Energy].curValue} / {(hero.baseStats[(int) StatType.Energy] as StatChanging).maxValue}";
+        //initBar.value = hero.curInitiative / ReqInitiative;
+        //initiative.text = $"{(int) hero.curInitiative} / {ReqInitiative}";
         expBar.value = (float) hero.experience / hero.classData.expPerLevel[hero.level];
         experience.text = $"{hero.experience} / {hero.classData.expPerLevel[hero.level]}";
     }
@@ -165,7 +165,7 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
     // show details panel if preview is double clicked
     public void OnPointerClick(PointerEventData eventData)
     {
-        var expPanel = UIManager.instance.expPanelDrawer;
+        var expPanel = UIManager.statics.expPanelDrawer;
 
         expPanel.selectedExp = exp;
         expPanel.detailsPanelDrawer.InitHeroPanel(hero);

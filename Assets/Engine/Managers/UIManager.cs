@@ -4,32 +4,32 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager instance;
-    
-    public ExpeditionPanelDrawer expPanelDrawer;
-    public MayorPanelDrawer mayorPanelDrawer;
-    public TavernPanelDrawer tavernPanelDrawer;
+    #region MANAGER INITIALIZATION
 
-    public FloatingText floatingTextPrefab;
+    /// <summary>
+    /// Can't access static variables and methods from inspector. So we use static instance to do that.
+    /// </summary>
+    public static UIManager statics;
 
     //default initialization of Singleton instance
     void Awake()
     {
         //Check if instance already exists
-        if (instance == null)
+        if (statics == null)
             //if not, set instance to this
-            instance = this;
+            statics = this;
         //If instance already exists and it's not this:
-        else if (instance != this)
+        else if (statics != this)
             //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of it.
-            Destroy(gameObject);
 
-        //Sets this to not be destroyed when reloading scene
-        DontDestroyOnLoad(gameObject);
+            //Sets this to not be destroyed when reloading scene
+            DontDestroyOnLoad(gameObject);
     }
 
-    internal static void RandomPositionWithinPanel(Transform t)
-    {
-        t.localPosition = new Vector3(1,1);
-    }
+    #endregion
+
+    public ExpeditionPanelDrawer expPanelDrawer;
+    public MayorPanelDrawer mayorPanelDrawer;
+    public TavernPanelDrawer tavernPanelDrawer;
+    public FloatingText floatingTextPrefab;
 }
