@@ -2,9 +2,22 @@
 using UIEventDelegate;
 using UnityEngine;
 
+public class AnimationStateReference
+{
+    public AnimationState state;
+}
+
+public enum AnimationState
+{
+    Animating,
+    Done
+}
+
 public class AnimationManager : MonoBehaviour
 {
     public ReorderableEventList events;
+
+    internal AnimationStateReference animStateRef;
 
     Animator anim;
 
@@ -26,6 +39,11 @@ public class AnimationManager : MonoBehaviour
     public void PauseAnimationForSecs(float sec)
     {
         StartCoroutine(PauseCour(sec));
+    }
+
+    public void NotifyAnimationState(AnimationState state)
+    {
+        animStateRef.state = state;
     }
 
     IEnumerator PauseCour(float sec)

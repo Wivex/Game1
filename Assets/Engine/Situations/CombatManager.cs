@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class SituationCombat : Situation
+public class CombatManager
 {
     public Hero hero;
     public Enemy enemy;
@@ -14,13 +14,12 @@ public class SituationCombat : Situation
 
     List<ItemData> lootDrops;
 
-    public SituationCombat(Expedition expedition, List<EnemySpawnChance> enemies) : base(expedition)
+    public CombatManager(Expedition expedition, List<EnemySpawnChance> enemies)
     {
         hero = expedition.hero;
         enemy = SpawnEnemy(enemies);
         //enemy.unitPreviewIcon = expedition.expPreviewPanel.eventIcon.transform;
         //enemy.unitDetailsIcon = UIManager.instance.expPanelDrawer.detailsPanelDrawer.enemyPanel.unitImage.transform;
-        type = SituationType.EnemyEncounter;
         ResetAllCooldowns();
     }
 
@@ -42,7 +41,7 @@ public class SituationCombat : Situation
         throw new Exception("Too many tries to spawn enemy");
     }
 
-    public override void Update()
+    public void Update()
     {
         //if (hero.Dead)
         {
@@ -152,7 +151,7 @@ public class SituationCombat : Situation
             var item = lootDrops.FirstOrDefault();
             //expedition.expPreviewPanel.lootIcon.sprite = item.icon;
             // lock situation Updater until animation ends
-            state = SituationState.RunningAnimation;
+            //state = SituationState.RunningAnimation;
             lootDrops.Remove(item);
         }
         else
@@ -163,7 +162,7 @@ public class SituationCombat : Situation
             //expedition.expPreviewPanel.heroAnim.SetTrigger(AnimationTrigger.EndEncounter.ToString());
             //// hide enemy icon
             //expedition.expPreviewPanel.eventAnim.SetTrigger(AnimationTrigger.EndEncounter.ToString());
-            Resolve();
+            //Resolve();
         }
     }
 

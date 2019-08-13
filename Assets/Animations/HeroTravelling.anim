@@ -1332,7 +1332,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 3.5
-    functionName: RunCodeEventAtIndex
+    functionName: PauseAnimationForSecs1123
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

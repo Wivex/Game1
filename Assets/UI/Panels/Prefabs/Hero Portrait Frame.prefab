@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5794685254794927569}
   - component: {fileID: 5794685254794927575}
   - component: {fileID: 5794685254794927568}
-  m_Layer: 31
+  m_Layer: 15
   m_Name: Hero Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 5794685255496521920}
   - component: {fileID: 5794685255496521926}
   - component: {fileID: 5794685255496521927}
-  m_Layer: 31
+  m_Layer: 15
   m_Name: Hero Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 5794685255711995311}
   - component: {fileID: 5135815716998592754}
   - component: {fileID: 4356249072361385077}
-  m_Layer: 31
+  m_Layer: 15
   m_Name: Hero Portrait Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -465,7 +465,7 @@ GameObject:
   - component: {fileID: 5794685255970044878}
   - component: {fileID: 5794685255970044867}
   - component: {fileID: 5794685255970044876}
-  m_Layer: 31
+  m_Layer: 15
   m_Name: Hero Portrait
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -519,7 +519,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 01abe8a8262a6b449a0089f610947044, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fc022154185c32447b54153343a6a1ba, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

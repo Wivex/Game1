@@ -13,13 +13,23 @@ public enum AnimationTrigger
     StopTransferLoot
 }
 
+public enum SituationType
+{
+    Travelling,
+    EnemyEncounter,
+    ObjectEncounter
+}
+
 public class Expedition
 {
     internal Hero hero;
-    internal Situation situation;
     internal LocationData curLocation, destination;
     internal LocationArea curArea;
     internal int curZoneIndex;
+
+
+    public SituationType type;
+    public AnimationStateReference animStateRef;
 
     DateTime lastSituationRealTime;
     float lastSituationGameTime;
@@ -49,8 +59,8 @@ public class Expedition
 
     public void Update()
     {
-        if (situation.state == SituationState.RunningLogic)
-            situation.Update();
+        //if (situation.state == SituationState.RunningLogic)
+        //    situation.Update();
     }
 
     public void UpdateLog(string logEntry)
@@ -66,7 +76,7 @@ public class Expedition
 
     public void AnimationEnded()
     {
-        situation.state = SituationState.RunningLogic;
+        //situation.state = SituationState.RunningLogic;
     }
 
     public void TryNewSituation()
@@ -116,14 +126,14 @@ public class Expedition
         //else
         {
             // if not already travelling
-            if (situation?.type != SituationType.Travelling)
+            //if (situation?.type != SituationType.Travelling)
                 InitTravellingSituation();
         }
     }
 
     public void InitTravellingSituation()
     {
-        situation = new SituationTravelling(this);
+        //situation = new SituationTravelling(this);
         //UIManager.instance.expPanelDrawer.detailsPanelDrawer.InitLocationPanel(curLocation);
         //UpdateLog($"Travelling trough {curLocation.name}");
         Debug.Log($"{hero.name} triggered {AnimationTrigger.HeroTravelling.ToString()}");
@@ -133,8 +143,8 @@ public class Expedition
 
     public void InitEnemyEncounterSituation()
     {
-        situation = new SituationCombat(this, curLocation.enemies);
-        var enemy = (situation as SituationCombat).enemy;
+        //situation = new CombatManager(this, curLocation.enemies);
+        //var enemy = (situation as CombatManager).enemy;
         //UIManager.instance.expPanelDrawer.detailsPanelDrawer.InitEnemyPanel(enemy);
         //UpdateLog($"{hero.name} started combat with {enemy.enemyData.name}");
         Debug.Log($"{hero.name} triggered {AnimationTrigger.BeginEncounter.ToString()}");

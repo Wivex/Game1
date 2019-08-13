@@ -55,4 +55,8 @@ public class ExpeditionManager : MonoBehaviour
         foreach (var expedition in expeditions)
             expedition.Update();
     }
+
+    public void AnimationEnded(object obj)
+    {
+    }
 }

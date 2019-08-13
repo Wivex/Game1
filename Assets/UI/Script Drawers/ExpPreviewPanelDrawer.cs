@@ -60,6 +60,8 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
             .ToArray();
         consumablesCharges = consumablesPanel.gameObject.GetComponentsInChildren<TextMeshProUGUI>();
 
+        heroImage.GetComponent<AnimationManager>().animStateRef = exp.situation.animStateRef;
+
         UpdateHeroDesc();
         UpdateGold();
         UpdateStatBars();

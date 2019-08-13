@@ -19,7 +19,7 @@ public class TacticAction
     //[ShownIfEnumValue("actionType", (int)ActionType.UseConsumable)]
     public ConsumableData consumableData;
 
-    public void DoAction(SituationCombat situation)
+    public void DoAction(CombatManager situation)
     {
         switch (actionType)
         {
@@ -40,12 +40,12 @@ public class TacticAction
 
     #region ACTIONS
 
-    public void Flee(SituationCombat situation)
+    public void Flee(CombatManager situation)
     {
         //LogEvent(situation, $"{situation.actor.name} flees from combat.");
     }
 
-    public void Attack(SituationCombat situation)
+    public void Attack(CombatManager situation)
     {
         //var damage = new Damage(DamageType.Physical,
         //    situation.actor.baseStats[(int) StatType.Attack].curValue);
@@ -57,7 +57,7 @@ public class TacticAction
         //    $"{situation.actor.name} attacks {situation.target.name} for {dam} {damage.type} damage.");
     }
 
-    public void UseAbility(SituationCombat situation)
+    public void UseAbility(CombatManager situation)
     {
         //LogEvent(situation, $"{situation.actor.name} used {abilityData.name} on {situation.target.name}.");
         var usedAbility = situation.actor.abilities.Find(abil => abil.abilityData == abilityData);
@@ -70,7 +70,7 @@ public class TacticAction
         usedAbility.curCooldown = abilityData.cooldown + 1;
     }
 
-    public void UseConsumable(SituationCombat situation)
+    public void UseConsumable(CombatManager situation)
     {
         //LogEvent(situation, $"{situation.hero.name} used {consumableData.name} on {situation.target.name}.");
         var usedConsumable = situation.hero.consumables.First(cons => cons.consumableData == consumableData);
@@ -83,7 +83,7 @@ public class TacticAction
         usedConsumable.curCharges--;
     }
 
-    public void LogEvent(SituationCombat situation, string text)
+    public void LogEvent(CombatManager situation, string text)
     {
         situation.expedition.UpdateLog(text);
     }

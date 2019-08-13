@@ -54,7 +54,7 @@ public class TacticTrigger
     //[ShownIfEnumValue("triggerType", (int) TriggerType.FoeType)]
     public UnitData unitData;
 
-    public bool IsTriggered(SituationCombat situation)
+    public bool IsTriggered(CombatManager situation)
     {
         switch (triggerType)
         {
@@ -85,7 +85,7 @@ public class TacticTrigger
     //    //    : unit.baseStats[(int)stat].curValue > statValue;
     //}
 
-    public bool AbilityReadyCheck(SituationCombat situation)
+    public bool AbilityReadyCheck(CombatManager situation)
     {
         var unit = target == Target.Self ? situation.actor : situation.target;
         return unit.abilities.Exists(ability =>
