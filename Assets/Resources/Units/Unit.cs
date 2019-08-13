@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using TMPro;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using Object = UnityEngine.Object;
-
 
 
 public abstract class Unit
@@ -13,7 +9,7 @@ public abstract class Unit
     internal List<Ability> abilities = new List<Ability>();
     internal List<Effect> effects = new List<Effect>();
 
-    public void InitData(UnitData data)
+    internal void InitData(UnitData data)
     {
         curStats.health = data.stats.health;
         curStats.energy = data.stats.energy;
@@ -25,7 +21,7 @@ public abstract class Unit
             abilities.Add(new Ability(abilityData));
     }
 
-    // TODO: move somewhere
+    // MOVE
     //void CreateFloatingText(Transform target, int value)
     //{
     //    var floatingText = Object.Instantiate(UIManager.instance.floatingTextPrefab, target);

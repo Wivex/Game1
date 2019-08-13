@@ -43,38 +43,21 @@ public class Hero : Unit
     internal List<Consumable> consumables = new List<Consumable>();
     internal HeroRedrawFlags redrawFlags = new HeroRedrawFlags();
 
-    public Hero(string name = default, SexType sexType = default, ClassType classType = default, Sprite portrait = default)
+    // USE: TownManager.statics.CreateNewHero()
+    internal Hero(string name = default, SexType sexType = default, ClassType classType = default, Sprite portrait = default)
     {
-        this.name = name ?? RandomName();
-        this.portrait = portrait ?? RandomPortrait();
         this.sexType = sexType;
+        this.portrait = portrait ?? RandomPortrait();
         this.classType = classType;
+        this.name = name ?? NamingManager.statics.GetRandomHeroName(this);
         classData = Resources.Load<ClassData>($"Units/Heroes/Classes/{classType.ToString()}/{classType.ToString()}Class");
         //HACK: temp solution
         tactics = classData.classLevels[level].tacticsPreset;
         state = HeroState.Recruitable;
-
-        UnitManager.statics.InitStats(this, classData.classLevels[level]);
-        UnitManager.statics.InitAbilities(this, classData.classLevels[level]);
-
-        // add hero to tavern roster
-        TownManager.statics.heroes.Add(this);
+        InitData(classData.classLevels[level]);
     }
 
-    string RandomName()
-    {
-        switch (sexType)
-        {
-            case SexType.Male:
-                return ExpeditionManager.statics.maleNameGenerator.GetNextRandomName();
-            case SexType.Female:
-                return ExpeditionManager.statics.femaleNameGenerator.GetNextRandomName();
-            default:
-                return string.Empty;
-        }
-    }
-
-    public Sprite RandomPortrait()
+    Sprite RandomPortrait()
     {
         var portraits =
             Resources.LoadAll<Sprite>($"Units/Heroes/Classes/{classType.ToString()}/Portraits/{sexType.ToString()}");

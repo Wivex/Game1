@@ -19,9 +19,9 @@ public class TavernPanelDrawer : MonoBehaviour
         recruitsContentPanel.DestroyAllChildren();
 
         // HACK: temp debug feature
-        for (var i = 0; i < 3; i++)
+        for (var i = 0; i < 5; i++)
         {
-            new Hero();
+            TownManager.statics.CreateNewHero();
         }
     }
 

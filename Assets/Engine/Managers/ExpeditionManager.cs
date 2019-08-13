@@ -29,8 +29,6 @@ public class ExpeditionManager : MonoBehaviour
 
     #endregion
 
-    public NameGenerator maleNameGenerator, femaleNameGenerator;
-
     //[Header("Expedition Settings")]
     [Tooltip("Minimal time in seconds between situations")]
     public int minGracePeriod = 4;
@@ -44,7 +42,7 @@ public class ExpeditionManager : MonoBehaviour
     public void StartNewExpedition()
     {
         var loc = Resources.Load<LocationData>($"Locations/Outskirts/Outskirts");
-        StartNewExpedition(new Hero(), loc);
+        StartNewExpedition(TownManager.statics.CreateNewHero(), loc);
     }
 
     public void StartNewExpedition(Hero hero, LocationData location)

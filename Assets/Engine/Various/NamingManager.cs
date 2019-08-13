@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
-using Lexic;
+﻿using Lexic;
 using UnityEngine;
+using UnityEditor;
 
-public class TownManager : MonoBehaviour
+public class NamingManager : MonoBehaviour
 {
     #region MANAGER INITIALIZATION
 
     /// <summary>
     /// Can't access static variables and methods from inspector. So we use static instance to do that.
     /// </summary>
-    public static TownManager statics;
+    public static NamingManager statics;
 
     //default initialization of Singleton instance
     void Awake()
@@ -28,21 +28,18 @@ public class TownManager : MonoBehaviour
 
     #endregion
 
-    internal List<Hero> heroes = new List<Hero>();
+    public NameGenerator maleNameGenerator, femaleNameGenerator;
 
-    internal List<Hero> IdleHeroes => heroes.FindAll(hero => hero.state == HeroState.Idle);
-    internal List<Hero> RecruitableHeroes => heroes.FindAll(hero => hero.state == HeroState.Recruitable);
-
-    public Hero CreateNewHero()
+    public string GetRandomHeroName(Hero hero)
     {
-        var hero = new Hero();
-        heroes.Add(hero);
-        return hero;
-    }
-
-    public void CreateNewHeroDebug()
-    {
-        var hero = new Hero();
-        heroes.Add(hero);
+        switch (hero.sexType)
+        {
+            case SexType.Male:
+                return maleNameGenerator.GetNextRandomName();
+            case SexType.Female:
+                return femaleNameGenerator.GetNextRandomName();
+            default:
+                return string.Empty;
+        }
     }
 }
