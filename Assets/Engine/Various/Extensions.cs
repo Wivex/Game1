@@ -19,18 +19,9 @@ public static class Extensions
     }
 
     /// <summary>
-    /// Instantiates prefab, ties it to Transform component of parent object, returns component from prefab instance of desired type
-    /// </summary>
-    public static T Create<T>(this MonoBehaviour prefab, Transform parent)
-    {
-        var expPanel = Object.Instantiate(prefab, parent);
-        return expPanel.GetComponent<T>();
-    }
-
-    /// <summary>
     /// performs SetActive operation for all child objects of type T for this object
     /// </summary>
-    public static void SetActiveOfChildrenOfType<T>(this MonoBehaviour obj, bool state)
+    public static void SetActiveForChildren<T>(this MonoBehaviour obj, bool state)
     {
         foreach (var child in obj.GetComponentsInChildren<T>(true))
         {
@@ -41,7 +32,7 @@ public static class Extensions
     /// <summary>
     /// performs SetActive operation for all child objects of type T for this object
     /// </summary>
-    public static void SetActiveOfChildrenOfType<T>(this Transform obj, bool state)
+    public static void SetActiveForChildren<T>(this Transform obj, bool state)
     {
         foreach (var child in obj.GetComponentsInChildren<T>(true))
         {

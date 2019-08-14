@@ -104,7 +104,7 @@ public class Effect
 
     public void AddEffectLogEntry(CombatManager situation, string text)
     {
-        situation.expedition.UpdateLog(text);
+        //situation.expedition.UpdateLog(text);
     }
 
     string ColoredValue(int value)

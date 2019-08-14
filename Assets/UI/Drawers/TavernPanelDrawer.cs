@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
 public class TavernPanelDrawer : MonoBehaviour
 {
+    #region SET IN INSPECTOR
+
     public TextMeshProUGUI noIdlesText, noRecruitsText;
     public Transform idlesContentPanel, recruitsContentPanel;
-    public MonoBehaviour heroFramePrefab;
+    public HeroFrameDrawer heroFramePrefab;
+
+    #endregion
 
     Hero selHero;
 
@@ -21,23 +26,31 @@ public class TavernPanelDrawer : MonoBehaviour
         // HACK: temp debug feature
         for (var i = 0; i < 5; i++)
         {
-            TownManager.statics.CreateNewHero();
+            TownManager.i.CreateNewHeroDebug();
         }
     }
 
     public void InitPanel()
     {
-        //foreach (var hero in GameManager.IdleHeroes)
-        //{
-        //    var heroPanel = heroFramePrefab.Create<HeroFrameDrawer>(idlesContentPanel);
-        //    heroPanel.Init(hero, this);
-        //}
+        foreach (var hero in TownManager.i.IdleHeroes)
+        {
+            var heroPanel = Instantiate(heroFramePrefab, idlesContentPanel);
+            heroPanel.Init(hero, this);
+        }
 
-        //foreach (var hero in GameManager.RecruitableHeroes)
-        //{
-        //    var heroPanel = heroFramePrefab.Create<HeroFrameDrawer>(recruitsContentPanel);
-        //    heroPanel.Init(hero, this);
-        //}
+        foreach (var hero in TownManager.i.RecruitableHeroes)
+        {
+            var heroPanel = Instantiate(heroFramePrefab, recruitsContentPanel);
+            heroPanel.Init(hero, this);
+        }
+
+        UpdateHeroesAvailabilityInfo();
+    }
+
+    void UpdateHeroesAvailabilityInfo()
+    {
+        noIdlesText.gameObject.SetActive(!TownManager.i.IdleHeroes.Any());
+        noRecruitsText.gameObject.SetActive(!TownManager.i.RecruitableHeroes.Any());
     }
 
     public void OnHeroSelect(HeroFrameDrawer heroFrame)
@@ -50,5 +63,7 @@ public class TavernPanelDrawer : MonoBehaviour
             heroFrame.transform.SetParent(idlesContentPanel);
             selHero.state = HeroState.Idle;
         }
+
+        UpdateHeroesAvailabilityInfo();
     }
 }

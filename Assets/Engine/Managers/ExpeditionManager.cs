@@ -10,17 +10,17 @@ public class ExpeditionManager : MonoBehaviour
     /// <summary>
     /// Can't access static variables and methods from inspector. So we use static instance to do that.
     /// </summary>
-    public static ExpeditionManager statics;
+    public static ExpeditionManager i;
 
     //default initialization of Singleton instance
     void Awake()
     {
         //Check if instance already exists
-        if (statics == null)
+        if (i == null)
             //if not, set instance to this
-            statics = this;
+            i = this;
         //If instance already exists and it's not this:
-        else if (statics != this)
+        else if (i != this)
             //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of it.
 
             //Sets this to not be destroyed when reloading scene
@@ -29,34 +29,33 @@ public class ExpeditionManager : MonoBehaviour
 
     #endregion
 
-    //[Header("Expedition Settings")]
-    [Tooltip("Minimal time in seconds between situations")]
-    public int minGracePeriod = 4;
-    // global initiative accumulation speed
-    public float combatSpeed = 0.075f;
+    #region SET IN INSPECTOR
 
-    internal List<Expedition> expeditions = new List<Expedition>();
+    [Tooltip("Minimum time in seconds between situations")]
+    public int minGracePeriod;
+    [Tooltip("Global initiative accumulation speed")]
+    public float combatSpeed;
+
+    #endregion
+
+    internal static List<Expedition> expeditions = new List<Expedition>();
 
     float oldCombatSpeed;
-
-    public void StartNewExpedition()
-    {
-        var loc = Resources.Load<LocationData>($"Locations/Outskirts/Outskirts");
-        StartNewExpedition(TownManager.statics.CreateNewHero(), loc);
-    }
 
     public void StartNewExpedition(Hero hero, LocationData location)
     {
         expeditions.Add(new Expedition(hero, location));
     }
 
+    public void StartNewExpeditionDebug()
+    {
+        StartNewExpedition(TownManager.i.CreateNewHero(),
+            Resources.Load<LocationData>("Locations/Outskirts/Outskirts"));
+    }
+
     void Update()
     {
         foreach (var expedition in expeditions)
             expedition.Update();
-    }
-
-    public void AnimationEnded(object obj)
-    {
     }
 }

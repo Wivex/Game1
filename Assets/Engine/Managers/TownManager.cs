@@ -9,17 +9,17 @@ public class TownManager : MonoBehaviour
     /// <summary>
     /// Can't access static variables and methods from inspector. So we use static instance to do that.
     /// </summary>
-    public static TownManager statics;
+    public static TownManager i;
 
     //default initialization of Singleton instance
     void Awake()
     {
         //Check if instance already exists
-        if (statics == null)
+        if (i == null)
             //if not, set instance to this
-            statics = this;
+            i = this;
         //If instance already exists and it's not this:
-        else if (statics != this)
+        else if (i != this)
             //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of it.
 
             //Sets this to not be destroyed when reloading scene
@@ -33,16 +33,18 @@ public class TownManager : MonoBehaviour
     internal List<Hero> IdleHeroes => heroes.FindAll(hero => hero.state == HeroState.Idle);
     internal List<Hero> RecruitableHeroes => heroes.FindAll(hero => hero.state == HeroState.Recruitable);
 
-    public Hero CreateNewHero()
+    public Hero CreateNewHero(string name = default,
+                              SexType sexType = default,
+                              ClassType classType = default,
+                              Sprite portrait = default)
     {
-        var hero = new Hero();
+        var hero = new Hero(name, sexType, classType, portrait);
         heroes.Add(hero);
         return hero;
     }
 
     public void CreateNewHeroDebug()
     {
-        var hero = new Hero();
-        heroes.Add(hero);
+        CreateNewHero();
     }
 }

@@ -2603,7 +2603,7 @@ GameObject:
   - component: {fileID: 116506166}
   - component: {fileID: 116506165}
   m_Layer: 0
-  m_Name: Expedition Settings
+  m_Name: Expedition Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2636,7 +2636,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1539004486}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &116656004
 GameObject:
@@ -2697,7 +2697,7 @@ MonoBehaviour:
   - {fileID: 2114174948}
   - {fileID: 1899172359}
   - {fileID: 518801844}
-  defaultCanvas: {fileID: 0}
+  defaultCanvas: {fileID: 518801844}
   staticCanvases: []
 --- !u!114 &116656007
 MonoBehaviour:
@@ -2748,13 +2748,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fc71a61dd1ee0d44b508844e91548b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expPreviewPanelPrefab: {fileID: 3303791443504163953, guid: 0ef2a3639d171854fbcdf840468e6e5e,
+  expPreviewPanelPrefab: {fileID: 3303791443504163955, guid: 0ef2a3639d171854fbcdf840468e6e5e,
     type: 3}
   previewContentPanel: {fileID: 2102658345}
   overviewCanvas: {fileID: 2114174948}
   detailsCanvas: {fileID: 1899172359}
   noExpCanvas: {fileID: 518801844}
-  detailsPanelDrawer: {fileID: 1899172363}
   logPanelDrawer: {fileID: 647258250}
 --- !u!223 &116656010
 Canvas:
@@ -10396,23 +10395,23 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2067226842}
-        m_MethodName: ChangeActiveCanvas
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 975130584}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Canvas, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 975130585}
         m_MethodName: InitPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2067226842}
+        m_MethodName: ChangeActiveCanvas
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 975130584}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Canvas, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -12037,7 +12036,7 @@ GameObject:
   - component: {fileID: 631004431}
   - component: {fileID: 631004430}
   m_Layer: 0
-  m_Name: Town Settings
+  m_Name: Town Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12067,7 +12066,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1539004486}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &642797958
 GameObject:
@@ -16241,23 +16240,23 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2067226842}
-        m_MethodName: ChangeActiveCanvas
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 905577467}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Canvas, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 905577466}
         m_MethodName: InitPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2067226842}
+        m_MethodName: ChangeActiveCanvas
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 905577467}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Canvas, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -17452,7 +17451,7 @@ MonoBehaviour:
   noRecruitsText: {fileID: 1329911744}
   idlesContentPanel: {fileID: 124499401}
   recruitsContentPanel: {fileID: 1873407191}
-  heroFramePrefab: {fileID: 5794685255711995311, guid: b780c8db679df5c4f8dcbd7872e46b48,
+  heroFramePrefab: {fileID: 4356249072361385077, guid: b780c8db679df5c4f8dcbd7872e46b48,
     type: 3}
 --- !u!223 &905577467
 Canvas:
@@ -17768,7 +17767,7 @@ RectTransform:
   - {fileID: 1448500110}
   - {fileID: 1059448242}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -18603,11 +18602,9 @@ MonoBehaviour:
   failedExpValue: {fileID: 1974200737}
   questContentPanel: {fileID: 1536604115}
   expContentPanel: {fileID: 424105841}
-  heroFramePrefab: {fileID: 5794685255711995311, guid: b780c8db679df5c4f8dcbd7872e46b48,
+  expFramePrefab: {fileID: 8731840987994623744, guid: d9890017b4ba43544a6c0816efdf27c0,
     type: 3}
-  questFramePrefab: {fileID: 1835239676619468057, guid: 611786dae5d69594baa91c880edf3ecb,
-    type: 3}
-  expFramePrefab: {fileID: 2343268515238053665, guid: d9890017b4ba43544a6c0816efdf27c0,
+  heroFramePrefab: {fileID: 4356249072361385077, guid: b780c8db679df5c4f8dcbd7872e46b48,
     type: 3}
 --- !u!1001 &978566773
 PrefabInstance:
@@ -22192,7 +22189,7 @@ Transform:
   - {fileID: 1361871046}
   - {fileID: 642797959}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1101164878
 GameObject:
@@ -28829,7 +28826,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 116506165}
-        m_MethodName: StartNewExpedition
+        m_MethodName: StartNewExpeditionDebug
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -31778,11 +31775,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hero Portrait Frame
       objectReference: {fileID: 0}
-    - target: {fileID: 5794685255711995305, guid: b780c8db679df5c4f8dcbd7872e46b48,
-        type: 3}
-      propertyPath: m_Layer
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 5794685255711995304, guid: b780c8db679df5c4f8dcbd7872e46b48,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -31887,21 +31879,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5794685254794927570, guid: b780c8db679df5c4f8dcbd7872e46b48,
-        type: 3}
-      propertyPath: m_Layer
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 5794685255496521921, guid: b780c8db679df5c4f8dcbd7872e46b48,
-        type: 3}
-      propertyPath: m_Layer
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 5794685255970044879, guid: b780c8db679df5c4f8dcbd7872e46b48,
-        type: 3}
-      propertyPath: m_Layer
-      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b780c8db679df5c4f8dcbd7872e46b48, type: 3}
@@ -32082,7 +32059,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1539004486}
   m_Layer: 0
-  m_Name: Settings
+  m_Name: Managers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32099,10 +32076,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1828845479}
   - {fileID: 116506166}
   - {fileID: 631004431}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1542081022
 GameObject:
@@ -38431,7 +38409,7 @@ GameObject:
   - component: {fileID: 1828845479}
   - component: {fileID: 1828845478}
   m_Layer: 0
-  m_Name: UI Global References
+  m_Name: UI Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38449,7 +38427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4415d1111d5fc94dab2f2af0f74361e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expPanelDrawer: {fileID: 116656009}
+  expPanelDrawManager: {fileID: 116656009}
   mayorPanelDrawer: {fileID: 975130585}
   tavernPanelDrawer: {fileID: 905577466}
   floatingTextPrefab: {fileID: 114042560708656514, guid: 5a6f05c5c2aef1f478361ea3357d97b5,
@@ -38461,11 +38439,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1828845477}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1539004486}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1830278367
@@ -50071,6 +50049,36 @@ PrefabInstance:
         type: 3}
       propertyPath: events.List.Array.data[0].mParameters.Array.data[0].field
       value: health
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303791443504163956, guid: 0ef2a3639d171854fbcdf840468e6e5e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303791443504163956, guid: 0ef2a3639d171854fbcdf840468e6e5e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303791443504163956, guid: 0ef2a3639d171854fbcdf840468e6e5e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303791443504163956, guid: 0ef2a3639d171854fbcdf840468e6e5e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 116656009}
+    - target: {fileID: 3303791443504163956, guid: 0ef2a3639d171854fbcdf840468e6e5e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ShowOverviewPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303791443504163956, guid: 0ef2a3639d171854fbcdf840468e6e5e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ef2a3639d171854fbcdf840468e6e5e, type: 3}

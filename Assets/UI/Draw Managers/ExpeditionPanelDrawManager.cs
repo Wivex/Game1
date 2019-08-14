@@ -2,14 +2,15 @@
 using System.Linq;
 using TMPro;
 
-public class ExpeditionPanelDrawer : MonoBehaviour
+public class ExpeditionPanelDrawManager : MonoBehaviour
 {
-    public GameObject expPreviewPanelPrefab;
+    public ExpPreviewPanelDrawer expPreviewPanelPrefab;
     public Transform previewContentPanel;
-    public Expedition selectedExp;
     public Canvas overviewCanvas, detailsCanvas, noExpCanvas;
-    public DetailsPanelDrawer detailsPanelDrawer;
+    //public ExpDetailsPanelDrawManager expDetailsPanelDrawManager;
     public LogPanelDrawer logPanelDrawer;
+
+    internal Expedition selectedExp;
 
     CanvasManager cMan;
 
@@ -19,27 +20,28 @@ public class ExpeditionPanelDrawer : MonoBehaviour
         cMan = GetComponent<CanvasManager>();
 
         // remove prefab template from content panel
-        Destroy(previewContentPanel.transform.GetChild(0).gameObject);
+        previewContentPanel.DestroyAllChildren();
     }
 
-    public void TryShowOverviewPanel()
+    public void ShowOverviewPanel()
     {
-        //cMan.ChangeActiveCanvas(GameManager.settings.expeditions.Count > 0 ? overviewCanvas : noExpCanvas);
+        cMan.ChangeActiveCanvas(ExpeditionManager.expeditions.Any() ? overviewCanvas : noExpCanvas);
     }
 
-    public void ShowSelectedExpDetailsPanel(Expedition exp)
+    // can't pass class as parameter with button click from inspector
+    internal void ShowDetailsPanel(Expedition exp)
     {
         selectedExp = exp;
+        //expDetailsPanelDrawManager.InitHeroPanel(hero);
         cMan.ChangeActiveCanvas(detailsCanvas);
     }
 
     /// <summary>
     /// generate new preview panel from prefab and make it child of content panel
     /// </summary>
-    public void NewPreviewPanel(Expedition exp)
+    internal void NewPreviewPanel(Expedition exp)
     {
         var panel = Instantiate(expPreviewPanelPrefab, previewContentPanel);
-        //exp.expPreviewPanel = panel.GetComponent<ExpPreviewPanelDrawer>();
-        //exp.expPreviewPanel.Init(exp);
+        panel.Init(exp);
     }
 }

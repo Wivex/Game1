@@ -85,7 +85,7 @@ public class TacticAction
 
     public void LogEvent(CombatManager situation, string text)
     {
-        situation.expedition.UpdateLog(text);
+        //situation.expedition.UpdateLog(text);
     }
     #endregion
 }

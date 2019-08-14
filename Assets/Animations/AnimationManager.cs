@@ -17,13 +17,16 @@ public class AnimationManager : MonoBehaviour
 {
     public ReorderableEventList events;
 
+    /// <summary>
+    /// animation state reference from other script
+    /// </summary>
     internal AnimationStateReference animStateRef;
 
-    Animator anim;
+    Animator animator;
 
     void Awake()
     {
-        anim = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     public void RunAllEvents()
@@ -41,15 +44,15 @@ public class AnimationManager : MonoBehaviour
         StartCoroutine(PauseCour(sec));
     }
 
-    public void NotifyAnimationState(AnimationState state)
+    public void NotifyOfAnimationState(AnimationState state)
     {
         animStateRef.state = state;
     }
 
     IEnumerator PauseCour(float sec)
     {
-        anim.enabled = false;
+        animator.enabled = false;
         yield return new WaitForSeconds(sec);
-        anim.enabled = true;
+        animator.enabled = true;
     }
 }

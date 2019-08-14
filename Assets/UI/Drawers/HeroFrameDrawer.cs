@@ -11,7 +11,8 @@ public class HeroFrameDrawer : MonoBehaviour, IPointerClickHandler
     public TextMeshProUGUI heroNameText, heroLevelText;
 
     internal Hero hero;
-    internal MonoBehaviour parentDrawer;
+
+    MonoBehaviour parentDrawer;
 
     public void Init(Hero hero, MonoBehaviour parentDrawer)
     {
@@ -19,10 +20,10 @@ public class HeroFrameDrawer : MonoBehaviour, IPointerClickHandler
         this.parentDrawer = parentDrawer;
         heroImage.sprite = hero.portrait;
         heroNameText.text = hero.name;
-        heroLevelText.text = hero.level.ToString();
+        heroLevelText.text = $"Level {hero.level} {hero.classType.ToString()}";
     }
 
-    // add OnClick event
+    // add OnClick event to the OnClick event list of button component
     public void OnPointerClick(PointerEventData eventData)
     {
         (parentDrawer as MayorPanelDrawer)?.OnHeroSelect(this);

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -23,6 +22,7 @@ public enum SexType
     Female
 }
 
+// TODO: move to corresponding drawer
 internal struct HeroRedrawFlags
 {
     internal bool stats, equipment, inventory;
@@ -43,14 +43,18 @@ public class Hero : Unit
     internal List<Consumable> consumables = new List<Consumable>();
     internal HeroRedrawFlags redrawFlags = new HeroRedrawFlags();
 
-    // USE: TownManager.statics.CreateNewHero()
-    internal Hero(string name = default, SexType sexType = default, ClassType classType = default, Sprite portrait = default)
+    // USE: TownManager.i.CreateNewHero()
+    internal Hero(string name = default,
+                  SexType sexType = default,
+                  ClassType classType = default,
+                  Sprite portrait = default)
     {
         this.sexType = sexType;
         this.portrait = portrait ?? RandomPortrait();
         this.classType = classType;
         this.name = name ?? NamingManager.statics.GetRandomHeroName(this);
-        classData = Resources.Load<ClassData>($"Units/Heroes/Classes/{classType.ToString()}/{classType.ToString()}Class");
+        classData = Resources.Load<ClassData>(
+            $"Units/Heroes/Classes/{classType.ToString()}/{classType.ToString()}Class");
         //HACK: temp solution
         tactics = classData.classLevels[level].tacticsPreset;
         state = HeroState.Recruitable;

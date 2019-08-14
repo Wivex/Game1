@@ -26,10 +26,9 @@ public class Expedition
     internal LocationData curLocation, destination;
     internal LocationArea curArea;
     internal int curZoneIndex;
-
-
-    public SituationType type;
-    public AnimationStateReference animStateRef;
+    internal SituationType type;
+    internal AnimationStateReference animStateRef;
+    internal ExpeditionRedrawFlags redrawFlags;
 
     DateTime lastSituationRealTime;
     float lastSituationGameTime;
@@ -39,7 +38,7 @@ public class Expedition
         this.hero = hero;
         //UIManager.instance.expPanelDrawer.NewPreviewPanel(this);
         //hero.unitPreviewIcon = expPreviewPanel.heroIcon.transform;
-        //hero.unitDetailsIcon = UIManager.instance.expPanelDrawer.detailsPanelDrawer.heroPanel.unitImage.transform;
+        //hero.unitDetailsIcon = UIManager.instance.expPanelDrawer.expDetailsPanelDrawer.heroPanel.unitImage.transform;
         this.destination = destination;
         // TODO: add location transitions
         curLocation = destination;
@@ -48,7 +47,8 @@ public class Expedition
         curZoneIndex = -1;
 
         ResetGraceTimers();
-        TryNewSituation();
+        // TODO: should not run logic at initialization
+        //TryNewSituation();
     }
 
     LocationArea NewInterchangableArea => curLocation.areas.Find(area => area.interchangeable && area != curArea);
@@ -113,7 +113,7 @@ public class Expedition
                             break;
                         case SituationType.ObjectEncounter:
                             //situation = new SituationCombat(location.enemies);
-                            //expPanel.detailsPanelDrawer.enemyPanel.gameObject.SetActive(false);
+                            //expPanel.expDetailsPanelDrawer.enemyPanel.gameObject.SetActive(false);
                             break;
                     }
 
@@ -134,7 +134,7 @@ public class Expedition
     public void InitTravellingSituation()
     {
         //situation = new SituationTravelling(this);
-        //UIManager.instance.expPanelDrawer.detailsPanelDrawer.InitLocationPanel(curLocation);
+        //UIManager.instance.expPanelDrawer.expDetailsPanelDrawer.InitLocationPanel(curLocation);
         //UpdateLog($"Travelling trough {curLocation.name}");
         Debug.Log($"{hero.name} triggered {AnimationTrigger.HeroTravelling.ToString()}");
         // start travelling animation
@@ -145,7 +145,7 @@ public class Expedition
     {
         //situation = new CombatManager(this, curLocation.enemies);
         //var enemy = (situation as CombatManager).enemy;
-        //UIManager.instance.expPanelDrawer.detailsPanelDrawer.InitEnemyPanel(enemy);
+        //UIManager.instance.expPanelDrawer.expDetailsPanelDrawer.InitEnemyPanel(enemy);
         //UpdateLog($"{hero.name} started combat with {enemy.enemyData.name}");
         Debug.Log($"{hero.name} triggered {AnimationTrigger.BeginEncounter.ToString()}");
         //expPreviewPanel.heroAnim.SetTrigger(AnimationTrigger.BeginEncounter.ToString());

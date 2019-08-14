@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using TMPro;
 
-public class DetailsPanelDrawer : MonoBehaviour
+//TODO: rework
+public class ExpDetailsPanelDrawManager : MonoBehaviour
 {
-    public Situation situation;
-
     public HeroPanelDrawer heroPanel;
     public EnemyPanelDrawer enemyPanel;
     public LocationPanelDrawer locationPanel;

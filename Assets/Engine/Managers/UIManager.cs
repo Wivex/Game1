@@ -9,17 +9,17 @@ public class UIManager : MonoBehaviour
     /// <summary>
     /// Can't access static variables and methods from inspector. So we use static instance to do that.
     /// </summary>
-    public static UIManager statics;
+    public static UIManager i;
 
     //default initialization of Singleton instance
     void Awake()
     {
         //Check if instance already exists
-        if (statics == null)
+        if (i == null)
             //if not, set instance to this
-            statics = this;
+            i = this;
         //If instance already exists and it's not this:
-        else if (statics != this)
+        else if (i != this)
             //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of it.
 
             //Sets this to not be destroyed when reloading scene
@@ -28,7 +28,7 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
-    public ExpeditionPanelDrawer expPanelDrawer;
+    public ExpeditionPanelDrawManager expPanelDrawManager;
     public MayorPanelDrawer mayorPanelDrawer;
     public TavernPanelDrawer tavernPanelDrawer;
     public FloatingText floatingTextPrefab;
