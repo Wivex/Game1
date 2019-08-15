@@ -36,9 +36,6 @@ public class Expedition
     public Expedition(Hero hero, LocationData destination)
     {
         this.hero = hero;
-        //UIManager.instance.expPanelDrawer.NewPreviewPanel(this);
-        //hero.unitPreviewIcon = expPreviewPanel.heroIcon.transform;
-        //hero.unitDetailsIcon = UIManager.instance.expPanelDrawer.expDetailsPanelDrawer.heroPanel.unitImage.transform;
         this.destination = destination;
         // TODO: add location transitions
         curLocation = destination;

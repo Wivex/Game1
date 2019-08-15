@@ -19,15 +19,10 @@ public class MayorPanelDrawer : MonoBehaviour
     Hero selHero;
     LocationData selLocation;
 
-    // initializations
-    void Awake()
-    {
-        questContentPanel.DestroyAllChildren();
-        expContentPanel.DestroyAllChildren();
-    }
-
     public void InitPanel()
     {
+        ClearPanels();
+
         // TEMP
         var locations = Resources.LoadAll<LocationData>("Locations");
         foreach (var location in locations)
@@ -52,6 +47,12 @@ public class MayorPanelDrawer : MonoBehaviour
             noExpText.text = "No idle heroes available.";
             noExpText.gameObject.SetActive(true);
         }
+    }
+
+    void ClearPanels()
+    {
+        questContentPanel.DestroyAllChildren();
+        expContentPanel.DestroyAllChildren();
     }
 
     // select target location
@@ -92,6 +93,6 @@ public class MayorPanelDrawer : MonoBehaviour
         // show expFrames in this content panel
         expContentPanel.SetActiveForChildren<ExpeditionFrameDrawer>(true);
 
-        ExpeditionManager.i.StartNewExpedition(selHero, selLocation);
+        ExpeditionsManager.i.StartNewExpedition(selHero, selLocation);
     }
 }

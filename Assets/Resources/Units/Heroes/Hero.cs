@@ -25,7 +25,7 @@ public enum SexType
 // TODO: move to corresponding drawer
 internal struct HeroRedrawFlags
 {
-    internal bool stats, equipment, inventory;
+    internal bool stats, equipment, inventory, description, gold;
 }
 
 public class Hero : Unit

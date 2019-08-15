@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -10,15 +11,14 @@ public struct ExpeditionRedrawFlags
     public bool zone;
 }
 
-public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
+public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler, ICanvasVisibility
 {
     #region SET IN INSPECTOR
     
     public List<Sprite> goldSprites;
     public Transform consumablesPanel;
     public Slider healthBar, manaBar, initBar, expBar;
-    public Image heroImage, curGoldImage, heroIcon, eventIcon, enemyStatusIcon, locationImage, lootIcon;
-    public Animator heroAnim, eventAnim, interAnim, lootAnim;
+    public Image heroImage, curGoldImage, heroIcon, objectIcon, interactionIcon, enemyStatusIcon, locationImage, lootIcon;
 
     public TextMeshProUGUI heroName,
         level,
@@ -31,41 +31,41 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
     #endregion
 
     Expedition exp;
-
     Image[] consumableSlots;
     TextMeshProUGUI[] consumablesCharges;
+    AnimationManager heroAM, objectAM, interactionAM, lootAM;
+
+    public bool Visible { get; set; }
+
+    //auto-assign some references
+    void Awake()
+    {
+        consumableSlots = consumablesPanel.GetComponentsInChildren<Image>().Where(comp => comp.name.Contains("Image")).ToArray();
+        consumablesCharges = consumablesPanel.GetComponentsInChildren<TextMeshProUGUI>();
+
+        heroAM = heroIcon.GetComponent<AnimationManager>();
+        objectAM = objectIcon.GetComponent<AnimationManager>();
+        interactionAM = interactionIcon.GetComponent<AnimationManager>();
+        heroAM = heroIcon.GetComponent<AnimationManager>();
+    }
 
     public void Init(Expedition exp)
     {
         this.exp = exp;
-        //auto assign all consumables slots to arrays
-        var childImages = new List<Image>();
-        consumablesPanel.gameObject.GetComponentsInChildren(true, childImages);
-        consumableSlots = childImages.FindAll(image => image.gameObject.name.Contains("Image"))
-            .ToArray();
-        consumablesCharges = consumablesPanel.gameObject.GetComponentsInChildren<TextMeshProUGUI>();
-        
-        // assign animation State Reference to all animatable objects, which should lock expedition logic, while animating
-        heroAnim.GetComponent<AnimationManager>().animStateRef = exp.animStateRef;
-        eventAnim.GetComponent<AnimationManager>().animStateRef = exp.animStateRef;
-        interAnim.GetComponent<AnimationManager>().animStateRef = exp.animStateRef;
-        lootAnim.GetComponent<AnimationManager>().animStateRef = exp.animStateRef;
 
-        // TODO: should not run logic at initialization
-        //UpdateHeroDesc();
-        //UpdateGold();
-        //UpdateStatBars();
-        //UpdateConsumables();
+        // let animators control animation state
+        exp.animStateRef.LinkToAnimationManagers(heroAM, interactionAM, lootAM, objectAM);
     }
 
-    //UNDONE
     //update UI panels
     void LateUpdate()
     {
+        if (!Visible) return;
+
         //if (redrawFlags.description)
-        //    UpdateHeroDesc();
+        //    RedrawHeroDesc();
         //if (exp.hero.redrawFlags.gold)
-        //    UpdateGold();
+        //    RedrawGold();
         //if (exp.hero.redrawFlags.consumes)
         //    UpdateConsumables();
         if (exp.redrawFlags.zone)
@@ -76,29 +76,29 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler
     }
 
     // TODO: rename to Redraw
-    #region UI UPDATE METHODS
+    #region UI REDRAW METHODS
 
-    //void UpdateHeroDesc()
-    //{
-    //    heroName.text = hero.name;
-    //    level.text = $"Level {hero.level} {hero.classData.classLevels[hero.level].name}";
-    //    redrawFlags.description = false;
-    //}
+    void RedrawHeroDesc()
+    {
+        heroName.text = exp.hero.name;
+        level.text = $"Level {exp.hero.level} {exp.hero.classData.classLevels[exp.hero.level].name}";
+        exp.hero.redrawFlags.description = false;
+    }
 
-    //void UpdateGold()
-    //{
-    //    gold.text = hero.gold.ToString();
-    //    var a = 0;
-    //    var index = 0;
-    //    while (hero.gold > a)
-    //    {
-    //        a = (int) Mathf.Pow(2, index++);
-    //        if (index >= goldSprites.Count - 1) break;
-    //    }
+    void RedrawGold()
+    {
+        gold.text = exp.hero.gold.ToString();
+        var a = 0;
+        var index = 0;
+        while (exp.hero.gold > a)
+        {
+            a = (int) Mathf.Pow(2, index++);
+            if (index >= goldSprites.Count - 1) break;
+        }
 
-    //    curGoldImage.sprite = goldSprites[index];
-    //    redrawFlags.gold = false;
-    //}
+        curGoldImage.sprite = goldSprites[index];
+        exp.hero.redrawFlags.gold = false;
+    }
 
     //void UpdateConsumables()
     //{

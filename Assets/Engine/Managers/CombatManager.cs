@@ -18,7 +18,7 @@ public class CombatManager
     {
         hero = expedition.hero;
         enemy = SpawnEnemy(enemies);
-        //enemy.unitPreviewIcon = expedition.expPreviewPanel.eventIcon.transform;
+        //enemy.unitPreviewIcon = expedition.expPreviewPanel.objectIcon.transform;
         //enemy.unitDetailsIcon = UIManager.instance.expPanelDrawer.expDetailsPanelDrawer.enemyPanel.unitImage.transform;
         ResetAllCooldowns();
     }

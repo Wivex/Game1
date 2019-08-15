@@ -1,10 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEditor;
+using Object = UnityEngine.Object;
 
 public static class Extensions
 {
+    /// <summary>
+    /// Implement list.ForEach(elem => action) for IEnumerable
+    /// </summary>
+    public static void ForEach<T>(this IEnumerable<T> source, Action<T> action)
+    {
+        foreach (T element in source) action(element);
+    }
+
     /// <summary>
     /// Destroys all children objects (clean up prefab templates)
     /// </summary>
@@ -19,7 +29,7 @@ public static class Extensions
     }
 
     /// <summary>
-    /// performs SetActive operation for all child objects of type T for this object
+    /// Performs SetActive operation for all child objects of type T for this object
     /// </summary>
     public static void SetActiveForChildren<T>(this MonoBehaviour obj, bool state)
     {
@@ -30,7 +40,7 @@ public static class Extensions
     }
 
     /// <summary>
-    /// performs SetActive operation for all child objects of type T for this object
+    /// Performs SetActive operation for all child objects of type T for this object
     /// </summary>
     public static void SetActiveForChildren<T>(this Transform obj, bool state)
     {
@@ -38,5 +48,29 @@ public static class Extensions
         {
             (child as MonoBehaviour).gameObject.SetActive(state);
         }
+    }
+
+    /// <summary>
+    /// Changes Visible property of this canvas content (it's Drawer and sub-Drawers)
+    /// </summary>
+    public static void ChangeContentVisibility(this Canvas canvas, bool visibility)
+    {
+        // sets Visible parameter of this canvas Drawer (should be one Drawer per canvas)
+        canvas.GetComponent<ICanvasVisibility>().Visible = visibility;
+        // if Drawer becomes hidden, hide drawers of all sub-canvases
+        if (visibility == false)
+        {
+            var subDrawers = canvas.GetComponentsInChildren<ICanvasVisibility>().ToList();
+            subDrawers.ForEach(drawer => drawer.Visible = false);
+        }
+    }
+
+    /// <summary>
+    /// Assign animation state reference to all animatable objects, which should lock expedition logic, while animating
+    /// </summary>
+    public static void LinkToAnimationManagers(this AnimationStateReference reference,
+                                               params AnimationManager[] managers)
+    {
+        managers.ForEach(manager => manager.animStateRef = reference);
     }
 }

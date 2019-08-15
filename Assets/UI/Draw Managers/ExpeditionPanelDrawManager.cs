@@ -2,7 +2,7 @@
 using System.Linq;
 using TMPro;
 
-public class ExpeditionPanelDrawManager : MonoBehaviour
+public class ExpeditionPanelDrawManager : MonoBehaviour, ICanvasVisibility
 {
     public ExpPreviewPanelDrawer expPreviewPanelPrefab;
     public Transform previewContentPanel;
@@ -14,6 +14,8 @@ public class ExpeditionPanelDrawManager : MonoBehaviour
 
     CanvasManager cMan;
 
+    public bool Visible { get; set; }
+
     // initializations
     void Awake()
     {
@@ -22,10 +24,10 @@ public class ExpeditionPanelDrawManager : MonoBehaviour
         // remove prefab template from content panel
         previewContentPanel.DestroyAllChildren();
     }
-
+    
     public void ShowOverviewPanel()
     {
-        cMan.ChangeActiveCanvas(ExpeditionManager.expeditions.Any() ? overviewCanvas : noExpCanvas);
+        cMan.ChangeActiveCanvas(ExpeditionsManager.expeditions.Any() ? overviewCanvas : noExpCanvas);
     }
 
     // can't pass class as parameter with button click from inspector
@@ -37,7 +39,7 @@ public class ExpeditionPanelDrawManager : MonoBehaviour
     }
 
     /// <summary>
-    /// generate new preview panel from prefab and make it child of content panel
+    /// Init preview panel and keep it updating in the background (not initialize again each time exp panel is opened)
     /// </summary>
     internal void NewPreviewPanel(Expedition exp)
     {

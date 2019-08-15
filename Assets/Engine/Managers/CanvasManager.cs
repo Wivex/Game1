@@ -15,7 +15,7 @@ public class CanvasManager : MonoBehaviour
             .Where(canvas => canvas.transform.parent == transform).ToList();
 
     /// <summary>
-    /// automatically put direct children of this object (1 depth) into canvases list
+    /// Automatically put direct children of this object (1 depth) into canvases list
     /// </summary>
     void OnValidate()
     {
@@ -36,12 +36,18 @@ public class CanvasManager : MonoBehaviour
     {
         foreach (var canvas in canvases)
         {
-            canvas.enabled = canvas == selectedCanvas || staticCanvases.Contains(canvas);
+            var visibility = canvas == selectedCanvas || staticCanvases.Contains(canvas);
+            canvas.enabled = visibility;
+            canvas.ChangeContentVisibility(visibility);
         }
     }
 
     public void HideSubCanvases()
     {
-        DirectSubCanvases.ForEach(canvas => canvas.enabled = false);
+        foreach (var canvas in DirectSubCanvases)
+        {
+            canvas.enabled = false;
+            canvas.ChangeContentVisibility(false);
+        }
     }
 }

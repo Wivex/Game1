@@ -3,14 +3,14 @@ using System.Linq;
 using Lexic;
 using UnityEngine;
 
-public class ExpeditionManager : MonoBehaviour
+public class ExpeditionsManager : MonoBehaviour
 {
     #region MANAGER INITIALIZATION
 
     /// <summary>
     /// Can't access static variables and methods from inspector. So we use static instance to do that.
     /// </summary>
-    public static ExpeditionManager i;
+    public static ExpeditionsManager i;
 
     //default initialization of Singleton instance
     void Awake()
@@ -44,7 +44,9 @@ public class ExpeditionManager : MonoBehaviour
 
     public void StartNewExpedition(Hero hero, LocationData location)
     {
-        expeditions.Add(new Expedition(hero, location));
+        var exp = new Expedition(hero, location);
+        expeditions.Add(exp);
+        UIManager.i.expPanelDrawManager.NewPreviewPanel(exp);
     }
 
     public void StartNewExpeditionDebug()

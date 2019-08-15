@@ -2603,7 +2603,7 @@ GameObject:
   - component: {fileID: 116506166}
   - component: {fileID: 116506165}
   m_Layer: 0
-  m_Name: Expedition Manager
+  m_Name: Expeditions Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

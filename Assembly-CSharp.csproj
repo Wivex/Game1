@@ -279,7 +279,7 @@
     <Compile Include="Assets\Engine\Effects\Floating Text\FloatingText.cs" />
     <Compile Include="Assets\Engine\Managers\CanvasManager.cs" />
     <Compile Include="Assets\Engine\Managers\CombatManager.cs" />
-    <Compile Include="Assets\Engine\Managers\ExpeditionManager.cs" />
+    <Compile Include="Assets\Engine\Managers\ExpeditionsManager.cs" />
     <Compile Include="Assets\Engine\Managers\InputManager.cs" />
     <Compile Include="Assets\Engine\Managers\TownManager.cs" />
     <Compile Include="Assets\Engine\Managers\UIManager.cs" />
@@ -298,7 +298,9 @@
     <Compile Include="Assets\Engine\Various\Damage.cs" />
     <Compile Include="Assets\Engine\Various\Expedition.cs" />
     <Compile Include="Assets\Engine\Various\Extensions.cs" />
+    <Compile Include="Assets\Engine\Various\Interfaces.cs" />
     <Compile Include="Assets\Engine\Various\NamingManager.cs" />
+    <Compile Include="Assets\Engine\Various\ReferenceTypes.cs" />
     <Compile Include="Assets\Resources\Abilities\Ability.cs" />
     <Compile Include="Assets\Resources\Abilities\AbilityData.cs" />
     <Compile Include="Assets\Resources\Items\Consumables\Consumable.cs" />

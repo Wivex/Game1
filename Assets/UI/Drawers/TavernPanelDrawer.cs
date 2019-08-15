@@ -20,9 +20,6 @@ public class TavernPanelDrawer : MonoBehaviour
     // initializations
     void Awake()
     {
-        idlesContentPanel.DestroyAllChildren();
-        recruitsContentPanel.DestroyAllChildren();
-
         // HACK: temp debug feature
         for (var i = 0; i < 5; i++)
         {
@@ -32,6 +29,8 @@ public class TavernPanelDrawer : MonoBehaviour
 
     public void InitPanel()
     {
+        ClearPanels();
+
         foreach (var hero in TownManager.i.IdleHeroes)
         {
             var heroPanel = Instantiate(heroFramePrefab, idlesContentPanel);
@@ -45,6 +44,12 @@ public class TavernPanelDrawer : MonoBehaviour
         }
 
         UpdateHeroesAvailabilityInfo();
+    }
+
+    void ClearPanels()
+    {
+        idlesContentPanel.DestroyAllChildren();
+        recruitsContentPanel.DestroyAllChildren();
     }
 
     void UpdateHeroesAvailabilityInfo()

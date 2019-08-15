@@ -29,6 +29,14 @@ public class AnimationManager : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    /// <summary>
+    /// Pass string value to gameObject animator trigger
+    /// </summary>
+    public void SetTrigger(string value)
+    {
+        animator.SetTrigger(value);
+    }
+
     public void RunAllEvents()
     {
         EventDelegate.Execute(events.List);
