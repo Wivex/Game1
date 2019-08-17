@@ -47,10 +47,10 @@ public class LocationPanelDrawer : MonoBehaviour
     {
         if (!canvas.enabled) return;
 
-        // update situations
+        // update events
         for (var i = 0; i < situationsIcons.Count; i++)
         {
-            if (i >= location.situations.Count)
+            if (i >= location.events.Count)
             {
                 situationsIcons[i].sprite = null;
                 situationsIcons[i].color = Color.clear;
@@ -59,10 +59,10 @@ public class LocationPanelDrawer : MonoBehaviour
             }
             else
             {
-                situationsIcons[i].sprite = location.situations[i].icon;
+                situationsIcons[i].sprite = location.events[i].icon;
                 situationsIcons[i].color = Color.white;
-                situationsName[i].text = location.situations[i].type.ToString();
-                situationsChance[i].text = location.situations[i].chance.ToString();
+                situationsName[i].text = location.events[i].eventType.ToString();
+                situationsChance[i].text = location.events[i].chance.ToString();
             }
         }
 

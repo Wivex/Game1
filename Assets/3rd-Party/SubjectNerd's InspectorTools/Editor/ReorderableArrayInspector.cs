@@ -520,17 +520,17 @@ namespace SubjectNerd.Utilities
                 case ReordableNamingType.ObjectName:
                     return elemProperty.objectReferenceValue != null
                         ? elemProperty.objectReferenceValue.name
-                        : string.Empty;
+                        : "NO NAME";
                 case ReordableNamingType.VariableValue:
                     switch (elemProperty.propertyType)
                     {
                         case SerializedPropertyType.Enum:
                             return elemProperty.enumDisplayNames[elemProperty.enumValueIndex];
                         default:
-                            return elemProperty.stringValue ?? string.Empty;
+                            return elemProperty.stringValue ?? "NO NAME";
                     }
                 default:
-                    return string.Empty;
+                    return "UNSUPPORTED CASE";
             }
         }
 

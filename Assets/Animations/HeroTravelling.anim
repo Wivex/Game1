@@ -1331,10 +1331,10 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 3.5
-    functionName: NotifyOfAnimationState
+  - time: 3.75
+    functionName: NotifyAnimationStateChanged
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 0
+    intParameter: 1
     messageOptions: 0

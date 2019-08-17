@@ -2,6 +2,9 @@
 using UIEventDelegate;
 using UnityEngine;
 
+/// <summary>
+/// Enum wrapper class to pass enum as reference from other scripts
+/// </summary>
 public class AnimationStateReference
 {
     public AnimationState state;
@@ -9,24 +12,30 @@ public class AnimationStateReference
 
 public enum AnimationState
 {
-    Animating,
-    Done
+    InProgress,
+    Finished
 }
 
 public class AnimationManager : MonoBehaviour
 {
-    public ReorderableEventList events;
-
     /// <summary>
-    /// animation state reference from other script
+    /// Animation state reference from other script
     /// </summary>
     internal AnimationStateReference animStateRef;
 
     Animator animator;
 
-    void Awake()
+    void Awake()    
     {
         animator = GetComponent<Animator>();
+    }
+
+    /// <summary>
+    /// Changes animation state in the linked object
+    /// </summary>
+    public void NotifyAnimationStateChanged(AnimationState state)
+    {
+        animStateRef.state = state;
     }
 
     /// <summary>
@@ -37,24 +46,9 @@ public class AnimationManager : MonoBehaviour
         animator.SetTrigger(value);
     }
 
-    public void RunAllEvents()
-    {
-        EventDelegate.Execute(events.List);
-    }
-
-    public void RunEventAtIndex(int index)
-    {
-        events.List[index].Execute();
-    }
-
     public void PauseAnimationForSecs(float sec)
     {
         StartCoroutine(PauseCour(sec));
-    }
-
-    public void NotifyOfAnimationState(AnimationState state)
-    {
-        animStateRef.state = state;
     }
 
     IEnumerator PauseCour(float sec)

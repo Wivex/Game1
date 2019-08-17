@@ -55,8 +55,10 @@ public static class Extensions
     /// </summary>
     public static void ChangeContentVisibility(this Canvas canvas, bool visibility)
     {
-        // sets Visible parameter of this canvas Drawer (should be one Drawer per canvas)
-        canvas.GetComponent<ICanvasVisibility>().Visible = visibility;
+        // sets Visible parameter for this canvas Drawer (should be one Drawer per canvas)
+        var canvasDrawer = canvas.GetComponent<ICanvasVisibility>();
+        if (canvasDrawer != null) canvasDrawer.Visible = visibility;
+
         // if Drawer becomes hidden, hide drawers of all sub-canvases
         if (visibility == false)
         {
@@ -69,7 +71,7 @@ public static class Extensions
     /// Assign animation state reference to all animatable objects, which should lock expedition logic, while animating
     /// </summary>
     public static void LinkToAnimationManagers(this AnimationStateReference reference,
-                                               params AnimationManager[] managers)
+        params AnimationManager[] managers)
     {
         managers.ForEach(manager => manager.animStateRef = reference);
     }

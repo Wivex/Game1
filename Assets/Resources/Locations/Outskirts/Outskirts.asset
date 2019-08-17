@@ -86,17 +86,12 @@ MonoBehaviour:
     - {x: 0, y: -5}
     - {x: -450, y: 0}
     - {x: -900, y: 0}
-  situations:
-  - chance: 0.65
-    type: 2
-    icon: {fileID: 0}
-  - chance: 0.65
-    type: 1
+  events:
+  - chance: 0.6
+    eventType: 1
     icon: {fileID: 0}
   enemies:
-  - chance: 1
-    enemyData: {fileID: 11400000, guid: 2767f6c8f66d2fd45ad505de3208fc8b, type: 2}
-  - chance: 1
-    enemyData: {fileID: 11400000, guid: 2767f6c8f66d2fd45ad505de3208fc8b, type: 2}
+  - chance: 0
+    enemyData: {fileID: 0}
   pointsOfInterest:
   - chance: 0

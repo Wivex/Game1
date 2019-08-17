@@ -13,11 +13,11 @@ public enum AnimationTrigger
     StopTransferLoot
 }
 
-public enum SituationType
+public enum ExpEventType
 {
-    Travelling,
-    EnemyEncounter,
-    ObjectEncounter
+    None,
+    Combat,
+    POI
 }
 
 public class Expedition
@@ -26,12 +26,19 @@ public class Expedition
     internal LocationData curLocation, destination;
     internal LocationArea curArea;
     internal int curZoneIndex;
-    internal SituationType type;
-    internal AnimationStateReference animStateRef;
-    internal ExpeditionRedrawFlags redrawFlags;
+    internal ExpEventType curEventType;
+    internal AnimationStateReference animStateRef = new AnimationStateReference();
+    internal ExpeditionRedrawFlags redrawFlags = new ExpeditionRedrawFlags();
+    internal AnimationManager heroAM, objectAM, interactionAM, lootAM;
 
     DateTime lastSituationRealTime;
     float lastSituationGameTime;
+
+    public bool GraceTimePassed =>
+        (DateTime.Now - lastSituationRealTime).TotalSeconds > ExpeditionsManager.i.minGracePeriod &&
+        Time.time - lastSituationGameTime > ExpeditionsManager.i.minGracePeriod;
+
+    LocationArea NewInterchangableArea => curLocation.areas.Find(area => area.interchangeable && area != curArea);
 
     public Expedition(Hero hero, LocationData destination)
     {
@@ -42,47 +49,42 @@ public class Expedition
         curArea = curLocation.areas.First();
         // "-1" to get "0" as first value later
         curZoneIndex = -1;
+        animStateRef.state = AnimationState.Finished;
+        curEventType = ExpEventType.None;
 
-        ResetGraceTimers();
-        // TODO: should not run logic at initialization
-        //TryNewSituation();
+        InitGraceTimers();
     }
-
-    LocationArea NewInterchangableArea => curLocation.areas.Find(area => area.interchangeable && area != curArea);
-
-    //public bool GraceTimePassed =>
-    //    (DateTime.Now - lastSituationRealTime).TotalSeconds > GameManager.settings.minGracePeriod &&
-    //    Time.time - lastSituationGameTime > GameManager.settings.minGracePeriod;
 
     public void Update()
     {
-        //if (situation.state == SituationState.RunningLogic)
-        //    situation.Update();
+        //TODO: should replace situation updates here
+        if (animStateRef.state == AnimationState.Finished)
+            EnterNextZone();
     }
 
+    public void EnterNextZone()
+    {
+        ChangeZoneImage();
+
+        if (GraceTimePassed)
+            TryNewEvent();
+        else
+            InitTravelling();
+    }
+
+    //TODO: Implement log manager
     public void UpdateLog(string logEntry)
     {
         //expPanel.logPanelDrawer.AddLogEntry(logEntry);
     }
 
-    public void ResetGraceTimers()
+    public void InitGraceTimers()
     {
         lastSituationRealTime = DateTime.Now;
         lastSituationGameTime = Time.time;
     }
 
-    public void AnimationEnded()
-    {
-        //situation.state = SituationState.RunningLogic;
-    }
-
-    public void TryNewSituation()
-    {
-        NextZone();
-        NextSituation();
-    }
-
-    void NextZone()
+    void ChangeZoneImage()
     {
         // check if last zone in the area
         if (++curZoneIndex >= curArea.zonesPositions.Capacity)
@@ -92,59 +94,47 @@ public class Expedition
         }
 
         // set flag to redraw zone 
-        //expPreviewPanel.redrawFlags.zone = true;
+        redrawFlags.zone = true;
     }
 
-    void NextSituation()
+    void TryNewEvent()
     {
-        //if (GraceTimePassed)
+        foreach (var e in curLocation.events)
         {
-            foreach (var sit in curLocation.situations)
+            if (Random.value < e.chance)
             {
-                if (Random.value < sit.chance)
+                switch (e.eventType)
                 {
-                    switch (sit.type)
-                    {
-                        case SituationType.EnemyEncounter:
-                            InitEnemyEncounterSituation();
-                            break;
-                        case SituationType.ObjectEncounter:
-                            //situation = new SituationCombat(location.enemies);
-                            //expPanel.expDetailsPanelDrawer.enemyPanel.gameObject.SetActive(false);
-                            break;
-                    }
-
-                    // if any situation occured, exit sequence
-                    return;
+                    case ExpEventType.Combat:
+                        InitCombat();
+                        break;
+                    case ExpEventType.POI:
+                        //situation = new SituationCombat(location.enemies);
+                        //expPanel.expDetailsPanelDrawer.enemyPanel.gameObject.SetActive(false);
+                        break;
                 }
+
+                // if any situation occured, exit sequence
+                return;
             }
         }
-        // too early for new situation, continue travelling
-        //else
-        {
-            // if not already travelling
-            //if (situation?.type != SituationType.Travelling)
-                InitTravellingSituation();
-        }
     }
 
-    public void InitTravellingSituation()
+    public void InitTravelling()
     {
-        //situation = new SituationTravelling(this);
-        //UIManager.instance.expPanelDrawer.expDetailsPanelDrawer.InitLocationPanel(curLocation);
+        //UIManager.i.expPanelDrawManager.expDetailsPanelDrawer.InitLocationPanel(curLocation);
         //UpdateLog($"Travelling trough {curLocation.name}");
         Debug.Log($"{hero.name} triggered {AnimationTrigger.HeroTravelling.ToString()}");
-        // start travelling animation
-        //expPreviewPanel.heroAnim.SetTrigger(AnimationTrigger.HeroTravelling.ToString());
+        //start travelling animation
+        heroAM.SetTrigger(AnimationTrigger.HeroTravelling.ToString());
     }
 
-    public void InitEnemyEncounterSituation()
+    public void InitCombat()
     {
-        //situation = new CombatManager(this, curLocation.enemies);
         //var enemy = (situation as CombatManager).enemy;
         //UIManager.instance.expPanelDrawer.expDetailsPanelDrawer.InitEnemyPanel(enemy);
         //UpdateLog($"{hero.name} started combat with {enemy.enemyData.name}");
-        Debug.Log($"{hero.name} triggered {AnimationTrigger.BeginEncounter.ToString()}");
+        //Debug.Log($"{hero.name} triggered {AnimationTrigger.BeginEncounter.ToString()}");
         //expPreviewPanel.heroAnim.SetTrigger(AnimationTrigger.BeginEncounter.ToString());
         //expPreviewPanel.eventAnim.SetTrigger(AnimationTrigger.BeginEncounter.ToString());
         //expPreviewPanel.interAnim.SetTrigger(AnimationTrigger.BeginEncounter.ToString());

@@ -33,7 +33,6 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler, ICanva
     Expedition exp;
     Image[] consumableSlots;
     TextMeshProUGUI[] consumablesCharges;
-    AnimationManager heroAM, objectAM, interactionAM, lootAM;
 
     public bool Visible { get; set; }
 
@@ -42,19 +41,19 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler, ICanva
     {
         consumableSlots = consumablesPanel.GetComponentsInChildren<Image>().Where(comp => comp.name.Contains("Image")).ToArray();
         consumablesCharges = consumablesPanel.GetComponentsInChildren<TextMeshProUGUI>();
-
-        heroAM = heroIcon.GetComponent<AnimationManager>();
-        objectAM = objectIcon.GetComponent<AnimationManager>();
-        interactionAM = interactionIcon.GetComponent<AnimationManager>();
-        heroAM = heroIcon.GetComponent<AnimationManager>();
     }
 
     public void Init(Expedition exp)
     {
         this.exp = exp;
 
+        exp.heroAM = heroIcon.GetComponent<AnimationManager>();
+        exp.objectAM = objectIcon.GetComponent<AnimationManager>();
+        exp.interactionAM = interactionIcon.GetComponent<AnimationManager>();
+        exp.lootAM = lootIcon.GetComponent<AnimationManager>();
+
         // let animators control animation state
-        exp.animStateRef.LinkToAnimationManagers(heroAM, interactionAM, lootAM, objectAM);
+        exp.animStateRef.LinkToAnimationManagers(exp.heroAM, exp.interactionAM, exp.lootAM, exp.objectAM);
     }
 
     //update UI panels
@@ -62,10 +61,10 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler, ICanva
     {
         if (!Visible) return;
 
-        //if (redrawFlags.description)
-        //    RedrawHeroDesc();
-        //if (exp.hero.redrawFlags.gold)
-        //    RedrawGold();
+        if (exp.hero.redrawFlags.description)
+            RedrawHeroDesc();
+        if (exp.hero.redrawFlags.gold)
+            RedrawGold();
         //if (exp.hero.redrawFlags.consumes)
         //    UpdateConsumables();
         if (exp.redrawFlags.zone)

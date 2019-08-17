@@ -31,14 +31,15 @@ public class ExpeditionsManager : MonoBehaviour
 
     #region SET IN INSPECTOR
 
-    [Tooltip("Minimum time in seconds between situations")]
+    [Tooltip("Minimum time in seconds between events")]
     public int minGracePeriod;
+
     [Tooltip("Global initiative accumulation speed")]
     public float combatSpeed;
 
     #endregion
 
-    internal static List<Expedition> expeditions = new List<Expedition>();
+    internal List<Expedition> expeditions = new List<Expedition>();
 
     float oldCombatSpeed;
 
@@ -57,7 +58,6 @@ public class ExpeditionsManager : MonoBehaviour
 
     void Update()
     {
-        foreach (var expedition in expeditions)
-            expedition.Update();
+        expeditions.ForEach(exp => exp.Update());
     }
 }

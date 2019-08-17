@@ -10,10 +10,10 @@ public abstract class ChanceToOccur
 }
 
 [Serializable]
-public class SituationChanceToOccur : ChanceToOccur
+public class EventChanceToOccur : ChanceToOccur
 {
-    public SituationType type;
-    [HideIfNotEnumValues("type", SituationType.ObjectEncounter)]
+    public ExpEventType eventType;
+    [HideIfNotEnumValues("eventType", ExpEventType.POI)]
     public Sprite icon;
 }
 

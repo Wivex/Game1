@@ -11,11 +11,11 @@ public abstract class Unit
 
     internal void InitData(UnitData data)
     {
-        curStats.health = data.stats.health;
-        curStats.energy = data.stats.energy;
-        curStats.attack = data.stats.attack;
-        curStats.defence = data.stats.defence;
-        curStats.speed = data.stats.speed;
+        //curStats.health = data.stats.health;
+        //curStats.energy = data.stats.energy;
+        //curStats.attack = data.stats.attack;
+        //curStats.defence = data.stats.defence;
+        //curStats.speed = data.stats.speed;
 
         foreach (var abilityData in data.abilities)
             abilities.Add(new Ability(abilityData));

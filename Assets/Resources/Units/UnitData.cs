@@ -6,7 +6,7 @@ public class UnitData : ScriptableObject
 {
     [Header("Unit Data")]
     public Sprite icon;
-    public StatSheet stats;
+    //public StatSheet stats;
     public List<AbilityData> abilities;
     public TacticsPreset tacticsPreset;
 }
