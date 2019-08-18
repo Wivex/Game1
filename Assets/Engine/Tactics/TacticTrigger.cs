@@ -69,8 +69,9 @@ public class TacticTrigger
             case TriggerType.FoeCondition:
                 throw new NotImplementedException();
             case TriggerType.AbilityReady:
-                return situation.actor.abilities.Exists(ability =>
-                    ability.abilityData == abilityData && ability.curCooldown <= 0);
+                //return situation.actor.abilities.Exists(ability =>
+                //    ability.abilityData == abilityData && ability.curCooldown <= 0);
+                return true;
             default:
                 throw new ArgumentException();
         }
@@ -87,9 +88,10 @@ public class TacticTrigger
 
     public bool AbilityReadyCheck(CombatManager situation)
     {
-        var unit = target == Target.Self ? situation.actor : situation.target;
-        return unit.abilities.Exists(ability =>
-            ability.abilityData == abilityData && ability.curCooldown == 0);
+        //var unit = target == Target.Self ? situation.actor : situation.target;
+        //return unit.abilities.Exists(ability =>
+        //    ability.abilityData == abilityData && ability.curCooldown == 0);
+        return true;
     }
     #endregion
 }

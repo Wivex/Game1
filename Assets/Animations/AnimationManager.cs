@@ -30,20 +30,17 @@ public class AnimationManager : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    internal static void Trigger(AnimationTrigger value, params AnimationManager[] managers)
+    {
+        managers.ForEach(manager => manager.animator.SetTrigger(value.ToString()));
+    }
+
     /// <summary>
     /// Changes animation state in the linked object
     /// </summary>
     public void NotifyAnimationStateChanged(AnimationState state)
     {
         animStateRef.state = state;
-    }
-
-    /// <summary>
-    /// Pass string value to gameObject animator trigger
-    /// </summary>
-    public void SetTrigger(string value)
-    {
-        animator.SetTrigger(value);
     }
 
     public void PauseAnimationForSecs(float sec)

@@ -34,9 +34,6 @@ public class ExpeditionsManager : MonoBehaviour
     [Tooltip("Minimum time in seconds between events")]
     public int minGracePeriod;
 
-    [Tooltip("Global initiative accumulation speed")]
-    public float combatSpeed;
-
     #endregion
 
     internal List<Expedition> expeditions = new List<Expedition>();

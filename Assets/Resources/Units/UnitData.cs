@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class UnitData : ScriptableObject
+public class UnitData : ScriptableObject
 {
     public Sprite icon;
     public UnitStats stats;

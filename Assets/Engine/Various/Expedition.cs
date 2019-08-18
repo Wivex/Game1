@@ -125,19 +125,15 @@ public class Expedition
     {
         Debug.Log($"{hero.name} triggered {AnimationTrigger.HeroTravelling.ToString()}");
         //start hero travelling animation
-        heroAM.SetTrigger(AnimationTrigger.HeroTravelling.ToString());
+        AnimationManager.Trigger(AnimationTrigger.HeroTravelling, heroAM);
+        animStateRef.state = AnimationState.InProgress;
     }
 
+    // NOTE: move to ExpManager?
     public void InitCombat()
     {
-        //var enemy = (situation as CombatManager).enemy;
-        //UIManager.instance.expPanelDrawer.expDetailsPanelDrawer.InitEnemyPanel(enemy);
-        //UpdateLog($"{hero.name} started combat with {enemy.enemyData.name}");
-        //Debug.Log($"{hero.name} triggered {AnimationTrigger.BeginEncounter.ToString()}");
-        //expPreviewPanel.heroAnim.SetTrigger(AnimationTrigger.BeginEncounter.ToString());
-        //expPreviewPanel.eventAnim.SetTrigger(AnimationTrigger.BeginEncounter.ToString());
-        //expPreviewPanel.interAnim.SetTrigger(AnimationTrigger.BeginEncounter.ToString());
-        //// hide "dead" status icon
-        //expPreviewPanel.enemyStatusIcon.enabled = false;
+        Debug.Log($"{hero.name} triggered {AnimationTrigger.BeginEncounter.ToString()}");
+        AnimationManager.Trigger(AnimationTrigger.BeginEncounter, heroAM, objectAM, interactionAM);
+        animStateRef.state = AnimationState.InProgress;
     }
 }

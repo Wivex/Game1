@@ -4,14 +4,46 @@ using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class CombatManager
+public class CombatManager : MonoBehaviour
 {
+    #region MANAGER INITIALIZATION
+
+    /// <summary>
+    /// Can't access static variables and methods from inspector. So we use static instance to do that.
+    /// </summary>
+    public static ExpeditionsManager i;
+
+    //default initialization of Singleton instance
+    void Awake()
+    {
+        //Check if instance already exists
+        if (i == null)
+            //if not, set instance to this
+            i = this;
+        //If instance already exists and it's not this:
+        else if (i != this)
+            //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of it.
+
+            //Sets this to not be destroyed when reloading scene
+            DontDestroyOnLoad(gameObject);
+    }
+
+    #endregion
+
+    #region SET IN INSPECTOR
+
+    [Tooltip("Global initiative accumulation speed")]
+    public float combatSpeed;
+
+    #endregion
+
     public Hero hero;
     public Enemy enemy;
-    public Unit actor, target;
+
+    Unit actor, target;
 
     bool looting;
-
+    0
     List<ItemData> lootDrops;
 
     public CombatManager(Expedition expedition, List<EnemySpawnChance> enemies)

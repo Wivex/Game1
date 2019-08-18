@@ -13,10 +13,16 @@ MonoBehaviour:
   m_Name: Orc
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 7589bc4291a4b42408d97cb9c30abfdc, type: 3}
+  stats:
+    health: 100
+    energy: 10
+    attack: 10
+    defence: 2
+    speed: 10
+    hResist: 0
+    bResist: 0
   abilities: []
   tacticsPreset:
     presetName: 
     tactics: []
-  spawnChance: 0
-  spawnInterval: 0
   lootTable: []
