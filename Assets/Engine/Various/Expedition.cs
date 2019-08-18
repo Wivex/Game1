@@ -69,7 +69,7 @@ public class Expedition
         if (GraceTimePassed)
             TryNewEvent();
         else
-            InitTravelling();
+            InitTravelling();   
     }
 
     //TODO: Implement log manager
@@ -120,12 +120,11 @@ public class Expedition
         }
     }
 
+    // NOTE: move to ExpManager?
     public void InitTravelling()
     {
-        //UIManager.i.expPanelDrawManager.expDetailsPanelDrawer.InitLocationPanel(curLocation);
-        //UpdateLog($"Travelling trough {curLocation.name}");
         Debug.Log($"{hero.name} triggered {AnimationTrigger.HeroTravelling.ToString()}");
-        //start travelling animation
+        //start hero travelling animation
         heroAM.SetTrigger(AnimationTrigger.HeroTravelling.ToString());
     }
 

@@ -4,8 +4,15 @@ using UnityEngine;
 
 public abstract class Unit
 {
-    [Header("Unit")]
-    internal StatSheet curStats;
+    /// <summary>
+    /// Base stats of unit, affected by persistent modifiers (gear, special persistent effects). Considered maximums for current stats.
+    /// </summary>
+    internal UnitStats baseStats;
+    /// <summary>
+    /// Current stats of unit, affected by temporary effects or damage
+    /// </summary>
+    internal UnitStats curStats;
+
     internal List<Ability> abilities = new List<Ability>();
     internal List<Effect> effects = new List<Effect>();
 

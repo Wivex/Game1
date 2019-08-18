@@ -103,10 +103,10 @@ public class UnitPanelDrawer : MonoBehaviour
         }
     }
 
-    string ColoredStat(Stat stat)
+    string ColoredStat(int value)
     {
         //if (stat.curValue < stat.BaseValue) return $"<color=\"red\">{stat.curValue}</color>";
         //if (stat.curValue > stat.BaseValue) return $"<color=\"green\">{stat.curValue}</color>";
-        return $"{stat.curValue}";
+        return $"{value}";
     }
 }

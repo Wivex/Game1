@@ -22,9 +22,9 @@ public enum StatType
 }
 
 [Serializable]
-public struct StatSheet
+public struct UnitStats
 {
-    public Stat health,
+    public int health,
         energy,
         attack,
         defence,

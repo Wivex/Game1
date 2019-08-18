@@ -284,10 +284,8 @@
     <Compile Include="Assets\Engine\Managers\TownManager.cs" />
     <Compile Include="Assets\Engine\Managers\UIManager.cs" />
     <Compile Include="Assets\Engine\Stats\EquipmentSheet.cs" />
-    <Compile Include="Assets\Engine\Stats\Stat.cs" />
-    <Compile Include="Assets\Engine\Stats\StatChanging.cs" />
     <Compile Include="Assets\Engine\Stats\StatModifier.cs" />
-    <Compile Include="Assets\Engine\Stats\StatSheet.cs" />
+    <Compile Include="Assets\Engine\Stats\UnitStats.cs" />
     <Compile Include="Assets\Engine\Tactics\Tactic.cs" />
     <Compile Include="Assets\Engine\Tactics\TacticAction.cs" />
     <Compile Include="Assets\Engine\Tactics\TacticsPreset.cs" />
