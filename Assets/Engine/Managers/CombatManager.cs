@@ -11,7 +11,7 @@ public class CombatManager : MonoBehaviour
     /// <summary>
     /// Can't access static variables and methods from inspector. So we use static instance to do that.
     /// </summary>
-    public static ExpeditionsManager i;
+    public static CombatManager i;
 
     //default initialization of Singleton instance
     void Awake()
@@ -40,10 +40,10 @@ public class CombatManager : MonoBehaviour
     public Hero hero;
     public Enemy enemy;
 
-    Unit actor, target;
+    internal Unit actor, target;
 
     bool looting;
-    0
+
     List<ItemData> lootDrops;
 
     public CombatManager(Expedition expedition, List<EnemySpawnChance> enemies)

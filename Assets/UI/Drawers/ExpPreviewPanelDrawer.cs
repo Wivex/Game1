@@ -140,7 +140,7 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler, ICanva
         locationImage.sprite = exp.curArea.areaImage;
         locationImage.rectTransform.sizeDelta = exp.curArea.areaImageSize;
         locationImage.transform.localPosition = exp.curArea.zonesPositions[exp.curZoneIndex];
-        //redrawFlags.zone = false;
+        exp.redrawFlags.zone = false;
     }
 
     #endregion

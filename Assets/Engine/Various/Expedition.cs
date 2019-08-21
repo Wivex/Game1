@@ -89,7 +89,8 @@ public class Expedition
         // check if last zone in the area
         if (++curZoneIndex >= curArea.zonesPositions.Capacity)
         {
-            curArea = NewInterchangableArea;
+            // UNDONE : temp unsafe solution (end overflow)
+            curArea = curArea.interchangeable ? NewInterchangableArea : curLocation.areas[curLocation.areas.IndexOf(curArea)+1];
             curZoneIndex = 0;
         }
 
