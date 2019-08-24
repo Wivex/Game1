@@ -50,7 +50,7 @@ public class LocationPanelDrawer : MonoBehaviour
         // update events
         for (var i = 0; i < situationsIcons.Count; i++)
         {
-            if (i >= location.events.Count)
+            if (i >= location.encounters.Count)
             {
                 situationsIcons[i].sprite = null;
                 situationsIcons[i].color = Color.clear;
@@ -59,10 +59,10 @@ public class LocationPanelDrawer : MonoBehaviour
             }
             else
             {
-                situationsIcons[i].sprite = location.events[i].icon;
+                situationsIcons[i].sprite = location.encounters[i].icon;
                 situationsIcons[i].color = Color.white;
-                situationsName[i].text = location.events[i].eventType.ToString();
-                situationsChance[i].text = location.events[i].chance.ToString();
+                situationsName[i].text = location.encounters[i].type.ToString();
+                situationsChance[i].text = location.encounters[i].chance.ToString();
             }
         }
 

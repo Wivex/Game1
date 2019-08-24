@@ -34,7 +34,6 @@ public class Hero : Unit
     internal SexType sexType;
     internal ClassType classType;
     internal HeroState state;
-    internal TacticsPreset tactics;
     internal ClassData classData;
     internal int level, gold, experience;
     internal Sprite portrait;
@@ -56,7 +55,6 @@ public class Hero : Unit
         classData = Resources.Load<ClassData>(
             $"Units/Heroes/Classes/{classType.ToString()}/{classType.ToString()}Class");
         //HACK: temp solution
-        tactics = classData.classLevels[level].tacticsPreset;
         state = HeroState.Recruitable;
         InitData(classData.classLevels[level]);
     }

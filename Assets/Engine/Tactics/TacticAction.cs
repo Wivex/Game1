@@ -19,73 +19,73 @@ public class TacticAction
     //[ShownIfEnumValue("actionType", (int)ActionType.UseConsumable)]
     public ConsumableData consumableData;
 
-    public void DoAction(CombatManager situation)
+    public void DoAction(Combat combat)
     {
         switch (actionType)
         {
             case ActionType.Flee:
-                Flee(situation);
+                Flee(combat);
                 break;
             case ActionType.Attack:
-                Attack(situation);
+                Attack(combat);
                 break;
             case ActionType.UseAbility:
-                UseAbility(situation);
+                UseAbility(combat);
                 break;
             case ActionType.UseConsumable:
-                UseConsumable(situation);
+                UseConsumable(combat);
                 break;
         }
     }
 
     #region ACTIONS
 
-    public void Flee(CombatManager situation)
+    public void Flee(Combat combat)
     {
-        //LogEvent(situation, $"{situation.actor.name} flees from combat.");
+        //LogEvent(combat, $"{combat.actor.name} flees from combat.");
     }
 
-    public void Attack(CombatManager situation)
+    public void Attack(Combat combat)
     {
         //var damage = new Damage(DamageType.Physical,
-        //    situation.actor.baseStats[(int) StatType.Attack].curValue);
-        //var dam = situation.target.TakeDamage(damage);
+        //    combat.actor.baseStats[(int) StatType.Attack].curValue);
+        //var dam = combat.target.TakeDamage(damage);
 
-        ////situation.expedition.expPreviewPanel.redrawFlags.health = true;
+        ////combat.expedition.expPreviewPanel.redrawFlags.health = true;
 
-        //situation.expedition.UpdateLog(
-        //    $"{situation.actor.name} attacks {situation.target.name} for {dam} {damage.type} damage.");
+        //combat.expedition.UpdateLog(
+        //    $"{combat.actor.name} attacks {combat.target.name} for {dam} {damage.type} damage.");
     }
 
-    public void UseAbility(CombatManager situation)
+    public void UseAbility(Combat combat)
     {
-        //LogEvent(situation, $"{situation.actor.name} used {abilityData.name} on {situation.target.name}.");
-        var usedAbility = situation.actor.abilities.Find(abil => abil.abilityData == abilityData);
+        //LogEvent(combat, $"{combat.actor.name} used {abilityData.name} on {combat.target.name}.");
+        var usedAbility = combat.actor.abilities.Find(abil => abil.abilityData == abilityData);
         foreach (var effect in usedAbility.abilityData.effects)
         {
-            var target = effect.target == Target.Self ? situation.actor : situation.target;
-            effect.ApplyEffect(situation, target, usedAbility.abilityData.name, usedAbility.abilityData.icon);
+            var target = effect.target == Target.Self ? combat.actor : combat.target;
+            effect.ApplyEffect(combat, target, usedAbility.abilityData.name, usedAbility.abilityData.icon);
         }
         // +1 adjustment, because after each turm all cooldowns are decreased by 1 (even on used ability)
         usedAbility.curCooldown = abilityData.cooldown + 1;
     }
 
-    public void UseConsumable(CombatManager situation)
+    public void UseConsumable(Combat combat)
     {
-        //LogEvent(situation, $"{situation.hero.name} used {consumableData.name} on {situation.target.name}.");
-        var usedConsumable = situation.hero.consumables.First(cons => cons.consumableData == consumableData);
+        //LogEvent(combat, $"{combat.hero.name} used {consumableData.name} on {combat.target.name}.");
+        var usedConsumable = combat.hero.consumables.First(cons => cons.consumableData == consumableData);
         foreach (var effect in usedConsumable.consumableData.effects)
         {
-            var target = effect.target == Target.Self ? situation.actor : situation.target;
-            effect.ApplyEffect(situation, target, usedConsumable.consumableData.name, usedConsumable.consumableData.icon);
+            var target = effect.target == Target.Self ? combat.actor : combat.target;
+            effect.ApplyEffect(combat, target, usedConsumable.consumableData.name, usedConsumable.consumableData.icon);
         }
         // +1 adjustment, because after each turm all cooldowns are decreased by 1 (even on used ability)
         usedConsumable.curCharges--;
     }
 
-    public void LogEvent(CombatManager situation, string text)
+    public void LogEvent(CombatManager combat, string text)
     {
-        //situation.expedition.UpdateLog(text);
+        //combat.expedition.UpdateLog(text);
     }
     #endregion
 }

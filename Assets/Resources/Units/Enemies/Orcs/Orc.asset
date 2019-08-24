@@ -24,5 +24,10 @@ MonoBehaviour:
   abilities: []
   tacticsPreset:
     presetName: 
-    tactics: []
+    tactics:
+    - triggers: []
+      action:
+        actionType: 1
+        abilityData: {fileID: 0}
+        consumableData: {fileID: 0}
   lootTable: []

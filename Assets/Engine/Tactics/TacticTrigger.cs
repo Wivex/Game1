@@ -54,7 +54,7 @@ public class TacticTrigger
     //[ShownIfEnumValue("triggerType", (int) TriggerType.FoeType)]
     public UnitData unitData;
 
-    public bool IsTriggered(CombatManager situation)
+    public bool IsTriggered(Enemy enemy)
     {
         switch (triggerType)
         {
@@ -63,7 +63,8 @@ public class TacticTrigger
             //case TriggerType.StatValue:
             //    return StatValueCheck(situation);
             case TriggerType.FoeType:
-                return situation.enemy.enemyData == unitData;
+                // NOTE: rework?
+                return enemy.enemyData == unitData;
             case TriggerType.SelfCondition:
                 throw new NotImplementedException();
             case TriggerType.FoeCondition:

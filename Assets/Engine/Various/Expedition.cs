@@ -13,22 +13,15 @@ public enum AnimationTrigger
     StopTransferLoot
 }
 
-public enum ExpEventType
-{
-    None,
-    Combat,
-    POI
-}
-
 public class Expedition
 {
     internal Hero hero;
     internal LocationData curLocation, destination;
     internal LocationArea curArea;
     internal int curZoneIndex;
-    internal ExpEventType curEventType;
-    internal AnimationStateReference animStateRef = new AnimationStateReference();
-    internal ExpeditionRedrawFlags redrawFlags = new ExpeditionRedrawFlags();
+    internal Encounter curEncounter;
+    internal AnimationStateReference anyAnimator = new AnimationStateReference();
+    internal ExpeditionRedrawFlags redrawFlags;
     internal AnimationManager heroAM, objectAM, interactionAM, lootAM;
 
     DateTime lastSituationRealTime;
@@ -49,17 +42,25 @@ public class Expedition
         curArea = curLocation.areas.First();
         // "-1" to get "0" as first value later
         curZoneIndex = -1;
-        animStateRef.state = AnimationState.Finished;
-        curEventType = ExpEventType.None;
+        anyAnimator.state = AnimationState.Finished;
 
         InitGraceTimers();
     }
 
     public void Update()
     {
-        //TODO: should replace situation updates here
-        if (animStateRef.state == AnimationState.Finished)
+        // skip logic if any animation is still in progress
+        if (anyAnimator.state == AnimationState.InProgress) return;
+
+        if (curEncounter != null)
+        {
+            curEncounter.Update();
+        }
+        else
+        {
+            // continue travelling
             EnterNextZone();
+        }
     }
 
     public void EnterNextZone()
@@ -67,7 +68,7 @@ public class Expedition
         ChangeZoneImage();
 
         if (GraceTimePassed)
-            TryNewEvent();
+            TryNewEncounter();
         else
             InitTravelling();   
     }
@@ -98,18 +99,18 @@ public class Expedition
         redrawFlags.zone = true;
     }
 
-    void TryNewEvent()
+    void TryNewEncounter()
     {
-        foreach (var e in curLocation.events)
+        foreach (var enc in curLocation.encounters)
         {
-            if (Random.value < e.chance)
+            if (Random.value < enc.chance)
             {
-                switch (e.eventType)
+                switch (enc.type)
                 {
-                    case ExpEventType.Combat:
+                    case EncounterType.Combat:
                         InitCombat();
                         break;
-                    case ExpEventType.POI:
+                    case EncounterType.POI:
                         //situation = new SituationCombat(location.enemies);
                         //expPanel.expDetailsPanelDrawer.enemyPanel.gameObject.SetActive(false);
                         break;
@@ -127,7 +128,8 @@ public class Expedition
         Debug.Log($"{hero.name} triggered {AnimationTrigger.HeroTravelling.ToString()}");
         //start hero travelling animation
         AnimationManager.Trigger(AnimationTrigger.HeroTravelling, heroAM);
-        animStateRef.state = AnimationState.InProgress;
+        anyAnimator.state = AnimationState.InProgress;
+        curEncounter = null;
     }
 
     // NOTE: move to ExpManager?
@@ -135,6 +137,7 @@ public class Expedition
     {
         Debug.Log($"{hero.name} triggered {AnimationTrigger.BeginEncounter.ToString()}");
         AnimationManager.Trigger(AnimationTrigger.BeginEncounter, heroAM, objectAM, interactionAM);
-        animStateRef.state = AnimationState.InProgress;
+        anyAnimator.state = AnimationState.InProgress;
+        curEncounter = new Combat(this);
     }
 }

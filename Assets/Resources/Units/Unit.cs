@@ -12,9 +12,14 @@ public abstract class Unit
     /// Current stats of unit, affected by temporary effects or damage
     /// </summary>
     internal UnitStats curStats;
+    internal float initiative;
+    internal TacticsPreset tacticsPreset;
+
 
     internal List<Ability> abilities = new List<Ability>();
     internal List<Effect> effects = new List<Effect>();
+
+    internal bool Dead => curStats.health <= 0;
 
     internal void InitData(UnitData data)
     {
@@ -26,6 +31,8 @@ public abstract class Unit
 
         foreach (var abilityData in data.abilities)
             abilities.Add(new Ability(abilityData));
+
+        tacticsPreset = data.tacticsPreset;
     }
 
     // MOVE

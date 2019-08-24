@@ -22,8 +22,8 @@ public class LocationData : ScriptableObject
 {
     [Reorderable(ReordableNamingType.ObjectName, "areaImage")]
     public List<LocationArea> areas;
-    [Reorderable(ReordableNamingType.VariableValue, "eventType")]
-    public List<EventChanceToOccur> events;
+    [Reorderable(ReordableNamingType.VariableValue, "type")]
+    public List<EncounterChanceToOccur> encounters;
     [Reorderable(ReordableNamingType.ObjectName, "enemyData")]
     public List<EnemySpawnChance> enemies;
     public List<PoiSpawnChance> pointsOfInterest;
@@ -45,8 +45,8 @@ public class LocationData : ScriptableObject
         }
 
         // sort ascending by spawn chance, for easier spawning
-        events.Sort((x, y) => y.chance.CompareTo(x.chance));
-        events.Reverse();
+        encounters.Sort((x, y) => y.chance.CompareTo(x.chance));
+        encounters.Reverse();
 
         enemies.Sort((x, y) => y.chance.CompareTo(x.chance));
         enemies.Reverse();

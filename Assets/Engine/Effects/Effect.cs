@@ -42,11 +42,11 @@ public class Effect
     public int amount;
 
     Unit targetUnit;
-    CombatManager situation;
+    Combat combat;
 
-    public void ApplyEffect(CombatManager situation, Unit target, string effectName, Sprite effectIcon)
+    public void ApplyEffect(Combat combat, Unit target, string effectName, Sprite effectIcon)
     {
-        this.situation = situation;
+        this.combat = combat;
         targetUnit = target;
         name = effectName;
         icon = effectIcon;
@@ -102,7 +102,7 @@ public class Effect
         unit.effects.Remove(this);
     }
 
-    public void AddEffectLogEntry(CombatManager situation, string text)
+    public void AddEffectLogEntry(Combat combat, string text)
     {
         //situation.expedition.UpdateLog(text);
     }
