@@ -2652,7 +2652,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minGracePeriod: 4
-  combatSpeed: 0.075
 --- !u!4 &116506166
 Transform:
   m_ObjectHideFlags: 0

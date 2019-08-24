@@ -55,16 +55,9 @@ public static class Extensions
     /// </summary>
     public static void ChangeContentVisibility(this Canvas canvas, bool visibility)
     {
-        // sets Visible parameter for this canvas Drawer (should be one Drawer per canvas)
-        var canvasDrawer = canvas.GetComponent<ICanvasVisibility>();
-        if (canvasDrawer != null) canvasDrawer.Visible = visibility;
-
-        // if Drawer becomes hidden, hide drawers of all sub-canvases
-        if (visibility == false)
-        {
-            var subDrawers = canvas.GetComponentsInChildren<ICanvasVisibility>().ToList();
-            subDrawers.ForEach(drawer => drawer.Visible = false);
-        }
+        // change visibility for all sub-canvases
+        var subDrawers = canvas.GetComponentsInChildren<ICanvasVisibility>().ToList();
+        subDrawers.ForEach(drawer => drawer.Visible = visibility);
     }
 
     /// <summary>

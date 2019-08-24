@@ -32,6 +32,9 @@ public class CanvasManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Should be called hierarchically for each nested Canvas Manager, to properly update Visibility
+    /// </summary>
     public void ChangeActiveCanvas(Canvas selectedCanvas)
     {
         foreach (var canvas in canvases)
