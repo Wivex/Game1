@@ -70,7 +70,7 @@
     <Compile Include="Assets\3rd-Party\MyBox\Tools\Features\ToggleLockHotkey.cs" />
     <Compile Include="Assets\3rd-Party\MyBox\Tools\Internal\MyBoxSettings.cs" />
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
