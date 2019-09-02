@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using System.Linq;
 using TMPro;
 
@@ -10,6 +11,7 @@ public class ExpeditionPanelDrawManager : MonoBehaviour, ICanvasVisibility
     //public ExpDetailsPanelDrawManager expDetailsPanelDrawManager;
     public LogPanelDrawer logPanelDrawer;
 
+    internal Dictionary<Expedition, ExpPreviewPanelDrawer> expPreviewPanels = new Dictionary<Expedition, ExpPreviewPanelDrawer>();
     internal Expedition selectedExp;
 
     CanvasManager cMan;
@@ -45,5 +47,6 @@ public class ExpeditionPanelDrawManager : MonoBehaviour, ICanvasVisibility
     {
         var panel = Instantiate(expPreviewPanelPrefab, previewContentPanel);
         panel.Init(exp);
+        expPreviewPanels.Add(exp, panel);
     }
 }

@@ -68,7 +68,7 @@ public class Expedition
         ChangeZoneImage();
 
         if (GraceTimePassed)
-            TryNewEncounter();
+            NewEncounterCheck();
         else
             InitTravelling();   
     }
@@ -99,7 +99,7 @@ public class Expedition
         redrawFlags.zone = true;
     }
 
-    void TryNewEncounter()
+    void NewEncounterCheck()
     {
         foreach (var enc in curLocation.encounters)
         {

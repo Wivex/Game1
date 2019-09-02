@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -57,6 +58,16 @@ public class Hero : Unit
         //HACK: temp solution
         state = HeroState.Recruitable;
         InitData(classData.classLevels[level]);
+    }
+
+    internal override UnitStats CurStats
+    {
+        get => curStats;
+        set
+        {
+            curStats = value;
+            redrawFlags.stats = true;
+        }
     }
 
     Sprite RandomPortrait()

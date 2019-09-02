@@ -22,7 +22,7 @@ public enum StatType
 }
 
 [Serializable]
-public struct UnitStats
+public class UnitStats
 {
     public int health,
         energy,

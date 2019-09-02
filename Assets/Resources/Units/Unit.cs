@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-
+using Object = UnityEngine.Object;
 
 public abstract class Unit
 {
@@ -11,10 +13,9 @@ public abstract class Unit
     /// <summary>
     /// Current stats of unit, affected by temporary effects or damage
     /// </summary>
-    internal UnitStats curStats;
+    internal UnitStats curStats = new UnitStats();
     internal float initiative;
     internal TacticsPreset tacticsPreset;
-
 
     internal List<Ability> abilities = new List<Ability>();
     internal List<Effect> effects = new List<Effect>();
@@ -23,36 +24,17 @@ public abstract class Unit
 
     internal void InitData(UnitData data)
     {
-        //curStats.health = data.stats.health;
-        //curStats.energy = data.stats.energy;
-        //curStats.attack = data.stats.attack;
-        //curStats.defence = data.stats.defence;
-        //curStats.speed = data.stats.speed;
+        curStats.health = data.stats.health;
+        curStats.energy = data.stats.energy;
+        curStats.attack = data.stats.attack;
+        curStats.defence = data.stats.defence;
+        curStats.speed = data.stats.speed;
 
         foreach (var abilityData in data.abilities)
             abilities.Add(new Ability(abilityData));
 
         tacticsPreset = data.tacticsPreset;
     }
-
-    // MOVE
-    //void CreateFloatingText(Transform target, int value)
-    //{
-    //    var floatingText = Object.Instantiate(UIManager.instance.floatingTextPrefab, target);
-    //    var textObject = floatingText.GetComponent<TextMeshProUGUI>();
-
-    //    if (value > 0)
-    //    {
-    //        textObject.text = $"+{value}";
-    //        textObject.color = Color.green;
-    //    }
-
-    //    if (value < 0)
-    //    {
-    //        textObject.text = $"{value}";
-    //        textObject.color = Color.red;
-    //    }
-    //}
 
     ///// <summary>
     ///// Base value from unit stats
@@ -71,39 +53,37 @@ public abstract class Unit
     ///// </summary>
     //public int MaxCurValue => baseValue;
 
+    public int TakeDamage(Damage damage, params Transform[] UItargets)
+    {
+        var protectionValue = 0;
+        switch (damage.type)
+        {
+            case DamageType.Physical:
+                protectionValue = curStats.defence;
+                break;
+            case DamageType.Hazardous:
+                protectionValue = curStats.hResist;
+                break;
+            case DamageType.Bleeding:
+                protectionValue = curStats.bResist;
+                break;
+        }
 
+        var healthLoss = Math.Max(damage.amount - protectionValue, 0);
+        curStats.health = Math.Max(curStats.health - healthLoss, 0);
 
-    //public int TakeDamage(Damage damage)
-    //{
-    //    var protectionValue = 0;
-    //    switch (damage.type)
-    //    {
-    //        case DamageType.Physical:
-    //            protectionValue = baseStats[(int) StatType.Defence].curValue;
-    //            break;
-    //        case DamageType.Hazardous:
-    //            protectionValue = baseStats[(int) StatType.HResist].curValue;
-    //            break;
-    //        case DamageType.Bleeding:
-    //            protectionValue = baseStats[(int) StatType.BResist].curValue;
-    //            break;
-    //    }
+        UItargets.ForEach(UIelem => UIManager.i.CreateFloatingText(UIelem, -healthLoss));
 
-    //    var healthLoss = Math.Max(damage.amount - protectionValue, 0);
-    //    baseStats[(int) StatType.Health].curValue = Math.Max(baseStats[(int) StatType.Health].curValue - healthLoss, 0);
+        return healthLoss;
+    }
 
-    //    CreateFloatingText(unitDetailsIcon, -healthLoss);
-    //    CreateFloatingText(unitPreviewIcon, -healthLoss);
+    public void Heal(int amount)
+    {
+        curStats.health = Mathf.Min(curStats.health + amount,
+            baseStats.health);
 
-    //    return healthLoss;
-    //}
-
-    //public void Heal(int amount)
-    //{
-    //    baseStats[(int) StatType.Health].curValue = Mathf.Min(baseStats[(int) StatType.Health].curValue + amount,
-    //        (baseStats[(int) StatType.Health] as StatChanging).maxValue);
-
-    //    CreateFloatingText(unitDetailsIcon, amount);
-    //    CreateFloatingText(unitPreviewIcon, amount);
-    //}
+        //UNDONE
+        //CreateFloatingText(unitDetailsIcon, amount);
+        //CreateFloatingText(unitPreviewIcon, amount);
+    }
 }

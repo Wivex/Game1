@@ -40,17 +40,17 @@ public class ExpeditionsManager : MonoBehaviour
 
     float oldCombatSpeed;
 
+    public void StartNewExpeditionDebug()
+    {
+        StartNewExpedition(TownManager.i.CreateNewHero(),
+            Resources.Load<LocationData>("Locations/Outskirts/Outskirts"));
+    }
+
     public void StartNewExpedition(Hero hero, LocationData location)
     {
         var exp = new Expedition(hero, location);
         expeditions.Add(exp);
         UIManager.i.expPanelDrawManager.NewPreviewPanel(exp);
-    }
-
-    public void StartNewExpeditionDebug()
-    {
-        StartNewExpedition(TownManager.i.CreateNewHero(),
-            Resources.Load<LocationData>("Locations/Outskirts/Outskirts"));
     }
 
     void Update()

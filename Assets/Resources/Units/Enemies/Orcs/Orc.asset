@@ -25,7 +25,15 @@ MonoBehaviour:
   tacticsPreset:
     presetName: 
     tactics:
-    - triggers: []
+    - triggers:
+      - triggerType: 0
+        target: 0
+        stat: 0
+        statTriggerType: 0
+        comparisonType: 0
+        statValue: 0
+        abilityData: {fileID: 0}
+        unitData: {fileID: 0}
       action:
         actionType: 1
         abilityData: {fileID: 0}

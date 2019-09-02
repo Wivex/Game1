@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -32,4 +33,22 @@ public class UIManager : MonoBehaviour
     public MayorPanelDrawer mayorPanelDrawer;
     public TavernPanelDrawer tavernPanelDrawer;
     public FloatingText floatingTextPrefab;
+
+    public void CreateFloatingText(Transform target, int value)
+    {
+        var floatingText = Instantiate(floatingTextPrefab, target);
+        var textObject = floatingText.GetComponent<TextMeshProUGUI>();
+
+        if (value > 0)
+        {
+            textObject.text = $"+{value}";
+            textObject.color = Color.green;
+        }
+
+        if (value < 0)
+        {
+            textObject.text = $"{value}";
+            textObject.color = Color.red;
+        }
+    }
 }

@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Linq;
+using TMPro;
+using UnityEngine;
+using Object = System.Object;
 
 public enum ActionType
 {
@@ -47,14 +50,17 @@ public class TacticAction
 
     public void Attack(Combat combat)
     {
-        //var damage = new Damage(DamageType.Physical,
-        //    combat.actor.baseStats[(int) StatType.Attack].curValue);
-        //var dam = combat.target.TakeDamage(damage);
+        var damage = new Damage(DamageType.Physical,combat.actor.curStats.attack);
 
-        ////combat.expedition.expPreviewPanel.redrawFlags.health = true;
+        var UItarget = combat.target is Hero
+            ? UIManager.i.expPanelDrawManager.expPreviewPanels[combat.exp].heroIcon.transform
+            : UIManager.i.expPanelDrawManager.expPreviewPanels[combat.exp].objectIcon.transform;
 
-        //combat.expedition.UpdateLog(
-        //    $"{combat.actor.name} attacks {combat.target.name} for {dam} {damage.type} damage.");
+        var dam = combat.target.TakeDamage(damage, UItarget);
+
+        //combat.expedition.expPreviewPanel.redrawFlags.health = true;
+
+        combat.exp.UpdateLog($"{combat.actor} attacks {combat.target} for {dam} {damage.type} damage.");
     }
 
     public void UseAbility(Combat combat)
