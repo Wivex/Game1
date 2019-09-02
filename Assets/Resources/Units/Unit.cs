@@ -9,16 +9,15 @@ public abstract class Unit
     /// <summary>
     /// Base stats of unit, affected by persistent modifiers (gear, special persistent effects). Considered maximums for current stats.
     /// </summary>
-    internal UnitStats baseStats;
+    internal UnitStats baseStats = new UnitStats();
     /// <summary>
     /// Current stats of unit, affected by temporary effects or damage
     /// </summary>
     internal UnitStats curStats = new UnitStats();
-    internal float initiative;
-    internal TacticsPreset tacticsPreset;
-
     internal List<Ability> abilities = new List<Ability>();
     internal List<Effect> effects = new List<Effect>();
+    internal TacticsPreset tacticsPreset;
+    internal float initiative;
 
     internal bool Dead => curStats.health <= 0;
 
@@ -35,23 +34,6 @@ public abstract class Unit
 
         tacticsPreset = data.tacticsPreset;
     }
-
-    ///// <summary>
-    ///// Base value from unit stats
-    ///// </summary>
-    //public int BaseValuea => baseValue;
-    ///// <summary>
-    ///// Persistent modified value, affected by gear and other long-term effects
-    ///// </summary>
-    //public int PersModValue => baseValue;
-    ///// <summary>
-    ///// Current value, persistent modified value affected by temporary effects
-    ///// </summary>
-    //public int CurValue => baseValue;
-    ///// <summary>
-    ///// Maximum current value, special case usage for Health and Energy
-    ///// </summary>
-    //public int MaxCurValue => baseValue;
 
     public int TakeDamage(Damage damage, params Transform[] UItargets)
     {
@@ -77,13 +59,13 @@ public abstract class Unit
         return healthLoss;
     }
 
-    public void Heal(int amount)
+    public int Heal(int amount, params Transform[] UItargets)
     {
-        curStats.health = Mathf.Min(curStats.health + amount,
-            baseStats.health);
+        var value = Mathf.Min(curStats.health + amount, baseStats.health);
+        curStats.health = value;
 
-        //UNDONE
-        //CreateFloatingText(unitDetailsIcon, amount);
-        //CreateFloatingText(unitPreviewIcon, amount);
+        UItargets.ForEach(UIelem => UIManager.i.CreateFloatingText(UIelem, value));
+
+        return value;
     }
 }

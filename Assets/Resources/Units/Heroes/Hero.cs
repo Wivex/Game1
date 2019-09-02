@@ -60,16 +60,6 @@ public class Hero : Unit
         InitData(classData.classLevels[level]);
     }
 
-    internal override UnitStats CurStats
-    {
-        get => curStats;
-        set
-        {
-            curStats = value;
-            redrawFlags.stats = true;
-        }
-    }
-
     Sprite RandomPortrait()
     {
         var portraits =

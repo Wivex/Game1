@@ -1504,7 +1504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 730c32892eab92f4bab6191f2c88d1e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  combatSpeed: 0.04
+  combatSpeed: 0.1
   reqInitiativePerAction: 100
 --- !u!224 &62392258
 RectTransform:
