@@ -58,8 +58,6 @@ public class TacticAction
 
         var dam = combat.target.TakeDamage(damage, UItarget);
 
-        //combat.expedition.expPreviewPanel.redrawFlags.health = true;
-
         combat.exp.UpdateLog($"{combat.actor} attacks {combat.target} for {dam} {damage.type} damage.");
     }
 

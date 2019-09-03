@@ -10,7 +10,9 @@ public enum AnimationTrigger
     EndEncounter,
     RequiredAnimationEnded,
     StartTransferLoot,
-    StopTransferLoot
+    StopTransferLoot,
+    Attack,
+    TakeDamage
 }
 
 public class Expedition
@@ -20,9 +22,8 @@ public class Expedition
     internal LocationArea curArea;
     internal int curZoneIndex;
     internal Encounter curEncounter;
-    internal AnimationStateReference anyAnimator = new AnimationStateReference();
-    internal ExpeditionRedrawFlags redrawFlags;
     internal AnimationManager heroAM, objectAM, interactionAM, lootAM;
+    internal AnimationStateReference anyAnimator = new AnimationStateReference();
 
     DateTime lastSituationRealTime;
     float lastSituationGameTime;
@@ -94,9 +95,6 @@ public class Expedition
             curArea = curArea.interchangeable ? NewInterchangableArea : curLocation.areas[curLocation.areas.IndexOf(curArea)+1];
             curZoneIndex = 0;
         }
-
-        // set flag to redraw zone 
-        redrawFlags.zone = true;
     }
 
     void NewEncounterCheck()

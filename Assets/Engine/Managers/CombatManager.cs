@@ -30,7 +30,6 @@ public class CombatManager : MonoBehaviour
 
     [Tooltip("Global initiative accumulation speed")]
     public float combatSpeed;
-    public float reqInitiativePerAction;
 
     #endregion
 }

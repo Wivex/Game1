@@ -6,11 +6,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public struct ExpeditionRedrawFlags
-{
-    public bool zone;
-}
-
 public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler, ICanvasVisibility
 {
     #region SET IN INSPECTOR
@@ -61,16 +56,11 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler, ICanva
     {
         if (!Visible) return;
 
-        if (exp.hero.redrawFlags.description)
-            RedrawHeroDesc();
-        if (exp.hero.redrawFlags.gold)
-            RedrawGold();
-        //if (exp.hero.redrawFlags.consumes)
+        RedrawHeroDesc();
+        RedrawGold();
         //    UpdateConsumables();
-        if (exp.redrawFlags.zone)
-            UpdateZone();
+        UpdateZone();
 
-        // NOTE: updated each frame anyway?
         UpdateStatBars();
     }
 
@@ -81,7 +71,6 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler, ICanva
     {
         heroName.text = exp.hero.name;
         level.text = $"Level {exp.hero.level} {exp.hero.classData.classLevels[exp.hero.level].name}";
-        exp.hero.redrawFlags.description = false;
     }
 
     void RedrawGold()
@@ -96,7 +85,6 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler, ICanva
         }
 
         curGoldImage.sprite = goldSprites[index];
-        exp.hero.redrawFlags.gold = false;
     }
 
     //void UpdateConsumables()
@@ -116,7 +104,6 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler, ICanva
     //            consumablesCharges[i].text = hero.consumables[i].curCharges.ToString();
     //        }
     //    }
-    //    redrawFlags.consumes = false;
     //}
 
     void UpdateStatBars()
@@ -140,7 +127,6 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler, ICanva
         locationImage.sprite = exp.curArea.areaImage;
         locationImage.rectTransform.sizeDelta = exp.curArea.areaImageSize;
         locationImage.transform.localPosition = exp.curArea.zonesPositions[exp.curZoneIndex];
-        exp.redrawFlags.zone = false;
     }
 
     #endregion
