@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class Combat : Encounter
@@ -14,6 +15,8 @@ public class Combat : Encounter
 
     bool looting;
     int heroInitiative;
+
+    AnimationManager GetAnimManager(Unit unit) => unit is Hero ? exp.heroAM : exp.objectAM;
 
     public Combat(Expedition exp) : base(exp)
     {
@@ -88,8 +91,7 @@ public class Combat : Encounter
             if (tactic.triggers.Exists(trigger => !trigger.IsTriggered(enemy)))
                 continue;
             tactic.action.DoAction(this);
-            AnimationManager.Trigger(AnimationTrigger.HeroTravelling, heroAM);
-            anyAnimator.state = AnimationState.InProgress;
+            exp.StartAnimation(AnimationTrigger.Attack, GetAnimManager(actor));
             break;
         }
     }

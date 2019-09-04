@@ -33,9 +33,9 @@ public class AnimationManager : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    internal static void Trigger(AnimationTrigger value, params AnimationManager[] managers)
+    internal static void Trigger(AnimationTrigger value, params AnimationManager[] animManagers)
     {
-        managers.ForEach(manager => manager.animator.SetTrigger(value.ToString()));
+        animManagers.ForEach(manager => manager.animator.SetTrigger(value.ToString()));
     }
 
     /// <summary>

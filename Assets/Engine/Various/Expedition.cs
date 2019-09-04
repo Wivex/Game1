@@ -120,22 +120,25 @@ public class Expedition
         }
     }
 
+    internal void StartAnimation(AnimationTrigger trigger, params AnimationManager[] managers)
+    {
+        Debug.Log($"Started {trigger.ToString()} animation");
+        AnimationManager.Trigger(trigger, managers);
+        anyAnimator.state = AnimationState.InProgress;
+    }
+
     // NOTE: move to ExpManager?
     public void InitTravelling()
     {
-        Debug.Log($"{hero.name} triggered {AnimationTrigger.HeroTravelling.ToString()}");
         //start hero travelling animation
-        AnimationManager.Trigger(AnimationTrigger.HeroTravelling, heroAM);
-        anyAnimator.state = AnimationState.InProgress;
+        StartAnimation(AnimationTrigger.HeroTravelling, heroAM);
         curEncounter = null;
     }
 
     // NOTE: move to ExpManager?
     public void InitCombat()
     {
-        Debug.Log($"{hero.name} triggered {AnimationTrigger.BeginEncounter.ToString()}");
-        AnimationManager.Trigger(AnimationTrigger.BeginEncounter, heroAM, objectAM, interactionAM);
-        anyAnimator.state = AnimationState.InProgress;
+        StartAnimation(AnimationTrigger.BeginEncounter, heroAM, objectAM, interactionAM);
         curEncounter = new Combat(this);
     }
 }
