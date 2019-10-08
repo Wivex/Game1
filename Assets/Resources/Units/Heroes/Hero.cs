@@ -23,12 +23,6 @@ public enum SexType
     Female
 }
 
-// TODO: move to corresponding drawer
-internal struct HeroRedrawFlags
-{
-    internal bool stats, equipment, inventory, description, gold;
-}
-
 public class Hero : Unit
 {
     internal string name;
@@ -41,7 +35,6 @@ public class Hero : Unit
     internal EquipmentSheet equipment = new EquipmentSheet();
     internal List<ItemData> backpack = new List<ItemData>();
     internal List<Consumable> consumables = new List<Consumable>();
-    internal HeroRedrawFlags redrawFlags = new HeroRedrawFlags();
 
     // USE: TownManager.i.CreateNewHero()
     internal Hero(string name = default,

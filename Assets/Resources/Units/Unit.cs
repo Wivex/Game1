@@ -17,7 +17,6 @@ public abstract class Unit
     internal List<Ability> abilities = new List<Ability>();
     internal List<Effect> effects = new List<Effect>();
     internal TacticsPreset tacticsPreset;
-    internal float initiative;
 
     internal bool Dead => curStats.health <= 0;
 
@@ -35,7 +34,11 @@ public abstract class Unit
         tacticsPreset = data.tacticsPreset;
     }
 
-    public int TakeDamage(Damage damage, params Transform[] UItargets)
+
+    #region OPERATIONS
+
+    // NOTE: keep everything here, what can happen put of combat (events) 
+    public virtual int TakeDamage(Damage damage, params Transform[] UItargets)
     {
         var protectionValue = 0;
         switch (damage.type)
@@ -59,7 +62,7 @@ public abstract class Unit
         return healthLoss;
     }
 
-    public int Heal(int amount, params Transform[] UItargets)
+    public virtual int Heal(int amount, params Transform[] UItargets)
     {
         var value = Mathf.Min(curStats.health + amount, baseStats.health);
         curStats.health = value;
@@ -68,4 +71,11 @@ public abstract class Unit
 
         return value;
     }
+
+    public virtual void Kill()
+    {
+        // TODO: implement
+    }
+
+    #endregion
 }

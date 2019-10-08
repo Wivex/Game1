@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class Combat : Encounter
@@ -13,8 +14,9 @@ public class Combat : Encounter
     List<ItemData> lootDrops;
 
     bool looting;
+    int heroInitiative;
 
-    bool HeroFaster => hero.curStats.speed >= enemy.curStats.speed;
+    AnimationManager GetAnimManager(Unit unit) => unit is Hero ? exp.heroAM : exp.objectAM;
 
     public Combat(Expedition exp) : base(exp)
     {
@@ -31,45 +33,43 @@ public class Combat : Encounter
     {
         if (hero.Dead)
         {
-            Kill(hero);
-            // TODO: stop situation
+            hero.Kill();
         }
         else if (enemy.Dead)
         {
-            Kill(enemy);
+            enemy.Kill();
         }
         else
         {
-            if (HeroFaster)
-            {
-                DoTurn(hero, enemy);
-                DoTurn(enemy, hero);
-            }
-            else
-            {
-                DoTurn(enemy, hero);
-                DoTurn(hero, enemy);
-            }
+            NextTurn();
         }
     }
 
-    public void DoTurn(Unit actor, Unit target)
+    /// <summary>
+    /// Determines turn order based on hero vs enemy speed difference. Substitution leftover accumulates, so that multiple turns of the same unit can happen based on SPD advantage.
+    /// </summary>
+    public void NextTurn()
     {
-        this.actor = actor;
-        this.target = target;
+        // extra hero turn check
+        if (heroInitiative > hero.curStats.speed)
+            heroInitiative -= hero.curStats.speed;
+        // extra enemy turn check (substitution leftover is negative)
+        else if (-heroInitiative > enemy.curStats.speed)
+            heroInitiative -= -enemy.curStats.speed;
+        // normal turn check
+        else
+            heroInitiative += hero.curStats.speed - enemy.curStats.speed;
 
-        actor.initiative += actor.curStats.speed * CombatManager.i.combatSpeed;
-        if (actor.initiative >= CombatManager.i.reqInitiativePerAction)
-        {
-            actor.initiative -= CombatManager.i.reqInitiativePerAction;
-            DoActorAction();
-        }
+        actor = heroInitiative > 0 ? (Unit) hero : enemy;
+        target = heroInitiative > 0 ? (Unit) enemy : hero;
+
+        DoActorTurn();
     }
 
-    public void DoActorAction()
+    public void DoActorTurn()
     {
         UpdateActorEffects();
-        UpdateActorTactics();
+        DoActorAction();
         UpdateActorCooldowns();
     }
 
@@ -77,9 +77,13 @@ public class Combat : Encounter
     {
         for (var i = actor.effects.Count - 1; i >= 0; i--)
             actor.effects[i].UpdateEffect();
+        if (actor.Dead)
+        {
+            actor.Kill();
+        }
     }
 
-    public void UpdateActorTactics()
+    public void DoActorAction()
     {
         foreach (var tactic in actor.tacticsPreset.tactics)
         {
@@ -87,6 +91,7 @@ public class Combat : Encounter
             if (tactic.triggers.Exists(trigger => !trigger.IsTriggered(enemy)))
                 continue;
             tactic.action.DoAction(this);
+            exp.StartAnimation(AnimationTrigger.Attack, GetAnimManager(actor));
             break;
         }
     }
@@ -104,47 +109,6 @@ public class Combat : Encounter
     {
         foreach (var ability in hero.abilities) ability.curCooldown = 0;
         foreach (var ability in enemy.abilities) ability.curCooldown = 0;
-    }
-
-    public void Kill(Hero hero)
-    {
-        // TODO: implement
-    }
-
-    public void Kill(Enemy enemy)
-    {
-        if (!looting)
-        {
-            // set up item transfer animation
-            looting = true;
-            SpawnLoot();
-            // show "dead" status icon
-            //expedition.expPreviewPanel.enemyStatusIcon.enabled = true;
-            //// start cycles of loot transfer
-            //expedition.expPreviewPanel.lootAnim.SetTrigger(AnimationTrigger.StartTransferLoot.ToString());
-            //// make combat icon disappear
-            //expedition.expPreviewPanel.interAnim.SetTrigger(AnimationTrigger.EndEncounter.ToString());
-        }
-
-        // loot transfer process (run before each cycle)
-        if (lootDrops.Count > 0)
-        {
-            var item = lootDrops.FirstOrDefault();
-            //expedition.expPreviewPanel.lootIcon.sprite = item.icon;
-            // lock situation Updater until animation ends
-            //state = SituationState.RunningAnimation;
-            lootDrops.Remove(item);
-        }
-        else
-        {
-            // stop animating item transfer
-            //expedition.expPreviewPanel.lootAnim.SetTrigger(AnimationTrigger.StopTransferLoot.ToString());
-            //// hero continue travelling
-            //expedition.expPreviewPanel.heroAnim.SetTrigger(AnimationTrigger.EndEncounter.ToString());
-            //// hide enemy icon
-            //expedition.expPreviewPanel.eventAnim.SetTrigger(AnimationTrigger.EndEncounter.ToString());
-            //Resolve();
-        }
     }
 
     public void SpawnLoot()

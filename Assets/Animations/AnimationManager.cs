@@ -18,6 +18,9 @@ public enum AnimationState
 
 public class AnimationManager : MonoBehaviour
 {
+    [Tooltip("These Animators will be triggered by TriggerLinkedAnimators()")]
+    public Animator[] linkedAnimators;
+
     /// <summary>
     /// Animation state reference from other script
     /// </summary>
@@ -30,9 +33,9 @@ public class AnimationManager : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    internal static void Trigger(AnimationTrigger value, params AnimationManager[] managers)
+    internal static void Trigger(AnimationTrigger value, params AnimationManager[] animManagers)
     {
-        managers.ForEach(manager => manager.animator.SetTrigger(value.ToString()));
+        animManagers.ForEach(manager => manager.animator.SetTrigger(value.ToString()));
     }
 
     /// <summary>
@@ -41,6 +44,14 @@ public class AnimationManager : MonoBehaviour
     public void NotifyAnimationStateChanged(AnimationState state)
     {
         animStateRef.state = state;
+    }
+
+    /// <summary>
+    /// Changes animation state in the linked object
+    /// </summary>
+    public void TriggerLinkedAnimators(AnimationTrigger value)
+    {
+        linkedAnimators.ForEach(animator => animator.SetTrigger(value.ToString()));
     }
 
     public void PauseAnimationForSecs(float sec)

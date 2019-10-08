@@ -10,7 +10,9 @@ public enum AnimationTrigger
     EndEncounter,
     RequiredAnimationEnded,
     StartTransferLoot,
-    StopTransferLoot
+    StopTransferLoot,
+    Attack,
+    TakeDamage
 }
 
 public class Expedition
@@ -20,9 +22,8 @@ public class Expedition
     internal LocationArea curArea;
     internal int curZoneIndex;
     internal Encounter curEncounter;
-    internal AnimationStateReference anyAnimator = new AnimationStateReference();
-    internal ExpeditionRedrawFlags redrawFlags;
     internal AnimationManager heroAM, objectAM, interactionAM, lootAM;
+    internal AnimationStateReference anyAnimator = new AnimationStateReference();
 
     DateTime lastSituationRealTime;
     float lastSituationGameTime;
@@ -94,9 +95,6 @@ public class Expedition
             curArea = curArea.interchangeable ? NewInterchangableArea : curLocation.areas[curLocation.areas.IndexOf(curArea)+1];
             curZoneIndex = 0;
         }
-
-        // set flag to redraw zone 
-        redrawFlags.zone = true;
     }
 
     void NewEncounterCheck()
@@ -122,22 +120,25 @@ public class Expedition
         }
     }
 
+    internal void StartAnimation(AnimationTrigger trigger, params AnimationManager[] managers)
+    {
+        Debug.Log($"Started {trigger.ToString()} animation");
+        AnimationManager.Trigger(trigger, managers);
+        anyAnimator.state = AnimationState.InProgress;
+    }
+
     // NOTE: move to ExpManager?
     public void InitTravelling()
     {
-        Debug.Log($"{hero.name} triggered {AnimationTrigger.HeroTravelling.ToString()}");
         //start hero travelling animation
-        AnimationManager.Trigger(AnimationTrigger.HeroTravelling, heroAM);
-        anyAnimator.state = AnimationState.InProgress;
+        StartAnimation(AnimationTrigger.HeroTravelling, heroAM);
         curEncounter = null;
     }
 
     // NOTE: move to ExpManager?
     public void InitCombat()
     {
-        Debug.Log($"{hero.name} triggered {AnimationTrigger.BeginEncounter.ToString()}");
-        AnimationManager.Trigger(AnimationTrigger.BeginEncounter, heroAM, objectAM, interactionAM);
-        anyAnimator.state = AnimationState.InProgress;
+        StartAnimation(AnimationTrigger.BeginEncounter, heroAM, objectAM, interactionAM);
         curEncounter = new Combat(this);
     }
 }
