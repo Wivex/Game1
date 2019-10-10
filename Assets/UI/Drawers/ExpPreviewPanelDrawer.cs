@@ -42,13 +42,10 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler, ICanva
     {
         this.exp = exp;
 
-        exp.heroAM = heroIcon.GetComponent<AnimationManager>();
-        exp.objectAM = objectIcon.GetComponent<AnimationManager>();
-        exp.interactionAM = interactionIcon.GetComponent<AnimationManager>();
-        exp.lootAM = lootIcon.GetComponent<AnimationManager>();
-
-        // let animators control animation state
-        exp.anyAnimator.LinkToAnimationManagers(exp.heroAM, exp.interactionAM, exp.lootAM, exp.objectAM);
+        exp.heroAM = heroIcon.GetComponent<AnimatorManager>();
+        exp.objectAM = objectIcon.GetComponent<AnimatorManager>();
+        exp.interactionAM = interactionIcon.GetComponent<AnimatorManager>();
+        exp.lootAM = lootIcon.GetComponent<AnimatorManager>();
     }
 
     //update UI panels

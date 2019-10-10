@@ -22,8 +22,7 @@ public class Expedition
     internal LocationArea curArea;
     internal int curZoneIndex;
     internal Encounter curEncounter;
-    internal AnimationManager heroAM, objectAM, interactionAM, lootAM;
-    internal AnimationStateReference anyAnimator = new AnimationStateReference();
+    internal AnimatorManager heroAM, objectAM, interactionAM, lootAM;
 
     DateTime lastSituationRealTime;
     float lastSituationGameTime;
@@ -34,6 +33,11 @@ public class Expedition
 
     LocationArea NewInterchangableArea => curLocation.areas.Find(area => area.interchangeable && area != curArea);
 
+    bool AllAnimationsFinished =>
+        heroAM.animationState == AnimationState.Finished &&
+        objectAM.animationState == AnimationState.Finished &&
+        lootAM.animationState == AnimationState.Finished;
+
     public Expedition(Hero hero, LocationData destination)
     {
         this.hero = hero;
@@ -43,7 +47,6 @@ public class Expedition
         curArea = curLocation.areas.First();
         // "-1" to get "0" as first value later
         curZoneIndex = -1;
-        anyAnimator.state = AnimationState.Finished;
 
         InitGraceTimers();
     }
@@ -51,7 +54,7 @@ public class Expedition
     public void Update()
     {
         // skip logic if any animation is still in progress
-        if (anyAnimator.state == AnimationState.InProgress) return;
+        if (!AllAnimationsFinished) return;
 
         if (curEncounter != null)
         {
@@ -70,8 +73,6 @@ public class Expedition
 
         if (GraceTimePassed)
             NewEncounterCheck();
-        else
-            InitTravelling();   
     }
 
     //TODO: Implement log manager
@@ -120,25 +121,16 @@ public class Expedition
         }
     }
 
-    internal void StartAnimation(AnimationTrigger trigger, params AnimationManager[] managers)
-    {
-        Debug.Log($"Started {trigger.ToString()} animation");
-        AnimationManager.Trigger(trigger, managers);
-        anyAnimator.state = AnimationState.InProgress;
-    }
-
-    // NOTE: move to ExpManager?
-    public void InitTravelling()
-    {
-        //start hero travelling animation
-        StartAnimation(AnimationTrigger.HeroTravelling, heroAM);
-        curEncounter = null;
-    }
-
     // NOTE: move to ExpManager?
     public void InitCombat()
     {
         StartAnimation(AnimationTrigger.BeginEncounter, heroAM, objectAM, interactionAM);
         curEncounter = new Combat(this);
+    }
+
+    // UNDO: should move somewhere?
+    internal void StartAnimation(AnimationTrigger trigger, params AnimatorManager[] managers)
+    {
+        AnimatorManager.Trigger(trigger, managers);
     }
 }

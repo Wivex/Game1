@@ -273,7 +273,7 @@
     <Compile Include="Assets\3rd-Party\unity-ui-extensions\Scripts\Utilities\UISelectableExtension.cs" />
     <Compile Include="Assets\3rd-Party\unity-ui-extensions\Scripts\VR Extensions\VRCursor.cs" />
     <Compile Include="Assets\3rd-Party\unity-ui-extensions\Scripts\VR Extensions\VRInputModule.cs" />
-    <Compile Include="Assets\Animations\AnimationManager.cs" />
+    <Compile Include="Assets\Animations\AnimatorManager.cs" />
     <Compile Include="Assets\Animations\RandomPositionOffset.cs" />
     <Compile Include="Assets\Engine\Effects\Effect.cs" />
     <Compile Include="Assets\Engine\Effects\Floating Text\FloatingText.cs" />

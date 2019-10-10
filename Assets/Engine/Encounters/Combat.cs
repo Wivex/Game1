@@ -16,7 +16,7 @@ public class Combat : Encounter
     bool looting;
     int heroInitiative;
 
-    AnimationManager GetAnimManager(Unit unit) => unit is Hero ? exp.heroAM : exp.objectAM;
+    AnimatorManager GetAnimManager(Unit unit) => unit is Hero ? exp.heroAM : exp.objectAM;
 
     public Combat(Expedition exp) : base(exp)
     {

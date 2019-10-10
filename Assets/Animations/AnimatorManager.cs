@@ -2,52 +2,37 @@
 using UIEventDelegate;
 using UnityEngine;
 
-/// <summary>
-/// Enum wrapper class to pass enum as reference from other scripts
-/// </summary>
-public class AnimationStateReference
-{
-    public AnimationState state;
-}
-
 public enum AnimationState
 {
     InProgress,
     Finished
 }
 
-public class AnimationManager : MonoBehaviour
+public class AnimatorManager : MonoBehaviour
 {
     [Tooltip("These Animators will be triggered by TriggerLinkedAnimators()")]
     public Animator[] linkedAnimators;
-
-    /// <summary>
-    /// Animation state reference from other script
-    /// </summary>
-    internal AnimationStateReference animStateRef;
-
+    internal AnimationState animationState = AnimationState.Finished;
     Animator animator;
 
     void Awake()    
     {
         animator = GetComponent<Animator>();
+        animationState = AnimationState.Finished;
     }
 
-    internal static void Trigger(AnimationTrigger value, params AnimationManager[] animManagers)
+    internal static void Trigger(AnimationTrigger value, params AnimatorManager[] animManagers)
     {
         animManagers.ForEach(manager => manager.animator.SetTrigger(value.ToString()));
     }
 
-    /// <summary>
-    /// Changes animation state in the linked object
-    /// </summary>
-    public void NotifyAnimationStateChanged(AnimationState state)
+    public void ChangeAnimationState(AnimationState state)
     {
-        animStateRef.state = state;
+        animationState = state;
     }
 
     /// <summary>
-    /// Changes animation state in the linked object
+    /// Triggers linked animators. Used to do that during other animation, using animation events
     /// </summary>
     public void TriggerLinkedAnimators(AnimationTrigger value)
     {

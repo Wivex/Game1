@@ -59,13 +59,4 @@ public static class Extensions
         var subDrawers = canvas.GetComponentsInChildren<ICanvasVisibility>().ToList();
         subDrawers.ForEach(drawer => drawer.Visible = visibility);
     }
-
-    /// <summary>
-    /// Assign animation state reference to all animatable objects, which should lock expedition logic, while animating
-    /// </summary>
-    public static void LinkToAnimationManagers(this AnimationStateReference reference,
-        params AnimationManager[] managers)
-    {
-        managers.ForEach(manager => manager.animStateRef = reference);
-    }
 }
