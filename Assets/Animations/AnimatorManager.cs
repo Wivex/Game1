@@ -2,33 +2,23 @@
 using UIEventDelegate;
 using UnityEngine;
 
-public enum AnimationState
-{
-    InProgress,
-    Finished
-}
-
 public class AnimatorManager : MonoBehaviour
 {
     [Tooltip("These Animators will be triggered by TriggerLinkedAnimators()")]
     public Animator[] linkedAnimators;
-    internal AnimationState animationState = AnimationState.Finished;
+
+    internal bool animationFinished = true;
+
     Animator animator;
 
     void Awake()    
     {
         animator = GetComponent<Animator>();
-        animationState = AnimationState.Finished;
     }
 
     internal static void Trigger(AnimationTrigger value, params AnimatorManager[] animManagers)
     {
         animManagers.ForEach(manager => manager.animator.SetTrigger(value.ToString()));
-    }
-
-    public void ChangeAnimationState(AnimationState state)
-    {
-        animationState = state;
     }
 
     /// <summary>

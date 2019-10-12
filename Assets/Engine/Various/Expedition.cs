@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 public enum AnimationTrigger
 {
-    HeroTravelling,
+    KeepTravelling,
     BeginEncounter,
     EndEncounter,
     RequiredAnimationEnded,
@@ -34,9 +34,9 @@ public class Expedition
     LocationArea NewInterchangableArea => curLocation.areas.Find(area => area.interchangeable && area != curArea);
 
     bool AllAnimationsFinished =>
-        heroAM.animationState == AnimationState.Finished &&
-        objectAM.animationState == AnimationState.Finished &&
-        lootAM.animationState == AnimationState.Finished;
+        heroAM.animationFinished &&
+        objectAM.animationFinished &&
+        lootAM.animationFinished;
 
     public Expedition(Hero hero, LocationData destination)
     {
@@ -54,16 +54,16 @@ public class Expedition
     public void Update()
     {
         // skip logic if any animation is still in progress
-        if (!AllAnimationsFinished) return;
-
-        if (curEncounter != null)
+        if (AllAnimationsFinished)
         {
-            curEncounter.Update();
-        }
-        else
-        {
-            // continue travelling
-            EnterNextZone();
+            if (curEncounter != null)
+            {
+                curEncounter.Update();
+            }
+            else
+            {
+                EnterNextZone();
+            }
         }
     }
 
@@ -73,6 +73,8 @@ public class Expedition
 
         if (GraceTimePassed)
             NewEncounterCheck();
+        else
+            KeepTravelling();
     }
 
     //TODO: Implement log manager
@@ -93,7 +95,9 @@ public class Expedition
         if (++curZoneIndex >= curArea.zonesPositions.Capacity)
         {
             // UNDONE : temp unsafe solution (end overflow)
-            curArea = curArea.interchangeable ? NewInterchangableArea : curLocation.areas[curLocation.areas.IndexOf(curArea)+1];
+            curArea = curArea.interchangeable
+                ? NewInterchangableArea
+                : curLocation.areas[curLocation.areas.IndexOf(curArea) + 1];
             curZoneIndex = 0;
         }
     }
@@ -119,6 +123,12 @@ public class Expedition
                 return;
             }
         }
+    }
+
+    public void KeepTravelling()
+    {
+        Debug.Log("KeepTravelling Trigger");
+        StartAnimation(AnimationTrigger.KeepTravelling, heroAM);
     }
 
     // NOTE: move to ExpManager?
