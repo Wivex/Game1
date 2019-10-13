@@ -32,26 +32,19 @@ public enum StatTriggerType
 public class TacticTrigger
 {
     public TriggerType triggerType;
-
-    //[ShownIfEnumValue("triggerType", (int) TriggerType.StatValue, (int)TriggerType.AbilityReady)]
+    [HideIfNotEnumValues("triggerType", TriggerType.StatValue, TriggerType.AbilityReady)]
     public Target target;
-
-    //[ShownIfEnumValue("triggerType", (int) TriggerType.StatValue)]
+    [HideIfNotEnumValues("triggerType", TriggerType.StatValue)]
     public StatType stat;
-
-    //[ShownIfEnumValue("triggerType", (int) TriggerType.StatValue)]
+    [HideIfNotEnumValues("triggerType", TriggerType.StatValue)]
     public StatTriggerType statTriggerType;
-
-    //[ShownIfEnumValue("triggerType", (int) TriggerType.StatValue)]
+    [HideIfNotEnumValues("triggerType", TriggerType.StatValue)]
     public ComparisonType comparisonType;
-
-    //[ShownIfEnumValue("triggerType", (int) TriggerType.StatValue)]
+    [HideIfNotEnumValues("triggerType", TriggerType.StatValue)]
     public int statValue;
-
-    //[ShownIfEnumValue("triggerType", (int) TriggerType.AbilityReady)]
+    [HideIfNotEnumValues("triggerType", TriggerType.AbilityReady)]
     public AbilityData abilityData;
-
-    //[ShownIfEnumValue("triggerType", (int) TriggerType.FoeType)]
+    [HideIfNotEnumValues("triggerType", TriggerType.FoeType)]
     public UnitData unitData;
 
     public bool IsTriggered(Enemy enemy)

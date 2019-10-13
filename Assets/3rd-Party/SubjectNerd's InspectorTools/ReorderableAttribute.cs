@@ -22,7 +22,7 @@ SOFTWARE.*/
 
 using UnityEngine;
 
-public enum ReordableNamingType
+public enum ReorderableNamingType
 {
     None,
     ObjectName,
@@ -36,7 +36,7 @@ namespace SubjectNerd.Utilities
 	/// </summary>
 	public class ReorderableAttribute : PropertyAttribute
 	{
-	    public ReordableNamingType namingType;
+	    public ReorderableNamingType namingType;
         public string nestedPath;
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace SubjectNerd.Utilities
         /// </summary>
         /// <param name="namingType">Name array element in inspector based on selected option</param>
         /// <param name="nestedPath">x.y.z path to target</param>
-        public ReorderableAttribute(ReordableNamingType namingType = ReordableNamingType.None, string nestedPath = "")
+        public ReorderableAttribute(ReorderableNamingType namingType = ReorderableNamingType.None, string nestedPath = "")
 		{
 			this.namingType = namingType;
 		    this.nestedPath = nestedPath;

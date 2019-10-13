@@ -20,11 +20,11 @@ public class LocationArea
 [CreateAssetMenu(menuName = "Content/Data/Location Data")]
 public class LocationData : ScriptableObject
 {
-    [Reorderable(ReordableNamingType.ObjectName, "areaImage")]
+    [Reorderable(ReorderableNamingType.ObjectName, "areaImage")]
     public List<LocationArea> areas;
-    [Reorderable(ReordableNamingType.VariableValue, "type")]
+    [Reorderable(ReorderableNamingType.VariableValue, "type")]
     public List<EncounterChanceToOccur> encounters;
-    [Reorderable(ReordableNamingType.ObjectName, "enemyData")]
+    [Reorderable(ReorderableNamingType.ObjectName, "enemyData")]
     public List<EnemySpawnChance> enemies;
     public List<PoiSpawnChance> pointsOfInterest;
 

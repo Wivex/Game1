@@ -502,7 +502,7 @@ namespace SubjectNerd.Utilities
                                       SortableListData data)
         {
             // Custom element header
-            if (arrayAttr.namingType != ReordableNamingType.None)
+            if (arrayAttr.namingType != ReorderableNamingType.None)
             {
                 data.ElementHeaderCallback = i => $"{GetTitle(property, arrayAttr, i)}";
             }
@@ -517,11 +517,11 @@ namespace SubjectNerd.Utilities
             var elemProperty = property.serializedObject.FindProperty(elemPropertyPath);
             switch (arrayAttr.namingType)
             {
-                case ReordableNamingType.ObjectName:
+                case ReorderableNamingType.ObjectName:
                     return elemProperty.objectReferenceValue != null
                         ? elemProperty.objectReferenceValue.name
                         : "NO NAME";
-                case ReordableNamingType.VariableValue:
+                case ReorderableNamingType.VariableValue:
                     switch (elemProperty.propertyType)
                     {
                         case SerializedPropertyType.Enum:

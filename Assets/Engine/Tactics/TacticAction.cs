@@ -1,25 +1,21 @@
 ﻿using System;
 using System.Linq;
-using TMPro;
-using UnityEngine;
-using Object = System.Object;
 
 public enum ActionType
 {
-    Flee,
     Attack,
     UseAbility,
-    UseConsumable
+    UseConsumable,
+    Flee
 }
 
 [Serializable]
 public class TacticAction
 {
     public ActionType actionType;
-
-    //[ShownIfEnumValue("actionType", (int) ActionType.UseAbility)]
+    [HideIfNotEnumValues("actionType", ActionType.UseAbility)]
     public AbilityData abilityData;
-    //[ShownIfEnumValue("actionType", (int)ActionType.UseConsumable)]
+    [HideIfNotEnumValues("actionType", ActionType.UseConsumable)]
     public ConsumableData consumableData;
 
     public void DoAction(Combat combat)

@@ -85,7 +85,7 @@ public class Combat : Encounter
 
     public void DoActorAction()
     {
-        foreach (var tactic in actor.tacticsPreset.tactics)
+        foreach (var tactic in actor.tactics)
         {
             // skip tactic if not all triggers are triggered
             if (tactic.triggers.Exists(trigger => !trigger.IsTriggered(enemy)))

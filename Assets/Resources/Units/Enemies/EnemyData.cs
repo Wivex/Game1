@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using SubjectNerd.Utilities;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Content/Data/Enemy Data")]
 public class EnemyData : UnitData
 {
-    //[Reorderable(ReordableNamingType.ObjectName, "item")]
+    [Reorderable(ReorderableNamingType.ObjectName, "item")]
     public List<LootData> lootTable;
 
     // UNDONE: errors on create new SO

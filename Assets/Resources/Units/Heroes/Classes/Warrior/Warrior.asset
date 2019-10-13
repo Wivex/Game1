@@ -15,40 +15,25 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 3d96780b570c9334c85e44e87ff5d2a1, type: 3}
   stats:
     health: 1000
-    mana: 5
+    energy: 0
     attack: 10
-    speed: 10
     defence: 5
-    hazardResistance: 2
-    bleedResistance: 2
+    speed: 10
+    hResist: 0
+    bResist: 0
   abilities:
   - {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
-  tacticsPreset:
-    presetName: Warrior 1
-    tactics:
-    - triggers:
-      - triggerType: 5
-        target: 0
-        stat: 0
-        statTriggerType: 0
-        comparisonType: 0
-        statValue: 0
-        abilityData: {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
-        unitData: {fileID: 0}
-      action:
-        actionType: 2
-        abilityData: {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
-        consumableData: {fileID: 0}
-    - triggers:
-      - triggerType: 0
-        target: 0
-        stat: 0
-        statTriggerType: 0
-        comparisonType: 0
-        statValue: 0
-        abilityData: {fileID: 0}
-        unitData: {fileID: 0}
-      action:
-        actionType: 1
-        abilityData: {fileID: 0}
-        consumableData: {fileID: 0}
+  tactics:
+  - triggers:
+    - triggerType: 0
+      target: 0
+      stat: 0
+      statTriggerType: 0
+      comparisonType: 0
+      statValue: 0
+      abilityData: {fileID: 0}
+      unitData: {fileID: 0}
+    action:
+      actionType: 0
+      abilityData: {fileID: 0}
+      consumableData: {fileID: 0}

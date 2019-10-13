@@ -16,7 +16,7 @@ public abstract class Unit
     internal UnitStats curStats = new UnitStats();
     internal List<Ability> abilities = new List<Ability>();
     internal List<Effect> effects = new List<Effect>();
-    internal TacticsPreset tacticsPreset;
+    internal  List<Tactic> tactics;
 
     internal bool Dead => curStats.health <= 0;
 
@@ -31,7 +31,7 @@ public abstract class Unit
         foreach (var abilityData in data.abilities)
             abilities.Add(new Ability(abilityData));
 
-        tacticsPreset = data.tacticsPreset;
+        tactics = data.tactics;
     }
 
 

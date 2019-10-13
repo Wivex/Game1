@@ -21,21 +21,20 @@ MonoBehaviour:
     speed: 10
     hResist: 0
     bResist: 0
-  abilities: []
-  tacticsPreset:
-    presetName: 
-    tactics:
-    - triggers:
-      - triggerType: 0
-        target: 0
-        stat: 0
-        statTriggerType: 0
-        comparisonType: 0
-        statValue: 0
-        abilityData: {fileID: 0}
-        unitData: {fileID: 0}
-      action:
-        actionType: 1
-        abilityData: {fileID: 0}
-        consumableData: {fileID: 0}
+  abilities:
+  - {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
+  tactics:
+  - triggers:
+    - triggerType: 0
+      target: 0
+      stat: 0
+      statTriggerType: 0
+      comparisonType: 0
+      statValue: 0
+      abilityData: {fileID: 0}
+      unitData: {fileID: 0}
+    action:
+      actionType: 0
+      abilityData: {fileID: 0}
+      consumableData: {fileID: 0}
   lootTable: []
