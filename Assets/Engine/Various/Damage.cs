@@ -3,7 +3,7 @@
 public enum DamageType
 {
     Physical,
-    Hazardous,
+    Elemental,
     Bleeding
 }
 

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 public abstract class Unit
 {
@@ -38,7 +36,7 @@ public abstract class Unit
     #region OPERATIONS
 
     // NOTE: keep everything here, what can happen put of combat (events) 
-    public virtual int TakeDamage(Damage damage, params Transform[] UItargets)
+    public virtual int TakeDamage(Expedition exp, Damage damage)
     {
         var protectionValue = 0;
         switch (damage.type)
@@ -46,8 +44,8 @@ public abstract class Unit
             case DamageType.Physical:
                 protectionValue = curStats.defence;
                 break;
-            case DamageType.Hazardous:
-                protectionValue = curStats.hResist;
+            case DamageType.Elemental:
+                protectionValue = curStats.eResist;
                 break;
             case DamageType.Bleeding:
                 protectionValue = curStats.bResist;
@@ -57,7 +55,7 @@ public abstract class Unit
         var healthLoss = Math.Max(damage.amount - protectionValue, 0);
         curStats.health = Math.Max(curStats.health - healthLoss, 0);
 
-        UItargets.ForEach(UIelem => UIManager.i.CreateFloatingText(UIelem, -healthLoss));
+        UIManager.i.CreateFloatingDamageText(exp, this, healthLoss);
 
         return healthLoss;
     }

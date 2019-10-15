@@ -32,7 +32,17 @@ public class UIManager : MonoBehaviour
     public ExpeditionPanelDrawManager expPanelDrawManager;
     public MayorPanelDrawer mayorPanelDrawer;
     public TavernPanelDrawer tavernPanelDrawer;
+
     public FloatingText floatingTextPrefab;
+
+    public void CreateFloatingDamageText(Expedition exp, Unit target, int value)
+    {
+        var UItarget = target is Hero
+            ? expPanelDrawManager.expPreviewPanels[exp].heroIcon.transform
+            : expPanelDrawManager.expPreviewPanels[exp].objectIcon.transform;
+
+        CreateFloatingText(UItarget, -value);
+    }
 
     public void CreateFloatingText(Transform target, int value)
     {

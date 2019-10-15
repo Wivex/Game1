@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEditor;
-using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class Combat : Encounter
@@ -11,12 +8,13 @@ public class Combat : Encounter
     internal Enemy enemy;
     internal Unit actor, target;
 
+    // UNDONE
     List<ItemData> lootDrops;
 
     bool looting;
     int heroInitiative;
 
-    AnimatorManager GetAnimManager(Unit unit) => unit is Hero ? exp.heroAM : exp.objectAM;
+    internal AnimatorManager GetAnimManager(Unit unit) => unit is Hero ? exp.heroAM : exp.objectAM;
 
     public Combat(Expedition exp) : base(exp)
     {
@@ -60,8 +58,16 @@ public class Combat : Encounter
         else
             heroInitiative += hero.curStats.speed - enemy.curStats.speed;
 
-        actor = heroInitiative > 0 ? (Unit) hero : enemy;
-        target = heroInitiative > 0 ? (Unit) enemy : hero;
+        if (heroInitiative > 0 || heroInitiative == 0 && Random.value > 0.5f)
+        {
+            actor = hero;
+            target = enemy;
+        }
+        else
+        {
+            actor = enemy;
+            target = hero;
+        }
 
         DoActorTurn();
     }
@@ -77,6 +83,7 @@ public class Combat : Encounter
     {
         for (var i = actor.effects.Count - 1; i >= 0; i--)
             actor.effects[i].UpdateEffect();
+        // extra death check if died from effect
         if (actor.Dead)
         {
             actor.Kill();
@@ -91,7 +98,6 @@ public class Combat : Encounter
             if (tactic.triggers.Exists(trigger => !trigger.IsTriggered(enemy)))
                 continue;
             tactic.action.DoAction(this);
-            exp.StartAnimation(AnimationTrigger.Attack, GetAnimManager(actor));
             break;
         }
     }

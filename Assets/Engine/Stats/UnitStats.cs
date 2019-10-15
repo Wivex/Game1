@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
 
 public enum EnergyType
 {
@@ -29,6 +27,6 @@ public class UnitStats
         attack,
         defence,
         speed,
-        hResist,
+        eResist,
         bResist;
 }
