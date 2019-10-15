@@ -51,7 +51,10 @@ public class TacticAction
     {
         combat.exp.StartAnimation(AnimationTrigger.Attack, combat.GetAnimManager(combat.actor));
 
-        var damAmount = combat.target.TakeDamage(combat.exp, new Damage(DamageType.Physical, combat.actor.curStats.attack));
+        var damTaken = combat.target.TakeDamage(combat.exp, new Damage(DamageType.Physical, combat.actor.curStats.attack));
+
+        UIManager.i.CreateEffectAnimation(combat.exp, combat.target, UIManager.i.meleeHitPrefab);
+
         //combat.exp.UpdateLog($"{combat.actor} attacks {combat.target} for {dam} {damage.type} damage.");
     }
 

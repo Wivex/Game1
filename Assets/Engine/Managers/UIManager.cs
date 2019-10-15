@@ -33,18 +33,46 @@ public class UIManager : MonoBehaviour
     public MayorPanelDrawer mayorPanelDrawer;
     public TavernPanelDrawer tavernPanelDrawer;
 
-    public FloatingText floatingTextPrefab;
+    public static int f = 0;
 
-    public void CreateFloatingDamageText(Expedition exp, Unit target, int value)
+    internal MonoBehaviour floatingTextPrefab, meleeHitPrefab;
+
+    Transform GetUnitUITarget(Expedition exp, Unit target) => target is Hero
+        ? expPanelDrawManager.expPreviewPanels[exp].heroIcon.transform
+        : expPanelDrawManager.expPreviewPanels[exp].objectIcon.transform;
+
+    // initializing prefabs on Unity editor refresh
+    void OnEnable()
     {
-        var UItarget = target is Hero
-            ? expPanelDrawManager.expPreviewPanels[exp].heroIcon.transform
-            : expPanelDrawManager.expPreviewPanels[exp].objectIcon.transform;
-
-        CreateFloatingText(UItarget, -value);
+        floatingTextPrefab = Resources.Load<MonoBehaviour>("Effects/FloatingText/FloatingText");
+        meleeHitPrefab = Resources.Load<MonoBehaviour>("Effects/MeleeHit/MeleeHit");
     }
 
-    public void CreateFloatingText(Transform target, int value)
+    internal void CreateFloatingTextForUnit(Expedition exp, Unit target, int value)
+    {
+        CreateFloatingText(GetUnitUITarget(exp, target), value);
+    }
+
+    internal void CreateEffectAnimation(Expedition exp, Unit target, MonoBehaviour prefab)
+    {
+        var effect = Instantiate(prefab, GetUnitUITarget(exp, target));
+
+        // UNDONE: fine until not fine
+        if (target is Enemy)
+            MirrorEffectAxisX(effect);
+    }
+
+    void MirrorEffectAxisX(MonoBehaviour obj)
+    {
+        // invert x and y offsets
+        obj.transform.localPosition =
+            new Vector3(-obj.transform.localPosition.x, -obj.transform.localPosition.y, obj.transform.localPosition.z);
+
+        // apply required rotation
+        obj.transform.eulerAngles += new Vector3(0, 180, 0);
+    }
+
+    void CreateFloatingText(Transform target, int value)
     {
         var floatingText = Instantiate(floatingTextPrefab, target);
         var textObject = floatingText.GetComponent<TextMeshProUGUI>();

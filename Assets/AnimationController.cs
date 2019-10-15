@@ -5,7 +5,9 @@ using UnityEngine;
 public class AnimationController : StateMachineBehaviour
 {
     [Tooltip("Determines what animation events to monitor")]
-    public bool monitorAnimationStart = true, monitorAnimationEnd = true;
+    public bool monitorAnimationStart, monitorAnimationEnd;
+    [Tooltip("Destroys object on animation end")]
+    public bool destroyObjectOnEnd;
 
     AnimatorManager AM;
 
@@ -26,6 +28,11 @@ public class AnimationController : StateMachineBehaviour
         {
             TryCheckAM(animator);
             AM.animationFinished = true;
+        }
+
+        if (destroyObjectOnEnd)
+        {
+            Destroy(animator.gameObject);
         }
     }
 

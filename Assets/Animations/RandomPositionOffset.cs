@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+// UNDONE: make it AnimationBehaviour
 public class RandomPositionOffset : MonoBehaviour
 {
     Vector3 targetPos;

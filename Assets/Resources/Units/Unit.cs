@@ -55,7 +55,8 @@ public abstract class Unit
         var healthLoss = Math.Max(damage.amount - protectionValue, 0);
         curStats.health = Math.Max(curStats.health - healthLoss, 0);
 
-        UIManager.i.CreateFloatingDamageText(exp, this, healthLoss);
+        // invoked here, cause can take damage outside of combat
+        UIManager.i.CreateFloatingTextForUnit(exp, this, -healthLoss);
 
         return healthLoss;
     }
@@ -65,7 +66,7 @@ public abstract class Unit
         var value = Mathf.Min(curStats.health + amount, baseStats.health);
         curStats.health = value;
 
-        UItargets.ForEach(UIelem => UIManager.i.CreateFloatingText(UIelem, value));
+        //UItargets.ForEach(UIelem => UIManager.i.CreateFloatingText(UIelem, value));
 
         return value;
     }

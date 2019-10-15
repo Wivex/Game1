@@ -276,8 +276,6 @@
     <Compile Include="Assets\AnimationController.cs" />
     <Compile Include="Assets\Animations\AnimatorManager.cs" />
     <Compile Include="Assets\Animations\RandomPositionOffset.cs" />
-    <Compile Include="Assets\Engine\Effects\Effect.cs" />
-    <Compile Include="Assets\Engine\Effects\Floating Text\FloatingText.cs" />
     <Compile Include="Assets\Engine\Encounters\Combat.cs" />
     <Compile Include="Assets\Engine\Encounters\Encounter.cs" />
     <Compile Include="Assets\Engine\Managers\CanvasManager.cs" />
@@ -304,6 +302,7 @@
     <Compile Include="Assets\Engine\Various\ReferenceTypes.cs" />
     <Compile Include="Assets\Resources\Abilities\Ability.cs" />
     <Compile Include="Assets\Resources\Abilities\AbilityData.cs" />
+    <Compile Include="Assets\Resources\Effects\Effect.cs" />
     <Compile Include="Assets\Resources\Items\Consumables\Consumable.cs" />
     <Compile Include="Assets\Resources\Items\Consumables\ConsumableData.cs" />
     <Compile Include="Assets\Resources\Items\Equipment\Equipment.cs" />
