@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 3d96780b570c9334c85e44e87ff5d2a1, type: 3}
   stats:
-    health: 1000
+    health: 100
     energy: 0
     attack: 10
     defence: 5
     speed: 10
-    hResist: 0
+    eResist: 0
     bResist: 0
   abilities:
   - {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}

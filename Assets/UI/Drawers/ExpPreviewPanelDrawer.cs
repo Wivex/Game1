@@ -12,7 +12,7 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler, ICanva
     
     public List<Sprite> goldSprites;
     public Transform consumablesPanel;
-    public Slider healthBar, manaBar, initBar, expBar;
+    public FillingBar heroHpBar, enemyHpBar;
     public Image heroImage, curGoldImage, heroIcon, objectIcon, interactionIcon, enemyStatusIcon, locationImage, lootIcon;
 
     public TextMeshProUGUI heroName,
@@ -105,18 +105,8 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler, ICanva
 
     void UpdateStatBars()
     {
-        //healthBar.value = (float) hero.baseStats[(int) StatType.Health].curValue /
-        //                  (hero.baseStats[(int) StatType.Health] as StatChanging).maxValue;
-        //health.text =
-        //    $"{hero.baseStats[(int) StatType.Health].curValue} / {(hero.baseStats[(int) StatType.Health] as StatChanging).maxValue}";
-        //manaBar.value = (float) hero.baseStats[(int) StatType.Energy].curValue /
-        //                (hero.baseStats[(int) StatType.Energy] as StatChanging).maxValue;
-        //mana.text =
-        //    $"{hero.baseStats[(int) StatType.Energy].curValue} / {(hero.baseStats[(int) StatType.Energy] as StatChanging).maxValue}";
-        //initBar.value = hero.curInitiative / ReqInitiative;
-        //initiative.text = $"{(int) hero.curInitiative} / {ReqInitiative}";
-        //expBar.value = (float) hero.experience / hero.classData.expPerLevel[hero.level];
-        //experience.text = $"{hero.experience} / {hero.classData.expPerLevel[hero.level]}";
+        var hpPrecent = (float) exp.hero.curStats.health / exp.hero.baseStats.health;
+        heroHpBar.TryUpdateValue(hpPrecent);
     }
 
     void UpdateZone()

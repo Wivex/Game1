@@ -20,6 +20,12 @@ public abstract class Unit
 
     internal void InitData(UnitData data)
     {
+        baseStats.health = data.stats.health;
+        baseStats.energy = data.stats.energy;
+        baseStats.attack = data.stats.attack;
+        baseStats.defence = data.stats.defence;
+        baseStats.speed = data.stats.speed;
+
         curStats.health = data.stats.health;
         curStats.energy = data.stats.energy;
         curStats.attack = data.stats.attack;

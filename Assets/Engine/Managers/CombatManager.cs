@@ -28,8 +28,5 @@ public class CombatManager : MonoBehaviour
 
     #region SET IN INSPECTOR
 
-    [Tooltip("Global initiative accumulation speed")]
-    public float combatSpeed;
-
     #endregion
 }
