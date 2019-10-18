@@ -275,7 +275,6 @@
     <Compile Include="Assets\3rd-Party\unity-ui-extensions\Scripts\VR Extensions\VRInputModule.cs" />
     <Compile Include="Assets\AnimationController.cs" />
     <Compile Include="Assets\Animations\AnimatorManager.cs" />
-    <Compile Include="Assets\Animations\RandomPositionOffset.cs" />
     <Compile Include="Assets\Engine\Encounters\Combat.cs" />
     <Compile Include="Assets\Engine\Encounters\Encounter.cs" />
     <Compile Include="Assets\Engine\Managers\CanvasManager.cs" />
@@ -303,6 +302,7 @@
     <Compile Include="Assets\Resources\Abilities\Ability.cs" />
     <Compile Include="Assets\Resources\Abilities\AbilityData.cs" />
     <Compile Include="Assets\Resources\Effects\Effect.cs" />
+    <Compile Include="Assets\Resources\Effects\FloatingText\FloatingTextHorisontalDrift.cs" />
     <Compile Include="Assets\Resources\Items\Consumables\Consumable.cs" />
     <Compile Include="Assets\Resources\Items\Consumables\ConsumableData.cs" />
     <Compile Include="Assets\Resources\Items\Equipment\Equipment.cs" />

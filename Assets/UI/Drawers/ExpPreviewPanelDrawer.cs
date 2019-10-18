@@ -12,16 +12,12 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler, ICanva
     
     public List<Sprite> goldSprites;
     public Transform consumablesPanel;
-    public FillingBar heroHpBar, enemyHpBar;
+    public FillingBar heroHpBar, heroEnergyBar, enemyHpBar, enemyEnergyBar;
     public Image heroImage, curGoldImage, heroIcon, objectIcon, interactionIcon, enemyStatusIcon, locationImage, lootIcon;
 
     public TextMeshProUGUI heroName,
         level,
-        gold,
-        experience,
-        health,
-        mana,
-        initiative;
+        gold;
 
     #endregion
 
@@ -105,8 +101,14 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler, ICanva
 
     void UpdateStatBars()
     {
-        var hpPrecent = (float) exp.hero.curStats.health / exp.hero.baseStats.health;
-        heroHpBar.TryUpdateValue(hpPrecent);
+        heroHpBar.TryUpdateValue((float)exp.hero.curStats.health / exp.hero.baseStats.health);
+        heroEnergyBar.TryUpdateValue((float)exp.hero.curStats.energy / exp.hero.baseStats.energy);
+
+        if (exp.curEncounter is Combat combat)
+        {
+            enemyHpBar.TryUpdateValue((float)combat.enemy.curStats.health / combat.enemy.baseStats.health);
+            enemyEnergyBar.TryUpdateValue((float)combat.enemy.curStats.energy / combat.enemy.baseStats.energy);
+        }
     }
 
     void UpdateZone()
