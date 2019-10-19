@@ -43,10 +43,10 @@ MonoBehaviour:
     fixedAmount: 1
     minAmount: 0
     maxAmount: 0
-    item: {fileID: 11400000, guid: 409d6967efdd335409c309b558c3d431, type: 2}
-  - dropChance: 0.5
+    item: {fileID: 11400000, guid: 6ca6cfd456c6923479238fd5460fd86a, type: 2}
+  - dropChance: 1
     lootAmountType: 0
     fixedAmount: 1
     minAmount: 0
     maxAmount: 0
-    item: {fileID: 11400000, guid: 6ca6cfd456c6923479238fd5460fd86a, type: 2}
+    item: {fileID: 11400000, guid: 409d6967efdd335409c309b558c3d431, type: 2}

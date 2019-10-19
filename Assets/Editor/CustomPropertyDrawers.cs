@@ -2,26 +2,26 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomPropertyDrawer(typeof(HideIfNotAttribute))]
-public class HideIfNotPropertyDrawer : PropertyDrawer
+[CustomPropertyDrawer(typeof(HideIfNotBoolAttribute))]
+public class HideIfNotBoolPropertyDrawer : PropertyDrawer
 {
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-        if (IsAllowed((HideIfNotAttribute)attribute, property))
+        if (IsAllowed((HideIfNotBoolAttribute)attribute, property))
             EditorGUI.PropertyField(position, property, label, true);
     }
 
-    public override float GetPropertyHeight(SerializedProperty property, GUIContent label) => IsAllowed((HideIfNotAttribute) attribute, property)
+    public override float GetPropertyHeight(SerializedProperty property, GUIContent label) => IsAllowed((HideIfNotBoolAttribute) attribute, property)
         ? EditorGUI.GetPropertyHeight(property, label)
         : -EditorGUIUtility.standardVerticalSpacing;
 
-    protected bool IsAllowed(HideIfNotAttribute attr, SerializedProperty property)
+    protected bool IsAllowed(HideIfNotBoolAttribute attr, SerializedProperty property)
     {
         //Get the full relative property path of the sourcefield so we can have nested hiding
         //returns the property path of the property we want to apply the attribute to
         var propertyPath = property.propertyPath;
         //changes the path to the conditional source property path
-        var conditionPath = propertyPath.Replace(property.name, attr.condPropertyName);
+        var conditionPath = propertyPath.Replace(property.name, attr.boolPropertyName);
         var sourcePropertyValue = property.serializedObject.FindProperty(conditionPath);
 
         return IsSupportedPropertyType(sourcePropertyValue);
@@ -104,12 +104,12 @@ public class DisabledDrawer : PropertyDrawer
         EditorGUI.GetPropertyHeight(property, label, true);
 }
 
-[CustomPropertyDrawer(typeof(DisabledIfNotAttribute))]
-public class DisabledIfNotPropertyDrawer : HideIfNotPropertyDrawer
+[CustomPropertyDrawer(typeof(DisabledIfNotBoolAttribute))]
+public class DisabledIfNotBoolPropertyDrawer : HideIfNotBoolPropertyDrawer
 {
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-        GUI.enabled = IsAllowed((DisabledIfNotAttribute) attribute, property);
+        GUI.enabled = IsAllowed((DisabledIfNotBoolAttribute) attribute, property);
         EditorGUI.PropertyField(position, property, label, true);
         GUI.enabled = true;
     }

@@ -4,14 +4,14 @@ using System.Linq;
 using UnityEngine;
 
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Class | AttributeTargets.Struct)]
-public class HideIfNotAttribute : PropertyAttribute
+public class HideIfNotBoolAttribute : PropertyAttribute
 {
     //The name of the bool field that will be in control
-    public string condPropertyName;
+    public string boolPropertyName;
 
-    public HideIfNotAttribute(string condPropertyName)
+    public HideIfNotBoolAttribute(string boolPropertyName)
     {
-        this.condPropertyName = condPropertyName;
+        this.boolPropertyName = boolPropertyName;
     }
 }
 
@@ -34,7 +34,7 @@ public class HideIfNotEnumValuesAttribute : PropertyAttribute
 public class DisabledAttribute : PropertyAttribute { }
 
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Class | AttributeTargets.Struct)]
-public class DisabledIfNotAttribute : HideIfNotAttribute
+public class DisabledIfNotBoolAttribute : HideIfNotBoolAttribute
 {
-    public DisabledIfNotAttribute(string condPropertyName) : base(condPropertyName) { }
+    public DisabledIfNotBoolAttribute(string boolPropertyName) : base(boolPropertyName) { }
 }

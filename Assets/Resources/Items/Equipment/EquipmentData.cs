@@ -9,7 +9,7 @@ public class EquipmentData : ItemData
 
     public bool classRestricted;
 
-    [HideIfNot("classRestricted")]
+    [HideIfNotBool("classRestricted")]
     public ClassType reqClassType;
 
     public StatModifier[] statModifiers;

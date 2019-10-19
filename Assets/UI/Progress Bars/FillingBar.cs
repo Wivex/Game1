@@ -19,6 +19,16 @@ public class FillingBar : MonoBehaviour
         bar = GetComponent<Slider>();
     }
 
+    /// <summary>
+    /// Used to set current values directly to begin with
+    /// </summary>
+    internal void SetInitialValue(float newValue)
+    {
+        targetValue = newValue;
+        bar.value = targetValue;
+        backFiller.fillAmount = newValue;
+    }
+
     internal void TryUpdateValue(float newValue)
     {
         // if new value differs from current one

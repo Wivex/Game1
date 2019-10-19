@@ -273,10 +273,11 @@
     <Compile Include="Assets\3rd-Party\unity-ui-extensions\Scripts\Utilities\UISelectableExtension.cs" />
     <Compile Include="Assets\3rd-Party\unity-ui-extensions\Scripts\VR Extensions\VRCursor.cs" />
     <Compile Include="Assets\3rd-Party\unity-ui-extensions\Scripts\VR Extensions\VRInputModule.cs" />
-    <Compile Include="Assets\AnimationController.cs" />
-    <Compile Include="Assets\Animations\AnimatorManager.cs" />
+    <Compile Include="Assets\Animations\AnimationStateManager.cs" />
+    <Compile Include="Assets\Animations\UpdateLootIcon.cs" />
     <Compile Include="Assets\Engine\Encounters\Combat.cs" />
     <Compile Include="Assets\Engine\Encounters\Encounter.cs" />
+    <Compile Include="Assets\Engine\Managers\AnimatorManager.cs" />
     <Compile Include="Assets\Engine\Managers\CanvasManager.cs" />
     <Compile Include="Assets\Engine\Managers\CombatManager.cs" />
     <Compile Include="Assets\Engine\Managers\ExpeditionsManager.cs" />
@@ -330,7 +331,7 @@
     <Compile Include="Assets\UI\Drawers\TavernPanelDrawer.cs" />
     <Compile Include="Assets\UI\Drawers\UnitPanelDrawer.cs" />
     <Compile Include="Assets\UI\Progress Bars\FillingBar.cs" />
-    <Compile Include="Assets\UpdateLootIcon.cs" />
+    <Compile Include="Assets\UI\Progress Bars\SetInitialBarsValues.cs" />
     <None Include="Assets\3rd-Party\unity-ui-extensions\Resources\Shaders\UIAdditive.shader" />
     <None Include="Assets\3rd-Party\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\3rd-Party\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />

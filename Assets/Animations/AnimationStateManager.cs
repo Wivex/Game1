@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimationController : StateMachineBehaviour
+public class AnimationStateManager : StateMachineBehaviour
 {
     [Tooltip("Determines what animation events to monitor")]
     public bool monitorAnimationStart, monitorAnimationEnd;
     [Tooltip("Destroys object on animation end")]
     public bool destroyObjectOnEnd;
+    [Tooltip("Resets transition trigger on animation start")]
+    public bool resetTriggerOnStart;
+    [HideIfNotBool("resetTriggerOnStart")]
+    public AnimationTrigger triggerValue;
 
     AnimatorManager AM;
 
@@ -18,6 +22,12 @@ public class AnimationController : StateMachineBehaviour
         {
             TryCheckAM(animator);
             AM.animationFinished = false;
+        }
+
+        if (resetTriggerOnStart)
+        {
+            TryCheckAM(animator);
+            AM.ResetTrigger(triggerValue);
         }
     }
 

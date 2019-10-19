@@ -34,6 +34,11 @@ public class AnimatorManager : MonoBehaviour
         StartCoroutine(PauseCour(sec));
     }
 
+    public void ResetTrigger(AnimationTrigger value)
+    {
+        animator.ResetTrigger(value.ToString());
+    }
+
     IEnumerator PauseCour(float sec)
     {
         animator.enabled = false;
