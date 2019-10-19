@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Random = UnityEngine.Random;
 
 public class Combat : Encounter
@@ -7,14 +8,15 @@ public class Combat : Encounter
     internal Hero hero;
     internal Enemy enemy;
     internal Unit actor, target;
+    internal Item curLoot;
 
     // UNDONE
-    List<ItemData> lootDrops;
+    List<Item> lootDrops;
 
     bool looting;
     int heroInitiative;
 
-    internal AnimatorManager GetAnimManager(Unit unit) => unit is Hero ? exp.heroAM : exp.objectAM;
+    internal AnimatorManager GetAnimManager(Unit unit) => unit is Hero ? exp.heroAM : exp.enemyAM;
 
     public Combat(Expedition exp) : base(exp)
     {
@@ -29,24 +31,53 @@ public class Combat : Encounter
 
     internal override void Update()
     {
+        if (looting)
+            NextItem();
+        else
+            NextTurn();
+    }
+
+    void TryEndCombat()
+    {
+        if (hero.Dead || enemy.Dead)
+            EndCombat();
+    }
+
+    void EndCombat()
+    {
+        // loose condition
         if (hero.Dead)
         {
-            hero.Kill();
+            //UNDONE
         }
-        else if (enemy.Dead)
+        // win condition
+        else
         {
-            enemy.Kill();
+            SpawnLoot();
+            looting = true;
+        }
+    }
+
+    void NextItem()
+    {
+        if (lootDrops.Any())
+        {
+            curLoot = lootDrops.ExtractFirstElement();
+            hero.backpack.Add(curLoot);
+            exp.StartAnimation(AnimationTrigger.StartTransferLoot, exp.lootAM, exp.interactionAM, exp.locationAM);
         }
         else
         {
-            NextTurn();
+            looting = false;
+            exp.StartAnimation(AnimationTrigger.EndEncounter, exp.heroAM, exp.enemyAM);
+            exp.curEncounter = null;
         }
     }
 
     /// <summary>
     /// Determines turn order based on hero vs enemy speed difference. Substitution leftover accumulates, so that multiple turns of the same unit can happen based on SPD advantage.
     /// </summary>
-    public void NextTurn()
+    void NextTurn()
     {
         // extra hero turn check
         if (heroInitiative > hero.curStats.speed)
@@ -72,25 +103,24 @@ public class Combat : Encounter
         DoActorTurn();
     }
 
-    public void DoActorTurn()
+    void DoActorTurn()
     {
         UpdateActorEffects();
+        // can die from DoT
+        TryEndCombat();
         DoActorAction();
+        // can die from action
+        TryEndCombat();
         UpdateActorCooldowns();
     }
 
-    public void UpdateActorEffects()
+    void UpdateActorEffects()
     {
         for (var i = actor.effects.Count - 1; i >= 0; i--)
             actor.effects[i].UpdateEffect();
-        // extra death check if died from effect
-        if (actor.Dead)
-        {
-            actor.Kill();
-        }
     }
 
-    public void DoActorAction()
+    void DoActorAction()
     {
         foreach (var tactic in actor.tactics)
         {
@@ -102,7 +132,7 @@ public class Combat : Encounter
         }
     }
 
-    public void UpdateActorCooldowns()
+    void UpdateActorCooldowns()
     {
         foreach (var ability in actor.abilities)
         {
@@ -111,20 +141,26 @@ public class Combat : Encounter
         }
     }
 
-    public void ResetAllCooldowns()
+    void ResetAllCooldowns()
     {
         foreach (var ability in hero.abilities) ability.curCooldown = 0;
         foreach (var ability in enemy.abilities) ability.curCooldown = 0;
     }
 
-    public void SpawnLoot()
+    //UNDONE
+    void SpawnLoot()
     {
-        lootDrops = new List<ItemData>();
+        lootDrops = new List<Item>();
         foreach (var loot in enemy.enemyData.lootTable)
         {
             // TODO: add stack count implementation
             if (Random.value < loot.dropChance)
-                lootDrops.Add(loot.item);
+            {
+                if (loot.item is EquipmentData equip)
+                    lootDrops.Add(new Equipment(equip));
+                else if (loot.item is ConsumableData consume)
+                    lootDrops.Add(new Consumable(consume));
+            }
         }
     }
 

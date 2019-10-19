@@ -11,9 +11,9 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler, ICanva
     #region SET IN INSPECTOR
     
     public List<Sprite> goldSprites;
-    public Transform consumablesPanel;
+    public Transform consumablesPanel, locationPanel;
     public FillingBar heroHpBar, heroEnergyBar, enemyHpBar, enemyEnergyBar;
-    public Image heroImage, curGoldImage, heroIcon, objectIcon, interactionIcon, enemyStatusIcon, locationImage, lootIcon;
+    public Image heroImage, curGoldImage, heroIcon, objectIcon, interactionIcon, enemyStatusIcon, heroStatusIcon, locationImage, lootIcon;
 
     public TextMeshProUGUI heroName,
         level,
@@ -21,7 +21,8 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler, ICanva
 
     #endregion
 
-    Expedition exp;
+    internal Expedition exp;
+
     Image[] consumableSlots;
     TextMeshProUGUI[] consumablesCharges;
 
@@ -39,9 +40,10 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler, ICanva
         this.exp = exp;
 
         exp.heroAM = heroIcon.GetComponent<AnimatorManager>();
-        exp.objectAM = objectIcon.GetComponent<AnimatorManager>();
+        exp.enemyAM = objectIcon.GetComponent<AnimatorManager>();
         exp.interactionAM = interactionIcon.GetComponent<AnimatorManager>();
         exp.lootAM = lootIcon.GetComponent<AnimatorManager>();
+        exp.locationAM = locationPanel.GetComponent<AnimatorManager>();
     }
 
     //update UI panels
@@ -53,8 +55,8 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler, ICanva
         RedrawGold();
         //    UpdateConsumables();
         UpdateZone();
-
         UpdateStatBars();
+        UpdateUnitStatuses();
     }
 
     // TODO: rename to Redraw
@@ -101,13 +103,22 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler, ICanva
 
     void UpdateStatBars()
     {
-        heroHpBar.TryUpdateValue((float)exp.hero.curStats.health / exp.hero.baseStats.health);
-        heroEnergyBar.TryUpdateValue((float)exp.hero.curStats.energy / exp.hero.baseStats.energy);
-
         if (exp.curEncounter is Combat combat)
         {
+            heroHpBar.TryUpdateValue((float)exp.hero.curStats.health / exp.hero.baseStats.health);
+            heroEnergyBar.TryUpdateValue((float)exp.hero.curStats.energy / exp.hero.baseStats.energy);
             enemyHpBar.TryUpdateValue((float)combat.enemy.curStats.health / combat.enemy.baseStats.health);
             enemyEnergyBar.TryUpdateValue((float)combat.enemy.curStats.energy / combat.enemy.baseStats.energy);
+        }
+    }
+
+    //UNDONE:
+    void UpdateUnitStatuses()
+    {
+        if (exp.curEncounter is Combat combat)
+        {
+            heroStatusIcon.gameObject.SetActive(combat.hero.Dead);
+            enemyStatusIcon.gameObject.SetActive(combat.enemy.Dead);
         }
     }
 

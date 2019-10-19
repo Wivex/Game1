@@ -12,7 +12,17 @@ public static class Extensions
     /// </summary>
     public static void ForEach<T>(this IEnumerable<T> source, Action<T> action)
     {
-        foreach (T element in source) action(element);
+        foreach (var element in source) action(element);
+    }
+
+    /// <summary>
+    /// Returns first element of collection and removes it from it
+    /// </summary>
+    public static T ExtractFirstElement<T>(this ICollection<T> source)
+    {
+        var elem = source.FirstOrDefault();
+        source.Remove(elem);
+        return elem;
     }
 
     /// <summary>

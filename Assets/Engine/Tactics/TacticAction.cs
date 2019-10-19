@@ -44,7 +44,7 @@ public class TacticAction
 
     public void Flee(Combat combat)
     {
-        //LogEvent(combat, $"{combat.actor.name} flees from combat.");
+        //combat.EndCombat();
     }
 
     public void Attack(Combat combat)

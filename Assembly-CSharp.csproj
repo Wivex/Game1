@@ -330,6 +330,7 @@
     <Compile Include="Assets\UI\Drawers\TavernPanelDrawer.cs" />
     <Compile Include="Assets\UI\Drawers\UnitPanelDrawer.cs" />
     <Compile Include="Assets\UI\Progress Bars\FillingBar.cs" />
+    <Compile Include="Assets\UpdateLootIcon.cs" />
     <None Include="Assets\3rd-Party\unity-ui-extensions\Resources\Shaders\UIAdditive.shader" />
     <None Include="Assets\3rd-Party\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\3rd-Party\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />

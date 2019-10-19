@@ -16,7 +16,7 @@ MonoBehaviour:
   stats:
     health: 100
     energy: 0
-    attack: 10
+    attack: 50
     defence: 5
     speed: 10
     eResist: 0

@@ -87,7 +87,7 @@ MonoBehaviour:
     - {x: -450, y: 0}
     - {x: -900, y: 0}
   encounters:
-  - chance: 0.3
+  - chance: 1
     type: 1
     icon: {fileID: 0}
   enemies:

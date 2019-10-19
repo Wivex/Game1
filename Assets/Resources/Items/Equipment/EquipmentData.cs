@@ -23,5 +23,5 @@ public class EquipmentData : ItemData
     {
         //foreach (var mod in statModifiers)
             //hero.baseStats[(int) mod.stat].RemoveAllModsFromSource(this);
-    }
+    }   
 }

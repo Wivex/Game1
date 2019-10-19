@@ -87,7 +87,7 @@ public class HeroPanelDrawer : UnitPanelDrawer
             }
             else
             {
-                backpackSlots[i].sprite = hero.backpack[i].icon;
+                backpackSlots[i].sprite = hero.backpack[i].Data.icon;
                 backpackSlots[i].color = Color.white;
             }
         }

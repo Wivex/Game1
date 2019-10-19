@@ -4,5 +4,10 @@ using UnityEditor;
 
 public abstract class Item
 {
-    public int stackSize;
+    internal abstract ItemData Data
+    {
+        get;
+    }
+
+    internal int stackSize;
 }

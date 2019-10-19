@@ -33,8 +33,6 @@ public class UIManager : MonoBehaviour
     public MayorPanelDrawer mayorPanelDrawer;
     public TavernPanelDrawer tavernPanelDrawer;
 
-    public static int f = 0;
-
     internal MonoBehaviour floatingTextPrefab, meleeHitPrefab;
 
     Transform GetUnitUITarget(Expedition exp, Unit target) => target is Hero
@@ -88,5 +86,15 @@ public class UIManager : MonoBehaviour
             textObject.text = $"{value}";
             textObject.color = Color.red;
         }
+    }
+
+    internal void SetActiveMultiple(bool value, params GameObject[] objects)
+    {
+        objects.ForEach(obj => obj.SetActive(value));
+    }
+
+    internal void SetActiveMultiple(bool value, params MonoBehaviour[] objects)
+    {
+        objects.ForEach(obj => obj.gameObject.SetActive(value));
     }
 }

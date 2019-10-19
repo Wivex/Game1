@@ -6,12 +6,15 @@ using UnityEngine;
 [Serializable]
 public class Consumable : Item
 {
-    public ConsumableData consumableData;
-    public int curCharges;
+    internal ConsumableData consumableData;
+    internal int curCharges;
+
+    internal override ItemData Data => consumableData;
 
     public Consumable(ConsumableData consumableData)
     {
         this.consumableData = consumableData;
         curCharges = consumableData.charges;
     }
+
 }

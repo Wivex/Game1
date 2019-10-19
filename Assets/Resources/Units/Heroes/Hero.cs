@@ -33,7 +33,7 @@ public class Hero : Unit
     internal int level, gold, experience;
     internal Sprite portrait;
     internal EquipmentSheet equipment = new EquipmentSheet();
-    internal List<ItemData> backpack = new List<ItemData>();
+    internal List<Item> backpack = new List<Item>();
     internal List<Consumable> consumables = new List<Consumable>();
 
     // USE: TownManager.i.CreateNewHero()

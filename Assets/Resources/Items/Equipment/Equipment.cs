@@ -6,11 +6,13 @@ using UnityEngine;
 [Serializable]
 public class Equipment : Item
 {
-    public EquipmentData equipmentDataData;
+    public EquipmentData equipmentData;
 
-    public Equipment(EquipmentData equipmentDataData)
+    internal override ItemData Data => equipmentData;
+
+    public Equipment(EquipmentData equipmentData)
     {
-        this.equipmentDataData = equipmentDataData;
+        this.equipmentData = equipmentData;
         stackSize = 1;
     }
 }

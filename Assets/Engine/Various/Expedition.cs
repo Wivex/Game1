@@ -8,9 +8,7 @@ public enum AnimationTrigger
     KeepTravelling,
     BeginEncounter,
     EndEncounter,
-    RequiredAnimationEnded,
     StartTransferLoot,
-    StopTransferLoot,
     Attack,
     TakeDamage
 }
@@ -22,20 +20,20 @@ public class Expedition
     internal LocationArea curArea;
     internal int curZoneIndex;
     internal Encounter curEncounter;
-    internal AnimatorManager heroAM, objectAM, interactionAM, lootAM;
+    internal AnimatorManager heroAM, enemyAM, interactionAM, lootAM, locationAM;
 
     DateTime lastSituationRealTime;
     float lastSituationGameTime;
 
     public bool GraceTimePassed =>
-        (DateTime.Now - lastSituationRealTime).TotalSeconds > ExpeditionsManager.i.minGracePeriod &&
+        //(DateTime.Now - lastSituationRealTime).TotalSeconds > ExpeditionsManager.i.minGracePeriod &&
         Time.time - lastSituationGameTime > ExpeditionsManager.i.minGracePeriod;
 
     LocationArea NewInterchangableArea => curLocation.areas.Find(area => area.interchangeable && area != curArea);
 
     bool AllAnimationsFinished =>
         heroAM.animationFinished &&
-        objectAM.animationFinished &&
+        enemyAM.animationFinished &&
         lootAM.animationFinished;
 
     public Expedition(Hero hero, LocationData destination)
@@ -57,24 +55,16 @@ public class Expedition
         if (AllAnimationsFinished)
         {
             if (curEncounter != null)
-            {
                 curEncounter.Update();
-            }
             else
-            {
                 EnterNextZone();
-            }
         }
     }
 
     public void EnterNextZone()
     {
         ChangeZoneImage();
-
-        if (GraceTimePassed)
-            NewEncounterCheck();
-        else
-            KeepTravelling();
+        TryNewEncounter();
     }
 
     //TODO: Implement log manager
@@ -102,27 +92,26 @@ public class Expedition
         }
     }
 
-    void NewEncounterCheck()
+    void TryNewEncounter()
     {
-        foreach (var enc in curLocation.encounters)
+        if (GraceTimePassed)
         {
-            if (Random.value < enc.chance)
+            foreach (var enc in curLocation.encounters)
             {
-                switch (enc.type)
+                if (Random.value < enc.chance)
                 {
-                    case EncounterType.Combat:
-                        InitCombat();
-                        break;
-                    case EncounterType.POI:
-                        //situation = new SituationCombat(location.enemies);
-                        //expPanel.expDetailsPanelDrawer.enemyPanel.gameObject.SetActive(false);
-                        break;
+                    switch (enc.type)
+                    {
+                        case EncounterType.Combat:
+                            InitCombat();
+                            return;
+                    }
                 }
-
-                // if any situation occured, exit sequence
-                return;
             }
         }
+
+        // if no new encounter, keep travelling
+        KeepTravelling();
     }
 
     public void KeepTravelling()
@@ -134,7 +123,7 @@ public class Expedition
     // NOTE: move to ExpManager?
     public void InitCombat()
     {
-        StartAnimation(AnimationTrigger.BeginEncounter, heroAM, objectAM, interactionAM);
+        StartAnimation(AnimationTrigger.BeginEncounter, heroAM, enemyAM, interactionAM, locationAM);
         curEncounter = new Combat(this);
     }
 
