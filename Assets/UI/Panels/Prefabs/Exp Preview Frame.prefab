@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2058566328396691728}
   - component: {fileID: 946800127086502262}
   - component: {fileID: 4699811852924146816}
-  m_Layer: 15
+  m_Layer: 13
   m_Name: Location Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -415,7 +415,7 @@ GameObject:
   - component: {fileID: 6490985975186952728}
   - component: {fileID: 6979326694166925527}
   - component: {fileID: 5852242374152655606}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Enemy Dead Status Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1868,7 +1868,7 @@ GameObject:
   - component: {fileID: 3824551667533075264}
   - component: {fileID: 5180098435281326983}
   - component: {fileID: 9122161660130560084}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Location Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2974,7 +2974,7 @@ GameObject:
   - component: {fileID: 4775871145668089756}
   - component: {fileID: 9071906305007483788}
   - component: {fileID: 3375799216045346875}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Loot Drop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3015,7 +3015,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5294004418433989644}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -3409,7 +3409,7 @@ GameObject:
   - component: {fileID: 3314335871471512859}
   - component: {fileID: 5011307332956646945}
   - component: {fileID: 4252428699209930513}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Hero Dead Status Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
