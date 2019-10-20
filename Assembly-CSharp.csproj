@@ -292,6 +292,7 @@
     <Compile Include="Assets\Engine\Tactics\TacticAction.cs" />
     <Compile Include="Assets\Engine\Tactics\TacticsPreset.cs" />
     <Compile Include="Assets\Engine\Tactics\TacticTrigger.cs" />
+    <Compile Include="Assets\Engine\Various\CameraBehaviour.cs" />
     <Compile Include="Assets\Engine\Various\ChanceToOccur.cs" />
     <Compile Include="Assets\Engine\Various\ChildPanelsRemover.cs" />
     <Compile Include="Assets\Engine\Various\CustomAttributes.cs" />
@@ -301,7 +302,7 @@
     <Compile Include="Assets\Engine\Various\Interfaces.cs" />
     <Compile Include="Assets\Engine\Various\NamingManager.cs" />
     <Compile Include="Assets\Engine\Various\ReferenceTypes.cs" />
-    <Compile Include="Assets\PinchZoom.cs" />
+    <Compile Include="Assets\Engine\Various\WorldSpaceCanvasScaleAdjuster.cs" />
     <Compile Include="Assets\Resources\Abilities\Ability.cs" />
     <Compile Include="Assets\Resources\Abilities\AbilityData.cs" />
     <Compile Include="Assets\Resources\Effects\Effect.cs" />
@@ -334,7 +335,6 @@
     <Compile Include="Assets\UI\Drawers\UnitPanelDrawer.cs" />
     <Compile Include="Assets\UI\Progress Bars\FillingBar.cs" />
     <Compile Include="Assets\UI\Progress Bars\SetInitialBarsValues.cs" />
-    <Compile Include="Assets\WorldSpaceCanvasScaler.cs" />
     <None Include="Assets\3rd-Party\unity-ui-extensions\Resources\Shaders\UIAdditive.shader" />
     <None Include="Assets\3rd-Party\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\3rd-Party\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
