@@ -3,22 +3,23 @@ using UnityEngine;
 
 public class CameraBehaviour : MonoBehaviour
 {
-    public int minZoomSize, maxZoomSize, zoomSpeed, panSpeed;
+    public int minZoomSize, maxZoomSize, zoomSpeed;
+    public float maxX, minX, maxY, minY, curCamSizeFactor;
 
     Camera cam;
     float baseCamOrthoSize;
-    float curCamSizeFactor;
 
     bool panActive, zoomActive;
     int panFingerId; // Touch mode only
 
-    Vector3 lastCursorPosition;
+    Vector3 lastCursorPosition, targetPos;
     Vector2[] lastZoomPositions; // Touch mode only
 
     void Awake()
     {
         cam = GetComponent<Camera>();
         baseCamOrthoSize = cam.orthographicSize;
+        curCamSizeFactor = cam.orthographicSize / baseCamOrthoSize;
     }
 
     void Update()
@@ -92,15 +93,14 @@ public class CameraBehaviour : MonoBehaviour
         {
             panActive = true;
             lastCursorPosition = cam.ScreenToWorldPoint(Input.mousePosition);
-            ;
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            panActive = false;
         }
         else if (Input.GetMouseButton(0))
         {
             PanCamera(cam.ScreenToWorldPoint(Input.mousePosition));
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            panActive = false;
         }
 
         // Check for scrolling to zoom the camera
@@ -123,16 +123,22 @@ public class CameraBehaviour : MonoBehaviour
 
     void TryChangePosition(Vector3 offset)
     {
-        var targetPos = transform.position;
+        transform.position += offset;
+        ClampCameraPosition();
+    }
 
-        var maxX = Screen.width * curCamSizeFactor / 2;
-        var minX = -maxX;
-        var maxY = Screen.height * curCamSizeFactor / 2;
-        var minY = -maxY;
+    void ClampCameraPosition()
+    {
+        targetPos = transform.position;
+
+        maxX = Screen.width / 2f * (1 - curCamSizeFactor);
+        minX = -maxX;
+        maxY = Screen.height / 2f * (1 - curCamSizeFactor);
+        minY = -maxY;
 
         // restrict possible out of bounds situation
-        targetPos.x = Mathf.Clamp(targetPos.x + offset.x, minX, maxX);
-        targetPos.y = Mathf.Clamp(targetPos.y + offset.y, minY, maxY);
+        targetPos.x = Mathf.Clamp(targetPos.x, minX, maxX);
+        targetPos.y = Mathf.Clamp(targetPos.y, minY, maxY);
 
         // reassign copied value (can't change by reference)
         transform.position = targetPos;
@@ -148,5 +154,7 @@ public class CameraBehaviour : MonoBehaviour
         cam.orthographicSize = Mathf.Clamp(cam.orthographicSize - offset * speed, minZoomSize, maxZoomSize);
         // update curCamSizeFactor;
         curCamSizeFactor = cam.orthographicSize / baseCamOrthoSize;
+        // additional check of allowed camera position after zoom
+        ClampCameraPosition();
     }
 }

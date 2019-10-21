@@ -11101,7 +11101,11 @@ MonoBehaviour:
   minZoomSize: 200
   maxZoomSize: 384
   zoomSpeed: 10
-  panSpeed: 10
+  maxX: 0
+  minX: 0
+  maxY: 0
+  minY: 0
+  curCamSizeFactor: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
