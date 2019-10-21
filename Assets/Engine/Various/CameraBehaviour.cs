@@ -1,124 +1,126 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.XR;
 
 public class CameraBehaviour : MonoBehaviour
 {
-    public int minZoomSize, maxZoomSize, zoomSpeed;
-    public float maxX, minX, maxY, minY, curCamSizeFactor;
+    public int minZoomSize, maxZoomSize;
+    public Text text, text2, text3, text4;
 
-    Camera cam;
-    float baseCamOrthoSize;
+    float baseCamOrthoSize, curCamSizeFactor;
+    int panRefFingerId;
 
-    bool panActive, zoomActive;
-    int panFingerId; // Touch mode only
-
-    Vector3 lastCursorPosition, targetPos;
-    Vector2[] lastZoomPositions; // Touch mode only
+    Vector3 panRefPos, targetPos;
 
     void Awake()
     {
-        cam = GetComponent<Camera>();
-        baseCamOrthoSize = cam.orthographicSize;
-        curCamSizeFactor = cam.orthographicSize / baseCamOrthoSize;
+        baseCamOrthoSize = Camera.main.orthographicSize;
+        curCamSizeFactor = Camera.main.orthographicSize / baseCamOrthoSize;
     }
 
     void Update()
     {
-        if (Input.touchSupported)
+        if (Input.touchCount > 0)
         {
             HandleTouch();
         }
         else
         {
+            panRefFingerId = -1;
             HandleMouse();
         }
-    }
 
-    void HandleTouch()
-    {
-        switch (Input.touchCount)
-        {
-            case 1: // Panning
-                zoomActive = false;
-                // If the touch began, capture its position and its finger ID.
-                // Otherwise, if the finger ID of the touch doesn't match, skip it.
-                var touch = Input.GetTouch(0);
-                if (touch.phase == TouchPhase.Began)
-                {
-                    lastCursorPosition = touch.position;
-                    panFingerId = touch.fingerId;
-                    panActive = true;
-                }
-                else if (touch.fingerId == panFingerId && touch.phase == TouchPhase.Moved)
-                {
-                    PanCamera(touch.position);
-                }
 
-                break;
-            case 2: // Zooming
-                panActive = false;
-                Vector2[] newPositions = {Input.GetTouch(0).position, Input.GetTouch(1).position};
-                if (!zoomActive)
-                {
-                    lastZoomPositions = newPositions;
-                    zoomActive = true;
-                }
-                else
-                {
-                    // Zoom based on the distance between the new positions compared to the 
-                    // distance between the previous positions.
-                    var newDistance = Vector2.Distance(newPositions[0], newPositions[1]);
-                    var oldDistance = Vector2.Distance(lastZoomPositions[0], lastZoomPositions[1]);
-                    var offset = newDistance - oldDistance;
 
-                    ZoomCamera(offset, zoomSpeed);
+        //// accepts finger touch as mouse click
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    // save first touching finger as pan controlling one
+        //    if (Input.touchCount > 0)
+        //        //panRefFingerId = Input.GetTouch(0).fingerId;
 
-                    lastZoomPositions = newPositions;
-                }
+        //    panRefPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //}
+        //if (Input.GetMouseButton(0))
+        //{
+        //    PanCamera(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        //}
 
-                break;
-            default:
-                panActive = false;
-                zoomActive = false;
-                break;
-        }
+        //// handle 2 touch
+        //if (Input.touchCount == 2)
+        //{
+        //    var touchFirst = Input.GetTouch(0);
+        //    var touchSecond = Input.GetTouch(1);
+
+        //    var touchFirstOld = touchFirst.position - touchFirst.deltaPosition;
+        //    var touchSecondOld = touchSecond.position - touchSecond.deltaPosition;
+
+        //    var distOld = (touchFirstOld - touchSecondOld).magnitude;
+        //    var distCur = (touchFirst.position - touchSecond.position).magnitude;
+
+        //    var zoomOffset = distCur - distOld;
+
+        //    // multitouch zoom
+        //    ZoomCamera(zoomOffset, 0.2f);
+        //}
+        //    ZoomCamera(Input.GetAxis("Mouse ScrollWheel"), 200);
     }
 
     void HandleMouse()
     {
-        // On mouse down, capture it's position.
-        // On mouse up, disable panning.
-        // If there is no mouse being pressed, do nothing.
         if (Input.GetMouseButtonDown(0))
         {
-            panActive = true;
-            lastCursorPosition = cam.ScreenToWorldPoint(Input.mousePosition);
+            // save ref position on mouse click down
+            panRefPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
-        else if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0))
         {
-            PanCamera(cam.ScreenToWorldPoint(Input.mousePosition));
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            panActive = false;
+            // pan camera relative to saved ref position
+            PanCamera(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         }
 
-        // Check for scrolling to zoom the camera
-        var scroll = Input.GetAxis("Mouse ScrollWheel");
-        zoomActive = true;
-        ZoomCamera(scroll, zoomSpeed * 10);
-        zoomActive = false;
+        // zoom on mouse wheel
+        ZoomCamera(Input.GetAxis("Mouse ScrollWheel"), 200);
+    }
+
+    void HandleTouch()
+    {
+        //text.text = $"touch pos {Input.GetTouch(0).position}";
+        //text2.text = $"world touch pos {Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position)}";
+        //text3.text = $"mouse pos {Input.mousePosition}";
+        //text4.text = $"world mouse pos {Camera.main.ScreenToWorldPoint(Input.mousePosition)}";
+        if (panRefFingerId != Input.GetTouch(0).fingerId)
+        {
+            panRefFingerId = Input.GetTouch(0).fingerId;
+            panRefPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+        }
+        else
+            PanCamera(Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position));
+
+        // handle 2 touch
+        if (Input.touchCount == 2)
+        {
+            var touchFirst = Input.GetTouch(0);
+            var touchSecond = Input.GetTouch(1);
+
+            var touchFirstOld = touchFirst.position - touchFirst.deltaPosition;
+            var touchSecondOld = touchSecond.position - touchSecond.deltaPosition;
+
+            var distOld = (touchFirstOld - touchSecondOld).magnitude;
+            var distCur = (touchFirst.position - touchSecond.position).magnitude;
+
+            var zoomOffset = distCur - distOld;
+
+            // multitouch zoom
+            ZoomCamera(zoomOffset, 0.2f);
+        }
     }
 
     void PanCamera(Vector3 newPanPosition)
     {
-        if (!panActive)
-        {
-            return;
-        }
-
         //Translate the camera position based on the new input position. Invert vector to move camera the opposite way
-        TryChangePosition(lastCursorPosition - newPanPosition);
+        TryChangePosition(panRefPos - newPanPosition);
     }
 
     void TryChangePosition(Vector3 offset)
@@ -131,10 +133,10 @@ public class CameraBehaviour : MonoBehaviour
     {
         targetPos = transform.position;
 
-        maxX = Screen.width / 2f * (1 - curCamSizeFactor);
-        minX = -maxX;
-        maxY = Screen.height / 2f * (1 - curCamSizeFactor);
-        minY = -maxY;
+        var maxX = Screen.width / 2f * (1 - curCamSizeFactor);
+        var minX = -maxX;
+        var maxY = Screen.height / 2f * (1 - curCamSizeFactor);
+        var minY = -maxY;
 
         // restrict possible out of bounds situation
         targetPos.x = Mathf.Clamp(targetPos.x, minX, maxX);
@@ -146,14 +148,9 @@ public class CameraBehaviour : MonoBehaviour
 
     void ZoomCamera(float offset, float speed)
     {
-        if (!zoomActive || Math.Abs(offset) < Mathf.Epsilon)
-        {
-            return;
-        }
-
-        cam.orthographicSize = Mathf.Clamp(cam.orthographicSize - offset * speed, minZoomSize, maxZoomSize);
+        Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize - offset * speed, minZoomSize, maxZoomSize);
         // update curCamSizeFactor;
-        curCamSizeFactor = cam.orthographicSize / baseCamOrthoSize;
+        curCamSizeFactor = Camera.main.orthographicSize / baseCamOrthoSize;
         // additional check of allowed camera position after zoom
         ClampCameraPosition();
     }
