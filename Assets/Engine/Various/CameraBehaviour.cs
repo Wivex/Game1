@@ -1,22 +1,23 @@
 ﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR;
 
 public class CameraBehaviour : MonoBehaviour
 {
-    public int minZoomSize, maxZoomSize;
-    public Text text, text2, text3, text4;
+    public float maxZoom;
 
-    float baseCamOrthoSize, curCamSizeFactor;
+    float baseCamOrthoSize, curZoom, camScale;
     int panRefFingerId;
-
-    Vector3 panRefPos, targetPos;
+    Vector3 panRefPos;
 
     void Awake()
     {
         baseCamOrthoSize = Camera.main.orthographicSize;
-        curCamSizeFactor = Camera.main.orthographicSize / baseCamOrthoSize;
+        var cameraHeight = baseCamOrthoSize * 2;
+        curZoom = Screen.height / cameraHeight;
+        camScale = cameraHeight / Screen.height;
     }
 
     void Update()
@@ -27,78 +28,37 @@ public class CameraBehaviour : MonoBehaviour
         }
         else
         {
+            // reset finger ID
             panRefFingerId = -1;
             HandleMouse();
         }
-
-
-
-        //// accepts finger touch as mouse click
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    // save first touching finger as pan controlling one
-        //    if (Input.touchCount > 0)
-        //        //panRefFingerId = Input.GetTouch(0).fingerId;
-
-        //    panRefPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //}
-        //if (Input.GetMouseButton(0))
-        //{
-        //    PanCamera(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        //}
-
-        //// handle 2 touch
-        //if (Input.touchCount == 2)
-        //{
-        //    var touchFirst = Input.GetTouch(0);
-        //    var touchSecond = Input.GetTouch(1);
-
-        //    var touchFirstOld = touchFirst.position - touchFirst.deltaPosition;
-        //    var touchSecondOld = touchSecond.position - touchSecond.deltaPosition;
-
-        //    var distOld = (touchFirstOld - touchSecondOld).magnitude;
-        //    var distCur = (touchFirst.position - touchSecond.position).magnitude;
-
-        //    var zoomOffset = distCur - distOld;
-
-        //    // multitouch zoom
-        //    ZoomCamera(zoomOffset, 0.2f);
-        //}
-        //    ZoomCamera(Input.GetAxis("Mouse ScrollWheel"), 200);
     }
 
     void HandleMouse()
     {
+        // save pan starting position on mouse click down
         if (Input.GetMouseButtonDown(0))
-        {
-            // save ref position on mouse click down
             panRefPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        }
+        // pan camera relative to saved starting position on while button is pressed
         if (Input.GetMouseButton(0))
-        {
-            // pan camera relative to saved ref position
             PanCamera(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        }
-
         // zoom on mouse wheel
         ZoomCamera(Input.GetAxis("Mouse ScrollWheel"), 200);
     }
 
     void HandleTouch()
     {
-        //text.text = $"touch pos {Input.GetTouch(0).position}";
-        //text2.text = $"world touch pos {Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position)}";
-        //text3.text = $"mouse pos {Input.mousePosition}";
-        //text4.text = $"world mouse pos {Camera.main.ScreenToWorldPoint(Input.mousePosition)}";
+        // identify first touch, use only it as pan ref point
         if (panRefFingerId != Input.GetTouch(0).fingerId)
         {
             panRefFingerId = Input.GetTouch(0).fingerId;
             panRefPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
         }
+        // pan camera relative to saved starting position
         else
             PanCamera(Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position));
 
-        // handle 2 touch
+        // handle multi-touch zoom
         if (Input.touchCount == 2)
         {
             var touchFirst = Input.GetTouch(0);
@@ -112,7 +72,6 @@ public class CameraBehaviour : MonoBehaviour
 
             var zoomOffset = distCur - distOld;
 
-            // multitouch zoom
             ZoomCamera(zoomOffset, 0.2f);
         }
     }
@@ -131,11 +90,11 @@ public class CameraBehaviour : MonoBehaviour
 
     void ClampCameraPosition()
     {
-        targetPos = transform.position;
+        var targetPos = transform.position;
 
-        var maxX = Screen.width / 2f * (1 - curCamSizeFactor);
+        var maxX = Screen.width / 2f * (1 - 1 / curZoom) * camScale;
         var minX = -maxX;
-        var maxY = Screen.height / 2f * (1 - curCamSizeFactor);
+        var maxY = Screen.height / 2f * (1 - 1 / curZoom) * camScale;
         var minY = -maxY;
 
         // restrict possible out of bounds situation
@@ -148,9 +107,10 @@ public class CameraBehaviour : MonoBehaviour
 
     void ZoomCamera(float offset, float speed)
     {
-        Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize - offset * speed, minZoomSize, maxZoomSize);
-        // update curCamSizeFactor;
-        curCamSizeFactor = Camera.main.orthographicSize / baseCamOrthoSize;
+        Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize - offset * speed,
+            baseCamOrthoSize / maxZoom, baseCamOrthoSize);
+        // update curZoom;
+        curZoom = baseCamOrthoSize / Camera.main.orthographicSize;
         // additional check of allowed camera position after zoom
         ClampCameraPosition();
     }
