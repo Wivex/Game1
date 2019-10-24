@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public int targetFramerate;
-
     #region MANAGER INITIALIZATION
 
     /// <summary>
@@ -33,8 +31,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        // NOTE: test if working
-        Application.targetFrameRate = targetFramerate;
+        Application.targetFrameRate = 60;
     }
 
     public void CloseGame()
