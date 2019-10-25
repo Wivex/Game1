@@ -101,7 +101,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EventHidden
+  m_Name: EnemyHidden
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -233,7 +233,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EventEncounter
+  m_Name: EnemyEncounter
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -337,6 +337,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monitorAnimationStart: 1
   monitorAnimationEnd: 1
+  destroyObjectOnEnd: 0
+  resetTriggerOnStart: 0
+  triggerValue: 0
 --- !u!1101 &-1420773794656515537
 AnimatorStateTransition:
   m_ObjectHideFlags: 3
@@ -506,6 +509,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monitorAnimationStart: 1
   monitorAnimationEnd: 1
+  destroyObjectOnEnd: 0
+  resetTriggerOnStart: 0
+  triggerValue: 0
 --- !u!1101 &3483962540838846709
 AnimatorStateTransition:
   m_ObjectHideFlags: 3
@@ -644,3 +650,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monitorAnimationStart: 1
   monitorAnimationEnd: 1
+  destroyObjectOnEnd: 0
+  resetTriggerOnStart: 0
+  triggerValue: 0

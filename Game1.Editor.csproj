@@ -267,19 +267,19 @@
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Advertisements">
-      <HintPath>C:/!Game1 Workshop/Game1/Library/PackageCache/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
+      <HintPath>C:/!GD WORKSHOP/Game1/Library/PackageCache/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>C:/!Game1 Workshop/Game1/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>C:/!GD WORKSHOP/Game1/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>C:/!Game1 Workshop/Game1/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>C:/!GD WORKSHOP/Game1/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>C:/!Game1 Workshop/Game1/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>C:/!GD WORKSHOP/Game1/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Purchasing">
-      <HintPath>C:/!Game1 Workshop/Game1/Library/PackageCache/com.unity.purchasing@2.0.6/Editor/UnityEditor.Purchasing.dll</HintPath>
+      <HintPath>C:/!GD WORKSHOP/Game1/Library/PackageCache/com.unity.purchasing@2.0.6/Editor/UnityEditor.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2019.1.8f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll</HintPath>
@@ -645,21 +645,21 @@
       <Project>{3A848AB7-9891-EDDA-D555-BF184C2F81F4}</Project>
       <Name>Unity.TextMeshPro.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.CollabProxy.Editor.csproj">
-      <Project>{C12CEEC6-100C-58A2-DE36-314E4DE5E40B}</Project>
-      <Name>Unity.CollabProxy.Editor</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.csproj">
       <Project>{07A21C90-D344-AE1A-8456-9910C203B41A}</Project>
       <Name>Unity.TextMeshPro</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Analytics.DataPrivacy.csproj">
-      <Project>{D6E266C6-3D1F-28C8-9FEB-2A01E44DBF77}</Project>
-      <Name>Unity.Analytics.DataPrivacy</Name>
-    </ProjectReference>
     <ProjectReference Include="MyBox.csproj">
       <Project>{82D4D895-2FC7-EDC8-A542-1647E680B32C}</Project>
       <Name>MyBox</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.CollabProxy.Editor.csproj">
+      <Project>{C12CEEC6-100C-58A2-DE36-314E4DE5E40B}</Project>
+      <Name>Unity.CollabProxy.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Analytics.DataPrivacy.csproj">
+      <Project>{D6E266C6-3D1F-28C8-9FEB-2A01E44DBF77}</Project>
+      <Name>Unity.Analytics.DataPrivacy</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
