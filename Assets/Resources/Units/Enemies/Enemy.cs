@@ -1,11 +1,11 @@
 ﻿public class Enemy : Unit
 {
-    internal EnemyData enemyData;
+    internal EnemyData data;
 
     internal Enemy(EnemyData data)
     {
-        enemyData = data;
-        InitData(enemyData);
+        this.data = data;
+        InitData(data);
     }
 
     public override void Kill()

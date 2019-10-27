@@ -18,7 +18,7 @@ public class TacticAction
     public AbilityData abilityData;
 
     [HideIfNotEnumValues("actionType", ActionType.UseConsumable)]
-    public ConsumableData consumableData;
+    public ItemData consumableData;
 
     public void DoAction(Combat combat)
     {
@@ -74,15 +74,15 @@ public class TacticAction
     public void UseConsumable(Combat combat)
     {
         //LogEvent(combat, $"{combat.hero.name} used {consumableData.name} on {combat.target.name}.");
-        var usedConsumable = combat.hero.consumables.First(cons => cons.consumableData == consumableData);
-        foreach (var effect in usedConsumable.consumableData.effects)
+        var usedConsumable = combat.hero.consumables.First(cons => cons.data == consumableData);
+        foreach (var effect in usedConsumable.data.useEffects)
         {
             var target = effect.target == Target.Self ? combat.actor : combat.target;
-            effect.ApplyEffect(combat, target, usedConsumable.consumableData.name, usedConsumable.consumableData.icon);
+            effect.ApplyEffect(combat, target, usedConsumable.data.name, usedConsumable.data.icon);
         }
 
         // +1 adjustment, because after each turm all cooldowns are decreased by 1 (even on used ability)
-        usedConsumable.curCharges--;
+        usedConsumable.charges--;
     }
 
     public void LogEvent(CombatManager combat, string text)

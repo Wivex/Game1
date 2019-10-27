@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum InventorySlot
+public enum EquipmentSlot
 {
+    None,
     Head,
     Body,
     Arms,
@@ -19,9 +20,9 @@ public enum InventorySlot
 }
 
 [Serializable]
-public struct EquipmentSheet
+public class Equipment
 {
-    public EquipmentData head,
+    public Item head,
         body,
         arms,
         boots,

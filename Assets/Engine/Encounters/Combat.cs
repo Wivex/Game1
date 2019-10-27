@@ -151,15 +151,12 @@ public class Combat : Encounter
     void SpawnLoot()
     {
         lootDrops = new List<Item>();
-        foreach (var loot in enemy.enemyData.lootTable)
+        foreach (var loot in enemy.data.lootTable)
         {
             // TODO: add stack count implementation
             if (Random.value < loot.dropChance)
             {
-                if (loot.item is EquipmentData equip)
-                    lootDrops.Add(new Equipment(equip));
-                else if (loot.item is ConsumableData consume)
-                    lootDrops.Add(new Consumable(consume));
+                lootDrops.Add(new Item(loot.item));
             }
         }
     }

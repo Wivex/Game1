@@ -2,7 +2,7 @@
 using SubjectNerd.Utilities;
 using UnityEngine;
 
-public class UnitData : ScriptableObject
+public abstract class UnitData : ScriptableObject
 {
     public Sprite icon;
     public UnitStats stats;

@@ -10,8 +10,8 @@ public class EnemyPanelDrawer : UnitPanelDrawer
     {
         this.enemy = enemy;
         unit = enemy;
-        unitImage.sprite = enemy.enemyData.icon;
-        enemyName.text = enemy.enemyData.name;
+        unitImage.sprite = enemy.data.icon;
+        enemyName.text = enemy.data.name;
     }
 
     protected override void Update()

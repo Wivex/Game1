@@ -2,12 +2,14 @@
 using UnityEngine;
 using UnityEditor;
 
-public abstract class Item
+[Serializable]
+public class Item
 {
-    internal abstract ItemData Data
-    {
-        get;
-    }
+    public ItemData data;
+    internal int stackSize, charges;
 
-    internal int stackSize;
+    public Item(ItemData data)
+    {
+        this.data = data;
+    }
 }

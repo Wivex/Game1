@@ -57,7 +57,7 @@ public class TacticTrigger
             //    return StatValueCheck(situation);
             case TriggerType.FoeType:
                 // NOTE: rework?
-                return enemy.enemyData == unitData;
+                return enemy.data == unitData;
             case TriggerType.SelfCondition:
                 throw new NotImplementedException();
             case TriggerType.FoeCondition:

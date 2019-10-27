@@ -26,7 +26,7 @@ public class EnemySpawnChance : ChanceToOccur
 [Serializable]
 public class EquipmentDropChance : ChanceToOccur
 {
-    public EquipmentData equipmentData;
+    public ItemData itemData;
 }
 
 [Serializable]

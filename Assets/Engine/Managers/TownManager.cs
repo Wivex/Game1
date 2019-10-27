@@ -35,10 +35,10 @@ public class TownManager : MonoBehaviour
 
     public Hero CreateNewHero(string name = default,
                               SexType sexType = default,
-                              ClassType classType = default,
+                              HeroClassType heroClassType = default,
                               Sprite portrait = default)
     {
-        var hero = new Hero(name, sexType, classType, portrait);
+        var hero = new Hero(name, sexType, heroClassType, portrait);
         heroes.Add(hero);
         return hero;
     }

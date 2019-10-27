@@ -10,8 +10,9 @@ public enum HeroState
     OnExpedition
 }
 
-public enum ClassType
+public enum HeroClassType
 {
+    Any,
     Warrior,
     Mage,
     Rogue
@@ -27,36 +28,37 @@ public class Hero : Unit
 {
     internal string name;
     internal SexType sexType;
-    internal ClassType classType;
+    internal HeroClassType heroClassType;
     internal HeroState state;
-    internal ClassData classData;
+    internal HeroData data;
     internal int level, gold, experience;
     internal Sprite portrait;
-    internal EquipmentSheet equipment = new EquipmentSheet();
+    internal Equipment equipment = new Equipment();
     internal List<Item> backpack = new List<Item>();
-    internal List<Consumable> consumables = new List<Consumable>();
+    internal List<Item> consumables = new List<Item>();
 
     // USE: TownManager.i.CreateNewHero()
     internal Hero(string name = default,
                   SexType sexType = default,
-                  ClassType classType = default,
+                  HeroClassType heroClassType = default,
                   Sprite portrait = default)
     {
         this.sexType = sexType;
         this.portrait = portrait ?? RandomPortrait();
-        this.classType = classType;
+        this.heroClassType = heroClassType;
         this.name = name ?? NamingManager.statics.GetRandomHeroName(this);
-        classData = Resources.Load<ClassData>(
-            $"Units/Heroes/Classes/{classType.ToString()}/{classType.ToString()}Class");
+
+        data = Resources.Load<HeroData>(
+            $"Units/Heroes/Classes/{heroClassType.ToString()}/{heroClassType.ToString()}Class");
         //HACK: temp solution
         state = HeroState.Recruitable;
-        InitData(classData.classLevels[level]);
+        InitData(data);
     }
 
     Sprite RandomPortrait()
     {
         var portraits =
-            Resources.LoadAll<Sprite>($"Units/Heroes/Classes/{classType.ToString()}/Portraits/{sexType.ToString()}");
+            Resources.LoadAll<Sprite>($"Units/Heroes/Classes/{heroClassType.ToString()}/Portraits/{sexType.ToString()}");
         return portraits[Random.Range(0, portraits.Length - 1)];
     }
 }

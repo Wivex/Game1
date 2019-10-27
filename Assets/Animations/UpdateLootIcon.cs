@@ -10,7 +10,7 @@ public class UpdateLootIcon : StateMachineBehaviour
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         TryCheckDrawer(animator);
-        drawer.lootIcon.sprite = (drawer.exp.curEncounter as Combat).curLoot.Data.icon;
+        drawer.lootIcon.sprite = (drawer.exp.curEncounter as Combat).curLoot.data.icon;
     }
 
     void TryCheckDrawer(Animator animator)

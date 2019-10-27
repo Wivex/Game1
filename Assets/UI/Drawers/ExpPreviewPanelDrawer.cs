@@ -65,7 +65,7 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler, ICanva
     void RedrawHeroDesc()
     {
         heroName.text = exp.hero.name;
-        level.text = $"Level {exp.hero.level} {exp.hero.classData.classLevels[exp.hero.level].name}";
+        level.text = $"Level {exp.hero.level} {exp.hero.data.name}";
     }
 
     void RedrawGold()

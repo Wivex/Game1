@@ -20,7 +20,7 @@ public class HeroFrameDrawer : MonoBehaviour, IPointerClickHandler
         this.parentDrawer = parentDrawer;
         heroImage.sprite = hero.portrait;
         heroNameText.text = hero.name;
-        heroLevelText.text = $"Level {hero.level} {hero.classType.ToString()}";
+        heroLevelText.text = $"Level {hero.level} {hero.heroClassType.ToString()}";
     }
 
     // add OnClick event to the OnClick event list of button component

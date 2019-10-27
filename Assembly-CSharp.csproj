@@ -285,7 +285,7 @@
     <Compile Include="Assets\Engine\Managers\InputManager.cs" />
     <Compile Include="Assets\Engine\Managers\TownManager.cs" />
     <Compile Include="Assets\Engine\Managers\UIManager.cs" />
-    <Compile Include="Assets\Engine\Stats\EquipmentSheet.cs" />
+    <Compile Include="Assets\Engine\Stats\Equipment.cs" />
     <Compile Include="Assets\Engine\Stats\StatModifier.cs" />
     <Compile Include="Assets\Engine\Stats\UnitStats.cs" />
     <Compile Include="Assets\Engine\Tactics\Tactic.cs" />
@@ -308,18 +308,14 @@
     <Compile Include="Assets\Resources\Abilities\AbilityData.cs" />
     <Compile Include="Assets\Resources\Effects\Effect.cs" />
     <Compile Include="Assets\Resources\Effects\FloatingText\FloatingTextHorisontalDrift.cs" />
-    <Compile Include="Assets\Resources\Items\Consumables\Consumable.cs" />
-    <Compile Include="Assets\Resources\Items\Consumables\ConsumableData.cs" />
-    <Compile Include="Assets\Resources\Items\Equipment\Equipment.cs" />
-    <Compile Include="Assets\Resources\Items\Equipment\EquipmentData.cs" />
     <Compile Include="Assets\Resources\Items\Item.cs" />
     <Compile Include="Assets\Resources\Items\ItemData.cs" />
-    <Compile Include="Assets\Resources\Items\LootData.cs" />
+    <Compile Include="Assets\Resources\Items\LootDropData.cs" />
     <Compile Include="Assets\Resources\Locations\LocationData.cs" />
     <Compile Include="Assets\Resources\Units\Enemies\Enemy.cs" />
     <Compile Include="Assets\Resources\Units\Enemies\EnemyData.cs" />
-    <Compile Include="Assets\Resources\Units\Heroes\Classes\ClassData.cs" />
     <Compile Include="Assets\Resources\Units\Heroes\Hero.cs" />
+    <Compile Include="Assets\Resources\Units\Heroes\HeroData.cs" />
     <Compile Include="Assets\Resources\Units\Unit.cs" />
     <Compile Include="Assets\Resources\Units\UnitData.cs" />
     <Compile Include="Assets\UI\Draw Managers\ExpDetailsPanelDrawManager.cs" />
@@ -372,25 +368,25 @@
     <None Include="Assets\3rd-Party\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\3rd-Party\unity-ui-extensions\Resources\Shaders\UI Particle MultiplyDouble.shader" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -570,13 +566,13 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.8f1/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>C:/!GD WORKSHOP/Game1/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>C:/!Game1 Workshop/Game1/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.8f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

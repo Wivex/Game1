@@ -9,9 +9,55 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 469fa1e8ad463a743a5a9e220adee842, type: 3}
+  m_Script: {fileID: 11500000, guid: a3f8dbe1749b85544b3c0b73f1d3e373, type: 3}
   m_Name: WarriorClass
   m_EditorClassIdentifier: 
-  classLevels:
-  - {fileID: 11400000, guid: eeab0700902a97545bd1fad2320a4cf0, type: 2}
-  expPerLevel: 0a000000140000001e000000320000006400000096000000fa0000005e010000f4010000
+  icon: {fileID: 21300000, guid: 3d96780b570c9334c85e44e87ff5d2a1, type: 3}
+  stats:
+    health: 100
+    energy: 100
+    attack: 20
+    defence: 20
+    speed: 10
+    eResist: 0
+    bResist: 0
+  abilities: []
+  tactics:
+  - triggers:
+    - triggerType: 0
+      target: 0
+      stat: 0
+      statTriggerType: 0
+      comparisonType: 0
+      statValue: 0
+      abilityData: {fileID: 0}
+      unitData: {fileID: 0}
+    action:
+      actionType: 0
+      abilityData: {fileID: 0}
+      consumableData: {fileID: 0}
+  equipment:
+    head:
+      data: {fileID: 0}
+    body:
+      data: {fileID: 0}
+    arms:
+      data: {fileID: 0}
+    boots:
+      data: {fileID: 0}
+    amulet:
+      data: {fileID: 0}
+    belt:
+      data: {fileID: 0}
+    ring1:
+      data: {fileID: 0}
+    ring2:
+      data: {fileID: 0}
+    mainHand1:
+      data: {fileID: 11400000, guid: 78012ae863cad56478ded752cbb98ccc, type: 2}
+    offHand1:
+      data: {fileID: 0}
+    mainHand2:
+      data: {fileID: 0}
+    offHand2:
+      data: {fileID: 0}

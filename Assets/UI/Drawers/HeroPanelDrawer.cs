@@ -47,9 +47,9 @@ public class HeroPanelDrawer : UnitPanelDrawer
     {
         this.hero = hero;
         unit = hero;
-        unitImage.sprite = hero.classData.classLevels[hero.level].icon;
+        unitImage.sprite = hero.data.icon;
         unitName.text = hero.name;
-        classLevel.text = $"Level {hero.level} {hero.classData.classLevels[hero.level].name}";
+        classLevel.text = $"Level {hero.level} {hero.data.name}";
     }
 
     protected override void Update()
@@ -61,8 +61,8 @@ public class HeroPanelDrawer : UnitPanelDrawer
         base.Update();
 
         // update exp bar
-        expBar.value = (float) hero.experience / hero.classData.expPerLevel[hero.level];
-        experience.text = $"{hero.experience} / {hero.classData.expPerLevel[hero.level]}";
+        expBar.value = (float) hero.experience / 100;
+        experience.text = $"{hero.experience} / 100";
 
         // update gold
         //NOTE: check performance?
@@ -87,7 +87,7 @@ public class HeroPanelDrawer : UnitPanelDrawer
             }
             else
             {
-                backpackSlots[i].sprite = hero.backpack[i].Data.icon;
+                backpackSlots[i].sprite = hero.backpack[i].data.icon;
                 backpackSlots[i].color = Color.white;
             }
         }
@@ -118,9 +118,9 @@ public class HeroPanelDrawer : UnitPanelDrawer
             }
             else
             {
-                consumableSlots[i].sprite = hero.consumables[i].consumableData.icon;
+                consumableSlots[i].sprite = hero.consumables[i].data.icon;
                 consumableSlots[i].color = Color.white;
-                consumablesCharges[i].text = hero.consumables[i].curCharges.ToString();
+                consumablesCharges[i].text = hero.consumables[i].charges.ToString();
             }
         }
 
