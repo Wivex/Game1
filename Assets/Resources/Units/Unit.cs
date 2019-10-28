@@ -14,23 +14,30 @@ public abstract class Unit
     internal DataStats curStats = new DataStats();
     internal List<Ability> abilities = new List<Ability>();
     internal List<Effect> effects = new List<Effect>();
-    internal  List<Tactic> tactics;
+    internal List<Tactic> tactics;
+    
+    internal Dictionary<StatType, Stat> stats = new Dictionary<StatType, Stat>
+    {
+        {StatType.Health, new Stat(100)},
+        {StatType.Attack, new Stat(10)},
+        {StatType.Speed, new Stat(10)},
+    };
 
     internal bool Dead => curStats.health <= 0;
 
     internal void InitData(UnitData data)
     {
-        baseStats.health = data.stats.health;
-        baseStats.energy = data.stats.energy;
-        baseStats.attack = data.stats.attack;
-        baseStats.defence = data.stats.defence;
-        baseStats.speed = data.stats.speed;
+        baseStats.health = data.baseStats.health;
+        baseStats.energy = data.baseStats.energy;
+        baseStats.attack = data.baseStats.attack;
+        baseStats.defence = data.baseStats.defence;
+        baseStats.speed = data.baseStats.speed;
 
-        curStats.health = data.stats.health;
-        curStats.energy = data.stats.energy;
-        curStats.attack = data.stats.attack;
-        curStats.defence = data.stats.defence;
-        curStats.speed = data.stats.speed;
+        curStats.health = data.baseStats.health;
+        curStats.energy = data.baseStats.energy;
+        curStats.attack = data.baseStats.attack;
+        curStats.defence = data.baseStats.defence;
+        curStats.speed = data.baseStats.speed;
 
         foreach (var abilityData in data.abilities)
             abilities.Add(new Ability(abilityData));

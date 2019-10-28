@@ -13,7 +13,7 @@ public enum TriggerType
 public enum Target
 {
     Self,
-    Foe
+    Opponent
 }
 
 public enum ComparisonType

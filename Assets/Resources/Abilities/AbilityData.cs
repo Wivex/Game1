@@ -8,6 +8,6 @@ public class AbilityData : ScriptableObject
     [Header("Ability")]
     public Sprite icon;
     public int cooldown;
-    [Reorderable(ReorderableNamingType.VariableValue, "effectOnStatsType")]
+    [Reorderable(ReorderableNamingType.VariableValue, "effectType")]
     public List<Effect> effects;
 }

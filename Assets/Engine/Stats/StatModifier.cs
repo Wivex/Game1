@@ -7,10 +7,13 @@ public enum StatModType
     PercentMult
 }
 
+/// <summary>
+/// Stat Mods apply to base stat values.
+/// </summary>
 [Serializable]
 public class StatModifier
 {
-    public StatType stat;
+    public StatType statType;
     public StatModType modType;
     public int value;
     //object can hold any possible source type

@@ -34,15 +34,3 @@ public class DataStats
         eResist,
         bResist;
 }
-
-[Serializable]
-public class UnitStatsNew
-{
-    public Stat health,
-        energy,
-        attack,
-        defence,
-        speed,
-        eResist,
-        bResist;
-}

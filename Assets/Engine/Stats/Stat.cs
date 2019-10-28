@@ -4,31 +4,57 @@ using UnityEngine;
 using UnityEditor;
 
 [Serializable]
-public class Stat
+internal class Stat
 {
-    public StatType type;
-    public int baseValue;
-    public int curValue;
-    public List<StatModifier> statMods;
+    int curValue;
+    bool dirty;
+    List<StatModifier> mods = new List<StatModifier>();
 
-    public int Value
+    internal int BaseValue { get; set; }
+
+    internal int CurValue
     {
-        get { return curValue; }
         set
         {
-            if (value > baseValue)
-
-            curValue = value; 
-
+            curValue = value;
+            dirty = true;
+        }
+        get
+        {
+            if (dirty)
+            {
+                RecalculateValues();
+                dirty = false;
+            }
+            return curValue;
         }
     }
 
-    public void AddModifier(StatModifier mod)
+    internal Stat(int value)
     {
-
+        BaseValue = value;
+        curValue = BaseValue;
     }
 
-    public void RemoveModifier(StatModifier mod)
+    void RecalculateValues()
     {
+        foreach (var mod in mods)
+        {
+            CurValue += mod.value;
+        }
+    }
+
+    // Change the AddModifier method
+    internal void AddModifier(StatModifier mod)
+    {
+        dirty = true;
+        mods.Add(mod);
+    }
+
+    // And change the RemoveModifier method
+    internal void RemoveModifier(StatModifier mod)
+    {
+        mods.Remove(mod);
+        dirty = true;
     }
 }
