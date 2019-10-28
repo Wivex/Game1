@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 public enum EnergyType
 {
@@ -19,10 +20,25 @@ public enum StatType
     BResist
 }
 
+/// <summary>
+/// Simple stat values representation for unity display convenience
+/// </summary>
 [Serializable]
-public class UnitStats
+public class DataStats
 {
     public int health,
+        energy,
+        attack,
+        defence,
+        speed,
+        eResist,
+        bResist;
+}
+
+[Serializable]
+public class UnitStatsNew
+{
+    public Stat health,
         energy,
         attack,
         defence,

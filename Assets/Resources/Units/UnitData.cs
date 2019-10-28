@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class UnitData : ScriptableObject
 {
     public Sprite icon;
-    public UnitStats stats;
+    public DataStats stats;
     [Reorderable(ReorderableNamingType.ObjectName)]
     public List<AbilityData> abilities;
     [Reorderable(ReorderableNamingType.VariableValue, "action.actionType")]

@@ -285,9 +285,9 @@
     <Compile Include="Assets\Engine\Managers\InputManager.cs" />
     <Compile Include="Assets\Engine\Managers\TownManager.cs" />
     <Compile Include="Assets\Engine\Managers\UIManager.cs" />
-    <Compile Include="Assets\Engine\Stats\Equipment.cs" />
+    <Compile Include="Assets\Engine\Stats\DataStats.cs" />
+    <Compile Include="Assets\Engine\Stats\Stat.cs" />
     <Compile Include="Assets\Engine\Stats\StatModifier.cs" />
-    <Compile Include="Assets\Engine\Stats\UnitStats.cs" />
     <Compile Include="Assets\Engine\Tactics\Tactic.cs" />
     <Compile Include="Assets\Engine\Tactics\TacticAction.cs" />
     <Compile Include="Assets\Engine\Tactics\TacticsPreset.cs" />
@@ -297,6 +297,7 @@
     <Compile Include="Assets\Engine\Various\ChildPanelsRemover.cs" />
     <Compile Include="Assets\Engine\Various\CustomAttributes.cs" />
     <Compile Include="Assets\Engine\Various\Damage.cs" />
+    <Compile Include="Assets\Engine\Various\Equipment.cs" />
     <Compile Include="Assets\Engine\Various\Expedition.cs" />
     <Compile Include="Assets\Engine\Various\Extensions.cs" />
     <Compile Include="Assets\Engine\Various\FPSCounter.cs" />

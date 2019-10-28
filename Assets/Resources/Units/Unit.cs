@@ -7,11 +7,11 @@ public abstract class Unit
     /// <summary>
     /// Base stats of unit, affected by persistent modifiers (gear, special persistent effects). Considered maximums for current stats.
     /// </summary>
-    internal UnitStats baseStats = new UnitStats();
+    internal DataStats baseStats = new DataStats();
     /// <summary>
     /// Current stats of unit, affected by temporary effects or damage
     /// </summary>
-    internal UnitStats curStats = new UnitStats();
+    internal DataStats curStats = new DataStats();
     internal List<Ability> abilities = new List<Ability>();
     internal List<Effect> effects = new List<Effect>();
     internal  List<Tactic> tactics;
