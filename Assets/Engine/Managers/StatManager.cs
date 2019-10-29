@@ -18,6 +18,6 @@ public class StatManager : MonoBehaviour
 
     void DoDamage(Unit unit, int val)
     {
-        unit.stats[StatType.Health].CurValue -= val;
+        unit.stats[StatType.Health].MaxValue -= val;
     }
 }

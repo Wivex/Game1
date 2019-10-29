@@ -117,7 +117,7 @@ public class Combat : Encounter
     void UpdateActorEffects()
     {
         for (var i = actor.effects.Count - 1; i >= 0; i--)
-            actor.effects[i].UpdateEffect();
+            actor.effects[i].ProcEffect();
     }
 
     void DoActorAction()

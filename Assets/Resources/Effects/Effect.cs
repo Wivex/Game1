@@ -46,7 +46,7 @@ public class Effect
             ProcEffect();
     }
 
-    protected virtual void ProcEffect()
+    internal virtual void ProcEffect()
     {
         if (curDuration-- <= 0)
             RemoveEffect(targetUnit);

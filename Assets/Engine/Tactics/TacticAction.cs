@@ -63,8 +63,7 @@ public class TacticAction
         var usedAbility = combat.actor.abilities.Find(abil => abil.abilityData == abilityData);
         foreach (var effect in usedAbility.abilityData.effects)
         {
-            var target = effect.target == Target.Self ? combat.actor : combat.target;
-            effect.AddEffect(combat, target, usedAbility.abilityData.name, usedAbility.abilityData.icon);
+            effect.AddEffect(combat, usedAbility.abilityData.name, usedAbility.abilityData.icon);
         }
 
         // +1 adjustment, because after each turn all cooldowns are decreased by 1 (even for used ability)
@@ -77,8 +76,7 @@ public class TacticAction
         var usedConsumable = combat.hero.consumables.First(cons => cons.data == consumableData);
         foreach (var effect in usedConsumable.data.useEffects)
         {
-            var target = effect.target == Target.Self ? combat.actor : combat.target;
-            effect.AddEffect(combat, target, usedConsumable.data.name, usedConsumable.data.icon);
+            effect.AddEffect(combat, usedConsumable.data.name, usedConsumable.data.icon);
         }
 
         // +1 adjustment, because after each turm all cooldowns are decreased by 1 (even on used ability)

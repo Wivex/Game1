@@ -6,17 +6,17 @@ using UnityEditor;
 [Serializable]
 internal class Stat
 {
-    int curValue;
-    bool dirty;
-    List<StatModifier> mods = new List<StatModifier>();
+    protected int maxValue;
+    protected bool dirty;
+    protected List<StatModifier> mods = new List<StatModifier>();
 
     internal int BaseValue { get; set; }
 
-    internal int CurValue
+    internal int MaxValue
     {
         set
         {
-            curValue = value;
+            maxValue = value;
             dirty = true;
         }
         get
@@ -26,21 +26,21 @@ internal class Stat
                 RecalculateValues();
                 dirty = false;
             }
-            return curValue;
+            return maxValue;
         }
     }
 
     internal Stat(int value)
     {
         BaseValue = value;
-        curValue = BaseValue;
+        maxValue = BaseValue;
     }
 
     void RecalculateValues()
     {
         foreach (var mod in mods)
         {
-            CurValue += mod.value;
+            MaxValue += mod.value;
         }
     }
 

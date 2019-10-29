@@ -16,23 +16,25 @@ MonoBehaviour:
   cost: 1
   stackSize: 1
   charges: 0
+  equipStatMods:
+    health: 0
+    energy: 0
+    attack: 5
+    defence: 0
+    speed: 0
+    eResist: 0
+    bResist: 0
   equipmentSlot: 9
   reqHeroClassType: 0
   statModifiers:
-  - stat: 2
+  - statType: 0
     modType: 0
     value: 5
     order: 0
   useEffects:
-  - name: 
-    icon: {fileID: 0}
-    curDuration: 0
-    curDelay: 0
+  - effectType: 0
     target: 0
-    effectApplyType: 0
     duration: 0
-    delay: 0
-    effectOnStatsType: 0
     damageType: 0
     stat: 0
     statModType: 0
