@@ -24,7 +24,7 @@ public enum StatType
 /// Simple stat values representation for unity display convenience
 /// </summary>
 [Serializable]
-public class DataStats
+public class StatsSheet
 {
     public int health,
         energy,
@@ -33,4 +33,5 @@ public class DataStats
         speed,
         eResist,
         bResist;
+    public EnergyType energyType;
 }

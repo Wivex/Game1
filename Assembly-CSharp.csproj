@@ -286,10 +286,10 @@
     <Compile Include="Assets\Engine\Managers\StatManager.cs" />
     <Compile Include="Assets\Engine\Managers\TownManager.cs" />
     <Compile Include="Assets\Engine\Managers\UIManager.cs" />
-    <Compile Include="Assets\Engine\Stats\DataStats.cs" />
     <Compile Include="Assets\Engine\Stats\Stat.cs" />
     <Compile Include="Assets\Engine\Stats\StatDepletable.cs" />
     <Compile Include="Assets\Engine\Stats\StatModifier.cs" />
+    <Compile Include="Assets\Engine\Stats\StatsSheet.cs" />
     <Compile Include="Assets\Engine\Tactics\Tactic.cs" />
     <Compile Include="Assets\Engine\Tactics\TacticAction.cs" />
     <Compile Include="Assets\Engine\Tactics\TacticsPreset.cs" />
@@ -309,7 +309,7 @@
     <Compile Include="Assets\Engine\Various\WorldSpaceCanvasScaleAdjuster.cs" />
     <Compile Include="Assets\Resources\Abilities\Ability.cs" />
     <Compile Include="Assets\Resources\Abilities\AbilityData.cs" />
-    <Compile Include="Assets\Resources\Effects\ChangeResourceStat.cs" />
+    <Compile Include="Assets\Resources\Effects\ChangeStatDepletable.cs" />
     <Compile Include="Assets\Resources\Effects\Effect.cs" />
     <Compile Include="Assets\Resources\Effects\FloatingText\FloatingTextHorisontalDrift.cs" />
     <Compile Include="Assets\Resources\Items\Item.cs" />

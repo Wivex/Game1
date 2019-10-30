@@ -80,7 +80,7 @@ public class Combat : Encounter
     void NextTurn()
     {
         // extra hero turn check
-        if (heroInitiative > hero.curStats.speed)
+        if (heroInitiative > hero.Speed.ModdedValue)
             heroInitiative -= hero.curStats.speed;
         // extra enemy turn check (substitution leftover is negative)
         else if (-heroInitiative > enemy.curStats.speed)

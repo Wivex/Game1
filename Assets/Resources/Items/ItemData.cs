@@ -10,7 +10,7 @@ public class ItemData : ScriptableObject
     public int cost = 1;
     public int stackSize = 1;
     public int charges = 0;
-    public DataStats equipStatMods;
+    public StatsSheet equipStatMods;
     public EquipmentSlot equipmentSlot;
     public HeroClassType reqHeroClassType = HeroClassType.Any;
     [Reorderable(ReorderableNamingType.VariableValue, "stat")]

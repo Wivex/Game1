@@ -6,55 +6,45 @@ using UnityEditor;
 [Serializable]
 internal class Stat
 {
-    protected int maxValue;
-    protected bool dirty;
     protected List<StatModifier> mods = new List<StatModifier>();
 
-    internal int BaseValue { get; set; }
-
-    internal int MaxValue
-    {
-        set
-        {
-            maxValue = value;
-            dirty = true;
-        }
-        get
-        {
-            if (dirty)
-            {
-                RecalculateValues();
-                dirty = false;
-            }
-            return maxValue;
-        }
-    }
+    /// <summary>
+    /// Auto-property (integrated variable). Can only be set in constructor.
+    /// </summary>
+    internal int BaseValue { get; }
+    /// <summary>
+    /// Base value after all mods are applied. Any new mod apply recalculation of this value.
+    /// </summary>
+    internal int ModdedValue { get; private set; }
 
     internal Stat(int value)
     {
         BaseValue = value;
-        maxValue = BaseValue;
+        ModdedValue = BaseValue;
     }
 
-    void RecalculateValues()
+    protected virtual void NewModdedValue()
     {
+        ModdedValue = BaseValue;
         foreach (var mod in mods)
         {
-            MaxValue += mod.value;
+            ModdedValue += mod.value;
         }
+        //can't be less than 0
+        ModdedValue = Mathf.Max(0, ModdedValue);
     }
 
     // Change the AddModifier method
     internal void AddModifier(StatModifier mod)
     {
-        dirty = true;
         mods.Add(mod);
+        NewModdedValue();
     }
 
     // And change the RemoveModifier method
     internal void RemoveModifier(StatModifier mod)
     {
         mods.Remove(mod);
-        dirty = true;
+        NewModdedValue();
     }
 }

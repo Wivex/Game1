@@ -9,10 +9,26 @@ using UnityEditor;
 [Serializable]
 internal class StatDepletable : Stat
 {
-    internal int CurValue { get; set; }
+    /// <summary>
+    /// Free to change current value. Doesn't need recalculation after change
+    /// </summary>
+    int curValue;
+    internal int CurValue
+    {
+        get => curValue;
+        //limited to range of (0, ModdedValue)
+        set => curValue = Mathf.Clamp(value, 0, ModdedValue);
+    }
 
     internal StatDepletable(int value) : base(value)
     {
         CurValue = value;
+    }
+
+    protected override void NewModdedValue()
+    {
+        base.NewModdedValue();
+        //can't be more than new ModdedValue
+        CurValue = Mathf.Min(CurValue, ModdedValue);
     }
 }

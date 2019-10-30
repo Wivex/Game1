@@ -4,40 +4,46 @@ using UnityEngine;
 
 public abstract class Unit
 {
-    /// <summary>
-    /// Base stats of unit, affected by persistent modifiers (gear, special persistent effects). Considered maximums for current stats.
-    /// </summary>
-    internal DataStats baseStats = new DataStats();
-    /// <summary>
-    /// Current stats of unit, affected by temporary effects or damage
-    /// </summary>
-    internal DataStats curStats = new DataStats();
     internal List<Ability> abilities = new List<Ability>();
     internal List<Effect> effects = new List<Effect>();
     internal List<Tactic> tactics;
-    
-    internal Dictionary<StatType, Stat> stats = new Dictionary<StatType, Stat>
-    {
-        {StatType.Health, new Stat(100)},
-        {StatType.Attack, new Stat(10)},
-        {StatType.Speed, new Stat(10)},
-    };
 
-    internal bool Dead => curStats.health <= 0;
+    internal Dictionary<StatType, Stat> stats;
+
+    internal bool Dead => HP <= 0;
+
+    #region STATS SHORTCUTS
+
+    internal int HP
+    {
+        get => (stats[StatType.Health] as StatDepletable).CurValue;
+        set => (stats[StatType.Health] as StatDepletable).CurValue = value;
+    }
+    internal int HPMax => stats[StatType.Health].ModdedValue;
+    internal int Energy
+    {
+        get => (stats[StatType.Energy] as StatDepletable).CurValue;
+        set => (stats[StatType.Energy] as StatDepletable).CurValue = value;
+    }
+    internal int EnergyMax => stats[StatType.Energy].ModdedValue;
+    internal int Speed => stats[StatType.Speed].ModdedValue;
+    internal int Attack => stats[StatType.Attack].ModdedValue;
+    internal int Defence => stats[StatType.Defence].ModdedValue;
+
+    #endregion
 
     internal void InitData(UnitData data)
     {
-        baseStats.health = data.baseStats.health;
-        baseStats.energy = data.baseStats.energy;
-        baseStats.attack = data.baseStats.attack;
-        baseStats.defence = data.baseStats.defence;
-        baseStats.speed = data.baseStats.speed;
+        stats = new Dictionary<StatType, Stat>
+        {
+            {StatType.Health, new StatDepletable(data.stats.health)},
+            {StatType.Energy, new StatDepletable(data.stats.energy)},
+            {StatType.Speed, new Stat(data.stats.speed)},
+            {StatType.Attack, new Stat(data.stats.attack)},
+            {StatType.Defence, new Stat(data.stats.defence)}
+        };
 
-        curStats.health = data.baseStats.health;
-        curStats.energy = data.baseStats.energy;
-        curStats.attack = data.baseStats.attack;
-        curStats.defence = data.baseStats.defence;
-        curStats.speed = data.baseStats.speed;
+        //UNDONE: equip gear
 
         foreach (var abilityData in data.abilities)
             abilities.Add(new Ability(abilityData));
@@ -55,18 +61,12 @@ public abstract class Unit
         switch (damage.type)
         {
             case DamageType.Physical:
-                protectionValue = curStats.defence;
-                break;
-            case DamageType.Elemental:
-                protectionValue = curStats.eResist;
-                break;
-            case DamageType.Bleeding:
-                protectionValue = curStats.bResist;
+                protectionValue = stats[StatType.Defence].ModdedValue;
                 break;
         }
 
         var healthLoss = Math.Max(damage.amount - protectionValue, 0);
-        curStats.health = Math.Max(curStats.health - healthLoss, 0);
+        HP = Math.Max(HP - healthLoss, 0);
 
         // invoked here, cause can take damage outside of combat
         UIManager.i.CreateFloatingTextForUnit(exp, this, -healthLoss);
@@ -76,12 +76,12 @@ public abstract class Unit
 
     public virtual int Heal(int amount, params Transform[] UItargets)
     {
-        var value = Mathf.Min(curStats.health + amount, baseStats.health);
-        curStats.health = value;
+        var actualHeal = Mathf.Min(HP + amount, HPMax);
+        HP += actualHeal;
 
         //UItargets.ForEach(UIelem => UIManager.i.CreateFloatingText(UIelem, value));
 
-        return value;
+        return actualHeal;
     }
 
     public virtual void Kill()
