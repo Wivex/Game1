@@ -10,7 +10,7 @@ public class FillingBar : MonoBehaviour
     Image backFiller;
     Slider bar;
 
-    float animationSpeed = 0.01f;
+    float animationSpeed = 0.005f;
     float targetValue;
 
     void Awake()

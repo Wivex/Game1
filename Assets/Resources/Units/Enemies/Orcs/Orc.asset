@@ -13,16 +13,17 @@ MonoBehaviour:
   m_Name: Orc
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 7589bc4291a4b42408d97cb9c30abfdc, type: 3}
-  baseStats:
+  stats:
     health: 100
-    energy: 0
-    attack: 5
-    defence: 0
-    speed: 8
+    energy: 10
+    attack: 10
+    defence: 5
+    speed: 10
     eResist: 0
     bResist: 0
+    energyType: 1
   abilities:
-  - {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
+  - {fileID: 0}
   tactics:
   - triggers:
     - triggerType: 0

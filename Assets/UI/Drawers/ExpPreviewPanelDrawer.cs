@@ -105,10 +105,10 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler, ICanva
     {
         if (exp.curEncounter is Combat combat)
         {
-            heroHpBar.TryUpdateValue((float)exp.hero.curStats.health / exp.hero.baseStats.health);
-            heroEnergyBar.TryUpdateValue((float)exp.hero.curStats.energy / exp.hero.baseStats.energy);
-            enemyHpBar.TryUpdateValue((float)combat.enemy.curStats.health / combat.enemy.baseStats.health);
-            enemyEnergyBar.TryUpdateValue((float)combat.enemy.curStats.energy / combat.enemy.baseStats.energy);
+            heroHpBar.TryUpdateValue((float)combat.hero.HP / combat.hero.HPMax);
+            heroEnergyBar.TryUpdateValue((float)combat.hero.Energy / combat.hero.EnergyMax);
+            enemyHpBar.TryUpdateValue((float)combat.enemy.HP / combat.enemy.HPMax);
+            enemyEnergyBar.TryUpdateValue((float)combat.enemy.Energy / combat.enemy.EnergyMax);
         }
     }
 

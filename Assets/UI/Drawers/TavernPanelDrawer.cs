@@ -23,7 +23,7 @@ public class TavernPanelDrawer : MonoBehaviour
         // HACK: temp debug feature
         for (var i = 0; i < 5; i++)
         {
-            TownManager.i.CreateNewHeroDebug();
+            TownManager.i.NewHeroDebug();
         }
     }
 

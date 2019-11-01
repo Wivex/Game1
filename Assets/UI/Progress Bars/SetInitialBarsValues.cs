@@ -12,10 +12,10 @@ public class SetInitialBarsValues : StateMachineBehaviour
         TryCheckDrawer(animator);
         var combat = (drawer.exp.curEncounter as Combat);
 
-        drawer.heroHpBar.SetInitialValue((float) drawer.exp.hero.curStats.health / drawer.exp.hero.baseStats.health);
-        drawer.enemyHpBar.SetInitialValue((float)combat.enemy.curStats.health / combat.enemy.baseStats.health);
-        drawer.heroEnergyBar.SetInitialValue((float) drawer.exp.hero.curStats.energy / drawer.exp.hero.baseStats.energy);
-        drawer.enemyEnergyBar.SetInitialValue((float) combat.enemy.curStats.energy / combat.enemy.baseStats.energy);
+        drawer.heroHpBar.SetInitialValue((float)combat.hero.HP / combat.hero.HPMax);
+        drawer.enemyHpBar.SetInitialValue((float)combat.enemy.HP / combat.enemy.HPMax);
+        drawer.heroEnergyBar.SetInitialValue((float)combat.hero.Energy / combat.hero.EnergyMax);
+        drawer.enemyEnergyBar.SetInitialValue((float)combat.hero.Energy / combat.hero.EnergyMax);
     }
 
     void TryCheckDrawer(Animator animator)

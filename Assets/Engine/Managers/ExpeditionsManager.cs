@@ -42,7 +42,7 @@ public class ExpeditionsManager : MonoBehaviour
 
     public void StartNewExpeditionDebug()
     {
-        StartNewExpedition(TownManager.i.CreateNewHero(),
+        StartNewExpedition(TownManager.i.NewHeroDebug(),
             Resources.Load<LocationData>("Locations/Outskirts/Outskirts"));
     }
 

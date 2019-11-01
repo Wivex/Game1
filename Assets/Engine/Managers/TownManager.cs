@@ -33,7 +33,7 @@ public class TownManager : MonoBehaviour
     internal List<Hero> IdleHeroes => heroes.FindAll(hero => hero.state == HeroState.Idle);
     internal List<Hero> RecruitableHeroes => heroes.FindAll(hero => hero.state == HeroState.Recruitable);
 
-    public Hero CreateNewHero(string name = default,
+    public Hero NewHero(string name = default,
                               SexType sexType = default,
                               HeroClassType heroClassType = default,
                               Sprite portrait = default)
@@ -43,8 +43,8 @@ public class TownManager : MonoBehaviour
         return hero;
     }
 
-    public void CreateNewHeroDebug()
+    public Hero NewHeroDebug()
     {
-        CreateNewHero();
+        return NewHero(null, SexType.Male, HeroClassType.Warrior);
     }
 }

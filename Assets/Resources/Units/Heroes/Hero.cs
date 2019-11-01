@@ -37,16 +37,16 @@ public class Hero : Unit
     internal List<Item> backpack = new List<Item>();
     internal List<Item> consumables = new List<Item>();
 
-    // USE: TownManager.i.CreateNewHero()
+    // USE: TownManager.i.NewHero()
     internal Hero(string name = default,
                   SexType sexType = default,
                   HeroClassType heroClassType = default,
                   Sprite portrait = default)
     {
         this.sexType = sexType;
-        this.portrait = portrait ?? RandomPortrait();
         this.heroClassType = heroClassType;
         this.name = name ?? NamingManager.statics.GetRandomHeroName(this);
+        this.portrait = portrait ?? RandomPortrait();
 
         data = Resources.Load<HeroData>(
             $"Units/Heroes/Classes/{heroClassType.ToString()}/{heroClassType.ToString()}Class");

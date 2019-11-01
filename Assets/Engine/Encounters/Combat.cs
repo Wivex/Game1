@@ -80,14 +80,14 @@ public class Combat : Encounter
     void NextTurn()
     {
         // extra hero turn check
-        if (heroInitiative > hero.Speed.ModdedValue)
-            heroInitiative -= hero.curStats.speed;
+        if (heroInitiative > hero.Speed)
+            heroInitiative -= hero.Speed;
         // extra enemy turn check (substitution leftover is negative)
-        else if (-heroInitiative > enemy.curStats.speed)
-            heroInitiative -= -enemy.curStats.speed;
+        else if (-heroInitiative > enemy.Speed)
+            heroInitiative -= -enemy.Speed;
         // normal turn check
         else
-            heroInitiative += hero.curStats.speed - enemy.curStats.speed;
+            heroInitiative += hero.Speed - enemy.Speed;
 
         if (heroInitiative > 0 || heroInitiative == 0 && Random.value > 0.5f)
         {
