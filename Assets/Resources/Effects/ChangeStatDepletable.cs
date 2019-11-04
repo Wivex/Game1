@@ -15,10 +15,10 @@ public class ChangeStatDepletable : Effect
                     targetUnit.TakeDamage(combat.exp, new Damage(damageType, amount));
                 break;
             case StatType.Energy:
-                switch (targetUnit)
-                {
+                //switch (targetUnit)
+                //{
                         
-                }
+                //}
 
                 break;
         }

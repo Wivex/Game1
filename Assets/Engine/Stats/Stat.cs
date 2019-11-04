@@ -34,8 +34,8 @@ internal class Stat
         ModdedValue = Mathf.Max(0, ModdedValue);
     }
 
-    // Change the AddModifier method
-    internal void AddModifier(StatModifier mod)
+    // NOTE: should check if already added
+    internal void TryAddModifier(StatModifier mod)
     {
         mods.Add(mod);
         NewModdedValue();

@@ -33,5 +33,4 @@ public class StatsSheet
         speed,
         eResist,
         bResist;
-    public EnergyType energyType;
 }

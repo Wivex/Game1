@@ -74,10 +74,10 @@ public class TacticAction
     {
         //LogEvent(combat, $"{combat.hero.name} used {consumableData.name} on {combat.target.name}.");
         var usedConsumable = combat.hero.consumables.First(cons => cons.data == consumableData);
-        foreach (var effect in usedConsumable.data.useEffects)
-        {
-            effect.AddEffect(combat, usedConsumable.data.name, usedConsumable.data.icon);
-        }
+        //foreach (var effect in usedConsumable.data.useEffects)
+        //{
+        //    effect.AddEffect(combat, usedConsumable.data.name, usedConsumable.data.icon);
+        //}
 
         // +1 adjustment, because after each turm all cooldowns are decreased by 1 (even on used ability)
         usedConsumable.charges--;

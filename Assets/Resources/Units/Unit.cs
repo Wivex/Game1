@@ -43,8 +43,6 @@ public abstract class Unit
             {StatType.Defence, new Stat(data.stats.defence)}
         };
 
-        //UNDONE: equip gear
-
         foreach (var abilityData in data.abilities)
             abilities.Add(new Ability(abilityData));
 

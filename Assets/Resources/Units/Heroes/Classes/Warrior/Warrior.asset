@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3f8dbe1749b85544b3c0b73f1d3e373, type: 3}
-  m_Name: WarriorClass
+  m_Name: Warrior
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 3d96780b570c9334c85e44e87ff5d2a1, type: 3}
+  icon: {fileID: 0}
   stats:
     health: 150
     energy: 10
@@ -21,7 +21,7 @@ MonoBehaviour:
     speed: 10
     eResist: 0
     bResist: 0
-    energyType: 1
+  energyType: 1
   abilities: []
   tactics:
   - triggers:

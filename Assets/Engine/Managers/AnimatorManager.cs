@@ -18,7 +18,7 @@ public class AnimatorManager : MonoBehaviour
 
     internal static void Trigger(AnimationTrigger value, params AnimatorManager[] animManagers)
     {
-        animManagers.ForEach(manager => manager.animator.SetTrigger(value.ToString()));
+        animManagers?.ForEach(manager => manager.animator.SetTrigger(value.ToString()));
     }
 
     /// <summary>
@@ -26,7 +26,7 @@ public class AnimatorManager : MonoBehaviour
     /// </summary>
     public void TriggerLinkedAnimators(AnimationTrigger value)
     {
-        linkedAnimators.ForEach(animator => animator.SetTrigger(value.ToString()));
+        linkedAnimators?.ForEach(animator => animator.SetTrigger(value.ToString()));
     }
 
     public void PauseAnimationForSecs(float sec)

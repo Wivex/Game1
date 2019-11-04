@@ -10,11 +10,11 @@ public class ItemData : ScriptableObject
     public int cost = 1;
     public int stackSize = 1;
     public int charges = 0;
-    public StatsSheet equipStatMods;
+    public StatsSheet equipStats;
     public EquipmentSlot equipmentSlot;
     public HeroClassType reqHeroClassType = HeroClassType.Any;
-    [Reorderable(ReorderableNamingType.VariableValue, "stat")]
+    [Reorderable(ReorderableNamingType.VariableValue, "statType")]
     public List<StatModifier> statModifiers;
-    [Reorderable(ReorderableNamingType.VariableValue, "effectOnStatsType")]
-    public List<Effect> useEffects;
+    //[Reorderable(ReorderableNamingType.VariableValue, "effectOnStatsType")]
+    //public List<Effect> useEffects;
 }
