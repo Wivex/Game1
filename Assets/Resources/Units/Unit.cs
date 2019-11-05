@@ -8,7 +8,7 @@ public abstract class Unit
     internal List<Effect> effects = new List<Effect>();
     internal List<Tactic> tactics;
 
-    internal Dictionary<StatType, Stat> stats;
+    internal Dictionary<StatType, Stat> baseStats;
 
     internal bool Dead => HP <= 0;
 
@@ -16,31 +16,31 @@ public abstract class Unit
 
     internal int HP
     {
-        get => (stats[StatType.Health] as StatDepletable).CurValue;
-        set => (stats[StatType.Health] as StatDepletable).CurValue = value;
+        get => (baseStats[StatType.Health] as StatDepletable).CurValue;
+        set => (baseStats[StatType.Health] as StatDepletable).CurValue = value;
     }
-    internal int HPMax => stats[StatType.Health].ModdedValue;
+    internal int HPMax => baseStats[StatType.Health].ModdedValue;
     internal int Energy
     {
-        get => (stats[StatType.Energy] as StatDepletable).CurValue;
-        set => (stats[StatType.Energy] as StatDepletable).CurValue = value;
+        get => (baseStats[StatType.Energy] as StatDepletable).CurValue;
+        set => (baseStats[StatType.Energy] as StatDepletable).CurValue = value;
     }
-    internal int EnergyMax => stats[StatType.Energy].ModdedValue;
-    internal int Speed => stats[StatType.Speed].ModdedValue;
-    internal int Attack => stats[StatType.Attack].ModdedValue;
-    internal int Defence => stats[StatType.Defence].ModdedValue;
+    internal int EnergyMax => baseStats[StatType.Energy].ModdedValue;
+    internal int Speed => baseStats[StatType.Speed].ModdedValue;
+    internal int Attack => baseStats[StatType.Attack].ModdedValue;
+    internal int Defence => baseStats[StatType.Defence].ModdedValue;
 
     #endregion
 
     internal void InitData(UnitData data)
     {
-        stats = new Dictionary<StatType, Stat>
+        baseStats = new Dictionary<StatType, Stat>
         {
-            {StatType.Health, new StatDepletable(data.stats.health)},
-            {StatType.Energy, new StatDepletable(data.stats.energy)},
-            {StatType.Speed, new Stat(data.stats.speed)},
-            {StatType.Attack, new Stat(data.stats.attack)},
-            {StatType.Defence, new Stat(data.stats.defence)}
+            {StatType.Health, new StatDepletable(data.baseStats.health)},
+            {StatType.Energy, new StatDepletable(data.baseStats.energy)},
+            {StatType.Speed, new Stat(data.baseStats.speed)},
+            {StatType.Attack, new Stat(data.baseStats.attack)},
+            {StatType.Defence, new Stat(data.baseStats.defence)}
         };
 
         foreach (var abilityData in data.abilities)
@@ -59,7 +59,7 @@ public abstract class Unit
         switch (damage.type)
         {
             case DamageType.Physical:
-                protectionValue = stats[StatType.Defence].ModdedValue;
+                protectionValue = baseStats[StatType.Defence].ModdedValue;
                 break;
         }
 

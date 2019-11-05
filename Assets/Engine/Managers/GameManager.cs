@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -37,5 +38,19 @@ public class GameManager : MonoBehaviour
     public void CloseGame()
     {
         Application.Quit();
+    }
+
+    /// <summary>
+    /// Loads asset of selected type in the same directory and same name, as selected asset.
+    /// </summary>
+    internal static T LoadNearbyAsset<T>(Object asset) where T : Object
+    {
+        var assetPath = AssetDatabase.GetAssetPath(asset);
+        //"Assets/Resources/Units/Heroes/Classes/Warrior/WarriorClass.asset"
+        var startIndex = "Assets/Resources/".Length;
+        var endIndex = assetPath.IndexOf(".asset");
+        var resourcePath = assetPath.Substring(startIndex, endIndex - startIndex);
+        //"Units/Heroes/Classes/Warrior/WarriorClass"
+        return Resources.Load<T>(resourcePath);
     }
 }   

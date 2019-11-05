@@ -12,31 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3f8dbe1749b85544b3c0b73f1d3e373, type: 3}
   m_Name: Warrior
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
-  stats:
-    health: 150
-    energy: 10
+  baseStats:
+    health: 100
+    energy: 100
     attack: 10
-    defence: 7
+    defence: 5
     speed: 10
     eResist: 0
     bResist: 0
   energyType: 1
   abilities: []
-  tactics:
-  - triggers:
-    - triggerType: 0
-      target: 0
-      stat: 0
-      statTriggerType: 0
-      comparisonType: 0
-      statValue: 0
-      abilityData: {fileID: 0}
-      unitData: {fileID: 0}
-    action:
-      actionType: 0
-      abilityData: {fileID: 0}
-      consumableData: {fileID: 0}
+  tactics: []
   equipment:
     head:
       data: {fileID: 0}
@@ -55,7 +41,7 @@ MonoBehaviour:
     ring2:
       data: {fileID: 0}
     mainHand1:
-      data: {fileID: 11400000, guid: 78012ae863cad56478ded752cbb98ccc, type: 2}
+      data: {fileID: 0}
     offHand1:
       data: {fileID: 0}
     mainHand2:

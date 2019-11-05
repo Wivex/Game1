@@ -12,11 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b86748d203ff64c894d0f12a9f236c, type: 3}
   m_Name: Club
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 6d40eea28b505634ab55a5a1cc5f0a16, type: 3}
-  cost: 1
-  stackSize: 1
-  charges: 0
-  equipStats:
+  baseStats:
     health: 0
     energy: 0
     attack: 10
@@ -24,6 +20,9 @@ MonoBehaviour:
     speed: 0
     eResist: 0
     bResist: 0
+  cost: 1
+  stackSize: 1
+  charges: 0
   equipmentSlot: 9
   reqHeroClassType: 0
-  statModifiers: []
+  statMods: []

@@ -81,20 +81,20 @@ public class Hero : Unit
     {
         if (item == null || item.data == null) return;
 
-        if (item.data.equipStats.attack != 0)
-            stats[StatType.Attack]
-                .TryAddModifier(new StatModifier(item.data.equipStats.attack, StatModType.Flat, item));
-        if (item.data.equipStats.defence != 0)
-            stats[StatType.Defence]
-                .TryAddModifier(new StatModifier(item.data.equipStats.defence, StatModType.Flat, item));
-        if (item.data.equipStats.health != 0)
-            stats[StatType.Health]
-                .TryAddModifier(new StatModifier(item.data.equipStats.health, StatModType.Flat, item));
-        if (item.data.equipStats.energy != 0)
-            stats[StatType.Energy]
-                .TryAddModifier(new StatModifier(item.data.equipStats.energy, StatModType.Flat, item));
-        if (item.data.equipStats.speed != 0)
-            stats[StatType.Speed].TryAddModifier(new StatModifier(item.data.equipStats.speed, StatModType.Flat, item));
+        if (item.data.baseStats.attack != 0)
+            baseStats[StatType.Attack]
+                .TryAddModifier(new StatModifier(item.data.baseStats.attack, StatModType.Flat, item));
+        if (item.data.baseStats.defence != 0)
+            baseStats[StatType.Defence]
+                .TryAddModifier(new StatModifier(item.data.baseStats.defence, StatModType.Flat, item));
+        if (item.data.baseStats.health != 0)
+            baseStats[StatType.Health]
+                .TryAddModifier(new StatModifier(item.data.baseStats.health, StatModType.Flat, item));
+        if (item.data.baseStats.energy != 0)
+            baseStats[StatType.Energy]
+                .TryAddModifier(new StatModifier(item.data.baseStats.energy, StatModType.Flat, item));
+        if (item.data.baseStats.speed != 0)
+            baseStats[StatType.Speed].TryAddModifier(new StatModifier(item.data.baseStats.speed, StatModType.Flat, item));
     }
 
     Sprite RandomPortrait()
