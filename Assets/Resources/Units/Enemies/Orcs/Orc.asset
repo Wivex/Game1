@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Orc
   m_EditorClassIdentifier: 
   baseStats:
-    health: 1000
+    health: 100
     energy: 100
     attack: 10
     defence: 5
@@ -22,5 +22,24 @@ MonoBehaviour:
     bResist: 0
   energyType: 1
   abilities: []
-  tactics: []
-  lootTable: []
+  tactics:
+  - triggers:
+    - triggerType: 0
+      target: 0
+      stat: 0
+      statTriggerType: 0
+      comparisonType: 0
+      statValue: 0
+      abilityData: {fileID: 0}
+      unitData: {fileID: 0}
+    action:
+      actionType: 0
+      abilityData: {fileID: 0}
+      consumableData: {fileID: 0}
+  lootTable:
+  - dropChance: 1
+    lootAmountType: 0
+    fixedAmount: 0
+    minAmount: 0
+    maxAmount: 0
+    item: {fileID: 11400000, guid: 78012ae863cad56478ded752cbb98ccc, type: 2}

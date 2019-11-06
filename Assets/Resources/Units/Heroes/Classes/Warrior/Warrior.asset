@@ -22,7 +22,20 @@ MonoBehaviour:
     bResist: 0
   energyType: 1
   abilities: []
-  tactics: []
+  tactics:
+  - triggers:
+    - triggerType: 0
+      target: 0
+      stat: 0
+      statTriggerType: 0
+      comparisonType: 0
+      statValue: 0
+      abilityData: {fileID: 0}
+      unitData: {fileID: 0}
+    action:
+      actionType: 0
+      abilityData: {fileID: 0}
+      consumableData: {fileID: 0}
   equipment:
     head:
       data: {fileID: 0}
@@ -41,7 +54,7 @@ MonoBehaviour:
     ring2:
       data: {fileID: 0}
     mainHand1:
-      data: {fileID: 0}
+      data: {fileID: 11400000, guid: 78012ae863cad56478ded752cbb98ccc, type: 2}
     offHand1:
       data: {fileID: 0}
     mainHand2:
