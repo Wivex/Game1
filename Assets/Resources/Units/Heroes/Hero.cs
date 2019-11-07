@@ -99,6 +99,7 @@ public class Hero : Unit
 
     Sprite RandomPortrait()
     {
+        // TODO: optimize to load once for all heroes
         var portraits =
             Resources.LoadAll<Sprite>($"Units/Heroes/Classes/{heroClassType.ToString()}/Portraits/{sexType.ToString()}");
         return portraits[Random.Range(0, portraits.Length - 1)];

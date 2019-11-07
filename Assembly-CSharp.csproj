@@ -307,6 +307,7 @@
     <Compile Include="Assets\Engine\Various\NamingManager.cs" />
     <Compile Include="Assets\Engine\Various\ReferenceTypes.cs" />
     <Compile Include="Assets\Engine\Various\WorldSpaceCanvasScaleAdjuster.cs" />
+    <Compile Include="Assets\RaycastTargetsDetector.cs" />
     <Compile Include="Assets\Resources\Abilities\Ability.cs" />
     <Compile Include="Assets\Resources\Abilities\AbilityData.cs" />
     <Compile Include="Assets\Resources\Effects\ChangeStatDepletable.cs" />
