@@ -4,29 +4,21 @@ using UnityEngine;
 
 public class CanvasManager : MonoBehaviour
 {
+    // disabled, but not hidden, to be able to see list contents in editor
     [Disabled]
-    public List<Canvas> canvases = new List<Canvas>();
-
+    public List<Canvas> controlledCanvases = new List<Canvas>();
     public Canvas defaultCanvas;
     public List<Canvas> staticCanvases = new List<Canvas>();
 
-    public List<Canvas> DirectSubCanvases => 
-        GetComponentsInChildren<Canvas>()
-            .Where(canvas => canvas.transform.parent == transform).ToList();
-
-    /// <summary>
-    /// Automatically put direct children of this object (1 depth) into canvases list
-    /// </summary>
     void OnValidate()
     {
-        canvases.Clear();
-        DirectSubCanvases.ForEach(canvas => canvases.Add(canvas));
+        controlledCanvases = gameObject.DirectSubCanvases();
     }
 
     void Start()
     {
         //set enabled status for canvases
-        foreach (var canvas in canvases)
+        foreach (var canvas in controlledCanvases)
         {
             canvas.enabled = staticCanvases.Contains(canvas) || canvas == defaultCanvas;
         }
@@ -37,20 +29,21 @@ public class CanvasManager : MonoBehaviour
     /// </summary>
     public void ChangeActiveCanvas(Canvas selectedCanvas)
     {
-        foreach (var canvas in canvases)
+        foreach (var canvas in controlledCanvases)
         {
-            var visibility = canvas == selectedCanvas || staticCanvases.Contains(canvas);
-            canvas.enabled = visibility;
-            canvas.ChangeContentVisibility(visibility);
+            var visible = canvas == selectedCanvas || staticCanvases.Contains(canvas);
+            canvas.enabled = visible;
+            //canvas.ChangeContentVisibility(visible);
+            HideSubCanvases(canvas);
         }
     }
 
-    public void HideSubCanvases()
+    public void HideSubCanvases(Canvas canvas)
     {
-        foreach (var canvas in DirectSubCanvases)
+        foreach (var canv in GetComponentsInChildren<Canvas>())
         {
-            canvas.enabled = false;
-            canvas.ChangeContentVisibility(false);
+            canv.enabled = false;
+            canv.ChangeContentVisibility(false);
         }
     }
 }

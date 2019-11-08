@@ -69,4 +69,8 @@ public static class Extensions
         var subDrawers = canvas.GetComponentsInChildren<ICanvasVisibility>().ToList();
         subDrawers.ForEach(drawer => drawer.Visible = visibility);
     }
+
+    public static List<Canvas> DirectSubCanvases(this GameObject obj) =>
+        obj.GetComponentsInChildren<Canvas>()
+           .Where(canvas => canvas.transform.parent == obj.transform).ToList();
 }
