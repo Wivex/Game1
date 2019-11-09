@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler, ICanvasVisibility
+public class ExpPreviewPanelDrawer : Drawer, IPointerClickHandler
 {
     #region SET IN INSPECTOR
     
@@ -49,8 +49,6 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler, ICanva
     //update UI panels
     void LateUpdate()
     {
-        if (!Visible) return;
-
         RedrawHeroDesc();
         RedrawGold();
         //    UpdateConsumables();
@@ -135,6 +133,6 @@ public class ExpPreviewPanelDrawer : MonoBehaviour, IPointerClickHandler, ICanva
     public void OnPointerClick(PointerEventData eventData)
     {
         // can't reference scene objects from prefab
-        UIManager.i.expPanelDrawManager.ShowDetailsPanel(exp);
+        UIManager.i.expPanelManager.ShowDetailsPanel(exp);
     }
 }

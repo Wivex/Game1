@@ -3,20 +3,18 @@ using UnityEngine;
 using System.Linq;
 using TMPro;
 
-public class ExpeditionPanelDrawManager : MonoBehaviour, ICanvasVisibility
+public class ExpeditionPanelManager : MonoBehaviour
 {
     public ExpPreviewPanelDrawer expPreviewPanelPrefab;
     public Transform previewContentPanel;
     public Canvas overviewCanvas, detailsCanvas, noExpCanvas;
-    //public ExpDetailsPanelDrawManager expDetailsPanelDrawManager;
+    //public ExpDetailsPanelManager expDetailsPanelDrawManager;
     public LogPanelDrawer logPanelDrawer;
 
     internal Dictionary<Expedition, ExpPreviewPanelDrawer> expPreviewPanels = new Dictionary<Expedition, ExpPreviewPanelDrawer>();
     internal Expedition selectedExp;
 
     CanvasManager cMan;
-
-    public bool Visible { get; set; }
 
     // initializations
     void Awake()

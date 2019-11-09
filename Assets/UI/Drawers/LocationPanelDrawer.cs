@@ -3,7 +3,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class LocationPanelDrawer : MonoBehaviour
+public class LocationPanelDrawer : Drawer
 {
     [HideInInspector]
     public LocationData location;

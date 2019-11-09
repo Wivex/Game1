@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ExpeditionFrameDrawer : MonoBehaviour, IPointerClickHandler
+public class ExpeditionFrameDrawer : Drawer, IPointerClickHandler
 {
     public Image locImage;
     public TextMeshProUGUI expLabel;

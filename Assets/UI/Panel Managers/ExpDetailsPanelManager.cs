@@ -2,7 +2,7 @@
 using TMPro;
 
 //TODO: rework
-public class ExpDetailsPanelDrawManager : MonoBehaviour
+public class ExpDetailsPanelManager : MonoBehaviour
 {
     public HeroPanelDrawer heroPanel;
     public EnemyPanelDrawer enemyPanel;

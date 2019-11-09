@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UnitPanelDrawer : MonoBehaviour
+public class UnitPanelDrawer : Drawer
 {
     protected Unit unit;
 

@@ -29,15 +29,15 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
-    public ExpeditionPanelDrawManager expPanelDrawManager;
+    public ExpeditionPanelManager expPanelManager;
     public MayorPanelDrawer mayorPanelDrawer;
     public TavernPanelDrawer tavernPanelDrawer;
 
     internal MonoBehaviour floatingTextPrefab, meleeHitPrefab;
 
     Transform GetUnitUITarget(Expedition exp, Unit target) => target is Hero
-        ? expPanelDrawManager.expPreviewPanels[exp].heroIcon.transform
-        : expPanelDrawManager.expPreviewPanels[exp].objectIcon.transform;
+        ? expPanelManager.expPreviewPanels[exp].heroIcon.transform
+        : expPanelManager.expPreviewPanels[exp].objectIcon.transform;
 
     // initializing prefabs on Unity editor refresh
     void OnEnable()

@@ -5,7 +5,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 
-public class TavernPanelDrawer : MonoBehaviour
+public class TavernPanelDrawer : Drawer
 {
     #region SET IN INSPECTOR
 

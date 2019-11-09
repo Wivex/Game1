@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEditor;
+using GameObject = UnityEngine.GameObject;
 using Object = UnityEngine.Object;
 
 public static class Extensions
@@ -49,28 +50,92 @@ public static class Extensions
         }
     }
 
+    //TODO: check if needed?
     /// <summary>
-    /// Performs SetActive operation for all child objects of type T for this object
+    /// Performs SetActive operation for this object and all it's children, which have Comp<T>
     /// </summary>
-    public static void SetActiveForChildren<T>(this Transform obj, bool state)
+    public static void ChangeActiveDescending<T>(this GameObject obj, bool state)
     {
-        foreach (var child in obj.GetComponentsInChildren<T>(true))
+        foreach (var comp in obj.GetComponentsInChildren<T>(true))
         {
-            (child as MonoBehaviour).gameObject.SetActive(state);
+            (comp as GameObject).SetActive(state);
+        }
+    }
+
+    /// <summary>
+    /// Set enabled property of the Comp<T> for this object and all it's children
+    /// </summary>
+    public static void ChangeEnabledDescending<T>(this GameObject obj, bool state)
+    {
+        foreach (var comp in obj.GetComponentsInChildren<T>(true))
+        {
+            (comp as MonoBehaviour).enabled = state;
         }
     }
 
     /// <summary>
     /// Changes Visible property of this canvas content (it's Drawer and sub-Drawers)
     /// </summary>
-    public static void ChangeContentVisibility(this Canvas canvas, bool visibility)
+    public static void ChangeContentVisibility(this Canvas canvas, bool visible)
     {
-        // change visibility for all sub-canvases
-        var subDrawers = canvas.GetComponentsInChildren<ICanvasVisibility>().ToList();
-        subDrawers.ForEach(drawer => drawer.Visible = visibility);
+        if (visible)
+        {
+            canvas.gameObject.IterateEnableNestedUI();
+        }
+        else
+        {
+            canvas.gameObject.DisableNestedUI();
+        }
     }
 
-    public static List<Canvas> DirectSubCanvases(this GameObject obj) =>
-        obj.GetComponentsInChildren<Canvas>()
-           .Where(canvas => canvas.transform.parent == obj.transform).ToList();
+    // UNDONE: bad performance of GetComponent predicted, require caching of Comps
+    /// <summary>
+    /// Recursively iterates direct children of the game object and restores their visibility/functionality
+    /// </summary>
+    public static void IterateEnableNestedUI(this GameObject obj)
+    {
+        // iterate direct children
+        foreach (GameObject child in obj.transform)
+        {
+            // enable child Canvas, if exist
+            Behaviour comp = child.GetComponent<Canvas>();
+            if (comp != null) comp.enabled = true;
+
+            // enable child Drawer, if exist
+            comp = child.GetComponent<Drawer>();
+            if (comp != null) comp.enabled = true;
+
+            // reset child CM, if exist
+            comp = child.GetComponent<CanvasManager>();
+            if (comp != null)
+            {
+                // let CM control it's SubCanvases
+                (comp as CanvasManager).ResetCanvases();
+            }
+            // else iterate this method on SubChild (until no children left)
+            else if (child.transform.childCount > 0)
+            {
+                IterateEnableNestedUI(child);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Disables this and all sub Canvases and Drawers
+    /// </summary>
+    public static void DisableNestedUI(this GameObject obj)
+    {
+        obj.ChangeEnabledDescending<Canvas>(false);
+        obj.ChangeEnabledDescending<Drawer>(false);
+    }
+
+    public static IEnumerable<Canvas> DirectSubCanvases(this GameObject obj)
+    {
+        foreach (GameObject child in obj.transform)
+        {
+            var canvas = child.GetComponent<Canvas>();
+            if (canvas != null)
+                yield return canvas;
+        }
+    }
 }

@@ -7,21 +7,22 @@ public class CanvasManager : MonoBehaviour
     // disabled, but not hidden, to be able to see list contents in editor
     [Disabled]
     public List<Canvas> controlledCanvases = new List<Canvas>();
-    public Canvas defaultCanvas;
-    public List<Canvas> staticCanvases = new List<Canvas>();
+    public Canvas defaultActiveCanvas;
+    public List<Canvas> alwaysActiveCanvases = new List<Canvas>();
 
-    void OnValidate()
+    void OnEnable()
     {
-        controlledCanvases = gameObject.DirectSubCanvases();
+        controlledCanvases = gameObject.DirectSubCanvases().ToList();
     }
 
     void Start()
     {
-        //set enabled status for canvases
-        foreach (var canvas in controlledCanvases)
-        {
-            canvas.enabled = staticCanvases.Contains(canvas) || canvas == defaultCanvas;
-        }
+        ResetCanvases();
+    }
+
+    internal void ResetCanvases()
+    {
+        ChangeActiveCanvas(defaultActiveCanvas);
     }
 
     /// <summary>
@@ -31,14 +32,22 @@ public class CanvasManager : MonoBehaviour
     {
         foreach (var canvas in controlledCanvases)
         {
-            var visible = canvas == selectedCanvas || staticCanvases.Contains(canvas);
+            var visible = canvas == selectedCanvas || alwaysActiveCanvases.Contains(canvas);
             canvas.enabled = visible;
-            //canvas.ChangeContentVisibility(visible);
-            HideSubCanvases(canvas);
+            canvas.ChangeContentVisibility(visible);
         }
     }
 
-    public void HideSubCanvases(Canvas canvas)
+    public void HideSubUI(Canvas canvas)
+    {
+        foreach (var canv in GetComponentsInChildren<Canvas>())
+        {
+            canv.enabled = false;
+            canv.ChangeContentVisibility(false);
+        }
+    }
+
+    public void ShowSubUI(Canvas canvas)
     {
         foreach (var canv in GetComponentsInChildren<Canvas>())
         {

@@ -2,7 +2,7 @@
 using UnityEngine;
 using TMPro;
 
-public class LogPanelDrawer : MonoBehaviour
+public class LogPanelDrawer : Drawer
 {
     const int maxEntries = 20;
 

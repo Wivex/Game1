@@ -5,7 +5,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 
-public class MayorPanelDrawer : MonoBehaviour
+public class MayorPanelDrawer : Drawer
 {
     #region SET IN INSPECTOR
 
@@ -43,7 +43,7 @@ public class MayorPanelDrawer : MonoBehaviour
             noQuestsText.text = "No idle heroes available.";
             noQuestsText.gameObject.SetActive(true);
             // hide exp. frames in this content panel
-            expContentPanel.SetActiveForChildren<ExpeditionFrameDrawer>(false);
+            expContentPanel.gameObject.ChangeActiveDescending<ExpeditionFrameDrawer>(false);
             noExpText.text = "No idle heroes available.";
             noExpText.gameObject.SetActive(true);
         }
@@ -61,7 +61,7 @@ public class MayorPanelDrawer : MonoBehaviour
         selLocation = exp.locData;
 
         // hide exp. frames in this content panel
-        expContentPanel.SetActiveForChildren<ExpeditionFrameDrawer>(false);
+        expContentPanel.gameObject.ChangeActiveDescending<ExpeditionFrameDrawer>(false);
 
         if (TownManager.i.IdleHeroes.Any())
         {
@@ -89,9 +89,9 @@ public class MayorPanelDrawer : MonoBehaviour
         selHero.state = HeroState.OnExpedition;
 
         // hide heroFrames in this content panel
-        expContentPanel.SetActiveForChildren<HeroFrameDrawer>(false);
+        expContentPanel.gameObject.ChangeActiveDescending<HeroFrameDrawer>(false);
         // show expFrames in this content panel
-        expContentPanel.SetActiveForChildren<ExpeditionFrameDrawer>(true);
+        expContentPanel.gameObject.ChangeActiveDescending<ExpeditionFrameDrawer>(true);
 
         ExpeditionsManager.i.StartNewExpedition(selHero, selLocation);
     }

@@ -50,7 +50,7 @@ public class ExpeditionsManager : MonoBehaviour
     {
         var exp = new Expedition(hero, location);
         expeditions.Add(exp);
-        UIManager.i.expPanelDrawManager.NewPreviewPanel(exp);
+        UIManager.i.expPanelManager.NewPreviewPanel(exp);
     }
 
     void Update()

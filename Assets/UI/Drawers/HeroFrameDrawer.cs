@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class HeroFrameDrawer : MonoBehaviour, IPointerClickHandler
+public class HeroFrameDrawer : Drawer, IPointerClickHandler
 {
     public Image heroImage;
     public TextMeshProUGUI heroNameText, heroLevelText;
