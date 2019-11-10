@@ -67,9 +67,10 @@ public static class Extensions
     /// </summary>
     public static void ChangeEnabledDescending<T>(this GameObject obj, bool state)
     {
-        foreach (var comp in obj.GetComponentsInChildren<T>(true))
+        var comps = obj.GetComponentsInChildren<T>(true);
+        foreach (var comp in comps)
         {
-            (comp as MonoBehaviour).enabled = state;
+            (comp as Behaviour).enabled = state;
         }
     }
 
@@ -95,7 +96,7 @@ public static class Extensions
     public static void IterateEnableNestedUI(this GameObject obj)
     {
         // iterate direct children
-        foreach (GameObject child in obj.transform)
+        foreach (Transform child in obj.transform)
         {
             // enable child Canvas, if exist
             Behaviour comp = child.GetComponent<Canvas>();
@@ -115,7 +116,7 @@ public static class Extensions
             // else iterate this method on SubChild (until no children left)
             else if (child.transform.childCount > 0)
             {
-                IterateEnableNestedUI(child);
+                child.gameObject.IterateEnableNestedUI();
             }
         }
     }
@@ -131,7 +132,7 @@ public static class Extensions
 
     public static IEnumerable<Canvas> DirectSubCanvases(this GameObject obj)
     {
-        foreach (GameObject child in obj.transform)
+        foreach (Transform child in obj.transform)
         {
             var canvas = child.GetComponent<Canvas>();
             if (canvas != null)

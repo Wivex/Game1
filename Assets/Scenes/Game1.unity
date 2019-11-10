@@ -2739,8 +2739,8 @@ MonoBehaviour:
   - {fileID: 1899172359}
   - {fileID: 518801844}
   - {fileID: 2114174948}
-  defaultCanvas: {fileID: 518801844}
-  staticCanvases: []
+  defaultActiveCanvas: {fileID: 0}
+  alwaysActiveCanvases: []
 --- !u!114 &116656007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18622,8 +18622,8 @@ MonoBehaviour:
   - {fileID: 1448500113}
   - {fileID: 264701932}
   - {fileID: 1059448245}
-  defaultCanvas: {fileID: 1448500113}
-  staticCanvases:
+  defaultActiveCanvas: {fileID: 1448500113}
+  alwaysActiveCanvases:
   - {fileID: 1330719244}
 --- !u!224 &937369510
 RectTransform:
@@ -40023,7 +40023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4415d1111d5fc94dab2f2af0f74361e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expPanelDrawManager: {fileID: 116656009}
+  expPanelManager: {fileID: 0}
   mayorPanelDrawer: {fileID: 975130585}
   tavernPanelDrawer: {fileID: 905577466}
 --- !u!4 &1828845479
@@ -41726,8 +41726,8 @@ MonoBehaviour:
   - {fileID: 1049159389}
   - {fileID: 664696544}
   - {fileID: 647258249}
-  defaultCanvas: {fileID: 0}
-  staticCanvases: []
+  defaultActiveCanvas: {fileID: 0}
+  alwaysActiveCanvases: []
 --- !u!114 &1899172363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45650,8 +45650,8 @@ MonoBehaviour:
   controlledCanvases:
   - {fileID: 975130584}
   - {fileID: 905577467}
-  defaultCanvas: {fileID: 0}
-  staticCanvases: []
+  defaultActiveCanvas: {fileID: 0}
+  alwaysActiveCanvases: []
 --- !u!1 &2071578472
 GameObject:
   m_ObjectHideFlags: 0
@@ -46248,8 +46248,8 @@ MonoBehaviour:
   - {fileID: 875964836}
   - {fileID: 2067226838}
   - {fileID: 116656010}
-  defaultCanvas: {fileID: 0}
-  staticCanvases: []
+  defaultActiveCanvas: {fileID: 0}
+  alwaysActiveCanvases: []
 --- !u!223 &2104314536
 Canvas:
   m_ObjectHideFlags: 0
