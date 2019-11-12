@@ -10,7 +10,7 @@ public class CanvasManager : MonoBehaviour
     public Canvas defaultActiveCanvas;
     public List<Canvas> alwaysActiveCanvases = new List<Canvas>();
 
-    void OnEnable()
+    void OnValidate()
     {
         controlledCanvases = gameObject.DirectSubCanvases().ToList();
     }
@@ -35,24 +35,6 @@ public class CanvasManager : MonoBehaviour
             var visible = canvas == selectedCanvas || alwaysActiveCanvases.Contains(canvas);
             canvas.enabled = visible;
             canvas.ChangeContentVisibility(visible);
-        }
-    }
-
-    public void HideSubUI(Canvas canvas)
-    {
-        foreach (var canv in GetComponentsInChildren<Canvas>())
-        {
-            canv.enabled = false;
-            canv.ChangeContentVisibility(false);
-        }
-    }
-
-    public void ShowSubUI(Canvas canvas)
-    {
-        foreach (var canv in GetComponentsInChildren<Canvas>())
-        {
-            canv.enabled = false;
-            canv.ChangeContentVisibility(false);
         }
     }
 }

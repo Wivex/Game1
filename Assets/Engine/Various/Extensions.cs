@@ -39,17 +39,6 @@ public static class Extensions
         return transform;
     }
 
-    /// <summary>
-    /// Performs SetActive operation for all child objects of type T for this object
-    /// </summary>
-    public static void SetActiveForChildren<T>(this MonoBehaviour obj, bool state)
-    {
-        foreach (var child in obj.GetComponentsInChildren<T>(true))
-        {
-            (child as MonoBehaviour).gameObject.SetActive(state);
-        }
-    }
-
     //TODO: check if needed?
     /// <summary>
     /// Performs SetActive operation for this object and all it's children, which have Comp<T>
@@ -58,7 +47,7 @@ public static class Extensions
     {
         foreach (var comp in obj.GetComponentsInChildren<T>(true))
         {
-            (comp as GameObject).SetActive(state);
+            (comp as Behaviour).gameObject.SetActive(state);
         }
     }
 
@@ -67,8 +56,7 @@ public static class Extensions
     /// </summary>
     public static void ChangeEnabledDescending<T>(this GameObject obj, bool state)
     {
-        var comps = obj.GetComponentsInChildren<T>(true);
-        foreach (var comp in comps)
+        foreach (var comp in obj.GetComponentsInChildren<T>(true))
         {
             (comp as Behaviour).enabled = state;
         }
@@ -95,28 +83,27 @@ public static class Extensions
     /// </summary>
     public static void IterateEnableNestedUI(this GameObject obj)
     {
-        // iterate direct children
-        foreach (Transform child in obj.transform)
+        // if object has CM component, let it control it's children visibility
+        var CM = obj.GetComponent<CanvasManager>();
+        if (CM != null) CM.ResetCanvases();
+        else
         {
-            // enable child Canvas, if exist
-            Behaviour comp = child.GetComponent<Canvas>();
-            if (comp != null) comp.enabled = true;
-
-            // enable child Drawer, if exist
-            comp = child.GetComponent<Drawer>();
-            if (comp != null) comp.enabled = true;
-
-            // reset child CM, if exist
-            comp = child.GetComponent<CanvasManager>();
-            if (comp != null)
+            // iterate direct children
+            foreach (Transform child in obj.transform)
             {
-                // let CM control it's SubCanvases
-                (comp as CanvasManager).ResetCanvases();
-            }
-            // else iterate this method on SubChild (until no children left)
-            else if (child.transform.childCount > 0)
-            {
-                child.gameObject.IterateEnableNestedUI();
+                // enable Canvas, if exist
+                Behaviour comp = child.GetComponent<Canvas>();
+                if (comp != null) comp.enabled = true;
+
+                // enable Drawer, if exist
+                comp = child.GetComponent<Drawer>();
+                if (comp != null) comp.enabled = true;
+
+                // iterate this method on SubChildren (until no children left)
+                if (child.transform.childCount > 0)
+                {
+                    child.gameObject.IterateEnableNestedUI();
+                }
             }
         }
     }

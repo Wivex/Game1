@@ -13,18 +13,18 @@ TagManager:
   - UI
   - 
   - 
+  - Game Window
   - Main Menu
-  - Game UI
-  - Log
-  - Debug
+  - Gameplay Panel
+  - Debug Panel
+  - Town Panel
+  - Expedition Panel
+  - Details Panel
+  - Overview Panel
+  - Mayor Panel
+  - Tavern Panel
+  - Signs
   - 
-  - Overview
-  - Details
-  - 
-  - 
-  - 
-  - 
-  - Town
   - 
   - 
   - 

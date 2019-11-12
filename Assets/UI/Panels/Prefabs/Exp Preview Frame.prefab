@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2058566328396691728}
   - component: {fileID: 946800127086502262}
   - component: {fileID: 4699811852924146816}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Location Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 896923827229057072}
   - component: {fileID: 896923827229057073}
   - component: {fileID: 124328065435244119}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Interaction Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 4719471118395909839}
   - component: {fileID: 4310821741055129850}
   - component: {fileID: 1088692006149417231}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Filler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 1679815241217772691}
   - component: {fileID: 1679815241217772689}
   - component: {fileID: 1679815241217772690}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Filler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -341,7 +341,7 @@ GameObject:
   - component: {fileID: 8136173211611992495}
   - component: {fileID: 3807204030649879230}
   - component: {fileID: 6760068643916491904}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Filler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -415,7 +415,7 @@ GameObject:
   - component: {fileID: 6490985975186952728}
   - component: {fileID: 6979326694166925527}
   - component: {fileID: 5852242374152655606}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Enemy Dead Status Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -491,7 +491,7 @@ GameObject:
   - component: {fileID: 2249852020592406046}
   - component: {fileID: 1482228416658967752}
   - component: {fileID: 565898715563734913}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Hero Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -599,7 +599,7 @@ GameObject:
   - component: {fileID: 2249852021512519040}
   - component: {fileID: 2249852021512519042}
   - component: {fileID: 2249852021512519043}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Charges Value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -756,7 +756,7 @@ GameObject:
   - component: {fileID: 8411881659855063542}
   - component: {fileID: 1026275313371171822}
   - component: {fileID: 5130099974731221815}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Filler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -830,7 +830,7 @@ GameObject:
   - component: {fileID: 2426296329270485423}
   - component: {fileID: 2426296329270485421}
   - component: {fileID: 2426296329270485420}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Image (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -905,7 +905,7 @@ GameObject:
   - component: {fileID: 2426296329276767185}
   - component: {fileID: 2426296329276767191}
   - component: {fileID: 2426296329276767190}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Gold Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -979,7 +979,7 @@ GameObject:
   - component: {fileID: 2426296330018695244}
   - component: {fileID: 2426296330018695218}
   - component: {fileID: 2426296330018695245}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Gold Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1135,7 +1135,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2426296330028210229}
   - component: {fileID: 2426296330028210235}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Exp Preview Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1186,7 +1186,7 @@ GameObject:
   - component: {fileID: 2426296330347808115}
   - component: {fileID: 2426296330347808114}
   - component: {fileID: 2426296330347808112}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Gold Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1285,7 +1285,7 @@ GameObject:
   - component: {fileID: 2426296330385367339}
   - component: {fileID: 2426296330385367338}
   - component: {fileID: 2426296330385367337}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Consumables Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1410,7 +1410,7 @@ GameObject:
   - component: {fileID: 2426296330507069613}
   - component: {fileID: 2426296330507069587}
   - component: {fileID: 2426296330507069586}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Image (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1485,7 +1485,7 @@ GameObject:
   - component: {fileID: 2426296330643683924}
   - component: {fileID: 2426296330643683930}
   - component: {fileID: 2426296330643683925}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Name Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1642,7 +1642,7 @@ GameObject:
   - component: {fileID: 2426296330656836955}
   - component: {fileID: 2426296330656836953}
   - component: {fileID: 2426296330656836952}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Image (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1717,7 +1717,7 @@ GameObject:
   - component: {fileID: 2426296330911540816}
   - component: {fileID: 2426296330911540822}
   - component: {fileID: 2426296330911540817}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Image (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1792,7 +1792,7 @@ GameObject:
   - component: {fileID: 2426296330913638725}
   - component: {fileID: 2426296330913638731}
   - component: {fileID: 2426296330913638730}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Image (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1868,7 +1868,7 @@ GameObject:
   - component: {fileID: 3824551667533075264}
   - component: {fileID: 5180098435281326983}
   - component: {fileID: 9122161660130560084}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Location Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1957,7 +1957,7 @@ GameObject:
   - component: {fileID: 2426296331011137533}
   - component: {fileID: 2426296331011137507}
   - component: {fileID: 2426296331011137506}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2032,7 +2032,7 @@ GameObject:
   - component: {fileID: 2426296331069407929}
   - component: {fileID: 2426296331069407935}
   - component: {fileID: 2426296331069407934}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Level Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2190,7 +2190,7 @@ GameObject:
   - component: {fileID: 2426296331185930448}
   - component: {fileID: 2426296331185930451}
   - component: {fileID: 2426296331185930449}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Desc Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2289,7 +2289,7 @@ GameObject:
   - component: {fileID: 7844774664061879778}
   - component: {fileID: 3578649561695752872}
   - component: {fileID: 1715879826829068773}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Enemy Energy Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2432,7 +2432,7 @@ GameObject:
   - component: {fileID: 3016599047416834717}
   - component: {fileID: 3016599047416834693}
   - component: {fileID: 3016599047416834719}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Hero HP Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2574,9 +2574,8 @@ GameObject:
   - component: {fileID: 3303791443504163958}
   - component: {fileID: 3303791443504163959}
   - component: {fileID: 2426296329245734639}
-  - component: {fileID: 2426296329245734633}
   - component: {fileID: 2426296329245734632}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Exp Preview Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2686,18 +2685,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!225 &2426296329245734633
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3303791443504163953}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!114 &2426296329245734632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2754,7 +2741,7 @@ GameObject:
   - component: {fileID: 8284909180712040770}
   - component: {fileID: 8217898999557586159}
   - component: {fileID: 3280153834822326578}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Filler Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2831,7 +2818,7 @@ GameObject:
   - component: {fileID: 8741131696780362768}
   - component: {fileID: 7482021044081859538}
   - component: {fileID: 6653467461331755213}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Hero Energy Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2974,7 +2961,7 @@ GameObject:
   - component: {fileID: 4775871145668089756}
   - component: {fileID: 9071906305007483788}
   - component: {fileID: 3375799216045346875}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Loot Drop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3080,7 +3067,7 @@ GameObject:
   - component: {fileID: 7402214881607651151}
   - component: {fileID: 402908279000330341}
   - component: {fileID: 6614180191508656631}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Filler Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3157,7 +3144,7 @@ GameObject:
   - component: {fileID: 6649786329217726292}
   - component: {fileID: 4778139356492143950}
   - component: {fileID: 4661725911518613046}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Enemy Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3268,7 +3255,7 @@ GameObject:
   - component: {fileID: 8933623446220090953}
   - component: {fileID: 5995744959923763182}
   - component: {fileID: 5592198354863384878}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Enemy HP Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3409,7 +3396,7 @@ GameObject:
   - component: {fileID: 3314335871471512859}
   - component: {fileID: 5011307332956646945}
   - component: {fileID: 4252428699209930513}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Hero Dead Status Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3483,7 +3470,7 @@ GameObject:
   - component: {fileID: 7415596993195210539}
   - component: {fileID: 7415596993195210533}
   - component: {fileID: 7415596993195210532}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Filler Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3558,7 +3545,7 @@ GameObject:
   - component: {fileID: 8054966582891183916}
   - component: {fileID: 8054966582891183918}
   - component: {fileID: 8054966582891183919}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Charges Value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3715,7 +3702,7 @@ GameObject:
   - component: {fileID: 8054966583269702671}
   - component: {fileID: 8054966583269702673}
   - component: {fileID: 8054966583269702670}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Charges Value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3872,7 +3859,7 @@ GameObject:
   - component: {fileID: 8054966583366208303}
   - component: {fileID: 8054966583366208305}
   - component: {fileID: 8054966583366208302}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Charges Value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4029,7 +4016,7 @@ GameObject:
   - component: {fileID: 8054966583752853480}
   - component: {fileID: 8054966583752853482}
   - component: {fileID: 8054966583752853483}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Charges Value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4186,7 +4173,7 @@ GameObject:
   - component: {fileID: 8054966583820377270}
   - component: {fileID: 8054966583820377272}
   - component: {fileID: 8054966583820377273}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Charges Value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4343,7 +4330,7 @@ GameObject:
   - component: {fileID: 4746727493959213076}
   - component: {fileID: 5247994717278031114}
   - component: {fileID: 5270362880757244300}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Filler Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4418,7 +4405,7 @@ GameObject:
   - component: {fileID: 9008447496378526605}
   - component: {fileID: 9008447496378526603}
   - component: {fileID: 9008447496378526602}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Hero Portrait
   m_TagString: Untagged
   m_Icon: {fileID: 0}
