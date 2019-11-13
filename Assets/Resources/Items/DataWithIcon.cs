@@ -5,12 +5,7 @@ using UnityEngine;
 
 public abstract class DataWithIcon : ScriptableObject
 {
-    internal Sprite icon;
-
-    /// <summary>
-    /// Shows if SO has been renamed and it's not just created. Helps to control OnEnable() events properly.
-    /// </summary>
-    protected bool initialized;
+    public Sprite icon;
 
     /// <summary>
     /// Undocumented support. Called when: same as OnEnable() + every SO values change (each keyboard input)
@@ -29,11 +24,9 @@ public abstract class DataWithIcon : ScriptableObject
 
     protected void AutoLoadIcon()
     {
-        if (initialized)
+        if (!name.StartsWith("New ") && icon == null)
         {
             icon = GameManager.LoadNearbyAsset<Sprite>(this);
         }
-        else if (!name.StartsWith("New "))
-            initialized = true;
     }
 }

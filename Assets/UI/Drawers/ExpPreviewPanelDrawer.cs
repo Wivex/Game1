@@ -133,6 +133,6 @@ public class ExpPreviewPanelDrawer : Drawer, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         // can't reference scene objects from prefab
-        UIManager.i.expPanelManager.ShowDetailsPanel(exp);
+        UIManager.expPanelManager.ShowDetailsPanel(exp);
     }
 }

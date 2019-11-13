@@ -279,7 +279,6 @@
     <Compile Include="Assets\Engine\Encounters\Encounter.cs" />
     <Compile Include="Assets\Engine\Managers\AnimatorManager.cs" />
     <Compile Include="Assets\Engine\Managers\CanvasManager.cs" />
-    <Compile Include="Assets\Engine\Managers\CombatManager.cs" />
     <Compile Include="Assets\Engine\Managers\ExpeditionsManager.cs" />
     <Compile Include="Assets\Engine\Managers\GameManager.cs" />
     <Compile Include="Assets\Engine\Managers\InputManager.cs" />

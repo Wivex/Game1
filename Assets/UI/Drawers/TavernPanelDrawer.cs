@@ -23,7 +23,7 @@ public class TavernPanelDrawer : Drawer
         // HACK: temp debug feature
         for (var i = 0; i < 5; i++)
         {
-            TownManager.i.NewHeroDebug();
+            TownManager.NewHeroDebug();
         }
     }
 
@@ -31,13 +31,13 @@ public class TavernPanelDrawer : Drawer
     {
         ClearPanels();
 
-        foreach (var hero in TownManager.i.IdleHeroes)
+        foreach (var hero in TownManager.IdleHeroes)
         {
             var heroPanel = Instantiate(heroFramePrefab, idlesContentPanel);
             heroPanel.Init(hero, this);
         }
 
-        foreach (var hero in TownManager.i.RecruitableHeroes)
+        foreach (var hero in TownManager.RecruitableHeroes)
         {
             var heroPanel = Instantiate(heroFramePrefab, recruitsContentPanel);
             heroPanel.Init(hero, this);
@@ -54,8 +54,8 @@ public class TavernPanelDrawer : Drawer
 
     void UpdateHeroesAvailabilityInfo()
     {
-        noIdlesText.gameObject.SetActive(!TownManager.i.IdleHeroes.Any());
-        noRecruitsText.gameObject.SetActive(!TownManager.i.RecruitableHeroes.Any());
+        noIdlesText.gameObject.SetActive(!TownManager.IdleHeroes.Any());
+        noRecruitsText.gameObject.SetActive(!TownManager.RecruitableHeroes.Any());
     }
 
     public void OnHeroSelect(HeroFrameDrawer heroFrame)

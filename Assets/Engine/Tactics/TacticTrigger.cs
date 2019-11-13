@@ -80,12 +80,12 @@ public class TacticTrigger
     //    //    : unit.baseStats[(int)stat].curValue > statValue;
     //}
 
-    public bool AbilityReadyCheck(CombatManager situation)
-    {
-        //var unit = target == Target.Self ? situation.actor : situation.target;
-        //return unit.abilities.Exists(ability =>
-        //    ability.abilityData == abilityData && ability.curCooldown == 0);
-        return true;
-    }
+    //public bool AbilityReadyCheck(CombatManager situation)
+    //{
+    //    //var unit = target == Target.Self ? situation.actor : situation.target;
+    //    //return unit.abilities.Exists(ability =>
+    //    //    ability.abilityData == abilityData && ability.curCooldown == 0);
+    //    return true;
+    //}
     #endregion
 }

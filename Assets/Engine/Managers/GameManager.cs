@@ -5,31 +5,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    #region MANAGER INITIALIZATION
-
-    /// <summary>
-    /// Can't access static variables and methods from inspector. So we use static instance to do that.
-    /// </summary>
-    public static GameManager i;
-
-    //default initialization of Singleton instance
-    void Awake()
-    {
-        //Check if instance already exists
-        if (i == null)
-            //if not, set instance to this
-            i = this;
-        //If instance already exists and it's not this:
-        else if (i != this)
-            //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of it.
-
-            //Sets this to not be destroyed when reloading scene
-            DontDestroyOnLoad(gameObject);
-    }
-
-
-    #endregion
-
     void Start()
     {
         Application.targetFrameRate = 60;
@@ -37,13 +12,13 @@ public class GameManager : MonoBehaviour
 
     public void CloseGame()
     {
-#if UNITY_EDITOR
+    #if UNITY_EDITOR
         // If running game in Unity, stop it's execution
         UnityEditor.EditorApplication.isPlaying = false;
-#else
-        // If running game in app, quit it
+    #else
+    // If running game in app, quit it
         Application.Quit();
-#endif
+    #endif
     }
 
     /// <summary>
@@ -51,6 +26,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     internal static T LoadNearbyAsset<T>(Object asset) where T : Object
     {
+        // Can use AssetDatabase only in editor mode, otherwise compile error
+    #if UNITY_EDITOR
         var assetPath = AssetDatabase.GetAssetPath(asset);
         //"Assets/Resources/Units/Heroes/Classes/Warrior/WarriorClass.asset"
         var startIndex = "Assets/Resources/".Length;
@@ -58,5 +35,9 @@ public class GameManager : MonoBehaviour
         var resourcePath = assetPath.Substring(startIndex, endIndex - startIndex);
         //"Units/Heroes/Classes/Warrior/WarriorClass"
         return Resources.Load<T>(resourcePath);
+    #else
+    // should never be used in normal circumstances during actual game, only in editor
+        return null;
+    #endif
     }
 }

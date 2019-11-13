@@ -62,6 +62,7 @@ public class Combat : Encounter
     {
         if (lootDrops.Any())
         {
+            // TODO: use Queue or Stack instead
             curLoot = lootDrops.ExtractFirstElement();
             hero.backpack.Add(curLoot);
             exp.StartAnimation(AnimationTrigger.StartTransferLoot, exp.lootAM, exp.interactionAM, exp.locationAM);

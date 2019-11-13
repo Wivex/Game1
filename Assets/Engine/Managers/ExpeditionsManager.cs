@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ExpeditionsManager : MonoBehaviour
 {
-    #region MANAGER INITIALIZATION
+    #region STATIC REFERENCE INITIALIZATION
 
     /// <summary>
     /// Can't access static variables and methods from inspector. So we use static instance to do that.
@@ -36,13 +36,13 @@ public class ExpeditionsManager : MonoBehaviour
 
     #endregion
 
-    internal List<Expedition> expeditions = new List<Expedition>();
+    internal static List<Expedition> expeditions = new List<Expedition>();
 
     float oldCombatSpeed;
 
     public void StartNewExpeditionDebug()
     {
-        StartNewExpedition(TownManager.i.NewHeroDebug(),
+        StartNewExpedition(TownManager.NewHeroDebug(),
             Resources.Load<LocationData>("Locations/Outskirts/Outskirts"));
     }
 
@@ -50,7 +50,7 @@ public class ExpeditionsManager : MonoBehaviour
     {
         var exp = new Expedition(hero, location);
         expeditions.Add(exp);
-        UIManager.i.expPanelManager.NewPreviewPanel(exp);
+        UIManager.expPanelManager.NewPreviewPanel(exp);
     }
 
     void Update()

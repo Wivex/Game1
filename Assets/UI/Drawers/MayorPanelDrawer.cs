@@ -31,7 +31,7 @@ public class MayorPanelDrawer : Drawer
             expPanel.Init(location, this);
         }
 
-        if (TownManager.i.IdleHeroes.Any())
+        if (TownManager.IdleHeroes.Any())
         {
             //HACK: temp solution
             noQuestsText.text = "No available quests.";
@@ -63,12 +63,12 @@ public class MayorPanelDrawer : Drawer
         // hide exp. frames in this content panel
         expContentPanel.gameObject.ChangeActiveDescending<ExpeditionFrameDrawer>(false);
 
-        if (TownManager.i.IdleHeroes.Any())
+        if (TownManager.IdleHeroes.Any())
         {
             noExpText.gameObject.SetActive(false);
 
             // init free heroes frames in the same content panel from prefabs
-            foreach (var hero in TownManager.i.IdleHeroes)
+            foreach (var hero in TownManager.IdleHeroes)
             {
                 var heroPanel = Instantiate(heroFramePrefab, expContentPanel);
                 heroPanel.Init(hero, this);

@@ -5,37 +5,12 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    #region MANAGER INITIALIZATION
+    internal static ExpeditionPanelManager expPanelManager;
+    internal static MayorPanelDrawer mayorPanelDrawer;
+    internal static TavernPanelDrawer tavernPanelDrawer;
+    internal static MonoBehaviour floatingTextPrefab, meleeHitEffectPrefab;
 
-    /// <summary>
-    /// Can't access static variables and methods from inspector. So we use static instance to do that.
-    /// </summary>
-    public static UIManager i;
-
-    //default initialization of Singleton instance
-    void Awake()
-    {
-        //Check if instance already exists
-        if (i == null)
-            //if not, set instance to this
-            i = this;
-        //If instance already exists and it's not this:
-        else if (i != this)
-            //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of it.
-
-            //Sets this to not be destroyed when reloading scene
-            DontDestroyOnLoad(gameObject);
-    }
-
-    #endregion
-
-    public ExpeditionPanelManager expPanelManager;
-    public MayorPanelDrawer mayorPanelDrawer;
-    public TavernPanelDrawer tavernPanelDrawer;
-
-    internal MonoBehaviour floatingTextPrefab, meleeHitPrefab;
-
-    Transform GetUnitUITarget(Expedition exp, Unit target) => target is Hero
+    static Transform GetUnitUITarget(Expedition exp, Unit target) => target is Hero
         ? expPanelManager.expPreviewPanels[exp].heroIcon.transform
         : expPanelManager.expPreviewPanels[exp].objectIcon.transform;
 
@@ -43,15 +18,19 @@ public class UIManager : MonoBehaviour
     void OnEnable()
     {
         floatingTextPrefab = Resources.Load<MonoBehaviour>("Effects/FloatingText/FloatingText");
-        meleeHitPrefab = Resources.Load<MonoBehaviour>("Effects/MeleeHit/MeleeHit");
+        meleeHitEffectPrefab = Resources.Load<MonoBehaviour>("Effects/MeleeHit/MeleeHit");
+
+        expPanelManager = GameObject.Find("Expedition Panel").GetComponent<ExpeditionPanelManager>();
+        mayorPanelDrawer = GameObject.Find("Mayor Panel").GetComponent<MayorPanelDrawer>();
+        tavernPanelDrawer = GameObject.Find("Tavern Panel").GetComponent<TavernPanelDrawer>();
     }
 
-    internal void CreateFloatingTextForUnit(Expedition exp, Unit target, int value)
+    internal static void CreateFloatingTextForUnit(Expedition exp, Unit target, int value)
     {
         CreateFloatingText(GetUnitUITarget(exp, target), value);
     }
 
-    internal void CreateEffectAnimation(Expedition exp, Unit target, MonoBehaviour prefab)
+    internal static void CreateEffectAnimation(Expedition exp, Unit target, MonoBehaviour prefab)
     {
         var effect = Instantiate(prefab, GetUnitUITarget(exp, target));
 
@@ -60,7 +39,7 @@ public class UIManager : MonoBehaviour
             MirrorEffectAxisX(effect);
     }
 
-    void MirrorEffectAxisX(MonoBehaviour obj)
+    static void MirrorEffectAxisX(MonoBehaviour obj)
     {
         // invert x and y offsets
         obj.transform.localPosition =
@@ -70,7 +49,7 @@ public class UIManager : MonoBehaviour
         obj.transform.eulerAngles += new Vector3(0, 180, 0);
     }
 
-    void CreateFloatingText(Transform target, int value)
+    static void CreateFloatingText(Transform target, int value)
     {
         var floatingText = Instantiate(floatingTextPrefab, target);
         var textObject = floatingText.GetComponent<TextMeshProUGUI>();
@@ -86,15 +65,5 @@ public class UIManager : MonoBehaviour
             textObject.text = $"{value}";
             textObject.color = Color.red;
         }
-    }
-
-    internal void SetActiveMultiple(bool value, params GameObject[] objects)
-    {
-        objects.ForEach(obj => obj.SetActive(value));
-    }
-
-    internal void SetActiveMultiple(bool value, params MonoBehaviour[] objects)
-    {
-        objects.ForEach(obj => obj.gameObject.SetActive(value));
     }
 }

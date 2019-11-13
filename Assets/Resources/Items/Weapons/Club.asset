@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b86748d203ff64c894d0f12a9f236c, type: 3}
   m_Name: Club
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 6d40eea28b505634ab55a5a1cc5f0a16, type: 3}
   baseStats:
     health: 0
     energy: 0

@@ -37,7 +37,7 @@ public class Hero : Unit
     internal List<Item> backpack = new List<Item>();
     internal List<Item> consumables = new List<Item>();
 
-    // USE: TownManager.i.NewHero()
+    // USE: TownManager.NewHero()
     internal Hero(string name = default,
                   SexType sexType = default,
                   HeroClassType heroClassType = default,

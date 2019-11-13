@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5794685254794927569}
   - component: {fileID: 5794685254794927575}
   - component: {fileID: 5794685254794927568}
-  m_Layer: 15
+  m_Layer: 17
   m_Name: Hero Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 5794685255496521920}
   - component: {fileID: 5794685255496521926}
   - component: {fileID: 5794685255496521927}
-  m_Layer: 15
+  m_Layer: 17
   m_Name: Hero Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 5794685255711995311}
   - component: {fileID: 5135815716998592754}
   - component: {fileID: 4356249072361385077}
-  m_Layer: 15
+  m_Layer: 17
   m_Name: Hero Portrait Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -378,7 +378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -465,7 +465,7 @@ GameObject:
   - component: {fileID: 5794685255970044878}
   - component: {fileID: 5794685255970044867}
   - component: {fileID: 5794685255970044876}
-  m_Layer: 15
+  m_Layer: 17
   m_Name: Hero Portrait
   m_TagString: Untagged
   m_Icon: {fileID: 0}

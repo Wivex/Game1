@@ -27,7 +27,7 @@ public class ExpeditionPanelManager : MonoBehaviour
     
     public void ShowOverviewPanel()
     {
-        cMan.ChangeActiveCanvas(ExpeditionsManager.i.expeditions.Any() ? overviewCanvas : noExpCanvas);
+        cMan.ChangeActiveCanvas(ExpeditionsManager.expeditions.Any() ? overviewCanvas : noExpCanvas);
     }
 
     // can't pass class as parameter with button click from inspector

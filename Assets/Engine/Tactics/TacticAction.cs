@@ -53,7 +53,7 @@ public class TacticAction
 
         var damTaken = combat.target.TakeDamage(combat.exp, new Damage(DamageType.Physical, combat.actor.Attack));
 
-        UIManager.i.CreateEffectAnimation(combat.exp, combat.target, UIManager.i.meleeHitPrefab);
+        UIManager.CreateEffectAnimation(combat.exp, combat.target, UIManager.meleeHitEffectPrefab);
 
         //combat.exp.UpdateLog($"{combat.actor} attacks {combat.target} for {dam} {damage.type} damage.");
     }
@@ -83,10 +83,10 @@ public class TacticAction
         usedConsumable.charges--;
     }
 
-    public void LogEvent(CombatManager combat, string text)
-    {
-        //combat.expedition.UpdateLog(text);
-    }
+    //public void LogEvent(CombatManager combat, string text)
+    //{
+    //    //combat.expedition.UpdateLog(text);
+    //}
 
     #endregion
 }
