@@ -17,7 +17,7 @@ public abstract class DataWithIcon : ScriptableObject
     /// <summary>
     /// Called when: SO created/game started/SO clicked (once between game runs, if wasn't selected already)
     /// </summary>
-    void OnEnable()
+    protected void OnEnable()
     {
         AutoLoadIcon();
     }

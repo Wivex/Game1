@@ -40,10 +40,19 @@ public class ExpPreviewPanelDrawer : Drawer, IPointerClickHandler
         this.exp = exp;
 
         exp.heroAM = heroIcon.GetComponent<AnimatorManager>();
-        exp.enemyAM = objectIcon.GetComponent<AnimatorManager>();
+        exp.encounterAM = objectIcon.GetComponent<AnimatorManager>();
         exp.interactionAM = interactionIcon.GetComponent<AnimatorManager>();
         exp.lootAM = lootIcon.GetComponent<AnimatorManager>();
         exp.locationAM = locationPanel.GetComponent<AnimatorManager>();
+
+        exp.CombatStartEvent += SetStatBars;
+    }
+
+    // required for proper "unlistening" of C# event
+    protected void OnDestroy()
+    {
+        if (exp != null)
+            exp.CombatStartEvent -= SetStatBars;
     }
 
     //update UI panels
@@ -53,8 +62,18 @@ public class ExpPreviewPanelDrawer : Drawer, IPointerClickHandler
         RedrawGold();
         //    UpdateConsumables();
         UpdateZone();
+        UpdateEncounterImage();
         UpdateStatBars();
         UpdateUnitStatuses();
+    }
+
+    public void SetStatBars()
+    {
+        var enemy = (exp.curEncounter as Combat)?.enemy;
+        heroHpBar.SetInitialValue((float)exp.hero.HP / exp.hero.HPMax);
+        enemyHpBar.SetInitialValue((float)enemy.HP / enemy.HPMax);
+        heroEnergyBar.SetInitialValue((float)exp.hero.Energy / exp.hero.EnergyMax);
+        enemyEnergyBar.SetInitialValue((float)enemy.Energy / enemy.EnergyMax);
     }
 
     // TODO: rename to Redraw
@@ -125,6 +144,14 @@ public class ExpPreviewPanelDrawer : Drawer, IPointerClickHandler
         locationImage.sprite = exp.curArea.areaImage;
         locationImage.rectTransform.sizeDelta = exp.curArea.areaImageSize;
         locationImage.transform.localPosition = exp.curArea.zonesPositions[exp.curZoneIndex];
+    }
+
+    void UpdateEncounterImage()
+    {
+        if (exp.curEncounter is Combat combat)
+            objectIcon.sprite = combat.enemy.data.icon;
+        if (exp.curEncounter is ContainerEncounter cont)
+            objectIcon.sprite = cont.data.icon;
     }
 
     #endregion

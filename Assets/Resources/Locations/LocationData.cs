@@ -21,10 +21,10 @@ public class LocationData : ScriptableObject
     [Reorderable(ReorderableNamingType.ObjectName, "areaImage")]
     public List<LocationArea> areas;
     [Reorderable(ReorderableNamingType.VariableValue, "type")]
-    public List<EncounterChanceToOccur> encounters;
+    public List<EncounterWeightedChance> encounters;
     [Reorderable(ReorderableNamingType.ObjectName, "enemyData")]
-    public List<EnemySpawnChance> enemies;
-    public List<PoiSpawnChance> pointsOfInterest;
+    public List<EnemySpawnWeightedChance> enemies;
+    public List<ContainerSpawnWeightedChance> pointsOfInterest;
 
     // NOTE: optimize, to avoid sorting all objects each validation?
     void OnValidate()
@@ -41,12 +41,5 @@ public class LocationData : ScriptableObject
                     areaImage = image
                 });
         }
-
-        // sort ascending by spawn chance, for easier spawning
-        encounters.Sort((x, y) => y.chance.CompareTo(x.chance));
-        encounters.Reverse();
-
-        enemies.Sort((x, y) => y.chance.CompareTo(x.chance));
-        enemies.Reverse();
     }
 }

@@ -5,7 +5,8 @@ public enum EncounterType
 {
     None,
     Combat,
-    POI
+    POI,
+    Container
 }
 
 public enum EncounterState
@@ -20,11 +21,11 @@ public abstract class Encounter
     internal EncounterState state;
     internal EncounterType type;
 
-    internal Encounter(Expedition exp)
+    internal abstract void Update();
+
+    internal virtual void InitEncounter(Expedition exp)
     {
         this.exp = exp;
         state = EncounterState.InProgress;
     }
-
-    internal abstract void Update();
 }

@@ -16,10 +16,11 @@ public class Combat : Encounter
     bool looting;
     int heroInitiative;
 
-    internal AnimatorManager GetAnimManager(Unit unit) => unit is Hero ? exp.heroAM : exp.enemyAM;
+    internal AnimatorManager GetAnimManager(Unit unit) => unit is Hero ? exp.heroAM : exp.encounterAM;
 
-    public Combat(Expedition exp) : base(exp)
+    internal override void InitEncounter(Expedition exp)
     {
+        base.InitEncounter(exp);
         type = EncounterType.Combat;
         hero = exp.hero;
         enemy = NewEnemy();
@@ -70,7 +71,7 @@ public class Combat : Encounter
         else
         {
             looting = false;
-            exp.StartAnimation(AnimationTrigger.EndEncounter, exp.heroAM, exp.enemyAM);
+            exp.StartAnimation(AnimationTrigger.EndEncounter, exp.heroAM, exp.encounterAM);
             exp.curEncounter = null;
         }
     }
@@ -171,7 +172,7 @@ public class Combat : Encounter
         {
             foreach (var e in exp.curLocation.enemies)
             {
-                if (Random.value < e.chance)
+                if (Random.value < e.chanceWeight)
                     return new Enemy(e.enemyData);
             }
         }

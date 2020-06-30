@@ -87,10 +87,17 @@ MonoBehaviour:
     - {x: -450, y: 0}
     - {x: -900, y: 0}
   encounters:
-  - chance: 1
+  - spawnWeight: 1
+    type: 3
+    icon: {fileID: 0}
+  - spawnWeight: 2
     type: 1
     icon: {fileID: 0}
   enemies:
-  - chance: 1
+  - spawnWeight: 1
+    enemyData: {fileID: 11400000, guid: db04714867b5b34428fd0b78f15cffa4, type: 2}
+  - spawnWeight: 1
     enemyData: {fileID: 11400000, guid: 70fb510b10b37ab4fb9e274bf96a41d2, type: 2}
-  pointsOfInterest: []
+  pointsOfInterest:
+  - spawnWeight: 1
+    ContainerData: {fileID: 11400000, guid: d48946071072d4847a55f8e562c50c2f, type: 2}

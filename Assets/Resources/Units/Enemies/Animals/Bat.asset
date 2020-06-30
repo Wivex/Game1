@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 433be84bca0ae5a428fd846b355f14b5, type: 3}
-  m_Name: Orc
+  m_Name: Bat
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 7589bc4291a4b42408d97cb9c30abfdc, type: 3}
+  icon: {fileID: 21300000, guid: eddad1ed65d57b542ab991adccb3872d, type: 3}
   baseStats:
     health: 100
     energy: 100
@@ -36,6 +36,19 @@ MonoBehaviour:
     action:
       actionType: 0
       abilityData: {fileID: 0}
+      consumableData: {fileID: 0}
+  - triggers:
+    - triggerType: 1
+      target: 0
+      stat: 0
+      statTriggerType: 1
+      comparisonType: 0
+      statValue: 50
+      abilityData: {fileID: 0}
+      unitData: {fileID: 0}
+    action:
+      actionType: 1
+      abilityData: {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
       consumableData: {fileID: 0}
   lootTable:
   - dropChance: 1

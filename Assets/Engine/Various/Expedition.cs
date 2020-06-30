@@ -20,10 +20,12 @@ public class Expedition
     internal LocationArea curArea;
     internal int curZoneIndex;
     internal Encounter curEncounter;
-    internal AnimatorManager heroAM, enemyAM, interactionAM, lootAM, locationAM;
+    internal AnimatorManager heroAM, encounterAM, interactionAM, lootAM, locationAM;
 
     DateTime lastSituationRealTime;
     float lastSituationGameTime;
+
+    public event Action CombatStartEvent;
 
     public bool GraceTimePassed =>
         //(DateTime.Now - lastSituationRealTime).TotalSeconds > ExpeditionsManager.i.minGracePeriod &&
@@ -33,7 +35,7 @@ public class Expedition
 
     bool AllAnimationsFinished =>
         heroAM.animationFinished &&
-        enemyAM.animationFinished &&
+        encounterAM.animationFinished &&
         lootAM.animationFinished;
 
     public Expedition(Hero hero, LocationData destination)
@@ -98,14 +100,23 @@ public class Expedition
         {
             foreach (var enc in curLocation.encounters)
             {
-                if (Random.value < enc.chance)
+                if (Random.value < enc.chanceWeight)
                 {
                     switch (enc.type)
                     {
                         case EncounterType.Combat:
-                            InitCombat();
-                            return;
+                            curEncounter = new Combat();
+                            curEncounter.InitEncounter(this);
+                            CombatStartEvent?.Invoke();
+                            StartAnimation(AnimationTrigger.BeginEncounter, heroAM, encounterAM, interactionAM, locationAM);
+                            break;
+                        case EncounterType.Container:
+                            curEncounter = new ContainerEncounter();
+                            curEncounter.InitEncounter(this);
+                            StartAnimation(AnimationTrigger.BeginEncounter, heroAM, encounterAM);
+                            break;
                     }
+                    return;
                 }
             }
         }
@@ -118,13 +129,6 @@ public class Expedition
     {
         Debug.Log("KeepTravelling Trigger");
         StartAnimation(AnimationTrigger.KeepTravelling, heroAM);
-    }
-
-    // NOTE: move to ExpManager?
-    public void InitCombat()
-    {
-        StartAnimation(AnimationTrigger.BeginEncounter, heroAM, enemyAM, interactionAM, locationAM);
-        curEncounter = new Combat(this);
     }
 
     // UNDO: should move somewhere?

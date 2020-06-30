@@ -126,4 +126,11 @@ public static class Extensions
                 yield return canvas;
         }
     }
+
+    /// <summary>
+    /// Disables this and all sub Canvases and Drawers
+    /// </summary>
+    public static void DisableNestedUI(this List<ChanceWeight> list)
+    {
+    }
 }

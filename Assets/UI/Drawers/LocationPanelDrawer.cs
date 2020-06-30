@@ -62,7 +62,7 @@ public class LocationPanelDrawer : Drawer
                 situationsIcons[i].sprite = location.encounters[i].icon;
                 situationsIcons[i].color = Color.white;
                 situationsName[i].text = location.encounters[i].type.ToString();
-                situationsChance[i].text = location.encounters[i].chance.ToString();
+                situationsChance[i].text = location.encounters[i].chanceWeight.ToString();
             }
         }
 
@@ -81,7 +81,7 @@ public class LocationPanelDrawer : Drawer
                 enemiesIcons[i].sprite = location.enemies[i].enemyData.icon;
                 enemiesIcons[i].color = Color.white;
                 enemiesName[i].text = location.enemies[i].enemyData.name;
-                enemiesChance[i].text = location.enemies[i].chance.ToString();
+                enemiesChance[i].text = location.enemies[i].chanceWeight.ToString();
             }
         }
     }

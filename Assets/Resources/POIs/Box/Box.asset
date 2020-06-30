@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7192a394047874aa0c174d731ba484, type: 3}
+  m_Name: Box
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 268486328ad42e74f86c7c2681dfb1e5, type: 3}
+  lootTable:
+  - dropChance: 1
+    lootAmountType: 0
+    fixedAmount: 1
+    minAmount: 0
+    maxAmount: 0
+    item: {fileID: 11400000, guid: 78012ae863cad56478ded752cbb98ccc, type: 2}
