@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEditor;
 using GameObject = UnityEngine.GameObject;
 using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 public static class Extensions
 {
@@ -128,9 +129,33 @@ public static class Extensions
     }
 
     /// <summary>
-    /// Disables this and all sub Canvases and Drawers
+    /// Returns one random value by weighted chance from list
     /// </summary>
-    public static void DisableNestedUI(this List<ChanceWeight> list)
+    public static int GetOneByWeight(this List<ChanceWeight> list)
     {
+        var totalWeight = list.Sum(elem => elem.chanceWeight);
+        var roll = Random.Range(1, totalWeight);
+        for (var i = 0; i < list.Count; i++)
+        {
+            roll -= list[i].chanceWeight;
+            if (roll <= 0) return i;
+        }
+
+        return -1;
+    }
+
+    /// <summary>
+    /// Returns one random value by weighted chance from list
+    /// </summary>
+    public static List<float> ToProbabilityList(this List<ChanceWeight> weightList)
+    {
+        var probabilityList = new List<float>(weightList.Capacity);
+        var totalWeight = weightList.Sum(elem => elem.chanceWeight);
+        foreach (var elem in weightList)
+        {
+            probabilityList.Add((float) elem.chanceWeight / totalWeight);
+        }
+
+        return probabilityList;
     }
 }

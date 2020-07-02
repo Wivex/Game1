@@ -15,16 +15,44 @@ public class LocationArea
     public List<Vector2> zonesPositions;
 }
 
+[Serializable]
+public class EncounterSpawning : ChanceWeight
+{
+    public EncounterType type;
+    [HideIfNotEnumValues("type", EncounterType.POI)]
+    public Sprite icon;
+}
+
+[Serializable]
+public class EnemySpawning : ChanceWeight
+{
+    public EnemyData enemyData;
+}
+
+[Serializable]
+public class EquipmentSpawning : ChanceWeight
+{
+    public ItemData itemData;
+}
+
+[Serializable]
+public class ContainerSpawning : ChanceWeight
+{
+    public ContainerData ContainerData;
+}
+
+
+
 [CreateAssetMenu(menuName = "Content/Data/Location Data")]
 public class LocationData : ScriptableObject
 {
     [Reorderable(ReorderableNamingType.ObjectName, "areaImage")]
     public List<LocationArea> areas;
     [Reorderable(ReorderableNamingType.VariableValue, "type")]
-    public List<EncounterWeightedChance> encounters;
+    public List<EncounterSpawning> encounters;
     [Reorderable(ReorderableNamingType.ObjectName, "enemyData")]
-    public List<EnemySpawnWeightedChance> enemies;
-    public List<ContainerSpawnWeightedChance> pointsOfInterest;
+    public List<EnemySpawning> enemies;
+    public List<ContainerSpawning> pointsOfInterest;
 
     // NOTE: optimize, to avoid sorting all objects each validation?
     void OnValidate()
