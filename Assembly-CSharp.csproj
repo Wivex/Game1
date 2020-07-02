@@ -296,7 +296,6 @@
     <Compile Include="Assets\Engine\Tactics\TacticTrigger.cs" />
     <Compile Include="Assets\Engine\Tactics\TacticsPreset.cs" />
     <Compile Include="Assets\Engine\Various\CameraBehaviour.cs" />
-    <Compile Include="Assets\Engine\Various\ChanceWeight.cs" />
     <Compile Include="Assets\Engine\Various\ChildPanelsRemover.cs" />
     <Compile Include="Assets\Engine\Various\CustomAttributes.cs" />
     <Compile Include="Assets\Engine\Various\Damage.cs" />
@@ -307,6 +306,7 @@
     <Compile Include="Assets\Engine\Various\Interfaces.cs" />
     <Compile Include="Assets\Engine\Various\NamingManager.cs" />
     <Compile Include="Assets\Engine\Various\ReferenceTypes.cs" />
+    <Compile Include="Assets\Engine\Various\RelativeChanceWeight.cs" />
     <Compile Include="Assets\Engine\Various\WorldSpaceCanvasScaleAdjuster.cs" />
     <Compile Include="Assets\RaycastTargetsDetector.cs" />
     <Compile Include="Assets\Resources\Abilities\Ability.cs" />

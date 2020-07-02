@@ -127,35 +127,4 @@ public static class Extensions
                 yield return canvas;
         }
     }
-
-    /// <summary>
-    /// Returns one random value by weighted chance from list
-    /// </summary>
-    public static int GetOneByWeight(this List<ChanceWeight> list)
-    {
-        var totalWeight = list.Sum(elem => elem.chanceWeight);
-        var roll = Random.Range(1, totalWeight);
-        for (var i = 0; i < list.Count; i++)
-        {
-            roll -= list[i].chanceWeight;
-            if (roll <= 0) return i;
-        }
-
-        return -1;
-    }
-
-    /// <summary>
-    /// Returns one random value by weighted chance from list
-    /// </summary>
-    public static List<float> ToProbabilityList(this List<ChanceWeight> weightList)
-    {
-        var probabilityList = new List<float>(weightList.Capacity);
-        var totalWeight = weightList.Sum(elem => elem.chanceWeight);
-        foreach (var elem in weightList)
-        {
-            probabilityList.Add((float) elem.chanceWeight / totalWeight);
-        }
-
-        return probabilityList;
-    }
 }
