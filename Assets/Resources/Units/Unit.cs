@@ -52,8 +52,8 @@ public abstract class Unit
 
     #region OPERATIONS
 
-    // NOTE: keep everything here, what can happen put of combat (events) 
-    public virtual int TakeDamage(Expedition exp, Damage damage)
+    // NOTE: keep everything here, what can happen put of enemyEncounter (events) 
+    public virtual int TakeDamage(Mission exp, Damage damage)
     {
         var protectionValue = 0;
         switch (damage.type)
@@ -66,7 +66,7 @@ public abstract class Unit
         var healthLoss = Math.Max(damage.amount - protectionValue, 0);
         HP = Math.Max(HP - healthLoss, 0);
 
-        // invoked here, cause can take damage outside of combat
+        // invoked here, cause can take damage outside of enemyEncounter
         UIManager.CreateFloatingTextForUnit(exp, this, -healthLoss);
 
         return healthLoss;

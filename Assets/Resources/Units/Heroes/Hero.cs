@@ -7,7 +7,7 @@ public enum HeroState
 {
     Recruitable,
     Idle,
-    OnExpedition
+    OnMission
 }
 
 public enum HeroClassType

@@ -26,17 +26,17 @@ public class Effect
     internal Sprite icon;
     internal int curDuration;
     
-    protected Combat combat;
+    protected EnemyEncounter enemyEncounter;
     protected Unit targetUnit;
 
-    internal void AddEffect(Combat combat, string sourceName, Sprite sourceIcon)
+    internal void AddEffect(EnemyEncounter enemyEncounter, string sourceName, Sprite sourceIcon)
     {
-        this.combat = combat;
+        this.enemyEncounter = enemyEncounter;
         name = sourceName;
         icon = sourceIcon;
         curDuration = duration;
 
-        targetUnit = target == Target.Self ? combat.actor : combat.target;
+        targetUnit = target == Target.Self ? enemyEncounter.actor : enemyEncounter.target;
 
         if (duration > 1)
         {
@@ -57,9 +57,9 @@ public class Effect
         unit.effects.Remove(this);
     }
 
-    public void AddEffectLogEntry(Combat combat, string text)
+    public void AddEffectLogEntry(EnemyEncounter enemyEncounter, string text)
     {
-        //situation.expedition.UpdateLog(text);
+        //situation.mission.UpdateLog(text);
 
 
         // TODO: log coloring

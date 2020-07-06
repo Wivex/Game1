@@ -26,7 +26,7 @@ public abstract class DataWithIcon : ScriptableObject
     {
         if (!name.StartsWith("New ") && icon == null)
         {
-            icon = GameManager.LoadNearbyAsset<Sprite>(this);
+            icon = AssetHandler.LoadNearbyAssetWithSameName<Sprite>(this);
         }
     }
 }

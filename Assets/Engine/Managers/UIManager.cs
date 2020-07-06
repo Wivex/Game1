@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    internal static ExpeditionPanelManager expPanelManager;
+    internal static MissionPanelManager expPanelManager;
     internal static MayorPanelDrawer mayorPanelDrawer;
     internal static TavernPanelDrawer tavernPanelDrawer;
     internal static MonoBehaviour floatingTextPrefab, meleeHitEffectPrefab;
 
-    static Transform GetUnitUITarget(Expedition exp, Unit target) => target is Hero
+    static Transform GetUnitUITarget(Mission exp, Unit target) => target is Hero
         ? expPanelManager.expPreviewPanels[exp].heroIcon.transform
         : expPanelManager.expPreviewPanels[exp].objectIcon.transform;
 
@@ -20,17 +20,17 @@ public class UIManager : MonoBehaviour
         floatingTextPrefab = Resources.Load<MonoBehaviour>("Effects/FloatingText/FloatingText");
         meleeHitEffectPrefab = Resources.Load<MonoBehaviour>("Effects/MeleeHit/MeleeHit");
 
-        expPanelManager = GameObject.Find("Expedition Panel").GetComponent<ExpeditionPanelManager>();
-        mayorPanelDrawer = GameObject.Find("Mayor Panel").GetComponent<MayorPanelDrawer>();
+        expPanelManager = GameObject.Find("Mission Panel").GetComponent<MissionPanelManager>();
+        mayorPanelDrawer = GameObject.Find("Notice Board Panel").GetComponent<MayorPanelDrawer>();
         tavernPanelDrawer = GameObject.Find("Tavern Panel").GetComponent<TavernPanelDrawer>();
     }
 
-    internal static void CreateFloatingTextForUnit(Expedition exp, Unit target, int value)
+    internal static void CreateFloatingTextForUnit(Mission exp, Unit target, int value)
     {
         CreateFloatingText(GetUnitUITarget(exp, target), value);
     }
 
-    internal static void CreateEffectAnimation(Expedition exp, Unit target, MonoBehaviour prefab)
+    internal static void CreateEffectAnimation(Mission exp, Unit target, MonoBehaviour prefab)
     {
         var effect = Instantiate(prefab, GetUnitUITarget(exp, target));
 

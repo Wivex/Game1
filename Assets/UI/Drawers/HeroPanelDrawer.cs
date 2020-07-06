@@ -60,7 +60,7 @@ public class HeroPanelDrawer : UnitPanelDrawer
 
         base.Update();
 
-        // update exp bar
+        // update mis bar
         expBar.value = (float) hero.experience / 100;
         experience.text = $"{hero.experience} / 100";
 

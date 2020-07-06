@@ -3,29 +3,27 @@ using UnityEditor;
 
 public enum EncounterType
 {
-    None,
-    Combat,
-    POI,
-    Container
-}
-
-public enum EncounterState
-{
-    InProgress,
-    Finished
+    Enemy,
+    Container,
+    PlaceOfPower,
+    EnemyCamp,
+    Resources,
+    Intel,
+    NPC
 }
 
 public abstract class Encounter
 {
-    internal Expedition exp;
-    internal EncounterState state;
+    internal Mission mis;
     internal EncounterType type;
 
-    internal abstract void Update();
+    /// <summary>
+    /// Runs next logical action in the encounter, when all previous action animations are finished.
+    /// </summary>
+    internal abstract void NextStage();
 
-    internal virtual void InitEncounter(Expedition exp)
+    internal Encounter(Mission mis)
     {
-        this.exp = exp;
-        state = EncounterState.InProgress;
+        this.mis = mis;
     }
 }

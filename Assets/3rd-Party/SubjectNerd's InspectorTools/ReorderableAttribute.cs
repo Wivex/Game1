@@ -25,7 +25,7 @@ using UnityEngine;
 public enum ReorderableNamingType
 {
     None,
-    ObjectName,
+    ReferencedObjectName,
     VariableValue
 }
 

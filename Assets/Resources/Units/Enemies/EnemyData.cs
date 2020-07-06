@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Content/Data/Enemy Data")]
 public class EnemyData : UnitData
 {
-    [Reorderable(ReorderableNamingType.ObjectName, "item")]
+    [Reorderable(ReorderableNamingType.ReferencedObjectName, "item")]
     public List<LootData> lootTable;
 
     new void OnEnable()

@@ -14,20 +14,19 @@ public class ContainerEncounter : Encounter
 
     bool looting;
 
-    internal AnimatorManager GetAnimManager(Unit unit) => unit is Hero ? exp.heroAM : exp.encounterAM;
+    internal AnimatorManager GetAnimManager(Unit unit) => unit is Hero ? mis.heroAM : mis.encounterAM;
 
-    internal override void InitEncounter(Expedition exp)
+    internal ContainerEncounter(Mission mis) : base(mis)
     {
-        base.InitEncounter(exp);
         type = EncounterType.Container;
-        hero = exp.hero;
+        hero = mis.hero;
         data = NewContainer();
 
         SpawnLoot();
         looting = true;
     }
 
-    internal override void Update()
+    internal override void NextStage()
     {
         if (looting)
             NextItem();
@@ -54,28 +53,28 @@ public class ContainerEncounter : Encounter
             // TODO: use Queue or Stack instead
             curLoot = lootDrops.ExtractFirstElement();
             hero.backpack.Add(curLoot);
-            exp.StartAnimation(AnimationTrigger.StartTransferLoot, exp.lootAM, exp.interactionAM, exp.locationAM);
+            mis.StartAnimation(AnimationTrigger.StartTransferLoot, mis.lootAM, mis.interactionAM, mis.locationAM);
         }
         else
         {
             looting = false;
-            exp.StartAnimation(AnimationTrigger.EndEncounter, exp.heroAM, exp.encounterAM);
-            exp.curEncounter = null;
+            mis.StartAnimation(AnimationTrigger.EndEncounter, mis.heroAM, mis.encounterAM);
+            mis.curEncounter = null;
         }
     }
 
 
     ContainerData NewContainer()
     {
-        var spawnTries = 0;
-        while (data == null && spawnTries++ < 100)
-        {
-            foreach (var cont in exp.curLocation.pointsOfInterest)
-            {
-                if (Random.value < cont.chanceWeight)
-                    return cont.ContainerData;
-            }
-        }
+        // var spawnTries = 0;
+        // while (data == null && spawnTries++ < 100)
+        // {
+        //     foreach (var cont in mis.curZone.pointsOfInterest)
+        //     {
+        //         if (Random.value < cont.chanceWeight)
+        //             return cont.ContainerData;
+        //     }
+        // }
 
         throw new Exception("Too many tries to spawn container");
     }

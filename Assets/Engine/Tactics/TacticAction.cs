@@ -20,21 +20,21 @@ public class TacticAction
     [HideIfNotEnumValues("actionType", ActionType.UseConsumable)]
     public ItemData consumableData;
 
-    public void DoAction(Combat combat)
+    public void DoAction(EnemyEncounter enemyEncounter)
     {
         switch (actionType)
         {
             case ActionType.Flee:
-                Flee(combat);
+                Flee(enemyEncounter);
                 break;
             case ActionType.Attack:
-                Attack(combat);
+                Attack(enemyEncounter);
                 break;
             case ActionType.UseAbility:
-                UseAbility(combat);
+                UseAbility(enemyEncounter);
                 break;
             case ActionType.UseConsumable:
-                UseConsumable(combat);
+                UseConsumable(enemyEncounter);
                 break;
         }
     }
@@ -42,50 +42,50 @@ public class TacticAction
 
     #region ACTIONS
 
-    public void Flee(Combat combat)
+    public void Flee(EnemyEncounter enemyEncounter)
     {
-        //combat.EndCombat();
+        //enemyEncounter.EndCombat();
     }
 
-    public void Attack(Combat combat)
+    public void Attack(EnemyEncounter enemyEncounter)
     {
-        combat.exp.StartAnimation(AnimationTrigger.Attack, combat.GetAnimManager(combat.actor));
+        enemyEncounter.mis.StartAnimation(AnimationTrigger.Attack, enemyEncounter.GetAnimManager(enemyEncounter.actor));
 
-        var damTaken = combat.target.TakeDamage(combat.exp, new Damage(DamageType.Physical, combat.actor.Attack));
+        var damTaken = enemyEncounter.target.TakeDamage(enemyEncounter.mis, new Damage(DamageType.Physical, enemyEncounter.actor.Attack));
 
-        UIManager.CreateEffectAnimation(combat.exp, combat.target, UIManager.meleeHitEffectPrefab);
+        UIManager.CreateEffectAnimation(enemyEncounter.mis, enemyEncounter.target, UIManager.meleeHitEffectPrefab);
 
-        //combat.exp.UpdateLog($"{combat.actor} attacks {combat.target} for {dam} {damage.type} damage.");
+        //enemyEncounter.mis.UpdateLog($"{enemyEncounter.actor} attacks {enemyEncounter.target} for {dam} {damage.type} damage.");
     }
 
-    public void UseAbility(Combat combat)
+    public void UseAbility(EnemyEncounter enemyEncounter)
     {
-        var usedAbility = combat.actor.abilities.Find(abil => abil.abilityData == abilityData);
+        var usedAbility = enemyEncounter.actor.abilities.Find(abil => abil.abilityData == abilityData);
         foreach (var effect in usedAbility.abilityData.effects)
         {
-            effect.AddEffect(combat, usedAbility.abilityData.name, usedAbility.abilityData.icon);
+            effect.AddEffect(enemyEncounter, usedAbility.abilityData.name, usedAbility.abilityData.icon);
         }
 
         // +1 adjustment, because after each turn all cooldowns are decreased by 1 (even for used ability)
         usedAbility.curCooldown = abilityData.cooldown + 1;
     }
 
-    public void UseConsumable(Combat combat)
+    public void UseConsumable(EnemyEncounter enemyEncounter)
     {
-        //LogEvent(combat, $"{combat.hero.name} used {consumableData.name} on {combat.target.name}.");
-        var usedConsumable = combat.hero.consumables.First(cons => cons.data == consumableData);
+        //LogEvent(enemyEncounter, $"{enemyEncounter.hero.name} used {consumableData.name} on {enemyEncounter.target.name}.");
+        var usedConsumable = enemyEncounter.hero.consumables.First(cons => cons.data == consumableData);
         //foreach (var effect in usedConsumable.data.useEffects)
         //{
-        //    effect.AddEffect(combat, usedConsumable.data.name, usedConsumable.data.icon);
+        //    effect.AddEffect(enemyEncounter, usedConsumable.data.name, usedConsumable.data.icon);
         //}
 
         // +1 adjustment, because after each turm all cooldowns are decreased by 1 (even on used ability)
         usedConsumable.charges--;
     }
 
-    //public void LogEvent(CombatManager combat, string text)
+    //public void LogEvent(CombatManager enemyEncounter, string text)
     //{
-    //    //combat.expedition.UpdateLog(text);
+    //    //enemyEncounter.mission.UpdateLog(text);
     //}
 
     #endregion

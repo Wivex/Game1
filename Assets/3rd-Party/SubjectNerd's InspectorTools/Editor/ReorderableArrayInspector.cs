@@ -517,7 +517,7 @@ namespace SubjectNerd.Utilities
             var elemProperty = property.serializedObject.FindProperty(elemPropertyPath);
             switch (arrayAttr.namingType)
             {
-                case ReorderableNamingType.ObjectName:
+                case ReorderableNamingType.ReferencedObjectName:
                     return elemProperty.objectReferenceValue != null
                         ? elemProperty.objectReferenceValue.name
                         : "NO NAME";

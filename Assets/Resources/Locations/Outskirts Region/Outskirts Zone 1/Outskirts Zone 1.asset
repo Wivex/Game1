@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32a229b002926149832f9d63fa5075d, type: 3}
+  m_Name: Outskirts Zone 1
+  m_EditorClassIdentifier: 
+  sites:
+  - baseTexture: {fileID: 2800000, guid: 5ff11c19f0669d849b20c2a6acc0a396, type: 3}
+    type: 1
+    targetZone: {fileID: 11400000, guid: ea7927a82ac895c46b386bf0df34e485, type: 2}
+  - baseTexture: {fileID: 2800000, guid: 29da79d50397efa4ebac85865d3d743f, type: 3}
+    type: 1
+    targetZone: {fileID: 11400000, guid: 1e8212406a5e7314a9a12d2e8fe956a3, type: 2}
+  - baseTexture: {fileID: 2800000, guid: fd85a0e2eeec4d6428d832c84da47a20, type: 3}
+    type: 0
+    targetZone: {fileID: 0}
+  - baseTexture: {fileID: 2800000, guid: 910dfc7fcedbb2b4c83818b09d2d1805, type: 3}
+    type: 0
+    targetZone: {fileID: 0}
+  - baseTexture: {fileID: 2800000, guid: 5695a4b0bac09664db46ac0079102513, type: 3}
+    type: 0
+    targetZone: {fileID: 0}
+  traversalPaths:
+  - zoneA: {fileID: 11400000, guid: ea7927a82ac895c46b386bf0df34e485, type: 2}
+    zoneB: {fileID: 11400000, guid: 1e8212406a5e7314a9a12d2e8fe956a3, type: 2}
+    length: 17
+  encounters:
+  - relativeChanceWeight: 778
+    type: 0
+  - relativeChanceWeight: 132
+    type: 1
+  enemies:
+  - relativeChanceWeight: 263
+    enemyData: {fileID: 11400000, guid: 70fb510b10b37ab4fb9e274bf96a41d2, type: 2}

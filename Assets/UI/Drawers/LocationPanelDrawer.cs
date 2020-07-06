@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class LocationPanelDrawer : Drawer
 {
     [HideInInspector]
-    public LocationData location;
+    public ZoneData zone;
 
     Canvas canvas;
     Image locImage;
@@ -50,7 +50,7 @@ public class LocationPanelDrawer : Drawer
         // update events
         for (var i = 0; i < situationsIcons.Count; i++)
         {
-            if (i >= location.encounters.Count)
+            if (i >= zone.encounters.Count)
             {
                 situationsIcons[i].sprite = null;
                 situationsIcons[i].color = Color.clear;
@@ -59,17 +59,17 @@ public class LocationPanelDrawer : Drawer
             }
             else
             {
-                situationsIcons[i].sprite = location.encounters[i].icon;
+                situationsIcons[i].sprite = zone.encounters[i].interactionIcon;
                 situationsIcons[i].color = Color.white;
-                situationsName[i].text = location.encounters[i].type.ToString();
-                situationsChance[i].text = location.encounters[i].chanceWeight.ToString();
+                situationsName[i].text = zone.encounters[i].type.ToString();
+                // situationsChance[i].text = zone.encounters[i].chanceWeight.ToString();
             }
         }
 
         // update enemies
         for (var i = 0; i < enemiesIcons.Count; i++)
         {
-            if (i >= location.enemies.Count)
+            if (i >= zone.enemies.Count)
             {
                 enemiesIcons[i].sprite = null;
                 enemiesIcons[i].color = Color.clear;
@@ -78,10 +78,10 @@ public class LocationPanelDrawer : Drawer
             }
             else
             {
-                enemiesIcons[i].sprite = location.enemies[i].enemyData.icon;
+                enemiesIcons[i].sprite = zone.enemies[i].enemyData.icon;
                 enemiesIcons[i].color = Color.white;
-                enemiesName[i].text = location.enemies[i].enemyData.name;
-                enemiesChance[i].text = location.enemies[i].chanceWeight.ToString();
+                enemiesName[i].text = zone.enemies[i].enemyData.name;
+                // enemiesChance[i].text = zone.enemies[i].chanceWeight.ToString();
             }
         }
     }

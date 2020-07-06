@@ -12,7 +12,7 @@ public abstract class UnitData : DataWithIcon
         speed = 10
     };
     public EnergyType energyType = EnergyType.Mana;
-    [Reorderable(ReorderableNamingType.ObjectName)]
+    [Reorderable(ReorderableNamingType.ReferencedObjectName)]
     public List<AbilityData> abilities;
     [Reorderable(ReorderableNamingType.VariableValue, "action.actionType")]
     public List<Tactic> tactics;

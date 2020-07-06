@@ -12,6 +12,14 @@ public static class Extensions
     /// <summary>
     /// Implement list.ForEach(elem => action) for IEnumerable
     /// </summary>
+    public static bool NotNullOrEmpty<T>(this IEnumerable<T> source)
+    {
+        return  source?.Any() == true;
+    }
+
+    /// <summary>
+    /// Implement list.ForEach(elem => action) for IEnumerable
+    /// </summary>
     public static void ForEach<T>(this IEnumerable<T> source, Action<T> action)
     {
         foreach (var element in source) action(element);

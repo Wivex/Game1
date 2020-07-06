@@ -23,4 +23,5 @@ public class LootData
 
     public int maxAmount = 3;
     public ItemData item;
+
 }

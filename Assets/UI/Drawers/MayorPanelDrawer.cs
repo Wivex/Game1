@@ -11,20 +11,20 @@ public class MayorPanelDrawer : Drawer
 
     public TextMeshProUGUI noQuestsText, noExpText, timePlayedValue, sucExpValue, failedExpValue;
     public Transform questContentPanel, expContentPanel;
-    public ExpeditionFrameDrawer expFramePrefab;
+    public MissionFrameDrawer expFramePrefab;
     public HeroFrameDrawer heroFramePrefab;
 
     #endregion
 
     Hero selHero;
-    LocationData selLocation;
+    ZoneData selZone;
 
     public void InitPanel()
     {
         ClearPanels();
 
         // TEMP
-        var locations = Resources.LoadAll<LocationData>("Locations");
+        var locations = Resources.LoadAll<ZoneData>("Locations");
         foreach (var location in locations)
         {
             var expPanel = Instantiate(expFramePrefab, expContentPanel);
@@ -42,8 +42,8 @@ public class MayorPanelDrawer : Drawer
         {
             noQuestsText.text = "No idle heroes available.";
             noQuestsText.gameObject.SetActive(true);
-            // hide exp. frames in this content panel
-            expContentPanel.gameObject.ChangeActiveDescending<ExpeditionFrameDrawer>(false);
+            // hide mis. frames in this content panel
+            expContentPanel.gameObject.ChangeActiveDescending<MissionFrameDrawer>(false);
             noExpText.text = "No idle heroes available.";
             noExpText.gameObject.SetActive(true);
         }
@@ -55,13 +55,13 @@ public class MayorPanelDrawer : Drawer
         expContentPanel.DestroyAllChildren();
     }
 
-    // select target location
-    public void OnExpeditionSelect(ExpeditionFrameDrawer exp)
+    // select target zone
+    public void OnMissionSelect(MissionFrameDrawer mission)
     {
-        selLocation = exp.locData;
+        selZone = mission.locData;
 
-        // hide exp. frames in this content panel
-        expContentPanel.gameObject.ChangeActiveDescending<ExpeditionFrameDrawer>(false);
+        // hide mis. frames in this content panel
+        expContentPanel.gameObject.ChangeActiveDescending<MissionFrameDrawer>(false);
 
         if (TownManager.IdleHeroes.Any())
         {
@@ -82,17 +82,17 @@ public class MayorPanelDrawer : Drawer
         }
     }
 
-    // send hero on expedition
+    // send hero on mission
     public void OnHeroSelect(HeroFrameDrawer heroFrame)
     {
         selHero = heroFrame.hero;
-        selHero.state = HeroState.OnExpedition;
+        selHero.state = HeroState.OnMission;
 
         // hide heroFrames in this content panel
         expContentPanel.gameObject.ChangeActiveDescending<HeroFrameDrawer>(false);
         // show expFrames in this content panel
-        expContentPanel.gameObject.ChangeActiveDescending<ExpeditionFrameDrawer>(true);
+        expContentPanel.gameObject.ChangeActiveDescending<MissionFrameDrawer>(true);
 
-        ExpeditionsManager.i.StartNewExpedition(selHero, selLocation);
+        // MissionsManager.i.StartNewMission(selHero, selZone);
     }
 }

@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SubjectNerd.Utilities;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Content/Data/Container Data")]
 public class ContainerData : DataWithIcon
 {
-    [Reorderable(ReorderableNamingType.ObjectName, "item")]
+    [Reorderable(ReorderableNamingType.ReferencedObjectName, "item")]
     public List<LootData> lootTable;
 
     new void OnEnable()
