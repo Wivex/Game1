@@ -48,7 +48,7 @@ public class MissionsManager : MonoBehaviour
     {
         // var mission = new Mission(hero, zone);
         // missions.Add(mission);
-        // UIManager.expPanelManager.NewPreviewPanel(mission);
+        // UIManager.misPanelManager.NewPreviewPanel(mission);
     }
 
     void Update()

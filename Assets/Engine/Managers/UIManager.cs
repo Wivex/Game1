@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    internal static MissionPanelManager expPanelManager;
-    internal static MayorPanelDrawer mayorPanelDrawer;
+    internal static MissionPanelManager misPanelManager;
+    internal static MayorPanelDrawer boardPanelDrawer;
     internal static TavernPanelDrawer tavernPanelDrawer;
     internal static MonoBehaviour floatingTextPrefab, meleeHitEffectPrefab;
 
     static Transform GetUnitUITarget(Mission exp, Unit target) => target is Hero
-        ? expPanelManager.expPreviewPanels[exp].heroIcon.transform
-        : expPanelManager.expPreviewPanels[exp].objectIcon.transform;
+        ? misPanelManager.expPreviewPanels[exp].heroIcon.transform
+        : misPanelManager.expPreviewPanels[exp].objectIcon.transform;
 
     // initializing prefabs on Unity editor refresh
     void OnEnable()
@@ -20,8 +20,8 @@ public class UIManager : MonoBehaviour
         floatingTextPrefab = Resources.Load<MonoBehaviour>("Effects/FloatingText/FloatingText");
         meleeHitEffectPrefab = Resources.Load<MonoBehaviour>("Effects/MeleeHit/MeleeHit");
 
-        expPanelManager = GameObject.Find("Mission Panel").GetComponent<MissionPanelManager>();
-        mayorPanelDrawer = GameObject.Find("Notice Board Panel").GetComponent<MayorPanelDrawer>();
+        misPanelManager = GameObject.Find("Missions Panel").GetComponent<MissionPanelManager>();
+        // boardPanelDrawer = GameObject.Find("Notice Board Panel").GetComponent<MayorPanelDrawer>();
         tavernPanelDrawer = GameObject.Find("Tavern Panel").GetComponent<TavernPanelDrawer>();
     }
 

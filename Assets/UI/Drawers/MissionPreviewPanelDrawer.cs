@@ -160,6 +160,6 @@ public class MissionPreviewPanelDrawer : Drawer, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         // can't reference scene objects from prefab
-        UIManager.expPanelManager.ShowDetailsPanel(mis);
+        UIManager.misPanelManager.ShowDetailsPanel(mis);
     }
 }
