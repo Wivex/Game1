@@ -23,7 +23,7 @@ public class HeroFrameDrawer : Drawer, IPointerClickHandler
         heroLevelText.text = $"Level {hero.level} {hero.heroClassType.ToString()}";
     }
 
-    // add OnClick event to the OnClick event list of button component
+    // add OnClick event to the OnClick event list of button component (can't select methods with parameters in button editor)
     public void OnPointerClick(PointerEventData eventData)
     {
         (parentDrawer as MayorPanelDrawer)?.OnHeroSelect(this);
