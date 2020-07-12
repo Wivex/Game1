@@ -38,13 +38,15 @@ public class MissionsManager : MonoBehaviour
 
     internal static List<Mission> missions = new List<Mission>();
 
+    internal static Mission missionSetUp = new Mission();
+
     // public void StartNewMissionDebug()
     // {
     //     StartNewMission(TownManager.NewHeroDebug(),
     //         Resources.Load<ZoneData>("Locations/Outskirts/Outskirts"));
     // }
 
-    public void StartNewMission(Hero hero, List<ZonePath> route)
+    public void StartNewMission(Hero hero)
     {
         // var mission = new Mission(hero, zone);
         // missions.Add(mission);

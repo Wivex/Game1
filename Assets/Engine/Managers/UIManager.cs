@@ -6,7 +6,7 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     internal static MissionPanelManager misPanelManager;
-    internal static MayorPanelDrawer boardPanelDrawer;
+    //internal static MayorPanelDrawer boardPanelDrawer;
     internal static TavernPanelDrawer tavernPanelDrawer;
     internal static MonoBehaviour floatingTextPrefab, meleeHitEffectPrefab;
 

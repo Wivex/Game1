@@ -31,7 +31,7 @@ public class Hero : Unit
     internal HeroClassType heroClassType;
     internal HeroState state;
     internal HeroData data;
-    internal int level, gold, experience;
+    internal int level = 0, gold = 0, experience = 0;
     internal Sprite portrait;
     internal Equipment equipment = new Equipment();
     internal List<Item> backpack = new List<Item>();

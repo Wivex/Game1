@@ -526,6 +526,10 @@ namespace SubjectNerd.Utilities
                     {
                         case SerializedPropertyType.Enum:
                             return elemProperty.enumDisplayNames[elemProperty.enumValueIndex];
+                        case SerializedPropertyType.Integer:
+                            return elemProperty.intValue.ToString();
+                        case SerializedPropertyType.Float:
+                            return elemProperty.floatValue.ToString();
                         default:
                             return elemProperty.stringValue ?? "NO NAME";
                     }

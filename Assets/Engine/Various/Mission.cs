@@ -17,10 +17,10 @@ public enum AnimationTrigger
 public class Mission
 {
     internal Hero hero;
-    List<ZonePath> route;
-    internal ZoneData curZone, destination;
-    internal Site curSite;
-    internal int curZoneIndex;
+    internal Dictionary<ZoneData, int> route = new Dictionary<ZoneData, int>();
+    //internal ZoneData curZone, destination;
+    //internal Site curSite;
+    //internal int curZoneIndex;
     internal Encounter curEncounter;
     internal AnimatorManager heroAM, encounterAM, interactionAM, lootAM, locationAM;
 
@@ -33,26 +33,12 @@ public class Mission
         //(DateTime.Now - lastSituationRealTime).TotalSeconds > MissionsManager.i.minGracePeriod &&
         Time.time - lastSituationGameTime > MissionsManager.i.minGracePeriod;
 
-    Site NewInterchangableSite => curZone.sites.Find(site => site != curSite && site.type == SiteType.Interchangeble);
+    //Site NewInterchangableSite => curZone.sites.Find(site => site != curSite && site.type == SiteType.Interchangeble);
 
     bool AllAnimationsFinished =>
         heroAM.animationFinished &&
         encounterAM.animationFinished &&
         lootAM.animationFinished;
-
-    public Mission(Hero hero, List<ZonePath> route)
-    {
-        this.hero = hero;
-        this.route = route;
-        this.destination = destination;
-        // TODO: add zone transitions
-        curZone = destination;
-        curSite = curZone.sites.First();
-        // "-1" to get "0" as first value later
-        curZoneIndex = -1;
-
-        InitGraceTimers();
-    }
 
     public void Update()
     {

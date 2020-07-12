@@ -305,6 +305,7 @@
     <Compile Include="Assets\Engine\Various\FPSCounter.cs" />
     <Compile Include="Assets\Engine\Various\Interfaces.cs" />
     <Compile Include="Assets\Engine\Various\Mission.cs" />
+    <Compile Include="Assets\Engine\Various\MissionRoute.cs" />
     <Compile Include="Assets\Engine\Various\NamingManager.cs" />
     <Compile Include="Assets\Engine\Various\ReferenceTypes.cs" />
     <Compile Include="Assets\Engine\Various\SpawnOption.cs" />
@@ -329,15 +330,18 @@
     <Compile Include="Assets\Resources\Units\Heroes\HeroData.cs" />
     <Compile Include="Assets\Resources\Units\Unit.cs" />
     <Compile Include="Assets\Resources\Units\UnitData.cs" />
+    <Compile Include="Assets\UI\Components\MissionRouteSegmentComp.cs" />
     <Compile Include="Assets\UI\Drawers\Drawer.cs" />
     <Compile Include="Assets\UI\Drawers\EnemyPanelDrawer.cs" />
     <Compile Include="Assets\UI\Drawers\HeroFrameDrawer.cs" />
     <Compile Include="Assets\UI\Drawers\HeroPanelDrawer.cs" />
+    <Compile Include="Assets\UI\Drawers\HeroSelectionPanelDrawer.cs" />
     <Compile Include="Assets\UI\Drawers\LocationPanelDrawer.cs" />
     <Compile Include="Assets\UI\Drawers\LogPanelDrawer.cs" />
     <Compile Include="Assets\UI\Drawers\MayorPanelDrawer.cs" />
     <Compile Include="Assets\UI\Drawers\MissionFrameDrawer.cs" />
     <Compile Include="Assets\UI\Drawers\MissionPreviewPanelDrawer.cs" />
+    <Compile Include="Assets\UI\Drawers\MissionRoutePanelDrawer.cs" />
     <Compile Include="Assets\UI\Drawers\TavernPanelDrawer.cs" />
     <Compile Include="Assets\UI\Drawers\UnitPanelDrawer.cs" />
     <Compile Include="Assets\UI\Panel Managers\MissionDetailsPanelManager.cs" />

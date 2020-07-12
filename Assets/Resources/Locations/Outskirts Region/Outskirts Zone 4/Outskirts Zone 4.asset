@@ -10,19 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d32a229b002926149832f9d63fa5075d, type: 3}
-  m_Name: Outskirts Zone 2
+  m_Name: Outskirts Zone 4
   m_EditorClassIdentifier: 
   sites:
-  - baseTexture: {fileID: 2800000, guid: ee194b00cce481b4a85924aa23b3b4b4, type: 3}
+  - baseTexture: {fileID: 2800000, guid: 2eb0c62c952d0444fae9a1aa47ea10ca, type: 3}
     type: 1
     targetZone: {fileID: 11400000, guid: e93e029519ef6014f95ce8a52190dee2, type: 2}
-  - baseTexture: {fileID: 2800000, guid: 4297e0d987ddd8942a2d5b36180e2942, type: 3}
+  - baseTexture: {fileID: 2800000, guid: 0598f94b7b1a4de4f84eaf33aa42b952, type: 3}
     type: 1
-    targetZone: {fileID: 11400000, guid: cf2d9e2d3a8edad408156e0cf90c3cf0, type: 2}
-  - baseTexture: {fileID: 2800000, guid: a222a58accb0c9d4bb4bc538b04e6621, type: 3}
+    targetZone: {fileID: 11400000, guid: 1e8212406a5e7314a9a12d2e8fe956a3, type: 2}
+  - baseTexture: {fileID: 2800000, guid: c6c1d48650927b04aa5618d8d3be25b0, type: 3}
+    type: 1
+    targetZone: {fileID: 11400000, guid: 109be78c3e6124140951ee69d8cad283, type: 2}
+  - baseTexture: {fileID: 2800000, guid: 3d3e59ab2230fd745b3a217d6e7a31ed, type: 3}
     type: 0
     targetZone: {fileID: 0}
-  - baseTexture: {fileID: 2800000, guid: a72b848a2aba37d44ad92c114367ce6a, type: 3}
+  - baseTexture: {fileID: 2800000, guid: d6a3c5cbaf9cae04dae28b8d054b1d6f, type: 3}
+    type: 0
+    targetZone: {fileID: 0}
+  - baseTexture: {fileID: 2800000, guid: d647e8c6c9759084dbfdd216bad24eee, type: 3}
     type: 0
     targetZone: {fileID: 0}
   encounters:

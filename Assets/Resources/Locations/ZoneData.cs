@@ -28,24 +28,11 @@ public class ContainerSpawnOption : SpawnOption
 
 
 
-[Serializable]
-public class ZonePath
-{
-    public ZoneData zoneA, zoneB;
-    [Tooltip("Represent number of sites required to traverse in order to reach from zone A to zone B")]
-    public int length;
-}
-
-
-
 [CreateAssetMenu(menuName = "Content/Data/Zone Data")]
 public class ZoneData : ScriptableObject
 {
     [Reorderable(ReorderableNamingType.VariableValue,"type")]
     public List<Site> sites;
-
-    [Reorderable(ReorderableNamingType.ReferencedObjectName, "zoneB")]
-    public List<ZonePath> traversalPaths;
 
     [Reorderable(ReorderableNamingType.VariableValue, "type")]
     public List<EncounterSpawnOption> encounters;

@@ -6,7 +6,7 @@ using UnityEditor;
 public class Item
 {
     public ItemData data;
-    internal int stackSize, charges;
+    internal int stackSize = 0, charges = 0;
 
     public Item(ItemData data)
     {

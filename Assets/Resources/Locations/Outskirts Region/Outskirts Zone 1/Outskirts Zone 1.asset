@@ -20,18 +20,14 @@ MonoBehaviour:
     type: 1
     targetZone: {fileID: 11400000, guid: 1e8212406a5e7314a9a12d2e8fe956a3, type: 2}
   - baseTexture: {fileID: 2800000, guid: fd85a0e2eeec4d6428d832c84da47a20, type: 3}
-    type: 0
-    targetZone: {fileID: 0}
+    type: 1
+    targetZone: {fileID: 11400000, guid: 109be78c3e6124140951ee69d8cad283, type: 2}
   - baseTexture: {fileID: 2800000, guid: 910dfc7fcedbb2b4c83818b09d2d1805, type: 3}
-    type: 0
-    targetZone: {fileID: 0}
+    type: 1
+    targetZone: {fileID: 11400000, guid: cf2d9e2d3a8edad408156e0cf90c3cf0, type: 2}
   - baseTexture: {fileID: 2800000, guid: 5695a4b0bac09664db46ac0079102513, type: 3}
     type: 0
     targetZone: {fileID: 0}
-  traversalPaths:
-  - zoneA: {fileID: 11400000, guid: ea7927a82ac895c46b386bf0df34e485, type: 2}
-    zoneB: {fileID: 11400000, guid: 1e8212406a5e7314a9a12d2e8fe956a3, type: 2}
-    length: 17
   encounters:
   - relativeChanceWeight: 778
     type: 0

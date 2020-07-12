@@ -1041,7 +1041,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 26235629}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2067226842}
+        m_MethodName: ChangeActiveCanvas
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2007930978}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Canvas, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &26235629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7933,7 +7944,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 197314705}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2067226842}
+        m_MethodName: ChangeActiveCanvas
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2115037813}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Canvas, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &197314705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13531,7 +13553,7 @@ GameObject:
   - component: {fileID: 358686579}
   - component: {fileID: 358686578}
   m_Layer: 18
-  m_Name: Site (4)
+  m_Name: Plains 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15175,8 +15197,9 @@ GameObject:
   - component: {fileID: 398924955}
   - component: {fileID: 398924954}
   - component: {fileID: 398924953}
+  - component: {fileID: 398924957}
   m_Layer: 18
-  m_Name: Site (2)
+  m_Name: Outskirts 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15265,6 +15288,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 398924951}
   m_CullTransparentMesh: 0
+--- !u!114 &398924957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398924951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ade0666de96d6564093554abe81f8806, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zone: {fileID: 11400000, guid: 109be78c3e6124140951ee69d8cad283, type: 2}
+  connectedSegments:
+  - toggleComp: {fileID: 1251538580}
+    pathLength: 76
+  - toggleComp: {fileID: 1010004486}
+    pathLength: 24
 --- !u!1 &399706762
 GameObject:
   m_ObjectHideFlags: 0
@@ -16349,6 +16390,7 @@ GameObject:
   - component: {fileID: 424105842}
   - component: {fileID: 424105845}
   - component: {fileID: 424105844}
+  - component: {fileID: 424105846}
   m_Layer: 17
   m_Name: Map Content
   m_TagString: Untagged
@@ -16456,6 +16498,20 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &424105846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424105840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d26e7291da894874ab424408380fe3d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingSegments:
+  - {fileID: 1251538580}
 --- !u!1 &426529605
 GameObject:
   m_ObjectHideFlags: 0
@@ -18234,7 +18290,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0, g: 0, b: 0, a: 0}
-    m_HighlightedColor: {r: 0.990566, g: 0.89050627, b: 0.43454072, a: 0.4862745}
+    m_HighlightedColor: {r: 0.990566, g: 0.89050627, b: 0.43454072, a: 0.39215687}
     m_PressedColor: {r: 0, g: 0, b: 0, a: 0}
     m_SelectedColor: {r: 0, g: 0, b: 0, a: 0}
     m_DisabledColor: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 0.5019608}
@@ -29811,7 +29867,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0, g: 0, b: 0, a: 0}
-    m_HighlightedColor: {r: 0.990566, g: 0.89050627, b: 0.43454072, a: 0.4862745}
+    m_HighlightedColor: {r: 0.990566, g: 0.89050627, b: 0.43454072, a: 0.39215687}
     m_PressedColor: {r: 0, g: 0, b: 0, a: 0}
     m_SelectedColor: {r: 0, g: 0, b: 0, a: 0}
     m_DisabledColor: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 0.5019608}
@@ -31878,7 +31934,7 @@ RectTransform:
   - {fileID: 1725083895}
   - {fileID: 982699222}
   m_Father: {fileID: 2067226837}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -34814,8 +34870,9 @@ GameObject:
   - component: {fileID: 1010004484}
   - component: {fileID: 1010004483}
   - component: {fileID: 1010004482}
+  - component: {fileID: 1010004486}
   m_Layer: 18
-  m_Name: Site (3)
+  m_Name: Outskirts 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34904,6 +34961,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1010004480}
   m_CullTransparentMesh: 0
+--- !u!114 &1010004486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010004480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ade0666de96d6564093554abe81f8806, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zone: {fileID: 11400000, guid: cf2d9e2d3a8edad408156e0cf90c3cf0, type: 2}
+  connectedSegments:
+  - toggleComp: {fileID: 1251538580}
+    pathLength: 56
+  - toggleComp: {fileID: 1821832683}
+    pathLength: 15
+  - toggleComp: {fileID: 398924957}
+    pathLength: 24
 --- !u!1 &1015820845
 GameObject:
   m_ObjectHideFlags: 0
@@ -39298,7 +39375,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0, g: 0, b: 0, a: 0}
-    m_HighlightedColor: {r: 0.990566, g: 0.89050627, b: 0.43454072, a: 0.4862745}
+    m_HighlightedColor: {r: 0.990566, g: 0.89050627, b: 0.43454072, a: 0.39215687}
     m_PressedColor: {r: 0, g: 0, b: 0, a: 0}
     m_SelectedColor: {r: 0, g: 0, b: 0, a: 0}
     m_DisabledColor: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 0.5019608}
@@ -43112,7 +43189,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0, g: 0, b: 0, a: 0}
-    m_HighlightedColor: {r: 0.990566, g: 0.89050627, b: 0.43454072, a: 0.4862745}
+    m_HighlightedColor: {r: 0.990566, g: 0.89050627, b: 0.43454072, a: 0.39215687}
     m_PressedColor: {r: 0, g: 0, b: 0, a: 0}
     m_SelectedColor: {r: 0, g: 0, b: 0, a: 0}
     m_DisabledColor: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 0.5019608}
@@ -43129,7 +43206,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1166617482}
   m_OnClick:
     m_PersistentCalls:
@@ -44055,7 +44132,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1190630783}
   toggleTransition: 0
   graphic: {fileID: 1933435242}
@@ -46045,8 +46122,9 @@ GameObject:
   - component: {fileID: 1251538578}
   - component: {fileID: 1251538577}
   - component: {fileID: 1251538576}
+  - component: {fileID: 1251538580}
   m_Layer: 18
-  m_Name: Site
+  m_Name: Outskirts 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46135,6 +46213,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1251538574}
   m_CullTransparentMesh: 0
+--- !u!114 &1251538580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251538574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ade0666de96d6564093554abe81f8806, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zone: {fileID: 11400000, guid: e93e029519ef6014f95ce8a52190dee2, type: 2}
+  connectedSegments:
+  - toggleComp: {fileID: 1251538580}
+    pathLength: 2
+  - toggleComp: {fileID: 1821832683}
+    pathLength: 30
+  - toggleComp: {fileID: 398924957}
+    pathLength: 76
+  - toggleComp: {fileID: 1010004486}
+    pathLength: 56
 --- !u!1 &1253543614
 GameObject:
   m_ObjectHideFlags: 0
@@ -49172,7 +49272,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1351702442}
   toggleTransition: 0
   graphic: {fileID: 1164457202}
@@ -50562,7 +50662,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0, g: 0, b: 0, a: 0}
-    m_HighlightedColor: {r: 0.990566, g: 0.89050627, b: 0.43454072, a: 0.4862745}
+    m_HighlightedColor: {r: 0.990566, g: 0.89050627, b: 0.43454072, a: 0.39215687}
     m_PressedColor: {r: 0, g: 0, b: 0, a: 0}
     m_SelectedColor: {r: 0, g: 0, b: 0, a: 0}
     m_DisabledColor: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 0.5019608}
@@ -50579,7 +50679,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1392813950}
   m_OnClick:
     m_PersistentCalls:
@@ -51127,7 +51227,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1402668418}
   toggleTransition: 0
   graphic: {fileID: 403965917}
@@ -61240,8 +61340,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1650358518}
-  - component: {fileID: 1650358520}
   - component: {fileID: 1650358521}
+  - component: {fileID: 1650358520}
+  - component: {fileID: 1650358523}
   - component: {fileID: 1650358519}
   - component: {fileID: 1650358522}
   m_Layer: 20
@@ -61269,7 +61370,7 @@ RectTransform:
   - {fileID: 1620978009}
   - {fileID: 954956532}
   m_Father: {fileID: 2067226837}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -61355,6 +61456,23 @@ MonoBehaviour:
   expContentPanel: {fileID: 0}
   expFramePrefab: {fileID: 0}
   heroFramePrefab: {fileID: 0}
+--- !u!114 &1650358523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650358517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &1651924593
 GameObject:
   m_ObjectHideFlags: 0
@@ -62733,7 +62851,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1690342180}
   toggleTransition: 0
   graphic: {fileID: 206115914}
@@ -65800,7 +65918,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0, g: 0, b: 0, a: 0}
-    m_HighlightedColor: {r: 0.990566, g: 0.89050627, b: 0.43454072, a: 0.4862745}
+    m_HighlightedColor: {r: 0.990566, g: 0.89050627, b: 0.43454072, a: 0.39215687}
     m_PressedColor: {r: 0, g: 0, b: 0, a: 0}
     m_SelectedColor: {r: 0, g: 0, b: 0, a: 0}
     m_DisabledColor: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 0.5019608}
@@ -65817,7 +65935,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1746472109}
   m_OnClick:
     m_PersistentCalls:
@@ -68366,8 +68484,9 @@ GameObject:
   - component: {fileID: 1821832681}
   - component: {fileID: 1821832680}
   - component: {fileID: 1821832679}
+  - component: {fileID: 1821832683}
   m_Layer: 18
-  m_Name: Site (1)
+  m_Name: Outskirts 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68456,6 +68575,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1821832677}
   m_CullTransparentMesh: 0
+--- !u!114 &1821832683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821832677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ade0666de96d6564093554abe81f8806, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zone: {fileID: 11400000, guid: 1e8212406a5e7314a9a12d2e8fe956a3, type: 2}
+  connectedSegments:
+  - toggleComp: {fileID: 1251538580}
+    pathLength: 30
+  - toggleComp: {fileID: 1010004486}
+    pathLength: 15
 --- !u!1 &1823212450
 GameObject:
   m_ObjectHideFlags: 0
@@ -69169,7 +69306,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0, g: 0, b: 0, a: 0}
-    m_HighlightedColor: {r: 0.990566, g: 0.89050627, b: 0.43454072, a: 0.4862745}
+    m_HighlightedColor: {r: 0.990566, g: 0.89050627, b: 0.43454072, a: 0.39215687}
     m_PressedColor: {r: 0, g: 0, b: 0, a: 0}
     m_SelectedColor: {r: 0, g: 0, b: 0, a: 0}
     m_DisabledColor: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 0.5019608}
@@ -69197,6 +69334,17 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 2115037813}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Canvas, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 424105846}
+        m_MethodName: InitPanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -69298,7 +69446,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0, g: 0, b: 0, a: 0}
-    m_HighlightedColor: {r: 0.990566, g: 0.89050627, b: 0.43454072, a: 0.4862745}
+    m_HighlightedColor: {r: 0.990566, g: 0.89050627, b: 0.43454072, a: 0.39215687}
     m_PressedColor: {r: 0, g: 0, b: 0, a: 0}
     m_SelectedColor: {r: 0, g: 0, b: 0, a: 0}
     m_DisabledColor: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 0.5019608}
@@ -69315,7 +69463,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1838892448}
   m_OnClick:
     m_PersistentCalls:
@@ -70980,7 +71128,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1888644304}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2067226842}
+        m_MethodName: ChangeActiveCanvas
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1650358521}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Canvas, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1888644304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71984,7 +72143,7 @@ GameObject:
   - component: {fileID: 1906327673}
   - component: {fileID: 1906327672}
   m_Layer: 18
-  m_Name: Site (5)
+  m_Name: Plains 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72536,7 +72695,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1917917905}
   toggleTransition: 0
   graphic: {fileID: 1816394702}
@@ -78507,9 +78666,9 @@ RectTransform:
   m_Children:
   - {fileID: 2008792946}
   - {fileID: 2007930975}
-  - {fileID: 905577465}
   - {fileID: 2115037810}
   - {fileID: 1650358518}
+  - {fileID: 905577465}
   m_Father: {fileID: 2104314534}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -78562,9 +78721,9 @@ MonoBehaviour:
   controlledCanvases:
   - {fileID: 2008792947}
   - {fileID: 2007930978}
-  - {fileID: 905577467}
   - {fileID: 2115037813}
   - {fileID: 1650358521}
+  - {fileID: 905577467}
   defaultActiveCanvas: {fileID: 2008792947}
   alwaysActiveCanvases: []
 --- !u!1 &2069624947
@@ -79439,7 +79598,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 2078396299}
   toggleTransition: 0
   graphic: {fileID: 1627583317}
@@ -81574,8 +81733,8 @@ GameObject:
   - component: {fileID: 2115037810}
   - component: {fileID: 2115037813}
   - component: {fileID: 2115037812}
-  - component: {fileID: 2115037811}
   - component: {fileID: 2115037814}
+  - component: {fileID: 2115037811}
   m_Layer: 17
   m_Name: Mission Route Selection Panel
   m_TagString: Untagged
@@ -81598,7 +81757,7 @@ RectTransform:
   - {fileID: 1888644302}
   - {fileID: 26235627}
   m_Father: {fileID: 2067226837}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
