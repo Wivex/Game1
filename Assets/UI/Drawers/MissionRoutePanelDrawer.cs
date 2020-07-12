@@ -49,25 +49,21 @@ public class MissionRoutePanelDrawer : Drawer
         UpdateSegmentsInteractivity(changedSeg);
     }
 
-    void UpdateSegmentsInteractivity(MissionRouteSegmentComp changedSeg)
+    void UpdateSegmentsInteractivity(MissionRouteSegmentComp changedSegComp)
     {
-        if (changedSeg.toggle.isOn)
+        // toggle has been enabled
+        if (changedSegComp.toggle.isOn)
         {
             // disable all
             routeSegments.ForEach(seg => seg.toggle.interactable = false);
-            foreach (var seg in changedSeg.connectedSegments)
+            foreach (var seg in changedSegComp.connectedSegments)
             {
-                // enable connected
-                seg.toggleComp.toggle.interactable = true;
-                // except previous in chain, if it exists
-                if (route.Any() &&
-                    route.Last().Key == seg.toggleComp.zone)
-                {
-                    seg.toggleComp.toggle.interactable = false;
-                }
+                // enable connected segments, if not already in route
+                if (!route.ContainsKey(seg.toggleComp.zone))
+                    seg.toggleComp.toggle.interactable = true;
             }
             // enable self for untoggle possibility
-            changedSeg.toggle.interactable = true;
+            changedSegComp.toggle.interactable = true;
         }
         else
         {
@@ -75,15 +71,16 @@ public class MissionRoutePanelDrawer : Drawer
             {
                 // disable all
                 routeSegments.ForEach(seg => seg.toggle.interactable = false);
-                var previousSeg = changedSeg.connectedSegments.Find(seg => seg.toggleComp.zone == route.Last().Key);
-                // enable all connected for previous in chain
-                previousSeg.toggleComp.connectedSegments.ForEach(seg => seg.toggleComp.toggle.interactable = true);
-                // except pre-previous in chain, if it exists
-                var prepreviousZone = route.ElementAtOrDefault(route.Count - 2).Key;
-                if (prepreviousZone != null)
+                // find current last segment in route
+                var lastSegComp = changedSegComp.connectedSegments.Find(seg => seg.toggleComp.zone == route.Last().Key).toggleComp;
+                foreach (var seg in lastSegComp.connectedSegments)
                 {
-                    previousSeg.toggleComp.connectedSegments.Find(seg => seg.toggleComp.zone == prepreviousZone).toggleComp.toggle.interactable = false;
+                    // enable connected segments, if not already in route
+                    if (!route.ContainsKey(seg.toggleComp.zone))
+                        seg.toggleComp.toggle.interactable = true;
                 }
+                // enable self for untoggle possibility
+                lastSegComp.toggle.interactable = true;
             }
             else
             {

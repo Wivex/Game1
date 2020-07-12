@@ -46227,8 +46227,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zone: {fileID: 11400000, guid: e93e029519ef6014f95ce8a52190dee2, type: 2}
   connectedSegments:
-  - toggleComp: {fileID: 1251538580}
-    pathLength: 2
   - toggleComp: {fileID: 1821832683}
     pathLength: 30
   - toggleComp: {fileID: 398924957}
