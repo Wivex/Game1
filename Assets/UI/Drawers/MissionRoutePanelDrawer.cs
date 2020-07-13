@@ -17,7 +17,6 @@ public class MissionRoutePanelDrawer : Drawer
     /// </summary>
     Dictionary<ZoneData, int> route;
 
-    
 
     int PathToSegmentLength(MissionRouteSegmentComp targetSegment) =>
         route.Any()
@@ -25,7 +24,7 @@ public class MissionRoutePanelDrawer : Drawer
                 route.Last().Key).pathLength
             : 0;
 
-
+    
     void Start()
     {
         route = MissionsManager.missionSetUp.route;
