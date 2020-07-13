@@ -27,7 +27,7 @@ public class MissionRouteSegmentComp : MonoBehaviour
 
     TextMeshProUGUI label;
 
-    void OnEnable()
+    void Awake()
     {
         toggle = GetComponentInChildren<Toggle>();
         label = GetComponentInChildren<TextMeshProUGUI>();
