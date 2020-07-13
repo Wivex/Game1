@@ -24,17 +24,17 @@ public class MissionRoutePanelDrawer : Drawer
                 route.Last().Key).pathLength
             : 0;
 
-    
+
     void Start()
     {
         route = MissionsManager.missionSetUp.route;
         routeSegments = GetComponentsInChildren<MissionRouteSegmentComp>().ToList();
         // add listener to each toggle to take action when any toggle state changes
         foreach (var comp in routeSegments)
-            comp.toggle.onValueChanged.AddListener(arg0 => UpdateToggles(comp));
-    }
+            comp.toggle.onValueChanged.AddListener(arg0 => OnSegmentToggle(comp));
+}
 
-    void UpdateToggles(MissionRouteSegmentComp changedSeg)
+    void OnSegmentToggle(MissionRouteSegmentComp changedSeg)
     {
         if (changedSeg.toggle.isOn)
         {

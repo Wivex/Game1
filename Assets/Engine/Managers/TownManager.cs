@@ -2,8 +2,39 @@
 using Lexic;
 using UnityEngine;
 
-public static class TownManager
+public class TownManager : MonoBehaviour
 {
+    #region STATIC REFERENCE INITIALIZATION
+
+    /// <summary>
+    /// Can't access static variables and methods from inspector. So we use static instance to do that.
+    /// </summary>
+    public static TownManager i;
+
+    //default initialization of Singleton instance
+    void Awake()
+    {
+        //Check if instance already exists
+        if (i == null)
+            //if not, set instance to this
+            i = this;
+        //If instance already exists and it's not this:
+        else if (i != this)
+            //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of it.
+
+            //Sets this to not be destroyed when reloading scene
+            DontDestroyOnLoad(gameObject);
+    }
+
+    #endregion
+
+    #region SET IN INSPECTOR
+
+    //[Tooltip("Minimum time in seconds between events")]
+    //public int minGracePeriod;
+
+    #endregion
+
     internal static List<Hero> heroes = new List<Hero>();
 
     internal static List<Hero> IdleHeroes => heroes.FindAll(hero => hero.state == HeroState.Idle);
@@ -22,5 +53,23 @@ public static class TownManager
     public static Hero NewHeroDebug()
     {
         return NewHero(null, SexType.Male, HeroClassType.Warrior);
+    }
+
+    public static void NewIdleHeroesDebug(int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            var hero = NewHero(null, SexType.Male, HeroClassType.Warrior);
+            hero.state = HeroState.Idle;
+        }
+    }
+
+    public void NewIdleHeroesDebug2(int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            var hero = NewHero(null, SexType.Male, HeroClassType.Warrior);
+            hero.state = HeroState.Idle;
+        }
     }
 }

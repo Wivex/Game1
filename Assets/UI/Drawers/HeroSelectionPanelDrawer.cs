@@ -9,75 +9,49 @@ public class HeroSelectionPanelDrawer : Drawer
 {
     #region SET IN INSPECTOR
 
-    public TextMeshProUGUI noQuestsText, noExpText, timePlayedValue, sucExpValue, failedExpValue;
-    public Transform questContentPanel, expContentPanel;
-    public MissionFrameDrawer expFramePrefab;
+    public Transform heroesListPanel;
     public HeroFrameDrawer heroFramePrefab;
+    public GameObject noHeroesMessage;
+    public TextMeshProUGUI heroStats;
 
     #endregion
 
     Hero selHero;
-    ZoneData selZone;
+    List<HeroFrameDrawer> heroPanels;
 
     public void InitPanel()
     {
-        ClearPanels();
+        // remove old hero panels
+        heroesListPanel.DestroyAllChildren();
+
+        heroStats.text = "No hero selected";
 
         if (TownManager.IdleHeroes.Any())
         {
-        }
-        else
-        {
-            //HACK: temp solution
-            noQuestsText.text = "No available quests.";
-            noQuestsText.gameObject.SetActive(true);
-            noExpText.gameObject.SetActive(false);
-        }
-    }
+            // hide message
+            noHeroesMessage.SetActive(true);
 
-    void ClearPanels()
-    {
-        questContentPanel.DestroyAllChildren();
-    }
-
-    // select target zone
-    public void OnMissionSelect(MissionFrameDrawer mission)
-    {
-        selZone = mission.locData;
-
-        // hide mis. frames in this content panel
-        expContentPanel.gameObject.ChangeActiveDescending<MissionFrameDrawer>(false);
-
-        if (TownManager.IdleHeroes.Any())
-        {
-            noExpText.gameObject.SetActive(false);
-
-            // init free heroes frames in the same content panel from prefabs
             foreach (var hero in TownManager.IdleHeroes)
             {
-                var heroPanel = Instantiate(heroFramePrefab, expContentPanel);
-                heroPanel.Init(hero, this);
+                var heroPanel = Instantiate(heroFramePrefab, heroesListPanel);
+                heroPanel.Init(hero);
+                heroPanel.button.onClick.AddListener(()=>OnHeroSelect(heroPanel));
             }
         }
         else
         {
-            // enable "no free heroes text"
-            noExpText.text = "No idle heroes available.";
-            noExpText.gameObject.SetActive(true);
+            // show message
+            noHeroesMessage.SetActive(true);
         }
     }
 
     // send hero on mission
-    public void OnHeroSelect(HeroFrameDrawer heroFrame)
+    public void OnHeroSelect(HeroFrameDrawer heroPanel)
     {
-        selHero = heroFrame.hero;
-        selHero.state = HeroState.OnMission;
+        selHero = heroPanel.hero;
+        MissionsManager.missionSetUp.hero = selHero;
 
-        // hide heroFrames in this content panel
-        expContentPanel.gameObject.ChangeActiveDescending<HeroFrameDrawer>(false);
-        // show expFrames in this content panel
-        expContentPanel.gameObject.ChangeActiveDescending<MissionFrameDrawer>(true);
-
-        // MissionsManager.i.StartNewMission(selHero, selZone);
+        // TODO: update hero info
+        heroStats.text = $@"{selHero.name} stats";
     }
 }
