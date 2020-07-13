@@ -40,6 +40,12 @@ public class Mission
         encounterAM.animationFinished &&
         lootAM.animationFinished;
 
+    internal Mission(Mission mission)
+    {
+        hero = mission.hero;
+        route = new Dictionary<ZoneData, int>(mission.route);
+    }
+
     public void Update()
     {
         // skip logic if any animation is still in progress

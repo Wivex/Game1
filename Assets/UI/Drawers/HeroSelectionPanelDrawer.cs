@@ -29,13 +29,13 @@ public class HeroSelectionPanelDrawer : Drawer
         if (TownManager.IdleHeroes.Any())
         {
             // hide message
-            noHeroesMessage.SetActive(true);
+            noHeroesMessage.SetActive(false);
 
             foreach (var hero in TownManager.IdleHeroes)
             {
                 var heroPanel = Instantiate(heroFramePrefab, heroesListPanel);
                 heroPanel.Init(hero);
-                heroPanel.button.onClick.AddListener(()=>OnHeroSelect(heroPanel));
+                heroPanel.button.onClick.AddListener(()=>OnHeroSelect(hero));
             }
         }
         else
@@ -46,9 +46,9 @@ public class HeroSelectionPanelDrawer : Drawer
     }
 
     // send hero on mission
-    public void OnHeroSelect(HeroFrameDrawer heroPanel)
+    public void OnHeroSelect(Hero hero)
     {
-        selHero = heroPanel.hero;
+        selHero = hero;
         MissionsManager.missionSetUp.hero = selHero;
 
         // TODO: update hero info

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5794685254794927569}
   - component: {fileID: 5794685254794927575}
   - component: {fileID: 5794685254794927568}
-  m_Layer: 17
+  m_Layer: 20
   m_Name: Hero Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,11 +60,10 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Level 1 Warrior
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -168,7 +167,7 @@ GameObject:
   - component: {fileID: 5794685255496521920}
   - component: {fileID: 5794685255496521926}
   - component: {fileID: 5794685255496521927}
-  m_Layer: 17
+  m_Layer: 20
   m_Name: Hero Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,11 +216,10 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Lambert
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -327,7 +325,7 @@ GameObject:
   - component: {fileID: 5794685255711995311}
   - component: {fileID: 5135815716998592754}
   - component: {fileID: 4356249072361385077}
-  m_Layer: 17
+  m_Layer: 20
   m_Name: Hero Portrait Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -354,7 +352,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 150, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &5794685255711995310
 CanvasRenderer:
@@ -373,19 +371,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 5794685255711995305}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 6b86a246c3782494fb14a2177362a0a4, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: cc4b6dabd8e7e4a4aa6fce4545434498, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -393,6 +390,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1.7
 --- !u!114 &5135815716998592754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,7 +400,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5794685255711995305}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -421,11 +419,11 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: aba78e5d86067a144832b19b674b4c5c,
+    m_HighlightedSprite: {fileID: 21300000, guid: 8832a621e8257f54d8c96e403cc3c116,
       type: 3}
     m_PressedSprite: {fileID: 21300000, guid: aba78e5d86067a144832b19b674b4c5c, type: 3}
-    m_SelectedSprite: {fileID: 21300000, guid: 6b86a246c3782494fb14a2177362a0a4, type: 3}
-    m_DisabledSprite: {fileID: 21300000, guid: cc4b6dabd8e7e4a4aa6fce4545434498, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: aba78e5d86067a144832b19b674b4c5c, type: 3}
+    m_DisabledSprite: {fileID: 21300000, guid: 6b86a246c3782494fb14a2177362a0a4, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -437,8 +435,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &4356249072361385077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,7 +461,7 @@ GameObject:
   - component: {fileID: 5794685255970044878}
   - component: {fileID: 5794685255970044867}
   - component: {fileID: 5794685255970044876}
-  m_Layer: 17
+  m_Layer: 20
   m_Name: Hero Portrait
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -508,17 +504,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 5794685255970044879}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: fc022154185c32447b54153343a6a1ba, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -528,3 +523,4 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1

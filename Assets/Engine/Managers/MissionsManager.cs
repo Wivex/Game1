@@ -38,7 +38,7 @@ public class MissionsManager : MonoBehaviour
 
     internal static List<Mission> missions = new List<Mission>();
 
-    internal static Mission missionSetUp = new Mission();
+    internal static Mission missionSetUp;
 
     // public void StartNewMissionDebug()
     // {
@@ -46,11 +46,10 @@ public class MissionsManager : MonoBehaviour
     //         Resources.Load<ZoneData>("Locations/Outskirts/Outskirts"));
     // }
 
-    public void StartNewMission(Hero hero)
+    public void StartSetUpMission()
     {
-        // var mission = new Mission(hero, zone);
-        // missions.Add(mission);
-        // UIManager.misPanelManager.NewPreviewPanel(mission);
+        missions.Add(new Mission(missionSetUp));
+        UIManager.misPanelManager.NewPreviewPanel(missionSetUp);
     }
 
     void Update()

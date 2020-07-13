@@ -55,20 +55,12 @@ public class TownManager : MonoBehaviour
         return NewHero(null, SexType.Male, HeroClassType.Warrior);
     }
 
-    public static void NewIdleHeroesDebug(int count)
+    // non-static for use in the Unity inspector
+    public void NewIdleHeroesDebug(int count)
     {
         for (int i = 0; i < count; i++)
         {
-            var hero = NewHero(null, SexType.Male, HeroClassType.Warrior);
-            hero.state = HeroState.Idle;
-        }
-    }
-
-    public void NewIdleHeroesDebug2(int count)
-    {
-        for (int i = 0; i < count; i++)
-        {
-            var hero = NewHero(null, SexType.Male, HeroClassType.Warrior);
+            var hero = NewHeroDebug();
             hero.state = HeroState.Idle;
         }
     }

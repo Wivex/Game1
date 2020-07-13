@@ -16,7 +16,7 @@ public class HeroFrameDrawer : Drawer, IPointerClickHandler
     // TODO: remove
     MonoBehaviour parentDrawer;
 
-    void Start()
+    void Awake()
     {
         button = GetComponent<Button>();
     }
