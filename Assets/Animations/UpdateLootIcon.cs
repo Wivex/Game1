@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UpdateLootIcon : StateMachineBehaviour
 {
-    MissionPreviewPanelDrawer drawer;
+    MissionOverviewPanelDrawer drawer;
     
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -20,6 +20,6 @@ public class UpdateLootIcon : StateMachineBehaviour
     void TryCheckDrawer(Animator animator)
     {
         if (drawer == null)
-            drawer = animator.GetComponentInParent<MissionPreviewPanelDrawer>();
+            drawer = animator.GetComponentInParent<MissionOverviewPanelDrawer>();
     }
 }

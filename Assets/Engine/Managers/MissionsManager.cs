@@ -50,6 +50,8 @@ public class MissionsManager : MonoBehaviour
     [Reorderable(ReorderableNamingType.ReferencedObjectName)]
     public List<ZoneData> debugMissionRouteZones;
 
+    public Transform MissionsOverviewContentPanel;
+
     #endregion
 
     internal static List<Mission> missions = new List<Mission>();
@@ -67,7 +69,7 @@ public class MissionsManager : MonoBehaviour
     {
         missions.Add(new Mission(missionSetUp));
         missionSetUp.Reset();
-        UIManager.misPanelManager.NewPreviewPanel(missions.Last());
+        //UIManager.misPanelManager.NewPreviewPanel(missions.Last());
     }
 
     public void ResetSetUpMission()

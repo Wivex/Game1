@@ -49,11 +49,11 @@ public class TacticAction
 
     public void Attack(EnemyEncounter enemyEncounter)
     {
-        enemyEncounter.mis.StartAnimation(AnimationTrigger.Attack, enemyEncounter.GetAnimManager(enemyEncounter.actor));
+        //enemyEncounter.mis.StartAnimation(AnimationTrigger.Attack, enemyEncounter.GetAnimManager(enemyEncounter.actor));
 
         var damTaken = enemyEncounter.target.TakeDamage(enemyEncounter.mis, new Damage(DamageType.Physical, enemyEncounter.actor.Attack));
 
-        UIManager.CreateEffectAnimation(enemyEncounter.mis, enemyEncounter.target, UIManager.meleeHitEffectPrefab);
+        //UIManager.CreateEffectAnimation(enemyEncounter.mis, enemyEncounter.target, UIManager.meleeHitEffectPrefab);
 
         //enemyEncounter.mis.UpdateLog($"{enemyEncounter.actor} attacks {enemyEncounter.target} for {dam} {damage.type} damage.");
     }

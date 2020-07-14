@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class MissionPreviewPanelDrawer : Drawer, IPointerClickHandler
+public class MissionOverviewPanelDrawer : Drawer, IPointerClickHandler
 {
     #region SET IN INSPECTOR
     
@@ -39,11 +39,11 @@ public class MissionPreviewPanelDrawer : Drawer, IPointerClickHandler
     {
         this.mis = mis;
 
-        mis.heroAM = heroIcon.GetComponent<AnimatorManager>();
-        mis.encounterAM = objectIcon.GetComponent<AnimatorManager>();
-        mis.interactionAM = interactionIcon.GetComponent<AnimatorManager>();
-        mis.lootAM = lootIcon.GetComponent<AnimatorManager>();
-        mis.locationAM = locationPanel.GetComponent<AnimatorManager>();
+        //mis.heroAM = heroIcon.GetComponent<AnimatorManager>();
+        //mis.encounterAM = objectIcon.GetComponent<AnimatorManager>();
+        //mis.interactionAM = interactionIcon.GetComponent<AnimatorManager>();
+        //mis.lootAM = lootIcon.GetComponent<AnimatorManager>();
+        //mis.locationAM = locationPanel.GetComponent<AnimatorManager>();
 
         //mis.CombatStartEvent += SetStatBars;
     }
@@ -160,6 +160,6 @@ public class MissionPreviewPanelDrawer : Drawer, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         // can't reference scene objects from prefab
-        UIManager.misPanelManager.ShowDetailsPanel(mis);
+        //UIManager.misPanelManager.ShowDetailsPanel(mis);
     }
 }

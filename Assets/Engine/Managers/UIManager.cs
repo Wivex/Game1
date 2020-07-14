@@ -5,39 +5,56 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    internal static MissionPanelManager misPanelManager;
-    //internal static MayorPanelDrawer boardPanelDrawer;
-    internal static TavernPanelDrawer tavernPanelDrawer;
-    internal static MonoBehaviour floatingTextPrefab, meleeHitEffectPrefab;
+    #region STATIC REFERENCE INITIALIZATION
 
-    static Transform GetUnitUITarget(Mission exp, Unit target) => target is Hero
-        ? misPanelManager.expPreviewPanels[exp].heroIcon.transform
-        : misPanelManager.expPreviewPanels[exp].objectIcon.transform;
+    /// <summary>
+    /// Can't access static variables and methods from inspector. So we use static instance to do that.
+    /// </summary>
+    public static UIManager i;
 
-    // initializing prefabs on Unity editor refresh
-    void OnEnable()
+    //default initialization of Singleton instance
+    void Awake()
     {
-        floatingTextPrefab = Resources.Load<MonoBehaviour>("Effects/FloatingText/FloatingText");
-        meleeHitEffectPrefab = Resources.Load<MonoBehaviour>("Effects/MeleeHit/MeleeHit");
+        //Check if instance already exists
+        if (i == null)
+            //if not, set instance to this
+            i = this;
+        //If instance already exists and it's not this:
+        else if (i != this)
+            //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of it.
 
-        misPanelManager = GameObject.Find("Missions Panel").GetComponent<MissionPanelManager>();
-        // boardPanelDrawer = GameObject.Find("Notice Board Panel").GetComponent<MayorPanelDrawer>();
-        tavernPanelDrawer = GameObject.Find("Tavern Panel").GetComponent<TavernPanelDrawer>();
+            //Sets this to not be destroyed when reloading scene
+            DontDestroyOnLoad(gameObject);
     }
 
-    internal static void CreateFloatingTextForUnit(Mission exp, Unit target, int value)
-    {
-        CreateFloatingText(GetUnitUITarget(exp, target), value);
-    }
+    #endregion
+    
+    #region UI PREFAB REFERENCES
 
-    internal static void CreateEffectAnimation(Mission exp, Unit target, MonoBehaviour prefab)
-    {
-        var effect = Instantiate(prefab, GetUnitUITarget(exp, target));
+    public static MonoBehaviour floatingTextPrefab, meleeHitEffectPrefab, missionOverviewPanelPrefab;
 
-        // UNDONE: fine until not fine
-        if (target is Enemy)
-            MirrorEffectAxisX(effect);
-    }
+    #endregion
+    
+    #region UI PANELS REFERENCES
+    
+    public static Transform previewContentPanel;
+
+    #endregion
+
+
+    //internal static void CreateFloatingTextForUnit(Mission exp, Unit target, int value)
+    //{
+    //    CreateFloatingText(GetUnitUITarget(exp, target), value);
+    //}
+
+    //internal static void CreateEffectAnimation(Mission exp, Unit target, MonoBehaviour prefab)
+    //{
+    //    var effect = Instantiate(prefab, GetUnitUITarget(exp, target));
+
+    //    // UNDONE: fine until not fine
+    //    if (target is Enemy)
+    //        MirrorEffectAxisX(effect);
+    //}
 
     static void MirrorEffectAxisX(MonoBehaviour obj)
     {

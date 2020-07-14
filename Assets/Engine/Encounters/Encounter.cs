@@ -20,7 +20,7 @@ public abstract class Encounter
     /// <summary>
     /// Runs next logical action in the encounter, when all previous action animations are finished.
     /// </summary>
-    internal abstract void NextStage();
+    internal abstract void NextAction();
 
     internal Encounter(Mission mis)
     {

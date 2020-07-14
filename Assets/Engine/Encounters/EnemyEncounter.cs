@@ -16,7 +16,7 @@ public class EnemyEncounter : Encounter
     bool looting;
     int heroInitiative;
 
-    internal AnimatorManager GetAnimManager(Unit unit) => unit is Hero ? mis.heroAM : mis.encounterAM;
+    //internal AnimatorManager GetAnimManager(Unit unit) => unit is Hero ? mis.heroAM : mis.encounterAM;
 
     internal EnemyEncounter(Mission mis) : base(mis)
     {
@@ -29,7 +29,7 @@ public class EnemyEncounter : Encounter
         ResetAllCooldowns();
     }
 
-    internal override void NextStage()
+    internal override void NextAction()
     {
         if (looting)
             NextItem();
@@ -65,12 +65,12 @@ public class EnemyEncounter : Encounter
             // TODO: use Queue or Stack instead
             curLoot = lootDrops.ExtractFirstElement();
             hero.backpack.Add(curLoot);
-            mis.StartAnimation(AnimationTrigger.StartTransferLoot, mis.lootAM, mis.interactionAM, mis.locationAM);
+            //mis.StartAnimation(AnimationTrigger.StartTransferLoot, mis.lootAM, mis.interactionAM, mis.locationAM);
         }
         else
         {
             looting = false;
-            mis.StartAnimation(AnimationTrigger.EndEncounter, mis.heroAM, mis.encounterAM);
+            //mis.StartAnimation(AnimationTrigger.EndEncounter, mis.heroAM, mis.encounterAM);
             mis.curEncounter = null;
         }
     }

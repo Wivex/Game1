@@ -14,7 +14,7 @@ public class ContainerEncounter : Encounter
 
     bool looting;
 
-    internal AnimatorManager GetAnimManager(Unit unit) => unit is Hero ? mis.heroAM : mis.encounterAM;
+    //internal AnimatorManager GetAnimManager(Unit unit) => unit is Hero ? mis.heroAM : mis.encounterAM;
 
     internal ContainerEncounter(Mission mis) : base(mis)
     {
@@ -26,7 +26,7 @@ public class ContainerEncounter : Encounter
         looting = true;
     }
 
-    internal override void NextStage()
+    internal override void NextAction()
     {
         if (looting)
             NextItem();
@@ -53,12 +53,12 @@ public class ContainerEncounter : Encounter
             // TODO: use Queue or Stack instead
             curLoot = lootDrops.ExtractFirstElement();
             hero.backpack.Add(curLoot);
-            mis.StartAnimation(AnimationTrigger.StartTransferLoot, mis.lootAM, mis.interactionAM, mis.locationAM);
+            //mis.StartAnimation(AnimationTrigger.StartTransferLoot, mis.lootAM, mis.interactionAM, mis.locationAM);
         }
         else
         {
             looting = false;
-            mis.StartAnimation(AnimationTrigger.EndEncounter, mis.heroAM, mis.encounterAM);
+            //mis.StartAnimation(AnimationTrigger.EndEncounter, mis.heroAM, mis.encounterAM);
             mis.curEncounter = null;
         }
     }

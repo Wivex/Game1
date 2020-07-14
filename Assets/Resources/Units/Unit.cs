@@ -67,7 +67,7 @@ public abstract class Unit
         HP = Math.Max(HP - healthLoss, 0);
 
         // invoked here, cause can take damage outside of enemyEncounter
-        UIManager.CreateFloatingTextForUnit(exp, this, -healthLoss);
+        //UIManager.CreateFloatingTextForUnit(exp, this, -healthLoss);
 
         return healthLoss;
     }

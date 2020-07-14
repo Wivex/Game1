@@ -5,13 +5,11 @@ using TMPro;
 
 public class MissionPanelManager : MonoBehaviour
 {
-    public MissionPreviewPanelDrawer missionPreviewPanelPrefab;
-    public Transform previewContentPanel;
     public Canvas overviewCanvas, detailsCanvas, noExpCanvas;
     //public MissionDetailsPanelManager expDetailsPanelDrawManager;
     public LogPanelDrawer logPanelDrawer;
 
-    internal Dictionary<Mission, MissionPreviewPanelDrawer> expPreviewPanels = new Dictionary<Mission, MissionPreviewPanelDrawer>();
+    internal Dictionary<Mission, MissionOverviewPanelDrawer> expPreviewPanels = new Dictionary<Mission, MissionOverviewPanelDrawer>();
     internal Mission selectedExp;
 
     CanvasManager cMan;
@@ -22,7 +20,7 @@ public class MissionPanelManager : MonoBehaviour
         cMan = GetComponent<CanvasManager>();
 
         // remove prefab template from content panel
-        previewContentPanel.DestroyAllChildren();
+        //previewContentPanel.DestroyAllChildren();
     }
     
     public void ShowOverviewPanel()
@@ -43,8 +41,8 @@ public class MissionPanelManager : MonoBehaviour
     /// </summary>
     internal void NewPreviewPanel(Mission exp)
     {
-        var panel = Instantiate(missionPreviewPanelPrefab, previewContentPanel);
-        panel.Init(exp);
-        expPreviewPanels.Add(exp, panel);
+        //var panel = Instantiate(missionOverviewPanelPrefab, previewContentPanel);
+        //panel.Init(exp);
+        //expPreviewPanels.Add(exp, panel);
     }
 }

@@ -17,57 +17,34 @@ public enum AnimationTrigger
 public class Mission
 {
     internal Hero hero;
-    internal Dictionary<ZoneData, int> route = new Dictionary<ZoneData, int>();
-    //internal ZoneData curZone, destination;
-    //internal Site curSite;
-    //internal int curZoneIndex;
     internal Encounter curEncounter;
-    internal AnimatorManager heroAM, encounterAM, interactionAM, lootAM, locationAM;
+    internal Dictionary<ZoneData, int> route;
+    internal ZoneData curZone;
+    internal int zonePathProgress = 0, sitesSinceLastEncounter = 0;
 
-    DateTime lastSituationRealTime;
-    float lastSituationGameTime;
+    public event Action NewSite_Event;
 
-    //public event Action CombatStartEvent;
-
-    public bool GraceTimePassed =>
-        //(DateTime.Now - lastSituationRealTime).TotalSeconds > MissionsManager.i.minGracePeriod &&
-        Time.time - lastSituationGameTime > MissionsManager.i.minGracePeriod;
-
-    //Site NewInterchangableSite => curZone.sites.Find(site => site != curSite && site.type == SiteType.Interchangeble);
-
-    bool AllAnimationsFinished =>
-        heroAM.animationFinished &&
-        encounterAM.animationFinished &&
-        lootAM.animationFinished;
+    public bool GraceTimePassed => sitesSinceLastEncounter > MissionsManager.i.minGracePeriod;
 
     internal Mission(MissionSetUp misSetUp)
     {
         hero = misSetUp.hero;
         route = new Dictionary<ZoneData, int>(misSetUp.route);
+        curZone = route.First().Key;
     }
 
-    public void Update()
+    public void NextAction()
     {
-        // skip logic if any animation is still in progress
-        if (AllAnimationsFinished)
-        {
-            if (curEncounter != null)
-                curEncounter.NextStage();
-            else
-                EnterNextZone();
-        }
+        if (curEncounter != null)
+            curEncounter.NextAction();
+        else
+            NextSite();
     }
 
-    public void EnterNextZone()
+    public void NextSite()
     {
-        ChangeZoneImage();
+        NewSite_Event();
         TryNewEncounter();
-    }
-
-    public void InitGraceTimers()
-    {
-        lastSituationRealTime = DateTime.Now;
-        lastSituationGameTime = Time.time;
     }
 
     void ChangeZoneImage()
@@ -85,39 +62,32 @@ public class Mission
 
     void TryNewEncounter()
     {
-        // if (GraceTimePassed)
-        // {
-        //     foreach (var enc in curZone.encounters)
-        //     {
-        //         if (Random.value < enc.chanceWeight)
-        //         {
-        //             switch (enc.type)
-        //             {
-        //                 case EncounterType.EnemyEncounter:
-        //                     curEncounter = new EnemyEncounter();
-        //                     curEncounter.InitEncounter(this);
-        //                     CombatStartEvent?.Invoke();
-        //                     StartAnimation(AnimationTrigger.BeginEncounter, heroAM, encounterAM, interactionAM, locationAM);
-        //                     break;
-        //                 case EncounterType.Container:
-        //                     curEncounter = new ContainerEncounter();
-        //                     curEncounter.InitEncounter(this);
-        //                     StartAnimation(AnimationTrigger.BeginEncounter, heroAM, encounterAM);
-        //                     break;
-        //             }
-        //             return;
-        //         }
-        //     }
-        // }
+        if (GraceTimePassed)
+        {
+            var encounter = curZone.encounters.PickOne();
+            switch (encounter.type)
+            {
+                //case EncounterType.EnemyEncounter:
+                //    curEncounter = new EnemyEncounter();
+                //    curEncounter.InitEncounter(this);
+                //    CombatStartEvent?.Invoke();
+                //    StartAnimation(AnimationTrigger.BeginEncounter, heroAM, encounterAM, interactionAM, locationAM);
+                //    break;
+                //case EncounterType.Container:
+                //    curEncounter = new ContainerEncounter();
+                //    curEncounter.InitEncounter(this);
+                //    StartAnimation(AnimationTrigger.BeginEncounter, heroAM, encounterAM);
+                //    break;
+            }
 
-        // if no new encounter, keep travelling
-        KeepTravelling();
+            return;
+        }
     }
 
     public void KeepTravelling()
     {
         Debug.Log("KeepTravelling Trigger");
-        StartAnimation(AnimationTrigger.KeepTravelling, heroAM);
+        //StartAnimation(AnimationTrigger.KeepTravelling, heroAM);
     }
 
     // UNDO: should move somewhere?
