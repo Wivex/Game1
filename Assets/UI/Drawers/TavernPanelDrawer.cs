@@ -34,13 +34,14 @@ public class TavernPanelDrawer : Drawer
         foreach (var hero in TownManager.IdleHeroes)
         {
             var heroPanel = Instantiate(heroFramePrefab, idlesContentPanel);
-            heroPanel.Init(hero, this);
+            heroPanel.Init(hero);
         }
 
         foreach (var hero in TownManager.RecruitableHeroes)
         {
             var heroPanel = Instantiate(heroFramePrefab, recruitsContentPanel);
-            heroPanel.Init(hero, this);
+            heroPanel.Init(hero);
+            heroPanel.button.onClick.AddListener(() => OnHeroSelect(heroPanel));
         }
 
         UpdateHeroesAvailabilityInfo();

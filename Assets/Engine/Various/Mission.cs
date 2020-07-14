@@ -27,7 +27,7 @@ public class Mission
     DateTime lastSituationRealTime;
     float lastSituationGameTime;
 
-    public event Action CombatStartEvent;
+    //public event Action CombatStartEvent;
 
     public bool GraceTimePassed =>
         //(DateTime.Now - lastSituationRealTime).TotalSeconds > MissionsManager.i.minGracePeriod &&
@@ -40,10 +40,10 @@ public class Mission
         encounterAM.animationFinished &&
         lootAM.animationFinished;
 
-    internal Mission(Mission mission)
+    internal Mission(MissionSetUp misSetUp)
     {
-        hero = mission.hero;
-        route = new Dictionary<ZoneData, int>(mission.route);
+        hero = misSetUp.hero;
+        route = new Dictionary<ZoneData, int>(misSetUp.route);
     }
 
     public void Update()
@@ -62,12 +62,6 @@ public class Mission
     {
         ChangeZoneImage();
         TryNewEncounter();
-    }
-
-    //TODO: Implement log manager
-    public void UpdateLog(string logEntry)
-    {
-        //expPanel.logPanelDrawer.AddLogEntry(logEntry);
     }
 
     public void InitGraceTimers()

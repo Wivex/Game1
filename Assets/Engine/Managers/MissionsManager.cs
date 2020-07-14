@@ -1,7 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Lexic;
+using SubjectNerd.Utilities;
 using UnityEngine;
+
+internal class MissionSetUp
+{
+    internal Hero hero;
+    internal Dictionary<ZoneData, int> route = new Dictionary<ZoneData, int>();
+
+    internal void Reset()
+    {
+        hero = null;
+        route = new Dictionary<ZoneData, int>();
+    }
+}
 
 public class MissionsManager : MonoBehaviour
 {
@@ -34,26 +47,31 @@ public class MissionsManager : MonoBehaviour
     [Tooltip("Minimum time in seconds between events")]
     public int minGracePeriod;
 
+    [Reorderable(ReorderableNamingType.ReferencedObjectName)]
+    public List<ZoneData> debugMissionRouteZones;
+
     #endregion
 
     internal static List<Mission> missions = new List<Mission>();
+    internal static MissionSetUp missionSetUp = new MissionSetUp();
 
-    internal static Mission missionSetUp;
-
-    // public void StartNewMissionDebug()
-    // {
-    //     StartNewMission(TownManager.NewHeroDebug(),
-    //         Resources.Load<ZoneData>("Locations/Outskirts/Outskirts"));
-    // }
+    public void StartNewMissionDebug()
+    {
+        missionSetUp.Reset();
+        missionSetUp.hero = TownManager.NewHeroDebug();
+        debugMissionRouteZones.ForEach(zone => missionSetUp.route.Add(zone, 10));
+        StartSetUpMission();
+    }
 
     public void StartSetUpMission()
     {
         missions.Add(new Mission(missionSetUp));
-        UIManager.misPanelManager.NewPreviewPanel(missionSetUp);
+        missionSetUp.Reset();
+        UIManager.misPanelManager.NewPreviewPanel(missions.Last());
     }
 
-    void Update()
+    public void ResetSetUpMission()
     {
-        missions.ForEach(mission => mission.Update());
+        missionSetUp.Reset();
     }
 }

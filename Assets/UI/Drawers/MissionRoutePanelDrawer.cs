@@ -95,6 +95,7 @@ public class MissionRoutePanelDrawer : Drawer
         route.Clear();
         
         routeSegments.ForEach(seg => seg.toggle.interactable = false);
+        routeSegments.ForEach(seg => seg.toggle.isOn = false);
         startingSegments.ForEach(seg => seg.toggle.interactable = true);
     }
 }

@@ -10,10 +10,10 @@ public class MissionPreviewPanelDrawer : Drawer, IPointerClickHandler
 {
     #region SET IN INSPECTOR
     
-    public List<Sprite> goldSprites;
     public Transform consumablesPanel, locationPanel;
     public FillingBar heroHpBar, heroEnergyBar, enemyHpBar, enemyEnergyBar;
     public Image heroImage, curGoldImage, heroIcon, objectIcon, interactionIcon, enemyStatusIcon, heroStatusIcon, locationImage, lootIcon;
+    List<Sprite> goldSprites;
 
     public TextMeshProUGUI heroName,
         level,
@@ -45,14 +45,14 @@ public class MissionPreviewPanelDrawer : Drawer, IPointerClickHandler
         mis.lootAM = lootIcon.GetComponent<AnimatorManager>();
         mis.locationAM = locationPanel.GetComponent<AnimatorManager>();
 
-        mis.CombatStartEvent += SetStatBars;
+        //mis.CombatStartEvent += SetStatBars;
     }
 
     // required for proper "unlistening" of C# event
     protected void OnDestroy()
     {
-        if (mis != null)
-            mis.CombatStartEvent -= SetStatBars;
+        //if (mis != null)
+        //    mis.CombatStartEvent -= SetStatBars;
     }
 
     //update UI panels
