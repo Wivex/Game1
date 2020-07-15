@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class MissionOverviewPanelDrawer : Drawer, IPointerClickHandler
+public class MissionOverviewPanelDrawer : Drawer
 {
     #region SET IN INSPECTOR
     
@@ -152,6 +152,19 @@ public class MissionOverviewPanelDrawer : Drawer, IPointerClickHandler
             objectIcon.sprite = combat.enemy.data.icon;
         if (mis.curEncounter is ContainerEncounter cont)
             objectIcon.sprite = cont.data.icon;
+    }
+
+    void ChangeZoneImage()
+    {
+        // // check if last zone in the area
+        // if (++curZoneIndex >= curSite.zonesPositions.Capacity)
+        // {
+        //     // UNDONE : temp unsafe solution (end overflow)
+        //     curSite = curSite.interchangeable
+        //         ? NewInterchangableSite
+        //         : curZone.interchangebleSites[curZone.interchangebleSites.IndexOf(curSite) + 1];
+        //     curZoneIndex = 0;
+        // }
     }
 
     #endregion

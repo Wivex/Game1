@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public enum AnimationTrigger
@@ -22,9 +23,9 @@ public class Mission
     internal ZoneData curZone;
     internal int zonePathProgress = 0, sitesSinceLastEncounter = 0;
 
-    public event Action NewSite_Event;
+    public event Action SiteChangedEvent;
 
-    public bool GraceTimePassed => sitesSinceLastEncounter > MissionsManager.i.minGracePeriod;
+    public bool GracePeriodPassed => sitesSinceLastEncounter > MissionsManager.i.minGracePeriod;
 
     internal Mission(MissionSetUp misSetUp)
     {
@@ -41,43 +42,30 @@ public class Mission
             NextSite();
     }
 
-    public void NextSite()
+    void NextSite()
     {
-        NewSite_Event();
-        TryNewEncounter();
+        SiteChangedEvent();
+        EncounterCheck();
     }
 
-    void ChangeZoneImage()
+    void EncounterCheck()
     {
-        // // check if last zone in the area
-        // if (++curZoneIndex >= curSite.zonesPositions.Capacity)
-        // {
-        //     // UNDONE : temp unsafe solution (end overflow)
-        //     curSite = curSite.interchangeable
-        //         ? NewInterchangableSite
-        //         : curZone.interchangebleSites[curZone.interchangebleSites.IndexOf(curSite) + 1];
-        //     curZoneIndex = 0;
-        // }
-    }
-
-    void TryNewEncounter()
-    {
-        if (GraceTimePassed)
+        if (GracePeriodPassed)
         {
             var encounter = curZone.encounters.PickOne();
             switch (encounter.type)
             {
-                //case EncounterType.EnemyEncounter:
-                //    curEncounter = new EnemyEncounter();
-                //    curEncounter.InitEncounter(this);
-                //    CombatStartEvent?.Invoke();
-                //    StartAnimation(AnimationTrigger.BeginEncounter, heroAM, encounterAM, interactionAM, locationAM);
-                //    break;
-                //case EncounterType.Container:
-                //    curEncounter = new ContainerEncounter();
-                //    curEncounter.InitEncounter(this);
-                //    StartAnimation(AnimationTrigger.BeginEncounter, heroAM, encounterAM);
-                //    break;
+                case EncounterType.Enemy:
+                    curEncounter = new EnemyEncounter(this);
+                    curEncounter.InitEncounter(this);
+                    CombatStartEvent?.Invoke();
+                    StartAnimation(AnimationTrigger.BeginEncounter, heroAM, encounterAM, interactionAM, locationAM);
+                    break;
+                case EncounterType.Container:
+                    curEncounter = new ContainerEncounter();
+                    curEncounter.InitEncounter(this);
+                    StartAnimation(AnimationTrigger.BeginEncounter, heroAM, encounterAM);
+                    break;
             }
 
             return;

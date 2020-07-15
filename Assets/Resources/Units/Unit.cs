@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Unit
+public class Unit
 {
     internal List<Ability> abilities = new List<Ability>();
     internal List<Effect> effects = new List<Effect>();
     internal List<Tactic> tactics;
 
     internal Dictionary<StatType, Stat> baseStats;
+
+    internal int speedPoints;
 
     internal bool Dead => HP <= 0;
 
@@ -32,7 +34,7 @@ public abstract class Unit
 
     #endregion
 
-    internal void InitData(UnitData data)
+    public Unit(UnitData data)
     {
         baseStats = new Dictionary<StatType, Stat>
         {
@@ -47,8 +49,9 @@ public abstract class Unit
             abilities.Add(new Ability(abilityData));
 
         tactics = data.tactics;
-    }
 
+        speedPoints = baseStats[StatType.Speed].ModdedValue;
+    }
 
     #region OPERATIONS
 

@@ -23,7 +23,7 @@ public class TavernPanelDrawer : Drawer
         // HACK: temp debug feature
         for (var i = 0; i < 5; i++)
         {
-            TownManager.NewHeroDebug();
+            TownManager.GenerateRandomHero();
         }
     }
 

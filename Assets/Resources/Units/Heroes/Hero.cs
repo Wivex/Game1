@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public enum HeroState
 {
@@ -28,7 +26,6 @@ public class Hero : Unit
 {
     internal string name;
     internal SexType sexType;
-    internal HeroClassType heroClassType;
     internal HeroState state;
     internal HeroData data;
     internal int level = 0, gold = 0, experience = 0;
@@ -37,8 +34,14 @@ public class Hero : Unit
     internal List<Item> backpack = new List<Item>();
     internal List<Item> consumables = new List<Item>();
 
+    internal Hero(EnemyData data) : base(data)
+    {
+        this.data = data;
+        InitData(data);
+    }
+
     // USE: TownManager.NewHero()
-    internal Hero(string name = default,
+    public Hero(string name = default,
                   SexType sexType = default,
                   HeroClassType heroClassType = default,
                   Sprite portrait = default)
@@ -53,7 +56,7 @@ public class Hero : Unit
             $"Units/Heroes/Classes/{heroClassType.ToString()}/{heroClassType.ToString()}");
         //HACK: temp solution
         state = HeroState.Recruitable;
-        InitData(data);
+        //InitData(data);
         InitEquipment();
     }
 

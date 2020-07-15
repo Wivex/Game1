@@ -50,7 +50,7 @@ public class TownManager : MonoBehaviour
         return hero;
     }
 
-    public static Hero NewHeroDebug()
+    public static Hero GenerateRandomHero()
     {
         return NewHero(null, SexType.Male, HeroClassType.Warrior);
     }
@@ -60,7 +60,7 @@ public class TownManager : MonoBehaviour
     {
         for (int i = 0; i < count; i++)
         {
-            var hero = NewHeroDebug();
+            var hero = GenerateRandomHero();
             hero.state = HeroState.Idle;
         }
     }

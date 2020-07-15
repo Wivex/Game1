@@ -8,25 +8,18 @@ public class EnemyEncounter : Encounter
     internal Hero hero;
     internal Enemy enemy;
     internal Unit actor, target;
-    internal Item curLoot;
-
-    // UNDONE
+    
     List<Item> lootDrops;
+    Item curLoot;
 
     bool looting;
     int heroInitiative;
-
-    //internal AnimatorManager GetAnimManager(Unit unit) => unit is Hero ? mis.heroAM : mis.encounterAM;
 
     internal EnemyEncounter(Mission mis) : base(mis)
     {
         type = EncounterType.Enemy;
         hero = mis.hero;
-        enemy = NewEnemy();
-        //TODO: update UI?
-        //enemy.unitPreviewIcon = mission.expPreviewPanel.objectIcon.transform;
-        //enemy.unitDetailsIcon = UIManager.instance.expPanelDrawer.expDetailsPanelDrawer.enemyPanel.unitImage.transform;
-        ResetAllCooldowns();
+        enemy = new Enemy(mis.curZone.enemies.PickOne().enemyData);
     }
 
     internal override void NextAction()
@@ -34,7 +27,37 @@ public class EnemyEncounter : Encounter
         if (looting)
             NextItem();
         else
-            NextTurn();
+            NexUnitAction();
+    }
+
+    // TODO: rework into AP based system (speed points)
+    /// <summary>
+    /// Determines turn order based on hero vs enemy speed difference. Substitution leftover accumulates, so that multiple turns of the same unit can happen based on SPD advantage.
+    /// </summary>
+    void NexUnitAction()
+    {
+        // extra hero turn check
+        if (heroInitiative > hero.Speed)
+            heroInitiative -= hero.Speed;
+        // extra enemy turn check (substitution leftover is negative)
+        else if (-heroInitiative > enemy.Speed)
+            heroInitiative -= -enemy.Speed;
+        // normal turn check
+        else
+            heroInitiative += hero.Speed - enemy.Speed;
+
+        if (heroInitiative > 0 || heroInitiative == 0 && Random.value > 0.5f)
+        {
+            actor = hero;
+            target = enemy;
+        }
+        else
+        {
+            actor = enemy;
+            target = hero;
+        }
+
+        DoActorTurn();
     }
 
     void TryEndCombat()
@@ -73,35 +96,6 @@ public class EnemyEncounter : Encounter
             //mis.StartAnimation(AnimationTrigger.EndEncounter, mis.heroAM, mis.encounterAM);
             mis.curEncounter = null;
         }
-    }
-
-    /// <summary>
-    /// Determines turn order based on hero vs enemy speed difference. Substitution leftover accumulates, so that multiple turns of the same unit can happen based on SPD advantage.
-    /// </summary>
-    void NextTurn()
-    {
-        // extra hero turn check
-        if (heroInitiative > hero.Speed)
-            heroInitiative -= hero.Speed;
-        // extra enemy turn check (substitution leftover is negative)
-        else if (-heroInitiative > enemy.Speed)
-            heroInitiative -= -enemy.Speed;
-        // normal turn check
-        else
-            heroInitiative += hero.Speed - enemy.Speed;
-
-        if (heroInitiative > 0 || heroInitiative == 0 && Random.value > 0.5f)
-        {
-            actor = hero;
-            target = enemy;
-        }
-        else
-        {
-            actor = enemy;
-            target = hero;
-        }
-
-        DoActorTurn();
     }
 
     void DoActorTurn()
@@ -160,22 +154,5 @@ public class EnemyEncounter : Encounter
                 lootDrops.Add(new Item(loot.item));
             }
         }
-    }
-
-    // NOTE: move to enemyEncounter manager?
-    // NOTE: increase chance with each iteration?
-    Enemy NewEnemy()
-    {
-        // var spawnTries = 0;
-        // while (enemy == null && spawnTries++ < 100)
-        // {
-        //     foreach (var e in mis.curZone.enemies)
-        //     {
-        //         if (Random.value < e.chanceWeight)
-        //             return new Enemy(e.enemyData);
-        //     }
-        // }
-
-        throw new Exception("Too many tries to spawn enemy");
     }
 }

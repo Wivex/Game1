@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SpawnOption
 {
@@ -25,7 +27,7 @@ public static class SpawnOptionExtensions
             if (roll <= 0) return opt;
         }
 
-        return null;
+        throw new Exception("Could not pick an option");
     }
 
     /// <summary>

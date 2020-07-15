@@ -3,6 +3,7 @@ using UnityEditor;
 
 public enum EncounterType
 {
+    None,
     Enemy,
     Container,
     PlaceOfPower,
