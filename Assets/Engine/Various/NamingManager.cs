@@ -30,11 +30,16 @@ public class NamingManager : MonoBehaviour
 
     public NameGenerator maleNameGenerator, femaleNameGenerator;
 
-    public string GetRandomHeroName(SexType sex) =>
-        sex switch
+    public string GetRandomHeroName(SexType sex)
+    {
+        switch (sex)
         {
-            SexType.Male => maleNameGenerator.GetNextRandomName(),
-            SexType.Female => femaleNameGenerator.GetNextRandomName(),
-            _ => string.Empty
-        };
+            case SexType.Male:
+                return maleNameGenerator.GetNextRandomName();
+            case SexType.Female:
+                return femaleNameGenerator.GetNextRandomName();
+            default:
+                return string.Empty;
+        }
+    }
 }

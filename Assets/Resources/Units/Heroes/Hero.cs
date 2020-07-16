@@ -38,29 +38,28 @@ public class Hero : Unit
     }
 
     // USE: TownManager.NewHero()
-    public Hero(string name = default,
-                  SexType sex = default,
-                  ClassType classType = default,
-                  Sprite portrait = default)
-    {
-        this.sex = sex;
-        this.heroClassType = classType;
-        this.name = name ?? NamingManager.i.GetRandomHeroName(sex);
-        this.portrait = portrait ?? RandomPortrait();
-
-        //HACK: temp solution
-        data = Resources.Load<HeroClassData>(
-            $"Units/Heroes/Classes/{classType.ToString()}/{classType.ToString()}");
-        //HACK: temp solution
-        state = HeroState.Recruit;
-        //InitData(data);
-        InitEquipment();
-    }
+    // public Hero(string name = default,
+    //               SexType sex = default,
+    //               ClassType classType = default,
+    //               Sprite portrait = default)
+    // {
+    //     this.sex = sex;
+    //     this.heroClassType = classType;
+    //     this.name = name ?? NamingManager.i.GetRandomHeroName(sex);
+    //     this.portrait = portrait ?? RandomPortrait();
+    //
+    //     //HACK: temp solution
+    //     data = c
+    //     //HACK: temp solution
+    //     state = HeroState.Recruit;
+    //     //InitData(data);
+    //     InitEquipment();
+    // }
 
     // NOTE: non-reflection way to iterate equipment slots?
     void InitEquipment()
     {
-        equipment = data.equipment;
+        // equipment = data.equipment;
 
         TryEquipItem(equipment.head);
         TryEquipItem(equipment.body);

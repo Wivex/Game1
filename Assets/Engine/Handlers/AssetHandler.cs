@@ -18,12 +18,22 @@ public static class AssetHandler
         return Resources.Load<T>(resourcePath);
     }
 
+
+    internal static T[] LoadAllNearbyAssets<T>(Object baseAsset, string additionalPath = default) where T : Object
+    {
+        var assetPath = AssetDatabase.GetAssetPath(baseAsset);
+        var startIndex = "Assets/Resources/".Length;
+        var endIndex = assetPath.IndexOf(".asset");
+        var resourcePath = assetPath.Substring(startIndex, endIndex - startIndex)+additionalPath;
+        return Resources.LoadAll<T>(resourcePath);
+    }
+
     /// <summary>
     /// Loads assets of selected type which are children of specified asset
     /// </summary>
     internal static List<T> LoadChildAssets<T>(Object asset) where T : Object
     {
         return AssetDatabase.LoadAllAssetsAtPath(AssetDatabase.GetAssetPath(asset))
-            .OfType<T>().ToList();
+                            .OfType<T>().ToList();
     }
 }

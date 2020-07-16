@@ -47,9 +47,10 @@ public class TownManager : MonoBehaviour
         var sex = (SexType)Random.Range(0, Enum.GetValues(typeof(SexType)).Length);
         var classType = (ClassType)Random.Range(0, Enum.GetValues(typeof(ClassType)).Length);
         var name = NamingManager.i.GetRandomHeroName(sex);
-        var portraits =
-            Resources.LoadAll<Sprite>($"Units/Heroes/Classes/{heroClassType.ToString()}/Portraits/{sex.ToString()}");
-        return portraits[Random.Range(0, portraits.Length - 1)];
+
+        // var portraits =
+        //     Resources.LoadAll<Sprite>($"Units/Heroes/Classes/{heroClassType.ToString()}/Portraits/{sex.ToString()}");
+        // return portraits[Random.Range(0, portraits.Length - 1)];
         return NewHero(name, sex, classType);
     }
 
@@ -68,7 +69,9 @@ public class TownManager : MonoBehaviour
         ClassType classType = default,
         Sprite portrait = default)
     {
-        var hero = new Hero(name, sexType, classType, portrait);
+        // TODO: temp
+        var hero = new Hero(null);
+        // var hero = new Hero(name, sexType, classType, portrait);
         heroes.Add(hero);
         return hero;
     }

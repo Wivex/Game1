@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3f8dbe1749b85544b3c0b73f1d3e373, type: 3}
-  m_Name: Warrior
+  m_Name: warrior
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
   baseStats:
     health: 100
     energy: 100
@@ -22,42 +23,5 @@ MonoBehaviour:
     bResist: 0
   energyType: 1
   abilities: []
-  tactics:
-  - triggers:
-    - triggerType: 0
-      target: 0
-      stat: 0
-      statTriggerType: 0
-      comparisonType: 0
-      statValue: 0
-      abilityData: {fileID: 0}
-      unitData: {fileID: 0}
-    action:
-      actionType: 0
-      abilityData: {fileID: 0}
-      consumableData: {fileID: 0}
-  equipment:
-    head:
-      data: {fileID: 0}
-    body:
-      data: {fileID: 0}
-    arms:
-      data: {fileID: 0}
-    boots:
-      data: {fileID: 0}
-    amulet:
-      data: {fileID: 0}
-    belt:
-      data: {fileID: 0}
-    ring1:
-      data: {fileID: 0}
-    ring2:
-      data: {fileID: 0}
-    mainHand1:
-      data: {fileID: 11400000, guid: 78012ae863cad56478ded752cbb98ccc, type: 2}
-    offHand1:
-      data: {fileID: 0}
-    mainHand2:
-      data: {fileID: 0}
-    offHand2:
-      data: {fileID: 0}
+  tactics: []
+  classType: 0

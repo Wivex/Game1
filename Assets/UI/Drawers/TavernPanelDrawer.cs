@@ -21,10 +21,10 @@ public class TavernPanelDrawer : Drawer
     void Awake()
     {
         // HACK: temp debug feature
-        for (var i = 0; i < 5; i++)
-        {
-            TownManager.GenerateRandomHeroRecruit();
-        }
+        // for (var i = 0; i < 5; i++)
+        // {
+        //     TownManager.GenerateRandomHeroRecruit();
+        // }
     }
 
     public void InitPanel()
