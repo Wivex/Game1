@@ -11,7 +11,7 @@ public class ItemData : DataWithIcon
     public int stackSize = 1;
     public int charges = 0;
     public EquipmentSlot equipmentSlot;
-    public HeroClassType reqHeroClassType = HeroClassType.Any;
+    public ClassType reqClassType = ClassType.Any;
     [Reorderable(ReorderableNamingType.VariableValue, "statType")]
     public List<StatModifier> statMods;
     //[Reorderable(ReorderableNamingType.VariableValue, "effectOnStatsType")]

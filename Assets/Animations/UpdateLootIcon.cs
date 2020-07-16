@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO: state machine check is awkward
 public class UpdateLootIcon : StateMachineBehaviour
 {
     MissionOverviewPanelDrawer drawer;
@@ -11,8 +12,8 @@ public class UpdateLootIcon : StateMachineBehaviour
     {
         TryCheckDrawer(animator);
 
-        if (drawer.mis.curEncounter is EnemyEncounter combat)
-            drawer.lootIcon.sprite = combat.curLoot.data.icon;
+        // if (drawer.mis.curEncounter is EnemyEncounter combat)
+        //     drawer.lootIcon.sprite = combat.curLoot.data.icon;
         if (drawer.mis.curEncounter is ContainerEncounter cont)
             drawer.lootIcon.sprite = cont.curLoot.data.icon;
     }

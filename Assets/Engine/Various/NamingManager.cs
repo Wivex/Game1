@@ -9,17 +9,17 @@ public class NamingManager : MonoBehaviour
     /// <summary>
     /// Can't access static variables and methods from inspector. So we use static instance to do that.
     /// </summary>
-    public static NamingManager statics;
+    public static NamingManager i;
 
     //default initialization of Singleton instance
     void Awake()
     {
         //Check if instance already exists
-        if (statics == null)
+        if (i == null)
             //if not, set instance to this
-            statics = this;
+            i = this;
         //If instance already exists and it's not this:
-        else if (statics != this)
+        else if (i != this)
             //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of it.
 
             //Sets this to not be destroyed when reloading scene
@@ -30,16 +30,11 @@ public class NamingManager : MonoBehaviour
 
     public NameGenerator maleNameGenerator, femaleNameGenerator;
 
-    public string GetRandomHeroName(Hero hero)
-    {
-        switch (hero.sexType)
+    public string GetRandomHeroName(SexType sex) =>
+        sex switch
         {
-            case SexType.Male:
-                return maleNameGenerator.GetNextRandomName();
-            case SexType.Female:
-                return femaleNameGenerator.GetNextRandomName();
-            default:
-                return string.Empty;
-        }
-    }
+            SexType.Male => maleNameGenerator.GetNextRandomName(),
+            SexType.Female => femaleNameGenerator.GetNextRandomName(),
+            _ => string.Empty
+        };
 }

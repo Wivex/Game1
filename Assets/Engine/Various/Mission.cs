@@ -52,23 +52,15 @@ public class Mission
     {
         if (GracePeriodPassed)
         {
-            var encounter = curZone.encounters.PickOne();
-            switch (encounter.type)
+            switch (curZone.encounters.PickOne().type)
             {
+                case EncounterType.None:
+                    curEncounter = null;
+                    break;
                 case EncounterType.Enemy:
                     curEncounter = new EnemyEncounter(this);
-                    curEncounter.InitEncounter(this);
-                    CombatStartEvent?.Invoke();
-                    StartAnimation(AnimationTrigger.BeginEncounter, heroAM, encounterAM, interactionAM, locationAM);
-                    break;
-                case EncounterType.Container:
-                    curEncounter = new ContainerEncounter();
-                    curEncounter.InitEncounter(this);
-                    StartAnimation(AnimationTrigger.BeginEncounter, heroAM, encounterAM);
                     break;
             }
-
-            return;
         }
     }
 

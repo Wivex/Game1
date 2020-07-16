@@ -3,17 +3,15 @@ using UnityEngine;
 
 public enum HeroState
 {
-    Recruitable,
+    Recruit,
     Idle,
     OnMission
 }
 
-public enum HeroClassType
+public enum ClassType
 {
-    Any,
     Warrior,
-    Mage,
-    Rogue
+    Mage
 }
 
 public enum SexType
@@ -25,37 +23,36 @@ public enum SexType
 public class Hero : Unit
 {
     internal string name;
-    internal SexType sexType;
+    internal SexType sex;
     internal HeroState state;
-    internal HeroData data;
+    internal HeroClassData data;
     internal int level = 0, gold = 0, experience = 0;
     internal Sprite portrait;
     internal Equipment equipment = new Equipment();
     internal List<Item> backpack = new List<Item>();
     internal List<Item> consumables = new List<Item>();
 
-    internal Hero(EnemyData data) : base(data)
+    internal Hero(HeroClassData data) : base(data)
     {
         this.data = data;
-        InitData(data);
     }
 
     // USE: TownManager.NewHero()
     public Hero(string name = default,
-                  SexType sexType = default,
-                  HeroClassType heroClassType = default,
+                  SexType sex = default,
+                  ClassType classType = default,
                   Sprite portrait = default)
     {
-        this.sexType = sexType;
-        this.heroClassType = heroClassType;
-        this.name = name ?? NamingManager.statics.GetRandomHeroName(this);
+        this.sex = sex;
+        this.heroClassType = classType;
+        this.name = name ?? NamingManager.i.GetRandomHeroName(sex);
         this.portrait = portrait ?? RandomPortrait();
 
         //HACK: temp solution
-        data = Resources.Load<HeroData>(
-            $"Units/Heroes/Classes/{heroClassType.ToString()}/{heroClassType.ToString()}");
+        data = Resources.Load<HeroClassData>(
+            $"Units/Heroes/Classes/{classType.ToString()}/{classType.ToString()}");
         //HACK: temp solution
-        state = HeroState.Recruitable;
+        state = HeroState.Recruit;
         //InitData(data);
         InitEquipment();
     }
@@ -98,13 +95,5 @@ public class Hero : Unit
                 .TryAddModifier(new StatModifier(item.data.baseStats.energy, StatModType.Flat, item));
         if (item.data.baseStats.speed != 0)
             baseStats[StatType.Speed].TryAddModifier(new StatModifier(item.data.baseStats.speed, StatModType.Flat, item));
-    }
-
-    Sprite RandomPortrait()
-    {
-        // TODO: optimize to load once for all heroes
-        var portraits =
-            Resources.LoadAll<Sprite>($"Units/Heroes/Classes/{heroClassType.ToString()}/Portraits/{sexType.ToString()}");
-        return portraits[Random.Range(0, portraits.Length - 1)];
     }
 }

@@ -23,7 +23,7 @@ public class TavernPanelDrawer : Drawer
         // HACK: temp debug feature
         for (var i = 0; i < 5; i++)
         {
-            TownManager.GenerateRandomHero();
+            TownManager.GenerateRandomHeroRecruit();
         }
     }
 
@@ -63,7 +63,7 @@ public class TavernPanelDrawer : Drawer
     {
         selHero = heroFrame.hero;
 
-        if (selHero.state == HeroState.Recruitable)
+        if (selHero.state == HeroState.Recruit)
         {
             // move to idles
             heroFrame.transform.SetParent(idlesContentPanel);

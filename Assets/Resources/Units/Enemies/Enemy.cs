@@ -2,10 +2,9 @@
 {
     internal EnemyData data;
 
-    internal Enemy(EnemyData data)
+    internal Enemy(EnemyData data) : base (data)
     {
         this.data = data;
-        InitData(data);
     }
 
     public override void Kill()

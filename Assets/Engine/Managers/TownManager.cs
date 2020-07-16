@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Lexic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class TownManager : MonoBehaviour
 {
@@ -38,21 +40,17 @@ public class TownManager : MonoBehaviour
     internal static List<Hero> heroes = new List<Hero>();
 
     internal static List<Hero> IdleHeroes => heroes.FindAll(hero => hero.state == HeroState.Idle);
-    internal static List<Hero> RecruitableHeroes => heroes.FindAll(hero => hero.state == HeroState.Recruitable);
-
-    public static Hero NewHero(string name = default,
-                              SexType sexType = default,
-                              HeroClassType heroClassType = default,
-                              Sprite portrait = default)
-    {
-        var hero = new Hero(name, sexType, heroClassType, portrait);
-        heroes.Add(hero);
-        return hero;
-    }
+    internal static List<Hero> RecruitableHeroes => heroes.FindAll(hero => hero.state == HeroState.Recruit);
 
     public static Hero GenerateRandomHero()
     {
-        return NewHero(null, SexType.Male, HeroClassType.Warrior);
+        var sex = (SexType)Random.Range(0, Enum.GetValues(typeof(SexType)).Length);
+        var classType = (ClassType)Random.Range(0, Enum.GetValues(typeof(ClassType)).Length);
+        var name = NamingManager.i.GetRandomHeroName(sex);
+        var portraits =
+            Resources.LoadAll<Sprite>($"Units/Heroes/Classes/{heroClassType.ToString()}/Portraits/{sex.ToString()}");
+        return portraits[Random.Range(0, portraits.Length - 1)];
+        return NewHero(name, sex, classType);
     }
 
     // non-static for use in the Unity inspector
@@ -63,5 +61,15 @@ public class TownManager : MonoBehaviour
             var hero = GenerateRandomHero();
             hero.state = HeroState.Idle;
         }
+    }
+
+    public static Hero NewHero(string name = default,
+        SexType sexType = default,
+        ClassType classType = default,
+        Sprite portrait = default)
+    {
+        var hero = new Hero(name, sexType, classType, portrait);
+        heroes.Add(hero);
+        return hero;
     }
 }
