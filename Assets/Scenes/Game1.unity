@@ -9426,12 +9426,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ade0666de96d6564093554abe81f8806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zone: {fileID: 11400000, guid: 109be78c3e6124140951ee69d8cad283, type: 2}
-  connectedSegments:
-  - toggleComp: {fileID: 1251538580}
-    pathLength: 76
-  - toggleComp: {fileID: 1010004486}
-    pathLength: 24
+  baseTexture: {fileID: 0}
+  newName: 
 --- !u!1 &399706762
 GameObject:
   m_ObjectHideFlags: 0
@@ -10295,7 +10291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingSegments:
-  - {fileID: 1251538580}
+  - {fileID: 0}
 --- !u!1 &426529605
 GameObject:
   m_ObjectHideFlags: 0
@@ -22424,14 +22420,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ade0666de96d6564093554abe81f8806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zone: {fileID: 11400000, guid: cf2d9e2d3a8edad408156e0cf90c3cf0, type: 2}
-  connectedSegments:
-  - toggleComp: {fileID: 1251538580}
-    pathLength: 56
-  - toggleComp: {fileID: 1821832683}
-    pathLength: 15
-  - toggleComp: {fileID: 398924957}
-    pathLength: 24
+  baseTexture: {fileID: 0}
+  newName: 
 --- !u!1 &1017429271
 GameObject:
   m_ObjectHideFlags: 0
@@ -28568,14 +28558,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ade0666de96d6564093554abe81f8806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zone: {fileID: 11400000, guid: e93e029519ef6014f95ce8a52190dee2, type: 2}
-  connectedSegments:
-  - toggleComp: {fileID: 1821832683}
-    pathLength: 30
-  - toggleComp: {fileID: 398924957}
-    pathLength: 76
-  - toggleComp: {fileID: 1010004486}
-    pathLength: 56
+  baseTexture: {fileID: 0}
+  newName: 
 --- !u!1 &1272066987
 GameObject:
   m_ObjectHideFlags: 0
@@ -43068,12 +43052,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ade0666de96d6564093554abe81f8806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zone: {fileID: 11400000, guid: 1e8212406a5e7314a9a12d2e8fe956a3, type: 2}
-  connectedSegments:
-  - toggleComp: {fileID: 1251538580}
-    pathLength: 30
-  - toggleComp: {fileID: 1010004486}
-    pathLength: 15
+  baseTexture: {fileID: 0}
+  newName: 
 --- !u!1 &1828845477
 GameObject:
   m_ObjectHideFlags: 0
@@ -43086,6 +43066,7 @@ GameObject:
   - component: {fileID: 1828845478}
   - component: {fileID: 1828845480}
   - component: {fileID: 1828845481}
+  - component: {fileID: 1828845482}
   m_Layer: 0
   m_Name: With Editor-based Parameters
   m_TagString: Untagged
@@ -43148,6 +43129,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0054bc91a62c504bb42658889806725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1828845482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828845477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ade0666de96d6564093554abe81f8806, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseTexture: {fileID: 2800000, guid: fe7414dc8531ee84bae4117bbe95d472, type: 3}
+  newName: TEst
 --- !u!1 &1828899033
 GameObject:
   m_ObjectHideFlags: 0

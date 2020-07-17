@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\3rd-Party\DAX\Editor Extensions\Multy Objects Renaming Tool\DAX_MultiObjectsRenamer.cs" />
     <Compile Include="Assets\3rd-Party\EventDelegate\EDFlagAttribute.cs" />
     <Compile Include="Assets\3rd-Party\EventDelegate\EventDelegate.cs" />
     <Compile Include="Assets\3rd-Party\EventDelegate\ReorderableList.cs" />
@@ -276,6 +277,7 @@
     <Compile Include="Assets\3rd-Party\unity-ui-extensions\Scripts\VR Extensions\VRInputModule.cs" />
     <Compile Include="Assets\Animations\AnimationStateManager.cs" />
     <Compile Include="Assets\Animations\UpdateLootIcon.cs" />
+    <Compile Include="Assets\Editor Extensions\SpriteSlicesRenamer.cs" />
     <Compile Include="Assets\Engine\Encounters\ContainerEncounter.cs" />
     <Compile Include="Assets\Engine\Encounters\Encounter.cs" />
     <Compile Include="Assets\Engine\Encounters\EnemyEncounter.cs" />
@@ -330,7 +332,8 @@
     <Compile Include="Assets\Resources\Units\Heroes\HeroClassData.cs" />
     <Compile Include="Assets\Resources\Units\Unit.cs" />
     <Compile Include="Assets\Resources\Units\UnitData.cs" />
-    <Compile Include="Assets\UI\Components\MissionRouteSegmentComp.cs" />
+    <Compile Include="Assets\UI\Components\MissionRouteSegmentComp - Copy.cs" />
+    <Compile Include="Assets\UI\Components\SpriteSlicesRenamerComp.cs" />
     <Compile Include="Assets\UI\Drawers\Drawer.cs" />
     <Compile Include="Assets\UI\Drawers\EnemyPanelDrawer.cs" />
     <Compile Include="Assets\UI\Drawers\HeroFrameDrawer.cs" />
@@ -562,9 +565,6 @@
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.3f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>C:/!DEV/Game1/Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
       <HintPath>C:/!DEV/Game1/Library/PackageCache/com.unity.analytics@3.3.5/Unity.Analytics.Editor.dll</HintPath>
