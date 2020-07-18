@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -9,8 +10,8 @@ public class SpriteSlicesRenamer : EditorWindow
     Texture2D baseTexture;
     TextureImporter baseTextureImporter;
     string baseTexturePath, searchText = string.Empty, replaceText = string.Empty;
-    List<Sprite> loadedSprites = new List<Sprite>();
-    List<string> oldNames = new List<string>(), newNames = new List<string>();
+    List<string> oldNamesPreview = new List<string>(), newNamesPreview = new List<string>();
+    SpriteMetaData[] oldMetaData, newMetaData;
     bool shouldAddIndex = false, canRevert;
     Vector2 baseNamesScrollPos, newNamesScrollPos;
 
@@ -25,57 +26,78 @@ public class SpriteSlicesRenamer : EditorWindow
         window.Show();
     }
 
-    void UpdateNamePreviews()
+    void UpdateNewNamesPreview()
     {
-        newNames.Clear();
-        foreach (var name in oldNames)
+        newNamesPreview.Clear();
+        for (var i = 0; i < oldNamesPreview.Count; i++)
         {
-            newNames.Add(CanRename ? name.Replace(searchText, replaceText) : name);
+            var tempName = oldNamesPreview[i];
+
+            if (CanRename)
+                tempName = searchText != string.Empty ? tempName.Replace(searchText, replaceText) : replaceText;
+
+            if (shouldAddIndex)
+                tempName += i;
+
+            newNamesPreview.Add(tempName);
         }
     }
 
     void LoadSprites(bool loadSelection = false)
     {
-        if (loadSelection)
+
+        if (Selection.activeObject != null)
         {
-            loadedSprites = Selection.objects.OfType<Sprite>().ToList();
-            oldNames = loadedSprites.Select(sprite => sprite.name).ToList();
-        }
-        else
-        {
-            if (Selection.activeObject != null)
+            switch (Selection.activeObject)
             {
-                switch (Selection.activeObject)
-                {
-                    case Sprite _:
-                        baseTexture = (Selection.activeObject as Sprite).texture;
-                        break;
-                    case Texture2D _:
-                        baseTexture = (Texture2D) Selection.activeObject;
-                        break;
-                }
+                case Sprite _:
+                    baseTexture = (Selection.activeObject as Sprite).texture;
+                    break;
+                case Texture2D _:
+                    baseTexture = (Texture2D) Selection.activeObject;
+                    break;
             }
 
-            baseTexturePath = AssetDatabase.GetAssetPath(baseTexture);
-            baseTextureImporter = AssetImporter.GetAtPath(baseTexturePath) as TextureImporter;
-            oldNames = baseTextureImporter.spritesheet.Select(meta => meta.name).ToList();
+            if (baseTexture != null)
+            {
+                baseTexturePath = AssetDatabase.GetAssetPath(baseTexture);
+                baseTextureImporter = AssetImporter.GetAtPath(baseTexturePath) as TextureImporter;
+
+                if (loadSelection)
+                {
+                    var loadedSprites = Selection.objects.OfType<Sprite>().ToList();
+                    oldNamesPreview = loadedSprites.Select(sprite => sprite.name).ToList();
+                }
+                else
+                {
+                    oldNamesPreview = baseTextureImporter.spritesheet.Select(data => data.name).ToList();
+                }
+            }
         }
     }
 
     void Rename()
     {
+        oldMetaData = baseTextureImporter.spritesheet;
+        // we use temp array cause spritesheet array isa struct and we cannot modify it's individual values, only whole struct
         var tempMetaData = baseTextureImporter.spritesheet;
         for (var i = 0; i < tempMetaData.Length; i++)
         {
-            tempMetaData[i].name.Replace(searchText, replaceText);
-            if (shouldAddIndex)
+            // rename only selected sprites
+            if (oldNamesPreview.Contains(tempMetaData[i].name))
             {
-                tempMetaData[i].name += i;
+                tempMetaData[i].name = searchText != string.Empty
+                    ? tempMetaData[i].name.Replace(searchText, replaceText)
+                    : replaceText;
+
+                if (shouldAddIndex)
+                    tempMetaData[i].name += i;
             }
         }
 
         // write new metadata
         baseTextureImporter.spritesheet = tempMetaData;
+        newMetaData = tempMetaData;
 
         // reimport renamed assets
         EditorUtility.SetDirty(baseTextureImporter);
@@ -85,14 +107,8 @@ public class SpriteSlicesRenamer : EditorWindow
 
     void Revert()
     {
-        var tempMetaData = baseTextureImporter.spritesheet;
-        for (var i = 0; i < tempMetaData.Length; i++)
-        {
-            tempMetaData[i].name = oldNames[i];
-        }
-
-        // write new metadata
-        baseTextureImporter.spritesheet = tempMetaData;
+        // write old metadata
+        baseTextureImporter.spritesheet = oldMetaData;
 
         // reimport renamed assets
         EditorUtility.SetDirty(baseTextureImporter);
@@ -102,31 +118,35 @@ public class SpriteSlicesRenamer : EditorWindow
 
     void OnGUI()
     {
-        // required to avoid errors if any data changes during GUI Draw
-        // try
+        EditorGUILayout.BeginHorizontal();
         {
-            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.BeginVertical();
             {
-                EditorGUILayout.BeginVertical();
+                if (GUILayout.Button("Load All Texture Sprites", GUILayout.MaxWidth(200.0f),
+                    GUILayout.MaxHeight(37.5f)))
                 {
-                    if (GUILayout.RepeatButton("Load All Texture Sprites", GUILayout.MaxWidth(200.0f),
-                        GUILayout.MaxHeight(37.5f)))
-                    {
-                        LoadSprites();
-                        UpdateNamePreviews();
-                    }
-
-                    if (GUILayout.RepeatButton("Load Selected Sprites", GUILayout.MaxWidth(200.0f),
-                        GUILayout.MaxHeight(37.5f)))
-                    {
-                        LoadSprites(true);
-                        UpdateNamePreviews();
-                    }
+                    LoadSprites();
+                    UpdateNewNamesPreview();
+                    // required to avoid errors if any data changes during GUI Draw
+                    GUIUtility.ExitGUI();
                 }
-                EditorGUILayout.EndVertical();
 
-                EditorGUILayout.BeginVertical();
+                if (GUILayout.Button("Load Selected Sprites", GUILayout.MaxWidth(200.0f),
+                    GUILayout.MaxHeight(37.5f)))
                 {
+                    LoadSprites(true);
+                    UpdateNewNamesPreview();
+                    // required to avoid errors if any data changes during GUI Draw
+                    GUIUtility.ExitGUI();
+                }
+            }
+            EditorGUILayout.EndVertical();
+
+            EditorGUILayout.BeginVertical();
+            {
+                EditorGUI.BeginChangeCheck();
+                {
+
                     EditorGUILayout.LabelField("Rename Parameters", EditorStyles.boldLabel);
                     EditorGUILayout.BeginHorizontal();
                     {
@@ -142,78 +162,76 @@ public class SpriteSlicesRenamer : EditorWindow
                     EditorGUILayout.EndHorizontal();
                     shouldAddIndex = EditorGUILayout.Toggle("Add index? (0 to N)", shouldAddIndex);
                 }
-                EditorGUILayout.EndVertical();
-            }
-            EditorGUILayout.EndHorizontal();
-
-            EditorGUILayout.Separator();
-
-            EditorGUILayout.BeginVertical();
-            {
-                EditorGUILayout.BeginHorizontal();
+                if (EditorGUI.EndChangeCheck())
                 {
-                    EditorGUILayout.LabelField("Base sprite names:", EditorStyles.boldLabel);
-                    EditorGUILayout.LabelField("New sprite names:", EditorStyles.boldLabel);
+                    UpdateNewNamesPreview();
                 }
-                EditorGUILayout.EndHorizontal();
-
-                // Preview Box
-                EditorGUILayout.BeginHorizontal();
-                {
-                    baseNamesScrollPos = EditorGUILayout.BeginScrollView(baseNamesScrollPos, GUI.skin.box,
-                        GUILayout.MaxWidth(position.width / 2));
-                    {
-                        foreach (var text in oldNames)
-                        {
-                            GUILayout.Label(text);
-                        }
-                    }
-                    EditorGUILayout.EndScrollView();
-
-                    newNamesScrollPos = EditorGUILayout.BeginScrollView(newNamesScrollPos, GUI.skin.box,
-                        GUILayout.MaxWidth(position.width / 2));
-                    {
-                        foreach (var text in newNames)
-                        {
-                            GUILayout.Label(text);
-                        }
-                    }
-                    EditorGUILayout.EndScrollView();
-                }
-                EditorGUILayout.EndHorizontal();
             }
             EditorGUILayout.EndVertical();
+        }
+        EditorGUILayout.EndHorizontal();
 
-            // Bottom line space
-            EditorGUILayout.BeginHorizontal(GUI.skin.box);
+        EditorGUILayout.Separator();
+
+        EditorGUILayout.BeginVertical();
+        {
+            EditorGUILayout.BeginHorizontal();
             {
-                // take all possible space, except minimal required for buttons
-                GUILayout.FlexibleSpace();
-                GUI.enabled = CanRename;
-                if (GUILayout.Button("Rename"))
-                {
-                    Rename();
-                    canRevert = true;
-                }
-
-                GUI.enabled = canRevert;
-                if (GUILayout.Button("Revert"))
-                {
-                    Revert();
-                    canRevert = false;
-                }
-
-                GUI.enabled = true;
+                EditorGUILayout.LabelField("Base sprite names:", EditorStyles.boldLabel);
+                EditorGUILayout.LabelField("New sprite names:", EditorStyles.boldLabel);
             }
             EditorGUILayout.EndHorizontal();
 
-            // detects changes in text fields and toggles (can't detect button presses)
-            if (GUI.changed) UpdateNamePreviews();
+            // Preview Box
+            EditorGUILayout.BeginHorizontal();
+            {
+                baseNamesScrollPos = EditorGUILayout.BeginScrollView(baseNamesScrollPos, GUI.skin.box,
+                    GUILayout.MaxWidth(position.width / 2));
+                {
+                    foreach (var text in oldNamesPreview)
+                    {
+                        GUILayout.Label(text);
+                    }
+                }
+                EditorGUILayout.EndScrollView();
+
+                newNamesScrollPos = EditorGUILayout.BeginScrollView(newNamesScrollPos, GUI.skin.box,
+                    GUILayout.MaxWidth(position.width / 2));
+                {
+                    foreach (var text in newNamesPreview)
+                    {
+                        GUILayout.Label(text);
+                    }
+                }
+                EditorGUILayout.EndScrollView();
+            }
+            EditorGUILayout.EndHorizontal();
         }
-        // required to avoid errors if any data changes during GUI Draw
-        // catch
-        // {
-        //     GUIUtility.ExitGUI();
-        // }
+        EditorGUILayout.EndVertical();
+
+        // Bottom line space
+        EditorGUILayout.BeginHorizontal(GUI.skin.box);
+        {
+            // take all possible space, except minimal required for buttons
+            GUILayout.FlexibleSpace();
+            GUI.enabled = CanRename;
+            if (GUILayout.Button("Rename"))
+            {
+                Rename();
+                canRevert = true;
+                UpdateNewNamesPreview();
+            }
+
+            GUI.enabled = canRevert;
+            if (GUILayout.Button("Revert"))
+            {
+                Revert();
+                canRevert = false;
+                UpdateNewNamesPreview();
+            }
+
+            GUI.enabled = true;
+        }
+        EditorGUILayout.EndHorizontal();
     }
 }
