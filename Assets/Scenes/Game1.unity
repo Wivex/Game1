@@ -9426,8 +9426,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ade0666de96d6564093554abe81f8806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseTexture: {fileID: 0}
-  newName: 
 --- !u!1 &399706762
 GameObject:
   m_ObjectHideFlags: 0
@@ -22098,7 +22096,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1828845481}
-        m_MethodName: NewIdleHeroesDebug
+        m_MethodName: GenerateNewIdleHeroesDebug
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -22420,8 +22418,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ade0666de96d6564093554abe81f8806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseTexture: {fileID: 0}
-  newName: 
 --- !u!1 &1017429271
 GameObject:
   m_ObjectHideFlags: 0
@@ -28558,8 +28554,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ade0666de96d6564093554abe81f8806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseTexture: {fileID: 0}
-  newName: 
 --- !u!1 &1272066987
 GameObject:
   m_ObjectHideFlags: 0
@@ -43052,8 +43046,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ade0666de96d6564093554abe81f8806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseTexture: {fileID: 0}
-  newName: 
 --- !u!1 &1828845477
 GameObject:
   m_ObjectHideFlags: 0
@@ -43141,8 +43133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ade0666de96d6564093554abe81f8806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseTexture: {fileID: 2800000, guid: fe7414dc8531ee84bae4117bbe95d472, type: 3}
-  newName: TEst
 --- !u!1 &1828899033
 GameObject:
   m_ObjectHideFlags: 0

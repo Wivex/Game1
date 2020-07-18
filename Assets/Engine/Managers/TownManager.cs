@@ -43,7 +43,12 @@ public class TownManager : MonoBehaviour
     internal static List<Hero> IdleHeroes => heroes.FindAll(hero => hero.state == HeroState.Idle);
     internal static List<Hero> RecruitableHeroes => heroes.FindAll(hero => hero.state == HeroState.Recruit);
 
-    public void GenerateNewHeroes(HeroState state, int count)
+    public void GenerateNewIdleHeroesDebug(int count)
+    {
+        GenerateNewHeroes(HeroState.Idle, count);
+    }
+
+    internal static void GenerateNewHeroes(HeroState state, int count)
     {
         for (var j = 0; j < count; j++)
         {

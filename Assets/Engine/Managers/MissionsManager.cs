@@ -60,7 +60,8 @@ public class MissionsManager : MonoBehaviour
     public void StartNewMissionDebug()
     {
         missionSetUp.Reset();
-        missionSetUp.hero = TownManager.GenerateRandomHero();
+        TownManager.i.GenerateNewIdleHeroesDebug(1);
+        missionSetUp.hero = TownManager.heroes.Last();
         debugMissionRouteZones.ForEach(zone => missionSetUp.route.Add(zone, 10));
         StartSetUpMission();
     }
