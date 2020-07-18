@@ -47,7 +47,7 @@ public class HeroPanelDrawer : UnitPanelDrawer
     {
         this.hero = hero;
         unit = hero;
-        unitImage.sprite = hero.data.icon;
+        // unitImage.sprite = hero.data.icon;
         unitName.text = hero.name;
         classLevel.text = $"Level {hero.level} {hero.data.name}";
     }

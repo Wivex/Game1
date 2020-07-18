@@ -4,8 +4,9 @@ using SubjectNerd.Utilities;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Content/Data/Item Data")]
-public class ItemData : DataWithIcon
+public class ItemData : ScriptableObject
 {
+    public Sprite icon;
     public StatsSheet baseStats;
     public int cost = 1;
     public int stackSize = 1;

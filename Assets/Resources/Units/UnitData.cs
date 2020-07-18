@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using SubjectNerd.Utilities;
+using UnityEngine;
 
-public abstract class UnitData : DataWithIcon
+public abstract class UnitData : ScriptableObject
 {
     public StatsSheet baseStats = new StatsSheet
     {

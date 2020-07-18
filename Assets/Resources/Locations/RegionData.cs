@@ -5,7 +5,7 @@ using SubjectNerd.Utilities;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Content/Data/Region Data")]
-public class RegionData : ScriptableObject
+public class RegionData : UnityEngine.ScriptableObject
 {
     [Reorderable(ReorderableNamingType.ReferencedObjectName)]
     public List<ZoneData> zones;

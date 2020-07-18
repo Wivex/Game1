@@ -63,7 +63,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\3rd-Party\DAX\Editor Extensions\Multy Objects Renaming Tool\DAX_MultiObjectsRenamer.cs" />
     <Compile Include="Assets\3rd-Party\EventDelegate\EDFlagAttribute.cs" />
     <Compile Include="Assets\3rd-Party\EventDelegate\EventDelegate.cs" />
     <Compile Include="Assets\3rd-Party\EventDelegate\ReorderableList.cs" />
@@ -318,7 +317,6 @@
     <Compile Include="Assets\Resources\Effects\ChangeStatDepletable.cs" />
     <Compile Include="Assets\Resources\Effects\Effect.cs" />
     <Compile Include="Assets\Resources\Effects\FloatingText\FloatingTextHorisontalDrift.cs" />
-    <Compile Include="Assets\Resources\Items\DataWithIcon.cs" />
     <Compile Include="Assets\Resources\Items\Item.cs" />
     <Compile Include="Assets\Resources\Items\ItemData.cs" />
     <Compile Include="Assets\Resources\Items\LootDropData.cs" />
@@ -333,7 +331,6 @@
     <Compile Include="Assets\Resources\Units\Unit.cs" />
     <Compile Include="Assets\Resources\Units\UnitData.cs" />
     <Compile Include="Assets\UI\Components\MissionRouteSegmentComp - Copy.cs" />
-    <Compile Include="Assets\UI\Components\SpriteSlicesRenamerComp.cs" />
     <Compile Include="Assets\UI\Drawers\Drawer.cs" />
     <Compile Include="Assets\UI\Drawers\EnemyPanelDrawer.cs" />
     <Compile Include="Assets\UI\Drawers\HeroFrameDrawer.cs" />

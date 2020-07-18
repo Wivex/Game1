@@ -36,6 +36,16 @@ public static class Extensions
     }
 
     /// <summary>
+    /// Returns one random element
+    /// </summary>
+    public static T PickOne<T>(this IEnumerable<T> source)
+    {
+        var list = source.ToList();
+        var index = Random.Range(0, list.Count());
+        return list[index];
+    }
+
+    /// <summary>
     /// Destroys all children objects (clean up prefab templates)
     /// </summary>
     public static Transform DestroyAllChildren(this Transform transform)

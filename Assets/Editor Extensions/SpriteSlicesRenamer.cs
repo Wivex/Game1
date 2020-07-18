@@ -81,6 +81,7 @@ public class SpriteSlicesRenamer : EditorWindow
         oldMetaData = baseTextureImporter.spritesheet;
         // we use temp array cause spritesheet array isa struct and we cannot modify it's individual values, only whole struct
         var tempMetaData = baseTextureImporter.spritesheet;
+        var index = 0;
         for (var i = 0; i < tempMetaData.Length; i++)
         {
             // rename only selected sprites
@@ -91,7 +92,7 @@ public class SpriteSlicesRenamer : EditorWindow
                     : replaceText;
 
                 if (shouldAddIndex)
-                    tempMetaData[i].name += i;
+                    tempMetaData[i].name += index++;
             }
         }
 

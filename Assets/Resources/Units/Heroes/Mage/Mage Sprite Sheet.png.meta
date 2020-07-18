@@ -302,6 +302,306 @@ TextureImporter:
   - first:
       213: -170226591986361092
     second: mage female death 9
+  - first:
+      213: 8898317341190943986
+    second: Mage Female Attack 0
+  - first:
+      213: 5306922062948417648
+    second: Mage Female Attack 1
+  - first:
+      213: 2976004337007205347
+    second: Mage Female Attack 2
+  - first:
+      213: -7322891923110341027
+    second: Mage Female Attack 3
+  - first:
+      213: -5879372336766413710
+    second: Mage Female Attack 4
+  - first:
+      213: -8355766608109558107
+    second: Mage Female Attack 5
+  - first:
+      213: -8772182028506918751
+    second: Mage Female Attack 6
+  - first:
+      213: 5139656126507153590
+    second: Mage Female Attack 7
+  - first:
+      213: -8829202714851551488
+    second: Mage Female Attack 8
+  - first:
+      213: -1303779748325078676
+    second: Mage Female Attack 9
+  - first:
+      213: -1791190014620761599
+    second: Mage Female Death 0
+  - first:
+      213: 2972498133448672687
+    second: Mage Female Death 1
+  - first:
+      213: -6961982642369581976
+    second: Mage Female Death 2
+  - first:
+      213: 9045942774104427186
+    second: Mage Female Death 3
+  - first:
+      213: -4786332780114188094
+    second: Mage Female Death 4
+  - first:
+      213: 3910885039948091671
+    second: Mage Female Death 5
+  - first:
+      213: -2433196773263711207
+    second: Mage Female Death 6
+  - first:
+      213: -7169225208967742782
+    second: Mage Female Death 7
+  - first:
+      213: 4702105570166051818
+    second: Mage Female Death 8
+  - first:
+      213: 4685743919104519503
+    second: Mage Female Death 9
+  - first:
+      213: 6792911982546653280
+    second: Mage Female Idle 0
+  - first:
+      213: -8085127389614333508
+    second: Mage Female Idle 1
+  - first:
+      213: 110085579996669929
+    second: Mage Female Idle 2
+  - first:
+      213: -2263601846414987887
+    second: Mage Female Idle 3
+  - first:
+      213: -3513948244405729172
+    second: Mage Female Idle 4
+  - first:
+      213: 1517180659303473170
+    second: Mage Female Idle 5
+  - first:
+      213: 2747401132806213517
+    second: Mage Female Idle 6
+  - first:
+      213: 1862566576723853550
+    second: Mage Female Idle 7
+  - first:
+      213: 7278336920245920247
+    second: Mage Female Idle 8
+  - first:
+      213: 8106916816273981572
+    second: Mage Female Idle 9
+  - first:
+      213: -4812058770034646079
+    second: Mage Female Move 0
+  - first:
+      213: 2358003711141939646
+    second: Mage Female Move 1
+  - first:
+      213: -2187576529256222926
+    second: Mage Female Move 2
+  - first:
+      213: 5703003222803453726
+    second: Mage Female Move 3
+  - first:
+      213: 5552522007533776863
+    second: Mage Female Move 4
+  - first:
+      213: -1384969782382820400
+    second: Mage Female Move 5
+  - first:
+      213: -7643312688444667414
+    second: Mage Female Move 6
+  - first:
+      213: -1684633184281704276
+    second: Mage Female Move 7
+  - first:
+      213: 9033152288953929493
+    second: Mage Female Move 8
+  - first:
+      213: -2922384497991207637
+    second: Mage Female Move 9
+  - first:
+      213: -2814463507056812839
+    second: Mage Female Use 0
+  - first:
+      213: -4896747992693158360
+    second: Mage Female Use 1
+  - first:
+      213: -7082455537289231981
+    second: Mage Female Use 2
+  - first:
+      213: 2940900506260967136
+    second: Mage Female Use 3
+  - first:
+      213: -4108645605994600657
+    second: Mage Female Use 4
+  - first:
+      213: 8517640822806332743
+    second: Mage Female Use 5
+  - first:
+      213: -7243894377196166444
+    second: Mage Female Use 6
+  - first:
+      213: 7152842519163323222
+    second: Mage Female Use 7
+  - first:
+      213: 3768665473308042985
+    second: Mage Female Use 8
+  - first:
+      213: 7872089438064713000
+    second: Mage Female Use 9
+  - first:
+      213: -4523758594925301581
+    second: Mage Male Attack 0
+  - first:
+      213: -2851859131038535849
+    second: Mage Male Attack 1
+  - first:
+      213: 2024070603213371338
+    second: Mage Male Attack 2
+  - first:
+      213: 1853563791312628144
+    second: Mage Male Attack 3
+  - first:
+      213: -4559219651859317691
+    second: Mage Male Attack 4
+  - first:
+      213: 4682903684311980537
+    second: Mage Male Attack 5
+  - first:
+      213: -5021082696015461092
+    second: Mage Male Attack 6
+  - first:
+      213: -6579542395725289396
+    second: Mage Male Attack 7
+  - first:
+      213: -3850683027236905147
+    second: Mage Male Attack 8
+  - first:
+      213: -2674471488346962035
+    second: Mage Male Attack 9
+  - first:
+      213: -3463795828990630669
+    second: Mage Male Death 0
+  - first:
+      213: 2872011968538248906
+    second: Mage Male Death 1
+  - first:
+      213: 6871340490298496352
+    second: Mage Male Death 2
+  - first:
+      213: 9109509381234303323
+    second: Mage Male Death 3
+  - first:
+      213: 3091237191387667717
+    second: Mage Male Death 4
+  - first:
+      213: 553095558586893185
+    second: Mage Male Death 5
+  - first:
+      213: 3494801017254648005
+    second: Mage Male Death 6
+  - first:
+      213: -4270108335020225270
+    second: Mage Male Death 7
+  - first:
+      213: -2013434529083819074
+    second: Mage Male Death 8
+  - first:
+      213: 4976765904486845526
+    second: Mage Male Death 9
+  - first:
+      213: 7102462824241338343
+    second: Mage Male Idle 0
+  - first:
+      213: 1757686805645421039
+    second: Mage Male Idle 1
+  - first:
+      213: 7709171483953608491
+    second: Mage Male Idle 2
+  - first:
+      213: -3566881572006717322
+    second: Mage Male Idle 3
+  - first:
+      213: -6520703368231150005
+    second: Mage Male Idle 4
+  - first:
+      213: -238517895325666779
+    second: Mage Male Idle 5
+  - first:
+      213: -1999248886291436342
+    second: Mage Male Idle 6
+  - first:
+      213: 1108944153202880378
+    second: Mage Male Idle 7
+  - first:
+      213: -7523362673023963135
+    second: Mage Male Idle 8
+  - first:
+      213: -5547339217397440484
+    second: Mage Male Idle 9
+  - first:
+      213: -6560632363289906504
+    second: Mage Male Move 0
+  - first:
+      213: 439345361968281468
+    second: Mage Male Move 1
+  - first:
+      213: 5738991694077595596
+    second: Mage Male Move 2
+  - first:
+      213: 7488762864753936125
+    second: Mage Male Move 3
+  - first:
+      213: 8587720945398956143
+    second: Mage Male Move 4
+  - first:
+      213: 5768418256078723940
+    second: Mage Male Move 5
+  - first:
+      213: 3738106135280889108
+    second: Mage Male Move 6
+  - first:
+      213: -7342788044733918540
+    second: Mage Male Move 7
+  - first:
+      213: 3950066348396412727
+    second: Mage Male Move 8
+  - first:
+      213: -208385685408474426
+    second: Mage Male Move 9
+  - first:
+      213: -780024619248817683
+    second: Mage Male Use 0
+  - first:
+      213: -2834277348448519198
+    second: Mage Male Use 1
+  - first:
+      213: 4846860200174977532
+    second: Mage Male Use 2
+  - first:
+      213: -1395739221580475007
+    second: Mage Male Use 3
+  - first:
+      213: -2822628080674632288
+    second: Mage Male Use 4
+  - first:
+      213: -8174927718471059369
+    second: Mage Male Use 5
+  - first:
+      213: -2685856830739350971
+    second: Mage Male Use 6
+  - first:
+      213: 6092045975527491952
+    second: Mage Male Use 7
+  - first:
+      213: -4877852152654467959
+    second: Mage Male Use 8
+  - first:
+      213: -8730737363019216033
+    second: Mage Male Use 9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -411,7 +711,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mage male idle 0
+      name: Mage Male Idle 0
       rect:
         serializedVersion: 2
         x: 0
@@ -423,16 +723,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 2a166e44d61cc8240800000000000000
-      internalID: 4795420378294280610
+      spriteID: 7e79255ee44019260800000000000000
+      internalID: 7102462824241338343
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male idle 1
+      name: Mage Male Idle 1
       rect:
         serializedVersion: 2
         x: 32
@@ -444,16 +744,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 9931851456ad98860800000000000000
-      internalID: 7532791980176708505
+      spriteID: fe9e2ec46de846810800000000000000
+      internalID: 1757686805645421039
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male idle 2
+      name: Mage Male Idle 2
       rect:
         serializedVersion: 2
         x: 64
@@ -465,16 +765,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 3ebd21b8ac47f7d80800000000000000
-      internalID: -8250747579053974557
+      spriteID: b2730a5ae9a7cfa60800000000000000
+      internalID: 7709171483953608491
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male idle 3
+      name: Mage Male Idle 3
       rect:
         serializedVersion: 2
         x: 96
@@ -486,16 +786,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: d637854c9189e68c0800000000000000
-      internalID: -4004095782250056851
+      spriteID: 67817a0cb14ef7ec0800000000000000
+      internalID: -3566881572006717322
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male idle 4
+      name: Mage Male Idle 4
       rect:
         serializedVersion: 2
         x: 128
@@ -507,16 +807,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: dd941bd423203fef0800000000000000
-      internalID: -75714353660081699
+      spriteID: b4e93e2b5dec185a0800000000000000
+      internalID: -6520703368231150005
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male idle 5
+      name: Mage Male Idle 5
       rect:
         serializedVersion: 2
         x: 160
@@ -528,16 +828,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 712b59794e77368c0800000000000000
-      internalID: -4007227419750190569
+      spriteID: 5223a88ec3d90bcf0800000000000000
+      internalID: -238517895325666779
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male idle 6
+      name: Mage Male Idle 6
       rect:
         serializedVersion: 2
         x: 192
@@ -549,16 +849,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 12019444fdb07db80800000000000000
-      internalID: -8370208328893525983
+      spriteID: acce00bfabd3144e0800000000000000
+      internalID: -1999248886291436342
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male idle 7
+      name: Mage Male Idle 7
       rect:
         serializedVersion: 2
         x: 224
@@ -570,16 +870,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 2a60fcde814460760800000000000000
-      internalID: 7423695909626513058
+      spriteID: a7f6767f4d2c36f00800000000000000
+      internalID: 1108944153202880378
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male idle 8
+      name: Mage Male Idle 8
       rect:
         serializedVersion: 2
         x: 256
@@ -591,16 +891,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 4861d48f4d72c86a0800000000000000
-      internalID: -6445733171021670780
+      spriteID: 10039f56285a79790800000000000000
+      internalID: -7523362673023963135
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male idle 9
+      name: Mage Male Idle 9
       rect:
         serializedVersion: 2
         x: 288
@@ -612,16 +912,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 2a196ed44bc5006c0800000000000000
-      internalID: -4179238524728995422
+      spriteID: c10ae627f54e303b0800000000000000
+      internalID: -5547339217397440484
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male use 0
+      name: Mage Male Use 0
       rect:
         serializedVersion: 2
         x: 0
@@ -633,16 +933,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 427838e2e162b48e0800000000000000
-      internalID: -1708229722585725148
+      spriteID: de96d95ddbbcc25f0800000000000000
+      internalID: -780024619248817683
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male use 1
+      name: Mage Male Use 1
       rect:
         serializedVersion: 2
         x: 32
@@ -654,16 +954,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 325a4baecb6869f70800000000000000
-      internalID: 9193683835273127203
+      spriteID: 2eb3acaa4cf9aa8d0800000000000000
+      internalID: -2834277348448519198
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male use 2
+      name: Mage Male Use 2
       rect:
         serializedVersion: 2
         x: 64
@@ -675,16 +975,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 43acf4777e45fea20800000000000000
-      internalID: 3093784822142716468
+      spriteID: cf1886b1ca1834340800000000000000
+      internalID: 4846860200174977532
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male use 3
+      name: Mage Male Use 3
       rect:
         serializedVersion: 2
         x: 96
@@ -696,16 +996,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: d93e0e9317d3648e0800000000000000
-      internalID: -1709611452028886115
+      spriteID: 1859d9aa29651ace0800000000000000
+      internalID: -1395739221580475007
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male use 4
+      name: Mage Male Use 4
       rect:
         serializedVersion: 2
         x: 128
@@ -717,16 +1017,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 9939757880970e6a0800000000000000
-      internalID: -6421999991092964455
+      spriteID: 0ad885e27b204d8d0800000000000000
+      internalID: -2822628080674632288
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male use 5
+      name: Mage Male Use 5
       rect:
         serializedVersion: 2
         x: 160
@@ -738,16 +1038,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 8f81fcae85cb88ed0800000000000000
-      internalID: -2411470510374315784
+      spriteID: 758b90c7d82dc8e80800000000000000
+      internalID: -8174927718471059369
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male use 6
+      name: Mage Male Use 6
       rect:
         serializedVersion: 2
         x: 192
@@ -759,16 +1059,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 95c8393691e2e4ef0800000000000000
-      internalID: -122109453312750503
+      spriteID: 54a7936517be9bad0800000000000000
+      internalID: -2685856830739350971
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male use 7
+      name: Mage Male Use 7
       rect:
         serializedVersion: 2
         x: 224
@@ -780,16 +1080,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: f512d0c8e7f4488e0800000000000000
-      internalID: -1692140155050319521
+      spriteID: 0790aa6a98b4b8450800000000000000
+      internalID: 6092045975527491952
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male use 8
+      name: Mage Male Use 8
       rect:
         serializedVersion: 2
         x: 256
@@ -801,16 +1101,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 2b5f8a6fc9589d420800000000000000
-      internalID: 2655300364511278514
+      spriteID: 98ce726af436e4cb0800000000000000
+      internalID: -4877852152654467959
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male use 9
+      name: Mage Male Use 9
       rect:
         serializedVersion: 2
         x: 288
@@ -822,16 +1122,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 43ee9c6f8b4fab2b0800000000000000
-      internalID: -5567868914038608332
+      spriteID: f5b420230a036d680800000000000000
+      internalID: -8730737363019216033
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male move 0
+      name: Mage Male Move 0
       rect:
         serializedVersion: 2
         x: 0
@@ -843,16 +1143,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 95545d26882459760800000000000000
-      internalID: 7463945110977594713
+      spriteID: 8b27c2410a3f3f4a0800000000000000
+      internalID: -6560632363289906504
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male move 1
+      name: Mage Male Move 1
       rect:
         serializedVersion: 2
         x: 32
@@ -864,16 +1164,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: fb36fc24119338330800000000000000
-      internalID: 3711873264181535679
+      spriteID: c77b5d9674ed81600800000000000000
+      internalID: 439345361968281468
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male move 2
+      name: Mage Male Move 2
       rect:
         serializedVersion: 2
         x: 64
@@ -885,16 +1185,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: cf3e777e5b24f8a30800000000000000
-      internalID: 4219664724909351932
+      spriteID: ccf896e0a8ef4af40800000000000000
+      internalID: 5738991694077595596
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male move 3
+      name: Mage Male Move 3
       rect:
         serializedVersion: 2
         x: 96
@@ -906,16 +1206,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 9cb6598da95bba2e0800000000000000
-      internalID: -2113395923457053751
+      spriteID: df68bc8f52e6de760800000000000000
+      internalID: 7488762864753936125
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male move 4
+      name: Mage Male Move 4
       rect:
         serializedVersion: 2
         x: 128
@@ -927,16 +1227,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 546febd64cec73440800000000000000
-      internalID: 4915624861348329029
+      spriteID: f60cfac33b6bd2770800000000000000
+      internalID: 8587720945398956143
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male move 5
+      name: Mage Male Move 5
       rect:
         serializedVersion: 2
         x: 160
@@ -948,16 +1248,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 6ba4571fbcde255e0800000000000000
-      internalID: -1922212630748640586
+      spriteID: 46b537d67d98d0050800000000000000
+      internalID: 5768418256078723940
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male move 6
+      name: Mage Male Move 6
       rect:
         serializedVersion: 2
         x: 192
@@ -969,16 +1269,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 7dc544bf60de06de0800000000000000
-      internalID: -1341812074715259689
+      spriteID: 41d202689bb60e330800000000000000
+      internalID: 3738106135280889108
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male move 7
+      name: Mage Male Move 7
       rect:
         serializedVersion: 2
         x: 224
@@ -990,16 +1290,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: ff94832052a281b30800000000000000
-      internalID: 4258199786118203903
+      spriteID: 4b256a45d2d291a90800000000000000
+      internalID: -7342788044733918540
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male move 8
+      name: Mage Male Move 8
       rect:
         serializedVersion: 2
         x: 256
@@ -1011,16 +1311,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: bea80cdbe8e1d5510800000000000000
-      internalID: 1539420246048279275
+      spriteID: 73f746f5a6471d630800000000000000
+      internalID: 3950066348396412727
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male move 9
+      name: Mage Male Move 9
       rect:
         serializedVersion: 2
         x: 288
@@ -1032,16 +1332,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 2f49ce98ac7e212e0800000000000000
-      internalID: -2156406414473653006
+      spriteID: 6ca93fcb25aab1df0800000000000000
+      internalID: -208385685408474426
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male attack 0
+      name: Mage Male Attack 0
       rect:
         serializedVersion: 2
         x: 0
@@ -1053,16 +1353,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 9b845871b9b1cced0800000000000000
-      internalID: -2392506949112084295
+      spriteID: 3b07bdb96816831c0800000000000000
+      internalID: -4523758594925301581
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male attack 1
+      name: Mage Male Attack 1
       rect:
         serializedVersion: 2
         x: 32
@@ -1074,16 +1374,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: c6a1ee7f4ab488cc0800000000000000
-      internalID: -3708631121233307028
+      spriteID: 75f6ef8ea392c68d0800000000000000
+      internalID: -2851859131038535849
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male attack 2
+      name: Mage Male Attack 2
       rect:
         serializedVersion: 2
         x: 64
@@ -1095,16 +1395,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 7064f4ddab66780b0800000000000000
-      internalID: -5726495448415386105
+      spriteID: ac7f7d85d71f61c10800000000000000
+      internalID: 2024070603213371338
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male attack 3
+      name: Mage Male Attack 3
       rect:
         serializedVersion: 2
         x: 96
@@ -1116,16 +1416,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: a6738ec513f35c6b0800000000000000
-      internalID: -5276741907149998230
+      spriteID: 0b927b5927e29b910800000000000000
+      internalID: 1853563791312628144
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male attack 4
+      name: Mage Male Attack 4
       rect:
         serializedVersion: 2
         x: 128
@@ -1137,16 +1437,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 113266241a61c0ca0800000000000000
-      internalID: -6049435317605883119
+      spriteID: 54cf1f5e1e56ab0c0800000000000000
+      internalID: -4559219651859317691
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male attack 5
+      name: Mage Male Attack 5
       rect:
         serializedVersion: 2
         x: 160
@@ -1158,16 +1458,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: ac742aa86b8a8c1a0800000000000000
-      internalID: -6788990936297617462
+      spriteID: 9f998ccf6140df040800000000000000
+      internalID: 4682903684311980537
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male attack 6
+      name: Mage Male Attack 6
       rect:
         serializedVersion: 2
         x: 192
@@ -1179,16 +1479,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: ddafb76c4dd514c20800000000000000
-      internalID: 3188933179599485661
+      spriteID: c15432c04e7815ab0800000000000000
+      internalID: -5021082696015461092
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male attack 7
+      name: Mage Male Attack 7
       rect:
         serializedVersion: 2
         x: 224
@@ -1200,16 +1500,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 6af3d57f93c882920800000000000000
-      internalID: 2965774535214579622
+      spriteID: c48eb2e0d05c0b4a0800000000000000
+      internalID: -6579542395725289396
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male attack 8
+      name: Mage Male Attack 8
       rect:
         serializedVersion: 2
         x: 256
@@ -1221,16 +1521,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 1ac12faa831319a90800000000000000
-      internalID: -7309006600789680991
+      spriteID: 54f1be24030af8ac0800000000000000
+      internalID: -3850683027236905147
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male attack 9
+      name: Mage Male Attack 9
       rect:
         serializedVersion: 2
         x: 288
@@ -1242,16 +1542,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 3ccffaae224508c30800000000000000
-      internalID: 4359576948237663427
+      spriteID: d874b2fe95e52ead0800000000000000
+      internalID: -2674471488346962035
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male death 0
+      name: Mage Male Death 0
       rect:
         serializedVersion: 2
         x: 0
@@ -1263,16 +1563,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 3a178ec31dc677500800000000000000
-      internalID: 393903138344038819
+      spriteID: 3f4a886ab002eefc0800000000000000
+      internalID: -3463795828990630669
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male death 1
+      name: Mage Male Death 1
       rect:
         serializedVersion: 2
         x: 32
@@ -1284,16 +1584,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: b966e2bcdaf5296d0800000000000000
-      internalID: -2985218402950420837
+      spriteID: ac684673baf6bd720800000000000000
+      internalID: 2872011968538248906
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male death 2
+      name: Mage Male Death 2
       rect:
         serializedVersion: 2
         x: 64
@@ -1305,16 +1605,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: b3152b9c4307b84c0800000000000000
-      internalID: -4284207248488378053
+      spriteID: 065100f15c7eb5f50800000000000000
+      internalID: 6871340490298496352
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male death 3
+      name: Mage Male Death 3
       rect:
         serializedVersion: 2
         x: 96
@@ -1326,16 +1626,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 76cd1883754b866d0800000000000000
-      internalID: -2996947265311875993
+      spriteID: b512f8a948a7b6e70800000000000000
+      internalID: 9109509381234303323
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male death 4
+      name: Mage Male Death 4
       rect:
         serializedVersion: 2
         x: 128
@@ -1347,16 +1647,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 2471c6c304f692f60800000000000000
-      internalID: 8010055733937444674
+      spriteID: 50d5325f8d746ea20800000000000000
+      internalID: 3091237191387667717
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male death 5
+      name: Mage Male Death 5
       rect:
         serializedVersion: 2
         x: 160
@@ -1368,16 +1668,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: fee4f35938e2774d0800000000000000
-      internalID: -3136987472760713489
+      spriteID: 1830b68ea7dfca700800000000000000
+      internalID: 553095558586893185
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male death 6
+      name: Mage Male Death 6
       rect:
         serializedVersion: 2
         x: 192
@@ -1389,16 +1689,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: a38cbf2f94b49e270800000000000000
-      internalID: 8280232170878650426
+      spriteID: 5c8132a4207008030800000000000000
+      internalID: 3494801017254648005
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male death 7
+      name: Mage Male Death 7
       rect:
         serializedVersion: 2
         x: 224
@@ -1410,16 +1710,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: ceb69da2d1b1b0810800000000000000
-      internalID: 1732508293740981228
+      spriteID: a0d4fa2e7178db4c0800000000000000
+      internalID: -4270108335020225270
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male death 8
+      name: Mage Male Death 8
       rect:
         serializedVersion: 2
         x: 256
@@ -1431,16 +1731,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 80654188bfa318470800000000000000
-      internalID: 8395056032389551624
+      spriteID: ebbf373a6f7de04e0800000000000000
+      internalID: -2013434529083819074
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage male death 9
+      name: Mage Male Death 9
       rect:
         serializedVersion: 2
         x: 288
@@ -1452,16 +1752,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 48f01bc118d117d60800000000000000
-      internalID: 7886116862871801732
+      spriteID: 65cc63bd836011540800000000000000
+      internalID: 4976765904486845526
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female idle 0
+      name: Mage Female Idle 0
       rect:
         serializedVersion: 2
         x: 0
@@ -1473,16 +1773,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 7ad8503119eb6fe30800000000000000
-      internalID: 4537023204921019815
+      spriteID: 060103e2575454e50800000000000000
+      internalID: 6792911982546653280
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female idle 1
+      name: Mage Female Idle 1
       rect:
         serializedVersion: 2
         x: 32
@@ -1494,16 +1794,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: ee494924a31fe5a90800000000000000
-      internalID: -7323150711530416914
+      spriteID: cb1a14ad97bdbcf80800000000000000
+      internalID: -8085127389614333508
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female idle 2
+      name: Mage Female Idle 2
       rect:
         serializedVersion: 2
         x: 64
@@ -1515,16 +1815,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 4f2c17fb493bbbde0800000000000000
-      internalID: -1316261014627302668
+      spriteID: 9e72892704a178100800000000000000
+      internalID: 110085579996669929
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female idle 3
+      name: Mage Female Idle 3
       rect:
         serializedVersion: 2
         x: 96
@@ -1536,16 +1836,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 2d8bb0faaec9b3f70800000000000000
-      internalID: 9168093998215837906
+      spriteID: 19d248f1d121690e0800000000000000
+      internalID: -2263601846414987887
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female idle 4
+      name: Mage Female Idle 4
       rect:
         serializedVersion: 2
         x: 128
@@ -1557,16 +1857,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 6de04003ba7c0b660800000000000000
-      internalID: 7399633725828632278
+      spriteID: c68c61d70b2fb3fc0800000000000000
+      internalID: -3513948244405729172
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female idle 5
+      name: Mage Female Idle 5
       rect:
         serializedVersion: 2
         x: 160
@@ -1578,16 +1878,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 1be9304f59dbc91a0800000000000000
-      internalID: -6801352885494636879
+      spriteID: 21060e175cb1e0510800000000000000
+      internalID: 1517180659303473170
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female idle 6
+      name: Mage Female Idle 6
       rect:
         serializedVersion: 2
         x: 192
@@ -1599,16 +1899,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 0c43d11733aedc7a0800000000000000
-      internalID: -6355165992487930688
+      spriteID: d8f8b6026cab02620800000000000000
+      internalID: 2747401132806213517
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female idle 7
+      name: Mage Female Idle 7
       rect:
         serializedVersion: 2
         x: 224
@@ -1620,16 +1920,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 7f1e434e9fb39f5e0800000000000000
-      internalID: -1875401825361534473
+      spriteID: ee00428ee6a29d910800000000000000
+      internalID: 1862566576723853550
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female idle 8
+      name: Mage Female Idle 8
       rect:
         serializedVersion: 2
         x: 256
@@ -1641,16 +1941,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 642e2a5b15c500110800000000000000
-      internalID: 1225080604654232134
+      spriteID: 7f16ededdd8d10560800000000000000
+      internalID: 7278336920245920247
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female idle 9
+      name: Mage Female Idle 9
       rect:
         serializedVersion: 2
         x: 288
@@ -1662,16 +1962,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 2293b4e928f2f2710800000000000000
-      internalID: 1670606224825727266
+      spriteID: 480c6a164ed818070800000000000000
+      internalID: 8106916816273981572
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female use 0
+      name: Mage Female Use 0
       rect:
         serializedVersion: 2
         x: 0
@@ -1683,16 +1983,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 5496aded3f2bfb6a0800000000000000
-      internalID: -6431224982376126139
+      spriteID: 9dc149c1a5401f8d0800000000000000
+      internalID: -2814463507056812839
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female use 1
+      name: Mage Female Use 1
       rect:
         serializedVersion: 2
         x: 32
@@ -1704,16 +2004,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 52e12d6e81afba780800000000000000
-      internalID: -8670561672713069019
+      spriteID: 82ecaec05a14b0cb0800000000000000
+      internalID: -4896747992693158360
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female use 2
+      name: Mage Female Use 2
       rect:
         serializedVersion: 2
         x: 64
@@ -1725,16 +2025,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: da7a3df925b307290800000000000000
-      internalID: -7894744920725674067
+      spriteID: 391806a963016bd90800000000000000
+      internalID: -7082455537289231981
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female use 3
+      name: Mage Female Use 3
       rect:
         serializedVersion: 2
         x: 96
@@ -1746,16 +2046,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: a88eedfeea8cc8760800000000000000
-      internalID: 7461559336320297098
+      spriteID: 0ee837bcd6d20d820800000000000000
+      internalID: 2940900506260967136
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female use 4
+      name: Mage Female Use 4
       rect:
         serializedVersion: 2
         x: 128
@@ -1767,16 +2067,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 160b26d68ce4ef490800000000000000
-      internalID: -7710638889276100511
+      spriteID: f27e8b207982bf6c0800000000000000
+      internalID: -4108645605994600657
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female use 5
+      name: Mage Female Use 5
       rect:
         serializedVersion: 2
         x: 160
@@ -1788,16 +2088,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: af2d42f9940692b50800000000000000
-      internalID: 6568887400815448826
+      spriteID: 745ccbf233db43670800000000000000
+      internalID: 8517640822806332743
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female use 6
+      name: Mage Female Use 6
       rect:
         serializedVersion: 2
         x: 192
@@ -1809,16 +2109,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 7e8f9621832cb5390800000000000000
-      internalID: -7828449981170583321
+      spriteID: 4d2e5c89174887b90800000000000000
+      internalID: -7243894377196166444
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female use 7
+      name: Mage Female Use 7
       rect:
         serializedVersion: 2
         x: 224
@@ -1830,16 +2130,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 349ddacd2b9a74dc0800000000000000
-      internalID: -3654765986916214461
+      spriteID: 6534a01bf50044360800000000000000
+      internalID: 7152842519163323222
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female use 8
+      name: Mage Female Use 8
       rect:
         serializedVersion: 2
         x: 256
@@ -1851,16 +2151,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 012e6e380c8d346a0800000000000000
-      internalID: -6466086318615633392
+      spriteID: 9e62ecdd74dfc4430800000000000000
+      internalID: 3768665473308042985
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female use 9
+      name: Mage Female Use 9
       rect:
         serializedVersion: 2
         x: 288
@@ -1872,16 +2172,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 3a635ab3fc74f8680800000000000000
-      internalID: -8750696595573098845
+      spriteID: 82d93f3c2a74f3d60800000000000000
+      internalID: 7872089438064713000
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female move 0
+      name: Mage Female Move 0
       rect:
         serializedVersion: 2
         x: 0
@@ -1893,16 +2193,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: d87f1f8a10b8416c0800000000000000
-      internalID: -4173558115419949171
+      spriteID: 1c328c54b02283db0800000000000000
+      internalID: -4812058770034646079
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female move 1
+      name: Mage Female Move 1
       rect:
         serializedVersion: 2
         x: 32
@@ -1914,16 +2214,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 3dd0cbae459e84920800000000000000
-      internalID: 2974884104802930131
+      spriteID: eb90badc1ef49b020800000000000000
+      internalID: 2358003711141939646
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female move 2
+      name: Mage Female Move 2
       rect:
         serializedVersion: 2
         x: 64
@@ -1935,16 +2235,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: c2d5de20dd32fa580800000000000000
-      internalID: -8813786513596916436
+      spriteID: 23f63b6acba24a1e0800000000000000
+      internalID: -2187576529256222926
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female move 3
+      name: Mage Female Move 3
       rect:
         serializedVersion: 2
         x: 96
@@ -1956,16 +2256,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 406cb86db1a5493c0800000000000000
-      internalID: -4353755864150325756
+      spriteID: e179b102733252f40800000000000000
+      internalID: 5703003222803453726
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female move 4
+      name: Mage Female Move 4
       rect:
         serializedVersion: 2
         x: 128
@@ -1977,16 +2277,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 8ef8d4749b16a4740800000000000000
-      internalID: 5137025773362581480
+      spriteID: fdfe69ae8558e0d40800000000000000
+      internalID: 5552522007533776863
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female move 5
+      name: Mage Female Move 5
       rect:
         serializedVersion: 2
         x: 160
@@ -1998,16 +2298,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 941c7b526d063d450800000000000000
-      internalID: 6112335592143962441
+      spriteID: 0d30c60225997cce0800000000000000
+      internalID: -1384969782382820400
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female move 6
+      name: Mage Female Move 6
       rect:
         serializedVersion: 2
         x: 192
@@ -2019,16 +2319,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 2caf704bebb87d620800000000000000
-      internalID: 2798859344614521538
+      spriteID: ae9050a1b9f7de590800000000000000
+      internalID: -7643312688444667414
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female move 7
+      name: Mage Female Move 7
       rect:
         serializedVersion: 2
         x: 224
@@ -2040,16 +2340,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 68d487ffaa9a71e60800000000000000
-      internalID: 7932995820532026758
+      spriteID: ca8cd026b0bfe98e0800000000000000
+      internalID: -1684633184281704276
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female move 8
+      name: Mage Female Move 8
       rect:
         serializedVersion: 2
         x: 256
@@ -2061,16 +2361,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: ff37e06751daeb4a0800000000000000
-      internalID: -6575628098227768321
+      spriteID: 51f0b19a5243c5d70800000000000000
+      internalID: 9033152288953929493
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female move 9
+      name: Mage Female Move 9
       rect:
         serializedVersion: 2
         x: 288
@@ -2082,16 +2382,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 255aca98aadb2fb20800000000000000
-      internalID: 3166802028146763090
+      spriteID: b25302458ca9177d0800000000000000
+      internalID: -2922384497991207637
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female attack 0
+      name: Mage Female Attack 0
       rect:
         serializedVersion: 2
         x: 0
@@ -2103,16 +2403,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 7c876cecffe583ae0800000000000000
-      internalID: -1569400017359832889
+      spriteID: 2f4726cf97c2d7b70800000000000000
+      internalID: 8898317341190943986
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female attack 1
+      name: Mage Female Attack 1
       rect:
         serializedVersion: 2
         x: 32
@@ -2124,16 +2424,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 5fdc9437bb485b850800000000000000
-      internalID: 6392161186750254581
+      spriteID: 07049bcbf79f5a940800000000000000
+      internalID: 5306922062948417648
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female attack 2
+      name: Mage Female Attack 2
       rect:
         serializedVersion: 2
         x: 64
@@ -2145,16 +2445,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: ebc0248cd0ccef580800000000000000
-      internalID: -8791365063014216514
+      spriteID: 3eb165d4d24ec4920800000000000000
+      internalID: 2976004337007205347
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female attack 3
+      name: Mage Female Attack 3
       rect:
         serializedVersion: 2
         x: 96
@@ -2166,16 +2466,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 301a99e7a10cb7a80800000000000000
-      internalID: -8467963454314405629
+      spriteID: d565e62289cdf5a90800000000000000
+      internalID: -7322891923110341027
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female attack 4
+      name: Mage Female Attack 4
       rect:
         serializedVersion: 2
         x: 128
@@ -2187,16 +2487,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: ad7475f3aaff06050800000000000000
-      internalID: 5791910227470665690
+      spriteID: 27497cc8206486ea0800000000000000
+      internalID: -5879372336766413710
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female attack 5
+      name: Mage Female Attack 5
       rect:
         serializedVersion: 2
         x: 160
@@ -2208,16 +2508,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 268ed6d748283f810800000000000000
-      internalID: 1797924181802608738
+      spriteID: 5a62f896a8a5a0c80800000000000000
+      internalID: -8355766608109558107
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female attack 6
+      name: Mage Female Attack 6
       rect:
         serializedVersion: 2
         x: 192
@@ -2229,16 +2529,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: da1a895ffe11ac0d0800000000000000
-      internalID: -3401886846209711699
+      spriteID: 1a097cd0ce2f24680800000000000000
+      internalID: -8772182028506918751
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female attack 7
+      name: Mage Female Attack 7
       rect:
         serializedVersion: 2
         x: 224
@@ -2250,16 +2550,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: f2178d415e6b6ab00800000000000000
-      internalID: 839559475564671279
+      spriteID: 6b87e18140ab35740800000000000000
+      internalID: 5139656126507153590
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female attack 8
+      name: Mage Female Attack 8
       rect:
         serializedVersion: 2
         x: 256
@@ -2271,16 +2571,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: cf8ecf9baa0f19880800000000000000
-      internalID: -8605832796872840964
+      spriteID: 007db53f8ee587580800000000000000
+      internalID: -8829202714851551488
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female attack 9
+      name: Mage Female Attack 9
       rect:
         serializedVersion: 2
         x: 288
@@ -2292,16 +2592,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 5c0594e4f9da5fab0800000000000000
-      internalID: -4974879313636011835
+      spriteID: c694cb30a3b08ede0800000000000000
+      internalID: -1303779748325078676
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female death 0
+      name: Mage Female Death 0
       rect:
         serializedVersion: 2
         x: 0
@@ -2313,16 +2613,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 2e88cbe23309345b0800000000000000
-      internalID: -5385302179903141662
+      spriteID: 1028d4dfb2a6427e0800000000000000
+      internalID: -1791190014620761599
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female death 1
+      name: Mage Female Death 1
       rect:
         serializedVersion: 2
         x: 32
@@ -2334,16 +2634,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: a24806fbade4a2070800000000000000
-      internalID: 8082359182690386986
+      spriteID: fa548bbad4f604920800000000000000
+      internalID: 2972498133448672687
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female death 2
+      name: Mage Female Death 2
       rect:
         serializedVersion: 2
         x: 64
@@ -2355,16 +2655,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 37e732a7e05ca5ca0800000000000000
-      internalID: -6027288485312627085
+      spriteID: 86c20254ca1126f90800000000000000
+      internalID: -6961982642369581976
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female death 3
+      name: Mage Female Death 3
       rect:
         serializedVersion: 2
         x: 96
@@ -2376,16 +2676,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: eb841e616ec73e740800000000000000
-      internalID: 5180121324074387646
+      spriteID: 2ba810d8605a98d70800000000000000
+      internalID: 9045942774104427186
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female death 4
+      name: Mage Female Death 4
       rect:
         serializedVersion: 2
         x: 128
@@ -2397,16 +2697,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: e255f69a1f3d7baa0800000000000000
-      internalID: -6145210131640527570
+      spriteID: 2c86c7012b7839db0800000000000000
+      internalID: -4786332780114188094
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female death 5
+      name: Mage Female Death 5
       rect:
         serializedVersion: 2
         x: 160
@@ -2418,16 +2718,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 12793944b5a8fdda0800000000000000
-      internalID: -5917859260744362207
+      spriteID: 711de7b1931464630800000000000000
+      internalID: 3910885039948091671
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female death 6
+      name: Mage Female Death 6
       rect:
         serializedVersion: 2
         x: 192
@@ -2439,16 +2739,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 74b6104bcd67fa4c0800000000000000
-      internalID: -4274066831066436793
+      spriteID: 9146df42d6c8b3ed0800000000000000
+      internalID: -2433196773263711207
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female death 7
+      name: Mage Female Death 7
       rect:
         serializedVersion: 2
         x: 224
@@ -2460,16 +2760,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: f7c9d4bed4b6e0410800000000000000
-      internalID: 1445210512836893823
+      spriteID: 2cab3b818abc18c90800000000000000
+      internalID: -7169225208967742782
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female death 8
+      name: Mage Female Death 8
       rect:
         serializedVersion: 2
         x: 256
@@ -2481,16 +2781,16 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 980439e17b6040660800000000000000
-      internalID: 7351007875337240713
+      spriteID: ae3122e6a1c314140800000000000000
+      internalID: 4702105570166051818
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mage female death 9
+      name: Mage Female Death 9
       rect:
         serializedVersion: 2
         x: 288
@@ -2502,10 +2802,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: cfcd35501db33adf0800000000000000
-      internalID: -170226591986361092
+      spriteID: f4debaea44b170140800000000000000
+      internalID: 4685743919104519503
       vertices: []
       indices: 
       edges: []

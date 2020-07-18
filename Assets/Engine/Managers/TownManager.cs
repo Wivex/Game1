@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Lexic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -42,37 +43,24 @@ public class TownManager : MonoBehaviour
     internal static List<Hero> IdleHeroes => heroes.FindAll(hero => hero.state == HeroState.Idle);
     internal static List<Hero> RecruitableHeroes => heroes.FindAll(hero => hero.state == HeroState.Recruit);
 
-    public static Hero GenerateRandomHero()
+    public void GenerateNewHeroes(HeroState state, int count)
+    {
+        for (var j = 0; j < count; j++)
+        {
+            var hero = GenerateRandomHero();
+            // can't be OnMission without mission set up
+            hero.state = state == HeroState.OnMission ? HeroState.Idle : state;
+            heroes.Add(hero);
+        }
+    }
+
+    static Hero GenerateRandomHero()
     {
         var sex = (SexType)Random.Range(0, Enum.GetValues(typeof(SexType)).Length);
         var classType = (ClassType)Random.Range(0, Enum.GetValues(typeof(ClassType)).Length);
         var name = NamingManager.i.GetRandomHeroName(sex);
-
-        // var portraits =
-        //     Resources.LoadAll<Sprite>($"Units/Heroes/Classes/{heroClassType.ToString()}/Portraits/{sex.ToString()}");
-        // return portraits[Random.Range(0, portraits.Length - 1)];
-        return NewHero(name, sex, classType);
-    }
-
-    // non-static for use in the Unity inspector
-    public void NewIdleHeroesDebug(int count)
-    {
-        for (int i = 0; i < count; i++)
-        {
-            var hero = GenerateRandomHero();
-            hero.state = HeroState.Idle;
-        }
-    }
-
-    public static Hero NewHero(string name = default,
-        SexType sexType = default,
-        ClassType classType = default,
-        Sprite portrait = default)
-    {
-        // TODO: temp
-        var hero = new Hero(null);
-        // var hero = new Hero(name, sexType, classType, portrait);
-        heroes.Add(hero);
-        return hero;
+        var data = Resources.Load<HeroClassData>($"Units/Heroes/Classes/{classType}");
+        var portrait = data.sprites[sex].portraits.PickOne();
+        return new Hero(name, sex, portrait, data);
     }
 }

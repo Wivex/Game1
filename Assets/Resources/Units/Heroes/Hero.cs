@@ -32,8 +32,11 @@ public class Hero : Unit
     internal List<Item> backpack = new List<Item>();
     internal List<Item> consumables = new List<Item>();
 
-    internal Hero(HeroClassData data) : base(data)
+    internal Hero(string name, SexType sex, Sprite portrait, HeroClassData data) : base(data)
     {
+        this.name = name;
+        this.sex = sex;
+        this.portrait = portrait;
         this.data = data;
     }
 

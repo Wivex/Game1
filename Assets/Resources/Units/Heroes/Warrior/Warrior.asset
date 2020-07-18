@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3f8dbe1749b85544b3c0b73f1d3e373, type: 3}
-  m_Name: warrior
+  m_Name: Warrior
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
   baseStats:

@@ -29,7 +29,7 @@ public class ContainerSpawnOption : SpawnOption
 
 
 [CreateAssetMenu(menuName = "Content/Data/Zone Data")]
-public class ZoneData : ScriptableObject
+public class ZoneData : UnityEngine.ScriptableObject
 {
     [Reorderable(ReorderableNamingType.VariableValue,"type")]
     public List<Site> sites;

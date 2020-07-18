@@ -5,14 +5,12 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Content/Data/Enemy Data")]
 public class EnemyData : UnitData
 {
+    public Sprite icon;
     [Reorderable(ReorderableNamingType.ReferencedObjectName, "item")]
     public List<LootData> lootTable;
 
-    new void OnEnable()
+    void OnEnable()
     {
-        //this OnEnable() doesn't override DataWithIcon.OnEnable(), so repeat
-        AutoLoadIcon();
-
         // TODO: optimize, to avoid sorting all objects each validation
         // sort ascending by drop chance, for easier loot spawning
         lootTable?.Sort((x, y) => y.dropChance.CompareTo(x.dropChance));

@@ -53999,6 +53999,7 @@ GameObject:
   - component: {fileID: 4461797180728006047}
   - component: {fileID: 3910116782300051273}
   - component: {fileID: 2668401992044219392}
+  - component: {fileID: 4461797180728006046}
   m_Layer: 15
   m_Name: Hero Icon
   m_TagString: Untagged
@@ -54026,6 +54027,21 @@ RectTransform:
   m_AnchoredPosition: {x: -105, y: -14.999985}
   m_SizeDelta: {x: 105.829895, y: 107.83}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4461797180728006046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4461797180728006044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db125c7de00668f4e98849d0aaf366d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 3, y: 3}
+  m_UseGraphicAlpha: 0
 --- !u!114 &4461797180728006047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54045,7 +54061,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3d96780b570c9334c85e44e87ff5d2a1, type: 3}
+  m_Sprite: {fileID: -6557536713795074677, guid: fe7414dc8531ee84bae4117bbe95d472,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

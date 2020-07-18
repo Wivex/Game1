@@ -19,12 +19,13 @@ public static class AssetHandler
     }
 
 
-    internal static T[] LoadAllNearbyAssets<T>(Object baseAsset, string additionalPath = default) where T : Object
+    internal static T[] LoadAllNearbyAssets<T>(Object baseAsset, string relativePath = default) where T : Object
     {
         var assetPath = AssetDatabase.GetAssetPath(baseAsset);
         var startIndex = "Assets/Resources/".Length;
-        var endIndex = assetPath.IndexOf(".asset");
-        var resourcePath = assetPath.Substring(startIndex, endIndex - startIndex)+additionalPath;
+        var endIndex = assetPath.IndexOf($"{baseAsset.name}.asset");
+        var basePath = assetPath.Substring(startIndex, endIndex - startIndex);
+        var resourcePath = basePath + relativePath;
         return Resources.LoadAll<T>(resourcePath);
     }
 

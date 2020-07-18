@@ -1862,6 +1862,1146 @@ TextureImporter:
   - first:
       213: -1611806811103049301
     second: warrior_0099
+  - first:
+      213: -2522692191597604571
+    second: Warrior Idle 0
+  - first:
+      213: -2882417397573031041
+    second: Warrior Idle 1
+  - first:
+      213: 6191988950245812284
+    second: Warrior Idle 2
+  - first:
+      213: -3456873655026058613
+    second: Warrior Idle 3
+  - first:
+      213: 2092147798629948428
+    second: Warrior Idle 4
+  - first:
+      213: 6111623041194021918
+    second: Warrior Idle 5
+  - first:
+      213: 464898558123869107
+    second: Warrior Idle 6
+  - first:
+      213: -5728621264554781261
+    second: Warrior Idle 7
+  - first:
+      213: 4190449831859435477
+    second: Warrior Idle 8
+  - first:
+      213: 3620821567256271370
+    second: Warrior Idle 9
+  - first:
+      213: -8108492431819193020
+    second: Warrior Use 10
+  - first:
+      213: -245363749510535628
+    second: Warrior Use 11
+  - first:
+      213: 1852563987102582427
+    second: Warrior Use 12
+  - first:
+      213: -1689067372688031463
+    second: Warrior Use 13
+  - first:
+      213: 7961329953072760968
+    second: Warrior Use 14
+  - first:
+      213: 5456796049331998988
+    second: Warrior Use 15
+  - first:
+      213: 3234186377308170375
+    second: Warrior Use 16
+  - first:
+      213: 4327096352916036786
+    second: Warrior Use 17
+  - first:
+      213: 2074776721933886637
+    second: Warrior Use 18
+  - first:
+      213: -6635242330846189144
+    second: Warrior Use 19
+  - first:
+      213: -2177001575404663400
+    second: Warrior Move 20
+  - first:
+      213: -3083951551973205803
+    second: Warrior Move 21
+  - first:
+      213: -3706752490654720176
+    second: Warrior Move 22
+  - first:
+      213: -5064091205723809427
+    second: Warrior Move 23
+  - first:
+      213: 7862325206566607540
+    second: Warrior Move 24
+  - first:
+      213: -4448763627413778374
+    second: Warrior Move 25
+  - first:
+      213: 6965891896017352076
+    second: Warrior Move 26
+  - first:
+      213: -4166741678367444326
+    second: Warrior Move 27
+  - first:
+      213: 7704615739302496405
+    second: Warrior Move 28
+  - first:
+      213: -4667235861675118379
+    second: Warrior Move 29
+  - first:
+      213: -7399227943103776776
+    second: Warrior Attack 30
+  - first:
+      213: 3050602750019514508
+    second: Warrior Attack 31
+  - first:
+      213: -572924078809157792
+    second: Warrior Attack 32
+  - first:
+      213: -1904538218550347809
+    second: Warrior Attack 33
+  - first:
+      213: 46571949280390879
+    second: Warrior Attack 34
+  - first:
+      213: 2050748590481954033
+    second: Warrior Attack 35
+  - first:
+      213: 684481531991529888
+    second: Warrior Attack 36
+  - first:
+      213: 1336532003866372407
+    second: Warrior Attack 37
+  - first:
+      213: 3864845405350743596
+    second: Warrior Attack 38
+  - first:
+      213: 694796864105502829
+    second: Warrior Attack 39
+  - first:
+      213: 5430319671695322428
+    second: Warrior Death 40
+  - first:
+      213: -4259054887399340486
+    second: Warrior Death 41
+  - first:
+      213: 7308920589864681253
+    second: Warrior Death 42
+  - first:
+      213: 5526210002495504763
+    second: Warrior Death 43
+  - first:
+      213: -23436874246246623
+    second: Warrior Death 44
+  - first:
+      213: 6301216432028778377
+    second: Warrior Death 45
+  - first:
+      213: -5130528672971284727
+    second: Warrior Death 46
+  - first:
+      213: 5443495953305803271
+    second: Warrior Death 47
+  - first:
+      213: 4544000645722610196
+    second: Warrior Death 48
+  - first:
+      213: 4875184643913495899
+    second: Warrior Death 49
+  - first:
+      213: -6557536713795074677
+    second: Warrior Male Idle 0
+  - first:
+      213: -1830087968015767114
+    second: Warrior Male Idle 1
+  - first:
+      213: 2240127259044613601
+    second: Warrior Male Idle 2
+  - first:
+      213: 6602169527738038766
+    second: Warrior Male Idle 3
+  - first:
+      213: -5154281756563739114
+    second: Warrior Male Idle 4
+  - first:
+      213: -3405921565296106837
+    second: Warrior Male Idle 5
+  - first:
+      213: 3508378765331348049
+    second: Warrior Male Idle 6
+  - first:
+      213: 25385876657059155
+    second: Warrior Male Idle 7
+  - first:
+      213: -8091336034833629034
+    second: Warrior Male Idle 8
+  - first:
+      213: -2454192915021641962
+    second: Warrior Male Idle 9
+  - first:
+      213: 1581296719922556856
+    second: Warrior Male Use 10
+  - first:
+      213: 820782074981267412
+    second: Warrior Male Use 11
+  - first:
+      213: -7962611779049202990
+    second: Warrior Male Use 12
+  - first:
+      213: -1914485215470197092
+    second: Warrior Male Use 13
+  - first:
+      213: 3410737093779016338
+    second: Warrior Male Use 14
+  - first:
+      213: -6643002181114146180
+    second: Warrior Male Use 15
+  - first:
+      213: 7931087263412810591
+    second: Warrior Male Use 16
+  - first:
+      213: 7698953088939871099
+    second: Warrior Male Use 17
+  - first:
+      213: 5103950325038624766
+    second: Warrior Male Use 18
+  - first:
+      213: -1092137124527067969
+    second: Warrior Male Use 19
+  - first:
+      213: 8712696911229565783
+    second: Warrior Male Move 20
+  - first:
+      213: 1794615228056120301
+    second: Warrior Male Move 21
+  - first:
+      213: -8620060726560086193
+    second: Warrior Male Move 22
+  - first:
+      213: 6331933644280978106
+    second: Warrior Male Move 23
+  - first:
+      213: 7487843295326522831
+    second: Warrior Male Move 24
+  - first:
+      213: -6648170345166583875
+    second: Warrior Male Move 25
+  - first:
+      213: -6376941649232015279
+    second: Warrior Male Move 26
+  - first:
+      213: 8359938728791273777
+    second: Warrior Male Move 27
+  - first:
+      213: 6349878541835897524
+    second: Warrior Male Move 28
+  - first:
+      213: 2508586458543797866
+    second: Warrior Male Move 29
+  - first:
+      213: -4758676562388937104
+    second: Warrior Male Attack 30
+  - first:
+      213: -3320015174869362322
+    second: Warrior Male Attack 31
+  - first:
+      213: 4171641016749339967
+    second: Warrior Male Attack 32
+  - first:
+      213: 882780462300022545
+    second: Warrior Male Attack 33
+  - first:
+      213: 4112591708205814184
+    second: Warrior Male Attack 34
+  - first:
+      213: -860772228060550119
+    second: Warrior Male Attack 35
+  - first:
+      213: 7339673795161350818
+    second: Warrior Male Attack 36
+  - first:
+      213: 5103582040280418942
+    second: Warrior Male Attack 37
+  - first:
+      213: -6116198619428348992
+    second: Warrior Male Attack 38
+  - first:
+      213: 8488489495417115704
+    second: Warrior Male Attack 39
+  - first:
+      213: -6191483633357286983
+    second: Warrior Male Death 40
+  - first:
+      213: -5378974210217537623
+    second: Warrior Male Death 41
+  - first:
+      213: 6225949124250438514
+    second: Warrior Male Death 42
+  - first:
+      213: 9194861277556920565
+    second: Warrior Male Death 43
+  - first:
+      213: 4367298149655847870
+    second: Warrior Male Death 44
+  - first:
+      213: 6642216081990368833
+    second: Warrior Male Death 45
+  - first:
+      213: 543130589300020161
+    second: Warrior Male Death 46
+  - first:
+      213: -5322086214016541918
+    second: Warrior Male Death 47
+  - first:
+      213: -2961786699662668193
+    second: Warrior Male Death 48
+  - first:
+      213: 4124450559340140812
+    second: Warrior Male Death 49
+  - first:
+      213: 3092393054199817787
+    second: Warrior Female Idle 50
+  - first:
+      213: -5167779140563106975
+    second: Warrior Female Idle 51
+  - first:
+      213: 5549023585257242266
+    second: Warrior Female Idle 52
+  - first:
+      213: -5300482540663706512
+    second: Warrior Female Idle 53
+  - first:
+      213: 37897493825245341
+    second: Warrior Female Idle 54
+  - first:
+      213: 2450758050155829161
+    second: Warrior Female Idle 55
+  - first:
+      213: -4482985996840076749
+    second: Warrior Female Idle 56
+  - first:
+      213: 6764444363912303843
+    second: Warrior Female Idle 57
+  - first:
+      213: 3524166523983743544
+    second: Warrior Female Idle 58
+  - first:
+      213: -4337675499920155215
+    second: Warrior Female Idle 59
+  - first:
+      213: -3218006013564840405
+    second: Warrior Female Use 60
+  - first:
+      213: 2935979447521119495
+    second: Warrior Female Use 61
+  - first:
+      213: 5274684603031357478
+    second: Warrior Female Use 62
+  - first:
+      213: 6221927813386315062
+    second: Warrior Female Use 63
+  - first:
+      213: -9020796174856544314
+    second: Warrior Female Use 64
+  - first:
+      213: 5748432973849606635
+    second: Warrior Female Use 65
+  - first:
+      213: -8666150819708441698
+    second: Warrior Female Use 66
+  - first:
+      213: -476183577048580396
+    second: Warrior Female Use 67
+  - first:
+      213: 3725439342350852730
+    second: Warrior Female Use 68
+  - first:
+      213: 6733313318675536610
+    second: Warrior Female Use 69
+  - first:
+      213: -8651335259534389029
+    second: Warrior Female Move 70
+  - first:
+      213: -1849686199604273999
+    second: Warrior Female Move 71
+  - first:
+      213: 1261596173445914890
+    second: Warrior Female Move 72
+  - first:
+      213: 1418150690142273780
+    second: Warrior Female Move 73
+  - first:
+      213: -6410325568328429936
+    second: Warrior Female Move 74
+  - first:
+      213: -3627851881130962406
+    second: Warrior Female Move 75
+  - first:
+      213: 9033547228013838102
+    second: Warrior Female Move 76
+  - first:
+      213: 684768596505000395
+    second: Warrior Female Move 77
+  - first:
+      213: 6712322959530976764
+    second: Warrior Female Move 78
+  - first:
+      213: -5780103760223729700
+    second: Warrior Female Move 79
+  - first:
+      213: -9027108775434332801
+    second: Warrior Female Attack 80
+  - first:
+      213: 8543090672523697454
+    second: Warrior Female Attack 81
+  - first:
+      213: 2887225177982902253
+    second: Warrior Female Attack 82
+  - first:
+      213: -2072839912100673533
+    second: Warrior Female Attack 83
+  - first:
+      213: 4051194643097858794
+    second: Warrior Female Attack 84
+  - first:
+      213: 8829181358610891095
+    second: Warrior Female Attack 85
+  - first:
+      213: -6734334692882606728
+    second: Warrior Female Attack 86
+  - first:
+      213: 7610779981111082574
+    second: Warrior Female Attack 87
+  - first:
+      213: 8573165839787392025
+    second: Warrior Female Attack 88
+  - first:
+      213: -3833635337040063900
+    second: Warrior Female Attack 89
+  - first:
+      213: 7020648974194960901
+    second: Warrior Female Death 90
+  - first:
+      213: -8210132241264888405
+    second: Warrior Female Death 91
+  - first:
+      213: -5584713570407568495
+    second: Warrior Female Death 92
+  - first:
+      213: 3394289833043584427
+    second: Warrior Female Death 93
+  - first:
+      213: 7989359666964821726
+    second: Warrior Female Death 94
+  - first:
+      213: 4997864133952106223
+    second: Warrior Female Death 95
+  - first:
+      213: 3000458078921198914
+    second: Warrior Female Death 96
+  - first:
+      213: -2890156203128227123
+    second: Warrior Female Death 97
+  - first:
+      213: -5691281459671482355
+    second: Warrior Female Death 98
+  - first:
+      213: 2475095730044375393
+    second: Warrior Female Death 99
+  - first:
+      213: 2435722666746661375
+    second: Warrior Female Death 10
+  - first:
+      213: -4571284770242812877
+    second: Warrior Female Death 11
+  - first:
+      213: -1707402906293985889
+    second: Warrior Female Death 12
+  - first:
+      213: -5436283799909148397
+    second: Warrior Female Death 13
+  - first:
+      213: 5605355262919415118
+    second: Warrior Female Death 14
+  - first:
+      213: -6406031075812634069
+    second: Warrior Female Death 15
+  - first:
+      213: 1887243739901242344
+    second: Warrior Female Death 16
+  - first:
+      213: -4761192477452306397
+    second: Warrior Female Death 17
+  - first:
+      213: -2178197265422629439
+    second: Warrior Female Death 18
+  - first:
+      213: 6186286222748068365
+    second: Warrior Female Death 19
+  - first:
+      213: 3197623157599853467
+    second: Warrior Male Death 10
+  - first:
+      213: -98645273899773864
+    second: Warrior Male Death 11
+  - first:
+      213: -1459375347224633066
+    second: Warrior Male Death 12
+  - first:
+      213: 4496398682082036795
+    second: Warrior Male Death 13
+  - first:
+      213: 3385835888095304257
+    second: Warrior Male Death 14
+  - first:
+      213: 9169952184742398367
+    second: Warrior Male Death 15
+  - first:
+      213: 1130754318695913096
+    second: Warrior Male Death 16
+  - first:
+      213: -8637881761678615301
+    second: Warrior Male Death 17
+  - first:
+      213: -3380499360103100650
+    second: Warrior Male Death 18
+  - first:
+      213: 4879107555671853421
+    second: Warrior Male Death 19
+  - first:
+      213: 1317562020065145275
+    second: Warrior Male Use 0
+  - first:
+      213: -548300842063166072
+    second: Warrior Male Use 1
+  - first:
+      213: -2267704620993173397
+    second: Warrior Male Use 2
+  - first:
+      213: -7217857548274198637
+    second: Warrior Male Use 3
+  - first:
+      213: -6770998512895200087
+    second: Warrior Male Use 4
+  - first:
+      213: 928424953696377098
+    second: Warrior Male Use 5
+  - first:
+      213: -4979335339919353097
+    second: Warrior Male Use 6
+  - first:
+      213: -4992078087596110602
+    second: Warrior Male Use 7
+  - first:
+      213: -7697361346027892424
+    second: Warrior Male Use 8
+  - first:
+      213: 3978189612144434208
+    second: Warrior Male Use 9
+  - first:
+      213: 3845797273258325168
+    second: Warrior Female Attack 0
+  - first:
+      213: 6848945888649937097
+    second: Warrior Female Attack 1
+  - first:
+      213: 5135475277156675629
+    second: Warrior Female Attack 2
+  - first:
+      213: -6013745232781551073
+    second: Warrior Female Attack 3
+  - first:
+      213: 3029665598524111645
+    second: Warrior Female Attack 4
+  - first:
+      213: 5178378308421607271
+    second: Warrior Female Attack 5
+  - first:
+      213: -6258003772625961110
+    second: Warrior Female Attack 6
+  - first:
+      213: 5782648883691909368
+    second: Warrior Female Attack 7
+  - first:
+      213: -7595421618877123189
+    second: Warrior Female Attack 8
+  - first:
+      213: 1888045023025979119
+    second: Warrior Female Attack 9
+  - first:
+      213: -4216830354278721966
+    second: Warrior Female Death 0
+  - first:
+      213: 7238822779358623035
+    second: Warrior Female Death 1
+  - first:
+      213: -148858049652808287
+    second: Warrior Female Death 2
+  - first:
+      213: 6674420289583422849
+    second: Warrior Female Death 3
+  - first:
+      213: -2584003499931476705
+    second: Warrior Female Death 4
+  - first:
+      213: 8121066906764927326
+    second: Warrior Female Death 5
+  - first:
+      213: 7604511164708354504
+    second: Warrior Female Death 6
+  - first:
+      213: 5325134927579374724
+    second: Warrior Female Death 7
+  - first:
+      213: -7810306040216863703
+    second: Warrior Female Death 8
+  - first:
+      213: 1884746495965807813
+    second: Warrior Female Death 9
+  - first:
+      213: -8981502887727037383
+    second: Warrior Female Idle 0
+  - first:
+      213: -5602821459692450639
+    second: Warrior Female Idle 1
+  - first:
+      213: -7958188198336100444
+    second: Warrior Female Idle 2
+  - first:
+      213: 8723211932941490416
+    second: Warrior Female Idle 3
+  - first:
+      213: -3001644191279508915
+    second: Warrior Female Idle 4
+  - first:
+      213: -5255524241328335620
+    second: Warrior Female Idle 5
+  - first:
+      213: -5017784580515325394
+    second: Warrior Female Idle 6
+  - first:
+      213: -182596731321035647
+    second: Warrior Female Idle 7
+  - first:
+      213: 8995929971839518102
+    second: Warrior Female Idle 8
+  - first:
+      213: -2969836240207303213
+    second: Warrior Female Idle 9
+  - first:
+      213: -2126335765166082938
+    second: Warrior Female Move 0
+  - first:
+      213: -5984123525760139117
+    second: Warrior Female Move 1
+  - first:
+      213: 6644720507438022288
+    second: Warrior Female Move 2
+  - first:
+      213: -7480638430941232892
+    second: Warrior Female Move 3
+  - first:
+      213: 2800903756517780165
+    second: Warrior Female Move 4
+  - first:
+      213: -4329481222962078723
+    second: Warrior Female Move 5
+  - first:
+      213: 8700006222833463987
+    second: Warrior Female Move 6
+  - first:
+      213: 3455780394383427727
+    second: Warrior Female Move 7
+  - first:
+      213: -8858756886935347022
+    second: Warrior Female Move 8
+  - first:
+      213: 5806918183285657261
+    second: Warrior Female Move 9
+  - first:
+      213: -7341721069895109658
+    second: Warrior Female Use 0
+  - first:
+      213: -549985073536012644
+    second: Warrior Female Use 1
+  - first:
+      213: 6021345594350265993
+    second: Warrior Female Use 2
+  - first:
+      213: -4209392388713957367
+    second: Warrior Female Use 3
+  - first:
+      213: -4297738746629022545
+    second: Warrior Female Use 4
+  - first:
+      213: 805527942447640511
+    second: Warrior Female Use 5
+  - first:
+      213: 137302060212761301
+    second: Warrior Female Use 6
+  - first:
+      213: -6203800331979736906
+    second: Warrior Female Use 7
+  - first:
+      213: 8207714785025569694
+    second: Warrior Female Use 8
+  - first:
+      213: -1374541941774883843
+    second: Warrior Female Use 9
+  - first:
+      213: 8057088463774243628
+    second: Warrior Male Death 0
+  - first:
+      213: 4493973422802620219
+    second: Warrior Male Death 1
+  - first:
+      213: -1197608317907470909
+    second: Warrior Male Death 2
+  - first:
+      213: 1670420405116861708
+    second: Warrior Male Death 3
+  - first:
+      213: 126854434177491376
+    second: Warrior Male Death 4
+  - first:
+      213: -7229838553751417073
+    second: Warrior Male Death 5
+  - first:
+      213: -5264299511154745831
+    second: Warrior Male Death 6
+  - first:
+      213: 1671329497918195667
+    second: Warrior Male Death 7
+  - first:
+      213: 3467556223595104624
+    second: Warrior Male Death 8
+  - first:
+      213: 2696029764024011242
+    second: Warrior Male Death 9
+  - first:
+      213: 6554727263131483309
+    second: Warrior Male Move 0
+  - first:
+      213: 385123250099066428
+    second: Warrior Male Move 1
+  - first:
+      213: 7460909574229362160
+    second: Warrior Male Move 2
+  - first:
+      213: -3129216451063350214
+    second: Warrior Male Move 3
+  - first:
+      213: 6956039971101579468
+    second: Warrior Male Move 4
+  - first:
+      213: 2764043435257557484
+    second: Warrior Male Move 5
+  - first:
+      213: 5941126542464534855
+    second: Warrior Male Move 6
+  - first:
+      213: -8836086184272826071
+    second: Warrior Male Move 7
+  - first:
+      213: 6513615513285969568
+    second: Warrior Male Move 8
+  - first:
+      213: 6756726173082759097
+    second: Warrior Male Move 9
+  - first:
+      213: -4435964536570725638
+    second: Warrior Male Attack 0
+  - first:
+      213: 696296783012190165
+    second: Warrior Male Attack 1
+  - first:
+      213: 3083191167464802757
+    second: Warrior Male Attack 2
+  - first:
+      213: -1889557634208077708
+    second: Warrior Male Attack 3
+  - first:
+      213: 6894105461948892820
+    second: Warrior Male Attack 4
+  - first:
+      213: -327961250851212021
+    second: Warrior Male Attack 5
+  - first:
+      213: 4370927523455798335
+    second: Warrior Male Attack 6
+  - first:
+      213: 6635037374768072203
+    second: Warrior Male Attack 7
+  - first:
+      213: -8357432954529866266
+    second: Warrior Male Attack 8
+  - first:
+      213: -2810880570945433992
+    second: Warrior Male Attack 9
+  - first:
+      213: -1386841796994486379
+    second: Warrior Male Attack 10
+  - first:
+      213: 7504347743597670099
+    second: Warrior Male Attack 11
+  - first:
+      213: 4234937271016288201
+    second: Warrior Male Attack 12
+  - first:
+      213: -1507383463274492437
+    second: Warrior Male Attack 13
+  - first:
+      213: -2169976583071372198
+    second: Warrior Male Attack 14
+  - first:
+      213: 8666326836452277021
+    second: Warrior Male Attack 15
+  - first:
+      213: -2541373167406428885
+    second: Warrior Male Attack 16
+  - first:
+      213: -7477535359030208349
+    second: Warrior Male Attack 17
+  - first:
+      213: 5147050415405388906
+    second: Warrior Male Attack 18
+  - first:
+      213: -7770261292804603359
+    second: Warrior Male Attack 19
+  - first:
+      213: 8039521743540717651
+    second: warrior animation 0
+  - first:
+      213: 1682946001320371893
+    second: warrior animation 1
+  - first:
+      213: 5906448624594499001
+    second: warrior animation 2
+  - first:
+      213: 5461516247109899297
+    second: warrior animation 3
+  - first:
+      213: -8129594221586468315
+    second: warrior animation 4
+  - first:
+      213: 7934209870924093672
+    second: warrior animation 5
+  - first:
+      213: 3962402802927646318
+    second: warrior animation 6
+  - first:
+      213: -883514061054606337
+    second: warrior animation 7
+  - first:
+      213: -3996176711526104547
+    second: warrior animation 8
+  - first:
+      213: -6030286014740261220
+    second: warrior animation 9
+  - first:
+      213: -1307998892281641512
+    second: warrior animation 10
+  - first:
+      213: -9118191493367444102
+    second: warrior animation 11
+  - first:
+      213: 831699998542692625
+    second: warrior animation 12
+  - first:
+      213: -2155921482584165776
+    second: warrior animation 13
+  - first:
+      213: 1918489453592219979
+    second: warrior animation 14
+  - first:
+      213: 666193468454743841
+    second: warrior animation 15
+  - first:
+      213: -8272830612975004686
+    second: warrior animation 16
+  - first:
+      213: -3988838959162811244
+    second: warrior animation 17
+  - first:
+      213: 5853987866655442101
+    second: warrior animation 18
+  - first:
+      213: -6686290477496772098
+    second: warrior animation 19
+  - first:
+      213: -1506807397432331936
+    second: warrior animation 20
+  - first:
+      213: 7122072426219184695
+    second: warrior animation 21
+  - first:
+      213: -7370369817469445152
+    second: warrior animation 22
+  - first:
+      213: 1565724034349031354
+    second: warrior animation 23
+  - first:
+      213: -1990123996133391770
+    second: warrior animation 24
+  - first:
+      213: -8459597860861082210
+    second: warrior animation 25
+  - first:
+      213: -7915637632157249083
+    second: warrior animation 26
+  - first:
+      213: -6026542922445292907
+    second: warrior animation 27
+  - first:
+      213: -2312316859124428260
+    second: warrior animation 28
+  - first:
+      213: -9028449277617500353
+    second: warrior animation 29
+  - first:
+      213: -1673190586636004892
+    second: warrior animation 30
+  - first:
+      213: 7095061204103710033
+    second: warrior animation 31
+  - first:
+      213: -3520825321686754068
+    second: warrior animation 32
+  - first:
+      213: -99751147944278351
+    second: warrior animation 33
+  - first:
+      213: 1410361890916514418
+    second: warrior animation 34
+  - first:
+      213: -7793524396752993216
+    second: warrior animation 35
+  - first:
+      213: -1373214234336596378
+    second: warrior animation 36
+  - first:
+      213: 4623365215123299582
+    second: warrior animation 37
+  - first:
+      213: -3224894410449479447
+    second: warrior animation 38
+  - first:
+      213: -3450672662526531949
+    second: warrior animation 39
+  - first:
+      213: -466441432740650705
+    second: warrior animation 40
+  - first:
+      213: -3927661905076602366
+    second: warrior animation 41
+  - first:
+      213: -6960781993412091346
+    second: warrior animation 42
+  - first:
+      213: -158703663543897048
+    second: warrior animation 43
+  - first:
+      213: 7884585900604796143
+    second: warrior animation 44
+  - first:
+      213: 1708100773393188465
+    second: warrior animation 45
+  - first:
+      213: 2162678410065496861
+    second: warrior animation 46
+  - first:
+      213: 1385744010802759937
+    second: warrior animation 47
+  - first:
+      213: -7787159809003415441
+    second: warrior animation 48
+  - first:
+      213: -6678055377474368666
+    second: warrior animation 49
+  - first:
+      213: -4293432012313275222
+    second: warrior animation 50
+  - first:
+      213: -3998881499751199481
+    second: warrior animation 51
+  - first:
+      213: 921217046591484622
+    second: warrior animation 52
+  - first:
+      213: 3647899309589564661
+    second: warrior animation 53
+  - first:
+      213: 7997948869416591756
+    second: warrior animation 54
+  - first:
+      213: 5192472261258933854
+    second: warrior animation 55
+  - first:
+      213: 193169875059053856
+    second: warrior animation 56
+  - first:
+      213: -572708733037979624
+    second: warrior animation 57
+  - first:
+      213: -3741268730129349084
+    second: warrior animation 58
+  - first:
+      213: -6504551826247542287
+    second: warrior animation 59
+  - first:
+      213: 7097666696860975280
+    second: warrior animation 60
+  - first:
+      213: 916515463650482362
+    second: warrior animation 61
+  - first:
+      213: -4759419196215768106
+    second: warrior animation 62
+  - first:
+      213: 7521040547776179741
+    second: warrior animation 63
+  - first:
+      213: -6939529490213506842
+    second: warrior animation 64
+  - first:
+      213: 4496515493043521783
+    second: warrior animation 65
+  - first:
+      213: -2029835106001282624
+    second: warrior animation 66
+  - first:
+      213: -7729033729538913741
+    second: warrior animation 67
+  - first:
+      213: -286896785055617136
+    second: warrior animation 68
+  - first:
+      213: -2783278091533782555
+    second: warrior animation 69
+  - first:
+      213: -9093471174305411295
+    second: warrior animation 70
+  - first:
+      213: -7885928241965841607
+    second: warrior animation 71
+  - first:
+      213: 4198230282754983673
+    second: warrior animation 72
+  - first:
+      213: 6270449274795515673
+    second: warrior animation 73
+  - first:
+      213: -3460325196474486211
+    second: warrior animation 74
+  - first:
+      213: 8779299952003880227
+    second: warrior animation 75
+  - first:
+      213: 3875146045682988308
+    second: warrior animation 76
+  - first:
+      213: -93294758219984712
+    second: warrior animation 77
+  - first:
+      213: -6755008003261877829
+    second: warrior animation 78
+  - first:
+      213: 2475317251095216714
+    second: warrior animation 79
+  - first:
+      213: 8425082192951209449
+    second: warrior animation 80
+  - first:
+      213: -7379701102334029380
+    second: warrior animation 81
+  - first:
+      213: -2152093895907809845
+    second: warrior animation 82
+  - first:
+      213: 5611182864741123124
+    second: warrior animation 83
+  - first:
+      213: 4275604963931664997
+    second: warrior animation 84
+  - first:
+      213: -7308260042961292898
+    second: warrior animation 85
+  - first:
+      213: -3710546338679853859
+    second: warrior animation 86
+  - first:
+      213: -4731711382761147656
+    second: warrior animation 87
+  - first:
+      213: 5427582511306629514
+    second: warrior animation 88
+  - first:
+      213: 1489972318412617539
+    second: warrior animation 89
+  - first:
+      213: 1789485579558737999
+    second: warrior animation 90
+  - first:
+      213: 2503242718987187683
+    second: warrior animation 91
+  - first:
+      213: 3633400267859212452
+    second: warrior animation 92
+  - first:
+      213: -4857200002532130926
+    second: warrior animation 93
+  - first:
+      213: 1060482494631062488
+    second: warrior animation 94
+  - first:
+      213: -2070601954021639400
+    second: warrior animation 95
+  - first:
+      213: -7003868739422165421
+    second: warrior animation 96
+  - first:
+      213: 894407584258334841
+    second: warrior animation 97
+  - first:
+      213: 4324789344527260713
+    second: warrior animation 98
+  - first:
+      213: -3725241014400903317
+    second: warrior animation 99
+  - first:
+      213: -7960211607681888382
+    second: WArrior Male Idle 0
+  - first:
+      213: -669345402836764964
+    second: WArrior Male Idle 1
+  - first:
+      213: -4809757340396726723
+    second: WArrior Male Idle 2
+  - first:
+      213: -5344174294649863070
+    second: WArrior Male Idle 3
+  - first:
+      213: 5710690447518594180
+    second: WArrior Male Idle 4
+  - first:
+      213: -4767636484729315693
+    second: WArrior Male Idle 5
+  - first:
+      213: 4889716631923778022
+    second: WArrior Male Idle 6
+  - first:
+      213: -3912142754630458026
+    second: WArrior Male Idle 7
+  - first:
+      213: -70795037588575777
+    second: WArrior Male Idle 8
+  - first:
+      213: 1900055574627184646
+    second: WArrior Male Idle 9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1971,7 +3111,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: test_0
+      name: Warrior Male Idle 0
       rect:
         serializedVersion: 2
         x: 0
@@ -1985,14 +3125,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 171a2cac57666f1b0800000000000000
-      internalID: -5623194428626525839
+      spriteID: b8589a42a13fef4a0800000000000000
+      internalID: -6557536713795074677
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_1
+      name: Warrior Male Idle 1
       rect:
         serializedVersion: 2
         x: 32
@@ -2006,14 +3146,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b3078d4dccca44bd0800000000000000
-      internalID: -2646800685242748869
+      spriteID: 6b924b670b83a96e0800000000000000
+      internalID: -1830087968015767114
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_2
+      name: Warrior Male Idle 2
       rect:
         serializedVersion: 2
         x: 64
@@ -2027,14 +3167,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7f609d4efc9c69390800000000000000
-      internalID: -7811834608892705033
+      spriteID: 1ed06079fd7861f10800000000000000
+      internalID: 2240127259044613601
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_3
+      name: Warrior Male Idle 3
       rect:
         serializedVersion: 2
         x: 96
@@ -2048,14 +3188,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 23a6aa5ec93121570800000000000000
-      internalID: 8435826616607337010
+      spriteID: ee9fbb7a43e9f9b50800000000000000
+      internalID: 6602169527738038766
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_4
+      name: Warrior Male Idle 4
       rect:
         serializedVersion: 2
         x: 128
@@ -2069,14 +3209,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 364b64aabe7ea1d30800000000000000
-      internalID: 4403086585068172387
+      spriteID: 61eedbb0d005878b0800000000000000
+      internalID: -5154281756563739114
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_5
+      name: Warrior Male Idle 5
       rect:
         serializedVersion: 2
         x: 160
@@ -2090,14 +3230,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0dda90f66789d9b10800000000000000
-      internalID: 1989914244804095440
+      spriteID: ba2eea7b16cbbb0d0800000000000000
+      internalID: -3405921565296106837
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_6
+      name: Warrior Male Idle 6
       rect:
         serializedVersion: 2
         x: 192
@@ -2111,14 +3251,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 688c1b75306b988a0800000000000000
-      internalID: -6302306078055872378
+      spriteID: 15a391d16e340b030800000000000000
+      internalID: 3508378765331348049
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_7
+      name: Warrior Male Idle 7
       rect:
         serializedVersion: 2
         x: 224
@@ -2132,14 +3272,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 13239a90d7a6cd9f0800000000000000
-      internalID: -442361578123611599
+      spriteID: 355b47002503a5000800000000000000
+      internalID: 25385876657059155
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_8
+      name: Warrior Male Idle 8
       rect:
         serializedVersion: 2
         x: 256
@@ -2153,14 +3293,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f048fd28e281cd5b0800000000000000
-      internalID: -5342368469925002225
+      spriteID: 6908c6dfebcc5bf80800000000000000
+      internalID: -8091336034833629034
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_9
+      name: Warrior Male Idle 9
       rect:
         serializedVersion: 2
         x: 288
@@ -2174,14 +3314,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c72ed5df6316507e0800000000000000
-      internalID: -1799925587257728388
+      spriteID: 617cad1fb84f0fdd0800000000000000
+      internalID: -2454192915021641962
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_10
+      name: Warrior Male Use 0
       rect:
         serializedVersion: 2
         x: 0
@@ -2195,14 +3335,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b7c219e28d68a5f70800000000000000
-      internalID: 9176795453773130875
+      spriteID: bb1778f2dabe84210800000000000000
+      internalID: 1317562020065145275
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_11
+      name: Warrior Male Use 1
       rect:
         serializedVersion: 2
         x: 32
@@ -2216,14 +3356,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dd4c326c408e80ba0800000000000000
-      internalID: -6122388586208443171
+      spriteID: 88507c60a4b0468f0800000000000000
+      internalID: -548300842063166072
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_12
+      name: Warrior Male Use 2
       rect:
         serializedVersion: 2
         x: 64
@@ -2237,14 +3377,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 939d5236c581ec460800000000000000
-      internalID: 7263770034074671417
+      spriteID: b68a03a79ae7780e0800000000000000
+      internalID: -2267704620993173397
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_13
+      name: Warrior Male Use 3
       rect:
         serializedVersion: 2
         x: 96
@@ -2258,14 +3398,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b22e8551dbeebdf90800000000000000
-      internalID: -6927681105904999893
+      spriteID: 3979ebb3dc405db90800000000000000
+      internalID: -7217857548274198637
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_14
+      name: Warrior Male Use 4
       rect:
         serializedVersion: 2
         x: 128
@@ -2279,14 +3419,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3babd10d73d411360800000000000000
-      internalID: 7138571786469096115
+      spriteID: 9a4fe201ab49802a0800000000000000
+      internalID: -6770998512895200087
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_15
+      name: Warrior Male Use 5
       rect:
         serializedVersion: 2
         x: 160
@@ -2300,14 +3440,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 70daecdaa012869f0800000000000000
-      internalID: -475093430938194681
+      spriteID: a095ead839d62ec00800000000000000
+      internalID: 928424953696377098
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_16
+      name: Warrior Male Use 6
       rect:
         serializedVersion: 2
         x: 192
@@ -2321,14 +3461,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7468248e9d79e4310800000000000000
-      internalID: 1391216297064433223
+      spriteID: 7fade86d3e8d5eab0800000000000000
+      internalID: -4979335339919353097
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_17
+      name: Warrior Male Use 7
       rect:
         serializedVersion: 2
         x: 224
@@ -2342,14 +3482,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e083f4231842230c0800000000000000
-      internalID: -4597572132278421490
+      spriteID: 6fc82d1bd6398bab0800000000000000
+      internalID: -4992078087596110602
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_18
+      name: Warrior Male Use 8
       rect:
         serializedVersion: 2
         x: 256
@@ -2363,14 +3503,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e2101d0a51f14aad0800000000000000
-      internalID: -2691992499507887826
+      spriteID: 8315f2e53aa7d2590800000000000000
+      internalID: -7697361346027892424
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_19
+      name: Warrior Male Use 9
       rect:
         serializedVersion: 2
         x: 288
@@ -2384,14 +3524,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6252946da6b038120800000000000000
-      internalID: 2414786378690274598
+      spriteID: 02c9409ff5e553730800000000000000
+      internalID: 3978189612144434208
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_20
+      name: Warrior Male Move 0
       rect:
         serializedVersion: 2
         x: 0
@@ -2405,14 +3545,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9fdee9e9e4f7b95a0800000000000000
-      internalID: -6513472460415898119
+      spriteID: dac3586a7b117fa50800000000000000
+      internalID: 6554727263131483309
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_21
+      name: Warrior Male Move 1
       rect:
         serializedVersion: 2
         x: 32
@@ -2426,14 +3566,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 511c4e4009754c6f0800000000000000
-      internalID: -665310568874983147
+      spriteID: c3616e43e8b385500800000000000000
+      internalID: 385123250099066428
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_22
+      name: Warrior Male Move 2
       rect:
         serializedVersion: 2
         x: 64
@@ -2447,14 +3587,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a777836d61b60d360800000000000000
-      internalID: 7192366350738159482
+      spriteID: 0f580496ab97a8760800000000000000
+      internalID: 7460909574229362160
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_23
+      name: Warrior Male Move 3
       rect:
         serializedVersion: 2
         x: 96
@@ -2468,14 +3608,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bb83a320f9456bbf0800000000000000
-      internalID: -308966482514396997
+      spriteID: a3c7f01973ac294d0800000000000000
+      internalID: -3129216451063350214
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_24
+      name: Warrior Male Move 4
       rect:
         serializedVersion: 2
         x: 128
@@ -2489,14 +3629,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e6765376fa3f37380800000000000000
-      internalID: -8974561697742887058
+      spriteID: cc89de0cf71d88060800000000000000
+      internalID: 6956039971101579468
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_25
+      name: Warrior Male Move 5
       rect:
         serializedVersion: 2
         x: 160
@@ -2510,14 +3650,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 322db55425f46e260800000000000000
-      internalID: 7126470675129946659
+      spriteID: ce1f64e1cdadb5620800000000000000
+      internalID: 2764043435257557484
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_26
+      name: Warrior Male Move 6
       rect:
         serializedVersion: 2
         x: 192
@@ -2531,14 +3671,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 72ce71219eb99a4a0800000000000000
-      internalID: -6581557955092026329
+      spriteID: 7494e39ec1f137250800000000000000
+      internalID: 5941126542464534855
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_27
+      name: Warrior Male Move 7
       rect:
         serializedVersion: 2
         x: 224
@@ -2552,14 +3692,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 45abdcc1c57562460800000000000000
-      internalID: 7216551506039650900
+      spriteID: 9217ea55e6aef5580800000000000000
+      internalID: -8836086184272826071
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_28
+      name: Warrior Male Move 8
       rect:
         serializedVersion: 2
         x: 256
@@ -2573,14 +3713,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 150d77234fd237570800000000000000
-      internalID: 8463158651601277009
+      spriteID: 0a642e87cc2056a50800000000000000
+      internalID: 6513615513285969568
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_29
+      name: Warrior Male Move 9
       rect:
         serializedVersion: 2
         x: 288
@@ -2594,14 +3734,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f3ce9bca00c3c9c80800000000000000
-      internalID: -8314704838437245889
+      spriteID: 9bfae2fd7a6b4cd50800000000000000
+      internalID: 6756726173082759097
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_30
+      name: Warrior Male Attack 0
       rect:
         serializedVersion: 2
         x: 0
@@ -2615,14 +3755,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: da232e25cfa239dd0800000000000000
-      internalID: -2480591706540330323
+      spriteID: afab879b1c94072c0800000000000000
+      internalID: -4435964536570725638
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_31
+      name: Warrior Male Attack 1
       rect:
         serializedVersion: 2
         x: 32
@@ -2636,14 +3776,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2be3beb234ec020c0800000000000000
-      internalID: -4602452031277678926
+      spriteID: 5d750b92c3eb9a900800000000000000
+      internalID: 696296783012190165
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_32
+      name: Warrior Male Attack 2
       rect:
         serializedVersion: 2
         x: 64
@@ -2657,14 +3797,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9ac6e4bc46ca7af20800000000000000
-      internalID: 3433902789800914089
+      spriteID: 5c98c570802b9ca20800000000000000
+      internalID: 3083191167464802757
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_33
+      name: Warrior Male Attack 3
       rect:
         serializedVersion: 2
         x: 96
@@ -2678,14 +3818,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 088f0d1179d562f90800000000000000
-      internalID: -6978787669143652224
+      spriteID: 478666ec751f6c5e0800000000000000
+      internalID: -1889557634208077708
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_34
+      name: Warrior Male Attack 4
       rect:
         serializedVersion: 2
         x: 128
@@ -2699,14 +3839,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 045a7724444cc2830800000000000000
-      internalID: 4047825962551190848
+      spriteID: 4964b8f1468ccaf50800000000000000
+      internalID: 6894105461948892820
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_35
+      name: Warrior Male Attack 5
       rect:
         serializedVersion: 2
         x: 160
@@ -2720,14 +3860,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 35bb2db0bc3d158c0800000000000000
-      internalID: -4012192923980219565
+      spriteID: b05bbeedaf8d27bf0800000000000000
+      internalID: -327961250851212021
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_36
+      name: Warrior Male Attack 6
       rect:
         serializedVersion: 2
         x: 192
@@ -2741,14 +3881,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d032f5f7790a28cb0800000000000000
-      internalID: -4863148075069267187
+      spriteID: f3c8f86ac67a8ac30800000000000000
+      internalID: 4370927523455798335
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_37
+      name: Warrior Male Attack 7
       rect:
         serializedVersion: 2
         x: 224
@@ -2762,14 +3902,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b11c0cbc383b43c90800000000000000
-      internalID: -7190925326363344613
+      spriteID: b06cd72a653641c50800000000000000
+      internalID: 6635037374768072203
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_38
+      name: Warrior Male Attack 8
       rect:
         serializedVersion: 2
         x: 256
@@ -2783,14 +3923,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 21b3ea3154e0b1f40800000000000000
-      internalID: 5700165443213212434
+      spriteID: 6ed9a17e10f640c80800000000000000
+      internalID: -8357432954529866266
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_39
+      name: Warrior Male Attack 9
       rect:
         serializedVersion: 2
         x: 288
@@ -2804,14 +3944,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7095387470a831090800000000000000
-      internalID: -8064950743821231865
+      spriteID: 87e00ce630fbdf8d0800000000000000
+      internalID: -2810880570945433992
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_40
+      name: Warrior Male Death 0
       rect:
         serializedVersion: 2
         x: 0
@@ -2825,14 +3965,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a89f90dce66db38b0800000000000000
-      internalID: -5171303975730153078
+      spriteID: c2b592ff44780df60800000000000000
+      internalID: 8057088463774243628
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_41
+      name: Warrior Male Death 1
       rect:
         serializedVersion: 2
         x: 32
@@ -2846,14 +3986,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 52e35b37341bdee90800000000000000
-      internalID: -6994739742974329307
+      spriteID: b3f4238940dcd5e30800000000000000
+      internalID: 4493973422802620219
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_42
+      name: Warrior Male Death 2
       rect:
         serializedVersion: 2
         x: 64
@@ -2867,14 +4007,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 74db726c9f65e55e0800000000000000
-      internalID: -1919000760441914041
+      spriteID: 3c5721f749d316fe0800000000000000
+      internalID: -1197608317907470909
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_43
+      name: Warrior Male Death 3
       rect:
         serializedVersion: 2
         x: 96
@@ -2888,14 +4028,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3aaff5475060b7ff0800000000000000
-      internalID: -37429551405466973
+      spriteID: c0dfd8812868e2710800000000000000
+      internalID: 1670420405116861708
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_44
+      name: Warrior Male Death 4
       rect:
         serializedVersion: 2
         x: 128
@@ -2909,14 +4049,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 313876bed8c1c7e90800000000000000
-      internalID: -7026709922739420397
+      spriteID: 0b1255f8f6da2c100800000000000000
+      internalID: 126854434177491376
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_45
+      name: Warrior Male Death 5
       rect:
         serializedVersion: 2
         x: 160
@@ -2930,14 +4070,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0ef8b52178269aa30800000000000000
-      internalID: 4227018057532018656
+      spriteID: f0f093404247aab90800000000000000
+      internalID: -7229838553751417073
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_46
+      name: Warrior Male Death 6
       rect:
         serializedVersion: 2
         x: 192
@@ -2951,14 +4091,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b5e5610808154df40800000000000000
-      internalID: 5752312236405579355
+      spriteID: 91edb5e6c7371f6b0800000000000000
+      internalID: -5264299511154745831
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_47
+      name: Warrior Male Death 7
       rect:
         serializedVersion: 2
         x: 224
@@ -2972,14 +4112,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7ae6fc83584517e30800000000000000
-      internalID: 4499470433880338087
+      spriteID: 3d7cb02c251c13710800000000000000
+      internalID: 1671329497918195667
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_48
+      name: Warrior Male Death 8
       rect:
         serializedVersion: 2
         x: 256
@@ -2993,14 +4133,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 121401c7c5c883520800000000000000
-      internalID: 2682047906945450273
+      spriteID: 079c412730c3f1030800000000000000
+      internalID: 3467556223595104624
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_49
+      name: Warrior Male Death 9
       rect:
         serializedVersion: 2
         x: 288
@@ -3014,14 +4154,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9ca8872d21da065e0800000000000000
-      internalID: -1918343144907699511
+      spriteID: ae9088449c83a6520800000000000000
+      internalID: 2696029764024011242
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_50
+      name: Warrior Female Idle 0
       rect:
         serializedVersion: 2
         x: 0
@@ -3035,14 +4175,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8b707aeb71e039420800000000000000
-      internalID: 2635465702087526328
+      spriteID: 93482eba5ba4b5380800000000000000
+      internalID: -8981502887727037383
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_51
+      name: Warrior Female Idle 1
       rect:
         serializedVersion: 2
         x: 32
@@ -3056,14 +4196,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d25c72fade815e6c0800000000000000
-      internalID: -4114855275408145107
+      spriteID: 1bc88134197ce32b0800000000000000
+      internalID: -5602821459692450639
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_52
+      name: Warrior Female Idle 2
       rect:
         serializedVersion: 2
         x: 64
@@ -3077,14 +4217,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 23e4e42bbe2aedfd0800000000000000
-      internalID: -2315234025229365710
+      spriteID: 4a788767ff5de8190800000000000000
+      internalID: -7958188198336100444
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_53
+      name: Warrior Female Idle 3
       rect:
         serializedVersion: 2
         x: 96
@@ -3098,14 +4238,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 273d8b6ae4b608110800000000000000
-      internalID: 1261125881212490610
+      spriteID: 0f81d6319031f0970800000000000000
+      internalID: 8723211932941490416
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_54
+      name: Warrior Female Idle 4
       rect:
         serializedVersion: 2
         x: 128
@@ -3119,14 +4259,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 81ef8b236cccf74d0800000000000000
-      internalID: -3134561664000000488
+      spriteID: d429bace2840856d0800000000000000
+      internalID: -3001644191279508915
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_55
+      name: Warrior Female Idle 5
       rect:
         serializedVersion: 2
         x: 160
@@ -3140,14 +4280,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f745d698c1e059570800000000000000
-      internalID: 8472693789694973055
+      spriteID: cf49b272c80a017b0800000000000000
+      internalID: -5255524241328335620
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_56
+      name: Warrior Female Idle 6
       rect:
         serializedVersion: 2
         x: 192
@@ -3161,14 +4301,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4f392eb9a327f0dc0800000000000000
-      internalID: -3670589575234677772
+      spriteID: e2a93f6628f3d5ab0800000000000000
+      internalID: -5017784580515325394
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_57
+      name: Warrior Female Idle 7
       rect:
         serializedVersion: 2
         x: 224
@@ -3182,14 +4322,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fbd0d04131db32e60800000000000000
-      internalID: 7936394857995374015
+      spriteID: 18456748d39477df0800000000000000
+      internalID: -182596731321035647
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_58
+      name: Warrior Female Idle 8
       rect:
         serializedVersion: 2
         x: 256
@@ -3203,14 +4343,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: baed3113ed896f760800000000000000
-      internalID: 7491343110250946219
+      spriteID: 695c8cb95a6f7dc70800000000000000
+      internalID: 8995929971839518102
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_59
+      name: Warrior Female Idle 9
       rect:
         serializedVersion: 2
         x: 288
@@ -3224,14 +4364,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5ec4743ce258aa9d0800000000000000
-      internalID: -2762248985547158299
+      spriteID: 3ddac55aca509c6d0800000000000000
+      internalID: -2969836240207303213
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_60
+      name: Warrior Female Use 0
       rect:
         serializedVersion: 2
         x: 0
@@ -3245,14 +4385,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d582b58a3bae07630800000000000000
-      internalID: 3922893332784293981
+      spriteID: 6e3b6e4c597fc1a90800000000000000
+      internalID: -7341721069895109658
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_61
+      name: Warrior Female Use 1
       rect:
         serializedVersion: 2
         x: 32
@@ -3266,14 +4406,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7e8dd267c7e225360800000000000000
-      internalID: 7156833869938677991
+      spriteID: c9e6e145d7f0e58f0800000000000000
+      internalID: -549985073536012644
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_62
+      name: Warrior Female Use 2
       rect:
         serializedVersion: 2
         x: 64
@@ -3287,14 +4427,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 31ac97ffeda0957e0800000000000000
-      internalID: -1776376625135760877
+      spriteID: 9866c156aed109350800000000000000
+      internalID: 6021345594350265993
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_63
+      name: Warrior Female Use 3
       rect:
         serializedVersion: 2
         x: 96
@@ -3308,14 +4448,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 68d41396ec6f9eae0800000000000000
-      internalID: -1519412032872297082
+      spriteID: 908b87ebceb3595c0800000000000000
+      internalID: -4209392388713957367
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_64
+      name: Warrior Female Use 4
       rect:
         serializedVersion: 2
         x: 128
@@ -3329,14 +4469,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 03640c7d5f590c900800000000000000
-      internalID: 702726424989025840
+      spriteID: fac9ebd516d5b54c0800000000000000
+      internalID: -4297738746629022545
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_65
+      name: Warrior Female Use 5
       rect:
         serializedVersion: 2
         x: 160
@@ -3350,14 +4490,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 89bf3fd3e74056cc0800000000000000
-      internalID: -3718560977072686184
+      spriteID: fbf2e32556fcd2b00800000000000000
+      internalID: 805527942447640511
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_66
+      name: Warrior Female Use 6
       rect:
         serializedVersion: 2
         x: 192
@@ -3371,14 +4511,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c5c0532e1f7860120800000000000000
-      internalID: 2379738926063881308
+      spriteID: 5d239ed0f7bc7e100800000000000000
+      internalID: 137302060212761301
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_67
+      name: Warrior Female Use 7
       rect:
         serializedVersion: 2
         x: 224
@@ -3392,14 +4532,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 13a8fd4dac1acbbb0800000000000000
-      internalID: -4918878800468538831
+      spriteID: 6b8b5ea977ca7e9a0800000000000000
+      internalID: -6203800331979736906
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_68
+      name: Warrior Female Use 8
       rect:
         serializedVersion: 2
         x: 256
@@ -3413,14 +4553,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e61751f319927b970800000000000000
-      internalID: 8770524503132696942
+      spriteID: e93bb235c19a7e170800000000000000
+      internalID: 8207714785025569694
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_69
+      name: Warrior Female Use 9
       rect:
         serializedVersion: 2
         x: 288
@@ -3434,14 +4574,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a7481dd2bf765b360800000000000000
-      internalID: 7184763109042652282
+      spriteID: df3e1a7f265acece0800000000000000
+      internalID: -1374541941774883843
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_70
+      name: Warrior Female Move 0
       rect:
         serializedVersion: 2
         x: 0
@@ -3455,14 +4595,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7f6af8752edc55ec0800000000000000
-      internalID: -3578727956860655881
+      spriteID: 684311c23ecbd72e0800000000000000
+      internalID: -2126335765166082938
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_71
+      name: Warrior Female Move 1
       rect:
         serializedVersion: 2
         x: 32
@@ -3476,14 +4616,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 310f73cccb7cd2450800000000000000
-      internalID: 6065723886831923219
+      spriteID: 390420bcb5f14fca0800000000000000
+      internalID: -5984123525760139117
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_72
+      name: Warrior Female Move 2
       rect:
         serializedVersion: 2
         x: 64
@@ -3497,14 +4637,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7bcca624912ff4fa0800000000000000
-      internalID: -5814162403609621321
+      spriteID: 09eb895a81ac63c50800000000000000
+      internalID: 6644720507438022288
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_73
+      name: Warrior Female Move 3
       rect:
         serializedVersion: 2
         x: 96
@@ -3518,14 +4658,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d5f4ac90d00b3a740800000000000000
-      internalID: 5162163167942037341
+      spriteID: 401cc9e2bfe6f2890800000000000000
+      internalID: -7480638430941232892
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_74
+      name: Warrior Female Move 4
       rect:
         serializedVersion: 2
         x: 128
@@ -3539,14 +4679,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8604666d3d30bf580800000000000000
-      internalID: -8792429639140753304
+      spriteID: 5caac41702fced620800000000000000
+      internalID: 2800903756517780165
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_75
+      name: Warrior Female Move 5
       rect:
         serializedVersion: 2
         x: 160
@@ -3560,14 +4700,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 308bbcdb233750490800000000000000
-      internalID: -7780686119442860029
+      spriteID: dfb1f9b24c79ae3c0800000000000000
+      internalID: -4329481222962078723
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_76
+      name: Warrior Female Move 6
       rect:
         serializedVersion: 2
         x: 192
@@ -3581,14 +4721,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c2634555d2902dca0800000000000000
-      internalID: -5993718063766948308
+      spriteID: 3b23da7a091acb870800000000000000
+      internalID: 8700006222833463987
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_77
+      name: Warrior Female Move 7
       rect:
         serializedVersion: 2
         x: 224
@@ -3602,14 +4742,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5a7a3ae83c4749ea0800000000000000
-      internalID: -5866936031296378971
+      spriteID: f88cbfc85f565ff20800000000000000
+      internalID: 3455780394383427727
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_78
+      name: Warrior Female Move 8
       rect:
         serializedVersion: 2
         x: 256
@@ -3623,14 +4763,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0ada800c1bd6b7060800000000000000
-      internalID: 6952271059974925728
+      spriteID: 2b06caa0c8f5f0580800000000000000
+      internalID: -8858756886935347022
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_79
+      name: Warrior Female Move 9
       rect:
         serializedVersion: 2
         x: 288
@@ -3644,14 +4784,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7f5111a9409492e70800000000000000
-      internalID: 9090877606937564663
+      spriteID: dae8f724251569050800000000000000
+      internalID: 5806918183285657261
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_80
+      name: Warrior Female Attack 0
       rect:
         serializedVersion: 2
         x: 0
@@ -3665,14 +4805,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: efb968a187c442ea0800000000000000
-      internalID: -5898505533223691266
+      spriteID: 0b47abe7e340f5530800000000000000
+      internalID: 3845797273258325168
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_81
+      name: Warrior Female Attack 1
       rect:
         serializedVersion: 2
         x: 32
@@ -3686,14 +4826,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 080c8788a746f7cd0800000000000000
-      internalID: -2558215585884749696
+      spriteID: 9c00ada9ff75c0f50800000000000000
+      internalID: 6848945888649937097
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_82
+      name: Warrior Female Attack 2
       rect:
         serializedVersion: 2
         x: 64
@@ -3707,14 +4847,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2ffc7c9e3e18897b0800000000000000
-      internalID: -5217277352428974094
+      spriteID: d2079bf3e8fd44740800000000000000
+      internalID: 5135475277156675629
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_83
+      name: Warrior Female Attack 3
       rect:
         serializedVersion: 2
         x: 96
@@ -3728,14 +4868,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 304e8593fed8477e0800000000000000
-      internalID: -1768632695050935293
+      spriteID: f1a5b5ea292ea8ca0800000000000000
+      internalID: -6013745232781551073
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_84
+      name: Warrior Female Attack 4
       rect:
         serializedVersion: 2
         x: 128
@@ -3749,14 +4889,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4528f9250ae95f700800000000000000
-      internalID: 573538938977747540
+      spriteID: d1b304c5fc88b0a20800000000000000
+      internalID: 3029665598524111645
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_85
+      name: Warrior Female Attack 5
       rect:
         serializedVersion: 2
         x: 160
@@ -3770,14 +4910,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3b33abe554b405ad0800000000000000
-      internalID: -2715587813990321229
+      spriteID: 76fde02a2ab4dd740800000000000000
+      internalID: 5178378308421607271
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_86
+      name: Warrior Female Attack 6
       rect:
         serializedVersion: 2
         x: 192
@@ -3791,14 +4931,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c60171aa5d3144f70800000000000000
-      internalID: 9170476549635772524
+      spriteID: a6f3391a9ba1729a0800000000000000
+      internalID: -6258003772625961110
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_87
+      name: Warrior Female Attack 7
       rect:
         serializedVersion: 2
         x: 224
@@ -3812,14 +4952,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f3fb422358fe44220800000000000000
-      internalID: 2469361851056832319
+      spriteID: 8f0f34d9588104050800000000000000
+      internalID: 5782648883691909368
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_88
+      name: Warrior Female Attack 8
       rect:
         serializedVersion: 2
         x: 256
@@ -3833,14 +4973,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 86714e1abd453fb30800000000000000
-      internalID: 4319889769869088616
+      spriteID: b85b187a744a79690800000000000000
+      internalID: -7595421618877123189
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_89
+      name: Warrior Female Attack 9
       rect:
         serializedVersion: 2
         x: 288
@@ -3854,14 +4994,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7ec11e1173e1fae30800000000000000
-      internalID: 4516862173147897063
+      spriteID: fee5865f1fea33a10800000000000000
+      internalID: 1888045023025979119
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_90
+      name: Warrior Female Death 0
       rect:
         serializedVersion: 2
         x: 0
@@ -3875,14 +5015,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 52d510bd9b4ef7d60800000000000000
-      internalID: 7890276559070780709
+      spriteID: 256d12f622fca75c0800000000000000
+      internalID: -4216830354278721966
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_91
+      name: Warrior Female Death 1
       rect:
         serializedVersion: 2
         x: 32
@@ -3896,14 +5036,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9bebdd52ff2aa9610800000000000000
-      internalID: 1628793431983505081
+      spriteID: b353da307f6757460800000000000000
+      internalID: 7238822779358623035
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_92
+      name: Warrior Female Death 2
       rect:
         serializedVersion: 2
         x: 64
@@ -3917,14 +5057,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 20342dc5abcd2d3d0800000000000000
-      internalID: -3183239293618207998
+      spriteID: 1a5ac7c74662fedf0800000000000000
+      internalID: -148858049652808287
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_93
+      name: Warrior Female Death 3
       rect:
         serializedVersion: 2
         x: 96
@@ -3938,14 +5078,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5cc3d8ac33fb95ad0800000000000000
-      internalID: -2712927071351522107
+      spriteID: 18d974a04ed40ac50800000000000000
+      internalID: 6674420289583422849
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_94
+      name: Warrior Female Death 4
       rect:
         serializedVersion: 2
         x: 128
@@ -3959,14 +5099,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b23038f313e5b0a90800000000000000
-      internalID: -7346674801512873173
+      spriteID: f1dd738e186c32cd0800000000000000
+      internalID: -2584003499931476705
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_95
+      name: Warrior Female Death 5
       rect:
         serializedVersion: 2
         x: 160
@@ -3980,14 +5120,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1f8939b7ab88e0580800000000000000
-      internalID: -8858993082472621839
+      spriteID: e5167ee0353d3b070800000000000000
+      internalID: 8121066906764927326
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_96
+      name: Warrior Female Death 6
       rect:
         serializedVersion: 2
         x: 192
@@ -4001,14 +5141,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1d46a0ddf82360da0800000000000000
-      internalID: -5979035861817596719
+      spriteID: 8c9fee62d96a88960800000000000000
+      internalID: 7604511164708354504
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_97
+      name: Warrior Female Death 7
       rect:
         serializedVersion: 2
         x: 224
@@ -4022,14 +5162,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1d0a598dbe0980330800000000000000
-      internalID: 3677348438373408977
+      spriteID: 484e46bb00ea6e940800000000000000
+      internalID: 5325134927579374724
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_98
+      name: Warrior Female Death 8
       rect:
         serializedVersion: 2
         x: 256
@@ -4043,14 +5183,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6fa5cb37fbaeb1f70800000000000000
-      internalID: 9159172375189412598
+      spriteID: 92c39c589083c9390800000000000000
+      internalID: -7810306040216863703
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_99
+      name: Warrior Female Death 9
       rect:
         serializedVersion: 2
         x: 288
@@ -4064,8 +5204,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7360aafbcd07f9a00800000000000000
-      internalID: 765454555086980663
+      spriteID: 5c444b7c3f6f72a10800000000000000
+      internalID: 1884746495965807813
       vertices: []
       indices: 
       edges: []
