@@ -22,7 +22,7 @@ public enum SexType
 
 public class Hero : Unit
 {
-    internal string name;
+    internal string name; 
     internal SexType sex;
     internal HeroState state;
     internal HeroClassData data;
