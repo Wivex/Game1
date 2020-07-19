@@ -343,7 +343,6 @@
     <Compile Include="Assets\UI\Drawers\TavernPanelDrawer.cs" />
     <Compile Include="Assets\UI\Drawers\UnitPanelDrawer.cs" />
     <Compile Include="Assets\UI\Panel Managers\MissionDetailsPanelManager.cs" />
-    <Compile Include="Assets\UI\Panel Managers\MissionPanelManager.cs" />
     <Compile Include="Assets\UI\Progress Bars\FillingBar.cs" />
     <None Include="Assets\3rd-Party\unity-ui-extensions\Resources\Shaders\UIAdditive.shader" />
     <None Include="Assets\3rd-Party\TextMesh Pro\Resources\Shaders\TMPro.cginc" />

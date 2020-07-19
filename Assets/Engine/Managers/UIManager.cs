@@ -29,15 +29,15 @@ public class UIManager : MonoBehaviour
 
     #endregion
     
-    #region UI PREFAB REFERENCES
+    #region GLOBAL UI PREFABS REFERENCES
 
     public static MonoBehaviour floatingTextPrefab, meleeHitEffectPrefab, missionOverviewPanelPrefab;
 
     #endregion
     
-    #region UI PANELS REFERENCES
+    #region GLOBAL UI PANELS REFERENCES
     
-    public static Transform previewContentPanel;
+    public Transform missionPanel, missionPreviewContentPanel;
 
     #endregion
 

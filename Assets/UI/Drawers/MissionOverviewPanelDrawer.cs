@@ -26,6 +26,10 @@ public class MissionOverviewPanelDrawer : Drawer
     Image[] consumableSlots;
     TextMeshProUGUI[] consumablesCharges;
 
+    // can't reference external scene objects in prefab inspector
+    static CanvasManager missionsCMan;
+    static Canvas overviewCanvas, detailsCanvas, noMisCanvas;
+
     public bool Visible { get; set; }
 
     //auto-assign some references
@@ -33,6 +37,15 @@ public class MissionOverviewPanelDrawer : Drawer
     {
         consumableSlots = consumablesPanel.GetComponentsInChildren<Image>().Where(comp => comp.name.Contains("Image")).ToArray();
         consumablesCharges = consumablesPanel.GetComponentsInChildren<TextMeshProUGUI>();
+
+        // check once, cause references are static for all overview panels
+        if (missionsCMan == null)
+        {
+            missionsCMan = UIManager.i.missionPreviewContentPanel.GetComponent<CanvasManager>();
+            detailsCanvas = missionsCMan.controlledCanvases.Find(canvas => canvas.name.Contains("Details"));
+            noMisCanvas = missionsCMan.controlledCanvases.Find(canvas => canvas.name.Contains("No Missions"));
+            overviewCanvas = UIManager.i.missionPreviewContentPanel.GetComponent<Canvas>();
+        }
     }
 
     public void Init(Mission mis)
@@ -74,6 +87,30 @@ public class MissionOverviewPanelDrawer : Drawer
         enemyHpBar.SetInitialValue((float)enemy.HP / enemy.HPMax);
         heroEnergyBar.SetInitialValue((float)mis.hero.Energy / mis.hero.EnergyMax);
         enemyEnergyBar.SetInitialValue((float)enemy.Energy / enemy.EnergyMax);
+    }
+
+    // using this to pass selected mis as parameter
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        // can't reference scene objects from prefab
+        ShowDetailsPanel(mis);
+    }
+
+    // can't pass class as parameter with button click from inspector
+    internal void ShowDetailsPanel(Mission mis)
+    {
+        // expDetailsPanelDrawManager.InitHeroPanel(hero);
+        missionsCMan.ChangeActiveCanvas(detailsCanvas);
+    }
+
+    /// <summary>
+    /// Init preview panel and keep it updating in the background (not initialize again each time mis panel is opened)
+    /// </summary>
+    internal void NewPreviewPanel(Mission mis)
+    {
+        //var panel = Instantiate(missionOverviewPanelPrefab, missionPreviewContentPanel);
+        //panel.Init(mis);
+        //expPreviewPanels.Add(mis, panel);
     }
 
     // TODO: rename to Redraw
@@ -168,11 +205,4 @@ public class MissionOverviewPanelDrawer : Drawer
     }
 
     #endregion
-
-    // using this to pass selected mis as parameter
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        // can't reference scene objects from prefab
-        //UIManager.misPanelManager.ShowDetailsPanel(mis);
-    }
 }
