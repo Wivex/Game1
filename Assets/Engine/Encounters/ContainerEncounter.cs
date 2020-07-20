@@ -14,7 +14,7 @@ public class ContainerEncounter : Encounter
 
     bool looting;
 
-    //internal AnimatorManager GetAnimManager(Unit unit) => unit is Hero ? mis.heroAM : mis.encounterAM;
+    //internal AnimationManager GetAnimManager(Unit unit) => unit is Hero ? mis.heroAM : mis.encounterAM;
 
     internal ContainerEncounter(Mission mis) : base(mis)
     {

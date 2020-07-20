@@ -9,10 +9,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{E1C5B1C5-DB7F-92A7-E154-08A070C4C726}</ProjectGuid>
+    <ProjectGuid>{C7831C50-8BB9-C80C-9EAB-BF7FD6E1E3F8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
+    <AssemblyName>Unity.2D.Animation.Samples.Editor</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -63,33 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\3rd-Party\EventDelegate\Editor\DrawerTools.cs" />
-    <Compile Include="Assets\3rd-Party\EventDelegate\Editor\EventDelegateDrawer.cs" />
-    <Compile Include="Assets\3rd-Party\EventDelegate\Editor\FlagDrawer.cs" />
-    <Compile Include="Assets\3rd-Party\EventDelegate\Editor\ReorderableDelegateDrawer.cs" />
-    <Compile Include="Assets\3rd-Party\SubjectNerd's InspectorTools\Editor\ReorderableArrayInspector.cs" />
-    <Compile Include="Assets\3rd-Party\SubjectNerd's InspectorTools\Editor\SerializedPropExtension.cs" />
-    <Compile Include="Assets\3rd-Party\unity-ui-extensions\Editor\AccordionElementEditor.cs" />
-    <Compile Include="Assets\3rd-Party\unity-ui-extensions\Editor\BezierLineRendererEditor.cs" />
-    <Compile Include="Assets\3rd-Party\unity-ui-extensions\Editor\BoxSliderEditor.cs" />
-    <Compile Include="Assets\3rd-Party\unity-ui-extensions\Editor\CUIBezierCurveEditor.cs" />
-    <Compile Include="Assets\3rd-Party\unity-ui-extensions\Editor\CUIGraphicEditor.cs" />
-    <Compile Include="Assets\3rd-Party\unity-ui-extensions\Editor\CUIImageEditor.cs" />
-    <Compile Include="Assets\3rd-Party\unity-ui-extensions\Editor\CUITextEditor.cs" />
-    <Compile Include="Assets\3rd-Party\unity-ui-extensions\Editor\CanvasGroupActivator.cs" />
-    <Compile Include="Assets\3rd-Party\unity-ui-extensions\Editor\ColorPickerPresetsEditor.cs" />
-    <Compile Include="Assets\3rd-Party\unity-ui-extensions\Editor\NonDrawingGraphicEditor.cs" />
-    <Compile Include="Assets\3rd-Party\unity-ui-extensions\Editor\ReadOnlyDrawer.cs" />
-    <Compile Include="Assets\3rd-Party\unity-ui-extensions\Editor\ScrollPositionControllerEditor.cs" />
-    <Compile Include="Assets\3rd-Party\unity-ui-extensions\Editor\TextPicEditor.cs" />
-    <Compile Include="Assets\3rd-Party\unity-ui-extensions\Editor\TextPicIconEditor.cs" />
-    <Compile Include="Assets\3rd-Party\unity-ui-extensions\Editor\TextPicIconListCopier.cs" />
-    <Compile Include="Assets\3rd-Party\unity-ui-extensions\Editor\TextPicRenameEditor.cs" />
-    <Compile Include="Assets\3rd-Party\unity-ui-extensions\Editor\UIExtensionsMenuOptions.cs" />
-    <Compile Include="Assets\3rd-Party\unity-ui-extensions\Editor\uGUITools.cs" />
-    <Compile Include="Assets\Editor\CopyAssetPathContextMenu.cs" />
-    <Compile Include="Assets\Editor\CustomPropertyDrawers.cs" />
-    <Compile Include="Assets\Editor\uGUITools.cs" />
+    <Compile Include="Assets\Samples\2D Animation Samples\3.2.3\Samples\5 SpriteSwap\Scripts\Editor\BuildAssetBundle.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.3f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -660,63 +634,29 @@
     <Reference Include="Boo.Lang">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.3f1/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>C:/!DEV/Game1/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>C:/!DEV/Game1/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Animation.Editor">
+      <HintPath>C:/!DEV/Game1/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Animation.Runtime">
+      <HintPath>C:/!DEV/Game1/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.TestRunner">
       <HintPath>C:/!DEV/Game1/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TestRunner">
       <HintPath>C:/!DEV/Game1/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/!DEV/Game1/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Monetization">
-      <HintPath>C:/!DEV/Game1/Library/ScriptAssemblies/UnityEngine.Monetization.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/!DEV/Game1/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>C:/!DEV/Game1/Library/ScriptAssemblies/UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/!DEV/Game1/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>C:/!DEV/Game1/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Timeline">
-      <HintPath>C:/!DEV/Game1/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/!DEV/Game1/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/!DEV/Game1/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>C:/!DEV/Game1/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>C:/!DEV/Game1/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/!DEV/Game1/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>C:/!DEV/Game1/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.UI">
-      <HintPath>C:/!DEV/Game1/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{7A8E2D87-BD4D-935C-C539-C3FF95D2C919}</Project>
-      <Name>Assembly-CSharp</Name>
-    </ProjectReference>
-    <ProjectReference Include="MyBox.csproj">
-      <Project>{23B67B9E-F155-A269-B54C-A9977236BCE6}</Project>
-      <Name>MyBox</Name>
+    <ProjectReference Include="Unity.2D.Animation.Samples.Runtime.csproj">
+      <Project>{3BB18551-CA17-EADA-7629-6EAA843DA410}</Project>
+      <Name>Unity.2D.Animation.Samples.Runtime</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

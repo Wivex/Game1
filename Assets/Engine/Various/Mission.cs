@@ -71,8 +71,8 @@ public class Mission
     }
 
     // UNDO: should move somewhere?
-    internal void StartAnimation(AnimationTrigger trigger, params AnimatorManager[] managers)
+    internal void StartAnimation(AnimationTrigger trigger, params AnimationManager[] managers)
     {
-        AnimatorManager.Trigger(trigger, managers);
+        AnimationManager.Trigger(trigger, managers);
     }
 }

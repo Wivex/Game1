@@ -2,7 +2,7 @@
 using UIEventDelegate;
 using UnityEngine;
 
-public class AnimatorManager : MonoBehaviour
+public class AnimationManager : MonoBehaviour
 {
     [Tooltip("These Animators will be triggered by TriggerLinkedAnimators()")]
     public Animator[] linkedAnimators;
@@ -16,7 +16,7 @@ public class AnimatorManager : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    internal static void Trigger(AnimationTrigger value, params AnimatorManager[] animManagers)
+    internal static void Trigger(AnimationTrigger value, params AnimationManager[] animManagers)
     {
         animManagers?.ForEach(manager => manager.animator.SetTrigger(value.ToString()));
     }

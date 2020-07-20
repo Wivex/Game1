@@ -7,8 +7,8 @@ public class CanvasManager : MonoBehaviour
     // disabled, but not hidden, to be able to see list contents in editor
     [Disabled]
     public List<Canvas> controlledCanvases = new List<Canvas>();
-    public Canvas defaultActiveCanvas;
     public List<Canvas> alwaysActiveCanvases = new List<Canvas>();
+    public Canvas defaultActiveCanvas;
 
     void OnValidate()
     {

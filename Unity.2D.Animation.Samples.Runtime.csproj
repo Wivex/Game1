@@ -9,10 +9,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{23B67B9E-F155-A269-B54C-A9977236BCE6}</ProjectGuid>
+    <ProjectGuid>{3BB18551-CA17-EADA-7629-6EAA843DA410}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>MyBox</AssemblyName>
+    <AssemblyName>Unity.2D.Animation.Samples.Runtime</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -63,13 +63,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\3rd-Party\MyBox\Tools\Features\AutoSaveFeature.cs" />
-    <Compile Include="Assets\3rd-Party\MyBox\Tools\Features\CleanEmptyDirectoriesFeature.cs" />
-    <Compile Include="Assets\3rd-Party\MyBox\Tools\Features\SceneViewBookmarkHotkeys.cs" />
-    <Compile Include="Assets\3rd-Party\MyBox\Tools\Features\SelectionHistoryHotkeys.cs" />
-    <Compile Include="Assets\3rd-Party\MyBox\Tools\Features\SerializedPropertyViewer.cs" />
-    <Compile Include="Assets\3rd-Party\MyBox\Tools\Features\ToggleLockHotkey.cs" />
-    <Compile Include="Assets\3rd-Party\MyBox\Tools\Internal\MyBoxSettings.cs" />
+    <Compile Include="Assets\Samples\2D Animation Samples\3.2.3\Samples\5 SpriteSwap\Scripts\Runtime\LoadSwapDLC.cs" />
+    <Compile Include="Assets\Samples\2D Animation Samples\3.2.3\Samples\5 SpriteSwap\Scripts\Runtime\SwapFullSkin.cs" />
+    <Compile Include="Assets\Samples\2D Animation Samples\3.2.3\Samples\5 SpriteSwap\Scripts\Runtime\SwapPart.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.3f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -628,14 +624,14 @@
     <Reference Include="System.Xml.Serialization">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.3f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Timeline">
-      <HintPath>C:/!DEV/Game1/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>C:/!DEV/Game1/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Animation.Runtime">
+      <HintPath>C:/!DEV/Game1/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>C:/!DEV/Game1/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>C:/!DEV/Game1/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>

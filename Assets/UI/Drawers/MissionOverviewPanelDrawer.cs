@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -37,55 +38,45 @@ public class MissionOverviewPanelDrawer : Drawer
 
     internal event Action AllAnimationsFinished;
 
+    internal static List<MissionOverviewPanelDrawer> panelsList = new List<MissionOverviewPanelDrawer>();
+
     //auto-assign some references
-    void Awake()
+    void Start()
     {
         // consumableIcons = consumablesPanel.GetComponentsInChildren<Image>().Where(comp => comp.name.Contains("Image")).ToArray();
         // consumablesCharges = consumablesPanel.GetComponentsInChildren<TextMeshProUGUI>();
 
-        // check once, cause references are static for all overview panels
+        // call ShowDetailsPanel() method when panel is clicked on
+        GetComponent<Button>().onClick.AddListener(() => ShowDetailsPanel(mis));
+
+        // check once for all instances, cause references are static for all overview panels
         if (missionsCMan == null)
         {
             goldPileSprites = Resources.LoadAll<Sprite>("Items/Gold").ToList();
-            missionsCMan = UIManager.i.missionPreviewContentPanel.GetComponent<CanvasManager>();
+            missionsCMan = UIManager.i.panels.missionPanel.GetComponent<CanvasManager>();
             detailsCanvas = missionsCMan.controlledCanvases.Find(canvas => canvas.name.Contains("Details"));
-            overviewCanvas = UIManager.i.missionPreviewContentPanel.GetComponent<Canvas>();
+            overviewCanvas = UIManager.i.panels.missionPreviewContentPanel.GetComponent<Canvas>();
+
+            panelsList.Clear();
         }
     }
 
-    public void Init(Mission mis)
+    internal void Init(Mission mis)
     {
         this.mis = mis;
+        AllAnimationsFinished += mis.NextAction;
 
-        // mis.heroAM = heroIcon.GetComponent<AnimatorManager>();
-        // mis.encounterAM = encSubjectIcon.GetComponent<AnimatorManager>();
-        // mis.interactionAM = encInteractionIcon.GetComponent<AnimatorManager>();
-        // mis.lootAM = lootIcon.GetComponent<AnimatorManager>();
-        // mis.locationAM = locationPanel.GetComponent<AnimatorManager>();
-
-        //mis.CombatStartEvent += SetStatBars;
-        
     }
 
-    // required for proper "unlistening" of C# event
-    protected void OnDestroy()
+    internal static void CreateNew(Mission mis)
     {
-        //if (mis != null)
-        //    mis.CombatStartEvent -= SetStatBars;
+        var newPanel = UIManager.i.prefabs.missionOverviewPanelPrefab
+                             .Instantiate<MissionOverviewPanelDrawer>(UIManager.i.panels.missionPreviewContentPanel);
+        newPanel.Init(mis);
+        panelsList.Add(newPanel);
     }
 
-    //update UI panels
-    void LateUpdate()
-    {
-        RedrawHeroDesc();
-        RedrawGold();
-        //    UpdateConsumables();
-        UpdateZone();
-        UpdateEncounterImage();
-        UpdateStatBars();
-        UpdateUnitStatuses();
-    }
-
+    // TODO: move draw to stat bars themselves
     public void SetStatBars()
     {
         var enemy = (mis.curEncounter as EnemyEncounter)?.enemy;
@@ -95,28 +86,11 @@ public class MissionOverviewPanelDrawer : Drawer
         enemyEnergyBar.SetInitialValue((float)enemy.Energy / enemy.EnergyMax);
     }
 
-    // using this to pass selected mis as parameter
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        // can't reference scene objects from prefab
-        ShowDetailsPanel(mis);
-    }
-
     // can't pass class as parameter with button click from inspector
     internal void ShowDetailsPanel(Mission mis)
     {
         // expDetailsPanelDrawManager.InitHeroPanel(hero);
         missionsCMan.ChangeActiveCanvas(detailsCanvas);
-    }
-
-    /// <summary>
-    /// Init preview panel and keep it updating in the background (not initialize again each time mis panel is opened)
-    /// </summary>
-    internal void NewPreviewPanel(Mission mis)
-    {
-        //var panel = Instantiate(missionOverviewPanelPrefab, missionPreviewContentPanel);
-        //panel.Init(mis);
-        //expPreviewPanels.Add(mis, panel);
     }
 
     // TODO: rename to Redraw
@@ -161,7 +135,7 @@ public class MissionOverviewPanelDrawer : Drawer
     //    }
     //}
 
-    void UpdateStatBars()
+    void RedrawStatBars()
     {
         if (mis.curEncounter is EnemyEncounter combat)
         {
@@ -172,24 +146,14 @@ public class MissionOverviewPanelDrawer : Drawer
         }
     }
 
-    //UNDONE:
-    void UpdateUnitStatuses()
-    {
-        if (mis.curEncounter is EnemyEncounter combat)
-        {
-            heroStatusIcon.gameObject.SetActive(combat.hero.Dead);
-            enemyStatusIcon.gameObject.SetActive(combat.enemy.Dead);
-        }
-    }
-
-    void UpdateZone()
+    void RedrawSite()
     {
         // locationImage.sprite = mis.curSite.siteImage;
         // locationImage.rectTransform.sizeDelta = mis.curSite.areaImageSize;
         // locationImage.transform.localPosition = mis.curSite.zonesPositions[mis.curZoneIndex];
     }
 
-    void UpdateEncounterImage()
+    void RedrawEncounterSubject()
     {
         if (mis.curEncounter is EnemyEncounter combat)
             encSubjectIcon.sprite = combat.enemy.data.icon;

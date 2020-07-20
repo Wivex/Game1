@@ -1,7 +1,20 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+
+[Serializable]
+public class PrefabsReferences
+{
+    public GameObject floatingTextPrefab, meleeHitEffectPrefab, missionOverviewPanelPrefab;
+}
+
+[Serializable]
+public class UIReferences
+{
+    public Transform missionPanel, missionPreviewContentPanel;
+}
 
 public class UIManager : MonoBehaviour
 {
@@ -28,19 +41,9 @@ public class UIManager : MonoBehaviour
     }
 
     #endregion
-    
-    #region GLOBAL UI PREFABS REFERENCES
 
-    public static MonoBehaviour floatingTextPrefab, meleeHitEffectPrefab, missionOverviewPanelPrefab;
-
-    #endregion
-    
-    #region GLOBAL UI PANELS REFERENCES
-    
-    public Transform missionPanel, missionPreviewContentPanel;
-
-    #endregion
-
+    public PrefabsReferences prefabs;
+    public UIReferences panels;
 
     //internal static void CreateFloatingTextForUnit(Mission exp, Unit target, int value)
     //{
@@ -68,7 +71,8 @@ public class UIManager : MonoBehaviour
 
     static void CreateFloatingText(Transform target, int value)
     {
-        var floatingText = Instantiate(floatingTextPrefab, target);
+        var floatingText = new MonoBehaviour();
+        // var floatingText = Instantiate(floatingTextPrefab, target);
         var textObject = floatingText.GetComponent<TextMeshProUGUI>();
 
         if (value > 0)

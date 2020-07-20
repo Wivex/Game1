@@ -13,42 +13,42 @@ public class AnimationStateManager : StateMachineBehaviour
     [HideIfNotBool("resetTriggerOnStart")]
     public AnimationTrigger triggerValue;
 
-    AnimatorManager AM;
+    AnimationManager AM;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        if (monitorAnimationStart)
-        {
-            TryCheckAM(animator);
-            AM.animationFinished = false;
-        }
-
-        if (resetTriggerOnStart)
-        {
-            TryCheckAM(animator);
-            AM.ResetTrigger(triggerValue);
-        }
-    }
-
-    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        if (monitorAnimationEnd)
-        {
-            TryCheckAM(animator);
-            AM.animationFinished = true;
-        }
-
-        if (destroyObjectOnEnd)
-        {
-            Destroy(animator.gameObject);
-        }
-    }
+    // public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    // {
+    //     if (monitorAnimationStart)
+    //     {
+    //         TryCheckAM(animator);
+    //         AM.animationFinished = false;
+    //     }
+    //
+    //     if (resetTriggerOnStart)
+    //     {
+    //         TryCheckAM(animator);
+    //         AM.ResetTrigger(triggerValue);
+    //     }
+    // }
+    //
+    // // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
+    // public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    // {
+    //     if (monitorAnimationEnd)
+    //     {
+    //         TryCheckAM(animator);
+    //         AM.animationFinished = true;
+    //     }
+    //
+    //     if (destroyObjectOnEnd)
+    //     {
+    //         Destroy(animator.gameObject);
+    //     }
+    // }
 
     void TryCheckAM(Animator animator)
     {
         if (AM == null)
-            AM = animator.GetComponent<AnimatorManager>();
+            AM = animator.GetComponent<AnimationManager>();
     }
 }

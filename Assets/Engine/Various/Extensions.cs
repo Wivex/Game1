@@ -145,4 +145,9 @@ public static class Extensions
                 yield return canvas;
         }
     }
+
+    /// <summary>
+    /// Instantiates a prefab and returns it's specified component
+    /// </summary>
+    public static T Instantiate<T>(this GameObject obj, Transform parent) where T : MonoBehaviour => Object.Instantiate(obj, parent).GetComponent<T>();
 }
