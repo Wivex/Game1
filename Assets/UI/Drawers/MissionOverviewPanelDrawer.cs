@@ -12,8 +12,7 @@ public class MissionOverviewPanelDrawer : Drawer
     
     public Transform consumablesPanel, locationPanel;
     public FillingBar heroHpBar, heroEnergyBar, enemyHpBar, enemyEnergyBar;
-    public Image heroImage, curGoldImage, heroIcon, objectIcon, interactionIcon, enemyStatusIcon, heroStatusIcon, locationImage, lootIcon;
-    List<Sprite> goldSprites;
+    public Image heroImage, curGoldImage, heroIcon, encSubjectIcon, encInteractionIcon, locationImage, lootIcon;
 
     public TextMeshProUGUI heroName,
         level,
@@ -21,29 +20,35 @@ public class MissionOverviewPanelDrawer : Drawer
 
     #endregion
 
+    #region CODE LOADED
+    
+    // Image[] consumableIcons;
+    // TextMeshProUGUI[] consumablesCharges;
+
+    
+    // can't reference external scene objects in prefab inspector
+    static List<Sprite> goldPileSprites;
+    static CanvasManager missionsCMan;
+    static Canvas overviewCanvas, detailsCanvas;
+
+    #endregion
+
     internal Mission mis;
 
-    Image[] consumableSlots;
-    TextMeshProUGUI[] consumablesCharges;
-
-    // can't reference external scene objects in prefab inspector
-    static CanvasManager missionsCMan;
-    static Canvas overviewCanvas, detailsCanvas, noMisCanvas;
-
-    public bool Visible { get; set; }
+    internal event Action AllAnimationsFinished;
 
     //auto-assign some references
     void Awake()
     {
-        consumableSlots = consumablesPanel.GetComponentsInChildren<Image>().Where(comp => comp.name.Contains("Image")).ToArray();
-        consumablesCharges = consumablesPanel.GetComponentsInChildren<TextMeshProUGUI>();
+        // consumableIcons = consumablesPanel.GetComponentsInChildren<Image>().Where(comp => comp.name.Contains("Image")).ToArray();
+        // consumablesCharges = consumablesPanel.GetComponentsInChildren<TextMeshProUGUI>();
 
         // check once, cause references are static for all overview panels
         if (missionsCMan == null)
         {
+            goldPileSprites = Resources.LoadAll<Sprite>("Items/Gold").ToList();
             missionsCMan = UIManager.i.missionPreviewContentPanel.GetComponent<CanvasManager>();
             detailsCanvas = missionsCMan.controlledCanvases.Find(canvas => canvas.name.Contains("Details"));
-            noMisCanvas = missionsCMan.controlledCanvases.Find(canvas => canvas.name.Contains("No Missions"));
             overviewCanvas = UIManager.i.missionPreviewContentPanel.GetComponent<Canvas>();
         }
     }
@@ -52,13 +57,14 @@ public class MissionOverviewPanelDrawer : Drawer
     {
         this.mis = mis;
 
-        //mis.heroAM = heroIcon.GetComponent<AnimatorManager>();
-        //mis.encounterAM = objectIcon.GetComponent<AnimatorManager>();
-        //mis.interactionAM = interactionIcon.GetComponent<AnimatorManager>();
-        //mis.lootAM = lootIcon.GetComponent<AnimatorManager>();
-        //mis.locationAM = locationPanel.GetComponent<AnimatorManager>();
+        // mis.heroAM = heroIcon.GetComponent<AnimatorManager>();
+        // mis.encounterAM = encSubjectIcon.GetComponent<AnimatorManager>();
+        // mis.interactionAM = encInteractionIcon.GetComponent<AnimatorManager>();
+        // mis.lootAM = lootIcon.GetComponent<AnimatorManager>();
+        // mis.locationAM = locationPanel.GetComponent<AnimatorManager>();
 
         //mis.CombatStartEvent += SetStatBars;
+        
     }
 
     // required for proper "unlistening" of C# event
@@ -130,26 +136,26 @@ public class MissionOverviewPanelDrawer : Drawer
         while (mis.hero.gold > a)
         {
             a = (int) Mathf.Pow(2, index++);
-            if (index >= goldSprites.Count - 1) break;
+            if (index >= goldPileSprites.Count - 1) break;
         }
 
-        curGoldImage.sprite = goldSprites[index];
+        curGoldImage.sprite = goldPileSprites[index];
     }
 
     //void UpdateConsumables()
     //{
-    //    for (var i = 0; i < consumableSlots.Length; i++)
+    //    for (var i = 0; i < consumableIcons.Length; i++)
     //    {
     //        if (i >= hero.consumables.Count)
     //        {
-    //            consumableSlots[i].sprite = null;
-    //            consumableSlots[i].color = Color.clear;
+    //            consumableIcons[i].sprite = null;
+    //            consumableIcons[i].color = Color.clear;
     //            consumablesCharges[i].text = string.Empty;
     //        }
     //        else
     //        {
-    //            consumableSlots[i].sprite = hero.consumables[i].consumableData.icon;
-    //            consumableSlots[i].color = Color.white;
+    //            consumableIcons[i].sprite = hero.consumables[i].consumableData.icon;
+    //            consumableIcons[i].color = Color.white;
     //            consumablesCharges[i].text = hero.consumables[i].curCharges.ToString();
     //        }
     //    }
@@ -186,9 +192,9 @@ public class MissionOverviewPanelDrawer : Drawer
     void UpdateEncounterImage()
     {
         if (mis.curEncounter is EnemyEncounter combat)
-            objectIcon.sprite = combat.enemy.data.icon;
+            encSubjectIcon.sprite = combat.enemy.data.icon;
         if (mis.curEncounter is ContainerEncounter cont)
-            objectIcon.sprite = cont.data.icon;
+            encSubjectIcon.sprite = cont.data.icon;
     }
 
     void ChangeZoneImage()
