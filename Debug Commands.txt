@@ -1,2 +1,0 @@
-// generate xml template based on pre initialized data class
-new ClassData().GenerateTemplate(@"C:\Users\wivex_000\Google Диск\Game Workshop\Game1\Game1\Content\Concepts\ClassTemplate.xml");
