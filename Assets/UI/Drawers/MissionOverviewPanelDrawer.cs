@@ -58,6 +58,8 @@ public class MissionOverviewPanelDrawer : Drawer
             overviewCanvas = UIManager.i.panels.missionPreviewContentPanel.GetComponent<Canvas>();
 
             panelsList.Clear();
+            // destroys prefab template panel inside
+            UIManager.i.panels.missionPreviewContentPanel.DestroyAllChildren();
         }
     }
 
@@ -74,6 +76,16 @@ public class MissionOverviewPanelDrawer : Drawer
                              .Instantiate<MissionOverviewPanelDrawer>(UIManager.i.panels.missionPreviewContentPanel);
         newPanel.Init(mis);
         panelsList.Add(newPanel);
+    }
+
+    internal void OnAnimationSequenceFinished()
+    {
+        AllAnimationsFinished();
+    }
+
+    internal void OnAnimationSequenceStarted()
+    {
+        AllAnimationsFinished();
     }
 
     // TODO: move draw to stat bars themselves
