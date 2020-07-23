@@ -21,9 +21,8 @@ public class SpriteSlicesRenamer : EditorWindow
     static void Init()
     {
         // Get existing open window or if none, make a new one:
-        var window = (SpriteSlicesRenamer) GetWindow(typeof(SpriteSlicesRenamer));
+        var window = GetWindow<SpriteSlicesRenamer>();
         window.titleContent.text = "Sprite Slices Renamer";
-        window.Show();
     }
 
     void UpdateNewNamesPreview()
