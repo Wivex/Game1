@@ -322,8 +322,8 @@
     <Compile Include="Assets\Resources\Items\Item.cs" />
     <Compile Include="Assets\Resources\Items\ItemData.cs" />
     <Compile Include="Assets\Resources\Items\LootDropData.cs" />
+    <Compile Include="Assets\Resources\Locations\Area.cs" />
     <Compile Include="Assets\Resources\Locations\RegionData.cs" />
-    <Compile Include="Assets\Resources\Locations\Site.cs" />
     <Compile Include="Assets\Resources\Locations\ZoneData.cs" />
     <Compile Include="Assets\Resources\POIs\ContainerData.cs" />
     <Compile Include="Assets\Resources\Units\Enemies\Enemy.cs" />
@@ -332,7 +332,7 @@
     <Compile Include="Assets\Resources\Units\Heroes\HeroClassData.cs" />
     <Compile Include="Assets\Resources\Units\Unit.cs" />
     <Compile Include="Assets\Resources\Units\UnitData.cs" />
-    <Compile Include="Assets\UI\Components\MissionRouteSegmentComp - Copy.cs" />
+    <Compile Include="Assets\UI\Components\MissionRouteSegmentComp.cs" />
     <Compile Include="Assets\UI\Drawers\Drawer.cs" />
     <Compile Include="Assets\UI\Drawers\EnemyPanelDrawer.cs" />
     <Compile Include="Assets\UI\Drawers\HeroFrameDrawer.cs" />

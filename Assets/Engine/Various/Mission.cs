@@ -20,10 +20,10 @@ public class Mission
     internal Hero hero;
     internal Encounter curEncounter;
     internal Dictionary<ZoneData, int> route;
-    internal ZoneData curZone;
+    internal int curZoneIndex;
     internal int zonePathProgress = 0, sitesSinceLastEncounter = 0;
 
-    public event Action SiteChangedEvent;
+    public event Action SiteChanged;
 
     public bool GracePeriodPassed => sitesSinceLastEncounter > MissionsManager.i.minGracePeriod;
 
@@ -44,7 +44,7 @@ public class Mission
 
     void NextSite()
     {
-        SiteChangedEvent();
+        SiteChanged();
         EncounterCheck();
     }
 

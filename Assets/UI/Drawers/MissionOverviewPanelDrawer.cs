@@ -13,7 +13,7 @@ public class MissionOverviewPanelDrawer : Drawer
     
     public Transform consumablesPanel, locationPanel;
     public FillingBar heroHpBar, heroEnergyBar, enemyHpBar, enemyEnergyBar;
-    public Image heroImage, curGoldImage, heroIcon, encSubjectIcon, encInteractionIcon, locationImage, lootIcon;
+    public Image heroImage, curGoldImage, heroIcon, encSubjectIcon, encInteractionIcon, siteImage, lootIcon;
 
     public TextMeshProUGUI heroName,
         level,
@@ -35,8 +35,6 @@ public class MissionOverviewPanelDrawer : Drawer
     #endregion
 
     internal Mission mis;
-
-    internal event Action AllAnimationsFinished;
 
     internal static List<MissionOverviewPanelDrawer> panelsList = new List<MissionOverviewPanelDrawer>();
 
@@ -63,13 +61,6 @@ public class MissionOverviewPanelDrawer : Drawer
         }
     }
 
-    internal void Init(Mission mis)
-    {
-        this.mis = mis;
-        AllAnimationsFinished += mis.NextAction;
-
-    }
-
     internal static void CreateNew(Mission mis)
     {
         var newPanel = UIManager.i.prefabs.missionOverviewPanelPrefab
@@ -78,14 +69,11 @@ public class MissionOverviewPanelDrawer : Drawer
         panelsList.Add(newPanel);
     }
 
-    internal void OnAnimationSequenceFinished()
+    internal void Init(Mission mis)
     {
-        AllAnimationsFinished();
-    }
+        this.mis = mis;
 
-    internal void OnAnimationSequenceStarted()
-    {
-        AllAnimationsFinished();
+        mis.SiteChanged += OnSiteChanged;
     }
 
     // TODO: move draw to stat bars themselves
@@ -103,6 +91,29 @@ public class MissionOverviewPanelDrawer : Drawer
     {
         // expDetailsPanelDrawManager.InitHeroPanel(hero);
         missionsCMan.ChangeActiveCanvas(detailsCanvas);
+    }
+
+    void OnSiteChanged()
+    {
+        siteImage.sprite = mis.curZone.
+        // update events
+        for (var i = 0; i < situationsIcons.Count; i++)
+        {
+            if (i >= zone.encounters.Count)
+            {
+                situationsIcons[i].sprite = null;
+                situationsIcons[i].color = Color.clear;
+                situationsName[i].text = string.Empty;
+                situationsChance[i].text = string.Empty;
+            }
+            else
+            {
+                situationsIcons[i].sprite = zone.encounters[i].interactionIcon;
+                situationsIcons[i].color = Color.white;
+                situationsName[i].text = zone.encounters[i].type.ToString();
+                // situationsChance[i].text = zone.encounters[i].chanceWeight.ToString();
+            }
+        }
     }
 
     // TODO: rename to Redraw
@@ -160,9 +171,9 @@ public class MissionOverviewPanelDrawer : Drawer
 
     void RedrawSite()
     {
-        // locationImage.sprite = mis.curSite.siteImage;
-        // locationImage.rectTransform.sizeDelta = mis.curSite.areaImageSize;
-        // locationImage.transform.localPosition = mis.curSite.zonesPositions[mis.curZoneIndex];
+        // siteImage.sprite = mis.curSite.siteImage;
+        // siteImage.rectTransform.sizeDelta = mis.curSite.areaImageSize;
+        // siteImage.transform.localPosition = mis.curSite.zonesPositions[mis.curZoneIndex];
     }
 
     void RedrawEncounterSubject()

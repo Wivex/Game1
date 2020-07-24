@@ -11,7 +11,7 @@ using UnityEngine.UI;
 public class MissionRouteSegment
 {
     public MissionRouteSegmentComp toggleComp;
-    [Tooltip("Represent number of sites required to traverse in this zone in order to reach connected zone")]
+    [Tooltip("Represent number of areas required to traverse in this zone in order to reach connected zone")]
     public int pathLength;
 }
 
