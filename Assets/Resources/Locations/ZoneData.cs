@@ -29,10 +29,10 @@ public class ContainerSpawnOption : SpawnOption
 
 
 [CreateAssetMenu(menuName = "Content/Data/Zone Data")]
-public class ZoneData : UnityEngine.ScriptableObject
+public class ZoneData : ScriptableObject
 {
     [Reorderable(ReorderableNamingType.VariableValue,"type")]
-    public List<Site> sites;
+    public List<Area> areas;
 
     [Reorderable(ReorderableNamingType.VariableValue, "type")]
     public List<EncounterSpawnOption> encounters;
@@ -42,9 +42,9 @@ public class ZoneData : UnityEngine.ScriptableObject
     void OnEnable()
     {
         // auto-load all sprites from multi-sprite texture of a site
-        if (sites.NotNullOrEmpty())
+        if (areas.NotNullOrEmpty())
         {
-            sites.ForEach(site => site.LoadChainSprites());
+            areas.ForEach(area => area.LoadLocations());
         }
     
         // sort ascending enemies spawn list by chance of spawn

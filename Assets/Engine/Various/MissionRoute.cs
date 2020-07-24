@@ -7,8 +7,8 @@ using System.Collections.Generic;
 public class MissionRoute
 {
     public Texture2D baseTexture;
-    public SiteType type = SiteType.Interchangeble;
-    [HideIfNotEnumValues("type", SiteType.ZoneTransition)]
+    public AreaType type = AreaType.Interchangeble;
+    [HideIfNotEnumValues("type", AreaType.ZoneTransition)]
     public ZoneData targetZone;
 
     /// <summary>
