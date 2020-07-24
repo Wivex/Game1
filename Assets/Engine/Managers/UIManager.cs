@@ -45,17 +45,17 @@ public class UIManager : MonoBehaviour
     public PrefabsReferences prefabs;
     public UIReferences panels;
 
-    //internal static void CreateFloatingTextForUnit(Mission exp, Unit target, int value)
+    //internal static void CreateFloatingTextForUnit(Mission exp, Unit curTarget, int value)
     //{
-    //    CreateFloatingText(GetUnitUITarget(exp, target), value);
+    //    CreateFloatingText(GetUnitUITarget(exp, curTarget), value);
     //}
 
-    //internal static void CreateEffectAnimation(Mission exp, Unit target, MonoBehaviour prefab)
+    //internal static void CreateEffectAnimation(Mission exp, Unit curTarget, MonoBehaviour prefab)
     //{
-    //    var effect = Instantiate(prefab, GetUnitUITarget(exp, target));
+    //    var effect = Instantiate(prefab, GetUnitUITarget(exp, curTarget));
 
     //    // UNDONE: fine until not fine
-    //    if (target is Enemy)
+    //    if (curTarget is Enemy)
     //        MirrorEffectAxisX(effect);
     //}
 
@@ -72,7 +72,7 @@ public class UIManager : MonoBehaviour
     static void CreateFloatingText(Transform target, int value)
     {
         var floatingText = new MonoBehaviour();
-        // var floatingText = Instantiate(floatingTextPrefab, target);
+        // var floatingText = Instantiate(floatingTextPrefab, curTarget);
         var textObject = floatingText.GetComponent<TextMeshProUGUI>();
 
         if (value > 0)

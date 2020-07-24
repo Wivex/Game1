@@ -2,24 +2,20 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 
-public class MissionRoute
+internal class MissionRoute
 {
-    public Texture2D baseTexture;
-    public AreaType type = AreaType.Interchangeble;
-    [HideIfNotEnumValues("type", AreaType.ZoneTransition)]
-    public ZoneData targetZone;
+    internal Dictionary<ZoneData, int> path;
+    internal ZoneData curZone;
+    internal Area curArea;
+    internal int curLocationIndex;
 
-    /// <summary>
-    /// These site images are always traversed one after another (based on site pieces formed from original site image
-    /// </summary>
-    internal List<Sprite> siteChainSprites;
-
-    public void LoadChainSprites()
+    internal MissionRoute(Dictionary<ZoneData, int> path)
     {
-        siteChainSprites?.Clear();
-        siteChainSprites = new List<Sprite>(AssetHandler.LoadChildAssets<Sprite>(baseTexture));
+        this.path = new Dictionary<ZoneData, int>(path);
+        curZone = path.First().Key;
+        curArea = curZone.areas.First();
     }
-
 }

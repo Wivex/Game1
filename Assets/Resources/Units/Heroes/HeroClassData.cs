@@ -7,7 +7,14 @@ using UnityEngine;
 public class HeroClassData : UnitData
 {
     public ClassType classType;
-    public List<Sprite> portraits, spritesheet;
     [Tooltip("If female/male sprites order in spritesheet are alike (move: 0-10 -> 50-60), set this offset for later sprite swap based on sex.")]
-    public int spriteIndexOffsetBySex;
+    public int spriteIndexOffsetBySex = 50;
+
+    internal List<Sprite> portraits, spritesheet;
+
+    void OnEnable()
+    {
+        portraits = AssetHandler.LoadAllNearbyAssets<Sprite>(this, "Portraits").ToList();
+        spritesheet = AssetHandler.LoadAllNearbyAssets<Sprite>(this, $"{name} Sprite Sheet").ToList();
+    }
 }

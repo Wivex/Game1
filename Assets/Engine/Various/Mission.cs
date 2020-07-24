@@ -19,9 +19,8 @@ public class Mission
 {
     internal Hero hero;
     internal Encounter curEncounter;
-    internal Dictionary<ZoneData, int> route;
-    internal int curZoneIndex;
-    internal int zonePathProgress = 0, sitesSinceLastEncounter = 0;
+    internal MissionRoute route;
+    internal int sitesSinceLastEncounter = 0;
 
     public event Action SiteChanged;
 
@@ -30,8 +29,7 @@ public class Mission
     internal Mission(MissionSetUp misSetUp)
     {
         hero = misSetUp.hero;
-        route = new Dictionary<ZoneData, int>(misSetUp.route);
-        curZone = route.First().Key;
+        route = new MissionRoute(misSetUp.path);
     }
 
     public void NextAction()
@@ -52,7 +50,7 @@ public class Mission
     {
         if (GracePeriodPassed)
         {
-            switch (curZone.encounters.PickOne().type)
+            switch (route.curZone.encounters.PickOne().type)
             {
                 case EncounterType.None:
                     curEncounter = null;

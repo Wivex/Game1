@@ -27,7 +27,7 @@ public class MissionRoutePanelDrawer : Drawer
 
     void Start()
     {
-        route = MissionsManager.missionSetUp.route;
+        route = MissionsManager.missionSetUp.path;
         routeSegments = GetComponentsInChildren<MissionRouteSegmentComp>().ToList();
         // add listener to each toggle to take action when any toggle state changes
         foreach (var comp in routeSegments)

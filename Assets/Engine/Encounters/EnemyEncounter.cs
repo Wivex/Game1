@@ -7,7 +7,7 @@ public class EnemyEncounter : Encounter
 {
     internal Hero hero;
     internal Enemy enemy;
-    internal Unit actor, target;
+    internal Unit curActor, curTarget;
     
     List<Item> lootDrops;
     Item curLoot;
@@ -19,7 +19,7 @@ public class EnemyEncounter : Encounter
     {
         type = EncounterType.Enemy;
         hero = mis.hero;
-        enemy = new Enemy(mis.curZone.enemies.PickOne().enemyData);
+        // enemy = new Enemy(mis.curZone.enemies.PickOne().enemyData);
     }
 
     internal override void NextAction()
@@ -48,13 +48,13 @@ public class EnemyEncounter : Encounter
 
         if (heroInitiative > 0 || heroInitiative == 0 && Random.value > 0.5f)
         {
-            actor = hero;
-            target = enemy;
+            curActor = hero;
+            curTarget = enemy;
         }
         else
         {
-            actor = enemy;
-            target = hero;
+            curActor = enemy;
+            curTarget = hero;
         }
 
         DoActorTurn();
@@ -111,13 +111,13 @@ public class EnemyEncounter : Encounter
 
     void UpdateActorEffects()
     {
-        for (var i = actor.effects.Count - 1; i >= 0; i--)
-            actor.effects[i].ProcEffect();
+        for (var i = curActor.effects.Count - 1; i >= 0; i--)
+            curActor.effects[i].ProcEffect();
     }
 
     void DoActorAction()
     {
-        foreach (var tactic in actor.tactics)
+        foreach (var tactic in curActor.tactics)
         {
             // skip tactic if not all triggers are triggered
             if (tactic.triggers.Exists(trigger => !trigger.IsTriggered(enemy)))
@@ -129,7 +129,7 @@ public class EnemyEncounter : Encounter
 
     void UpdateActorCooldowns()
     {
-        foreach (var ability in actor.abilities)
+        foreach (var ability in curActor.abilities)
         {
             if (ability.curCooldown > 0)
                 ability.curCooldown--;

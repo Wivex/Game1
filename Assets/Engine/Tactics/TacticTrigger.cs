@@ -63,7 +63,7 @@ public class TacticTrigger
             case TriggerType.FoeCondition:
                 throw new NotImplementedException();
             case TriggerType.AbilityReady:
-                //return situation.actor.abilities.Exists(ability =>
+                //return situation.curActor.abilities.Exists(ability =>
                 //    ability.abilityData == abilityData && ability.curCooldown <= 0);
                 return true;
             default:
@@ -74,7 +74,7 @@ public class TacticTrigger
     #region CHECKS
     //public bool StatValueCheck(SituationCombat situation)
     //{
-    //    //var unit = target == Target.Self ? situation.actor : situation.target;
+    //    //var unit = curTarget == Target.Self ? situation.curActor : situation.curTarget;
     //    //return comparisonType == ComparisonType.LessOrEqual
     //    //    ? unit.baseStats[(int)stat].curValue <= statValue
     //    //    : unit.baseStats[(int)stat].curValue > statValue;
@@ -82,7 +82,7 @@ public class TacticTrigger
 
     //public bool AbilityReadyCheck(CombatManager situation)
     //{
-    //    //var unit = target == Target.Self ? situation.actor : situation.target;
+    //    //var unit = curTarget == Target.Self ? situation.curActor : situation.curTarget;
     //    //return unit.abilities.Exists(ability =>
     //    //    ability.abilityData == abilityData && ability.curCooldown == 0);
     //    return true;

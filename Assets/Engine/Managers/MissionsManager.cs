@@ -7,12 +7,12 @@ using UnityEngine;
 internal class MissionSetUp
 {
     internal Hero hero;
-    internal Dictionary<ZoneData, int> route = new Dictionary<ZoneData, int>();
+    internal Dictionary<ZoneData, int> path = new Dictionary<ZoneData, int>();
 
     internal void Reset()
     {
         hero = null;
-        route = new Dictionary<ZoneData, int>();
+        path = new Dictionary<ZoneData, int>();
     }
 }
 
@@ -60,7 +60,7 @@ public class MissionsManager : MonoBehaviour
         missionSetUp.Reset();
         TownManager.i.GenerateNewIdleHeroesDebug(1);
         missionSetUp.hero = TownManager.heroes.Last();
-        debugMissionRouteZones.ForEach(zone => missionSetUp.route.Add(zone, 10));
+        debugMissionRouteZones.ForEach(zone => missionSetUp.path.Add(zone, 10));
         StartSetUpMission();
     }
 

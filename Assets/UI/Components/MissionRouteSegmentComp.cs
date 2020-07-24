@@ -19,7 +19,6 @@ public class MissionRouteSegment
 public class MissionRouteSegmentComp : MonoBehaviour
 {
     public ZoneData zone;
-
     [Reorderable(ReorderableNamingType.ReferencedObjectName, "toggleComp")]
     public List<MissionRouteSegment> connectedSegments;
 

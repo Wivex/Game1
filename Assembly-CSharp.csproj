@@ -274,7 +274,7 @@
     <Compile Include="Assets\3rd-Party\unity-ui-extensions\Scripts\Utilities\switchToRectTransform.cs" />
     <Compile Include="Assets\3rd-Party\unity-ui-extensions\Scripts\VR Extensions\VRCursor.cs" />
     <Compile Include="Assets\3rd-Party\unity-ui-extensions\Scripts\VR Extensions\VRInputModule.cs" />
-    <Compile Include="Assets\AnimationStateController.cs" />
+    <Compile Include="Assets\AnimationMonitor.cs" />
     <Compile Include="Assets\Animations\AnimationStateManager.cs" />
     <Compile Include="Assets\Animations\UpdateLootIcon.cs" />
     <Compile Include="Assets\Editor Extensions\SpriteSlicesRenamer.cs" />

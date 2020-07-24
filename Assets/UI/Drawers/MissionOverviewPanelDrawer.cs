@@ -35,6 +35,9 @@ public class MissionOverviewPanelDrawer : Drawer
     #endregion
 
     internal Mission mis;
+    
+    Animator actionPanelAnimator;
+    AnimationMonitor animationMonitor;
 
     internal static List<MissionOverviewPanelDrawer> panelsList = new List<MissionOverviewPanelDrawer>();
 
@@ -44,6 +47,10 @@ public class MissionOverviewPanelDrawer : Drawer
         // consumableIcons = consumablesPanel.GetComponentsInChildren<Image>().Where(comp => comp.name.Contains("Image")).ToArray();
         // consumablesCharges = consumablesPanel.GetComponentsInChildren<TextMeshProUGUI>();
 
+        actionPanelAnimator = locationPanel.GetComponent<Animator>();
+        animationMonitor = actionPanelAnimator.GetBehaviour<AnimationMonitor>();
+
+        animationMonitor.AnimationSequenceFinished += OnAnimationsFinished;
         // call ShowDetailsPanel() method when panel is clicked on
         GetComponent<Button>().onClick.AddListener(() => ShowDetailsPanel(mis));
 
@@ -57,8 +64,13 @@ public class MissionOverviewPanelDrawer : Drawer
 
             panelsList.Clear();
             // destroys prefab template panel inside
-            UIManager.i.panels.missionPreviewContentPanel.DestroyAllChildren();
+            // UIManager.i.panels.missionPreviewContentPanel.DestroyAllChildren();
         }
+    }
+
+    void OnAnimationsFinished()
+    {
+        mis.NextAction();
     }
 
     internal static void CreateNew(Mission mis)
@@ -95,25 +107,25 @@ public class MissionOverviewPanelDrawer : Drawer
 
     void OnSiteChanged()
     {
-        siteImage.sprite = mis.curZone.
-        // update events
-        for (var i = 0; i < situationsIcons.Count; i++)
-        {
-            if (i >= zone.encounters.Count)
-            {
-                situationsIcons[i].sprite = null;
-                situationsIcons[i].color = Color.clear;
-                situationsName[i].text = string.Empty;
-                situationsChance[i].text = string.Empty;
-            }
-            else
-            {
-                situationsIcons[i].sprite = zone.encounters[i].interactionIcon;
-                situationsIcons[i].color = Color.white;
-                situationsName[i].text = zone.encounters[i].type.ToString();
-                // situationsChance[i].text = zone.encounters[i].chanceWeight.ToString();
-            }
-        }
+        // siteImage.sprite = mis.curZone.
+        // // update events
+        // for (var i = 0; i < situationsIcons.Count; i++)
+        // {
+        //     if (i >= zone.encounters.Count)
+        //     {
+        //         situationsIcons[i].sprite = null;
+        //         situationsIcons[i].color = Color.clear;
+        //         situationsName[i].text = string.Empty;
+        //         situationsChance[i].text = string.Empty;
+        //     }
+        //     else
+        //     {
+        //         situationsIcons[i].sprite = zone.encounters[i].interactionIcon;
+        //         situationsIcons[i].color = Color.white;
+        //         situationsName[i].text = zone.encounters[i].type.ToString();
+        //         // situationsChance[i].text = zone.encounters[i].chanceWeight.ToString();
+        //     }
+        // }
     }
 
     // TODO: rename to Redraw

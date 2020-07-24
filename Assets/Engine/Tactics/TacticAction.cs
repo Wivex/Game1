@@ -49,18 +49,18 @@ public class TacticAction
 
     public void Attack(EnemyEncounter enemyEncounter)
     {
-        //enemyEncounter.mis.StartAnimation(AnimationTrigger.Attack, enemyEncounter.GetAnimManager(enemyEncounter.actor));
+        //enemyEncounter.mis.StartAnimation(AnimationTrigger.Attack, enemyEncounter.GetAnimManager(enemyEncounter.curActor));
 
-        var damTaken = enemyEncounter.target.TakeDamage(enemyEncounter.mis, new Damage(DamageType.Physical, enemyEncounter.actor.Attack));
+        var damTaken = enemyEncounter.curTarget.TakeDamage(enemyEncounter.mis, new Damage(DamageType.Physical, enemyEncounter.curActor.Attack));
 
-        //UIManager.CreateEffectAnimation(enemyEncounter.mis, enemyEncounter.target, UIManager.meleeHitEffectPrefab);
+        //UIManager.CreateEffectAnimation(enemyEncounter.mis, enemyEncounter.curTarget, UIManager.meleeHitEffectPrefab);
 
-        //enemyEncounter.mis.UpdateLog($"{enemyEncounter.actor} attacks {enemyEncounter.target} for {dam} {damage.type} damage.");
+        //enemyEncounter.mis.UpdateLog($"{enemyEncounter.curActor} attacks {enemyEncounter.curTarget} for {dam} {damage.type} damage.");
     }
 
     public void UseAbility(EnemyEncounter enemyEncounter)
     {
-        var usedAbility = enemyEncounter.actor.abilities.Find(abil => abil.abilityData == abilityData);
+        var usedAbility = enemyEncounter.curActor.abilities.Find(abil => abil.abilityData == abilityData);
         foreach (var effect in usedAbility.abilityData.effects)
         {
             effect.AddEffect(enemyEncounter, usedAbility.abilityData.name, usedAbility.abilityData.icon);
@@ -72,7 +72,7 @@ public class TacticAction
 
     public void UseConsumable(EnemyEncounter enemyEncounter)
     {
-        //LogEvent(enemyEncounter, $"{enemyEncounter.hero.name} used {consumableData.name} on {enemyEncounter.target.name}.");
+        //LogEvent(enemyEncounter, $"{enemyEncounter.hero.name} used {consumableData.name} on {enemyEncounter.curTarget.name}.");
         var usedConsumable = enemyEncounter.hero.consumables.First(cons => cons.data == consumableData);
         //foreach (var effect in usedConsumable.data.useEffects)
         //{
