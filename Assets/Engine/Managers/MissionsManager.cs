@@ -7,12 +7,12 @@ using UnityEngine;
 internal class MissionSetUp
 {
     internal Hero hero;
-    internal Dictionary<ZoneData, int> path = new Dictionary<ZoneData, int>();
+    internal List<MissionRouteSegment> path = new List<MissionRouteSegment>();
 
     internal void Reset()
     {
         hero = null;
-        path = new Dictionary<ZoneData, int>();
+        path = new List<MissionRouteSegment>();
     }
 }
 
@@ -49,18 +49,29 @@ public class MissionsManager : MonoBehaviour
 
     [Reorderable(ReorderableNamingType.ReferencedObjectName)]
     public List<ZoneData> debugMissionRouteZones;
+    public bool generateDebugMissionAtStartup;
 
     #endregion
 
     internal static List<Mission> missions = new List<Mission>();
     internal static MissionSetUp missionSetUp = new MissionSetUp();
 
+    void Start()
+    {
+        if (generateDebugMissionAtStartup)
+        {
+            // hides prefab template panel inside
+            UIManager.i.panels.missionPreviewContentPanel.DeactivateChild();
+            StartNewMissionDebug();
+        }
+    }
+
     public void StartNewMissionDebug()
     {
         missionSetUp.Reset();
         TownManager.i.GenerateNewIdleHeroesDebug(1);
         missionSetUp.hero = TownManager.heroes.Last();
-        debugMissionRouteZones.ForEach(zone => missionSetUp.path.Add(zone, 10));
+        debugMissionRouteZones.ForEach(zone => missionSetUp.path.Add(new MissionRouteSegment(zone, 10)));
         StartSetUpMission();
     }
 

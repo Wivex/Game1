@@ -7,20 +7,12 @@ using SubjectNerd.Utilities;
 using TMPro;
 using UnityEngine.UI;
 
-[Serializable]
-public class MissionRouteSegment
-{
-    public MissionRouteSegmentComp toggleComp;
-    [Tooltip("Represent number of areas required to traverse in this zone in order to reach connected zone")]
-    public int pathLength;
-}
 
-
-public class MissionRouteSegmentComp : MonoBehaviour
+public class MissionRouteMapNode : MonoBehaviour
 {
     public ZoneData zone;
-    [Reorderable(ReorderableNamingType.ReferencedObjectName, "toggleComp")]
-    public List<MissionRouteSegment> connectedSegments;
+    [Reorderable(ReorderableNamingType.ReferencedObjectName, "zone")]
+    public List<MissionRouteSegment> connections;
 
     internal Toggle toggle; 
 

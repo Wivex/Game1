@@ -13,7 +13,7 @@ public class MissionOverviewPanelDrawer : Drawer
     
     public Transform consumablesPanel, locationPanel;
     public FillingBar heroHpBar, heroEnergyBar, enemyHpBar, enemyEnergyBar;
-    public Image heroImage, curGoldImage, heroIcon, encSubjectIcon, encInteractionIcon, siteImage, lootIcon;
+    public Image heroImage, curGoldImage, heroIcon, encSubjectIcon, encInteractionIcon, locationImage, lootIcon;
 
     public TextMeshProUGUI heroName,
         level,
@@ -36,10 +36,10 @@ public class MissionOverviewPanelDrawer : Drawer
 
     internal Mission mis;
     
-    Animator actionPanelAnimator;
-    AnimationMonitor animationMonitor;
+    Animator animator;
+    AnimationMonitor animMonitor;
 
-    internal static List<MissionOverviewPanelDrawer> panelsList = new List<MissionOverviewPanelDrawer>();
+    internal static List<MissionOverviewPanelDrawer> panelsReferences = new List<MissionOverviewPanelDrawer>();
 
     //auto-assign some references
     void Start()
@@ -47,10 +47,10 @@ public class MissionOverviewPanelDrawer : Drawer
         // consumableIcons = consumablesPanel.GetComponentsInChildren<Image>().Where(comp => comp.name.Contains("Image")).ToArray();
         // consumablesCharges = consumablesPanel.GetComponentsInChildren<TextMeshProUGUI>();
 
-        actionPanelAnimator = locationPanel.GetComponent<Animator>();
-        animationMonitor = actionPanelAnimator.GetBehaviour<AnimationMonitor>();
+        animator = locationPanel.GetComponent<Animator>();
+        animMonitor = animator.GetBehaviour<AnimationMonitor>();
 
-        animationMonitor.AnimationSequenceFinished += OnAnimationsFinished;
+        // animMonitor.AnimationSequenceFinished += OnAnimationsFinished;
         // call ShowDetailsPanel() method when panel is clicked on
         GetComponent<Button>().onClick.AddListener(() => ShowDetailsPanel(mis));
 
@@ -62,9 +62,7 @@ public class MissionOverviewPanelDrawer : Drawer
             detailsCanvas = missionsCMan.controlledCanvases.Find(canvas => canvas.name.Contains("Details"));
             overviewCanvas = UIManager.i.panels.missionPreviewContentPanel.GetComponent<Canvas>();
 
-            panelsList.Clear();
-            // destroys prefab template panel inside
-            // UIManager.i.panels.missionPreviewContentPanel.DestroyAllChildren();
+            panelsReferences.Clear();
         }
     }
 
@@ -75,17 +73,40 @@ public class MissionOverviewPanelDrawer : Drawer
 
     internal static void CreateNew(Mission mis)
     {
-        var newPanel = UIManager.i.prefabs.missionOverviewPanelPrefab
-                             .Instantiate<MissionOverviewPanelDrawer>(UIManager.i.panels.missionPreviewContentPanel);
+        var newPanel =
+            UIManager.i.prefabs.missionOverviewPanelPrefab.Instantiate<MissionOverviewPanelDrawer>(UIManager.i.panels.missionPreviewContentPanel);
+        panelsReferences.Add(newPanel);
         newPanel.Init(mis);
-        panelsList.Add(newPanel);
     }
 
     internal void Init(Mission mis)
     {
         this.mis = mis;
+        mis.LocationChanged += OnLocationChanged;
 
-        mis.SiteChanged += OnSiteChanged;
+    }
+
+    void OnLocationChanged()
+    {
+        locationImage.sprite = mis.route.curArea[]
+        // update events
+        for (var i = 0; i < situationsIcons.Count; i++)
+        {
+            if (i >= zone.encounters.Count)
+            {
+                situationsIcons[i].sprite = null;
+                situationsIcons[i].color = Color.clear;
+                situationsName[i].text = string.Empty;
+                situationsChance[i].text = string.Empty;
+            }
+            else
+            {
+                situationsIcons[i].sprite = zone.encounters[i].interactionIcon;
+                situationsIcons[i].color = Color.white;
+                situationsName[i].text = zone.encounters[i].type.ToString();
+                // situationsChance[i].text = zone.encounters[i].chanceWeight.ToString();
+            }
+        }
     }
 
     // TODO: move draw to stat bars themselves
@@ -103,29 +124,6 @@ public class MissionOverviewPanelDrawer : Drawer
     {
         // expDetailsPanelDrawManager.InitHeroPanel(hero);
         missionsCMan.ChangeActiveCanvas(detailsCanvas);
-    }
-
-    void OnSiteChanged()
-    {
-        // siteImage.sprite = mis.curZone.
-        // // update events
-        // for (var i = 0; i < situationsIcons.Count; i++)
-        // {
-        //     if (i >= zone.encounters.Count)
-        //     {
-        //         situationsIcons[i].sprite = null;
-        //         situationsIcons[i].color = Color.clear;
-        //         situationsName[i].text = string.Empty;
-        //         situationsChance[i].text = string.Empty;
-        //     }
-        //     else
-        //     {
-        //         situationsIcons[i].sprite = zone.encounters[i].interactionIcon;
-        //         situationsIcons[i].color = Color.white;
-        //         situationsName[i].text = zone.encounters[i].type.ToString();
-        //         // situationsChance[i].text = zone.encounters[i].chanceWeight.ToString();
-        //     }
-        // }
     }
 
     // TODO: rename to Redraw
@@ -183,9 +181,9 @@ public class MissionOverviewPanelDrawer : Drawer
 
     void RedrawSite()
     {
-        // siteImage.sprite = mis.curSite.siteImage;
-        // siteImage.rectTransform.sizeDelta = mis.curSite.areaImageSize;
-        // siteImage.transform.localPosition = mis.curSite.zonesPositions[mis.curZoneIndex];
+        // locationImage.sprite = mis.curSite.locationImage;
+        // locationImage.rectTransform.sizeDelta = mis.curSite.areaImageSize;
+        // locationImage.transform.localPosition = mis.curSite.zonesPositions[mis.curZoneIndex];
     }
 
     void RedrawEncounterSubject()

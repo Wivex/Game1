@@ -58,6 +58,14 @@ public static class Extensions
         return transform;
     }
 
+    /// <summary>
+    /// Hides (disable) prefab template panel inside
+    /// </summary>
+    public static void DeactivateChild(this Transform transform)
+    {
+        transform.GetChild(0).gameObject.SetActive(false);
+    }
+
     //TODO: check if needed?
     /// <summary>
     /// Performs SetActive operation for this object and all it's children, which have Comp<T>
@@ -149,5 +157,8 @@ public static class Extensions
     /// <summary>
     /// Instantiates a prefab and returns it's specified component
     /// </summary>
-    public static T Instantiate<T>(this GameObject obj, Transform parent) where T : MonoBehaviour => Object.Instantiate(obj, parent).GetComponent<T>();
+    public static T Instantiate<T>(this GameObject obj, Transform parent) where T : MonoBehaviour
+    {
+        return GameObject.Instantiate(obj, parent).GetComponent<T>();
+    }
 }

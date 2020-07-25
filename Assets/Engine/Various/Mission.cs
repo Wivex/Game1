@@ -18,13 +18,13 @@ public enum AnimationTrigger
 public class Mission
 {
     internal Hero hero;
-    internal Encounter curEncounter;
     internal MissionRoute route;
-    internal int sitesSinceLastEncounter = 0;
+    internal Encounter curEncounter;
+    internal int locationsSinceLastEncounter = 0;
 
-    public event Action SiteChanged;
+    internal event Action LocationChanged;
 
-    public bool GracePeriodPassed => sitesSinceLastEncounter > MissionsManager.i.minGracePeriod;
+    internal bool GracePeriodPassed => locationsSinceLastEncounter > MissionsManager.i.minGracePeriod;
 
     internal Mission(MissionSetUp misSetUp)
     {
@@ -32,21 +32,21 @@ public class Mission
         route = new MissionRoute(misSetUp.path);
     }
 
-    public void NextAction()
+    internal void NextAction()
     {
         if (curEncounter != null)
             curEncounter.NextAction();
         else
-            NextSite();
+            NextLocation();
     }
 
-    void NextSite()
+    void NextLocation()
     {
-        SiteChanged();
-        EncounterCheck();
+        LocationChanged?.Invoke();
+        NextEncounter();
     }
 
-    void EncounterCheck()
+    void NextEncounter()
     {
         if (GracePeriodPassed)
         {
@@ -60,17 +60,5 @@ public class Mission
                     break;
             }
         }
-    }
-
-    public void KeepTravelling()
-    {
-        Debug.Log("KeepTravelling Trigger");
-        //StartAnimation(AnimationTrigger.KeepTravelling, heroAM);
-    }
-
-    // UNDO: should move somewhere?
-    internal void StartAnimation(AnimationTrigger trigger, params AnimationManager[] managers)
-    {
-        AnimationManager.Trigger(trigger, managers);
     }
 }

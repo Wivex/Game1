@@ -6,96 +6,85 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class MissionRoutePanelDrawer : Drawer
 {
     [Reorderable(ReorderableNamingType.ReferencedObjectName)]
-    public List<MissionRouteSegmentComp> startingSegments;
+    public List<MissionRouteMapNode> startingNodes;
 
-    List<MissionRouteSegmentComp> routeSegments;
-    /// <summary>
-    /// {MissionsManager.missionSetUp.route} shortcut
-    /// </summary>
-    Dictionary<ZoneData, int> route;
+    List<MissionRouteMapNode> allNodes;
+    List<MissionRouteSegment> setUpPath;
 
-
-    int PathToSegmentLength(MissionRouteSegmentComp targetSegment) =>
-        route.Any()
-            ? targetSegment.connectedSegments.Find(seg =>
-                route.Last().Key).pathLength
+    int PathLength(MissionRouteMapNode changedNode) =>
+        setUpPath.Any()
+            ? changedNode.connections.Find(node => setUpPath.Last().zone == node.zone).length
             : 0;
 
 
     void Start()
     {
-        route = MissionsManager.missionSetUp.path;
-        routeSegments = GetComponentsInChildren<MissionRouteSegmentComp>().ToList();
+        allNodes = GetComponentsInChildren<MissionRouteMapNode>().ToList();
+        setUpPath = MissionsManager.missionSetUp.path;
         // add listener to each toggle to take action when any toggle state changes
-        foreach (var comp in routeSegments)
-            comp.toggle.onValueChanged.AddListener(arg0 => OnSegmentToggle(comp));
-}
-
-    void OnSegmentToggle(MissionRouteSegmentComp changedSeg)
-    {
-        if (changedSeg.toggle.isOn)
-        {
-            route.Add(changedSeg.zone, PathToSegmentLength(changedSeg));
-        }
-        else
-        {
-            // TODO: check for last (first) elem
-            route.Remove(changedSeg.zone);
-        }
-        UpdateSegmentsInteractivity(changedSeg);
+        foreach (var comp in allNodes)
+            comp.toggle.onValueChanged.AddListener(arg0 => OnNodeToggle(comp));
     }
 
-    void UpdateSegmentsInteractivity(MissionRouteSegmentComp changedSegComp)
+    void OnNodeToggle(MissionRouteMapNode changedNode)
     {
-        // toggle has been enabled
-        if (changedSegComp.toggle.isOn)
+        if (changedNode.toggle.isOn)
         {
-            // disable all
-            routeSegments.ForEach(seg => seg.toggle.interactable = false);
-            foreach (var seg in changedSegComp.connectedSegments)
-            {
-                // enable connected segments, if not already in route
-                if (!route.ContainsKey(seg.toggleComp.zone))
-                    seg.toggleComp.toggle.interactable = true;
-            }
-            // enable self for untoggle possibility
-            changedSegComp.toggle.interactable = true;
+            setUpPath.Add(new MissionRouteSegment(changedNode.zone, PathLength(changedNode)));
         }
         else
         {
-            if (route.Any())
+            setUpPath.Remove(setUpPath.Last());
+        }
+
+        UpdateNodesInteractivity(changedNode);
+    }
+
+    void UpdateNodesInteractivity(MissionRouteMapNode changedNode)
+    {
+        // toggle has been enabled
+        if (changedNode.toggle.isOn)
+        {
+            // disable all, except connected nodes, which are not already in route
+            allNodes.ForEach(node => node.toggle.interactable =
+                changedNode.connections.Exists(seg => seg.zone == node.zone) &&
+                !setUpPath.Exists(seg => seg.zone == node.zone));
+
+            // enable self for untoggle possibility
+            changedNode.toggle.interactable = true;
+        }
+        else
+        {
+            if (setUpPath.NotNullOrEmpty())
             {
-                // disable all
-                routeSegments.ForEach(seg => seg.toggle.interactable = false);
-                // find current last segment in route
-                var lastSegComp = changedSegComp.connectedSegments.Find(seg => seg.toggleComp.zone == route.Last().Key).toggleComp;
-                foreach (var seg in lastSegComp.connectedSegments)
-                {
-                    // enable connected segments, if not already in route
-                    if (!route.ContainsKey(seg.toggleComp.zone))
-                        seg.toggleComp.toggle.interactable = true;
-                }
+                var lastRouteNode = allNodes.Find(node => setUpPath.Last().zone == node.zone);
+                // disable all, except connected for last node, which are not already in route
+                allNodes.ForEach(node => node.toggle.interactable =
+                    lastRouteNode.connections.Exists(seg => seg.zone == node.zone) &&
+                    !setUpPath.Exists(seg => seg.zone == node.zone));
+
                 // enable self for untoggle possibility
-                lastSegComp.toggle.interactable = true;
+                lastRouteNode.toggle.interactable = true;
             }
             else
             {
-                // disable all but starting segments
-                routeSegments.ForEach(seg => seg.toggle.interactable = false);
-                startingSegments.ForEach(seg => seg.toggle.interactable = true);
+                // disable all but starting Nodes
+                allNodes.ForEach(node => node.toggle.interactable = false);
+                startingNodes.ForEach(node => node.toggle.interactable = true);
             }
         }
     }
 
     public void InitPanel()
     {
-        route.Clear();
-        
-        routeSegments.ForEach(seg => seg.toggle.interactable = false);
-        routeSegments.ForEach(seg => seg.toggle.isOn = false);
-        startingSegments.ForEach(seg => seg.toggle.interactable = true);
+        setUpPath.Clear();
+
+        allNodes.ForEach(seg => seg.toggle.interactable = false);
+        allNodes.ForEach(seg => seg.toggle.isOn = false);
+        startingNodes.ForEach(seg => seg.toggle.interactable = true);
     }
 }

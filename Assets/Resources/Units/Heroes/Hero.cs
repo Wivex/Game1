@@ -10,8 +10,7 @@ public enum HeroState
 
 public enum ClassType
 {
-    Warrior,
-    Mage
+    Warrior
 }
 
 public enum SexType

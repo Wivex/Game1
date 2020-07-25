@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{90CF65C3-2670-1BBB-1C96-DA48CF837DB5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -332,7 +333,7 @@
     <Compile Include="Assets\Resources\Units\Heroes\HeroClassData.cs" />
     <Compile Include="Assets\Resources\Units\Unit.cs" />
     <Compile Include="Assets\Resources\Units\UnitData.cs" />
-    <Compile Include="Assets\UI\Components\MissionRouteSegmentComp.cs" />
+    <Compile Include="Assets\UI\Components\MissionRouteMapNode.cs" />
     <Compile Include="Assets\UI\Drawers\Drawer.cs" />
     <Compile Include="Assets\UI\Drawers\EnemyPanelDrawer.cs" />
     <Compile Include="Assets\UI\Drawers\HeroFrameDrawer.cs" />

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class UnitData : ScriptableObject
 {
+    [Header("Unit Properties")]
     public StatsSheet baseStats = new StatsSheet
     {
         health = 100,

@@ -64,7 +64,7 @@ public class TownManager : MonoBehaviour
         var sex = (SexType)Random.Range(0, Enum.GetValues(typeof(SexType)).Length);
         var classType = (ClassType)Random.Range(0, Enum.GetValues(typeof(ClassType)).Length);
         var name = NamingManager.i.GetRandomHeroName(sex);
-        var data = Resources.Load<HeroClassData>($"Units/Heroes/Classes/{classType}");
+        var data = Resources.Load<HeroClassData>($"Units/Heroes/{classType}/{classType}");
         var portrait = data.portraits.Where(port => port.name.Contains($"{sex}")).PickOne();
         return new Hero(name, sex, portrait, data);
     }
