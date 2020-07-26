@@ -19,10 +19,15 @@ public class Mission
 {
     internal Hero hero;
     internal MissionRoute route;
-    internal Encounter curEncounter;
+    internal NoEncounter curEncounter;
     internal int locationsSinceLastEncounter = 0;
 
+    #region region EVENTS
+
     internal event Action LocationChanged;
+    internal event Action<EncounterType> EncounterStarted;
+
+    #endregion
 
     internal bool GracePeriodPassed => locationsSinceLastEncounter > MissionsManager.i.minGracePeriod;
 
@@ -53,12 +58,14 @@ public class Mission
             switch (route.curZone.encounters.PickOne().type)
             {
                 case EncounterType.None:
-                    curEncounter = null;
+                    curEncounter = new NoEncounter(this);
                     break;
                 case EncounterType.Enemy:
                     curEncounter = new EnemyEncounter(this);
                     break;
             }
+
+            EncounterStarted?.Invoke(curEncounter.type);
         }
     }
 }

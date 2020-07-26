@@ -10197,8 +10197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d26e7291da894874ab424408380fe3d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingSegments:
-  - {fileID: 0}
+  startingNodes: []
 --- !u!1 &426529605
 GameObject:
   m_ObjectHideFlags: 0
@@ -45619,7 +45618,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1949565367}
-  - component: {fileID: 1949565370}
   - component: {fileID: 1949565369}
   - component: {fileID: 1949565368}
   m_Layer: 0
@@ -45667,25 +45665,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b3352305691ea40aa57cc6e595e82a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1949565370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1949565366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4415d1111d5fc94dab2f2af0f74361e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabs:
-    floatingTextPrefab: {fileID: 0}
-    meleeHitEffectPrefab: {fileID: 0}
-    missionOverviewPanelPrefab: {fileID: 0}
-  panels:
-    missionPanel: {fileID: 0}
-    missionPreviewContentPanel: {fileID: 0}
 --- !u!1 &1954660265
 GameObject:
   m_ObjectHideFlags: 0
@@ -51793,7 +51772,7 @@ MonoBehaviour:
   heroIcon: {fileID: 3545145612810752952}
   encSubjectIcon: {fileID: 0}
   encInteractionIcon: {fileID: 0}
-  siteImage: {fileID: 0}
+  locationImage: {fileID: 0}
   lootIcon: {fileID: 7803817691983243834}
   heroName: {fileID: 0}
   level: {fileID: 0}

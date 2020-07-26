@@ -58,12 +58,7 @@ public class MissionsManager : MonoBehaviour
 
     void Start()
     {
-        if (generateDebugMissionAtStartup)
-        {
-            // hides prefab template panel inside
-            UIManager.i.panels.missionPreviewContentPanel.DeactivateChild();
-            StartNewMissionDebug();
-        }
+        if (generateDebugMissionAtStartup) StartNewMissionDebug();
     }
 
     public void StartNewMissionDebug()

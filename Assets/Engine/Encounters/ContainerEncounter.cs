@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Random = UnityEngine.Random;
 
-public class ContainerEncounter : Encounter
+public class ContainerEncounter : NoEncounter
 {
     internal Hero hero;
     internal ContainerData data;

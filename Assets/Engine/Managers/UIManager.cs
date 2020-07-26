@@ -45,6 +45,12 @@ public class UIManager : MonoBehaviour
     public PrefabsReferences prefabs;
     public UIReferences panels;
 
+    void Start()
+    {
+        // hide prefab templates
+        panels.missionPreviewContentPanel.DeactivateChild();
+    }
+
     //internal static void CreateFloatingTextForUnit(Mission exp, Unit curTarget, int value)
     //{
     //    CreateFloatingText(GetUnitUITarget(exp, curTarget), value);

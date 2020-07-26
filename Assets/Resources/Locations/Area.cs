@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public enum AreaType
 {
-    Interchangeble,
+    Interchangeable,
     ZoneTransition
 }
 
@@ -13,7 +13,7 @@ public enum AreaType
 public class Area
 {
     public Texture2D areaTexture;
-    public AreaType type = AreaType.Interchangeble;
+    public AreaType type = AreaType.Interchangeable;
     [HideIfNotEnumValues("type", AreaType.ZoneTransition)]
     public ZoneData targetZone;
 

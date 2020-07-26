@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class MissionOverviewPanelDrawer : Drawer
 {
     #region SET IN INSPECTOR
-    
+
     public Transform consumablesPanel, locationPanel;
     public FillingBar heroHpBar, heroEnergyBar, enemyHpBar, enemyEnergyBar;
     public Image heroImage, curGoldImage, heroIcon, encSubjectIcon, encInteractionIcon, locationImage, lootIcon;
@@ -22,11 +22,11 @@ public class MissionOverviewPanelDrawer : Drawer
     #endregion
 
     #region CODE LOADED
-    
+
     // Image[] consumableIcons;
     // TextMeshProUGUI[] consumablesCharges;
 
-    
+
     // can't reference external scene objects in prefab inspector
     static List<Sprite> goldPileSprites;
     static CanvasManager missionsCMan;
@@ -35,88 +35,78 @@ public class MissionOverviewPanelDrawer : Drawer
     #endregion
 
     internal Mission mis;
-    
+
     Animator animator;
     AnimationMonitor animMonitor;
 
-    internal static List<MissionOverviewPanelDrawer> panelsReferences = new List<MissionOverviewPanelDrawer>();
+    internal static List<MissionOverviewPanelDrawer> createdPanels = new List<MissionOverviewPanelDrawer>();
 
-    //auto-assign some references
-    void Start()
+    internal static void CreateNew(Mission mis)
     {
-        // consumableIcons = consumablesPanel.GetComponentsInChildren<Image>().Where(comp => comp.name.Contains("Image")).ToArray();
-        // consumablesCharges = consumablesPanel.GetComponentsInChildren<TextMeshProUGUI>();
-
-        animator = locationPanel.GetComponent<Animator>();
-        animMonitor = animator.GetBehaviour<AnimationMonitor>();
-
-        // animMonitor.AnimationSequenceFinished += OnAnimationsFinished;
-        // call ShowDetailsPanel() method when panel is clicked on
-        GetComponent<Button>().onClick.AddListener(() => ShowDetailsPanel(mis));
-
-        // check once for all instances, cause references are static for all overview panels
+        // check once for all instances, cause these references are static for all panels
         if (missionsCMan == null)
         {
             goldPileSprites = Resources.LoadAll<Sprite>("Items/Gold").ToList();
             missionsCMan = UIManager.i.panels.missionPanel.GetComponent<CanvasManager>();
             detailsCanvas = missionsCMan.controlledCanvases.Find(canvas => canvas.name.Contains("Details"));
             overviewCanvas = UIManager.i.panels.missionPreviewContentPanel.GetComponent<Canvas>();
-
-            panelsReferences.Clear();
         }
-    }
 
-    void OnAnimationsFinished()
-    {
-        mis.NextAction();
-    }
-
-    internal static void CreateNew(Mission mis)
-    {
         var newPanel =
-            UIManager.i.prefabs.missionOverviewPanelPrefab.Instantiate<MissionOverviewPanelDrawer>(UIManager.i.panels.missionPreviewContentPanel);
-        panelsReferences.Add(newPanel);
+            UIManager.i.prefabs.missionOverviewPanelPrefab.Instantiate<MissionOverviewPanelDrawer>(UIManager.i.panels
+                .missionPreviewContentPanel);
+        createdPanels.Add(newPanel);
         newPanel.Init(mis);
     }
 
     internal void Init(Mission mis)
     {
         this.mis = mis;
-        mis.LocationChanged += OnLocationChanged;
+        
+        //auto-assign some references
+        animator = locationPanel.GetComponent<Animator>();
+        animMonitor = animator.GetBehaviour<AnimationMonitor>();
 
+        // call ShowDetailsPanel() method when panel is clicked on
+        GetComponent<Button>().onClick.AddListener(() => ShowDetailsPanel(mis));
+
+        // event subscription
+        animMonitor.AnimationSequenceFinished += OnAnimationsFinished;
+        mis.LocationChanged += OnLocationChanged;
+        mis.EncounterStarted += OnEncounterStarted;
+    }
+
+    #region EVENT HANDLERS
+
+    /// <summary>
+    /// New Mission begins with intro animation, then AnimationsFinished event control mission logic flow
+    /// </summary>
+    void OnAnimationsFinished()
+    {
+        mis.NextAction();
     }
 
     void OnLocationChanged()
     {
-        locationImage.sprite = mis.route.curArea[]
-        // update events
-        for (var i = 0; i < situationsIcons.Count; i++)
-        {
-            if (i >= zone.encounters.Count)
-            {
-                situationsIcons[i].sprite = null;
-                situationsIcons[i].color = Color.clear;
-                situationsName[i].text = string.Empty;
-                situationsChance[i].text = string.Empty;
-            }
-            else
-            {
-                situationsIcons[i].sprite = zone.encounters[i].interactionIcon;
-                situationsIcons[i].color = Color.white;
-                situationsName[i].text = zone.encounters[i].type.ToString();
-                // situationsChance[i].text = zone.encounters[i].chanceWeight.ToString();
-            }
-        }
+        locationImage.sprite = mis.route.NextLocationSprite();
     }
+
+    void OnEncounterStarted(EncounterType type)
+    {
+        animator.SetTrigger($"{type} Encounter Start");
+    }
+
+
+    #endregion
 
     // TODO: move draw to stat bars themselves
     public void SetStatBars()
     {
         var enemy = (mis.curEncounter as EnemyEncounter)?.enemy;
-        heroHpBar.SetInitialValue((float)mis.hero.HP / mis.hero.HPMax);
-        enemyHpBar.SetInitialValue((float)enemy.HP / enemy.HPMax);
-        heroEnergyBar.SetInitialValue((float)mis.hero.Energy / mis.hero.EnergyMax);
-        enemyEnergyBar.SetInitialValue((float)enemy.Energy / enemy.EnergyMax);
+        heroHpBar.SetInitialValue((float) mis.hero.HP / mis.hero.HPMax);
+        enemyHpBar.SetInitialValue((float) enemy.HP / enemy.HPMax);
+        heroEnergyBar.SetInitialValue((float) mis.hero.Energy / mis.hero.EnergyMax);
+        enemyEnergyBar.SetInitialValue((float) enemy.Energy / enemy.EnergyMax);
     }
 
     // can't pass class as parameter with button click from inspector
@@ -127,6 +117,7 @@ public class MissionOverviewPanelDrawer : Drawer
     }
 
     // TODO: rename to Redraw
+
     #region UI REDRAW METHODS
 
     void RedrawHeroDesc()
@@ -172,10 +163,10 @@ public class MissionOverviewPanelDrawer : Drawer
     {
         if (mis.curEncounter is EnemyEncounter combat)
         {
-            heroHpBar.TryUpdateValue((float)combat.hero.HP / combat.hero.HPMax);
-            heroEnergyBar.TryUpdateValue((float)combat.hero.Energy / combat.hero.EnergyMax);
-            enemyHpBar.TryUpdateValue((float)combat.enemy.HP / combat.enemy.HPMax);
-            enemyEnergyBar.TryUpdateValue((float)combat.enemy.Energy / combat.enemy.EnergyMax);
+            heroHpBar.TryUpdateValue((float) combat.hero.HP / combat.hero.HPMax);
+            heroEnergyBar.TryUpdateValue((float) combat.hero.Energy / combat.hero.EnergyMax);
+            enemyHpBar.TryUpdateValue((float) combat.enemy.HP / combat.enemy.HPMax);
+            enemyEnergyBar.TryUpdateValue((float) combat.enemy.Energy / combat.enemy.EnergyMax);
         }
     }
 

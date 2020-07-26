@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Random = UnityEngine.Random;
 
-public class EnemyEncounter : Encounter
+public class EnemyEncounter : NoEncounter
 {
-    internal Hero hero;
     internal Enemy enemy;
     internal Unit curActor, curTarget;
     
@@ -18,8 +17,7 @@ public class EnemyEncounter : Encounter
     internal EnemyEncounter(Mission mis) : base(mis)
     {
         type = EncounterType.Enemy;
-        hero = mis.hero;
-        // enemy = new Enemy(mis.curZone.enemies.PickOne().enemyData);
+        enemy = new Enemy(mis.route.curZone.enemies.PickOne().enemyData);
     }
 
     internal override void NextAction()
