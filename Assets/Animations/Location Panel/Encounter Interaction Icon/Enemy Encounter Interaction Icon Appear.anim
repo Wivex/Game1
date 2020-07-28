@@ -38,7 +38,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Interaction Icon
+    path: Encounter Interaction Icon
   m_PositionCurves: []
   m_ScaleCurves: []
   m_FloatCurves:
@@ -58,7 +58,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: Interaction Icon
+    path: Encounter Interaction Icon
     classID: 1
     script: {fileID: 0}
   - curve:
@@ -86,7 +86,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.a
-    path: Interaction Icon
+    path: Encounter Interaction Icon
     classID: 114
     script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   - curve:
@@ -114,7 +114,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SizeDelta.x
-    path: Interaction Icon
+    path: Encounter Interaction Icon
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -142,7 +142,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SizeDelta.y
-    path: Interaction Icon
+    path: Encounter Interaction Icon
     classID: 224
     script: {fileID: 0}
   m_PPtrCurves: []
@@ -154,35 +154,35 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 1004494726
+      path: 3930896050
       attribute: 4
       script: {fileID: 0}
       typeID: 4
       customType: 4
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1004494726
+      path: 3930896050
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1004494726
+      path: 3930896050
       attribute: 304273561
       script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
       typeID: 114
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1004494726
+      path: 3930896050
       attribute: 1967290853
       script: {fileID: 0}
       typeID: 224
       customType: 28
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1004494726
+      path: 3930896050
       attribute: 38095219
       script: {fileID: 0}
       typeID: 224
@@ -226,7 +226,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: Interaction Icon
+    path: Encounter Interaction Icon
     classID: 1
     script: {fileID: 0}
   - curve:
@@ -254,7 +254,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.a
-    path: Interaction Icon
+    path: Encounter Interaction Icon
     classID: 114
     script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   - curve:
@@ -282,7 +282,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SizeDelta.x
-    path: Interaction Icon
+    path: Encounter Interaction Icon
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -310,7 +310,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SizeDelta.y
-    path: Interaction Icon
+    path: Encounter Interaction Icon
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -338,7 +338,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.x
-    path: Interaction Icon
+    path: Encounter Interaction Icon
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -366,7 +366,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.y
-    path: Interaction Icon
+    path: Encounter Interaction Icon
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -394,7 +394,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.z
-    path: Interaction Icon
+    path: Encounter Interaction Icon
     classID: 224
     script: {fileID: 0}
   m_EulerEditorCurves:
@@ -405,7 +405,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Interaction Icon
+    path: Encounter Interaction Icon
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -415,7 +415,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Interaction Icon
+    path: Encounter Interaction Icon
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -425,7 +425,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Interaction Icon
+    path: Encounter Interaction Icon
     classID: 224
     script: {fileID: 0}
   m_HasGenericRootTransform: 0

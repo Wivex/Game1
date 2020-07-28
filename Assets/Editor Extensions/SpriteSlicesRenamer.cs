@@ -17,7 +17,7 @@ public class SpriteSlicesRenamer : EditorWindow
 
     bool CanRename => searchText != replaceText;
 
-    [MenuItem("Tools/Sprite Slices Renamer")]
+    [MenuItem("My Tools/Sprite Slices Renamer")]
     static void Init()
     {
         // Get existing open window or if none, make a new one:

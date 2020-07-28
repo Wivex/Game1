@@ -65,10 +65,8 @@
   <ItemGroup>
     <Compile Include="Assets\3rd-Party\MyBox\Tools\Features\AutoSaveFeature.cs" />
     <Compile Include="Assets\3rd-Party\MyBox\Tools\Features\CleanEmptyDirectoriesFeature.cs" />
-    <Compile Include="Assets\3rd-Party\MyBox\Tools\Features\SceneViewBookmarkHotkeys.cs" />
     <Compile Include="Assets\3rd-Party\MyBox\Tools\Features\SelectionHistoryHotkeys.cs" />
     <Compile Include="Assets\3rd-Party\MyBox\Tools\Features\SerializedPropertyViewer.cs" />
-    <Compile Include="Assets\3rd-Party\MyBox\Tools\Features\ToggleLockHotkey.cs" />
     <Compile Include="Assets\3rd-Party\MyBox\Tools\Internal\MyBoxSettings.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/2019.4.3f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
