@@ -11,6 +11,7 @@ public struct SnLBookmark
     public Quaternion rot;
     public float size;
     public int layersState;
+    public GameObject selectedObj;
 
     public SnLBookmark(SceneView sceneView)
     {
@@ -18,6 +19,7 @@ public struct SnLBookmark
         rot = sceneView.rotation;
         size = sceneView.size;
         layersState = Tools.visibleLayers;
+        selectedObj = Selection.activeGameObject;
     }
 }
 
@@ -39,7 +41,7 @@ internal static class SceneAndLayersBookmarks
     static void MoveToBookmark(int slot)
     {
         // Save current Scene and Layers values for Undo action
-        SaveBookmark(UndoSlot);
+        if (slot!= UndoSlot) SaveBookmark(UndoSlot);
 
         var key = NamePref(slot);
         var json = EditorPrefs.GetString(key);
@@ -49,7 +51,16 @@ internal static class SceneAndLayersBookmarks
         sceneView.rotation = bookmark.rot;
         sceneView.size = bookmark.size;
         Tools.visibleLayers = bookmark.layersState;
+        Selection.activeGameObject = bookmark.selectedObj;
         sceneView.Repaint();
+    }
+	
+    /// <summary>
+    /// Used for MenuItem validation
+    /// </summary>
+    static bool BookmarkExists(int slot)
+    {
+        return EditorPrefs.HasKey(NamePref(slot));
     }
 
 
@@ -164,10 +175,75 @@ internal static class SceneAndLayersBookmarks
         MoveToBookmark(9);
     }
 
-    [MenuItem("My Tools/Scene Bookmarks/Return To Previous Scene View %B")]
+    [MenuItem("My Tools/Scene Bookmarks/Return To Previous Scene View %b")]
     static void MoveSceneViewToPreviousState()
     {
         MoveToBookmark(UndoSlot);
+    }
+
+    #endregion
+
+    #region MENU ITEM VALIDATORS
+    
+    // Validations performed by methods with same MenuItem name parameter, but named as "Validate[MenuItem method name]"
+    [MenuItem("My Tools/Scene Bookmarks/Move Scene View To Bookmark 1 &1", true)]
+    static bool ValidateMoveSceneViewToBookmark1()
+    {
+        return BookmarkExists(1);
+    }
+
+    [MenuItem("My Tools/Scene Bookmarks/Move Scene View To Bookmark 2 &2", true)]
+    static bool ValidateMoveSceneViewToBookmark2()
+    {
+        return BookmarkExists(2);
+    }
+
+    [MenuItem("My Tools/Scene Bookmarks/Move Scene View To Bookmark 3 &3", true)]
+    static bool ValidateMoveSceneViewToBookmark3()
+    {
+        return BookmarkExists(3);
+    }
+
+    [MenuItem("My Tools/Scene Bookmarks/Move Scene View To Bookmark 4 &4", true)]
+    static bool ValidateMoveSceneViewToBookmark4()
+    {
+        return BookmarkExists(4);
+    }
+
+    [MenuItem("My Tools/Scene Bookmarks/Move Scene View To Bookmark 5 &5", true)]
+    static bool ValidateMoveSceneViewToBookmark5()
+    {
+        return BookmarkExists(5);
+    }
+
+    [MenuItem("My Tools/Scene Bookmarks/Move Scene View To Bookmark 6 &6", true)]
+    static bool ValidateMoveSceneViewToBookmark6()
+    {
+        return BookmarkExists(6);
+    }
+
+    [MenuItem("My Tools/Scene Bookmarks/Move Scene View To Bookmark 7 &7", true)]
+    static bool ValidateMoveSceneViewToBookmark7()
+    {
+        return BookmarkExists(7);
+    }
+
+    [MenuItem("My Tools/Scene Bookmarks/Move Scene View To Bookmark 8 &8", true)]
+    static bool ValidateMoveSceneViewToBookmark8()
+    {
+        return BookmarkExists(8);
+    }
+
+    [MenuItem("My Tools/Scene Bookmarks/Move Scene View To Bookmark 9 &9", true)]
+    static bool ValidateMoveSceneViewToBookmark9()
+    {
+        return BookmarkExists(9);
+    }
+
+    [MenuItem("My Tools/Scene Bookmarks/Return To Previous Scene View &b", true)]
+    static bool ValidateMoveSceneViewToPreviousState()
+    {
+        return BookmarkExists(UndoSlot);
     }
 
     #endregion
