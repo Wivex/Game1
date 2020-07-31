@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mission Start View Glide
+  m_Name: Mission Intro
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -33,7 +33,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SizeDelta.x
-    path: Location Image
+    path: Location Background
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -52,7 +52,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SizeDelta.y
-    path: Location Image
+    path: Location Background
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -71,15 +71,15 @@ AnimationClip:
         time: 3
         value: 150
         inSlope: -0
-        outSlope: -80.49999
+        outSlope: -80.2
         tangentMode: 69
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 8
-        value: -252.49997
-        inSlope: -80.49999
+        value: -251
+        inSlope: -80.2
         outSlope: 0
         tangentMode: 69
         weightedMode: 0
@@ -87,7 +87,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 11
-        value: -252.49997
+        value: -251
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -98,7 +98,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Location Image
+    path: Location Background
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -144,7 +144,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Location Image
+    path: Location Background
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -154,15 +154,15 @@ AnimationClip:
         time: 3
         value: 150
         inSlope: 0
-        outSlope: -80.6
+        outSlope: -80.3
         tangentMode: 69
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 8
-        value: -253
-        inSlope: -80.6
+        value: -251.5
+        inSlope: -80.3
         outSlope: 0
         tangentMode: 69
         weightedMode: 0
@@ -172,7 +172,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Background Objects Overlay
+    path: Location Objects Overlay
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -200,45 +200,10 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Background Objects Overlay
+    path: Location Objects Overlay
     classID: 224
     script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 11
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: Background Objects Overlay
-    classID: 1
-    script: {fileID: 0}
-  m_PPtrCurves:
-  - curve:
-    - time: 0
-      value: {fileID: 21300000, guid: e30c90a8ea3fac34ba8694fdb8cc920c, type: 3}
-    attribute: m_Sprite
-    path: Location Image
-    classID: 114
-    script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_PPtrCurves: []
   m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
@@ -247,63 +212,48 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 1169205682
+      path: 21194366
       attribute: 1460864421
       script: {fileID: 0}
       typeID: 224
       customType: 28
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2886097645
+      path: 1387684415
       attribute: 1460864421
       script: {fileID: 0}
       typeID: 224
       customType: 28
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2886097645
-      attribute: 2086281974
-      script: {fileID: 0}
-      typeID: 1
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 1169205682
-      attribute: 2015549526
-      script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-      typeID: 114
-      customType: 0
-      isPPtrCurve: 1
-    - serializedVersion: 2
-      path: 1169205682
+      path: 21194366
       attribute: 1967290853
       script: {fileID: 0}
       typeID: 224
       customType: 28
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1169205682
+      path: 21194366
       attribute: 38095219
       script: {fileID: 0}
       typeID: 224
       customType: 28
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1169205682
+      path: 21194366
       attribute: 538195251
       script: {fileID: 0}
       typeID: 224
       customType: 28
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2886097645
+      path: 1387684415
       attribute: 538195251
       script: {fileID: 0}
       typeID: 224
       customType: 28
       isPPtrCurve: 0
-    pptrCurveMapping:
-    - {fileID: 21300000, guid: e30c90a8ea3fac34ba8694fdb8cc920c, type: 3}
+    pptrCurveMapping: []
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -341,7 +291,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SizeDelta.x
-    path: Location Image
+    path: Location Background
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -360,7 +310,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SizeDelta.y
-    path: Location Image
+    path: Location Background
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -379,15 +329,15 @@ AnimationClip:
         time: 3
         value: 150
         inSlope: -0
-        outSlope: -80.49999
+        outSlope: -80.2
         tangentMode: 69
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 8
-        value: -252.49997
-        inSlope: -80.49999
+        value: -251
+        inSlope: -80.2
         outSlope: 0
         tangentMode: 69
         weightedMode: 0
@@ -395,7 +345,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 11
-        value: -252.49997
+        value: -251
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -406,7 +356,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Location Image
+    path: Location Background
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -452,7 +402,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Location Image
+    path: Location Background
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -462,15 +412,15 @@ AnimationClip:
         time: 3
         value: 150
         inSlope: 0
-        outSlope: -80.6
+        outSlope: -80.3
         tangentMode: 69
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 8
-        value: -253
-        inSlope: -80.6
+        value: -251.5
+        inSlope: -80.3
         outSlope: 0
         tangentMode: 69
         weightedMode: 0
@@ -480,7 +430,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Background Objects Overlay
+    path: Location Objects Overlay
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -508,36 +458,8 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Background Objects Overlay
+    path: Location Objects Overlay
     classID: 224
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 11
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: Background Objects Overlay
-    classID: 1
     script: {fileID: 0}
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0

@@ -275,9 +275,6 @@
     <Compile Include="Assets\3rd-Party\unity-ui-extensions\Scripts\VR Extensions\VRCursor.cs" />
     <Compile Include="Assets\3rd-Party\unity-ui-extensions\Scripts\VR Extensions\VRInputModule.cs" />
     <Compile Include="Assets\AnimationMonitor.cs" />
-    <Compile Include="Assets\Animations\UpdateLootIcon.cs" />
-    <Compile Include="Assets\Editor Extensions\SceneAndLayersBookmarks.cs" />
-    <Compile Include="Assets\Editor Extensions\SpriteSlicesRenamer.cs" />
     <Compile Include="Assets\Engine\Encounters\ContainerEncounter.cs" />
     <Compile Include="Assets\Engine\Encounters\EnemyEncounter.cs" />
     <Compile Include="Assets\Engine\Encounters\NoEncounter.cs" />

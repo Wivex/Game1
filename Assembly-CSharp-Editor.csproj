@@ -90,6 +90,8 @@
     <Compile Include="Assets\3rd-Party\unity-ui-extensions\Editor\uGUITools.cs" />
     <Compile Include="Assets\Editor\CopyAssetPathContextMenu.cs" />
     <Compile Include="Assets\Editor\CustomPropertyDrawers.cs" />
+    <Compile Include="Assets\Editor\SceneAndLayersBookmarks.cs" />
+    <Compile Include="Assets\Editor\SpriteSlicesRenamer.cs" />
     <Compile Include="Assets\Editor\uGUITools.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/2019.4.3f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

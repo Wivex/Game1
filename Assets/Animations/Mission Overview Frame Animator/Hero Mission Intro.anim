@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Hero Move Mission Start
+  m_Name: Hero Mission Intro
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -258,7 +258,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Hero Icon
+    path: Mission Overview Panel/Location View Panel/Hero
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -502,7 +502,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Hero Icon
+    path: Mission Overview Panel/Location View Panel/Hero
     classID: 224
     script: {fileID: 0}
   m_PPtrCurves:
@@ -808,7 +808,7 @@ AnimationClip:
       value: {fileID: 6756726173082759097, guid: fe7414dc8531ee84bae4117bbe95d472,
         type: 3}
     attribute: m_Sprite
-    path: Hero Icon
+    path: Mission Overview Panel/Location View Panel/Hero
     classID: 114
     script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_SampleRate: 60
@@ -819,21 +819,21 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 3158184222
+      path: 96922668
       attribute: 1460864421
       script: {fileID: 0}
       typeID: 224
       customType: 28
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3158184222
+      path: 96922668
       attribute: 538195251
       script: {fileID: 0}
       typeID: 224
       customType: 28
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3158184222
+      path: 96922668
       attribute: 2015549526
       script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
       typeID: 114
@@ -1202,7 +1202,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Hero Icon
+    path: Mission Overview Panel/Location View Panel/Hero
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -1446,7 +1446,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Hero Icon
+    path: Mission Overview Panel/Location View Panel/Hero
     classID: 224
     script: {fileID: 0}
   m_EulerEditorCurves: []

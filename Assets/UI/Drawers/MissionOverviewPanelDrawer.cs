@@ -13,7 +13,8 @@ public class MissionOverviewPanelDrawer : Drawer
 
     public Transform consumablesPanel, locationPanel;
     public FillingBar heroHpBar, heroEnergyBar, enemyHpBar, enemyEnergyBar;
-    public Image heroImage, curGoldImage, heroIcon, encSubjectIcon, encInteractionIcon, locationImage, lootIcon;
+    public Image heroImage, curGoldImage, heroIcon, encSubjectIcon, encInteractionIcon, locationImage, lootIcon, backOverlayImage;
+    public Sprite townSprite;
 
     public TextMeshProUGUI heroName,
         level,
@@ -36,7 +37,7 @@ public class MissionOverviewPanelDrawer : Drawer
 
     internal Mission mis;
 
-    Animator animator;
+    Animator encAnim, backAnim;
     AnimationMonitor animMonitor;
 
     internal static List<MissionOverviewPanelDrawer> createdPanels = new List<MissionOverviewPanelDrawer>();
@@ -64,8 +65,9 @@ public class MissionOverviewPanelDrawer : Drawer
         this.mis = mis;
         
         //auto-assign some references
-        animator = locationPanel.GetComponent<Animator>();
-        animMonitor = animator.GetBehaviour<AnimationMonitor>();
+        encAnim = GetComponent<Animator>();
+        animMonitor = encAnim.GetBehaviour<AnimationMonitor>();
+        backAnim = locationImage.GetComponent<Animator>();
 
         // call ShowDetailsPanel() method when panel is clicked on
         GetComponent<Button>().onClick.AddListener(() => ShowDetailsPanel(mis));
@@ -74,6 +76,16 @@ public class MissionOverviewPanelDrawer : Drawer
         animMonitor.AnimationSequenceFinished += OnAnimationsFinished;
         mis.LocationChanged += OnLocationChanged;
         mis.EncounterStarted += OnEncounterStarted;
+
+        MissionIntroAnimSetUp();
+    }
+
+    void MissionIntroAnimSetUp()
+    {
+        locationImage.sprite = townSprite;
+        backOverlayImage.enabled = true;
+        encInteractionIcon.enabled = false;
+        encSubjectIcon.enabled = false;
     }
 
     #region EVENT HANDLERS
@@ -93,7 +105,7 @@ public class MissionOverviewPanelDrawer : Drawer
 
     void OnEncounterStarted(EncounterType type)
     {
-        animator.SetTrigger($"{type} Encounter Start");
+        encAnim.SetTrigger($"{type} Encounter Start");
     }
 
 
