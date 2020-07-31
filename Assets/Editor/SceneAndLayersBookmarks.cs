@@ -35,7 +35,7 @@ internal static class SceneAndLayersBookmarks
         var prefKey = NamePref(slot);
         var json = JsonUtility.ToJson(bookmark);
         EditorPrefs.SetString(prefKey, json);
-        Debug.Log($"Scene view bookmarked in slot {slot}.");
+        if (slot!= UndoSlot) Debug.Log($"Scene view bookmarked in slot {slot}.");
     }
 
     static void MoveToBookmark(int slot)

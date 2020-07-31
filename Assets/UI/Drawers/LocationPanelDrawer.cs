@@ -78,7 +78,7 @@ public class LocationPanelDrawer : Drawer
             }
             else
             {
-                enemiesIcons[i].sprite = zone.enemies[i].enemyData.icon;
+                enemiesIcons[i].sprite = zone.enemies[i].enemyData.sprite;
                 enemiesIcons[i].color = Color.white;
                 enemiesName[i].text = zone.enemies[i].enemyData.name;
                 // enemiesChance[i].text = zone.enemies[i].chanceWeight.ToString();

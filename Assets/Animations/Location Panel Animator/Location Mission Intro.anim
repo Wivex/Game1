@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mission Intro
+  m_Name: Location Mission Intro
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -33,7 +33,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SizeDelta.x
-    path: Location Background
+    path: Location Image
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -52,7 +52,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SizeDelta.y
-    path: Location Background
+    path: Location Image
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -98,7 +98,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Location Background
+    path: Location Image
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -144,7 +144,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Location Background
+    path: Location Image
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -172,7 +172,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Location Objects Overlay
+    path: Location Image Overlay
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -200,7 +200,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Location Objects Overlay
+    path: Location Image Overlay
     classID: 224
     script: {fileID: 0}
   m_PPtrCurves: []
@@ -212,42 +212,42 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 21194366
+      path: 1169205682
       attribute: 1460864421
       script: {fileID: 0}
       typeID: 224
       customType: 28
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1387684415
+      path: 3141788744
       attribute: 1460864421
       script: {fileID: 0}
       typeID: 224
       customType: 28
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 21194366
+      path: 1169205682
       attribute: 1967290853
       script: {fileID: 0}
       typeID: 224
       customType: 28
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 21194366
+      path: 1169205682
       attribute: 38095219
       script: {fileID: 0}
       typeID: 224
       customType: 28
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 21194366
+      path: 1169205682
       attribute: 538195251
       script: {fileID: 0}
       typeID: 224
       customType: 28
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1387684415
+      path: 3141788744
       attribute: 538195251
       script: {fileID: 0}
       typeID: 224
@@ -291,7 +291,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SizeDelta.x
-    path: Location Background
+    path: Location Image
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -310,7 +310,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SizeDelta.y
-    path: Location Background
+    path: Location Image
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -356,7 +356,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Location Background
+    path: Location Image
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -402,7 +402,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Location Background
+    path: Location Image
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -430,7 +430,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Location Objects Overlay
+    path: Location Image Overlay
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -458,7 +458,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Location Objects Overlay
+    path: Location Image Overlay
     classID: 224
     script: {fileID: 0}
   m_EulerEditorCurves: []

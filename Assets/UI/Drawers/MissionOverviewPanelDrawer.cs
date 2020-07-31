@@ -11,10 +11,12 @@ public class MissionOverviewPanelDrawer : Drawer
 {
     #region SET IN INSPECTOR
 
-    public Transform consumablesPanel, locationPanel;
+    public Transform consumablesPanel;
+    public Animator backAnim;
     public FillingBar heroHpBar, heroEnergyBar, enemyHpBar, enemyEnergyBar;
-    public Image heroImage, curGoldImage, heroIcon, encSubjectIcon, encInteractionIcon, locationImage, lootIcon, backOverlayImage;
+    public Image heroImage, curGoldImage, heroIcon, encSubjectImage, encInteractionImage, locationImage, lootIcon, backOverlayImage;
     public Sprite townSprite;
+    public CanvasGroup statBarsGroup;
 
     public TextMeshProUGUI heroName,
         level,
@@ -22,11 +24,7 @@ public class MissionOverviewPanelDrawer : Drawer
 
     #endregion
 
-    #region CODE LOADED
-
-    // Image[] consumableIcons;
-    // TextMeshProUGUI[] consumablesCharges;
-
+    #region STATIC REFERENCES (CODE LOADED)
 
     // can't reference external scene objects in prefab inspector
     static List<Sprite> goldPileSprites;
@@ -35,15 +33,22 @@ public class MissionOverviewPanelDrawer : Drawer
 
     #endregion
 
-    internal Mission mis;
+    internal Mission mission;
 
-    Animator encAnim, backAnim;
+    Animator encAnim;
     AnimationMonitor animMonitor;
-
-    internal static List<MissionOverviewPanelDrawer> createdPanels = new List<MissionOverviewPanelDrawer>();
 
     internal static void CreateNew(Mission mis)
     {
+        var newPanel =
+            UIManager.i.prefabs.missionOverviewPanelPrefab.Instantiate<MissionOverviewPanelDrawer>(UIManager.i.panels.missionPreviewContentPanel);
+        newPanel.Init(mis);
+    }
+
+    internal void Init(Mission mis)
+    {
+        this.mission = mis;
+
         // check once for all instances, cause these references are static for all panels
         if (missionsCMan == null)
         {
@@ -52,28 +57,16 @@ public class MissionOverviewPanelDrawer : Drawer
             detailsCanvas = missionsCMan.controlledCanvases.Find(canvas => canvas.name.Contains("Details"));
             overviewCanvas = UIManager.i.panels.missionPreviewContentPanel.GetComponent<Canvas>();
         }
-
-        var newPanel =
-            UIManager.i.prefabs.missionOverviewPanelPrefab.Instantiate<MissionOverviewPanelDrawer>(UIManager.i.panels
-                .missionPreviewContentPanel);
-        createdPanels.Add(newPanel);
-        newPanel.Init(mis);
-    }
-
-    internal void Init(Mission mis)
-    {
-        this.mis = mis;
         
         //auto-assign some references
         encAnim = GetComponent<Animator>();
         animMonitor = encAnim.GetBehaviour<AnimationMonitor>();
-        backAnim = locationImage.GetComponent<Animator>();
 
-        // call ShowDetailsPanel() method when panel is clicked on
-        GetComponent<Button>().onClick.AddListener(() => ShowDetailsPanel(mis));
+        // call OnPanelClicked() method when panel is clicked on
+        GetComponent<Button>().onClick.AddListener(() => OnPanelClicked(mis));
 
         // event subscription
-        animMonitor.AnimationSequenceFinished += OnAnimationsFinished;
+        animMonitor.AnimationsFinished += OnAnimationsFinished;
         mis.LocationChanged += OnLocationChanged;
         mis.EncounterStarted += OnEncounterStarted;
 
@@ -83,67 +76,91 @@ public class MissionOverviewPanelDrawer : Drawer
     void MissionIntroAnimSetUp()
     {
         locationImage.sprite = townSprite;
-        backOverlayImage.enabled = true;
-        encInteractionIcon.enabled = false;
-        encSubjectIcon.enabled = false;
+        encInteractionImage.enabled = false;
+        encSubjectImage.enabled = false;
+        encInteractionImage.enabled = false; 
+        // set stat bars transparent
+        statBarsGroup.enabled = true;
     }
 
+
     #region EVENT HANDLERS
+
+    // used because can't pass class as parameter with button click from inspector
+    void OnPanelClicked(Mission mis)
+    {
+        // expDetailsPanelDrawManager.InitHeroPanel(hero);
+        missionsCMan.ChangeActiveCanvas(detailsCanvas);
+    }
 
     /// <summary>
     /// New Mission begins with intro animation, then AnimationsFinished event control mission logic flow
     /// </summary>
     void OnAnimationsFinished()
     {
-        mis.NextAction();
+        mission.NextUpdate();
     }
 
     void OnLocationChanged()
     {
-        locationImage.sprite = mis.route.NextLocationSprite();
+        locationImage.sprite = mission.route.NextLocationSprite();
     }
 
     void OnEncounterStarted(EncounterType type)
     {
-        encAnim.SetTrigger($"{type} Encounter Start");
+        switch (type)
+        {
+            case EncounterType.None:
+                encAnim.SetTrigger("No Encounter");
+                break;
+            case EncounterType.Enemy:
+                // encInteractionImage = swords;
+                encSubjectImage.enabled = true;
+                encSubjectImage.sprite = (mission.curEncounter as EnemyEncounter).enemy.data.sprite;
+                encInteractionImage.enabled = true;
+                UIManager.TriggerAnimators($"{type} Encounter Start", encAnim, backAnim);
+                break;
+
+        }
     }
-
-
+    
     #endregion
 
-    // TODO: move draw to stat bars themselves
+    
+    #region UI REDRAW METHODS
+
+    /// <summary>
+    /// Called after all animation is done. Can overwrite any "animator-locked" values (any parameters used in any state for any animation in the controller make them being overwritten with defaults on any other animator controller state).
+    /// </summary>
+    void LateUpdate()
+    {
+        // change hero sprite based on hero sex
+        var curHeroSpriteIndex = mission.hero.data.spritesheet.IndexOf(heroIcon.sprite);
+        if (mission.hero.sex == SexType.Female && curHeroSpriteIndex >= 50)
+            heroIcon.sprite = mission.hero.data.spritesheet[curHeroSpriteIndex - 50];
+    }
+
     public void SetStatBars()
     {
-        var enemy = (mis.curEncounter as EnemyEncounter)?.enemy;
-        heroHpBar.SetInitialValue((float) mis.hero.HP / mis.hero.HPMax);
+        var enemy = (mission.curEncounter as EnemyEncounter)?.enemy;
+        heroHpBar.SetInitialValue((float) mission.hero.HP / mission.hero.HPMax);
         enemyHpBar.SetInitialValue((float) enemy.HP / enemy.HPMax);
-        heroEnergyBar.SetInitialValue((float) mis.hero.Energy / mis.hero.EnergyMax);
+        heroEnergyBar.SetInitialValue((float) mission.hero.Energy / mission.hero.EnergyMax);
         enemyEnergyBar.SetInitialValue((float) enemy.Energy / enemy.EnergyMax);
     }
 
-    // can't pass class as parameter with button click from inspector
-    internal void ShowDetailsPanel(Mission mis)
-    {
-        // expDetailsPanelDrawManager.InitHeroPanel(hero);
-        missionsCMan.ChangeActiveCanvas(detailsCanvas);
-    }
-
-    // TODO: rename to Redraw
-
-    #region UI REDRAW METHODS
-
     void RedrawHeroDesc()
     {
-        heroName.text = mis.hero.name;
-        level.text = $"Level {mis.hero.level} {mis.hero.data.name}";
+        heroName.text = mission.hero.name;
+        level.text = $"Level {mission.hero.level} {mission.hero.data.name}";
     }
 
     void RedrawGold()
     {
-        gold.text = mis.hero.gold.ToString();
+        gold.text = mission.hero.gold.ToString();
         var a = 0;
         var index = 0;
-        while (mis.hero.gold > a)
+        while (mission.hero.gold > a)
         {
             a = (int) Mathf.Pow(2, index++);
             if (index >= goldPileSprites.Count - 1) break;
@@ -173,7 +190,7 @@ public class MissionOverviewPanelDrawer : Drawer
 
     void RedrawStatBars()
     {
-        if (mis.curEncounter is EnemyEncounter combat)
+        if (mission.curEncounter is EnemyEncounter combat)
         {
             heroHpBar.TryUpdateValue((float) combat.hero.HP / combat.hero.HPMax);
             heroEnergyBar.TryUpdateValue((float) combat.hero.Energy / combat.hero.EnergyMax);
@@ -191,10 +208,10 @@ public class MissionOverviewPanelDrawer : Drawer
 
     void RedrawEncounterSubject()
     {
-        if (mis.curEncounter is EnemyEncounter combat)
-            encSubjectIcon.sprite = combat.enemy.data.icon;
-        if (mis.curEncounter is ContainerEncounter cont)
-            encSubjectIcon.sprite = cont.data.icon;
+        if (mission.curEncounter is EnemyEncounter combat)
+            encSubjectImage.sprite = combat.enemy.data.sprite;
+        if (mission.curEncounter is ContainerEncounter cont)
+            encSubjectImage.sprite = cont.data.icon;
     }
 
     void ChangeZoneImage()

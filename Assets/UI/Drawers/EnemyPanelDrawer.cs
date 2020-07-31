@@ -10,7 +10,7 @@ public class EnemyPanelDrawer : UnitPanelDrawer
     {
         this.enemy = enemy;
         unit = enemy;
-        unitImage.sprite = enemy.data.icon;
+        unitImage.sprite = enemy.data.sprite;
         enemyName.text = enemy.data.name;
     }
 

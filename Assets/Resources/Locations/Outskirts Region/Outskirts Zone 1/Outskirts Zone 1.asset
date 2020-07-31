@@ -29,12 +29,10 @@ MonoBehaviour:
     type: 0
     targetZone: {fileID: 0}
   encounters:
-  - relativeChanceWeight: 778
+  - relativeChanceWeight: 1
     type: 0
-  - relativeChanceWeight: 212
+  - relativeChanceWeight: 1000
     type: 1
-  - relativeChanceWeight: 72
-    type: 2
   enemies:
   - relativeChanceWeight: 263
     enemyData: {fileID: 11400000, guid: 70fb510b10b37ab4fb9e274bf96a41d2, type: 2}

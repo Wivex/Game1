@@ -5,16 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public enum AnimationTrigger
-{
-    KeepTravelling,
-    BeginEncounter,
-    EndEncounter,
-    StartTransferLoot,
-    Attack,
-    TakeDamage
-}
-
 public class Mission
 {
     internal Hero hero;
@@ -37,35 +27,34 @@ public class Mission
         route = new MissionRoute(misSetUp.path);
     }
 
-    internal void NextAction()
+    internal void NextUpdate()
     {
-        if (curEncounter != null)
-            curEncounter.NextAction();
-        else
-            NextLocation();
+        if (curEncounter?.resolved != false) NextLocation();
+        else curEncounter.NextUpdate();
     }
 
     void NextLocation()
     {
         LocationChanged?.Invoke();
         NextEncounter();
+        EncounterStarted?.Invoke(curEncounter.type);
     }
 
     void NextEncounter()
     {
-        if (GracePeriodPassed)
+        if (GracePeriodPassed || curEncounter == null)
         {
             switch (route.curZone.encounters.PickOne().type)
             {
                 case EncounterType.None:
                     curEncounter = new NoEncounter(this);
+                    // TODO: move to Init or smth
+                    curEncounter.resolved = true;
                     break;
                 case EncounterType.Enemy:
                     curEncounter = new EnemyEncounter(this);
                     break;
             }
-
-            EncounterStarted?.Invoke(curEncounter.type);
         }
     }
 }

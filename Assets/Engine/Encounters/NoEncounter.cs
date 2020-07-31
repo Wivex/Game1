@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
+using UnityEngine.UIElements;
 
 public enum EncounterType
 {
@@ -17,6 +18,7 @@ public class NoEncounter
     internal Mission mis;
     internal Hero hero;
     internal EncounterType type = EncounterType.None;
+    internal bool resolved;
 
     internal NoEncounter(Mission mis)
     {
@@ -27,5 +29,5 @@ public class NoEncounter
     /// <summary>
     /// Runs next logical action in the encounter, when all previous action animations are finished.
     /// </summary>
-    internal virtual void NextAction(){}
+    internal virtual void NextUpdate(){}
 }

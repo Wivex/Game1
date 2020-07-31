@@ -93,4 +93,9 @@ public class UIManager : MonoBehaviour
             textObject.color = Color.red;
         }
     }
+
+    public static void TriggerAnimators(string triggerMessage, params Animator[] animators)
+    {
+        animators.ForEach(anim => anim.SetTrigger(triggerMessage));
+    }
 }

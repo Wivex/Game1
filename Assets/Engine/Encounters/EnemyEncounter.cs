@@ -17,22 +17,23 @@ public class EnemyEncounter : NoEncounter
     internal EnemyEncounter(Mission mis) : base(mis)
     {
         type = EncounterType.Enemy;
+        // TODO used mission one
         enemy = new Enemy(mis.route.curZone.enemies.PickOne().enemyData);
     }
 
-    internal override void NextAction()
+    internal override void NextUpdate()
     {
         if (looting)
             NextItem();
         else
-            NexUnitAction();
+            NextUnitAction();
     }
 
     // TODO: rework into AP based system (speed points)
     /// <summary>
     /// Determines turn order based on hero vs enemy speed difference. Substitution leftover accumulates, so that multiple turns of the same unit can happen based on SPD advantage.
     /// </summary>
-    void NexUnitAction()
+    void NextUnitAction()
     {
         // extra hero turn check
         if (heroInitiative > hero.Speed)

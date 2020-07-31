@@ -26,7 +26,7 @@ public class ContainerEncounter : NoEncounter
         looting = true;
     }
 
-    internal override void NextAction()
+    internal override void NextUpdate()
     {
         if (looting)
             NextItem();

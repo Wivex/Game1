@@ -279,7 +279,6 @@
     <Compile Include="Assets\Engine\Encounters\EnemyEncounter.cs" />
     <Compile Include="Assets\Engine\Encounters\NoEncounter.cs" />
     <Compile Include="Assets\Engine\Handlers\AssetHandler.cs" />
-    <Compile Include="Assets\Engine\Managers\AnimationManager.cs" />
     <Compile Include="Assets\Engine\Managers\CanvasManager.cs" />
     <Compile Include="Assets\Engine\Managers\GameManager.cs" />
     <Compile Include="Assets\Engine\Managers\InputManager.cs" />
@@ -302,7 +301,6 @@
     <Compile Include="Assets\Engine\Various\Equipment.cs" />
     <Compile Include="Assets\Engine\Various\Extensions.cs" />
     <Compile Include="Assets\Engine\Various\FPSCounter.cs" />
-    <Compile Include="Assets\Engine\Various\HeroSexSwapper.cs" />
     <Compile Include="Assets\Engine\Various\Interfaces.cs" />
     <Compile Include="Assets\Engine\Various\Mission.cs" />
     <Compile Include="Assets\Engine\Various\MissionRoute.cs" />
