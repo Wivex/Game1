@@ -20,12 +20,6 @@ public class Area
     /// <summary>
     /// These images are always traversed one after another (based on order of sprites formed from original area texture
     /// </summary>
-    internal List<Sprite> locations;
-
-    public void LoadLocations()
-    {
-        locations?.Clear();
-        locations = new List<Sprite>(AssetHandler.LoadChildAssets<Sprite>(areaTexture));
-    }
-
+    [HideInInspector]
+    public List<Sprite> locations;
 }

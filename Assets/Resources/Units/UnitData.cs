@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using SubjectNerd.Utilities;
 using UnityEngine;
+using UnityExtensions;
 
 public abstract class UnitData : ScriptableObject
 {
@@ -14,8 +14,6 @@ public abstract class UnitData : ScriptableObject
         speed = 10
     };
     public EnergyType energyType = EnergyType.Mana;
-    [Reorderable(ReorderableNamingType.ReferencedObjectName)]
     public List<AbilityData> abilities;
-    [Reorderable(ReorderableNamingType.VariableValue, "action.actionType")]
     public List<Tactic> tactics;
 }

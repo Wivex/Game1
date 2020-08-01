@@ -22,17 +22,17 @@ public class MissionRouteSegment
 
 internal class MissionRoute
 {
-    internal List<MissionRouteSegment> segments;
+    internal List<MissionRouteSegment> routeSegments;
     internal ZoneData curZone;
     internal Area curArea;
-    internal int curSegIndex, curLocIndex, remainingSegmentLength, transferAreaLength;
+    internal int curZoneIndex, curLocIndex, remainingSegmentLength, transferAreaLength;
 
     void SetTransferAreaLength()
     {
-        if (curSegIndex < segments.Count - 1)
+        if (curZoneIndex < routeSegments.Count - 1)
         {
-            var nextSegment = segments[curSegIndex + 1];
-            transferAreaLength = segments[curSegIndex].zone.areas.Find(area => area.targetZone = nextSegment.zone)
+            var nextSegment = routeSegments[curZoneIndex + 1];
+            transferAreaLength = routeSegments[curZoneIndex].zone.areas.Find(area => area.targetZone = nextSegment.zone)
                 .locations.Count;
         }
         else
@@ -43,12 +43,13 @@ internal class MissionRoute
 
     internal MissionRoute(List<MissionRouteSegment> selectedPath)
     {
-        segments = new List<MissionRouteSegment>(selectedPath);
-        curZone = segments[curSegIndex].zone;
+        routeSegments = new List<MissionRouteSegment>(selectedPath);
+        curZone = routeSegments[curZoneIndex].zone;
         curArea = curZone.areas.First();
-        remainingSegmentLength = segments[curSegIndex].length;
+        remainingSegmentLength = routeSegments[curZoneIndex].length;
     }
 
+    // TODO implement Zone change
     internal Sprite NextLocationSprite()
     {
         // not last location in area
@@ -60,7 +61,7 @@ internal class MissionRoute
         else
         {
             // not yet time for transfer area or last segment in route
-            if (remainingSegmentLength > transferAreaLength || curSegIndex >= segments.Count - 1)
+            if (remainingSegmentLength > transferAreaLength || curZoneIndex >= routeSegments.Count - 1)
             {
                 // next interchangeable area
                 curArea = curZone.areas.Where(area => area.type == AreaType.Interchangeable).PickOne();
@@ -69,13 +70,13 @@ internal class MissionRoute
             else
             {
                 // find transfer area
-                var nextZone = segments[curSegIndex + 1].zone;
+                var nextZone = routeSegments[curZoneIndex + 1].zone;
                 curArea = curZone.areas.Find(
                     area => area.type == AreaType.ZoneTransition && area.targetZone == nextZone);
                 curLocIndex = 0;
             }
         }
-
+        
         remainingSegmentLength--;
         return curArea.locations[curLocIndex];
     }

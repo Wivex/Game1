@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
         // If running game in Unity, stop it's execution
         UnityEditor.EditorApplication.isPlaying = false;
 #else
-    // If running game in app, quit it
         Application.Quit();
 #endif
     }

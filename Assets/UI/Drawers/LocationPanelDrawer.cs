@@ -59,7 +59,6 @@ public class LocationPanelDrawer : Drawer
             }
             else
             {
-                situationsIcons[i].sprite = zone.encounters[i].interactionIcon;
                 situationsIcons[i].color = Color.white;
                 situationsName[i].text = zone.encounters[i].type.ToString();
                 // situationsChance[i].text = zone.encounters[i].chanceWeight.ToString();

@@ -24,6 +24,7 @@ MonoBehaviour:
   abilities: []
   tactics: []
   classType: 0
+  spriteIndexOffsetBySex: 50
   portraits:
   - {fileID: 21300000, guid: 2c62ee07e2b7e8e46aea2329a761296a, type: 3}
   - {fileID: 21300000, guid: b0f91d4e38984da478b43982b32acedd, type: 3}
@@ -134,4 +135,3 @@ MonoBehaviour:
   - {fileID: -4992078087596110602, guid: fe7414dc8531ee84bae4117bbe95d472, type: 3}
   - {fileID: -7697361346027892424, guid: fe7414dc8531ee84bae4117bbe95d472, type: 3}
   - {fileID: 3978189612144434208, guid: fe7414dc8531ee84bae4117bbe95d472, type: 3}
-  spriteIndexOffsetBySex: 0

@@ -36,7 +36,7 @@ public class Effect
         icon = sourceIcon;
         curDuration = duration;
 
-        targetUnit = target == Target.Self ? enemyEncounter.curActor : enemyEncounter.curTarget;
+        targetUnit = target == Target.Self ? enemyEncounter.actor : enemyEncounter.target;
 
         if (duration > 1)
         {

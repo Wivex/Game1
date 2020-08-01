@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using SubjectNerd.Utilities;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +8,6 @@ using UnityEngine.UI;
 
 public class MissionRoutePanelDrawer : Drawer
 {
-    [Reorderable(ReorderableNamingType.ReferencedObjectName)]
     public List<MissionRouteMapNode> startingNodes;
 
     List<MissionRouteMapNode> allNodes;

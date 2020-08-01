@@ -51,7 +51,7 @@ public class TacticAction
     {
         //enemyEncounter.mis.StartAnimation(AnimationTrigger.Attack, enemyEncounter.GetAnimManager(enemyEncounter.curActor));
 
-        var damTaken = enemyEncounter.curTarget.TakeDamage(enemyEncounter.mis, new Damage(DamageType.Physical, enemyEncounter.curActor.Attack));
+        var damTaken = enemyEncounter.target.TakeDamage(enemyEncounter.mis, new Damage(DamageType.Physical, enemyEncounter.actor.Attack));
 
         //UIManager.CreateEffectAnimation(enemyEncounter.mis, enemyEncounter.curTarget, UIManager.meleeHitEffectPrefab);
 
@@ -60,7 +60,7 @@ public class TacticAction
 
     public void UseAbility(EnemyEncounter enemyEncounter)
     {
-        var usedAbility = enemyEncounter.curActor.abilities.Find(abil => abil.abilityData == abilityData);
+        var usedAbility = enemyEncounter.actor.abilities.Find(abil => abil.abilityData == abilityData);
         foreach (var effect in usedAbility.abilityData.effects)
         {
             effect.AddEffect(enemyEncounter, usedAbility.abilityData.name, usedAbility.abilityData.icon);

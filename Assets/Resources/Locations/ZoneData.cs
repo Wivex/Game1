@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using SubjectNerd.Utilities;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,8 +9,6 @@ using UnityEngine.UI;
 public class EncounterSpawnOption : SpawnOption
 {
     public EncounterType type;
-    // auto-loaded based on encounter type
-    internal Sprite interactionIcon;
 }
 
 [Serializable]
@@ -31,23 +28,23 @@ public class ContainerSpawnOption : SpawnOption
 [CreateAssetMenu(menuName = "Content/Data/Zone Data")]
 public class ZoneData : ScriptableObject
 {
-    [Reorderable(ReorderableNamingType.VariableValue,"type")]
     public List<Area> areas;
-
-    [Reorderable(ReorderableNamingType.VariableValue, "type")]
     public List<EncounterSpawnOption> encounters;
-    [Reorderable(ReorderableNamingType.ReferencedObjectName, "enemyData")]
     public List<EnemySpawnOption> enemies;
-    
-    void OnEnable()
+
+#if UNITY_EDITOR
+    void OnValidate()
     {
-        // auto-load all sprites from multi-sprite texture of a site
-        if (areas.NotNullOrEmpty())
+        // auto-load all location sprites in each area
+        foreach (var area in areas)
         {
-            areas.ForEach(area => area.LoadLocations());
+            area.locations = new List<Sprite>(AssetHandler.LoadChildAssets<Sprite>(area.areaTexture));
         }
-    
         // sort ascending enemies spawn list by chance of spawn
         enemies = enemies?.OrderBy(x => x.relativeChanceWeight).ToList();
+
+        // required to be able to save script changes to SO to an actual asset file (only inspector changes are saved by default)
+        EditorUtility.SetDirty(this);
     }
+#endif
 }

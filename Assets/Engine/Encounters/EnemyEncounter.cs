@@ -5,14 +5,22 @@ using Random = UnityEngine.Random;
 
 public class EnemyEncounter : NoEncounter
 {
+    internal const int AP_AccumulationLimitMod = 2;
+
     internal Enemy enemy;
-    internal Unit curActor, curTarget;
+    internal Unit actor, target;
     
     List<Item> lootDrops;
     Item curLoot;
 
     bool looting;
-    int heroInitiative;
+    int heroAP, enemyAP;
+
+    #region EVENTS
+
+    internal event Action NextUnitTurn;
+
+    #endregion
 
     internal EnemyEncounter(Mission mis) : base(mis)
     {
@@ -23,40 +31,24 @@ public class EnemyEncounter : NoEncounter
 
     internal override void NextUpdate()
     {
-        if (looting)
-            NextItem();
-        else
+        if (!looting)
             NextUnitAction();
+        else
+            NextItem();
     }
 
-    // TODO: rework into AP based system (speed points)
-    /// <summary>
-    /// Determines turn order based on hero vs enemy speed difference. Substitution leftover accumulates, so that multiple turns of the same unit can happen based on SPD advantage.
-    /// </summary>
+    // TODO: simultaneous turn if same AP?
+    void NewTurn()
+    {
+        heroAP = Math.Min(heroAP + hero.Speed, hero.Speed * AP_AccumulationLimitMod);
+        enemyAP = Math.Min(enemyAP + enemy.Speed, enemy.Speed * AP_AccumulationLimitMod);
+
+        actor = heroAP >= enemyAP ? (Unit) hero : enemy;
+        target = heroAP >= enemyAP ? (Unit) enemy : hero;
+    }
+
     void NextUnitAction()
     {
-        // extra hero turn check
-        if (heroInitiative > hero.Speed)
-            heroInitiative -= hero.Speed;
-        // extra enemy turn check (substitution leftover is negative)
-        else if (-heroInitiative > enemy.Speed)
-            heroInitiative -= -enemy.Speed;
-        // normal turn check
-        else
-            heroInitiative += hero.Speed - enemy.Speed;
-
-        if (heroInitiative > 0 || heroInitiative == 0 && Random.value > 0.5f)
-        {
-            curActor = hero;
-            curTarget = enemy;
-        }
-        else
-        {
-            curActor = enemy;
-            curTarget = hero;
-        }
-
-        DoActorTurn();
     }
 
     void TryEndCombat()
@@ -110,13 +102,13 @@ public class EnemyEncounter : NoEncounter
 
     void UpdateActorEffects()
     {
-        for (var i = curActor.effects.Count - 1; i >= 0; i--)
-            curActor.effects[i].ProcEffect();
+        for (var i = actor.effects.Count - 1; i >= 0; i--)
+            actor.effects[i].ProcEffect();
     }
 
     void DoActorAction()
     {
-        foreach (var tactic in curActor.tactics)
+        foreach (var tactic in actor.tactics)
         {
             // skip tactic if not all triggers are triggered
             if (tactic.triggers.Exists(trigger => !trigger.IsTriggered(enemy)))
@@ -128,7 +120,7 @@ public class EnemyEncounter : NoEncounter
 
     void UpdateActorCooldowns()
     {
-        foreach (var ability in curActor.abilities)
+        foreach (var ability in actor.abilities)
         {
             if (ability.curCooldown > 0)
                 ability.curCooldown--;

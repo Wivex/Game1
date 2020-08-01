@@ -16,22 +16,42 @@ MonoBehaviour:
   - areaTexture: {fileID: 2800000, guid: 5ff11c19f0669d849b20c2a6acc0a396, type: 3}
     type: 0
     targetZone: {fileID: 0}
+    locations:
+    - {fileID: -257138266664858712, guid: 5ff11c19f0669d849b20c2a6acc0a396, type: 3}
+    - {fileID: 1323144809000983448, guid: 5ff11c19f0669d849b20c2a6acc0a396, type: 3}
+    - {fileID: -6541737495022499077, guid: 5ff11c19f0669d849b20c2a6acc0a396, type: 3}
   - areaTexture: {fileID: 2800000, guid: fd85a0e2eeec4d6428d832c84da47a20, type: 3}
     type: 0
     targetZone: {fileID: 0}
+    locations:
+    - {fileID: -753634002894176850, guid: fd85a0e2eeec4d6428d832c84da47a20, type: 3}
+    - {fileID: 7120982068822281075, guid: fd85a0e2eeec4d6428d832c84da47a20, type: 3}
+    - {fileID: -1457490841348351691, guid: fd85a0e2eeec4d6428d832c84da47a20, type: 3}
   - areaTexture: {fileID: 2800000, guid: 5695a4b0bac09664db46ac0079102513, type: 3}
     type: 0
     targetZone: {fileID: 0}
+    locations:
+    - {fileID: -4230883440852994258, guid: 5695a4b0bac09664db46ac0079102513, type: 3}
+    - {fileID: 3367462104051823353, guid: 5695a4b0bac09664db46ac0079102513, type: 3}
+    - {fileID: -7710422843943933009, guid: 5695a4b0bac09664db46ac0079102513, type: 3}
   - areaTexture: {fileID: 2800000, guid: 5695a4b0bac09664db46ac0079102513, type: 3}
     type: 0
     targetZone: {fileID: 0}
+    locations:
+    - {fileID: -4230883440852994258, guid: 5695a4b0bac09664db46ac0079102513, type: 3}
+    - {fileID: 3367462104051823353, guid: 5695a4b0bac09664db46ac0079102513, type: 3}
+    - {fileID: -7710422843943933009, guid: 5695a4b0bac09664db46ac0079102513, type: 3}
   - areaTexture: {fileID: 2800000, guid: 29da79d50397efa4ebac85865d3d743f, type: 3}
     type: 0
     targetZone: {fileID: 0}
+    locations:
+    - {fileID: -257138266664858712, guid: 29da79d50397efa4ebac85865d3d743f, type: 3}
+    - {fileID: 1323144809000983448, guid: 29da79d50397efa4ebac85865d3d743f, type: 3}
+    - {fileID: -6541737495022499077, guid: 29da79d50397efa4ebac85865d3d743f, type: 3}
   encounters:
-  - relativeChanceWeight: 1
+  - relativeChanceWeight: 607
     type: 0
-  - relativeChanceWeight: 1000
+  - relativeChanceWeight: 1
     type: 1
   enemies:
   - relativeChanceWeight: 263

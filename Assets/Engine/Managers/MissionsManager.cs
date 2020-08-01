@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Lexic;
-using SubjectNerd.Utilities;
 using UnityEngine;
 
 internal class MissionSetUp
@@ -47,7 +46,6 @@ public class MissionsManager : MonoBehaviour
     [Tooltip("Minimum time in seconds between events")]
     public int minGracePeriod;
 
-    [Reorderable(ReorderableNamingType.ReferencedObjectName)]
     public List<ZoneData> debugMissionRouteZones;
     public bool generateDebugMissionAtStartup;
 

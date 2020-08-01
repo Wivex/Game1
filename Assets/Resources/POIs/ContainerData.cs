@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using SubjectNerd.Utilities;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Content/Data/Container Data")]
 public class ContainerData : ScriptableObject
 {
     public Sprite icon;
-    [Reorderable(ReorderableNamingType.ReferencedObjectName, "item")]
     public List<LootData> lootTable;
 
     void OnEnable()

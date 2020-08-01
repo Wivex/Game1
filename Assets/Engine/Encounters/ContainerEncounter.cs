@@ -5,7 +5,6 @@ using Random = UnityEngine.Random;
 
 public class ContainerEncounter : NoEncounter
 {
-    internal Hero hero;
     internal ContainerData data;
     internal Item curLoot;
 

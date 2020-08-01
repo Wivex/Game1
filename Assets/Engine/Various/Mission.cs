@@ -12,7 +12,7 @@ public class Mission
     internal NoEncounter curEncounter;
     internal int locationsSinceLastEncounter = 0;
 
-    #region region EVENTS
+    #region EVENTS
 
     internal event Action LocationChanged;
     internal event Action<EncounterType> EncounterStarted;

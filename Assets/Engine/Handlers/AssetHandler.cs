@@ -1,9 +1,14 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 
+/// <summary>
+/// Tools to set object variables by code
+/// </summary>
 public static class AssetHandler
 {
     /// <summary>
@@ -17,7 +22,6 @@ public static class AssetHandler
         var resourcePath = assetPath.Substring(startIndex, endIndex - startIndex);
         return Resources.Load<T>(resourcePath);
     }
-
 
     internal static List<T> LoadAllNearbyAssets<T>(Object baseAsset, string relativePath = default) where T : Object
     {
@@ -38,3 +42,5 @@ public static class AssetHandler
                             .OfType<T>().ToList();
     }
 }
+
+#endif

@@ -6,8 +6,6 @@ public class Unit
 {
     internal List<Ability> abilities = new List<Ability>();
     internal List<Effect> effects = new List<Effect>();
-    internal List<Tactic> tactics;
-
     internal Dictionary<StatType, Stat> baseStats;
 
     internal int speedPoints;
@@ -47,8 +45,6 @@ public class Unit
 
         foreach (var abilityData in data.abilities)
             abilities.Add(new Ability(abilityData));
-
-        tactics = data.tactics;
 
         speedPoints = baseStats[StatType.Speed].ModdedValue;
     }
