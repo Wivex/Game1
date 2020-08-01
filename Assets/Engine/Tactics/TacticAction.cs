@@ -20,6 +20,21 @@ public class TacticAction
     [HideIfNotEnumValues("actionType", ActionType.UseConsumable)]
     public ItemData consumableData;
 
+    // Required to check before actually trying to perform this action, otherwise try next tactic
+    internal bool IsPossible(EnemyEncounter enemyEncounter)
+    {
+        switch (actionType)
+        {
+            case ActionType.UseAbility:
+                var ability = enemyEncounter.actor.abilities.Find(abil => abil.data.name == abilityData.name);
+                return ability.IsReady;
+            case ActionType.UseConsumable:
+                UseConsumable(enemyEncounter);
+                break;
+            default:  return true;
+        }
+    }
+    
     public void DoAction(EnemyEncounter enemyEncounter)
     {
         switch (actionType)
@@ -38,7 +53,25 @@ public class TacticAction
                 break;
         }
     }
+    
 
+    #region ACTION TYPE CHECKS
+    //public bool StatValueCheck(SituationCombat situation)
+    //{
+    //    //var unit = curTarget == Target.Self ? situation.curActor : situation.curTarget;
+    //    //return comparisonType == ComparisonType.LessOrEqual
+    //    //    ? unit.baseStats[(int)stat].curValue <= amount
+    //    //    : unit.baseStats[(int)stat].curValue > amount;
+    //}
+
+    //public bool AbilityReadyCheck(CombatManager situation)
+    //{
+    //    //var unit = curTarget == Target.Self ? situation.curActor : situation.curTarget;
+    //    //return unit.abilities.Exists(ability =>
+    //    //    ability.abilityData == abilityData && ability.curCooldown == 0);
+    //    return true;
+    //}
+    #endregion
 
     #region ACTIONS
 
@@ -60,10 +93,10 @@ public class TacticAction
 
     public void UseAbility(EnemyEncounter enemyEncounter)
     {
-        var usedAbility = enemyEncounter.actor.abilities.Find(abil => abil.abilityData == abilityData);
-        foreach (var effect in usedAbility.abilityData.effects)
+        var usedAbility = enemyEncounter.actor.abilities.Find(abil => abil.data == abilityData);
+        foreach (var effect in usedAbility.data.effects)
         {
-            effect.AddEffect(enemyEncounter, usedAbility.abilityData.name, usedAbility.abilityData.icon);
+            effect.AddEffect(enemyEncounter, usedAbility.data.name, usedAbility.data.icon);
         }
 
         // +1 adjustment, because after each turn all cooldowns are decreased by 1 (even for used ability)

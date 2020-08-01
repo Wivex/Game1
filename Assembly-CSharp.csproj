@@ -958,10 +958,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="MyBox.csproj">
-      <Project>{A63DCA66-0B95-A0F9-0EC8-E66990EA31B7}</Project>
-      <Name>MyBox</Name>
-    </ProjectReference>
     <ProjectReference Include="UnityExtensions.ArrayDrawer.csproj">
       <Project>{B22E36EE-F0C9-35CA-1862-94800A36784F}</Project>
       <Name>UnityExtensions.ArrayDrawer</Name>
@@ -969,6 +965,10 @@
     <ProjectReference Include="UnityExtensions.ArrayDrawer.Editor.csproj">
       <Project>{3DC4F4FE-7784-945E-B979-19849C3188D2}</Project>
       <Name>UnityExtensions.ArrayDrawer.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="MyBox.csproj">
+      <Project>{A63DCA66-0B95-A0F9-0EC8-E66990EA31B7}</Project>
+      <Name>MyBox</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

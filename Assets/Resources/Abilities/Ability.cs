@@ -6,11 +6,16 @@ using UnityEngine;
 [Serializable]
 public class Ability
 {
-    public AbilityData abilityData;
+    public AbilityData data;
     public int curCooldown;
 
-    public Ability(AbilityData abilityData)
+    internal bool IsReady(Unit unit)
     {
-        this.abilityData = abilityData;
+        return curCooldown <= 0 &&  && unit.Energy >= data.energyCost;
+    }
+
+    public Ability(AbilityData data)
+    {
+        this.data = data;
     }
 }

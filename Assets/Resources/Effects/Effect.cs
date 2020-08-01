@@ -12,7 +12,7 @@ public enum EffectType
 public class Effect
 {
     public EffectType effectType;
-    public Target target;
+    public TargetType targetType;
     public int duration;
     [HideIfNotEnumValues("effectType", EffectType.Damage)]
     public DamageType damageType;
@@ -36,7 +36,7 @@ public class Effect
         icon = sourceIcon;
         curDuration = duration;
 
-        targetUnit = target == Target.Self ? enemyEncounter.actor : enemyEncounter.target;
+        targetUnit = targetType == TargetType.Self ? enemyEncounter.actor : enemyEncounter.target;
 
         if (duration > 1)
         {

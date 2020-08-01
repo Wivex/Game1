@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Unit
 {
+    internal UnitData data;
     internal List<Ability> abilities = new List<Ability>();
     internal List<Effect> effects = new List<Effect>();
     internal Dictionary<StatType, Stat> baseStats;

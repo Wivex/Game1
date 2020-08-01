@@ -94,7 +94,7 @@ public class UnitPanelDrawer : Drawer
             }
             else
             {
-                abilities[i].sprite = unit.abilities[i].abilityData.icon;
+                abilities[i].sprite = unit.abilities[i].data.icon;
                 abilities[i].color = Color.white;
                 abilitiesCD[i].text = unit.abilities[i].curCooldown != 0
                     ? unit.abilities[i].curCooldown.ToString()

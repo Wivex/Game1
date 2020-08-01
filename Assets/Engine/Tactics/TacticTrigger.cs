@@ -3,48 +3,58 @@
 public enum TriggerType
 {
     Any,
+    EnemyType,
+    StatusEffectType,
     StatValue,
-    FoeType,
-    SelfCondition,
-    FoeCondition,
-    AbilityReady
+    AbilityReady,
+    HasConsumable
 }
 
-public enum Target
+public enum TargetType
 {
     Self,
-    Opponent
+    Enemy
 }
 
 public enum ComparisonType
 {
+    Less,
     LessOrEqual,
+    Equal,
+    NotEqual,
+    MoreOrEqual,
     More
 }
 
-public enum StatTriggerType
+public enum MeasureType
 {
     Value,
     Percent
 }
 
+public enum StatusEffectType
+{
+    Normal,
+    Burning
+}
+
 [Serializable]
 public class TacticTrigger
 {
-    public TriggerType triggerType;
-    [HideIfNotEnumValues("triggerType", TriggerType.StatValue, TriggerType.AbilityReady)]
-    public Target target;
+    public TriggerType triggerType = TriggerType.Any;
+    [HideIfNotEnumValues("triggerType", TriggerType.StatValue, TriggerType.StatusEffectType)]
+    public TargetType targetType;
     [HideIfNotEnumValues("triggerType", TriggerType.StatValue)]
     public StatType stat;
     [HideIfNotEnumValues("triggerType", TriggerType.StatValue)]
-    public StatTriggerType statTriggerType;
+    public MeasureType measureType;
     [HideIfNotEnumValues("triggerType", TriggerType.StatValue)]
     public ComparisonType comparisonType;
     [HideIfNotEnumValues("triggerType", TriggerType.StatValue)]
-    public int statValue;
+    public int amount;
     [HideIfNotEnumValues("triggerType", TriggerType.AbilityReady)]
     public AbilityData abilityData;
-    [HideIfNotEnumValues("triggerType", TriggerType.FoeType)]
+    [HideIfNotEnumValues("triggerType", TriggerType.EnemyType)]
     public UnitData unitData;
 
     public bool IsTriggered(Enemy enemy)
@@ -55,13 +65,9 @@ public class TacticTrigger
                 return true;
             //case TriggerType.StatValue:
             //    return StatValueCheck(situation);
-            case TriggerType.FoeType:
+            case TriggerType.EnemyType:
                 // NOTE: rework?
                 return enemy.data == unitData;
-            case TriggerType.SelfCondition:
-                throw new NotImplementedException();
-            case TriggerType.FoeCondition:
-                throw new NotImplementedException();
             case TriggerType.AbilityReady:
                 //return situation.curActor.abilities.Exists(ability =>
                 //    ability.abilityData == abilityData && ability.curCooldown <= 0);
@@ -71,13 +77,13 @@ public class TacticTrigger
         }
     }
 
-    #region CHECKS
+    #region TRIGGER TYPE CHECKS
     //public bool StatValueCheck(SituationCombat situation)
     //{
     //    //var unit = curTarget == Target.Self ? situation.curActor : situation.curTarget;
     //    //return comparisonType == ComparisonType.LessOrEqual
-    //    //    ? unit.baseStats[(int)stat].curValue <= statValue
-    //    //    : unit.baseStats[(int)stat].curValue > statValue;
+    //    //    ? unit.baseStats[(int)stat].curValue <= amount
+    //    //    : unit.baseStats[(int)stat].curValue > amount;
     //}
 
     //public bool AbilityReadyCheck(CombatManager situation)

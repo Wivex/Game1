@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityExtensions;
 
 public abstract class UnitData : ScriptableObject
 {
@@ -16,4 +15,20 @@ public abstract class UnitData : ScriptableObject
     public EnergyType energyType = EnergyType.Mana;
     public List<AbilityData> abilities;
     public List<Tactic> tactics;
+
+    internal virtual void OnValidate()
+    {
+        foreach (var tactic in tactics)
+        {
+            // can't be tactic without any trigger
+            if (!tactic.triggers.NotNullOrEmpty())
+                tactic.triggers = new List<TacticTrigger>
+                {
+                    new TacticTrigger
+                    {
+                        triggerType = TriggerType.Any
+                    }
+                };
+        }
+    }
 }

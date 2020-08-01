@@ -8,7 +8,7 @@ public class EnemyEncounter : NoEncounter
     internal const int AP_AccumulationLimitMod = 2;
 
     internal Enemy enemy;
-    internal Unit actor, target;
+    internal Unit fasterUnit, actor, target;
     
     List<Item> lootDrops;
     Item curLoot;
@@ -43,12 +43,17 @@ public class EnemyEncounter : NoEncounter
         heroAP = Math.Min(heroAP + hero.Speed, hero.Speed * AP_AccumulationLimitMod);
         enemyAP = Math.Min(enemyAP + enemy.Speed, enemy.Speed * AP_AccumulationLimitMod);
 
-        actor = heroAP >= enemyAP ? (Unit) hero : enemy;
-        target = heroAP >= enemyAP ? (Unit) enemy : hero;
+        fasterUnit = heroAP >= enemyAP ? (Unit) hero : enemy;
+        //actor = heroAP >= enemyAP ? (Unit)hero : enemy;
+        //target = heroAP >= enemyAP ? (Unit)enemy : hero;
     }
 
     void NextUnitAction()
     {
+        
+        // if can use any action
+        // do action
+        // else next turn
     }
 
     void TryEndCombat()
@@ -108,14 +113,14 @@ public class EnemyEncounter : NoEncounter
 
     void DoActorAction()
     {
-        foreach (var tactic in actor.tactics)
-        {
-            // skip tactic if not all triggers are triggered
-            if (tactic.triggers.Exists(trigger => !trigger.IsTriggered(enemy)))
-                continue;
-            tactic.action.DoAction(this);
-            break;
-        }
+        //foreach (var tactic in actor.tactics)
+        //{
+        //    // skip tactic if not all triggers are triggered
+        //    if (tactic.triggers.Exists(trigger => !trigger.IsTriggered(enemy)))
+        //        continue;
+        //    tactic.action.DoAction(this);
+        //    break;
+        //}
     }
 
     void UpdateActorCooldowns()
