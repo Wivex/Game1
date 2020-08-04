@@ -25,10 +25,20 @@ internal class MissionRoute
     internal List<MissionRouteSegment> routeSegments;
     internal ZoneData curZone;
     internal Area curArea;
-    internal int curZoneIndex, curLocIndex, remainingSegmentLength, transferAreaLength;
+    internal int curZoneIndex, curLocIndex, remainingSegmentPathLength, transferAreaLength;
+
+    internal MissionRoute(List<MissionRouteSegment> selectedPath)
+    {
+        routeSegments = new List<MissionRouteSegment>(selectedPath);
+        curZone = routeSegments[curZoneIndex].zone;
+        curArea = curZone.areas.First();
+        remainingSegmentPathLength = routeSegments[curZoneIndex].length;
+        SetTransferAreaLength();
+    }
 
     void SetTransferAreaLength()
     {
+        // not last zone in route
         if (curZoneIndex < routeSegments.Count - 1)
         {
             var nextSegment = routeSegments[curZoneIndex + 1];
@@ -36,20 +46,9 @@ internal class MissionRoute
                 .locations.Count;
         }
         else
-        {
             transferAreaLength = 0;
-        }
     }
 
-    internal MissionRoute(List<MissionRouteSegment> selectedPath)
-    {
-        routeSegments = new List<MissionRouteSegment>(selectedPath);
-        curZone = routeSegments[curZoneIndex].zone;
-        curArea = curZone.areas.First();
-        remainingSegmentLength = routeSegments[curZoneIndex].length;
-    }
-
-    // TODO implement Zone change
     internal Sprite NextLocationSprite()
     {
         // not last location in area
@@ -58,26 +57,51 @@ internal class MissionRoute
             // next location in area
             curLocIndex++;
         }
+        // last location in area
         else
         {
-            // not yet time for transfer area or last segment in route
-            if (remainingSegmentLength > transferAreaLength || curZoneIndex >= routeSegments.Count - 1)
+            // not yet transfer area
+            if (remainingSegmentPathLength > transferAreaLength)
             {
                 // next interchangeable area
                 curArea = curZone.areas.Where(area => area.type == AreaType.Interchangeable).PickOne();
                 curLocIndex = 0;
             }
-            else
+            // transfer area
+            else if (remainingSegmentPathLength > 0 && remainingSegmentPathLength < transferAreaLength)
             {
-                // find transfer area
                 var nextZone = routeSegments[curZoneIndex + 1].zone;
                 curArea = curZone.areas.Find(
                     area => area.type == AreaType.ZoneTransition && area.targetZone == nextZone);
                 curLocIndex = 0;
             }
+            // transfer area ended, change zone
+            else
+            {
+                // last zone in route
+                if (curZoneIndex >= routeSegments.Count - 1)
+                {
+                    // TEMP: keep on travelling forever
+                    // next interchangeable area
+                    curArea = curZone.areas.Where(area => area.type == AreaType.Interchangeable).PickOne();
+                    curLocIndex = 0;
+                }
+                else
+                {
+                    var nextSegment = routeSegments[curZoneIndex + 1];
+                    var entryArea = nextSegment.zone.areas.Find(area => area.targetZone = curZone);
+                    if (entryArea == null)
+                        Debug.LogError($"Entry area for {curZone.name} in {nextSegment.zone.name} wasn't found");
+                    curZoneIndex++;
+                    curZone = nextSegment.zone;
+                    curArea = entryArea;
+                    curLocIndex = 0;
+                    SetTransferAreaLength();
+                }
+            }
         }
         
-        remainingSegmentLength--;
+        remainingSegmentPathLength--;
         return curArea.locations[curLocIndex];
     }
 }

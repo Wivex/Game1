@@ -6,7 +6,8 @@ public enum ActionType
     Attack,
     UseAbility,
     UseConsumable,
-    Flee
+    Flee,
+    Wait
 }
 
 [Serializable]
@@ -19,37 +20,25 @@ public class TacticAction
 
     [HideIfNotEnumValues("actionType", ActionType.UseConsumable)]
     public ItemData consumableData;
-
-    // Required to check before actually trying to perform this action, otherwise try next tactic
-    internal bool IsPossible(EnemyEncounter enemyEncounter)
-    {
-        switch (actionType)
-        {
-            case ActionType.UseAbility:
-                var ability = enemyEncounter.actor.abilities.Find(abil => abil.data.name == abilityData.name);
-                return ability.IsReady;
-            case ActionType.UseConsumable:
-                UseConsumable(enemyEncounter);
-                break;
-            default:  return true;
-        }
-    }
     
-    public void DoAction(EnemyEncounter enemyEncounter)
+    public void Perform(EnemyEncounter combat)
     {
         switch (actionType)
         {
+            case ActionType.Wait:
+                Wait(combat);
+                break;
             case ActionType.Flee:
-                Flee(enemyEncounter);
+                Flee(combat);
                 break;
             case ActionType.Attack:
-                Attack(enemyEncounter);
+                Attack(combat);
                 break;
             case ActionType.UseAbility:
-                UseAbility(enemyEncounter);
+                UseAbility(combat);
                 break;
             case ActionType.UseConsumable:
-                UseConsumable(enemyEncounter);
+                UseConsumable(combat);
                 break;
         }
     }
@@ -74,6 +63,11 @@ public class TacticAction
     #endregion
 
     #region ACTIONS
+
+    public void Wait(EnemyEncounter enemyEncounter)
+    {
+        //enemyEncounter.EndCombat();
+    }
 
     public void Flee(EnemyEncounter enemyEncounter)
     {

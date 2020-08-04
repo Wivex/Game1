@@ -20,7 +20,7 @@ public static class SpawnOptionExtensions
     public static T PickOne<T>(this List<T> options) where T : SpawnOption
     {
         var totalWeight = options.Sum(opt => opt.relativeChanceWeight);
-        var roll = Random.Range(1, totalWeight);
+        var roll = Random.Range(1, totalWeight+1);
         foreach (var opt in options)
         {
             roll -= opt.relativeChanceWeight;

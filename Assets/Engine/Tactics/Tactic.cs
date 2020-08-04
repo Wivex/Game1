@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using UnityExtensions;
 
 [Serializable]
@@ -9,40 +10,28 @@ public class Tactic
 {
     public List<TacticTrigger> triggers;
     public TacticAction action;
+
+    internal bool Triggered(EnemyEncounter combat)
+    {
+        return triggers.All(trigger => trigger.Triggered(combat));
+    }
 }
 
 
 public static class TacticExtensions
 {
     /// <summary>
-    /// Returns true if all triggers are triggered
-    /// </summary>
-    public static bool AllTriggered(this List<TacticTrigger> triggers, EnemyEncounter enc)
-    {
-         return triggers.All(trigger => trigger.IsTriggered(enc.enemy));
-    }
-
-    /// <summary>
-    /// Returns true if all triggers are triggered
-    /// </summary>
-    public static bool IsPossible(this TacticAction action, EnemyEncounter enc)
-    {
-        return triggers.All(trigger => trigger.IsTriggered(enc.enemy));
-    }
-
-
-    /// <summary>
     /// Returns TacticAction based on triggers and possibility checks
     /// </summary>
-    public static TacticAction PickAction(this List<Tactic> tactics)
+    public static TacticAction PickAction(this List<Tactic> tactics, EnemyEncounter combat)
     {
-        foreach (var tactic in tactics)
+        var action =  tactics.FirstOrDefault(tactic => tactic.Triggered(combat))?.action;
+        if (action != null)
         {
-            if (tactic.triggers.Exists(trigger => !trigger.IsTriggered(enemy)))
-                continue;
-            tactic.action.DoAction(this);
+            return action;
         }
 
-        return null;
+        Debug.Log($"{combat.actor.Name} couldn't pick an action and waits");
+        return new TacticAction {actionType = ActionType.Wait};
     }
 }

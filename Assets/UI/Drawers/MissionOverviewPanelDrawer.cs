@@ -151,7 +151,7 @@ public class MissionOverviewPanelDrawer : Drawer
 
     void RedrawHeroDesc()
     {
-        heroName.text = mission.hero.name;
+        heroName.text = mission.hero.Name;
         level.text = $"Level {mission.hero.level} {mission.hero.data.name}";
     }
 

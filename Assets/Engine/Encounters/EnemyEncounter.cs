@@ -3,22 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using Random = UnityEngine.Random;
 
+internal enum CombatPhase
+{
+    DoTs,
+    NewTurn,
+    FasterUnitTurn,
+    SlowerUnitTurn,
+    Looting
+}
+
 public class EnemyEncounter : NoEncounter
 {
     internal const int AP_AccumulationLimitMod = 2;
 
     internal Enemy enemy;
-    internal Unit fasterUnit, actor, target;
+    internal Unit actor, target;
     
     List<Item> lootDrops;
     Item curLoot;
 
-    bool looting;
     int heroAP, enemyAP;
+    CombatPhase phase = CombatPhase.DoTs;
 
     #region EVENTS
 
-    internal event Action NextUnitTurn;
+    //internal event Action NextUnitTurn;
 
     #endregion
 
@@ -27,57 +36,97 @@ public class EnemyEncounter : NoEncounter
         type = EncounterType.Enemy;
         // TODO used mission one
         enemy = new Enemy(mis.route.curZone.enemies.PickOne().enemyData);
+        NewTurnSetUp();
     }
 
     internal override void NextUpdate()
     {
-        if (!looting)
-            NextUnitAction();
-        else
-            NextItem();
+        // Check if any unit dead or flee
+        CombatEndCheck();
+
+        switch (phase)
+        {
+            case CombatPhase.DoTs:
+                // Apply DoTs (call DoTs animation effects)
+                // Death check
+                NewCombatTurn();
+                break;
+            case CombatPhase.Looting:
+                NextItemDrop();
+                break;
+            default: 
+                NextUnitAction();
+                break;
+        }
     }
 
-    // TODO: simultaneous turn if same AP?
-    void NewTurn()
+    void NewTurnSetUp()
+    {
+        // new turn updates
+        phase = CombatPhase.DoTs;
+    }
+
+    void NewCombatTurn()
     {
         heroAP = Math.Min(heroAP + hero.Speed, hero.Speed * AP_AccumulationLimitMod);
         enemyAP = Math.Min(enemyAP + enemy.Speed, enemy.Speed * AP_AccumulationLimitMod);
+        actor = heroAP >= enemyAP ? (Unit) hero : enemy;
+        target = heroAP >= enemyAP ? (Unit) enemy : hero;
 
-        fasterUnit = heroAP >= enemyAP ? (Unit) hero : enemy;
-        //actor = heroAP >= enemyAP ? (Unit)hero : enemy;
-        //target = heroAP >= enemyAP ? (Unit)enemy : hero;
+        phase = CombatPhase.FasterUnitTurn;
+        NextUnitAction();
     }
 
     void NextUnitAction()
     {
-        
-        // if can use any action
-        // do action
-        // else next turn
-    }
-
-    void TryEndCombat()
-    {
-        if (hero.Dead || enemy.Dead)
-            EndCombat();
-    }
-
-    void EndCombat()
-    {
-        // loose condition
-        if (hero.Dead)
+        var actorAction = actor.tactics.PickAction(this);
+        if (actorAction.actionType == ActionType.Wait)
         {
-            //UNDONE
+            // if faster unit can't do more actions
+            if (phase == CombatPhase.FasterUnitTurn)
+            {
+                // slower unit turn to act
+                phase = CombatPhase.SlowerUnitTurn;
+                // switch roles
+                var actorRole = actor;
+                actor = target;
+                target = actorRole;
+            }
+            else
+                // Combat turn ended, prep for next
+                NewTurnSetUp();
         }
-        // win condition
         else
         {
-            SpawnLoot();
-            looting = true;
+            // perform appropriate tactic action
+            actorAction.Perform(this);
         }
     }
 
-    void NextItem()
+
+    void CombatEndCheck()
+    {
+        // Mission tactics (flee) go here
+        
+        //if (hero.shouldFlee)
+        //{
+        //    //flee
+        //}
+        if (hero.Dead)
+        {
+            // hero dead smth
+        }
+        else if (enemy.Dead)
+            StartLooting();
+    }
+
+    void StartLooting()
+    {
+        SpawnLoot();
+        phase = CombatPhase.Looting;
+    }
+
+    void NextItemDrop()
     {
         if (lootDrops.Any())
         {
@@ -88,9 +137,7 @@ public class EnemyEncounter : NoEncounter
         }
         else
         {
-            looting = false;
-            //mis.StartAnimation(AnimationTrigger.EndEncounter, mis.heroAM, mis.encounterAM);
-            mis.curEncounter = null;
+            resolved = true;
         }
     }
 
@@ -98,10 +145,10 @@ public class EnemyEncounter : NoEncounter
     {
         UpdateActorEffects();
         // can die from DoT
-        TryEndCombat();
+        CombatEndCheck();
         DoActorAction();
         // can die from action
-        TryEndCombat();
+        CombatEndCheck();
         UpdateActorCooldowns();
     }
 
@@ -116,9 +163,9 @@ public class EnemyEncounter : NoEncounter
         //foreach (var tactic in actor.tactics)
         //{
         //    // skip tactic if not all triggers are triggered
-        //    if (tactic.triggers.Exists(trigger => !trigger.IsTriggered(enemy)))
+        //    if (tactic.triggers.Exists(trigger => !trigger.Triggered(enemy)))
         //        continue;
-        //    tactic.action.DoAction(this);
+        //    tactic.action.Perform(this);
         //    break;
         //}
     }

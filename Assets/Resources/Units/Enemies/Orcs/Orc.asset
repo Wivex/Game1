@@ -12,26 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 433be84bca0ae5a428fd846b355f14b5, type: 3}
   m_Name: Orc
   m_EditorClassIdentifier: 
-  baseStats:
+  energyType: 1
+  stats:
     health: 100
     energy: 100
     attack: 10
     defence: 5
     speed: 10
-    eResist: 0
-    bResist: 0
-  energyType: 1
   abilities:
   - {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
   tactics:
   - triggers:
-    - triggerType: 1
-      target: 0
+    - triggerType: 4
+      targetType: 0
       stat: 0
-      statTriggerType: 0
+      measureType: 0
       comparisonType: 0
-      statValue: 0
-      abilityData: {fileID: 0}
+      amount: 0
+      abilityData: {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
       unitData: {fileID: 0}
     action:
       actionType: 1
@@ -39,24 +37,18 @@ MonoBehaviour:
       consumableData: {fileID: 0}
   - triggers:
     - triggerType: 0
-      target: 0
+      targetType: 0
       stat: 0
-      statTriggerType: 0
+      measureType: 0
       comparisonType: 0
-      statValue: 0
-      abilityData: {fileID: 0}
+      amount: 0
+      abilityData: {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
       unitData: {fileID: 0}
     action:
       actionType: 0
-      abilityData: {fileID: 0}
+      abilityData: {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
       consumableData: {fileID: 0}
   lootTable:
-  - dropChance: 1
-    lootAmountType: 0
-    fixedAmount: 0
-    minAmount: 0
-    maxAmount: 0
-    item: {fileID: 11400000, guid: 78012ae863cad56478ded752cbb98ccc, type: 2}
   - dropChance: 1
     lootAmountType: 0
     fixedAmount: 0

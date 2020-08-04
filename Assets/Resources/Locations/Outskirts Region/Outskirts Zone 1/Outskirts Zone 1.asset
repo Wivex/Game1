@@ -15,7 +15,7 @@ MonoBehaviour:
   areas:
   - areaTexture: {fileID: 2800000, guid: 5ff11c19f0669d849b20c2a6acc0a396, type: 3}
     type: 0
-    targetZone: {fileID: 0}
+    targetZone: {fileID: 11400000, guid: 1e8212406a5e7314a9a12d2e8fe956a3, type: 2}
     locations:
     - {fileID: -257138266664858712, guid: 5ff11c19f0669d849b20c2a6acc0a396, type: 3}
     - {fileID: 1323144809000983448, guid: 5ff11c19f0669d849b20c2a6acc0a396, type: 3}
@@ -42,14 +42,14 @@ MonoBehaviour:
     - {fileID: 3367462104051823353, guid: 5695a4b0bac09664db46ac0079102513, type: 3}
     - {fileID: -7710422843943933009, guid: 5695a4b0bac09664db46ac0079102513, type: 3}
   - areaTexture: {fileID: 2800000, guid: 29da79d50397efa4ebac85865d3d743f, type: 3}
-    type: 0
-    targetZone: {fileID: 0}
+    type: 1
+    targetZone: {fileID: 11400000, guid: 1e8212406a5e7314a9a12d2e8fe956a3, type: 2}
     locations:
     - {fileID: -257138266664858712, guid: 29da79d50397efa4ebac85865d3d743f, type: 3}
     - {fileID: 1323144809000983448, guid: 29da79d50397efa4ebac85865d3d743f, type: 3}
     - {fileID: -6541737495022499077, guid: 29da79d50397efa4ebac85865d3d743f, type: 3}
   encounters:
-  - relativeChanceWeight: 607
+  - relativeChanceWeight: 1
     type: 0
   - relativeChanceWeight: 1
     type: 1

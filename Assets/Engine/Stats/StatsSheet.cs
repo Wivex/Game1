@@ -17,9 +17,7 @@ public enum StatType
     Energy,
     Attack,
     Defence,
-    Speed,
-    HResist,
-    BResist
+    Speed
 }
 
 /// <summary>
@@ -32,7 +30,5 @@ public class StatsSheet
         energy,
         attack,
         defence,
-        speed,
-        eResist,
-        bResist;
+        speed;
 }

@@ -170,7 +170,7 @@ namespace UnityExtensions
                 var menuRect = position;
                 menuRect.xMin = menuRect.xMax - 16;
                 menuRect.yMin += 4;
-                ContextMenuButtonStyle.Draw(menuRect, false, false, false, false);
+                HeaderBackgroundStyle.Draw(menuRect, false, false, false, false);
             }
         }
 

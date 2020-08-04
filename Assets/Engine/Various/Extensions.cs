@@ -41,7 +41,7 @@ public static class Extensions
     public static T PickOne<T>(this IEnumerable<T> source)
     {
         var list = source.ToList();
-        var index = Random.Range(0, list.Count());
+        var index = Random.Range(0, list.Count);
         return list[index];
     }
 

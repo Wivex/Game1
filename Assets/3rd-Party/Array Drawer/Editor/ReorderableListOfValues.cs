@@ -636,9 +636,6 @@ namespace UnityExtensions
         static readonly GUIStyle
         EyeDropperHorizontalLine = "EyeDropperHorizontalLine";
 
-        protected static readonly GUIStyle
-        ContextMenuButtonStyle = "Icon.TrackOptions";
-
         protected GUIContent IconToolbarPlus => defaultBehaviours.iconToolbarPlus;
 
         protected GUIContent IconToolbarPlusMore => defaultBehaviours.iconToolbarPlusMore;

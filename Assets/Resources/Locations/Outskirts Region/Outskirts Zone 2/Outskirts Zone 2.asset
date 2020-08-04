@@ -12,7 +12,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32a229b002926149832f9d63fa5075d, type: 3}
   m_Name: Outskirts Zone 2
   m_EditorClassIdentifier: 
-  areas: []
+  areas:
+  - areaTexture: {fileID: 2800000, guid: ee194b00cce481b4a85924aa23b3b4b4, type: 3}
+    type: 1
+    targetZone: {fileID: 11400000, guid: e93e029519ef6014f95ce8a52190dee2, type: 2}
+    locations:
+    - {fileID: -257138266664858712, guid: ee194b00cce481b4a85924aa23b3b4b4, type: 3}
+    - {fileID: 1323144809000983448, guid: ee194b00cce481b4a85924aa23b3b4b4, type: 3}
+    - {fileID: -6541737495022499077, guid: ee194b00cce481b4a85924aa23b3b4b4, type: 3}
+  - areaTexture: {fileID: 2800000, guid: 4297e0d987ddd8942a2d5b36180e2942, type: 3}
+    type: 0
+    targetZone: {fileID: 0}
+    locations:
+    - {fileID: -257138266664858712, guid: 4297e0d987ddd8942a2d5b36180e2942, type: 3}
+    - {fileID: 1323144809000983448, guid: 4297e0d987ddd8942a2d5b36180e2942, type: 3}
+    - {fileID: -6541737495022499077, guid: 4297e0d987ddd8942a2d5b36180e2942, type: 3}
+  - areaTexture: {fileID: 2800000, guid: a222a58accb0c9d4bb4bc538b04e6621, type: 3}
+    type: 0
+    targetZone: {fileID: 0}
+    locations:
+    - {fileID: -257138266664858712, guid: a222a58accb0c9d4bb4bc538b04e6621, type: 3}
+    - {fileID: 1323144809000983448, guid: a222a58accb0c9d4bb4bc538b04e6621, type: 3}
+    - {fileID: -6541737495022499077, guid: a222a58accb0c9d4bb4bc538b04e6621, type: 3}
+  - areaTexture: {fileID: 2800000, guid: a72b848a2aba37d44ad92c114367ce6a, type: 3}
+    type: 0
+    targetZone: {fileID: 0}
+    locations:
+    - {fileID: -257138266664858712, guid: a72b848a2aba37d44ad92c114367ce6a, type: 3}
+    - {fileID: 1323144809000983448, guid: a72b848a2aba37d44ad92c114367ce6a, type: 3}
+    - {fileID: -6541737495022499077, guid: a72b848a2aba37d44ad92c114367ce6a, type: 3}
   encounters:
   - relativeChanceWeight: 583
     type: 0
@@ -20,4 +48,4 @@ MonoBehaviour:
     type: 1
   enemies:
   - relativeChanceWeight: 393
-    enemyData: {fileID: 11400000, guid: db04714867b5b34428fd0b78f15cffa4, type: 2}
+    enemyData: {fileID: 11400000, guid: 70fb510b10b37ab4fb9e274bf96a41d2, type: 2}

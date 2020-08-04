@@ -6,7 +6,7 @@ public enum TriggerType
     EnemyType,
     StatusEffectType,
     StatValue,
-    AbilityReady,
+    CanUseAbility,
     HasConsumable
 }
 
@@ -52,12 +52,12 @@ public class TacticTrigger
     public ComparisonType comparisonType;
     [HideIfNotEnumValues("triggerType", TriggerType.StatValue)]
     public int amount;
-    [HideIfNotEnumValues("triggerType", TriggerType.AbilityReady)]
+    [HideIfNotEnumValues("triggerType", TriggerType.CanUseAbility)]
     public AbilityData abilityData;
     [HideIfNotEnumValues("triggerType", TriggerType.EnemyType)]
     public UnitData unitData;
 
-    public bool IsTriggered(Enemy enemy)
+    public bool Triggered(EnemyEncounter combat)
     {
         switch (triggerType)
         {
@@ -66,12 +66,12 @@ public class TacticTrigger
             //case TriggerType.StatValue:
             //    return StatValueCheck(situation);
             case TriggerType.EnemyType:
-                // NOTE: rework?
-                return enemy.data == unitData;
-            case TriggerType.AbilityReady:
-                //return situation.curActor.abilities.Exists(ability =>
-                //    ability.abilityData == abilityData && ability.curCooldown <= 0);
-                return true;
+                return combat.actor is Hero
+                    ? combat.enemy.data.name == unitData.name
+                    : combat.hero.data.classType.ToString() == unitData.name;
+            case TriggerType.CanUseAbility:
+                var ability = combat.actor.abilities.Find(abil => abil.data.name == abilityData.name);
+                return ability.Ready(combat.actor);
             default:
                 throw new ArgumentException();
         }

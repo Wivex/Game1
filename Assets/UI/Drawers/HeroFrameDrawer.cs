@@ -22,7 +22,7 @@ public class HeroFrameDrawer : Drawer
     {
         this.hero = hero;
         heroImage.sprite = hero.portrait;
-        heroNameText.text = hero.name;
+        heroNameText.text = hero.Name;
         heroLevelText.text = $"Level {hero.level} {hero.data.classType}";
     }
 }

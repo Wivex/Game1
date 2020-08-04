@@ -52,6 +52,6 @@ public class HeroSelectionPanelDrawer : Drawer
         MissionsManager.missionSetUp.hero = selHero;
 
         // TODO: update hero info
-        heroStats.text = $@"{selHero.name} stats";
+        heroStats.text = $@"{selHero.Name} stats";
     }
 }

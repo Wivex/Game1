@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 public abstract class UnitData : ScriptableObject
 {
     [Header("Unit Properties")]
-    public StatsSheet baseStats = new StatsSheet
+    public EnergyType energyType = EnergyType.Mana;
+    public StatsSheet stats = new StatsSheet
     {
         health = 100,
         energy = 100,
@@ -12,23 +15,26 @@ public abstract class UnitData : ScriptableObject
         defence = 5,
         speed = 10
     };
-    public EnergyType energyType = EnergyType.Mana;
     public List<AbilityData> abilities;
     public List<Tactic> tactics;
-
+    
+#if UNITY_EDITOR
     internal virtual void OnValidate()
     {
-        foreach (var tactic in tactics)
+        // verify that each tactic has at least 1 trigger
+        foreach (var tactic in tactics.Where(tactic => !tactic.triggers.NotNullOrEmpty()))
         {
-            // can't be tactic without any trigger
-            if (!tactic.triggers.NotNullOrEmpty())
-                tactic.triggers = new List<TacticTrigger>
+            tactic.triggers = new List<TacticTrigger>
+            {
+                new TacticTrigger
                 {
-                    new TacticTrigger
-                    {
-                        triggerType = TriggerType.Any
-                    }
-                };
+                    triggerType = TriggerType.Any
+                }
+            };
         }
+
+        // required to be able to save script changes to SO to an actual asset file (only inspector changes are saved by default)
+        EditorUtility.SetDirty(this);
     }
+#endif
 }

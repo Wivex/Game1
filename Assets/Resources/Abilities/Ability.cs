@@ -9,10 +9,8 @@ public class Ability
     public AbilityData data;
     public int curCooldown;
 
-    internal bool IsReady(Unit unit)
-    {
-        return curCooldown <= 0 &&  && unit.Energy >= data.energyCost;
-    }
+    internal bool Ready(Unit unit) =>
+        curCooldown <= 0 && unit.Energy >= data.energyCost;
 
     public Ability(AbilityData data)
     {

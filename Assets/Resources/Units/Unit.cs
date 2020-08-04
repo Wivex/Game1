@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Unit
+public abstract class Unit
 {
-    internal UnitData data;
     internal List<Ability> abilities = new List<Ability>();
     internal List<Effect> effects = new List<Effect>();
     internal Dictionary<StatType, Stat> baseStats;
-
+    internal List<Tactic> tactics;
     internal int speedPoints;
 
     internal bool Dead => HP <= 0;
+    internal abstract string Name { get; }
 
     #region STATS SHORTCUTS
 
@@ -33,20 +33,21 @@ public class Unit
 
     #endregion
 
-    public Unit(UnitData data)
+    protected Unit(UnitData data)
     {
         baseStats = new Dictionary<StatType, Stat>
         {
-            {StatType.Health, new StatDepletable(data.baseStats.health)},
-            {StatType.Energy, new StatDepletable(data.baseStats.energy)},
-            {StatType.Speed, new Stat(data.baseStats.speed)},
-            {StatType.Attack, new Stat(data.baseStats.attack)},
-            {StatType.Defence, new Stat(data.baseStats.defence)}
+            {StatType.Health, new StatDepletable(data.stats.health)},
+            {StatType.Energy, new StatDepletable(data.stats.energy)},
+            {StatType.Speed, new Stat(data.stats.speed)},
+            {StatType.Attack, new Stat(data.stats.attack)},
+            {StatType.Defence, new Stat(data.stats.defence)}
         };
 
         foreach (var abilityData in data.abilities)
             abilities.Add(new Ability(abilityData));
 
+        // NOTE: needed here?
         speedPoints = baseStats[StatType.Speed].ModdedValue;
     }
 

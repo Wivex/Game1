@@ -21,7 +21,6 @@ public enum SexType
 
 public class Hero : Unit
 {
-    internal string name; 
     internal SexType sex;
     internal HeroState state;
     internal HeroClassData data;
@@ -31,12 +30,17 @@ public class Hero : Unit
     internal List<Item> backpack = new List<Item>();
     internal List<Item> consumables = new List<Item>();
 
+    internal override string Name { get; }
+
     internal Hero(string name, SexType sex, Sprite portrait, HeroClassData data) : base(data)
     {
-        this.name = name;
+        Name = name;
         this.sex = sex;
         this.portrait = portrait;
         this.data = data;
+
+        // NOTE: temp solution, until tactics generation in town is made
+        tactics = data.tactics;
     }
 
     // USE: TownManager.NewHero()

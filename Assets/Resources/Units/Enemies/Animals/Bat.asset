@@ -12,15 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 433be84bca0ae5a428fd846b355f14b5, type: 3}
   m_Name: Bat
   m_EditorClassIdentifier: 
-  baseStats:
+  energyType: 1
+  stats:
     health: 100
     energy: 100
     attack: 10
     defence: 5
     speed: 10
-    eResist: 0
-    bResist: 0
-  energyType: 1
   abilities: []
   tactics: []
   lootTable:

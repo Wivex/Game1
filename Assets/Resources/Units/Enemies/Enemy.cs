@@ -2,9 +2,12 @@
 {
     internal EnemyData data;
 
+    internal override string Name => data.name;
+
     internal Enemy(EnemyData data) : base (data)
     {
         this.data = data;
+        tactics = data.tactics;
     }
 
     public override void Kill()
