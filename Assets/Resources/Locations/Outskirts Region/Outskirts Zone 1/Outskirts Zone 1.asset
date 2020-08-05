@@ -51,7 +51,7 @@ MonoBehaviour:
   encounters:
   - relativeChanceWeight: 1
     type: 0
-  - relativeChanceWeight: 1
+  - relativeChanceWeight: 1000
     type: 1
   enemies:
   - relativeChanceWeight: 263

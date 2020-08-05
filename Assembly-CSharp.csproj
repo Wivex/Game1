@@ -311,7 +311,7 @@
     <Compile Include="Assets\Resources\Abilities\AbilityData.cs" />
     <Compile Include="Assets\Resources\Effects\ChangeStatDepletable.cs" />
     <Compile Include="Assets\Resources\Effects\Effect.cs" />
-    <Compile Include="Assets\Resources\Effects\FloatingText\FloatingTextHorisontalDrift.cs" />
+    <Compile Include="Assets\Resources\Effects\FloatingText\FloatingText.cs" />
     <Compile Include="Assets\Resources\Items\Item.cs" />
     <Compile Include="Assets\Resources\Items\ItemData.cs" />
     <Compile Include="Assets\Resources\Items\LootDropData.cs" />
@@ -338,7 +338,7 @@
     <Compile Include="Assets\UI\Drawers\TavernPanelDrawer.cs" />
     <Compile Include="Assets\UI\Drawers\UnitPanelDrawer.cs" />
     <Compile Include="Assets\UI\Panel Managers\MissionDetailsPanelManager.cs" />
-    <Compile Include="Assets\UI\Progress Bars\FillingBar.cs" />
+    <Compile Include="Assets\UI\Progress Bars\StatBar.cs" />
     <None Include="Assets\3rd-Party\unity-ui-extensions\Resources\Shaders\UIAdditive.shader" />
     <None Include="Assets\3rd-Party\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\3rd-Party\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />

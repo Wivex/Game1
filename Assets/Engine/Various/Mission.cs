@@ -16,6 +16,7 @@ public class Mission
 
     internal event Action LocationChanged;
     internal event Action<EncounterType> EncounterStarted;
+    internal event Action<Unit, Damage> DamageTaken;
 
     #endregion
 

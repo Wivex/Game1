@@ -7,13 +7,19 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+//public class AnimationSequenceHandler
+//{
+
+//}
+
+
 public class MissionOverviewPanelDrawer : Drawer
 {
     #region SET IN INSPECTOR
 
     public Transform consumablesPanel;
     public Animator backAnim;
-    public FillingBar heroHpBar, heroEnergyBar, enemyHpBar, enemyEnergyBar;
+    public StatBar heroHpBar, heroEnergyBar, enemyHpBar, enemyEnergyBar;
     public Image heroImage, curGoldImage, heroIcon, encSubjectImage, encInteractionImage, locationImage, lootIcon, backOverlayImage;
     public Sprite townSprite;
     public CanvasGroup statBarsGroup;
@@ -69,6 +75,7 @@ public class MissionOverviewPanelDrawer : Drawer
         animMonitor.AnimationsFinished += OnAnimationsFinished;
         mis.LocationChanged += OnLocationChanged;
         mis.EncounterStarted += OnEncounterStarted;
+        mis.DamageTaken += OnDamageTaken;
 
         MissionIntroAnimSetUp();
     }
@@ -123,7 +130,36 @@ public class MissionOverviewPanelDrawer : Drawer
 
         }
     }
+
+
+    void OnDamageTaken(Unit unit, Damage dam)
+    {
+        if (unit is Hero)
+        {
+            CreateFloatingText(heroIcon.transform, dam.amount);
+        }
+    }
     
+    static void CreateFloatingText(Transform parentTransform, int value, Sprite background = null)
+    {
+        var floatingText = UIManager.i.prefabs.floatingTextPrefab.Instantiate<FloatingText>(parentTransform);
+        if (value > 0)
+        {
+            floatingText.text = $"+{value}";
+            floatingText.color = Color.green;
+        }
+        else if (value < 0)
+        {
+            floatingText.text = $"-{value}";
+            floatingText.color = Color.red;
+        }
+        else
+        {
+            floatingText.text = "No effect";
+            floatingText.color = Color.white;
+        }
+    }
+
     #endregion
 
     
@@ -139,16 +175,7 @@ public class MissionOverviewPanelDrawer : Drawer
         if (mission.hero.sex == SexType.Female && curHeroSpriteIndex >= 50)
             heroIcon.sprite = mission.hero.data.spritesheet[curHeroSpriteIndex - 50];
     }
-
-    public void SetStatBars()
-    {
-        var enemy = (mission.curEncounter as EnemyEncounter)?.enemy;
-        heroHpBar.SetInitialValue((float) mission.hero.HP / mission.hero.HPMax);
-        enemyHpBar.SetInitialValue((float) enemy.HP / enemy.HPMax);
-        heroEnergyBar.SetInitialValue((float) mission.hero.Energy / mission.hero.EnergyMax);
-        enemyEnergyBar.SetInitialValue((float) enemy.Energy / enemy.EnergyMax);
-    }
-
+     
     void RedrawHeroDesc()
     {
         heroName.text = mission.hero.Name;
@@ -192,10 +219,10 @@ public class MissionOverviewPanelDrawer : Drawer
     {
         if (mission.curEncounter is EnemyEncounter combat)
         {
-            heroHpBar.TryUpdateValue((float) combat.hero.HP / combat.hero.HPMax);
-            heroEnergyBar.TryUpdateValue((float) combat.hero.Energy / combat.hero.EnergyMax);
-            enemyHpBar.TryUpdateValue((float) combat.enemy.HP / combat.enemy.HPMax);
-            enemyEnergyBar.TryUpdateValue((float) combat.enemy.Energy / combat.enemy.EnergyMax);
+            heroHpBar.SetTargetShiftingValue((float) combat.hero.HP / combat.hero.HPMax);
+            heroEnergyBar.SetTargetShiftingValue((float) combat.hero.Energy / combat.hero.EnergyMax);
+            enemyHpBar.SetTargetShiftingValue((float) combat.enemy.HP / combat.enemy.HPMax);
+            enemyEnergyBar.SetTargetShiftingValue((float) combat.enemy.Energy / combat.enemy.EnergyMax);
         }
     }
 
@@ -226,6 +253,7 @@ public class MissionOverviewPanelDrawer : Drawer
         //     curZoneIndex = 0;
         // }
     }
+
 
     #endregion
 }

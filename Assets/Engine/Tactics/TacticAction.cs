@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 public enum ActionType
@@ -15,11 +16,11 @@ public class TacticAction
 {
     public ActionType actionType;
 
-    [HideIfNotEnumValues("actionType", ActionType.UseAbility)]
-    public AbilityData abilityData;
-
     [HideIfNotEnumValues("actionType", ActionType.UseConsumable)]
     public ItemData consumableData;
+
+    [HideIfNotEnumValues("actionType", ActionType.UseAbility)]
+    public AbilityData ability;
     
     public void Perform(EnemyEncounter combat)
     {
@@ -42,77 +43,58 @@ public class TacticAction
                 break;
         }
     }
-    
-
-    #region ACTION TYPE CHECKS
-    //public bool StatValueCheck(SituationCombat situation)
-    //{
-    //    //var unit = curTarget == Target.Self ? situation.curActor : situation.curTarget;
-    //    //return comparisonType == ComparisonType.LessOrEqual
-    //    //    ? unit.baseStats[(int)stat].curValue <= amount
-    //    //    : unit.baseStats[(int)stat].curValue > amount;
-    //}
-
-    //public bool AbilityReadyCheck(CombatManager situation)
-    //{
-    //    //var unit = curTarget == Target.Self ? situation.curActor : situation.curTarget;
-    //    //return unit.abilities.Exists(ability =>
-    //    //    ability.abilityData == abilityData && ability.curCooldown == 0);
-    //    return true;
-    //}
-    #endregion
 
     #region ACTIONS
 
-    public void Wait(EnemyEncounter enemyEncounter)
+    public void Wait(EnemyEncounter combat)
     {
-        //enemyEncounter.EndCombat();
+        //combat.EndCombat();
     }
 
-    public void Flee(EnemyEncounter enemyEncounter)
+    public void Flee(EnemyEncounter combat)
     {
-        //enemyEncounter.EndCombat();
+        //combat.EndCombat();
     }
 
-    public void Attack(EnemyEncounter enemyEncounter)
+    public void Attack(EnemyEncounter combat)
     {
-        //enemyEncounter.mis.StartAnimation(AnimationTrigger.Attack, enemyEncounter.GetAnimManager(enemyEncounter.curActor));
+        //combat.mis.StartAnimation(AnimationTrigger.Attack, combat.GetAnimManager(combat.curActor));
 
-        var damTaken = enemyEncounter.target.TakeDamage(enemyEncounter.mis, new Damage(DamageType.Physical, enemyEncounter.actor.Attack));
+        var damTaken = combat.target.TakeDamage(combat.mis, new Damage(DamageType.Physical, combat.actor.Attack));
 
-        //UIManager.CreateEffectAnimation(enemyEncounter.mis, enemyEncounter.curTarget, UIManager.meleeHitEffectPrefab);
+        //UIManager.CreateEffectAnimation(combat.mis, combat.curTarget, UIManager.meleeHitEffectPrefab);
 
-        //enemyEncounter.mis.UpdateLog($"{enemyEncounter.curActor} attacks {enemyEncounter.curTarget} for {dam} {damage.type} damage.");
+        //combat.mis.UpdateLog($"{combat.curActor} attacks {combat.curTarget} for {dam} {damage.type} damage.");
     }
 
-    public void UseAbility(EnemyEncounter enemyEncounter)
+    public void UseAbility(EnemyEncounter combat)
     {
-        var usedAbility = enemyEncounter.actor.abilities.Find(abil => abil.data == abilityData);
-        foreach (var effect in usedAbility.data.effects)
+        var selAbility = combat.actor.abilities.Find(ab => ab.data == ability);
+        foreach (var effect in selAbility.data.effects)
         {
-            effect.AddEffect(enemyEncounter, usedAbility.data.name, usedAbility.data.icon);
+            effect.AddEffect(combat, selAbility.data.name, selAbility.data.icon);
         }
 
         // +1 adjustment, because after each turn all cooldowns are decreased by 1 (even for used ability)
-        usedAbility.curCooldown = abilityData.cooldown + 1;
+        selAbility.curCooldown = ability.cooldown + 1;
     }
 
-    public void UseConsumable(EnemyEncounter enemyEncounter)
+    public void UseConsumable(EnemyEncounter combat)
     {
-        //LogEvent(enemyEncounter, $"{enemyEncounter.hero.name} used {consumableData.name} on {enemyEncounter.curTarget.name}.");
-        var usedConsumable = enemyEncounter.hero.consumables.First(cons => cons.data == consumableData);
+        //LogEvent(combat, $"{combat.hero.name} used {consumableData.name} on {combat.curTarget.name}.");
+        var usedConsumable = combat.hero.consumables.First(cons => cons.data == consumableData);
         //foreach (var effect in usedConsumable.data.useEffects)
         //{
-        //    effect.AddEffect(enemyEncounter, usedConsumable.data.name, usedConsumable.data.icon);
+        //    effect.AddEffect(combat, usedConsumable.data.name, usedConsumable.data.icon);
         //}
 
         // +1 adjustment, because after each turm all cooldowns are decreased by 1 (even on used ability)
         usedConsumable.charges--;
     }
 
-    //public void LogEvent(CombatManager enemyEncounter, string text)
+    //public void LogEvent(CombatManager combat, string text)
     //{
-    //    //enemyEncounter.mission.UpdateLog(text);
+    //    //combat.mission.UpdateLog(text);
     //}
 
     #endregion

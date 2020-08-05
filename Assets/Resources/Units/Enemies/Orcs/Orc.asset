@@ -29,12 +29,12 @@ MonoBehaviour:
       measureType: 0
       comparisonType: 0
       amount: 0
-      abilityData: {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
+      ability: {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
       unitData: {fileID: 0}
     action:
       actionType: 1
-      abilityData: {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
       consumableData: {fileID: 0}
+      ability: {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
   - triggers:
     - triggerType: 0
       targetType: 0
@@ -42,12 +42,12 @@ MonoBehaviour:
       measureType: 0
       comparisonType: 0
       amount: 0
-      abilityData: {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
+      ability: {fileID: 0}
       unitData: {fileID: 0}
     action:
       actionType: 0
-      abilityData: {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
       consumableData: {fileID: 0}
+      ability: {fileID: 0}
   lootTable:
   - dropChance: 1
     lootAmountType: 0

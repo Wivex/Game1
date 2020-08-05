@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 
 [Serializable]
-public class PrefabsReferences
+public class PrefabReferences
 {
     public GameObject floatingTextPrefab, meleeHitEffectPrefab, missionOverviewPanelPrefab;
 }
@@ -42,7 +42,7 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
-    public PrefabsReferences prefabs;
+    public PrefabReferences prefabs;
     public UIReferences panels;
 
     void Start()
@@ -73,25 +73,6 @@ public class UIManager : MonoBehaviour
 
         // apply required rotation
         obj.transform.eulerAngles += new Vector3(0, 180, 0);
-    }
-
-    static void CreateFloatingText(Transform target, int value)
-    {
-        var floatingText = new MonoBehaviour();
-        // var floatingText = Instantiate(floatingTextPrefab, curTarget);
-        var textObject = floatingText.GetComponent<TextMeshProUGUI>();
-
-        if (value > 0)
-        {
-            textObject.text = $"+{value}";
-            textObject.color = Color.green;
-        }
-
-        if (value < 0)
-        {
-            textObject.text = $"{value}";
-            textObject.color = Color.red;
-        }
     }
 
     public static void TriggerAnimators(string triggerMessage, params Animator[] animators)

@@ -1,6 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 [CustomPropertyDrawer(typeof(HideIfNotBoolAttribute))]
 public class HideIfNotBoolPropertyDrawer : PropertyDrawer
@@ -88,7 +91,6 @@ public class HideIfNotEnumValuesPropertyDrawer : PropertyDrawer
         }
     }
 }
-
 
 [CustomPropertyDrawer(typeof(DisabledAttribute))]
 public class DisabledDrawer : PropertyDrawer
