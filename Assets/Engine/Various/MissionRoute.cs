@@ -25,6 +25,7 @@ internal class MissionRoute
     internal List<MissionRouteSegment> routeSegments;
     internal ZoneData curZone;
     internal Area curArea;
+    internal Sprite curLocSprite;
     internal int curZoneIndex, curLocIndex, remainingSegmentPathLength, transferAreaLength;
 
     internal MissionRoute(List<MissionRouteSegment> selectedPath)
@@ -49,7 +50,7 @@ internal class MissionRoute
             transferAreaLength = 0;
     }
 
-    internal Sprite NextLocationSprite()
+    internal void NextLocation()
     {
         // not last location in area
         if (curLocIndex < curArea.locations.Count - 1)
@@ -100,8 +101,8 @@ internal class MissionRoute
                 }
             }
         }
-        
+
+        curLocSprite = curArea.locations[curLocIndex];
         remainingSegmentPathLength--;
-        return curArea.locations[curLocIndex];
     }
 }

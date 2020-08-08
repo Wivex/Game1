@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public enum ActionType
 {
@@ -15,14 +16,12 @@ public enum ActionType
 public class TacticAction
 {
     public ActionType actionType;
-
     [HideIfNotEnumValues("actionType", ActionType.UseConsumable)]
     public ItemData consumableData;
-
     [HideIfNotEnumValues("actionType", ActionType.UseAbility)]
     public AbilityData ability;
     
-    public void Perform(EnemyEncounter combat)
+    public void Perform(Combat combat)
     {
         switch (actionType)
         {
@@ -46,17 +45,17 @@ public class TacticAction
 
     #region ACTIONS
 
-    public void Wait(EnemyEncounter combat)
+    public void Wait(Combat combat)
     {
         //combat.EndCombat();
     }
 
-    public void Flee(EnemyEncounter combat)
+    public void Flee(Combat combat)
     {
         //combat.EndCombat();
     }
 
-    public void Attack(EnemyEncounter combat)
+    public void Attack(Combat combat)
     {
         //combat.mis.StartAnimation(AnimationTrigger.Attack, combat.GetAnimManager(combat.curActor));
 
@@ -67,7 +66,7 @@ public class TacticAction
         //combat.mis.UpdateLog($"{combat.curActor} attacks {combat.curTarget} for {dam} {damage.type} damage.");
     }
 
-    public void UseAbility(EnemyEncounter combat)
+    public void UseAbility(Combat combat)
     {
         var selAbility = combat.actor.abilities.Find(ab => ab.data == ability);
         foreach (var effect in selAbility.data.effects)
@@ -79,7 +78,7 @@ public class TacticAction
         selAbility.curCooldown = ability.cooldown + 1;
     }
 
-    public void UseConsumable(EnemyEncounter combat)
+    public void UseConsumable(Combat combat)
     {
         //LogEvent(combat, $"{combat.hero.name} used {consumableData.name} on {combat.curTarget.name}.");
         var usedConsumable = combat.hero.consumables.First(cons => cons.data == consumableData);

@@ -3,25 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mime;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
 // UNDONE: make it AnimationBehaviour
 public class FloatingText : MonoBehaviour
 {
+    public Animator animator;
+    public TextMeshProUGUI textComp;
+    public Image icon;
+
     internal string text;
     internal Color color;
-    internal Image background;
 
     // flow offset position of X
     Vector3 targetOffsetPosX;
-    Animator animator;
 
     // Start is called before the first frame update
     void Awake()
     {
-        animator = GetComponent<Animator>();
-        text = GetComponent<TextMeshProUGUI>().text;
+        text = textComp.text;
+        color = textComp.color;
 
         // -1 or 0 possible
         var sign = Random.Range(-1, 1);

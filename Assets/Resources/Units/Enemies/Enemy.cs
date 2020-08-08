@@ -21,7 +21,7 @@
         //    //mission.expPreviewPanel.enemyStatusIcon.enabled = true;
         //    //// start cycles of loot transfer
         //    //mission.expPreviewPanel.lootAnim.SetTrigger(AnimationTrigger.StartTransferLoot.ToString());
-        //    //// make enemyEncounter icon disappear
+        //    //// make combat icon disappear
         //    //mission.expPreviewPanel.interAnim.SetTrigger(AnimationTrigger.EndEncounter.ToString());
         //}
 

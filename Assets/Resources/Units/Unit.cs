@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public abstract class Unit
 {
     internal List<Ability> abilities = new List<Ability>();
-    internal List<Effect> effects = new List<Effect>();
+    internal List<EffectData> effects = new List<EffectData>();
     internal Dictionary<StatType, Stat> baseStats;
     internal List<Tactic> tactics;
     internal int speedPoints;
@@ -53,7 +54,7 @@ public abstract class Unit
 
     #region OPERATIONS
 
-    // NOTE: keep everything here, what can happen put of enemyEncounter (events) 
+    // NOTE: keep everything here, what can happen put of combat (events) 
     public virtual int TakeDamage(Mission exp, Damage damage)
     {
         var protectionValue = 0;
@@ -67,7 +68,7 @@ public abstract class Unit
         var healthLoss = Math.Max(damage.amount - protectionValue, 0);
         HP = Math.Max(HP - healthLoss, 0);
 
-        // invoked here, cause can take damage outside of enemyEncounter
+        // invoked here, cause can take damage outside of combat
         //UIManager.CreateFloatingTextForUnit(exp, this, -healthLoss);
 
         return healthLoss;
@@ -86,6 +87,11 @@ public abstract class Unit
     public virtual void Kill()
     {
         // TODO: implement
+    }
+
+    public virtual void UpdateCooldowns()
+    {
+        abilities.Where(ability => ability.curCooldown > 0).ForEach(abil => abil.curCooldown--);
     }
 
     #endregion

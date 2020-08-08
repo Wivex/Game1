@@ -16,11 +16,11 @@ public class Mission
 
     internal event Action LocationChanged;
     internal event Action<EncounterType> EncounterStarted;
-    internal event Action<Unit, Damage> DamageTaken;
 
     #endregion
 
     internal bool GracePeriodPassed => locationsSinceLastEncounter > MissionsManager.i.minGracePeriod;
+    internal Combat Combat => curEncounter as Combat;
 
     internal Mission(MissionSetUp misSetUp)
     {
@@ -31,11 +31,12 @@ public class Mission
     internal void NextUpdate()
     {
         if (curEncounter?.resolved != false) NextLocation();
-        else curEncounter.NextUpdate();
+        else curEncounter.EncounterUpdate();
     }
 
     void NextLocation()
     {
+        route.NextLocation();
         LocationChanged?.Invoke();
         NextEncounter();
         EncounterStarted?.Invoke(curEncounter.type);
@@ -52,8 +53,8 @@ public class Mission
                     // TODO: move to Init or smth
                     curEncounter.resolved = true;
                     break;
-                case EncounterType.Enemy:
-                    curEncounter = new EnemyEncounter(this);
+                case EncounterType.Combat:
+                    curEncounter = new Combat(this);
                     break;
             }
         }

@@ -8,5 +8,5 @@ public class AbilityData : ScriptableObject
     public int cooldown;
     public EnergyType energyType;
     public int energyCost;
-    public List<Effect> effects;
+    public List<EffectData> effects;
 }

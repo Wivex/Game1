@@ -18,7 +18,7 @@ public class MissionOverviewPanelDrawer : Drawer
     #region SET IN INSPECTOR
 
     public Transform consumablesPanel;
-    public Animator backAnim;
+    public Animator animatorBackground;
     public StatBar heroHpBar, heroEnergyBar, enemyHpBar, enemyEnergyBar;
     public Image heroImage, curGoldImage, heroIcon, encSubjectImage, encInteractionImage, locationImage, lootIcon, backOverlayImage;
     public Sprite townSprite;
@@ -39,10 +39,10 @@ public class MissionOverviewPanelDrawer : Drawer
 
     #endregion
 
-    internal Mission mission;
+    internal Mission mis;
 
-    Animator encAnim;
-    AnimationMonitor animMonitor;
+    Animator animatorEnc;
+    AnimationMonitor animationMonitor;
 
     internal static void CreateNew(Mission mis)
     {
@@ -53,7 +53,7 @@ public class MissionOverviewPanelDrawer : Drawer
 
     internal void Init(Mission mis)
     {
-        this.mission = mis;
+        this.mis = mis;
 
         // check once for all instances, cause these references are static for all panels
         if (missionsCMan == null)
@@ -65,19 +65,29 @@ public class MissionOverviewPanelDrawer : Drawer
         }
         
         //auto-assign some references
-        encAnim = GetComponent<Animator>();
-        animMonitor = encAnim.GetBehaviour<AnimationMonitor>();
+        animatorEnc = GetComponent<Animator>();
+        animationMonitor = animatorEnc.GetBehaviour<AnimationMonitor>();
 
         // call OnPanelClicked() method when panel is clicked on
         GetComponent<Button>().onClick.AddListener(() => OnPanelClicked(mis));
 
-        // event subscription
-        animMonitor.AnimationsFinished += OnAnimationsFinished;
-        mis.LocationChanged += OnLocationChanged;
-        mis.EncounterStarted += OnEncounterStarted;
-        mis.DamageTaken += OnDamageTaken;
+        MissionEventsSubscription();
 
         MissionIntroAnimSetUp();
+    }
+
+    void MissionEventsSubscription()
+    {
+        animationMonitor.AnimationsFinished += OnAnimationsFinished;
+        mis.LocationChanged += OnLocationChanged;
+        mis.EncounterStarted += OnEncounterStarted;
+    }
+
+    void CombatEventsSubscription()
+    {
+        var combat = mis.curEncounter as Combat;
+        combat.DamageTaken += OnDamageTaken;
+        combat.UnitActionPicked += OnUnitActionPicked;
     }
 
     void MissionIntroAnimSetUp()
@@ -89,8 +99,7 @@ public class MissionOverviewPanelDrawer : Drawer
         // set stat bars transparent
         statBarsGroup.enabled = true;
     }
-
-
+    
     #region EVENT HANDLERS
 
     // used because can't pass class as parameter with button click from inspector
@@ -105,12 +114,19 @@ public class MissionOverviewPanelDrawer : Drawer
     /// </summary>
     void OnAnimationsFinished()
     {
-        mission.NextUpdate();
+        mis.NextUpdate();
     }
 
     void OnLocationChanged()
     {
-        locationImage.sprite = mission.route.NextLocationSprite();
+        locationImage.sprite = mis.route.curLocSprite;
+    }
+
+    void OnUnitActionPicked()
+    {
+        var actorType = mis.Combat.actor is Hero ? "Hero" : "Enemy";
+        var actionName = mis.Combat.curAction.actionType.ToString();
+        animatorEnc.SetTrigger($"{actorType} {actionName}");
     }
 
     void OnEncounterStarted(EncounterType type)
@@ -118,16 +134,15 @@ public class MissionOverviewPanelDrawer : Drawer
         switch (type)
         {
             case EncounterType.None:
-                encAnim.SetTrigger("No Encounter");
+                animatorEnc.SetTrigger("No Encounter");
                 break;
-            case EncounterType.Enemy:
-                // encInteractionImage = swords;
+            case EncounterType.Combat:
                 encSubjectImage.enabled = true;
-                encSubjectImage.sprite = (mission.curEncounter as EnemyEncounter).enemy.data.sprite;
+                encSubjectImage.sprite = (mis.curEncounter as Combat).enemy.data.sprite;
                 encInteractionImage.enabled = true;
-                UIManager.TriggerAnimators($"{type} Encounter Start", encAnim, backAnim);
+                CombatEventsSubscription();
+                UIManager.TriggerAnimators("Combat Start", animatorEnc, animatorBackground);
                 break;
-
         }
     }
 
@@ -161,7 +176,6 @@ public class MissionOverviewPanelDrawer : Drawer
     }
 
     #endregion
-
     
     #region UI REDRAW METHODS
 
@@ -171,23 +185,23 @@ public class MissionOverviewPanelDrawer : Drawer
     void LateUpdate()
     {
         // change hero sprite based on hero sex
-        var curHeroSpriteIndex = mission.hero.data.spritesheet.IndexOf(heroIcon.sprite);
-        if (mission.hero.sex == SexType.Female && curHeroSpriteIndex >= 50)
-            heroIcon.sprite = mission.hero.data.spritesheet[curHeroSpriteIndex - 50];
+        var curHeroSpriteIndex = mis.hero.data.spritesheet.IndexOf(heroIcon.sprite);
+        if (mis.hero.sex == SexType.Female && curHeroSpriteIndex >= 50)
+            heroIcon.sprite = mis.hero.data.spritesheet[curHeroSpriteIndex - 50];
     }
      
     void RedrawHeroDesc()
     {
-        heroName.text = mission.hero.Name;
-        level.text = $"Level {mission.hero.level} {mission.hero.data.name}";
+        heroName.text = mis.hero.Name;
+        level.text = $"Level {mis.hero.level} {mis.hero.data.name}";
     }
 
     void RedrawGold()
     {
-        gold.text = mission.hero.gold.ToString();
+        gold.text = mis.hero.gold.ToString();
         var a = 0;
         var index = 0;
-        while (mission.hero.gold > a)
+        while (mis.hero.gold > a)
         {
             a = (int) Mathf.Pow(2, index++);
             if (index >= goldPileSprites.Count - 1) break;
@@ -217,7 +231,7 @@ public class MissionOverviewPanelDrawer : Drawer
 
     void RedrawStatBars()
     {
-        if (mission.curEncounter is EnemyEncounter combat)
+        if (mis.curEncounter is Combat combat)
         {
             heroHpBar.SetTargetShiftingValue((float) combat.hero.HP / combat.hero.HPMax);
             heroEnergyBar.SetTargetShiftingValue((float) combat.hero.Energy / combat.hero.EnergyMax);
@@ -235,9 +249,9 @@ public class MissionOverviewPanelDrawer : Drawer
 
     void RedrawEncounterSubject()
     {
-        if (mission.curEncounter is EnemyEncounter combat)
+        if (mis.curEncounter is Combat combat)
             encSubjectImage.sprite = combat.enemy.data.sprite;
-        if (mission.curEncounter is ContainerEncounter cont)
+        if (mis.curEncounter is ContainerEncounter cont)
             encSubjectImage.sprite = cont.data.icon;
     }
 

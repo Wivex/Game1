@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class ChangeStatDepletable : Effect
+public class ChangeStatDepletable : EffectData
 {
     internal override void ProcEffect()
     {
@@ -12,7 +12,7 @@ public class ChangeStatDepletable : Effect
                 if (amount > 0)
                     targetUnit.Heal(amount);
                 if (amount< 0)
-                    targetUnit.TakeDamage(enemyEncounter.mis, new Damage(damageType, amount));
+                    targetUnit.TakeDamage(combat.mis, new Damage(damageType, amount));
                 break;
             case StatType.Energy:
                 //switch (targetUnit)

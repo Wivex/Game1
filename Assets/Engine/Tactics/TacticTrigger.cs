@@ -12,7 +12,7 @@ public enum TriggerType
 
 public enum TargetType
 {
-    Self,
+    Hero,
     Enemy
 }
 
@@ -57,7 +57,7 @@ public class TacticTrigger
     [HideIfNotEnumValues("triggerType", TriggerType.EnemyType)]
     public UnitData unitData;
 
-    public bool Triggered(EnemyEncounter combat)
+    public bool Triggered(Combat combat)
     {
         switch (triggerType)
         {
@@ -76,22 +76,4 @@ public class TacticTrigger
                 throw new ArgumentException();
         }
     }
-
-    #region TRIGGER TYPE CHECKS
-    //public bool StatValueCheck(SituationCombat situation)
-    //{
-    //    //var unit = curTarget == Target.Self ? situation.curActor : situation.curTarget;
-    //    //return comparisonType == ComparisonType.LessOrEqual
-    //    //    ? unit.baseStats[(int)stat].curValue <= amount
-    //    //    : unit.baseStats[(int)stat].curValue > amount;
-    //}
-
-    //public bool AbilityReadyCheck(CombatManager situation)
-    //{
-    //    //var unit = curTarget == Target.Self ? situation.curActor : situation.curTarget;
-    //    //return unit.abilities.Exists(ability =>
-    //    //    ability.abilityData == abilityData && ability.curCooldown == 0);
-    //    return true;
-    //}
-    #endregion
 }

@@ -9,11 +9,12 @@ public enum EffectType
 }
 
 [Serializable]
-public class Effect
+public class EffectData
 {
     public EffectType effectType;
     public TargetType targetType;
     public int duration;
+    public AnimationClip animation;
     [HideIfNotEnumValues("effectType", EffectType.Damage)]
     public DamageType damageType;
     [HideIfNotEnumValues("effectType", EffectType.StatModifier)]
@@ -26,17 +27,17 @@ public class Effect
     internal Sprite icon;
     internal int curDuration;
     
-    protected EnemyEncounter enemyEncounter;
+    protected Combat combat;
     protected Unit targetUnit;
 
-    internal void AddEffect(EnemyEncounter enemyEncounter, string sourceName, Sprite sourceIcon)
+    internal void AddEffect(Combat combat, string sourceName, Sprite sourceIcon)
     {
-        this.enemyEncounter = enemyEncounter;
+        this.combat = combat;
         name = sourceName;
         icon = sourceIcon;
         curDuration = duration;
 
-        targetUnit = targetType == TargetType.Self ? enemyEncounter.actor : enemyEncounter.target;
+        targetUnit = targetType == TargetType.Hero ? combat.actor : combat.target;
 
         if (duration > 1)
         {
@@ -57,7 +58,7 @@ public class Effect
         unit.effects.Remove(this);
     }
 
-    public void AddEffectLogEntry(EnemyEncounter enemyEncounter, string text)
+    public void AddEffectLogEntry(Combat combat, string text)
     {
         //situation.mission.UpdateLog(text);
 

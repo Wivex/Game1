@@ -5,8 +5,7 @@ using UnityEngine.UIElements;
 public enum EncounterType
 {
     None,
-    Enemy,
-    EnemyCamp,
+    Combat,
     Container,
     Resources,
     Intel,
@@ -29,5 +28,5 @@ public class NoEncounter
     /// <summary>
     /// Runs next logical action in the encounter, when all previous action animations are finished.
     /// </summary>
-    internal virtual void NextUpdate(){}
+    internal virtual void EncounterUpdate(){}
 }
