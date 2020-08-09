@@ -20,6 +20,9 @@ public class TacticAction
     public ItemData consumableData;
     [HideIfNotEnumValues("actionType", ActionType.UseAbility)]
     public AbilityData ability;
+
+    [StringInList("abilityNames"), HideIfNotEnumValues("actionType", ActionType.UseAbility)]
+    public string selection;
     
     public void Perform(Combat combat)
     {

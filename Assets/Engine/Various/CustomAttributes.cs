@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Class | AttributeTargets.Struct)]
@@ -37,4 +38,14 @@ public class DisabledAttribute : PropertyAttribute { }
 public class DisabledIfNotBoolAttribute : HideIfNotBoolAttribute
 {
     public DisabledIfNotBoolAttribute(string boolPropertyName) : base(boolPropertyName) { }
+}
+
+public class StringInListAttribute : PropertyAttribute
+{
+    public string listName;
+
+    public StringInListAttribute(string listName)
+    {
+        this.listName = listName;
+    }
 }

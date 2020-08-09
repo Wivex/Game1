@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 [CustomPropertyDrawer(typeof(HideIfNotBoolAttribute))]
 public class HideIfNotBoolPropertyDrawer : PropertyDrawer
@@ -60,7 +58,7 @@ public class HideIfNotEnumValuesPropertyDrawer : PropertyDrawer
             : -EditorGUIUtility.standardVerticalSpacing;
         return propertyHeight;
     }
-
+    
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
         if (propertyHeight > 0)
@@ -117,4 +115,25 @@ public class DisabledIfNotBoolPropertyDrawer : HideIfNotBoolPropertyDrawer
     }
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label) => EditorGUI.GetPropertyHeight(property, label);
+}
+
+[CustomPropertyDrawer(typeof(StringInListAttribute))]
+public class StringInListDrawer : PropertyDrawer
+{
+    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+    {
+        var attrs = fieldInfo.GetCustomAttributes(typeof(PropertyAttribute), false);
+        var attr = attribute as StringInListAttribute;
+        var names = new List<string>();
+        var listProp = property.serializedObject.FindProperty(attr.listName);
+        for (var i = 0; i < listProp.arraySize; i++) names.Add(listProp.GetArrayElementAtIndex(i).stringValue);
+        if (names.NotNullOrEmpty())
+        {
+            var selInd = Mathf.Max(names.IndexOf(property.stringValue), 0);
+            selInd = EditorGUI.Popup(position, property.name, selInd, names.ToArray());
+            property.stringValue = names[selInd];
+        }
+        else
+            EditorGUI.PropertyField(position, property, label);
+    }
 }
