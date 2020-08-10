@@ -161,4 +161,9 @@ public static class Extensions
     {
         return GameObject.Instantiate(obj, parent).GetComponent<T>();
     }
+
+    public static bool HasHighestOrder(this PropertyAttribute prop, List<PropertyAttribute> attributes)
+    {
+        return attributes.All(attr => attr.order <= prop.order);
+    }
 }

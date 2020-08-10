@@ -65,7 +65,7 @@ public class HideIfNotEnumValuesPropertyDrawer : PropertyDrawer
             EditorGUI.PropertyField(position, property, label, true);
     }
 
-    protected bool IsAllowed(HideIfNotEnumValuesAttribute attr, SerializedProperty property)
+    public static bool IsAllowed(HideIfNotEnumValuesAttribute attr, SerializedProperty property)
     {
         var propertyPath = property.propertyPath;
         var enumPath = propertyPath.Replace(property.name, attr.enumPropertyName);
@@ -76,7 +76,7 @@ public class HideIfNotEnumValuesPropertyDrawer : PropertyDrawer
         return IsSupportedPropertyType(enumProperty) && attr.enumValues.Contains((int)enumIndex);
     }
 
-    protected bool IsSupportedPropertyType(SerializedProperty sourcePropertyValue)
+    public static bool IsSupportedPropertyType(SerializedProperty sourcePropertyValue)
     {
         switch (sourcePropertyValue?.propertyType)
         {
@@ -120,9 +120,56 @@ public class DisabledIfNotBoolPropertyDrawer : HideIfNotBoolPropertyDrawer
 [CustomPropertyDrawer(typeof(StringInListAttribute))]
 public class StringInListDrawer : PropertyDrawer
 {
+    List<PropertyAttribute> allAttributes;
+    HideIfNotEnumValuesAttribute hideIfNotEnumAttr;
+
+    // Checked before OnGUI()
+    public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+    {
+        if (!allAttributes.NotNullOrEmpty())
+            allAttributes = fieldInfo.GetCustomAttributes(typeof(PropertyAttribute), false).Cast<PropertyAttribute>()
+                                     .ToList();
+
+        if (allAttributes.Count > 1)
+        {
+            if (hideIfNotEnumAttr == null)
+                hideIfNotEnumAttr =
+                    allAttributes.Find(attr => attr is HideIfNotEnumValuesAttribute) as HideIfNotEnumValuesAttribute;
+
+            // skip drawing if not highest order (one-time draw execution check)
+            if (!attribute.HasHighestOrder(allAttributes))
+                // removes empty space instead of "not drawn" property
+                return -EditorGUIUtility.standardVerticalSpacing;
+
+            return HideIfNotEnumValuesPropertyDrawer.IsAllowed(hideIfNotEnumAttr, property)
+                ? EditorGUI.GetPropertyHeight(property, label)
+                // removes empty space instead of "not drawn" property
+                : -EditorGUIUtility.standardVerticalSpacing;
+        }
+
+        return EditorGUI.GetPropertyHeight(property, label);
+    }
+
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-        var attrs = fieldInfo.GetCustomAttributes(typeof(PropertyAttribute), false);
+        if (allAttributes.Count > 1)
+        {
+            // skip drawing if not highest order (one-time draw execution check)
+            if (!attribute.HasHighestOrder(allAttributes)) return;
+
+            // HideIfNotEnumValuesAttribute check
+            if (hideIfNotEnumAttr != null)
+            {
+                if (HideIfNotEnumValuesPropertyDrawer.IsAllowed(hideIfNotEnumAttr, property))
+                    DrawProp(position, property, label);
+            }
+        }
+        else
+            DrawProp(position, property, label);
+    }
+
+    public void DrawProp(Rect position, SerializedProperty property, GUIContent label)
+    {
         var attr = attribute as StringInListAttribute;
         var names = new List<string>();
         var listProp = property.serializedObject.FindProperty(attr.listName);

@@ -21,7 +21,7 @@ public class TacticAction
     [HideIfNotEnumValues("actionType", ActionType.UseAbility)]
     public AbilityData ability;
 
-    [StringInList("abilityNames"), HideIfNotEnumValues("actionType", ActionType.UseAbility)]
+    [StringInList("abilityNames", order = 1), HideIfNotEnumValues("actionType", ActionType.UseAbility)]
     public string selection;
     
     public void Perform(Combat combat)

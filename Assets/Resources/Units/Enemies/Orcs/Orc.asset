@@ -37,7 +37,7 @@ MonoBehaviour:
       actionType: 1
       consumableData: {fileID: 0}
       ability: {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
-      selection: grewsrg
+      selection: Orc Fireball
   - triggers:
     - triggerType: 0
       targetType: 0
