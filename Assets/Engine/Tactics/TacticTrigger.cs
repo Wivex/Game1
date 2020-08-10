@@ -52,8 +52,8 @@ public class TacticTrigger
     public ComparisonType comparisonType;
     [HideIfNotEnumValues("triggerType", TriggerType.StatValue)]
     public int amount;
-    [HideIfNotEnumValues("triggerType", TriggerType.CanUseAbility)]
-    public AbilityData ability;
+    [StringInList("abilitiesNames", order = 1), HideIfNotEnumValues("triggerType", TriggerType.CanUseAbility)]
+    public string abilityName;
     [HideIfNotEnumValues("triggerType", TriggerType.EnemyType)]
     public UnitData unitData;
 
@@ -70,7 +70,7 @@ public class TacticTrigger
                     ? combat.enemy.data.name == unitData.name
                     : combat.hero.data.classType.ToString() == unitData.name;
             case TriggerType.CanUseAbility:
-                var abil = combat.actor.abilities.Find(ab => ab.data.name == ability.name);
+                var abil = combat.actor.abilities.Find(ab => ab.data.name == abilityName);
                 return abil.Ready(combat.actor);
             default:
                 throw new ArgumentException();

@@ -10,10 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74d8abc7445b22d4d9063ceacac95605, type: 3}
-  m_Name: grewsrg
+  m_Name: Warrior Fireball
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
-  cooldown: 0
-  energyType: 0
-  energyCost: 0
-  effects: []
+  icon: {fileID: 21300000, guid: 440c823411527c647af9f33c95297269, type: 3}
+  cooldown: 6
+  energyType: 1
+  energyCost: 5
+  effects:
+  - effectType: 0
+    targetType: 1
+    duration: 1
+    animation: {fileID: 0}
+    damageType: 1
+    stat: 2
+    statModType: 0
+    amount: 20

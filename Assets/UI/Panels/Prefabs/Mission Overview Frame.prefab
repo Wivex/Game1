@@ -5472,7 +5472,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   consumablesPanel: {fileID: 5819369030670929782}
-  backAnim: {fileID: 3579170010243309070}
+  animatorBackground: {fileID: 3579170010243309070}
   heroHpBar: {fileID: 6391872569547883724}
   heroEnergyBar: {fileID: 3259690798919470750}
   enemyHpBar: {fileID: 4391599126205106045}

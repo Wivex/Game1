@@ -18,11 +18,8 @@ public class TacticAction
     public ActionType actionType;
     [HideIfNotEnumValues("actionType", ActionType.UseConsumable)]
     public ItemData consumableData;
-    [HideIfNotEnumValues("actionType", ActionType.UseAbility)]
-    public AbilityData ability;
-
-    [StringInList("abilityNames", order = 1), HideIfNotEnumValues("actionType", ActionType.UseAbility)]
-    public string selection;
+    [StringInList("abilitiesNames", order = 1), HideIfNotEnumValues("actionType", ActionType.UseAbility)]
+    public string ability;
     
     public void Perform(Combat combat)
     {
@@ -71,14 +68,14 @@ public class TacticAction
 
     public void UseAbility(Combat combat)
     {
-        var selAbility = combat.actor.abilities.Find(ab => ab.data == ability);
+        var selAbility = combat.actor.abilities.Find(ab => ab.data.name == ability);
         foreach (var effect in selAbility.data.effects)
         {
             effect.AddEffect(combat, selAbility.data.name, selAbility.data.icon);
         }
 
         // +1 adjustment, because after each turn all cooldowns are decreased by 1 (even for used ability)
-        selAbility.curCooldown = ability.cooldown + 1;
+        selAbility.curCooldown += 1;
     }
 
     public void UseConsumable(Combat combat)

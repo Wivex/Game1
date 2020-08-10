@@ -177,7 +177,7 @@ public class StringInListDrawer : PropertyDrawer
         if (names.NotNullOrEmpty())
         {
             var selInd = Mathf.Max(names.IndexOf(property.stringValue), 0);
-            selInd = EditorGUI.Popup(position, property.name, selInd, names.ToArray());
+            selInd = EditorGUI.Popup(position, property.displayName, selInd, names.ToArray());
             property.stringValue = names[selInd];
         }
         else

@@ -41,14 +41,12 @@ public class Combat : NoEncounter
         type = EncounterType.Combat;
         // TODO used mission one
         enemy = new Enemy(mis.route.curZone.enemies.PickOne().enemyData);
-        NewCombatTurn();
+        phase = CombatPhase.TurnOrderCheck;
     }
 
     void NewCombatTurn()
     {
-        actor.UpdateCooldowns();
-        target.UpdateCooldowns();
-        // new turn updates
+        // TODO: combat preparation: update cooldowns here or at the turn end?
         phase = CombatPhase.UpdateEffects;
         CombatTurnStarted?.Invoke();
     }
@@ -64,7 +62,6 @@ public class Combat : NoEncounter
                     break;
                 case CombatPhase.TurnOrderCheck:
                     TurnOrderCheck();
-                    EncounterUpdate();
                     break;
                 case CombatPhase.PickActorAction:
                     PickActorAction();
@@ -85,6 +82,7 @@ public class Combat : NoEncounter
 
     void UpdateEffects()
     {
+        // TODO: Implement applied effects proc
         phase = CombatPhase.TurnOrderCheck;
     }
 
@@ -98,6 +96,7 @@ public class Combat : NoEncounter
         fasterUnitFinishedTurn = false;
 
         phase = CombatPhase.PickActorAction;
+        PickActorAction();
     }
 
     void PickActorAction()

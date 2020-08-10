@@ -11,8 +11,6 @@ public class EnemyData : UnitData
     [HideInInspector]
     public Sprite sprite;
 
-    public List<string> abilityNames = new List<string>();
-    
 #if UNITY_EDITOR
     internal override void OnValidate()
     {
@@ -23,13 +21,6 @@ public class EnemyData : UnitData
         // sort ascending by drop chance, for easier loot spawning
         lootTable?.Sort((x, y) => y.dropChance.CompareTo(x.dropChance));
         lootTable?.Reverse();
-
-
-        abilityNames = new List<string>();
-       foreach (var abilityData in abilities)
-        {
-            abilityNames.Add(abilityData.name);
-        }
     }
 #endif
 }
