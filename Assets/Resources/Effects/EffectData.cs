@@ -14,7 +14,7 @@ public class EffectData
     public EffectType effectType;
     public TargetType targetType;
     public int duration;
-    public AnimationClip animation;
+    public MonoBehaviour animationPrefab;
     [HideIfNotEnumValues("effectType", EffectType.Damage)]
     public DamageType damageType;
     [HideIfNotEnumValues("effectType", EffectType.StatModifier)]

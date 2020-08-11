@@ -7,11 +7,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-//public class AnimationSequenceHandler
-//{
-
-//}
-
 
 public class MissionOverviewPanelDrawer : Drawer
 {
@@ -20,10 +15,9 @@ public class MissionOverviewPanelDrawer : Drawer
     public Transform consumablesPanel;
     public Animator animatorBackground;
     public StatBar heroHpBar, heroEnergyBar, enemyHpBar, enemyEnergyBar;
-    public Image heroImage, curGoldImage, heroIcon, encSubjectImage, encInteractionImage, locationImage, lootIcon, backOverlayImage;
+    public Image heroPortrait, curGoldImage, heroImage, encSubjectImage, encInteractionImage, locationImage, backOverlayImage;
     public Sprite townSprite;
     public CanvasGroup statBarsGroup;
-
     public TextMeshProUGUI heroName,
         level,
         gold;
@@ -41,8 +35,8 @@ public class MissionOverviewPanelDrawer : Drawer
 
     internal Mission mis;
 
-    Animator animatorEnc;
-    AnimationMonitor animationMonitor;
+    Animator animatorUnits;
+    AnimatorStateMonitor animatorEncStateMon;
 
     internal static void CreateNew(Mission mis)
     {
@@ -65,20 +59,28 @@ public class MissionOverviewPanelDrawer : Drawer
         }
         
         //auto-assign some references
-        animatorEnc = GetComponent<Animator>();
-        animationMonitor = animatorEnc.GetBehaviour<AnimationMonitor>();
+        animatorUnits = GetComponent<Animator>();
+
+        animatorEncStateMon = animatorUnits.GetBehaviour<AnimatorStateMonitor>();
 
         // call OnPanelClicked() method when panel is clicked on
         GetComponent<Button>().onClick.AddListener(() => OnPanelClicked(mis));
 
         MissionEventsSubscription();
+        AbilityEventsSubscription();
 
         MissionIntroAnimSetUp();
     }
 
+    void AbilityEventsSubscription()
+    {
+        //animatorMovObjStateMon.AnimationsFinished += OnAnimationsFinished;
+        //movObjImage.GetComponent<AnimationEventHandler>().AnimationEvent += OnAnimationEvent;
+    }
+
     void MissionEventsSubscription()
     {
-        animationMonitor.AnimationsFinished += OnAnimationsFinished;
+        animatorEncStateMon.AnimationsFinished += OnAnimationsFinished;
         mis.LocationChanged += OnLocationChanged;
         mis.EncounterStarted += OnEncounterStarted;
     }
@@ -117,16 +119,37 @@ public class MissionOverviewPanelDrawer : Drawer
         mis.NextUpdate();
     }
 
+    /// <summary>
+    /// Send command to mission that it's time to apply currently animated effect of action
+    /// </summary>
+    void OnAnimationEvent()
+    {
+        //mis.procEffect();
+    }
+
     void OnLocationChanged()
     {
         locationImage.sprite = mis.route.curLocSprite;
     }
 
-    void OnUnitActionPicked()
+    void OnUnitActionPicked(TacticAction action)
     {
         var actorType = mis.Combat.actor is Hero ? "Hero" : "Enemy";
         var actionName = mis.Combat.curAction.actionType.ToString();
-        animatorEnc.SetTrigger($"{actorType} {actionName}");
+        // start units animations
+        animatorUnits.SetTrigger($"{actorType} {actionName}");
+        // start picked action ability animation
+        switch (action.actionType)
+        {
+            case ActionType.UseAbility:
+                var ability = mis.Combat.actor.abilities.Find(abil => abil.data.name == action.ability);
+                var abilityAnimEventHandler =
+                    ability.data.abilityPrefab.Instantiate<AnimationEventHandler>(locationImage.transform);
+
+                break;
+            case ActionType.UseConsumable:
+                break;
+        }
     }
 
     void OnEncounterStarted(EncounterType type)
@@ -134,24 +157,23 @@ public class MissionOverviewPanelDrawer : Drawer
         switch (type)
         {
             case EncounterType.None:
-                animatorEnc.SetTrigger("No Encounter");
+                animatorUnits.SetTrigger("No Encounter");
                 break;
             case EncounterType.Combat:
                 encSubjectImage.enabled = true;
                 encSubjectImage.sprite = (mis.curEncounter as Combat).enemy.data.sprite;
                 encInteractionImage.enabled = true;
                 CombatEventsSubscription();
-                UIManager.TriggerAnimators("Combat Start", animatorEnc, animatorBackground);
+                UIManager.TriggerAnimators("Combat Start", animatorUnits, animatorBackground);
                 break;
         }
     }
-
-
+    
     void OnDamageTaken(Unit unit, Damage dam)
     {
         if (unit is Hero)
         {
-            CreateFloatingText(heroIcon.transform, dam.amount);
+            CreateFloatingText(heroImage.transform, dam.amount);
         }
     }
     
@@ -185,9 +207,9 @@ public class MissionOverviewPanelDrawer : Drawer
     void LateUpdate()
     {
         // change hero sprite based on hero sex
-        var curHeroSpriteIndex = mis.hero.data.spritesheet.IndexOf(heroIcon.sprite);
+        var curHeroSpriteIndex = mis.hero.data.spritesheet.IndexOf(heroImage.sprite);
         if (mis.hero.sex == SexType.Female && curHeroSpriteIndex >= 50)
-            heroIcon.sprite = mis.hero.data.spritesheet[curHeroSpriteIndex - 50];
+            heroImage.sprite = mis.hero.data.spritesheet[curHeroSpriteIndex - 50];
     }
      
     void RedrawHeroDesc()

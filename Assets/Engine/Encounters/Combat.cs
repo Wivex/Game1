@@ -29,7 +29,7 @@ public class Combat : NoEncounter
 
     #region EVENTS
 
-    internal event Action UnitActionPicked; 
+    internal event Action<TacticAction> UnitActionPicked; 
     internal event Action<Unit, Damage> DamageTaken;
     internal event Action CombatTurnStarted;
     bool AnybodyDead => hero.Dead || enemy.Dead;
@@ -123,7 +123,7 @@ public class Combat : NoEncounter
         else
         {
             phase = CombatPhase.PerformActorAction;
-            UnitActionPicked?.Invoke();
+            UnitActionPicked?.Invoke(curAction);
         }
     }
 
