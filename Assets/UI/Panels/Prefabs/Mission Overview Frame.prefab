@@ -2982,6 +2982,7 @@ GameObject:
   - component: {fileID: 6313083461653197773}
   - component: {fileID: 6313083461653197770}
   - component: {fileID: 273531888918843459}
+  - component: {fileID: 5127813857418716901}
   m_Layer: 15
   m_Name: Mission Overview Frame
   m_TagString: Untagged
@@ -2996,7 +2997,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6678853868529549858}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3139,6 +3140,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5127813857418716901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6678853868529549858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd13b12221ddfaa4a851460c03b23282, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6801325471691364656
 GameObject:
   m_ObjectHideFlags: 0

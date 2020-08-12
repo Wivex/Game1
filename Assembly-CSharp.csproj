@@ -272,7 +272,7 @@
     <Compile Include="Assets\3rd-Party\unity-ui-extensions\Scripts\Utilities\switchToRectTransform.cs" />
     <Compile Include="Assets\3rd-Party\unity-ui-extensions\Scripts\VR Extensions\VRCursor.cs" />
     <Compile Include="Assets\3rd-Party\unity-ui-extensions\Scripts\VR Extensions\VRInputModule.cs" />
-    <Compile Include="Assets\AnimationEventHandler.cs" />
+    <Compile Include="Assets\AnimatorHandler.cs" />
     <Compile Include="Assets\Engine\Encounters\Combat.cs" />
     <Compile Include="Assets\Engine\Encounters\ContainerEncounter.cs" />
     <Compile Include="Assets\Engine\Encounters\NoEncounter.cs" />

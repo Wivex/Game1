@@ -35,13 +35,16 @@ public class MissionOverviewPanelDrawer : Drawer
 
     internal Mission mis;
 
-    Animator animatorUnits;
-    AnimatorStateMonitor animatorEncStateMon;
+    AnimatorHandler unitsAnim;
+    /// <summary>
+    /// These animations have to be finished (removed from collection) before running next logic iteration.
+    /// </summary>
+    HashSet<string> keyAnimations = new HashSet<string>();
 
     internal static void CreateNew(Mission mis)
     {
         var newPanel =
-            UIManager.i.prefabs.missionOverviewPanelPrefab.Instantiate<MissionOverviewPanelDrawer>(UIManager.i.panels.missionPreviewContentPanel);
+            UIManager.i.prefabs.missionOverviewPanelPrefab.InstantiateAndGetComp<MissionOverviewPanelDrawer>(UIManager.i.panels.missionPreviewContentPanel);
         newPanel.Init(mis);
     }
 
@@ -59,28 +62,37 @@ public class MissionOverviewPanelDrawer : Drawer
         }
         
         //auto-assign some references
-        animatorUnits = GetComponent<Animator>();
-
-        animatorEncStateMon = animatorUnits.GetBehaviour<AnimatorStateMonitor>();
+        unitsAnim = GetComponent<AnimatorHandler>();
 
         // call OnPanelClicked() method when panel is clicked on
         GetComponent<Button>().onClick.AddListener(() => OnPanelClicked(mis));
 
         MissionEventsSubscription();
-        AbilityEventsSubscription();
-
         MissionIntroAnimSetUp();
     }
 
-    void AbilityEventsSubscription()
+    void KeyAnimationStart(Animator animator, string triggerMessage)
     {
-        //animatorMovObjStateMon.AnimationsFinished += OnAnimationsFinished;
-        //movObjImage.GetComponent<AnimationEventHandler>().AnimationEvent += OnAnimationEvent;
+        keyAnimations.Add(animator.ToString());
+        animator.SetTrigger(triggerMessage);
+    }
+
+    void KeyAnimationEnd(Animator animator)
+    {
+        keyAnimations.Remove(animator.ToString());
+    }
+
+    #region EVENT SUBSCRIPTIONS
+
+    void AbilityAnimationEventSubscription(AnimatorHandler handler)
+    {
+        handler.animMonitor.AnimationFinished += OnAnimationFinished;
+        handler.AnimationEvent += OnAnimationEvent;
     }
 
     void MissionEventsSubscription()
     {
-        animatorEncStateMon.AnimationsFinished += OnAnimationsFinished;
+        unitsAnim.animMonitor.AnimationFinished += OnAnimationFinished;
         mis.LocationChanged += OnLocationChanged;
         mis.EncounterStarted += OnEncounterStarted;
     }
@@ -89,8 +101,10 @@ public class MissionOverviewPanelDrawer : Drawer
     {
         var combat = mis.curEncounter as Combat;
         combat.DamageTaken += OnDamageTaken;
-        combat.UnitActionPicked += OnUnitActionPicked;
+        combat.ActorActionPicked += OnActorActionPicked;
     }
+
+    #endregion
 
     void MissionIntroAnimSetUp()
     {
@@ -112,19 +126,21 @@ public class MissionOverviewPanelDrawer : Drawer
     }
 
     /// <summary>
-    /// New Mission begins with intro animation, then AnimationsFinished event control mission logic flow
+    /// Check if finished animation is key one, then remove it from the set and run logic if no other key animations running
     /// </summary>
-    void OnAnimationsFinished()
+    void OnAnimationFinished(Animator animator)
     {
-        mis.NextUpdate();
+        var animName = animator.ToString();
+        if (keyAnimations.Contains(animName)) keyAnimations.Remove(animName);
+        if (keyAnimations.Count == 0) mis.NextUpdate();
     }
 
     /// <summary>
-    /// Send command to mission that it's time to apply currently animated effect of action
+    /// Allows to run next mission logic update during key animation (apply ability effects, etc.). Appropriate logic action has to be prepared before that, to happen during this update.
     /// </summary>
     void OnAnimationEvent()
     {
-        //mis.procEffect();
+        mis.NextUpdate();
     }
 
     void OnLocationChanged()
@@ -132,20 +148,20 @@ public class MissionOverviewPanelDrawer : Drawer
         locationImage.sprite = mis.route.curLocSprite;
     }
 
-    void OnUnitActionPicked(TacticAction action)
+    void OnActorActionPicked(TacticAction action)
     {
         var actorType = mis.Combat.actor is Hero ? "Hero" : "Enemy";
-        var actionName = mis.Combat.curAction.actionType.ToString();
+        var actionName = mis.Combat.curAction.actionType;
         // start units animations
-        animatorUnits.SetTrigger($"{actorType} {actionName}");
+        KeyAnimationStart(unitsAnim.animator, $"{actorType} {actionName}");
         // start picked action ability animation
         switch (action.actionType)
         {
             case ActionType.UseAbility:
                 var ability = mis.Combat.actor.abilities.Find(abil => abil.data.name == action.ability);
-                var abilityAnimEventHandler =
-                    ability.data.abilityPrefab.Instantiate<AnimationEventHandler>(locationImage.transform);
-
+                var abilityAnimHandler =
+                    ability.data.animationPrefab.InstantiateAndGetComp<AnimatorHandler>(locationImage.transform);
+                AbilityAnimationEventSubscription(abilityAnimHandler);
                 break;
             case ActionType.UseConsumable:
                 break;
@@ -157,14 +173,15 @@ public class MissionOverviewPanelDrawer : Drawer
         switch (type)
         {
             case EncounterType.None:
-                animatorUnits.SetTrigger("No Encounter");
+                KeyAnimationStart(unitsAnim.animator, "No Encounter");
                 break;
             case EncounterType.Combat:
                 encSubjectImage.enabled = true;
                 encSubjectImage.sprite = (mis.curEncounter as Combat).enemy.data.sprite;
                 encInteractionImage.enabled = true;
                 CombatEventsSubscription();
-                UIManager.TriggerAnimators("Combat Start", animatorUnits, animatorBackground);
+                animatorBackground.SetTrigger("Combat Start");
+                KeyAnimationStart(unitsAnim.animator, "Combat Start");
                 break;
         }
     }
@@ -179,7 +196,7 @@ public class MissionOverviewPanelDrawer : Drawer
     
     static void CreateFloatingText(Transform parentTransform, int value, Sprite background = null)
     {
-        var floatingText = UIManager.i.prefabs.floatingTextPrefab.Instantiate<FloatingText>(parentTransform);
+        var floatingText = UIManager.i.prefabs.floatingTextPrefab.InstantiateAndGetComp<FloatingText>(parentTransform);
         if (value > 0)
         {
             floatingText.text = $"+{value}";

@@ -5,7 +5,7 @@ using UnityEngine;
 public class AbilityData : ScriptableObject
 {
     public Sprite icon;
-    public GameObject abilityPrefab;
+    public GameObject animationPrefab;
     public int cooldown;
     public EnergyType energyType;
     public int energyCost;

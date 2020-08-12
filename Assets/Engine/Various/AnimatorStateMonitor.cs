@@ -13,18 +13,18 @@ public class AnimatorStateMonitor : StateMachineBehaviour
 {
     public AnimatorStateMonitorType animationFinishedEvent;
 
-    internal event Action AnimationsFinished;
+    internal event Action<Animator> AnimationFinished;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if (animationFinishedEvent == AnimatorStateMonitorType.OnStateEnter)
-            AnimationsFinished?.Invoke();
+            AnimationFinished?.Invoke(animator);
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if (animationFinishedEvent == AnimatorStateMonitorType.OnStateExit)
-            AnimationsFinished?.Invoke();
+            AnimationFinished?.Invoke(animator);
     }
 }
