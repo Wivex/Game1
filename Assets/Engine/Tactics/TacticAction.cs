@@ -57,25 +57,24 @@ public class TacticAction
 
     public void Attack(Combat combat)
     {
-        //combat.mis.StartAnimation(AnimationTrigger.Attack, combat.GetAnimManager(combat.curActor));
-
-        var damTaken = combat.target.TakeDamage(combat.mis, new Damage(DamageType.Physical, combat.actor.Attack));
-
-        //UIManager.CreateEffectAnimation(combat.mis, combat.curTarget, UIManager.meleeHitEffectPrefab);
-
-        //combat.mis.UpdateLog($"{combat.curActor} attacks {combat.curTarget} for {dam} {damage.type} damage.");
+        combat.mis.ApplyDamage(combat.target, new Damage(DamageType.Physical, combat.actor.Attack));
     }
 
     public void UseAbility(Combat combat)
     {
-        var selAbility = combat.actor.abilities.Find(ab => ab.data.name == ability);
-        foreach (var effect in selAbility.data.effects)
+        var curAbility = combat.actor.abilities.Find(ab => ab.data.name == ability);
+        foreach (var effectData in curAbility.data.effects)
         {
-            effect.AddEffect(combat, selAbility.data.name, selAbility.data.icon);
+            var targetUnit = effectData.target == TargetType.Hero ? (Unit) combat.hero : combat.enemy;
+            if (effectData.procType == ProcType.Instant)
+            {
+                new Effect(effectData).ProcEffect(combat.mis, targetUnit);
+            }
+            else
+            {
+                targetUnit.effects.Add(new Effect(effectData));
+            }
         }
-
-        // +1 adjustment, because after each turn all cooldowns are decreased by 1 (even for used ability)
-        selAbility.curCooldown += 1;
     }
 
     public void UseConsumable(Combat combat)
@@ -84,11 +83,31 @@ public class TacticAction
         var usedConsumable = combat.hero.consumables.First(cons => cons.data == consumableData);
         //foreach (var effect in usedConsumable.data.useEffects)
         //{
-        //    effect.AddEffect(combat, usedConsumable.data.name, usedConsumable.data.icon);
+        //    effect.ApplyEffect(combat, usedConsumable.data.name, usedConsumable.data.icon);
         //}
 
         // +1 adjustment, because after each turm all cooldowns are decreased by 1 (even on used ability)
         usedConsumable.charges--;
+
+        
+
+
+
+        internal void ApplyEffect(Combat combat, string sourceName, Sprite sourceIcon)
+        {
+            name = sourceName;
+            icon = sourceIcon;
+            curDuration = duration;
+
+            targetUnit = target == TargetType.Hero ? combat.actor : combat.target;
+
+            if (duration > 1)
+            {
+                targetUnit.effects.Add(this);
+            }
+            else
+                ProcEffect();
+        }
     }
 
     //public void LogEvent(CombatManager combat, string text)

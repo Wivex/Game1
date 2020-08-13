@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class Unit
 {
     internal List<Ability> abilities = new List<Ability>();
-    internal List<EffectData> effects = new List<EffectData>();
+    internal List<Effect> effects = new List<Effect>();
     internal Dictionary<StatType, Stat> baseStats;
     internal List<Tactic> tactics;
     internal int speedPoints;
@@ -52,47 +52,11 @@ public abstract class Unit
         speedPoints = baseStats[StatType.Speed].ModdedValue;
     }
 
-    #region OPERATIONS
-
-    // NOTE: keep everything here, what can happen put of combat (events) 
-    public virtual int TakeDamage(Mission exp, Damage damage)
+    internal void NextTurn()
     {
-        var protectionValue = 0;
-        switch (damage.type)
+        foreach (var ability in abilities)
         {
-            case DamageType.Physical:
-                protectionValue = baseStats[StatType.Defence].ModdedValue;
-                break;
+            ability.curCooldown
         }
-
-        var healthLoss = Math.Max(damage.amount - protectionValue, 0);
-        HP = Math.Max(HP - healthLoss, 0);
-
-        // invoked here, cause can take damage outside of combat
-        //UIManager.CreateFloatingTextForUnit(exp, this, -healthLoss);
-
-        return healthLoss;
     }
-
-    public virtual int Heal(int amount, params Transform[] UItargets)
-    {
-        var actualHeal = Mathf.Min(HP + amount, HPMax);
-        HP += actualHeal;
-
-        //UItargets.ForEach(UIelem => UIManager.i.CreateFloatingText(UIelem, value));
-
-        return actualHeal;
-    }
-
-    public virtual void Kill()
-    {
-        // TODO: implement
-    }
-
-    public virtual void UpdateCooldowns()
-    {
-        abilities.Where(ability => ability.curCooldown > 0).ForEach(abil => abil.curCooldown--);
-    }
-
-    #endregion
 }

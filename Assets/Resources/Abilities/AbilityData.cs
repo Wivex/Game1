@@ -7,7 +7,7 @@ public class AbilityData : ScriptableObject
     public Sprite icon;
     public GameObject animationPrefab;
     public int cooldown;
-    public EnergyType energyType;
     public int energyCost;
+    public EnergyType energyType;
     public List<EffectData> effects;
 }

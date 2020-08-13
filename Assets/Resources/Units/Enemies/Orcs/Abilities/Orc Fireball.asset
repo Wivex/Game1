@@ -16,14 +16,16 @@ MonoBehaviour:
   animationPrefab: {fileID: 1853752197604254482, guid: 8faaade3f68047540a6e587487d8f7ec,
     type: 3}
   cooldown: 6
-  energyType: 1
   energyCost: 5
+  energyType: 1
   effects:
-  - effectType: 0
-    targetType: 1
-    duration: 1
-    animationPrefab: {fileID: 0}
+  - procType: 1
+    effectType: 0
+    target: 0
+    duration: 2
+    delay: 0
     damageType: 1
     stat: 2
     statModType: 0
     amount: 20
+    procAnimation: {fileID: 0}

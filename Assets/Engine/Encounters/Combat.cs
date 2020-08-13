@@ -8,7 +8,7 @@ internal enum CombatPhase
     UpdateEffects,
     TurnOrderCheck,
     PickActorAction,
-    PerformActorAction,
+    ApplyActionEffects,
     Looting
 }
 
@@ -66,8 +66,8 @@ public class Combat : NoEncounter
                 case CombatPhase.PickActorAction:
                     PickActorAction();
                     break;
-                case CombatPhase.PerformActorAction:
-                    PerformActorAction();
+                case CombatPhase.ApplyActionEffects:
+                    ApplyActionEffects();
                     break;
                 case CombatPhase.Looting:
                     NextItemDrop();
@@ -122,12 +122,12 @@ public class Combat : NoEncounter
         }
         else
         {
-            phase = CombatPhase.PerformActorAction;
+            phase = CombatPhase.ApplyActionEffects;
             ActorActionPicked?.Invoke(curAction);
         }
     }
 
-    void PerformActorAction()
+    void ApplyActionEffects()
     {
         curAction.Perform(this);
     }

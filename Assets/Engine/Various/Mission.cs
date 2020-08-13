@@ -16,6 +16,7 @@ public class Mission
 
     internal event Action LocationChanged;
     internal event Action<EncounterType> EncounterStarted;
+    internal event Action<Unit, Damage> UnitTookDamage;
 
     #endregion
 
@@ -59,4 +60,24 @@ public class Mission
             }
         }
     }
+
+    #region UNIT OPERATIONS
+    
+    public void ApplyDamage(Unit unit, Damage damage)
+    {
+        var protectionValue = 0;
+        switch (damage.type)
+        {
+            case DamageType.Physical:
+                protectionValue = unit.baseStats[StatType.Defence].ModdedValue;
+                break;
+        }
+        var damAfterDR = Math.Max(damage.amount - protectionValue, 0);
+        damage.amount = damAfterDR;
+        unit.HP = Math.Max(unit.HP - damAfterDR, 0);
+
+        UnitTookDamage?.Invoke(unit, damage);
+    }
+
+    #endregion
 }

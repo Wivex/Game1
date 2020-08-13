@@ -12,7 +12,7 @@ public class ChangeStatDepletable : EffectData
                 if (amount > 0)
                     targetUnit.Heal(amount);
                 if (amount< 0)
-                    targetUnit.TakeDamage(combat.mis, new Damage(damageType, amount));
+                    targetUnit.ApplyDamage(combat.mis, new Damage(damageType, amount));
                 break;
             case StatType.Energy:
                 //switch (targetUnit)
