@@ -32,6 +32,21 @@ public class HideIfNotEnumValuesAttribute : PropertyAttribute
 }
 
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Class | AttributeTargets.Struct)]
+public class HideIfNotStringValuesAttribute : PropertyAttribute
+{
+    //The name of the bool field that will be in control
+    public string stringPropertyName;
+    //The value of the enum field that will be in control
+    public List<string> stringValues;
+
+    public HideIfNotStringValuesAttribute(string stringPropertyName, params string[] stringValues)
+    {
+        this.stringPropertyName = stringPropertyName;
+        this.stringValues = stringValues.ToList();
+    }
+}
+
+[AttributeUsage(AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Class | AttributeTargets.Struct)]
 public class DisabledAttribute : PropertyAttribute { }
 
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Class | AttributeTargets.Struct)]

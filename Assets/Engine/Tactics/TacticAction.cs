@@ -88,26 +88,6 @@ public class TacticAction
 
         // +1 adjustment, because after each turm all cooldowns are decreased by 1 (even on used ability)
         usedConsumable.charges--;
-
-        
-
-
-
-        internal void ApplyEffect(Combat combat, string sourceName, Sprite sourceIcon)
-        {
-            name = sourceName;
-            icon = sourceIcon;
-            curDuration = duration;
-
-            targetUnit = target == TargetType.Hero ? combat.actor : combat.target;
-
-            if (duration > 1)
-            {
-                targetUnit.effects.Add(this);
-            }
-            else
-                ProcEffect();
-        }
     }
 
     //public void LogEvent(CombatManager combat, string text)

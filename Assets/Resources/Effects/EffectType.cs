@@ -1,28 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-//public enum EffectType
-//{
-//    Damage,
-//    Healing,
-//    EnergyGain,
-//    EnergyLoss,
-//    StatModifier
-//}
-
-public enum ProcType
-{
-    Instant,
-    Duration,
-    Delayed,
-    DelayedAndDuration
-}
-
 [Serializable]
-public class EffectData
+public abstract class EffectType
 {
     public ProcType procType;
-    public EffectType effectType;
     public TargetType target;
     // NOTE: check >2
     [Min(2), HideIfNotEnumValues("procType", ProcType.Duration, ProcType.DelayedAndDuration)]
