@@ -1,6 +1,5 @@
 ﻿using System;
 
-[Serializable]
 public class Ability
 {
     internal AbilityData data;
@@ -13,4 +12,6 @@ public class Ability
 
     internal bool Ready(Unit unit) =>
         curCooldown <= 0 && unit.Energy >= data.energyCost;
+
+    internal void NextTurn() => curCooldown = Math.Max(curCooldown--, 0);
 }

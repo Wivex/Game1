@@ -21,8 +21,6 @@ MonoBehaviour:
     speed: 10
   abilities:
   - {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
-  - {fileID: 11400000, guid: e87f8d07282b8564ea041803147f90a9, type: 2}
-  - {fileID: 11400000, guid: b52a484aa824006449493ebba34040ff, type: 2}
   tactics:
   - triggers:
     - triggerType: 4
@@ -31,13 +29,12 @@ MonoBehaviour:
       measureType: 0
       comparisonType: 0
       amount: 0
-      ability: {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
+      abilityName: Orc Fireball
       unitData: {fileID: 0}
     action:
       actionType: 1
       consumableData: {fileID: 0}
-      ability: {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
-      selection: grewsrg
+      ability: Orc Fireball
   - triggers:
     - triggerType: 0
       targetType: 0
@@ -45,22 +42,19 @@ MonoBehaviour:
       measureType: 0
       comparisonType: 0
       amount: 0
-      ability: {fileID: 0}
+      abilityName: 
       unitData: {fileID: 0}
     action:
       actionType: 0
       consumableData: {fileID: 0}
-      ability: {fileID: 0}
-      selection: Orc Fireball
+      ability: 
+  abilitiesNames:
+  - Orc Fireball
   lootTable:
-  - dropChance: 1
+  - dropChance: 0
     lootAmountType: 0
     fixedAmount: 0
     minAmount: 0
     maxAmount: 0
-    item: {fileID: 11400000, guid: 78012ae863cad56478ded752cbb98ccc, type: 2}
+    item: {fileID: 0}
   sprite: {fileID: 21300000, guid: 7589bc4291a4b42408d97cb9c30abfdc, type: 3}
-  abilityNames:
-  - Orc Fireball
-  - grewsrg
-  - grewsrg 1

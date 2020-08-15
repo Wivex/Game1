@@ -29,7 +29,7 @@
         //if (lootDrops.Count > 0)
         //{
         //    var item = lootDrops.FirstOrDefault();
-        //    //mission.expPreviewPanel.lootIcon.sprite = item.icon;
+        //    //mission.expPreviewPanel.movObjImage.sprite = item.icon;
         //    // lock situation Updater until animation ends
         //    //state = SituationState.RunningAnimation;
         //    lootDrops.Remove(item);

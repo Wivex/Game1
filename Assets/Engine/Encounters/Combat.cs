@@ -8,7 +8,7 @@ internal enum CombatPhase
     UpdateEffects,
     TurnOrderCheck,
     PickActorAction,
-    PerformActorAction,
+    ApplyActionEffects,
     Looting
 }
 
@@ -29,7 +29,7 @@ public class Combat : NoEncounter
 
     #region EVENTS
 
-    internal event Action UnitActionPicked; 
+    internal event Action<TacticAction> ActorActionPicked; 
     internal event Action<Unit, Damage> DamageTaken;
     internal event Action CombatTurnStarted;
     bool AnybodyDead => hero.Dead || enemy.Dead;
@@ -41,14 +41,12 @@ public class Combat : NoEncounter
         type = EncounterType.Combat;
         // TODO used mission one
         enemy = new Enemy(mis.route.curZone.enemies.PickOne().enemyData);
-        NewCombatTurn();
+        phase = CombatPhase.TurnOrderCheck;
     }
 
     void NewCombatTurn()
     {
-        actor.UpdateCooldowns();
-        target.UpdateCooldowns();
-        // new turn updates
+        // TODO: combat preparation: update cooldowns here or at the turn end?
         phase = CombatPhase.UpdateEffects;
         CombatTurnStarted?.Invoke();
     }
@@ -64,13 +62,12 @@ public class Combat : NoEncounter
                     break;
                 case CombatPhase.TurnOrderCheck:
                     TurnOrderCheck();
-                    EncounterUpdate();
                     break;
                 case CombatPhase.PickActorAction:
                     PickActorAction();
                     break;
-                case CombatPhase.PerformActorAction:
-                    PerformActorAction();
+                case CombatPhase.ApplyActionEffects:
+                    ApplyActionEffects();
                     break;
                 case CombatPhase.Looting:
                     NextItemDrop();
@@ -85,6 +82,7 @@ public class Combat : NoEncounter
 
     void UpdateEffects()
     {
+        // TODO: Implement applied effects proc
         phase = CombatPhase.TurnOrderCheck;
     }
 
@@ -98,6 +96,7 @@ public class Combat : NoEncounter
         fasterUnitFinishedTurn = false;
 
         phase = CombatPhase.PickActorAction;
+        PickActorAction();
     }
 
     void PickActorAction()
@@ -123,12 +122,12 @@ public class Combat : NoEncounter
         }
         else
         {
-            phase = CombatPhase.PerformActorAction;
-            UnitActionPicked?.Invoke();
+            phase = CombatPhase.ApplyActionEffects;
+            ActorActionPicked?.Invoke(curAction);
         }
     }
 
-    void PerformActorAction()
+    void ApplyActionEffects()
     {
         curAction.Perform(this);
     }

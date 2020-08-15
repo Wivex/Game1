@@ -17,6 +17,8 @@ public abstract class UnitData : ScriptableObject
     };
     public List<AbilityData> abilities;
     public List<Tactic> tactics;
+    [HideInInspector]
+    public List<string> abilitiesNames;
     
 #if UNITY_EDITOR
     internal virtual void OnValidate()
@@ -31,6 +33,15 @@ public abstract class UnitData : ScriptableObject
                     triggerType = TriggerType.Any
                 }
             };
+        }
+
+        // remove empty elements in list after removing element content object
+        abilities.RemoveAll(slot => slot == null);
+
+        abilitiesNames = new List<string>();
+        foreach (var abilityData in abilities)
+        {
+            abilitiesNames.Add(abilityData.name);
         }
 
         // required to be able to save script changes to SO to an actual asset file (only inspector changes are saved by default)

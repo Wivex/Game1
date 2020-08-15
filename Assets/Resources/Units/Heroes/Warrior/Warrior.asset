@@ -20,7 +20,7 @@ MonoBehaviour:
     defence: 5
     speed: 10
   abilities:
-  - {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
+  - {fileID: 11400000, guid: 6b957e0346f315d45bdc856e0c0fa271, type: 2}
   tactics:
   - triggers:
     - triggerType: 4
@@ -29,12 +29,12 @@ MonoBehaviour:
       measureType: 0
       comparisonType: 0
       amount: 0
-      ability: {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
+      abilityName: Warrior Fireball
       unitData: {fileID: 0}
     action:
       actionType: 1
       consumableData: {fileID: 0}
-      ability: {fileID: 11400000, guid: 493f7053c19d45346aa70510db2419ac, type: 2}
+      ability: Warrior Fireball
   - triggers:
     - triggerType: 0
       targetType: 0
@@ -42,12 +42,14 @@ MonoBehaviour:
       measureType: 0
       comparisonType: 0
       amount: 0
-      ability: {fileID: 0}
+      abilityName: 
       unitData: {fileID: 0}
     action:
       actionType: 0
       consumableData: {fileID: 0}
-      ability: {fileID: 0}
+      ability: 
+  abilitiesNames:
+  - Warrior Fireball
   classType: 0
   spriteIndexOffsetBySex: 50
   portraits:

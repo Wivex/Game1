@@ -154,11 +154,21 @@ public static class Extensions
         }
     }
 
+    public static GameObject Instantiate(this GameObject obj, Transform parent)
+    {
+        return GameObject.Instantiate(obj, parent);
+    }
+
     /// <summary>
     /// Instantiates a prefab and returns it's specified component
     /// </summary>
-    public static T Instantiate<T>(this GameObject obj, Transform parent) where T : MonoBehaviour
+    public static T InstantiateAndGetComp<T>(this GameObject obj, Transform parent) where T : MonoBehaviour
     {
         return GameObject.Instantiate(obj, parent).GetComponent<T>();
+    }
+
+    public static bool HasHighestOrder(this PropertyAttribute prop, List<PropertyAttribute> attributes)
+    {
+        return attributes.All(attr => attr.order <= prop.order);
     }
 }

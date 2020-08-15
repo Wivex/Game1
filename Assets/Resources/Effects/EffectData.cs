@@ -1,20 +1,34 @@
 ﻿using System;
 using UnityEngine;
 
-public enum EffectType
+//public enum EffectType
+//{
+//    Damage,
+//    Healing,
+//    EnergyGain,
+//    EnergyLoss,
+//    StatModifier
+//}
+
+public enum ProcType
 {
-    Damage,
-    Heal,
-    StatModifier
+    Instant,
+    Duration,
+    Delayed,
+    DelayedAndDuration
 }
 
 [Serializable]
 public class EffectData
 {
+    public ProcType procType;
     public EffectType effectType;
-    public TargetType targetType;
+    public TargetType target;
+    // NOTE: check >2
+    [Min(2), HideIfNotEnumValues("procType", ProcType.Duration, ProcType.DelayedAndDuration)]
     public int duration;
-    public AnimationClip animation;
+    [HideIfNotEnumValues("procType", ProcType.Delayed, ProcType.DelayedAndDuration)]
+    public int delay;
     [HideIfNotEnumValues("effectType", EffectType.Damage)]
     public DamageType damageType;
     [HideIfNotEnumValues("effectType", EffectType.StatModifier)]
@@ -22,53 +36,11 @@ public class EffectData
     [HideIfNotEnumValues("effectType", EffectType.StatModifier)]
     public StatModType statModType;
     public int amount;
+    public GameObject procAnimation;
 
     internal string name;
     internal Sprite icon;
     internal int curDuration;
-    
-    protected Combat combat;
-    protected Unit targetUnit;
-
-    internal void AddEffect(Combat combat, string sourceName, Sprite sourceIcon)
-    {
-        this.combat = combat;
-        name = sourceName;
-        icon = sourceIcon;
-        curDuration = duration;
-
-        targetUnit = targetType == TargetType.Hero ? combat.actor : combat.target;
-
-        if (duration > 1)
-        {
-            targetUnit.effects.Add(this);
-        }
-        else
-            ProcEffect();
-    }
-
-    internal virtual void ProcEffect()
-    {
-        if (curDuration-- <= 0)
-            RemoveEffect(targetUnit);
-    }
-
-    public void RemoveEffect(Unit unit)
-    {
-        unit.effects.Remove(this);
-    }
-
-    public void AddEffectLogEntry(Combat combat, string text)
-    {
-        //situation.mission.UpdateLog(text);
-
-
-        // TODO: log coloring
-        //string ColoredValue(int value)
-        //{
-        //    if (value < 0) return $"<color=\"red\">-{value}</color>";
-        //    if (value > 0) return $"<color=\"green\">+{value}</color>";
-        //    return $"{value}";
-        //}
-    }
+    internal Combat combat;
+    internal Unit targetUnit;
 }
