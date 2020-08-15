@@ -29,3 +29,4 @@ MonoBehaviour:
     maxAmount: 0
     item: {fileID: 11400000, guid: 78012ae863cad56478ded752cbb98ccc, type: 2}
   sprite: {fileID: 21300000, guid: eddad1ed65d57b542ab991adccb3872d, type: 3}
+  abilityNames: []
