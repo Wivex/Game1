@@ -3,12 +3,12 @@ using UnityEngine;
 
 internal class Effect
 {
-    internal EffectData data;
+    internal EffectParams @params;
     internal int curDuration, curDelay;
 
-    internal Effect(EffectData data)
+    internal Effect(EffectParams @params)
     {
-        this.data = data;
+        this.@params = @params;
     }
 
     internal void NextTurn(Mission mis, Unit unit)
@@ -25,19 +25,19 @@ internal class Effect
     
     internal void ProcEffect(Mission mis, Unit unit)
     {
-        switch (data.effectType)
+        switch (@params.effectName)
         {
-            case EffectType.Damage:
-                mis.ApplyDamage(unit, new Damage(data.damageType, data.amount));
-                break;
-            case EffectType.Healing:
-                break;
-            case EffectType.EnergyGain:
-                break;
-            case EffectType.EnergyLoss:
-                break;
-            case EffectType.StatModifier:
-                break;
+            //case "Damage":
+            //    mis.ApplyDamage(unit, new Damage(@params.damageType, @params.amount));
+            //    break;
+            //case EffectType.Healing:
+            //    break;
+            //case EffectType.EnergyGain:
+            //    break;
+            //case EffectType.EnergyLoss:
+            //    break;
+            //case EffectType.StatModifier:
+            //    break;
         }
     }
 }

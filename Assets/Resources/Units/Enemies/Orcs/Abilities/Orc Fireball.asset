@@ -19,8 +19,8 @@ MonoBehaviour:
   energyCost: 5
   energyType: 1
   effects:
-  - procType: 1
-    effectType: 0
+  - type: {fileID: 0}
+    procType: 0
     target: 0
     duration: 2
     delay: 0
@@ -28,4 +28,4 @@ MonoBehaviour:
     stat: 2
     statModType: 0
     amount: 20
-    procAnimation: {fileID: 0}
+    effectName: 

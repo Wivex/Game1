@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 //public enum EffectType
@@ -19,28 +20,23 @@ public enum ProcType
 }
 
 [Serializable]
-public class EffectData
+public class EffectParams
 {
+    public EffectType type;
     public ProcType procType;
-    public EffectType effectType;
     public TargetType target;
-    // NOTE: check >2
-    [Min(2), HideIfNotEnumValues("procType", ProcType.Duration, ProcType.DelayedAndDuration)]
+    [HideIfNotEnumValues("procType", ProcType.Duration, ProcType.DelayedAndDuration)]
     public int duration;
     [HideIfNotEnumValues("procType", ProcType.Delayed, ProcType.DelayedAndDuration)]
     public int delay;
-    [HideIfNotEnumValues("effectType", EffectType.Damage)]
+    [HideIfNotStringValues("effectName", "Damage")]
     public DamageType damageType;
-    [HideIfNotEnumValues("effectType", EffectType.StatModifier)]
+    [HideIfNotStringValues("effectName", "StatModifier")]
     public StatType stat;
-    [HideIfNotEnumValues("effectType", EffectType.StatModifier)]
+    [HideIfNotStringValues("effectName", "StatModifier")]
     public StatModType statModType;
     public int amount;
-    public GameObject procAnimation;
 
-    internal string name;
-    internal Sprite icon;
-    internal int curDuration;
-    internal Combat combat;
-    internal Unit targetUnit;
+    [HideInInspector]
+    public string effectName;
 }

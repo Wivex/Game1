@@ -51,12 +51,4 @@ public abstract class Unit
         // NOTE: needed here?
         speedPoints = baseStats[StatType.Speed].ModdedValue;
     }
-
-    internal void NextTurn()
-    {
-        foreach (var ability in abilities)
-        {
-            ability.curCooldown
-        }
-    }
 }

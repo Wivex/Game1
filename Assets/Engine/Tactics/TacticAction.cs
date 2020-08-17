@@ -18,7 +18,7 @@ public class TacticAction
     public ActionType actionType;
     [HideIfNotEnumValues("actionType", ActionType.UseConsumable)]
     public ItemData consumableData;
-    [StringInList("abilitiesNames", order = 1), HideIfNotEnumValues("actionType", ActionType.UseAbility)]
+    [PopupValue("abilitiesNames", order = 1), HideIfNotEnumValues("actionType", ActionType.UseAbility)]
     public string ability;
     
     public void Perform(Combat combat)
@@ -35,7 +35,7 @@ public class TacticAction
                 Attack(combat);
                 break;
             case ActionType.UseAbility:
-                UseAbility(combat);
+                ApplyAbilityEffects(combat);
                 break;
             case ActionType.UseConsumable:
                 UseConsumable(combat);
@@ -60,7 +60,7 @@ public class TacticAction
         combat.mis.ApplyDamage(combat.target, new Damage(DamageType.Physical, combat.actor.Attack));
     }
 
-    public void UseAbility(Combat combat)
+    public void ApplyAbilityEffects(Combat combat)
     {
         var curAbility = combat.actor.abilities.Find(ab => ab.data.name == ability);
         foreach (var effectData in curAbility.data.effects)

@@ -77,7 +77,7 @@ public class UnitPanelDrawer : Drawer
             }
             else
             {
-                effects[i].sprite = unit.effects[i].icon;
+                //effects[i].sprite = unit.effects[i].icon;
                 effects[i].color = Color.white;
                 effectsDur[i].text = unit.effects[i].curDuration.ToString();
             }

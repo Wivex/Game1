@@ -44,13 +44,6 @@ public class Combat : NoEncounter
         phase = CombatPhase.TurnOrderCheck;
     }
 
-    void NewCombatTurn()
-    {
-        // TODO: combat preparation: update cooldowns here or at the turn end?
-        phase = CombatPhase.UpdateEffects;
-        CombatTurnStarted?.Invoke();
-    }
-
     internal override void EncounterUpdate()
     {
         if (!AnybodyDead)
@@ -80,9 +73,18 @@ public class Combat : NoEncounter
         }
     }
 
+    void NewCombatTurn()
+    {
+        hero.abilities.ForEach(abil => abil.NextTurn());
+        enemy.abilities.ForEach(abil => abil.NextTurn());
+        phase = CombatPhase.UpdateEffects;
+        CombatTurnStarted?.Invoke();
+    }
+
     void UpdateEffects()
     {
-        // TODO: Implement applied effects proc
+        hero.effects.ForEach(effect => effect.NextTurn(mis, actor));
+        enemy.abilities.ForEach(abil => abil.NextTurn());
         phase = CombatPhase.TurnOrderCheck;
     }
 
@@ -151,12 +153,6 @@ public class Combat : NoEncounter
         {
             resolved = true;
         }
-    }
-
-    void UpdateActorEffects()
-    {
-        for (var i = actor.effects.Count - 1; i >= 0; i--)
-            actor.effects[i].ProcEffect();
     }
 
     //UNDONE

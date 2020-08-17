@@ -68,7 +68,7 @@ public class HideIfNotEnumValuesPropertyDrawer : PropertyDrawer
     public static bool IsAllowed(HideIfNotEnumValuesAttribute attr, SerializedProperty property)
     {
         var propertyPath = property.propertyPath;
-        var enumPath = propertyPath.Replace(property.name, attr.enumPropertyName);
+        var enumPath = propertyPath.Replace(property.name, attr.propertyName);
         // find enum value through our property object
         var enumProperty = property.serializedObject.FindProperty(enumPath);
         var enumIndex = enumProperty?.enumValueIndex;
@@ -83,9 +83,51 @@ public class HideIfNotEnumValuesPropertyDrawer : PropertyDrawer
             case SerializedPropertyType.Enum:
                 return true;
             default:
-                //Debug.LogError("Data type of the property used for conditional hiding [" + sourcePropertyValue.propertyType + "] is currently not supported");
-                //return false;
+                Debug.LogError("Data type of the property used for conditional hiding [" + sourcePropertyValue.propertyType + "] is currently not supported");
+                return false;
+        }
+    }
+}
+
+[CustomPropertyDrawer(typeof(HideIfNotStringValuesAttribute))]
+public class HideIfNotStringValuesPropertyDrawer : PropertyDrawer
+{
+    float propertyHeight;
+
+    // removes empty space instead of "not drawn" property
+    public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+    {
+        propertyHeight = IsAllowed((HideIfNotStringValuesAttribute)attribute, property)
+            ? EditorGUI.GetPropertyHeight(property, label)
+            : -EditorGUIUtility.standardVerticalSpacing;
+        return propertyHeight;
+    }
+    
+    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+    {
+        if (propertyHeight > 0)
+            EditorGUI.PropertyField(position, property, label, true);
+    }
+
+    public static bool IsAllowed(HideIfNotStringValuesAttribute attr, SerializedProperty property)
+    {
+        var propertyPath = property.propertyPath;
+        var strPath = propertyPath.Replace(property.name, attr.propertyName);
+        var strProperty = property.serializedObject.FindProperty(strPath);
+        var strValue = strProperty?.stringValue;
+
+        return IsSupportedPropertyType(strProperty) && attr.stringValues.Contains(strValue);
+    }
+
+    public static bool IsSupportedPropertyType(SerializedProperty sourcePropertyValue)
+    {
+        switch (sourcePropertyValue?.propertyType)
+        {
+            case SerializedPropertyType.String:
                 return true;
+            default:
+                Debug.LogError("Data type of the property used for conditional hiding [" + sourcePropertyValue.propertyType + "] is currently not supported");
+                return false;
         }
     }
 }
@@ -117,7 +159,7 @@ public class DisabledIfNotBoolPropertyDrawer : HideIfNotBoolPropertyDrawer
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label) => EditorGUI.GetPropertyHeight(property, label);
 }
 
-[CustomPropertyDrawer(typeof(StringInListAttribute))]
+[CustomPropertyDrawer(typeof(PopupValueAttribute))]
 public class StringInListDrawer : PropertyDrawer
 {
     List<PropertyAttribute> allAttributes;
@@ -128,7 +170,7 @@ public class StringInListDrawer : PropertyDrawer
     {
         if (!allAttributes.NotNullOrEmpty())
             allAttributes = fieldInfo.GetCustomAttributes(typeof(PropertyAttribute), false).Cast<PropertyAttribute>()
-                                     .ToList();
+                .ToList();
 
         if (allAttributes.Count > 1)
         {
@@ -170,9 +212,9 @@ public class StringInListDrawer : PropertyDrawer
 
     public void DrawProp(Rect position, SerializedProperty property, GUIContent label)
     {
-        var attr = attribute as StringInListAttribute;
+        var attr = attribute as PopupValueAttribute;
         var names = new List<string>();
-        var listProp = property.serializedObject.FindProperty(attr.listName);
+        var listProp = property.serializedObject.FindProperty(attr.popupOptions);
         for (var i = 0; i < listProp.arraySize; i++) names.Add(listProp.GetArrayElementAtIndex(i).stringValue);
         if (names.NotNullOrEmpty())
         {

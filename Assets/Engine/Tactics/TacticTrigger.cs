@@ -52,7 +52,7 @@ public class TacticTrigger
     public ComparisonType comparisonType;
     [HideIfNotEnumValues("triggerType", TriggerType.StatValue)]
     public int amount;
-    [StringInList("abilitiesNames", order = 1), HideIfNotEnumValues("triggerType", TriggerType.CanUseAbility)]
+    [PopupValue("abilitiesNames", order = 1), HideIfNotEnumValues("triggerType", TriggerType.CanUseAbility)]
     public string abilityName;
     [HideIfNotEnumValues("triggerType", TriggerType.EnemyType)]
     public UnitData unitData;

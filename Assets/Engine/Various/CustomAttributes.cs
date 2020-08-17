@@ -20,13 +20,13 @@ public class HideIfNotBoolAttribute : PropertyAttribute
 public class HideIfNotEnumValuesAttribute : PropertyAttribute
 {
     //The name of the bool field that will be in control
-    public string enumPropertyName;
+    public string propertyName;
     //The value of the enum field that will be in control
     public List<int> enumValues;
 
-    public HideIfNotEnumValuesAttribute(string enumPropertyName, params object[] enums)
+    public HideIfNotEnumValuesAttribute(string propertyName, params object[] enums)
     {
-        this.enumPropertyName = enumPropertyName;
+        this.propertyName = propertyName;
         this.enumValues = enums.Cast<int>().ToList();
     }
 }
@@ -35,13 +35,13 @@ public class HideIfNotEnumValuesAttribute : PropertyAttribute
 public class HideIfNotStringValuesAttribute : PropertyAttribute
 {
     //The name of the bool field that will be in control
-    public string stringPropertyName;
+    public string propertyName;
     //The value of the enum field that will be in control
     public List<string> stringValues;
 
-    public HideIfNotStringValuesAttribute(string stringPropertyName, params string[] stringValues)
+    public HideIfNotStringValuesAttribute(string propertyName, params string[] stringValues)
     {
-        this.stringPropertyName = stringPropertyName;
+        this.propertyName = propertyName;
         this.stringValues = stringValues.ToList();
     }
 }
@@ -55,12 +55,12 @@ public class DisabledIfNotBoolAttribute : HideIfNotBoolAttribute
     public DisabledIfNotBoolAttribute(string boolPropertyName) : base(boolPropertyName) { }
 }
 
-public class StringInListAttribute : PropertyAttribute
+public class PopupValueAttribute : PropertyAttribute
 {
-    public string listName;
+    public string popupOptions;
 
-    public StringInListAttribute(string listName)
+    public PopupValueAttribute(string popupOptions)
     {
-        this.listName = listName;
+        this.popupOptions = popupOptions;
     }
 }
