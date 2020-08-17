@@ -4,33 +4,34 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Content/Data/Ability Data")]
 public class AbilityData : ScriptableObject
 {
-    public Sprite icon;
-    public GameObject animationPrefab;
     public int cooldown;
     public int energyCost;
     public EnergyType energyType;
-    public List<EffectOverTimeParams> effects;
+    public Sprite icon;
+    public GameObject animationPrefab;
+    public List<EffectDirectData> effectsDirect;
+    public List<EffectOverTimeData> effectsOverTime;
 
     void OnValidate()
     {
-        foreach (var effect in effects)
-        {
-            if (effect.effectType != null)
-                effect.effectName = effect.effectType.name;
+        //foreach (var effect in effectsOverTime)
+        //{
+        //    if (effect.type != null)
+        //        effect.effectName = effect.type.name;
 
-            if (effect.procType == ProcType.Duration && effect.duration < 2)
-            {
-                effect.duration = 2;
-                Debug.LogWarning(
-                    $"Duration of {effect.effectType.name} can't be less than 2. Otherwise use Instant Proc Type");
-            }
+        //    if (effect.procType == ProcType.Duration && effect.duration < 2)
+        //    {
+        //        effect.duration = 2;
+        //        Debug.LogWarning(
+        //            $"Duration of {effect.type.name} can't be less than 2. Otherwise use Instant Proc Type");
+        //    }
 
-            if (effect.procType == ProcType.DelayedAndDuration && effect.duration < 2)
-            {
-                effect.duration = 2;
-                Debug.LogWarning(
-                    $"Duration of {effect.effectType.name} can't be less than 2. Otherwise use Delayed Proc Type");
-            }
-        }
+        //    if (effect.procType == ProcType.DelayedAndDuration && effect.duration < 2)
+        //    {
+        //        effect.duration = 2;
+        //        Debug.LogWarning(
+        //            $"Duration of {effect.type.name} can't be less than 2. Otherwise use Delayed Proc Type");
+        //    }
+        //}
     }
 }

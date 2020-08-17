@@ -8,7 +8,7 @@ internal enum CombatPhase
     UpdateEffects,
     TurnOrderCheck,
     PickActorAction,
-    ApplyActionEffects,
+    ProcEffects,
     Looting
 }
 
@@ -19,7 +19,7 @@ public class Combat : NoEncounter
     internal Enemy enemy;
     internal Unit actor, target;
     internal TacticAction curAction;
-    
+
     List<Item> lootDrops;
     Item curLoot;
 
@@ -29,8 +29,9 @@ public class Combat : NoEncounter
 
     #region EVENTS
 
-    internal event Action<TacticAction> ActorActionPicked; 
+    internal event Action<TacticAction> ActorActionPicked;
     internal event Action<Unit, Damage> DamageTaken;
+    internal event Action<Unit, EffectOverTimeData> EffectAdded;
     internal event Action CombatTurnStarted;
     bool AnybodyDead => hero.Dead || enemy.Dead;
 
@@ -59,8 +60,8 @@ public class Combat : NoEncounter
                 case CombatPhase.PickActorAction:
                     PickActorAction();
                     break;
-                case CombatPhase.ApplyActionEffects:
-                    ApplyActionEffects();
+                case CombatPhase.ProcEffects:
+                    ProcEffects();
                     break;
                 case CombatPhase.Looting:
                     NextItemDrop();
@@ -124,12 +125,18 @@ public class Combat : NoEncounter
         }
         else
         {
-            phase = CombatPhase.ApplyActionEffects;
+            phase = CombatPhase.ProcEffects;
             ActorActionPicked?.Invoke(curAction);
         }
     }
 
-    void ApplyActionEffects()
+    internal void AddEffects(Unit unit, EffectOverTimeData effect)
+    {
+        unit.effects.Add(new EffectOverTime(effect));
+        EffectAdded?.Invoke(unit, effect);
+    }
+
+    void ProcEffects()
     {
         curAction.Perform(this);
     }

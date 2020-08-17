@@ -24,9 +24,9 @@ public class MissionOverviewPanelDrawer : Drawer
         backOverlayImage;
     public Sprite townSprite;
     public CanvasGroup statBarsGroup;
-    public TextMeshProUGUI heroName,
-        level,
-        gold;
+    public TextMeshProUGUI heroName, level, gold;
+    public GridLayoutCellSizeFitter
+        heroNegativeEffects, heroPositiveEffects, enemyNegativeEffects, enemyPositiveEffects;
 
     #endregion
 
@@ -115,6 +115,7 @@ public class MissionOverviewPanelDrawer : Drawer
         var combat = mis.curEncounter as Combat;
         combat.DamageTaken += OnUnitTookDamage;
         combat.ActorActionPicked += OnActorActionPicked;
+        combat.EffectAdded += OnEffectAdded;
     }
 
     void AbilityAnimationEventSubscription(AnimatorHandler handler)
@@ -200,6 +201,18 @@ public class MissionOverviewPanelDrawer : Drawer
     void OnUnitTookDamage(Unit unit, Damage dam)
     {
         CreateFloatingText(unit is Hero ? heroImage.transform : encSubjectImage.transform, dam.amount);
+    }
+
+    void OnEffectAdded(Unit unit, EffectOverTimeData effect)
+    {
+        var targetPanel = unit is Hero ? 
+            effect.IsNegative ? heroNegativeEffects : heroPositiveEffects :
+            effect.IsNegative ? enemyNegativeEffects : enemyPositiveEffects;
+        var effectObj = new GameObject();
+        var effectImage = effectObj.AddComponent<Image>();
+        effectImage.sprite = effect.type.icon;
+        effectObj.SetActive(true);
+        targetPanel.AddCell(effectObj);
     }
 
     void CreateFloatingText(Transform parentTransform, int value, Sprite background = null)

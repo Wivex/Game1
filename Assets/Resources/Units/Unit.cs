@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class Unit
 {
     internal List<Ability> abilities = new List<Ability>();
-    internal List<Effect> effects = new List<Effect>();
+    internal List<EffectOverTime> effects = new List<EffectOverTime>();
     internal Dictionary<StatType, Stat> baseStats;
     internal List<Tactic> tactics;
     internal int speedPoints;

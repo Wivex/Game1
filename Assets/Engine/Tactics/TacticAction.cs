@@ -63,17 +63,11 @@ public class TacticAction
     public void ApplyAbilityEffects(Combat combat)
     {
         var curAbility = combat.actor.abilities.Find(ab => ab.data.name == ability);
-        foreach (var effectData in curAbility.data.effects)
+        curAbility.ApplyDirectEffects(combat);
+        foreach (var effect in curAbility.data.effectsOverTime)
         {
-            var targetUnit = effectData.target == TargetType.Hero ? (Unit) combat.hero : combat.enemy;
-            if (effectData.procType == ProcType.Instant)
-            {
-                new Effect(effectData).ProcEffect(combat.mis, targetUnit);
-            }
-            else
-            {
-                targetUnit.effects.Add(new Effect(effectData));
-            }
+            var targetUnit = effect.target == TargetType.Hero ? (Unit) combat.hero : combat.enemy;
+            combat.AddEffects(targetUnit, effect);
         }
     }
 
