@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{90CF65C3-2670-1BBB-1C96-DA48CF837DB5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -311,8 +312,8 @@
     <Compile Include="Assets\Resources\Abilities\Ability.cs" />
     <Compile Include="Assets\Resources\Abilities\AbilityData.cs" />
     <Compile Include="Assets\Resources\Effects\Effect.cs" />
-    <Compile Include="Assets\Resources\Effects\EffectParams.cs" />
-    <Compile Include="Assets\Resources\Effects\EffectType.cs" />
+    <Compile Include="Assets\Resources\Effects\EffectOverTimeParams.cs" />
+    <Compile Include="Assets\Resources\Effects\EffectOverTimeType.cs" />
     <Compile Include="Assets\Resources\Effects\FloatingText\FloatingText.cs" />
     <Compile Include="Assets\Resources\Items\Item.cs" />
     <Compile Include="Assets\Resources\Items\ItemData.cs" />

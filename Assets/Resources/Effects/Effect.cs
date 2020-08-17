@@ -3,12 +3,12 @@ using UnityEngine;
 
 internal class Effect
 {
-    internal EffectParams @params;
+    internal EffectOverTimeParams effectParams;
     internal int curDuration, curDelay;
 
-    internal Effect(EffectParams @params)
+    internal Effect(EffectOverTimeParams effectParams)
     {
-        this.@params = @params;
+        this.effectParams = effectParams;
     }
 
     internal void NextTurn(Mission mis, Unit unit)
@@ -25,7 +25,7 @@ internal class Effect
     
     internal void ProcEffect(Mission mis, Unit unit)
     {
-        switch (@params.effectName)
+        switch (effectParams.effectName)
         {
             //case "Damage":
             //    mis.ApplyDamage(unit, new Damage(@params.damageType, @params.amount));
