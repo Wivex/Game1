@@ -25,7 +25,7 @@ public class MissionOverviewPanelDrawer : Drawer
     public Sprite townSprite;
     public CanvasGroup statBarsGroup;
     public TextMeshProUGUI heroName, level, gold;
-    public GridLayoutCellSizeFitter
+    public GridLayoutHandler
         heroNegativeEffects, heroPositiveEffects, enemyNegativeEffects, enemyPositiveEffects;
 
     #endregion
@@ -108,6 +108,7 @@ public class MissionOverviewPanelDrawer : Drawer
         mis.LocationChanged += OnLocationChanged;
         mis.EncounterStarted += OnEncounterStarted;
         mis.UnitTookDamage += OnUnitTookDamage;
+        mis.EffectRemoved += OnEffectRemoved;
     }
 
     void CombatEventsSubscription()
@@ -198,41 +199,32 @@ public class MissionOverviewPanelDrawer : Drawer
         }
     }
 
-    void OnUnitTookDamage(Unit unit, Damage dam)
-    {
-        CreateFloatingText(unit is Hero ? heroImage.transform : encSubjectImage.transform, dam.amount);
-    }
-
-    void OnEffectAdded(Unit unit, EffectOverTimeData effect)
+    void OnEffectAdded(Unit unit, EffectOverTime effect)
     {
         var targetPanel = unit is Hero ? 
-            effect.IsNegative ? heroNegativeEffects : heroPositiveEffects :
-            effect.IsNegative ? enemyNegativeEffects : enemyPositiveEffects;
+            effect.data.IsNegative ? heroNegativeEffects : heroPositiveEffects :
+            effect.data.IsNegative ? enemyNegativeEffects : enemyPositiveEffects;
         var effectObj = new GameObject();
         var effectImage = effectObj.AddComponent<Image>();
-        effectImage.sprite = effect.type.icon;
-        effectObj.SetActive(true);
-        targetPanel.AddCell(effectObj);
+        effectImage.sprite = effect.data.type.icon;
+        targetPanel.AddCell(effect, effectObj);
     }
 
-    void CreateFloatingText(Transform parentTransform, int value, Sprite background = null)
+    void OnEffectRemoved(Unit unit, EffectOverTime effect)
     {
-        var floatingText = UIManager.i.prefabs.floatingTextPrefab.InstantiateAndGetComp<FloatingText>(parentTransform);
-        if (value > 0)
-        {
-            floatingText.text = $"+{value}";
-            floatingText.color = Color.green;
-        }
-        else if (value < 0)
-        {
-            floatingText.text = $"-{value}";
-            floatingText.color = Color.red;
-        }
+        var targetPanel = unit is Hero ? 
+            effect.data.IsNegative ? heroNegativeEffects : heroPositiveEffects :
+            effect.data.IsNegative ? enemyNegativeEffects : enemyPositiveEffects;
+        targetPanel.RemoveCell(effect);
+    }
+
+    void OnUnitTookDamage(Unit unit, Damage dam)
+    {
+        var parent = unit is Hero ? heroImage.transform : encSubjectImage.transform;
+        if (dam.amount > 0)
+            FloatingText.Create(parent, $"-{dam.amount}", Color.red, dam.icon);
         else
-        {
-            floatingText.text = "No effect";
-            floatingText.color = Color.white;
-        }
+            FloatingText.Create(parent, "No effect", Color.white);
     }
 
     #endregion

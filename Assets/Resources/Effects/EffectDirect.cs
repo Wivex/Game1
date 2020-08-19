@@ -11,10 +11,10 @@ public enum EffectDirectType
 }
 
 [Serializable]
-public class EffectDirectData
+public class EffectDirect
 {
-    public EffectDirectType type;
-    public DamageType damageType;
     public TargetType target;
+    public EffectDirectType directEffect;
+    public DamageType damageType;
     public int amount;
 }

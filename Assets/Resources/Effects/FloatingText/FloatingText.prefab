@@ -92,6 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d7b9ea5926b825438fa8d74571ca35b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floatingTextPrefab: {fileID: 1389379785941996}
   animator: {fileID: 95395345032453424}
   textComp: {fileID: 6995818538946441597}
   icon: {fileID: 4612838962243187203}

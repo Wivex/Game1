@@ -9,7 +9,7 @@ public class AbilityData : ScriptableObject
     public EnergyType energyType;
     public Sprite icon;
     public GameObject animationPrefab;
-    public List<EffectDirectData> effectsDirect;
+    public List<EffectDirect> effectsDirect;
     public List<EffectOverTimeData> effectsOverTime;
 
     void OnValidate()

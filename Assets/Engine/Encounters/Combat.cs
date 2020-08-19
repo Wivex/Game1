@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 internal enum CombatPhase
 {
-    UpdateEffects,
+    UpdateOverTimeEffects,
     TurnOrderCheck,
     PickActorAction,
     ProcEffects,
@@ -25,16 +25,15 @@ public class Combat : NoEncounter
 
     int heroAP, enemyAP;
     bool fasterUnitFinishedTurn;
-    CombatPhase phase = CombatPhase.UpdateEffects;
+    CombatPhase phase = CombatPhase.UpdateOverTimeEffects;
 
     #region EVENTS
 
     internal event Action<TacticAction> ActorActionPicked;
     internal event Action<Unit, Damage> DamageTaken;
-    internal event Action<Unit, EffectOverTimeData> EffectAdded;
+    internal event Action<Unit, EffectOverTime> EffectAdded;
     internal event Action CombatTurnStarted;
-    bool AnybodyDead => hero.Dead || enemy.Dead;
-
+    
     #endregion
 
     internal Combat(Mission mis) : base(mis)
@@ -45,48 +44,58 @@ public class Combat : NoEncounter
         phase = CombatPhase.TurnOrderCheck;
     }
 
-    internal override void EncounterUpdate()
-    {
-        if (!AnybodyDead)
-            switch (phase)
-            {
-                case CombatPhase.UpdateEffects:
-                    UpdateEffects();
-                    EncounterUpdate();
-                    break;
-                case CombatPhase.TurnOrderCheck:
-                    TurnOrderCheck();
-                    break;
-                case CombatPhase.PickActorAction:
-                    PickActorAction();
-                    break;
-                case CombatPhase.ProcEffects:
-                    ProcEffects();
-                    break;
-                case CombatPhase.Looting:
-                    NextItemDrop();
-                    break;
-            }
-        else
-        {
-            phase = CombatPhase.Looting;
-            EncounterUpdate();
-        }
-    }
-
     void NewCombatTurn()
     {
-        hero.abilities.ForEach(abil => abil.NextTurn());
-        enemy.abilities.ForEach(abil => abil.NextTurn());
-        phase = CombatPhase.UpdateEffects;
+        hero.UpdateCooldowns();
+        enemy.UpdateCooldowns();
+        phase = CombatPhase.UpdateOverTimeEffects;
         CombatTurnStarted?.Invoke();
     }
 
-    void UpdateEffects()
+    internal override void EncounterUpdate()
     {
-        hero.effects.ForEach(effect => effect.NextTurn(mis, actor));
-        enemy.abilities.ForEach(abil => abil.NextTurn());
-        phase = CombatPhase.TurnOrderCheck;
+        switch (phase)
+        {
+            case CombatPhase.UpdateOverTimeEffects:
+                UpdateOverTimeEffects();
+                EncounterUpdate();
+                break;
+            case CombatPhase.TurnOrderCheck:
+                TurnOrderCheck();
+                break;
+            case CombatPhase.PickActorAction:
+                PickActorAction();
+                break;
+            case CombatPhase.ProcEffects:
+                ProcEffects();
+                break;
+            case CombatPhase.Looting:
+                NextItemDrop();
+                break;
+        }
+    }
+
+    bool CombatFinished()
+    {
+        if (hero.Dead)
+        {
+            // TODO: end mission
+            return true;
+        }
+        if (enemy.Dead)
+        {
+            phase = CombatPhase.Looting;
+            return true;
+        }
+        return false;
+    }
+
+    void UpdateOverTimeEffects()
+    {
+        hero.UpdateEffects(mis);
+        enemy.UpdateEffects(mis);
+        if (!CombatFinished())
+            phase = CombatPhase.TurnOrderCheck;
     }
 
     void TurnOrderCheck()
@@ -130,9 +139,9 @@ public class Combat : NoEncounter
         }
     }
 
-    internal void AddEffects(Unit unit, EffectOverTimeData effect)
+    internal void AddEffects(Unit unit, EffectOverTime effect)
     {
-        unit.effects.Add(new EffectOverTime(effect));
+        unit.effectStacks.Add(effect);
         EffectAdded?.Invoke(unit, effect);
     }
 

@@ -16,7 +16,9 @@ MonoBehaviour:
   animationPrefab: {fileID: 3701902863564937264, guid: 24e07c78072ecd849badca13b8f4b812,
     type: 3}
   influence: 1
+  directEffect: 0
   damageType: 1
+  amount: 5
   statMods:
   - stat: 3
     statModType: 0

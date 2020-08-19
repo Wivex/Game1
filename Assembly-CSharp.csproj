@@ -308,14 +308,15 @@
     <Compile Include="Assets\Engine\Various\ReferenceTypes.cs" />
     <Compile Include="Assets\Engine\Various\SpawnOption.cs" />
     <Compile Include="Assets\Engine\Various\WorldSpaceCanvasScaleAdjuster.cs" />
-    <Compile Include="Assets\GridLayoutCellSizeFitter.cs" />
+    <Compile Include="Assets\GridLayoutHandler.cs" />
     <Compile Include="Assets\Resources\Abilities\Ability.cs" />
     <Compile Include="Assets\Resources\Abilities\AbilityData.cs" />
-    <Compile Include="Assets\Resources\Effects\EffectDirectData.cs" />
+    <Compile Include="Assets\Resources\Effects\EffectDirect.cs" />
     <Compile Include="Assets\Resources\Effects\EffectOverTime.cs" />
     <Compile Include="Assets\Resources\Effects\EffectOverTimeData.cs" />
     <Compile Include="Assets\Resources\Effects\EffectOverTimeType.cs" />
     <Compile Include="Assets\Resources\Effects\FloatingText\FloatingText.cs" />
+    <Compile Include="Assets\Resources\Effects\UnitEffectsStacks.cs" />
     <Compile Include="Assets\Resources\Items\Item.cs" />
     <Compile Include="Assets\Resources\Items\ItemData.cs" />
     <Compile Include="Assets\Resources\Items\LootDropData.cs" />

@@ -64,10 +64,10 @@ public class TacticAction
     {
         var curAbility = combat.actor.abilities.Find(ab => ab.data.name == ability);
         curAbility.ApplyDirectEffects(combat);
-        foreach (var effect in curAbility.data.effectsOverTime)
+        foreach (var effectParams in curAbility.data.effectsOverTime)
         {
-            var targetUnit = effect.target == TargetType.Hero ? (Unit) combat.hero : combat.enemy;
-            combat.AddEffects(targetUnit, effect);
+            var targetUnit = effectParams.target == TargetType.Hero ? (Unit) combat.hero : combat.enemy;
+            combat.AddEffects(targetUnit, new EffectOverTime(effectParams));
         }
     }
 

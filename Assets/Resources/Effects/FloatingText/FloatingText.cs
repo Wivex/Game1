@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mime;
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -14,26 +15,31 @@ public class FloatingText : MonoBehaviour
     public TextMeshProUGUI textComp;
     public Image icon;
 
-    internal string text;
-    internal Color color;
-
     // flow offset position of X
-    Vector3 targetOffsetPosX;
+    int targetOffsetPosX;
+    AnimatorStateMonitor animMon;
+
+    internal static void Create(Transform parentTransform, string text, Color color, Sprite icon = null)
+    {
+        var floatingText = UIManager.i.prefabs.floatingTextPrefab.InstantiateAndGetComp<FloatingText>(parentTransform);
+        floatingText.textComp.text = text;
+        floatingText.textComp.color = color;
+        floatingText.icon.sprite = icon;
+    }
 
     // Start is called before the first frame update
     void Awake()
     {
-        text = textComp.text;
-        color = textComp.color;
-
-        // -1 or 0 possible
-        var sign = Random.Range(-1, 1);
-        targetOffsetPosX = sign < 0 ? new Vector3(Random.Range(-50, -25), 0, 0) : new Vector3(Random.Range(25, 50), 0, 0);
+        animMon = animator.GetBehaviour<AnimatorStateMonitor>();
+        // destroy obj on animation finished
+        animMon.AnimationFinished += DestroyThis;
+        targetOffsetPosX = Random.Range(-1, 1) < 0 ? Random.Range(-50, -25) : Random.Range(25, 50);
     }
 
-    // LateUpdate instead of Update to override animation positioning
-    void LateUpdate()
+    void Update()
     {
-        transform.position += Vector3.Lerp(Vector3.zero, targetOffsetPosX, animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
+        transform.localPosition = new Vector3(targetOffsetPosX * animator.GetCurrentAnimatorStateInfo(0).normalizedTime, transform.localPosition.y, transform.localPosition.z);
     }
+
+    void DestroyThis(Animator anim) => Destroy(gameObject);
 }

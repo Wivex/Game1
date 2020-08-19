@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+
 public abstract class Unit
 {
     internal List<Ability> abilities = new List<Ability>();
-    internal List<EffectOverTime> effects = new List<EffectOverTime>();
+    internal UnitEffectsStacks effects;
     internal Dictionary<StatType, Stat> baseStats;
     internal List<Tactic> tactics;
     internal int speedPoints;
@@ -50,5 +51,15 @@ public abstract class Unit
 
         // NOTE: needed here?
         speedPoints = baseStats[StatType.Speed].ModdedValue;
+    }
+
+    internal void UpdateCooldowns()
+    {
+        abilities.ForEach(abil => abil.UpdateCooldown());
+    }
+
+    internal void UpdateEffects(Mission mis)
+    {
+        effectStacks.ForEach(stack => stack.NextTurn(mis, this));
     }
 }

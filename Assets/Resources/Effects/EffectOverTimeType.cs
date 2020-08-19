@@ -13,6 +13,7 @@ public class StatMod
 {
     public StatType stat;
     public StatModType statModType;
+    public bool stacks;
     public int value;
 }
 
@@ -22,6 +23,8 @@ public class EffectOverTimeType : ScriptableObject
     public Sprite icon;
     public GameObject animationPrefab;
     public EffectInfluenceType influence;
+    public EffectDirectType directEffect;
     public DamageType damageType;
+    public int amount;
     public List<StatMod> statMods;
 }

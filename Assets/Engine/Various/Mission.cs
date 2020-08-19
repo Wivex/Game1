@@ -17,6 +17,7 @@ public class Mission
     internal event Action LocationChanged;
     internal event Action<EncounterType> EncounterStarted;
     internal event Action<Unit, Damage> UnitTookDamage;
+    internal event Action<Unit, EffectOverTime> EffectApplied, EffectRemoved;
 
     #endregion
 
@@ -63,7 +64,7 @@ public class Mission
 
     #region UNIT OPERATIONS
     
-    public void ApplyDamage(Unit unit, Damage damage)
+    internal void ApplyDamage(Unit unit, Damage damage)
     {
         var protectionValue = 0;
         switch (damage.type)
@@ -77,6 +78,18 @@ public class Mission
         unit.HP = Math.Max(unit.HP - damAfterDR, 0);
 
         UnitTookDamage?.Invoke(unit, damage);
+    }
+    
+    internal void ApplyEffects(Unit unit)
+    {
+        unit.effectStacks.Remove(effect);
+        EffectRemoved?.Invoke(unit, effect);
+    }
+    
+    internal void RemoveEffect(Unit unit, EffectOverTime effect)
+    {
+        unit.effectStacks.Remove(effect);
+        EffectRemoved?.Invoke(unit, effect);
     }
 
     #endregion

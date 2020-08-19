@@ -8,7 +8,6 @@ public class EffectOverTimeData
     public EffectOverTimeType type;
     public TargetType target;
     public int duration, delay;
-    public int amount;
 
     [HideInInspector]
     public string effectName;

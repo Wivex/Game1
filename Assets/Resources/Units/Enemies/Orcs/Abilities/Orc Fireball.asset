@@ -19,14 +19,13 @@ MonoBehaviour:
   animationPrefab: {fileID: 1853752197604254482, guid: 8faaade3f68047540a6e587487d8f7ec,
     type: 3}
   effectsDirect:
-  - type: 0
+  - target: 0
+    directEffect: 0
     damageType: 1
-    target: 0
     amount: 10
   effectsOverTime:
-  - type: {fileID: 11400000, guid: 36a75214bbd63594d9b11a0541377ee7, type: 2}
+  - effect: {fileID: 11400000, guid: 36a75214bbd63594d9b11a0541377ee7, type: 2}
     target: 0
     duration: 2
     delay: 0
-    amount: 5
     effectName: 

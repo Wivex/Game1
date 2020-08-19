@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+
+
 
 internal class EffectOverTime
 {
@@ -11,29 +14,22 @@ internal class EffectOverTime
     {
         this.data = data;
     }
-
-    internal void NextTurn(Mission mis, Unit unit)
-    {
-
-        if (curDelay > 0)
-            curDelay--;
-        else
-        {
-            ApplyEffect(mis, unit);
-            if (curDuration-- < 0) unit.effects.Remove(this);
-        }
-    }
     
     internal void ApplyEffect(Mission mis, Unit unit)
     {
         switch (data.effectName)
         {
             case "Damage":
-                mis.ApplyDamage(unit, new Damage(data.type.damageType, data.amount));
+                mis.ApplyDamage(unit, new Damage(data.type.damageType, data.type.amount));
                 break;
             default:
                 Debug.Log($"{data.effectName} is not yet implemented");
                 break;
         }
+    }
+    
+    internal void RemoveEffect(Mission mis, Unit unit)
+    {
+        mis.RemoveEffect(unit, this);
     }
 }

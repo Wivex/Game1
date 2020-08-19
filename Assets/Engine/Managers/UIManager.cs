@@ -16,6 +16,12 @@ public class UIReferences
     public Transform missionPanel, missionPreviewContentPanel;
 }
 
+[Serializable]
+public class SpriteDatabase
+{
+    public Sprite fireDamageType, physicalDamageType, bleedingDamageType;
+}
+
 public class UIManager : MonoBehaviour
 {
     #region STATIC REFERENCE INITIALIZATION
@@ -44,6 +50,7 @@ public class UIManager : MonoBehaviour
 
     public PrefabReferences prefabs;
     public UIReferences panels;
+    public SpriteDatabase sprites;
 
     void Start()
     {
