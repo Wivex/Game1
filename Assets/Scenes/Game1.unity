@@ -40679,6 +40679,10 @@ MonoBehaviour:
     missionPreviewContentPanel: {fileID: 2102658345}
   sprites:
     fireDamageType: {fileID: 21300000, guid: 0d79502d11b642f42af3af6848504c43, type: 3}
+    physicalDamageType: {fileID: 21300000, guid: 5fbbd83b5ebba2740ae45a48ca820321,
+      type: 3}
+    bleedingDamageType: {fileID: 21300000, guid: 189856b41029ffc4f9aec9133adbcd40,
+      type: 3}
 --- !u!4 &1828845479
 Transform:
   m_ObjectHideFlags: 0
