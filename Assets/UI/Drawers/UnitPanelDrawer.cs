@@ -66,22 +66,22 @@ public class UnitPanelDrawer : Drawer
         //initBar.value = unit.curInitiative / Unit.reqInitiative;
         //initiative.text = $"{(int) unit.curInitiative} / {Unit.reqInitiative}";
 
-        // update effects
-        for (var i = 0; i < effects.Length; i++)
-        {
-            if (i >= unit.effects.Count)
-            {
-                effects[i].sprite = null;
-                effects[i].color = Color.clear;
-                effectsDur[i].text = string.Empty;
-            }
-            else
-            {
-                //effects[i].sprite = unit.effects[i].icon;
-                effects[i].color = Color.white;
-                effectsDur[i].text = unit.effects[i].curDuration.ToString();
-            }
-        }
+        //// update effects
+        //for (var i = 0; i < effects.Length; i++)
+        //{
+        //    if (i >= unit.effects.Count)
+        //    {
+        //        effects[i].sprite = null;
+        //        effects[i].color = Color.clear;
+        //        effectsDur[i].text = string.Empty;
+        //    }
+        //    else
+        //    {
+        //        //effects[i].sprite = unit.effects[i].icon;
+        //        effects[i].color = Color.white;
+        //        effectsDur[i].text = unit.effects[i].curDuration.ToString();
+        //    }
+        //}
 
         // update abilities
         for (var i = 0; i < abilities.Length; i++)

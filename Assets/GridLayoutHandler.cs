@@ -28,6 +28,8 @@ public class GridLayoutHandler : MonoBehaviour
         gridLayout.cellSize.x * 2 * gridLayout.transform.childCount <= rect.width &&
         gridLayout.cellSize.y * 2 * gridLayout.transform.childCount <= rect.height;
 
+    internal bool HasObject(object obj) => gridContent.ContainsKey(obj);
+
     internal void AddCell(object obj, GameObject gameObj)
     {
         gridContent.Add(obj, gameObj);

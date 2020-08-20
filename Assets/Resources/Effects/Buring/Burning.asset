@@ -22,4 +22,5 @@ MonoBehaviour:
   statMods:
   - stat: 3
     statModType: 0
+    stacks: 0
     value: -5

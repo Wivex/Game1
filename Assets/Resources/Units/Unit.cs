@@ -7,10 +7,14 @@ using UnityEngine;
 public abstract class Unit
 {
     internal List<Ability> abilities = new List<Ability>();
-    internal UnitEffectsStacks effects;
+    internal UnitEffectsStacks effects = new UnitEffectsStacks();
     internal Dictionary<StatType, Stat> baseStats;
     internal List<Tactic> tactics;
     internal int speedPoints;
+    
+    internal event Action<Unit> CooldownsUpdated;
+    internal event Action<Unit, Damage> TookDamage;
+    internal event Action<Unit, EffectOverTimeType> EffectAdded, EffectApplied, EffectRemoved;
 
     internal bool Dead => HP <= 0;
     internal abstract string Name { get; }
@@ -56,10 +60,40 @@ public abstract class Unit
     internal void UpdateCooldowns()
     {
         abilities.ForEach(abil => abil.UpdateCooldown());
+        CooldownsUpdated?.Invoke(this);
     }
 
-    internal void UpdateEffects(Mission mis)
+    internal void ApplyDamage(Damage damage)
     {
-        effectStacks.ForEach(stack => stack.NextTurn(mis, this));
+        var protectionValue = 0;
+        switch (damage.type)
+        {
+            case DamageType.Physical:
+                protectionValue = baseStats[StatType.Defence].ModdedValue;
+                break;
+        }
+        var damAfterDR = Math.Max(damage.amount - protectionValue, 0);
+        damage.amount = damAfterDR;
+        HP = Math.Max(HP - damAfterDR, 0);
+
+        TookDamage?.Invoke(this, damage);
+    }
+    
+    internal void AddEffect(EffectOverTimeData effectData)
+    {
+        effects.Add(new EffectOverTime(effectData));
+        EffectAdded?.Invoke(this, effectData.type);
+    }
+    
+    internal void ApplyNextEffectStack()
+    {
+        var appliedType = effects.ApplyNextEffectStack(this);
+        EffectApplied?.Invoke(this, appliedType);
+    }
+    
+    internal void RemoveEffect(EffectOverTime effect)
+    {
+        effects.Remove(effect);
+        EffectRemoved?.Invoke(this, effect.data.type);
     }
 }

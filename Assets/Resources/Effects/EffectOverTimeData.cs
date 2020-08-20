@@ -11,6 +11,4 @@ public class EffectOverTimeData
 
     [HideInInspector]
     public string effectName;
-
-    public bool IsNegative => type.influence == EffectInfluenceType.Negative;
 }

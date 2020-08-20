@@ -7,10 +7,16 @@ using UnityEngine;
 internal class EffectsStack
 {
     internal EffectOverTimeType type;
-    internal List<EffectOverTime> effects = new List<EffectOverTime>();
+    internal List<EffectOverTime> effects;
 
     internal int cumulitiveDirectAmount;
     internal List<StatMod> cumulitiveStatMods;
+
+    internal EffectsStack(EffectOverTime effect)
+    {
+        type = effect.data.type;
+        effects = new List<EffectOverTime> {effect};
+    }
 
     internal void CalculateCumulativeEffect()
     {
@@ -45,33 +51,41 @@ internal class UnitEffectsStacks
         new Dictionary<EffectOverTimeType, EffectsStack>();
     internal int unappliedStacks;
 
-    internal void CalculateCumulativeUnitEffects()
+    internal void CalculateEffectStacksPower()
     {
         unappliedStacks = effectStacks.Count;
         effectStacks.ForEach(stack => stack.Value.CalculateCumulativeEffect());
     }
 
-    internal void ApplyNextCumulativeEffect(Mission mis, Unit unit)
+    internal void Add(EffectOverTime effect)
     {
-        if (unappliedStacks > 0)
-        {
-            var effectType = effectStacks.ElementAt(unappliedStacks).Key;
-            switch (effectType.name)
-            {
-                case "Damage":
-                    mis.ApplyDamage(unit, new Damage(effectType.damageType, effectStacks[effectType].cumulitiveDirectAmount));
-                    break;
-                default:
-                    Debug.Log($"{effectType.name} is not yet implemented");
-                    break;
-            }
-
-            unappliedStacks--;
-        }
+        if (effectStacks.ContainsKey(effect.data.type))
+            effectStacks[effect.data.type].effects.Add(effect);
+        else
+            effectStacks.Add(effect.data.type, new EffectsStack(effect));
     }
 
-    internal void RemoveEffect(Mission mis, Unit unit)
+    internal void Remove(EffectOverTime effect)
     {
-        mis.RemoveEffect(unit, this);
+        effectStacks[effect.data.type].effects.Remove(effect);
+        effectStacks.Add(effect.data.type, new EffectsStack(effect));
+    }
+
+    internal EffectOverTimeType ApplyNextEffectStack(Unit unit)
+    {
+        var effectType = effectStacks.ElementAt(unappliedStacks).Key;
+        switch (effectType.name)
+        {
+            case "Damage":
+                unit.ApplyDamage(new Damage(effectType.damageType, effectStacks[effectType].cumulitiveDirectAmount));
+                break;
+            default:
+                Debug.Log($"{effectType.name} is not yet implemented");
+                break;
+        }
+
+        unappliedStacks--;
+
+        return effectType;
     }
 }

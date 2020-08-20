@@ -21,7 +21,7 @@ public class TacticAction
     [PopupValue("abilitiesNames", order = 1), HideIfNotEnumValues("actionType", ActionType.UseAbility)]
     public string ability;
     
-    public void Perform(Combat combat)
+    public void Apply(Combat combat)
     {
         switch (actionType)
         {
@@ -57,17 +57,17 @@ public class TacticAction
 
     public void Attack(Combat combat)
     {
-        combat.mis.ApplyDamage(combat.target, new Damage(DamageType.Physical, combat.actor.Attack));
+        combat.target.ApplyDamage(new Damage(DamageType.Physical, combat.actor.Attack));
     }
 
     public void ApplyAbilityEffects(Combat combat)
     {
         var curAbility = combat.actor.abilities.Find(ab => ab.data.name == ability);
         curAbility.ApplyDirectEffects(combat);
-        foreach (var effectParams in curAbility.data.effectsOverTime)
+        foreach (var effectData in curAbility.data.effectsOverTime)
         {
-            var targetUnit = effectParams.target == TargetType.Hero ? (Unit) combat.hero : combat.enemy;
-            combat.AddEffects(targetUnit, new EffectOverTime(effectParams));
+            var targetUnit = effectData.target == TargetType.Hero ? (Unit) combat.hero : combat.enemy;
+            targetUnit.AddEffect(effectData);
         }
     }
 

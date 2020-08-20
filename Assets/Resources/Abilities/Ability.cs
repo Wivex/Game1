@@ -19,7 +19,7 @@ public class Ability
             switch (effect.directEffect)
             {
                 case EffectDirectType.Damage:
-                    combat.mis.ApplyDamage(targetUnit, new Damage(effect.damageType, effect.amount));
+                    targetUnit.ApplyDamage(new Damage(effect.damageType, effect.amount));
                     break;
                 case EffectDirectType.Heal:
                     Debug.Log($"{effect.directEffect} is not yet implemented");

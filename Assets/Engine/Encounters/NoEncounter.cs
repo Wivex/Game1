@@ -28,5 +28,11 @@ public class NoEncounter
     /// <summary>
     /// Runs next logical action in the encounter, when all previous action animations are finished.
     /// </summary>
-    internal virtual void EncounterUpdate(){}
+    internal virtual void NextEncounterAction(){}
+
+    internal void FinishEncounter()
+    {
+        resolved = true;
+        mis.NextAction();
+    }
 }

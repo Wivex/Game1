@@ -27,4 +27,6 @@ public class EffectOverTimeType : ScriptableObject
     public DamageType damageType;
     public int amount;
     public List<StatMod> statMods;
+
+    internal bool IsNegative => influence == EffectInfluenceType.Negative;
 }

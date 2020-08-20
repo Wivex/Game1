@@ -75,6 +75,7 @@ public class MissionOverviewPanelDrawer : Drawer
         GetComponent<Button>().onClick.AddListener(() => OnPanelClicked(mis));
 
         MissionEventsSubscription();
+        UnitEventsSubscription(mis.hero);
         MissionIntroAnimSetUp();
     }
 
@@ -102,24 +103,28 @@ public class MissionOverviewPanelDrawer : Drawer
 
     #region EVENT SUBSCRIPTIONS
 
+    void UnitEventsSubscription(Unit unit)
+    {
+        unit.TookDamage += OnUnitTookDamage;
+        unit.EffectAdded += OnEffectAdded;
+        unit.EffectApplied += OnEffectApplied;
+        unit.EffectRemoved += OnEffectRemoved;
+    }
+    
     void MissionEventsSubscription()
     {
         unitsAnim.animMonitor.AnimationFinished += OnAnimationFinished;
         mis.LocationChanged += OnLocationChanged;
         mis.EncounterStarted += OnEncounterStarted;
-        mis.UnitTookDamage += OnUnitTookDamage;
-        mis.EffectRemoved += OnEffectRemoved;
     }
 
     void CombatEventsSubscription()
     {
         var combat = mis.curEncounter as Combat;
-        combat.DamageTaken += OnUnitTookDamage;
         combat.ActorActionPicked += OnActorActionPicked;
-        combat.EffectAdded += OnEffectAdded;
     }
 
-    void AbilityAnimationEventSubscription(AnimatorHandler handler)
+    void AnimationHandlerEventSubscription(AnimatorHandler handler)
     {
         handler.animMonitor.AnimationFinished += OnAnimationFinished;
         handler.AnimationEvent += OnAnimationEvent;
@@ -144,7 +149,7 @@ public class MissionOverviewPanelDrawer : Drawer
     {
         var animName = animator.ToString();
         if (keyAnimations.Contains(animName)) keyAnimations.Remove(animName);
-        if (keyAnimations.Count == 0) mis.NextUpdate();
+        if (keyAnimations.Count == 0) mis.NextAction();
     }
 
     /// <summary>
@@ -152,7 +157,7 @@ public class MissionOverviewPanelDrawer : Drawer
     /// </summary>
     void OnAnimationEvent()
     {
-        mis.NextUpdate();
+        mis.NextAction();
     }
 
     void OnLocationChanged()
@@ -171,10 +176,14 @@ public class MissionOverviewPanelDrawer : Drawer
         {
             case ActionType.UseAbility:
                 var ability = mis.Combat.actor.abilities.Find(abil => abil.data.name == action.ability);
-                var abilityAnimHandler =
-                    ability.data.animationPrefab.InstantiateAndGetComp<AnimatorHandler>(locationImage.transform.parent);
-                keyAnimations.Add(abilityAnimHandler.animator.ToString());
-                AbilityAnimationEventSubscription(abilityAnimHandler);
+                if (ability.data.animationPrefab != null)
+                {
+                    // run ability animation
+                    var abilityAnimHandler =
+                        ability.data.animationPrefab.InstantiateAndGetComp<AnimatorHandler>(locationImage.transform.parent);
+                    keyAnimations.Add(abilityAnimHandler.animator.ToString());
+                    AnimationHandlerEventSubscription(abilityAnimHandler);
+                }
                 break;
             case ActionType.UseConsumable:
                 break;
@@ -189,6 +198,7 @@ public class MissionOverviewPanelDrawer : Drawer
                 KeyAnimationStart(unitsAnim.animator, "No Encounter");
                 break;
             case EncounterType.Combat:
+                UnitEventsSubscription(mis.Combat.enemy);
                 encSubjectImage.enabled = true;
                 encSubjectImage.sprite = (mis.curEncounter as Combat).enemy.data.sprite;
                 encInteractionImage.enabled = true;
@@ -199,23 +209,39 @@ public class MissionOverviewPanelDrawer : Drawer
         }
     }
 
-    void OnEffectAdded(Unit unit, EffectOverTime effect)
+    void OnEffectAdded(Unit unit, EffectOverTimeType effectType)
     {
         var targetPanel = unit is Hero ? 
-            effect.data.IsNegative ? heroNegativeEffects : heroPositiveEffects :
-            effect.data.IsNegative ? enemyNegativeEffects : enemyPositiveEffects;
-        var effectObj = new GameObject();
-        var effectImage = effectObj.AddComponent<Image>();
-        effectImage.sprite = effect.data.type.icon;
-        targetPanel.AddCell(effect, effectObj);
+            effectType.IsNegative ? heroNegativeEffects : heroPositiveEffects :
+            effectType.IsNegative ? enemyNegativeEffects : enemyPositiveEffects;
+        if (!targetPanel.HasObject(effectType))
+        {
+            var effectObj = new GameObject();
+            var effectImage = effectObj.AddComponent<Image>();
+            effectImage.sprite = effectType.icon;
+            targetPanel.AddCell(effectType, effectObj);
+        }
     }
 
-    void OnEffectRemoved(Unit unit, EffectOverTime effect)
+    void OnEffectApplied(Unit unit, EffectOverTimeType effectType)
+    {
+        if (effectType.animationPrefab != null)
+        {
+            var parent = unit is Hero ? heroImage.transform : encSubjectImage.transform;
+            var effectAnimHandler = effectType.animationPrefab.InstantiateAndGetComp<AnimatorHandler>(parent);
+            keyAnimations.Add(effectAnimHandler.animator.ToString());
+            AnimationHandlerEventSubscription(effectAnimHandler);
+        }
+        else
+            mis.NextAction();
+    }
+
+    void OnEffectRemoved(Unit unit, EffectOverTimeType effectType)
     {
         var targetPanel = unit is Hero ? 
-            effect.data.IsNegative ? heroNegativeEffects : heroPositiveEffects :
-            effect.data.IsNegative ? enemyNegativeEffects : enemyPositiveEffects;
-        targetPanel.RemoveCell(effect);
+            effectType.IsNegative ? heroNegativeEffects : heroPositiveEffects :
+            effectType.IsNegative ? enemyNegativeEffects : enemyPositiveEffects;
+        targetPanel.RemoveCell(effectType);
     }
 
     void OnUnitTookDamage(Unit unit, Damage dam)
