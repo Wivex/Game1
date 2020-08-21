@@ -10,7 +10,7 @@ public abstract class Unit
     internal UnitEffectsStacks effects = new UnitEffectsStacks();
     internal Dictionary<StatType, Stat> baseStats;
     internal List<Tactic> tactics;
-    internal int speedPoints;
+    internal int AP;
     
     internal event Action<Unit> CooldownsUpdated;
     internal event Action<Unit, Damage> TookDamage;
@@ -52,9 +52,6 @@ public abstract class Unit
 
         foreach (var abilityData in data.abilities)
             abilities.Add(new Ability(abilityData));
-
-        // NOTE: needed here?
-        speedPoints = baseStats[StatType.Speed].ModdedValue;
     }
 
     internal void UpdateCooldowns()

@@ -25,7 +25,7 @@ public static class TacticExtensions
     /// </summary>
     public static TacticAction PickAction(this List<Tactic> tactics, Combat combat)
     {
-        var action =  tactics.FirstOrDefault(tactic => tactic.Triggered(combat))?.action;
+        var action =  tactics.FirstOrDefault(tactic => tactic.Triggered(combat) && combat.actor.AP >= TacticAction.APCost)?.action;
         if (action != null)
         {
             return action;

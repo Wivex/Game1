@@ -15,6 +15,8 @@ public enum ActionType
 [Serializable]
 public class TacticAction
 {
+    public const int APCost = 5;
+
     public ActionType actionType;
     [HideIfNotEnumValues("actionType", ActionType.UseConsumable)]
     public ItemData consumableData;

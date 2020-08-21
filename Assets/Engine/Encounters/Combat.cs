@@ -5,10 +5,10 @@ using Random = UnityEngine.Random;
 
 internal enum CombatPhase
 {
-    TurnOrderCheck,
+    NewCombatTurnSetUp,
     PickActorAction,
     ApplyPickedAction,
-    UpdateEffectsOverTime,
+    ApplyNextActorEffectOverTime,
     Looting,
     HeroDeath
 }
@@ -24,14 +24,12 @@ public class Combat : NoEncounter
     List<Item> lootDrops;
     Item curLoot;
 
-    int heroAP, enemyAP;
     bool fasterUnitFinishedTurn;
     CombatPhase phase;
 
     #region EVENTS
 
     internal event Action<TacticAction> ActorActionPicked;
-    internal event Action CombatTurnStarted;
     
     #endregion
 
@@ -40,28 +38,23 @@ public class Combat : NoEncounter
         type = EncounterType.Combat;
         // TODO used mission one
         enemy = new Enemy(mis.route.curZone.enemies.PickOne().enemyData);
-        NewCombatTurn();
     }
 
-    void NewCombatTurn()
+    void NewCombatTurnSetUp()
     {
-        hero.UpdateCooldowns();
-        enemy.UpdateCooldowns();
-        hero.effects.CalculateEffectStacksPower();
-        enemy.effects.CalculateEffectStacksPower();
-        TurnOrderCheck();
-        CombatTurnStarted?.Invoke();
-    }
-    void TurnOrderCheck()
-    {
-        heroAP = Math.Min(heroAP + hero.Speed, hero.Speed * AP_AccumulationLimitMod);
-        enemyAP = Math.Min(enemyAP + enemy.Speed, enemy.Speed * AP_AccumulationLimitMod);
-        actor = heroAP >= enemyAP ? (Unit) hero : enemy;
-        target = heroAP >= enemyAP ? (Unit) enemy : hero;
-
+        hero.AP = Math.Min(hero.AP + hero.Speed, hero.Speed * AP_AccumulationLimitMod);
+        enemy.AP = Math.Min(enemy.AP + enemy.Speed, enemy.Speed * AP_AccumulationLimitMod);
+        actor = hero.AP >= enemy.AP ? (Unit) hero : enemy;
+        target = hero.AP >= enemy.AP ? (Unit) enemy : hero;
         fasterUnitFinishedTurn = false;
+        ActorTurnSetUp();
+    }
 
-        phase = CombatPhase.PickActorAction;
+    void ActorTurnSetUp()
+    {
+        actor.UpdateCooldowns();
+        actor.effects.CalculateEffectStacksPower();
+        phase = CombatPhase.ApplyNextActorEffectOverTime;
         NextEncounterAction();
     }
 
@@ -69,8 +62,11 @@ public class Combat : NoEncounter
     {
         switch (phase)
         {
-            case CombatPhase.UpdateEffectsOverTime:
-                UpdateEffectsOverTime();
+            case CombatPhase.NewCombatTurnSetUp:
+                NewCombatTurnSetUp();
+                break;
+            case CombatPhase.ApplyNextActorEffectOverTime:
+                ApplyNextActorEffectOverTime();
                 break;
             case CombatPhase.PickActorAction:
                 PickActorAction();
@@ -81,33 +77,24 @@ public class Combat : NoEncounter
             case CombatPhase.Looting:
                 NextItemDrop();
                 break;
+            case CombatPhase.HeroDeath:
+                //UNDONE
+                break;
         }
     }
 
-    void UpdateEffectsOverTime()
+    void ApplyNextActorEffectOverTime()
     {
-        if (hero.effects.unappliedStacks > 0)
-            hero.ApplyNextEffectStack();
-        else if (enemy.effects.unappliedStacks > 0)
-            enemy.ApplyNextEffectStack();
-        if (!CombatFinished())
-            phase = CombatPhase.TurnOrderCheck;
-    }
-
-    bool CombatFinished()
-    {
-        if (hero.Dead)
+        if (actor.effects.unappliedStacks > 0)
         {
-            phase = CombatPhase.HeroDeath;
-            return true;
+            actor.ApplyNextEffectStack();
+            CombatFinishedCheck();
         }
-        if (enemy.Dead)
+        else
         {
-            phase = CombatPhase.Looting;
-            SpawnLoot();
-            return true;
+            phase = CombatPhase.PickActorAction;
+            NextEncounterAction();
         }
-        return false;
     }
 
     void PickActorAction()
@@ -119,21 +106,20 @@ public class Combat : NoEncounter
             if (!fasterUnitFinishedTurn)
             {
                 fasterUnitFinishedTurn = true;
-
                 // switch actor and target
                 var actorRole = actor;
                 actor = target;
                 target = actorRole;
-
-                NextEncounterAction();
+                ActorTurnSetUp();
             }
             // Combat turn ended
             else
-                NewCombatTurn();
+                NewCombatTurnSetUp();
         }
         else
         {
             phase = CombatPhase.ApplyPickedAction;
+            actor.AP -= TacticAction.APCost;
             ActorActionPicked?.Invoke(curAction);
         }
     }
@@ -141,9 +127,19 @@ public class Combat : NoEncounter
     void ApplyPickedAction()
     {
         curAction.Apply(this);
-        CombatFinished();
         phase = CombatPhase.PickActorAction;
-        // NextEncounterAction() called by animation
+        CombatFinishedCheck();
+    }
+
+    void CombatFinishedCheck()
+    {
+        if (hero.Dead)
+            phase = CombatPhase.HeroDeath;
+        if (enemy.Dead)
+        {
+            phase = CombatPhase.Looting;
+            SpawnLoot();
+        }
     }
 
     void NextItemDrop()
