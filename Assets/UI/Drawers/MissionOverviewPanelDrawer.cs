@@ -14,7 +14,7 @@ public class MissionOverviewPanelDrawer : Drawer
 
     public Transform consumablesPanel;
     public Animator animatorBackground;
-    public StatBar heroHpBar, heroEnergyBar, enemyHpBar, enemyEnergyBar;
+    public StatBar heroHPBar, heroEnergyBar, heroAPBar, enemyHPBar, enemyEnergyBar, enemyAPBar;
     public Image heroPortrait,
         curGoldImage,
         heroImage,
@@ -109,6 +109,9 @@ public class MissionOverviewPanelDrawer : Drawer
         unit.EffectAdded += OnEffectAdded;
         unit.EffectApplied += OnEffectApplied;
         unit.EffectRemoved += OnEffectRemoved;
+        unit.HPChanged += OnUnitHPChanged;
+        unit.EnergyChanged += OnUnitEnergyChanged;
+        unit.APChanged += OnUnitAPChanged;
     }
     
     void MissionEventsSubscription()
@@ -175,6 +178,7 @@ public class MissionOverviewPanelDrawer : Drawer
         switch (action.actionType)
         {
             case ActionType.UseAbility:
+                // run ability animation, if it has one
                 var ability = mis.Combat.actor.abilities.Find(abil => abil.data.name == action.ability);
                 if (ability.data.animationPrefab != null)
                 {
@@ -202,11 +206,40 @@ public class MissionOverviewPanelDrawer : Drawer
                 encSubjectImage.enabled = true;
                 encSubjectImage.sprite = (mis.curEncounter as Combat).enemy.data.sprite;
                 encInteractionImage.enabled = true;
+                SetInitialStatBars();
                 CombatEventsSubscription();
                 animatorBackground.SetTrigger("Combat Start");
                 KeyAnimationStart(unitsAnim.animator, "Combat Start");
                 break;
         }
+    }
+
+    void OnUnitHPChanged(Unit unit)
+    {
+        var HPBar = unit is Hero ? heroHPBar : enemyHPBar;
+        HPBar.SetTargetShiftingValue((float) unit.HP / unit.HPMax);
+    }
+
+    void OnUnitEnergyChanged(Unit unit)
+    {
+        var energyBar = unit is Hero ? heroEnergyBar : enemyEnergyBar;
+        energyBar.SetTargetShiftingValue((float) unit.Energy / unit.EnergyMax);
+    }
+
+    void OnUnitAPChanged(Unit unit)
+    {
+        var APBar = unit is Hero ? heroAPBar : enemyAPBar;
+        APBar.SetTargetShiftingValue((float) unit.AP / unit.APMax);
+    }
+
+    void SetInitialStatBars()
+    {
+        heroHPBar.SetInstantValue((float) mis.hero.HP / mis.hero.HPMax);
+        enemyHPBar.SetInstantValue((float) mis.Combat.enemy.HP / mis.Combat.enemy.HPMax);
+        heroEnergyBar.SetInstantValue((float) mis.hero.Energy / mis.hero.EnergyMax);
+        enemyEnergyBar.SetInstantValue((float) mis.Combat.enemy.Energy / mis.Combat.enemy.EnergyMax);
+        heroAPBar.SetInstantValue((float) mis.hero.AP / mis.hero.APMax);
+        enemyAPBar.SetInstantValue((float) mis.Combat.enemy.AP / mis.Combat.enemy.APMax);
     }
 
     void OnEffectAdded(Unit unit, EffectOverTimeType effectType)
@@ -248,7 +281,11 @@ public class MissionOverviewPanelDrawer : Drawer
     {
         var parent = unit is Hero ? heroImage.transform : encSubjectImage.transform;
         if (dam.amount > 0)
+        {
             FloatingText.Create(parent, $"-{dam.amount}", Color.red, dam.icon);
+            var HPBar = unit is Hero ? heroHPBar : enemyHPBar;
+            HPBar.SetTargetShiftingValue((float) unit.HP / unit.HPMax);
+        }
         else
             FloatingText.Create(parent, "No effect", Color.white);
     }

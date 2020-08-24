@@ -73,7 +73,7 @@ internal class UnitEffectsStacks
 
     internal EffectOverTimeType ApplyNextEffectStack(Unit unit)
     {
-        var effectType = effectStacks.ElementAt(unappliedStacks).Key;
+        var effectType = effectStacks.ElementAt(unappliedStacks - 1).Key;
         switch (effectType.name)
         {
             case "Damage":

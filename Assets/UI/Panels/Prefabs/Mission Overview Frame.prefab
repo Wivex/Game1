@@ -3213,13 +3213,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   consumablesPanel: {fileID: 5819369030670929782}
   animatorBackground: {fileID: 3579170010243309070}
-  heroHpBar: {fileID: 6391872569547883724}
+  heroHPBar: {fileID: 6391872569547883724}
   heroEnergyBar: {fileID: 3259690798919470750}
-  enemyHpBar: {fileID: 4391599126205106045}
+  heroAPBar: {fileID: 8323852957597364585}
+  enemyHPBar: {fileID: 4391599126205106045}
   enemyEnergyBar: {fileID: 7402059036635375542}
+  enemyAPBar: {fileID: 8323852958333479076}
   heroPortrait: {fileID: 6825673458940063118}
   curGoldImage: {fileID: 5819369031779014021}
-  heroImage: {fileID: 6825673458940063118}
+  heroImage: {fileID: 6592148624429078266}
   encSubjectImage: {fileID: 6801325471691364661}
   encInteractionImage: {fileID: 4230239312322620439}
   locationImage: {fileID: 7900151840780308033}
