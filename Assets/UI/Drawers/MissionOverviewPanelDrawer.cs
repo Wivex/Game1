@@ -19,8 +19,7 @@ public class MissionOverviewPanelDrawer : Drawer
         heroImage,
         enemyImage,
         encInteractionImage,
-        locationImage,
-        backOverlayImage;
+        locationImage;
     public Sprite townSprite;
     public CanvasGroup statBarsGroup;
     public TextMeshProUGUI heroName, level, gold;
@@ -44,7 +43,7 @@ public class MissionOverviewPanelDrawer : Drawer
     /// <summary>
     /// These animations have to be finished (removed from collection) before running next logic iteration.
     /// </summary>
-    HashSet<Object> keyAnimations = new HashSet<Object>();
+    HashSet<Animator> busyAnimators = new HashSet<Animator>();
 
     internal static void CreateNew(Mission mis)
     {
@@ -88,14 +87,9 @@ public class MissionOverviewPanelDrawer : Drawer
     {
         foreach (var animator in animators)
         {
-            keyAnimations.Add(animator);
+            busyAnimators.Add(animator);
             animator.SetTrigger(triggerMessage);
         }
-    }
-
-    void KeyAnimationEnd(Animator animator)
-    {
-        keyAnimations.Remove(animator);
     }
 
     void MissionIntroAnimSetUp()
@@ -107,7 +101,7 @@ public class MissionOverviewPanelDrawer : Drawer
         // set stat bars transparent
         statBarsGroup.enabled = true;
 
-        keyAnimations.Add(animLocation);
+        busyAnimators.Add(animLocation.animator);
     }
 
 
@@ -160,9 +154,9 @@ public class MissionOverviewPanelDrawer : Drawer
     /// </summary>
     void OnAnimationFinished(Animator animator)
     {
-        if (keyAnimations.Contains(animator)) 
-            keyAnimations.Remove(animator);
-        if (keyAnimations.Count == 0) 
+        if (busyAnimators.Contains(animator)) 
+            busyAnimators.Remove(animator);
+        if (busyAnimators.Count == 0) 
             mis.NextAction();
     }
 
@@ -197,7 +191,7 @@ public class MissionOverviewPanelDrawer : Drawer
                     // run ability animation
                     var abilityAnimHandler =
                         ability.data.animationPrefab.InstantiateAndGetComp<AnimatorHandler>(locationImage.transform.parent);
-                    keyAnimations.Add(abilityAnimHandler.animator);
+                    busyAnimators.Add(abilityAnimHandler.animator);
                     AnimationHandlerEventSubscription(abilityAnimHandler);
                 }
                 break;
@@ -279,7 +273,7 @@ public class MissionOverviewPanelDrawer : Drawer
         {
             var parent = unit is Hero ? heroImage.transform : enemyImage.transform;
             var effectAnimHandler = effectType.animationPrefab.InstantiateAndGetComp<AnimatorHandler>(parent);
-            keyAnimations.Add(effectAnimHandler.animator);
+            busyAnimators.Add(effectAnimHandler.animator);
             AnimationHandlerEventSubscription(effectAnimHandler);
         }
         else

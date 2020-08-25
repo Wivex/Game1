@@ -3357,7 +3357,6 @@ MonoBehaviour:
   enemyImage: {fileID: 6801325471691364661}
   encInteractionImage: {fileID: 4230239312322620439}
   locationImage: {fileID: 7900151840780308033}
-  backOverlayImage: {fileID: 6919960698011891052}
   townSprite: {fileID: 21300000, guid: e30c90a8ea3fac34ba8694fdb8cc920c, type: 3}
   statBarsGroup: {fileID: 2780454257965748029}
   heroName: {fileID: 6825673459540348549}
