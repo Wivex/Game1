@@ -30,6 +30,7 @@ public class Combat : NoEncounter
     #region EVENTS
 
     internal event Action<TacticAction> ActorActionPicked;
+    internal event Action NewCombatTurnStarted;
     
     #endregion
 
@@ -38,8 +39,6 @@ public class Combat : NoEncounter
         type = EncounterType.Combat;
         // TODO used mission one
         enemy = new Enemy(mis.route.curZone.enemies.PickOne().enemyData);
-        hero.AP = hero.Speed;
-        enemy.AP = enemy.Speed;
     }
 
     void NewCombatTurnSetUp()
@@ -49,6 +48,7 @@ public class Combat : NoEncounter
         actor = hero.AP >= enemy.AP ? (Unit) hero : enemy;
         target = hero.AP >= enemy.AP ? (Unit) enemy : hero;
         fasterUnitFinishedTurn = false;
+        NewCombatTurnStarted?.Invoke();
         ActorTurnSetUp();
     }
 

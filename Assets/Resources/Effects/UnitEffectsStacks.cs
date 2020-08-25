@@ -30,6 +30,7 @@ internal class EffectsStack
             if (effect.curDelay > 0) effect.curDelay--;
             else
             {
+                effect.curDuration--;
                 // sum all direct effect amounts
                 cumulitiveDirectAmount += effect.data.type.amount;
                 for (var i = 0; i < type.statMods.Count; i++)
@@ -74,13 +75,13 @@ internal class UnitEffectsStacks
     internal EffectOverTimeType ApplyNextEffectStack(Unit unit)
     {
         var effectType = effectStacks.ElementAt(unappliedStacks - 1).Key;
-        switch (effectType.name)
+        switch (effectType.directEffect)
         {
-            case "Damage":
+            case EffectDirectType.Damage:
                 unit.ApplyDamage(new Damage(effectType.damageType, effectStacks[effectType].cumulitiveDirectAmount));
                 break;
             default:
-                Debug.Log($"{effectType.name} is not yet implemented");
+                Debug.Log($"{effectType.directEffect} is not yet implemented");
                 break;
         }
 

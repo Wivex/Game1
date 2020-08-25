@@ -6,19 +6,18 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
+using Object = UnityEngine.Object;
 
 public class MissionOverviewPanelDrawer : Drawer
 {
     #region SET IN INSPECTOR
 
     public Transform consumablesPanel;
-    public Animator animatorBackground;
     public StatBar heroHPBar, heroEnergyBar, heroAPBar, enemyHPBar, enemyEnergyBar, enemyAPBar;
     public Image heroPortrait,
         curGoldImage,
         heroImage,
-        encSubjectImage,
+        enemyImage,
         encInteractionImage,
         locationImage,
         backOverlayImage;
@@ -41,11 +40,11 @@ public class MissionOverviewPanelDrawer : Drawer
 
     internal Mission mis;
 
-    AnimatorHandler unitsAnim;
+    AnimatorHandler animLocation, animHero, animEnemy;
     /// <summary>
     /// These animations have to be finished (removed from collection) before running next logic iteration.
     /// </summary>
-    HashSet<string> keyAnimations = new HashSet<string>();
+    HashSet<Object> keyAnimations = new HashSet<Object>();
 
     internal static void CreateNew(Mission mis)
     {
@@ -69,35 +68,46 @@ public class MissionOverviewPanelDrawer : Drawer
         }
 
         //auto-assign some references
-        unitsAnim = GetComponent<AnimatorHandler>();
+        animLocation = locationImage.transform.parent.GetComponent<AnimatorHandler>();
+        animLocation.animMonitor.AnimationFinished += OnAnimationFinished;
+        animHero = heroImage.GetComponent<AnimatorHandler>();
+        animHero.animMonitor.AnimationFinished += OnAnimationFinished;
+        animEnemy = enemyImage.GetComponent<AnimatorHandler>();
+        animEnemy.animMonitor.AnimationFinished += OnAnimationFinished;
 
         // call OnPanelClicked() method when panel is clicked on
         GetComponent<Button>().onClick.AddListener(() => OnPanelClicked(mis));
-
+        
         MissionEventsSubscription();
         UnitEventsSubscription(mis.hero);
+
         MissionIntroAnimSetUp();
     }
 
-    void KeyAnimationStart(Animator animator, string triggerMessage)
+    void KeyAnimationsStart(string triggerMessage, params Animator[] animators)
     {
-        keyAnimations.Add(animator.ToString());
-        animator.SetTrigger(triggerMessage);
+        foreach (var animator in animators)
+        {
+            keyAnimations.Add(animator);
+            animator.SetTrigger(triggerMessage);
+        }
     }
 
     void KeyAnimationEnd(Animator animator)
     {
-        keyAnimations.Remove(animator.ToString());
+        keyAnimations.Remove(animator);
     }
 
     void MissionIntroAnimSetUp()
     {
         locationImage.sprite = townSprite;
         encInteractionImage.enabled = false;
-        encSubjectImage.enabled = false;
+        enemyImage.enabled = false;
         encInteractionImage.enabled = false;
         // set stat bars transparent
         statBarsGroup.enabled = true;
+
+        keyAnimations.Add(animLocation);
     }
 
 
@@ -116,7 +126,6 @@ public class MissionOverviewPanelDrawer : Drawer
     
     void MissionEventsSubscription()
     {
-        unitsAnim.animMonitor.AnimationFinished += OnAnimationFinished;
         mis.LocationChanged += OnLocationChanged;
         mis.EncounterStarted += OnEncounterStarted;
     }
@@ -125,6 +134,7 @@ public class MissionOverviewPanelDrawer : Drawer
     {
         var combat = mis.curEncounter as Combat;
         combat.ActorActionPicked += OnActorActionPicked;
+        combat.NewCombatTurnStarted += OnNewCombatTurnStarted;
     }
 
     void AnimationHandlerEventSubscription(AnimatorHandler handler)
@@ -150,9 +160,10 @@ public class MissionOverviewPanelDrawer : Drawer
     /// </summary>
     void OnAnimationFinished(Animator animator)
     {
-        var animName = animator.ToString();
-        if (keyAnimations.Contains(animName)) keyAnimations.Remove(animName);
-        if (keyAnimations.Count == 0) mis.NextAction();
+        if (keyAnimations.Contains(animator)) 
+            keyAnimations.Remove(animator);
+        if (keyAnimations.Count == 0) 
+            mis.NextAction();
     }
 
     /// <summary>
@@ -173,7 +184,8 @@ public class MissionOverviewPanelDrawer : Drawer
         var actorType = mis.Combat.actor is Hero ? "Hero" : "Enemy";
         var actionName = mis.Combat.curAction.actionType;
         // start units animations
-        KeyAnimationStart(unitsAnim.animator, $"{actorType} {actionName}");
+        var actorAnim = mis.Combat.actor is Hero ? animHero : animEnemy;
+        KeyAnimationsStart($"{actorType} {actionName}", actorAnim.animator);
         // start picked action ability animation
         switch (action.actionType)
         {
@@ -185,7 +197,7 @@ public class MissionOverviewPanelDrawer : Drawer
                     // run ability animation
                     var abilityAnimHandler =
                         ability.data.animationPrefab.InstantiateAndGetComp<AnimatorHandler>(locationImage.transform.parent);
-                    keyAnimations.Add(abilityAnimHandler.animator.ToString());
+                    keyAnimations.Add(abilityAnimHandler.animator);
                     AnimationHandlerEventSubscription(abilityAnimHandler);
                 }
                 break;
@@ -199,17 +211,16 @@ public class MissionOverviewPanelDrawer : Drawer
         switch (type)
         {
             case EncounterType.None:
-                KeyAnimationStart(unitsAnim.animator, "No Encounter");
+                KeyAnimationsStart("No Encounter", animHero.animator);
                 break;
             case EncounterType.Combat:
                 UnitEventsSubscription(mis.Combat.enemy);
-                encSubjectImage.enabled = true;
-                encSubjectImage.sprite = (mis.curEncounter as Combat).enemy.data.sprite;
+                enemyImage.enabled = true;
+                enemyImage.sprite = (mis.curEncounter as Combat).enemy.data.sprite;
                 encInteractionImage.enabled = true;
                 SetInitialStatBars();
                 CombatEventsSubscription();
-                animatorBackground.SetTrigger("Combat Start");
-                KeyAnimationStart(unitsAnim.animator, "Combat Start");
+                KeyAnimationsStart("Combat Start", animLocation.animator, animHero.animator, animEnemy.animator);
                 break;
         }
     }
@@ -230,6 +241,12 @@ public class MissionOverviewPanelDrawer : Drawer
     {
         var APBar = unit is Hero ? heroAPBar : enemyAPBar;
         APBar.SetTargetShiftingValue((float) unit.AP / unit.APMax);
+    }
+
+    void OnNewCombatTurnStarted()
+    {
+        heroAPBar.SetInstantValue((float) mis.hero.AP / mis.hero.APMax);
+        enemyAPBar.SetInstantValue((float) mis.Combat.enemy.AP / mis.Combat.enemy.APMax);
     }
 
     void SetInitialStatBars()
@@ -260,9 +277,9 @@ public class MissionOverviewPanelDrawer : Drawer
     {
         if (effectType.animationPrefab != null)
         {
-            var parent = unit is Hero ? heroImage.transform : encSubjectImage.transform;
+            var parent = unit is Hero ? heroImage.transform : enemyImage.transform;
             var effectAnimHandler = effectType.animationPrefab.InstantiateAndGetComp<AnimatorHandler>(parent);
-            keyAnimations.Add(effectAnimHandler.animator.ToString());
+            keyAnimations.Add(effectAnimHandler.animator);
             AnimationHandlerEventSubscription(effectAnimHandler);
         }
         else
@@ -277,9 +294,10 @@ public class MissionOverviewPanelDrawer : Drawer
         targetPanel.RemoveCell(effectType);
     }
 
+    // TODO: change to OnHPChanged
     void OnUnitTookDamage(Unit unit, Damage dam)
     {
-        var parent = unit is Hero ? heroImage.transform : encSubjectImage.transform;
+        var parent = unit is Hero ? heroImage.transform : enemyImage.transform;
         if (dam.amount > 0)
         {
             FloatingText.Create(parent, $"-{dam.amount}", Color.red, dam.icon);

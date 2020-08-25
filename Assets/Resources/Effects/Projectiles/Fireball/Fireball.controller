@@ -106,4 +106,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd9d3d06f4d415c45ba460274be96779, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selfDestroyOnStateExit: 1
   animationFinishedEvent: 1

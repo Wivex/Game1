@@ -30,7 +30,11 @@ public class Mission
 
     internal void NextAction()
     {
-        if (curEncounter?.resolved != false) NextLocation();
+        if (curEncounter?.resolved != false)
+        {
+            NextLocation();
+            NextEncounter();
+        }
         else curEncounter.NextEncounterAction();
     }
 
@@ -38,8 +42,6 @@ public class Mission
     {
         route.NextLocation();
         LocationChanged?.Invoke();
-        NextEncounter();
-        EncounterStarted?.Invoke(curEncounter.type);
     }
 
     void NextEncounter()
@@ -57,6 +59,7 @@ public class Mission
                     curEncounter = new Combat(this);
                     break;
             }
+            EncounterStarted?.Invoke(curEncounter.type);
         }
     }
 }

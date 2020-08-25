@@ -20,13 +20,23 @@ public abstract class Unit
 
     #region STATS SHORTCUTS
 
-    int hp;
-    internal int HP
+    int ap;
+    internal int AP
     {
-        get => hp;
+        get => ap;
         set
         {
-            hp = value;
+            ap = value;
+            APChanged?.Invoke(this);
+        }
+    }
+
+    internal int HP
+    {
+        get => (baseStats[StatType.Health] as StatDepletable).CurValue;
+        set
+        {
+            (baseStats[StatType.Health] as StatDepletable).CurValue = value;
             HPChanged?.Invoke(this);
         }
     }
@@ -38,16 +48,6 @@ public abstract class Unit
         {
             (baseStats[StatType.Energy] as StatDepletable).CurValue = value;
             EnergyChanged?.Invoke(this); 
-        }
-    }
-
-    internal int AP
-    {
-        get => (baseStats[StatType.Health] as StatDepletable).CurValue;
-        set
-        {
-            (baseStats[StatType.Health] as StatDepletable).CurValue = value;
-            APChanged?.Invoke(this);
         }
     }
 
