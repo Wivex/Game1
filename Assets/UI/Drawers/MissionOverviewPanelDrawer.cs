@@ -39,7 +39,8 @@ public class MissionOverviewPanelDrawer : Drawer
 
     internal Mission mis;
 
-    AnimatorHandler animLocation, animHero, animEnemy;
+    Animator animatorLocation;
+    AnimatorHandler animHero, animEnemy;
     /// <summary>
     /// These animations have to be finished (removed from collection) before running next logic iteration.
     /// </summary>
@@ -67,8 +68,7 @@ public class MissionOverviewPanelDrawer : Drawer
         }
 
         //auto-assign some references
-        animLocation = locationImage.transform.parent.GetComponent<AnimatorHandler>();
-        animLocation.animMonitor.AnimationFinished += OnAnimationFinished;
+        animatorLocation = locationImage.transform.parent.GetComponent<Animator>();
         animHero = heroImage.GetComponent<AnimatorHandler>();
         animHero.animMonitor.AnimationFinished += OnAnimationFinished;
         animEnemy = enemyImage.GetComponent<AnimatorHandler>();
@@ -101,7 +101,7 @@ public class MissionOverviewPanelDrawer : Drawer
         // set stat bars transparent
         statBarsGroup.enabled = true;
 
-        busyAnimators.Add(animLocation.animator);
+        busyAnimators.Add(animHero.animator);
     }
 
 
@@ -214,7 +214,8 @@ public class MissionOverviewPanelDrawer : Drawer
                 encInteractionImage.enabled = true;
                 SetInitialStatBars();
                 CombatEventsSubscription();
-                KeyAnimationsStart("Combat Start", animLocation.animator, animHero.animator, animEnemy.animator);
+                animatorLocation.SetTrigger("Combat Start");
+                KeyAnimationsStart("Combat Start", animHero.animator, animEnemy.animator);
                 break;
         }
     }

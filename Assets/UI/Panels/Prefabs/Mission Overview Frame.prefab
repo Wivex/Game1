@@ -334,7 +334,6 @@ GameObject:
   - component: {fileID: 2789655355522887175}
   - component: {fileID: 350265756699223803}
   - component: {fileID: 3579170010243309070}
-  - component: {fileID: 1221478572}
   m_Layer: 15
   m_Name: Location Panel
   m_TagString: Untagged
@@ -406,18 +405,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1221478572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1601815810196631763}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd13b12221ddfaa4a851460c03b23282, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2780454257911005295
 GameObject:
   m_ObjectHideFlags: 0
