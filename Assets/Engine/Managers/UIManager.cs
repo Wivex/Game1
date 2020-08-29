@@ -69,17 +69,19 @@ public class UIManager : MonoBehaviour
 
     //    // UNDONE: fine until not fine
     //    if (curTarget is Enemy)
-    //        MirrorEffectAxisX(effect);
+    //        MirrorByX(effect);
     //}
 
-    static void MirrorEffectAxisX(MonoBehaviour obj)
+    public static void MirrorByX(Transform trans)
     {
+        // TODO THIS
+        var rect = (RectTransform) trans;
+        rect.anchoredPosition = Vector2.left;
         // invert x and y offsets
-        obj.transform.localPosition =
-            new Vector3(-obj.transform.localPosition.x, -obj.transform.localPosition.y, obj.transform.localPosition.z);
+        trans.gameObject.transform. = new Vector3(-trans.localPosition.x, trans.localPosition.y, trans.localPosition.z);
 
         // apply required rotation
-        obj.transform.eulerAngles += new Vector3(0, 180, 0);
+        trans.eulerAngles = new Vector3(0, 180, 0);
     }
 
     public static void TriggerAnimators(string triggerMessage, params Animator[] animators)

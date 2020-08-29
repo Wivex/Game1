@@ -41,10 +41,13 @@ public class MissionOverviewPanelDrawer : Drawer
 
     Animator animatorLocation;
     AnimatorHandler animHero, animEnemy;
+    Transform heroTransform, enemyTransform;
     /// <summary>
     /// These animations have to be finished (removed from collection) before running next logic iteration.
     /// </summary>
     HashSet<Animator> busyAnimators = new HashSet<Animator>();
+
+    List<GameObject> mirroredObjects  = new List<GameObject>();
 
     internal static void CreateNew(Mission mis)
     {
@@ -69,9 +72,11 @@ public class MissionOverviewPanelDrawer : Drawer
 
         //auto-assign some references
         animatorLocation = locationImage.transform.parent.GetComponent<Animator>();
-        animHero = heroImage.GetComponent<AnimatorHandler>();
+        heroTransform = heroImage.transform.parent;
+        animHero = heroTransform.GetComponent<AnimatorHandler>();
         animHero.animMonitor.AnimationFinished += OnAnimationFinished;
-        animEnemy = enemyImage.GetComponent<AnimatorHandler>();
+        enemyTransform = enemyImage.transform.parent;
+        animEnemy = enemyTransform.GetComponent<AnimatorHandler>();
         animEnemy.animMonitor.AnimationFinished += OnAnimationFinished;
 
         // call OnPanelClicked() method when panel is clicked on
@@ -175,11 +180,10 @@ public class MissionOverviewPanelDrawer : Drawer
 
     void OnActorActionPicked(TacticAction action)
     {
-        var actorType = mis.Combat.actor is Hero ? "Hero" : "Enemy";
         var actionName = mis.Combat.curAction.actionType;
         // start units animations
         var actorAnim = mis.Combat.actor is Hero ? animHero : animEnemy;
-        KeyAnimationsStart($"{actorType} {actionName}", actorAnim.animator);
+        KeyAnimationsStart($"{actionName}", actorAnim.animator);
         // start picked action ability animation
         switch (action.actionType)
         {
@@ -191,6 +195,9 @@ public class MissionOverviewPanelDrawer : Drawer
                     // run ability animation
                     var abilityAnimHandler =
                         ability.data.animationPrefab.InstantiateAndGetComp<AnimatorHandler>(locationImage.transform.parent);
+                    // mark instantiated skill animation to be mirrored
+                    if (mis.Combat.actor is Enemy)
+                        mirroredObjects.Add(abilityAnimHandler.gameObject);
                     busyAnimators.Add(abilityAnimHandler.animator);
                     AnimationHandlerEventSubscription(abilityAnimHandler);
                 }
@@ -272,7 +279,7 @@ public class MissionOverviewPanelDrawer : Drawer
     {
         if (effectType.animationPrefab != null)
         {
-            var parent = unit is Hero ? heroImage.transform : enemyImage.transform;
+            var parent = unit is Hero ? heroTransform : enemyTransform;
             var effectAnimHandler = effectType.animationPrefab.InstantiateAndGetComp<AnimatorHandler>(parent);
             busyAnimators.Add(effectAnimHandler.animator);
             AnimationHandlerEventSubscription(effectAnimHandler);
@@ -292,7 +299,7 @@ public class MissionOverviewPanelDrawer : Drawer
     // TODO: change to OnHPChanged
     void OnUnitTookDamage(Unit unit, Damage dam)
     {
-        var parent = unit is Hero ? heroImage.transform : enemyImage.transform;
+        var parent = unit is Hero ? heroTransform : enemyTransform;
         if (dam.amount > 0)
         {
             FloatingText.Create(parent, $"-{dam.amount}", Color.red, dam.icon);
@@ -314,5 +321,19 @@ public class MissionOverviewPanelDrawer : Drawer
         var curHeroSpriteIndex = mis.hero.data.spritesheet.IndexOf(heroImage.sprite);
         if (mis.hero.sex == SexType.Female && curHeroSpriteIndex >= 50)
             heroImage.sprite = mis.hero.data.spritesheet[curHeroSpriteIndex - 50];
+
+        // perform mirror transformation for mirrored objects after their animations
+        for (var i = 0; i < mirroredObjects.Count; i++)
+        {
+            if (mirroredObjects[i] == null)
+            {
+                // remove from list if object destroyed
+                mirroredObjects.Remove(mirroredObjects[i]);
+                // index correction after removal
+                i--;
+            }
+            else
+                UIManager.MirrorByX(mirroredObjects[i].transform);
+        }
     }
 }
