@@ -76,10 +76,10 @@ public class UIManager : MonoBehaviour
     {
         var rect = (RectTransform) trans;
         //TODO: can skip rotation each frame if not locked in animation
-        // mirror object sprite by X axis
-        trans.localEulerAngles = new Vector3(0, 180, 0);
         // mirror object position by X axis
         rect.anchoredPosition = new Vector2(-rect.anchoredPosition.x, rect.anchoredPosition.y);
+        // mirror object sprite by X axis
+        rect.localRotation = Quaternion.Euler(0, 0, 180);
     }
 
     public static void TriggerAnimators(string triggerMessage, params Animator[] animators)
