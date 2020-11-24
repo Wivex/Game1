@@ -66,6 +66,7 @@ public class TacticAction
     {
         var curAbility = combat.actor.abilities.Find(ab => ab.data.name == ability);
         curAbility.ApplyDirectEffects(combat);
+        curAbility.curCooldown = curAbility.data.cooldown;
         foreach (var effectData in curAbility.data.effectsOverTime)
         {
             var targetUnit = effectData.target == TargetType.Hero ? (Unit) combat.hero : combat.enemy;

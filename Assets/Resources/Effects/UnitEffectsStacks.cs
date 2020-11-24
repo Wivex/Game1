@@ -26,9 +26,7 @@ internal class EffectsStack
 
         foreach (var effect in effects)
         {
-            // effect not ready to be applied
-            if (effect.curDelay > 0) effect.curDelay--;
-            else
+            if (effect.curDelay <= 0)
             {
                 // sum all direct effect amounts
                 cumulitiveDirectAmount += effect.data.type.amount;
@@ -82,6 +80,20 @@ internal class UnitEffectsStacks
             default:
                 Debug.Log($"{effectType.name} is not yet implemented");
                 break;
+        }
+
+        for (var i = 0; i < effectStacks[effectType].effects.Count; i++)
+        {
+            var effect = effectStacks[effectType].effects[i];
+            effect.curDelay--;
+            effect.curDuration--;
+
+            if (effect.curDuration <= 0)
+            {
+                Remove(effect);
+                // adjust i to check same index next iteration
+                i--;
+            }
         }
 
         unappliedStacks--;
