@@ -74,14 +74,12 @@ public class UIManager : MonoBehaviour
 
     public static void MirrorByX(Transform trans)
     {
-        // TODO THIS
         var rect = (RectTransform) trans;
-        rect.anchoredPosition = Vector2.left;
-        // invert x and y offsets
-        trans.gameObject.transform. = new Vector3(-trans.localPosition.x, trans.localPosition.y, trans.localPosition.z);
-
-        // apply required rotation
-        trans.eulerAngles = new Vector3(0, 180, 0);
+        //TODO: can skip rotation each frame if not locked in animation
+        // mirror object sprite by X axis
+        trans.localEulerAngles = new Vector3(0, 180, 0);
+        // mirror object position by X axis
+        rect.anchoredPosition = new Vector2(-rect.anchoredPosition.x, rect.anchoredPosition.y);
     }
 
     public static void TriggerAnimators(string triggerMessage, params Animator[] animators)

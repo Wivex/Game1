@@ -7,7 +7,7 @@ using UnityEngine;
 internal class EffectsStack
 {
     internal EffectOverTimeType type;
-    internal List<EffectOverTime> effects;
+    internal List<EffectOverTime> stacks;
 
     internal int cumulitiveDirectAmount;
     internal List<StatMod> cumulitiveStatMods;
@@ -15,7 +15,7 @@ internal class EffectsStack
     internal EffectsStack(EffectOverTime effect)
     {
         type = effect.data.type;
-        effects = new List<EffectOverTime> {effect};
+        stacks = new List<EffectOverTime> {effect};
     }
 
     internal void CalculateCumulativeEffect()
@@ -24,7 +24,7 @@ internal class EffectsStack
         cumulitiveStatMods = new List<StatMod>(type.statMods);
         cumulitiveStatMods.ForEach(stat => stat.value = 0);
 
-        foreach (var effect in effects)
+        foreach (var effect in stacks)
         {
             if (effect.curDelay <= 0)
             {
@@ -59,15 +59,14 @@ internal class UnitEffectsStacks
     internal void Add(EffectOverTime effect)
     {
         if (effectStacks.ContainsKey(effect.data.type))
-            effectStacks[effect.data.type].effects.Add(effect);
+            effectStacks[effect.data.type].stacks.Add(effect);
         else
             effectStacks.Add(effect.data.type, new EffectsStack(effect));
     }
 
     internal void Remove(EffectOverTime effect)
     {
-        effectStacks[effect.data.type].effects.Remove(effect);
-        effectStacks.Add(effect.data.type, new EffectsStack(effect));
+        effectStacks[effect.data.type].stacks.Remove(effect);
     }
 
     internal EffectOverTimeType ApplyNextEffectStack(Unit unit)
@@ -83,9 +82,9 @@ internal class UnitEffectsStacks
                 break;
         }
 
-        for (var i = 0; i < effectStacks[effectType].effects.Count; i++)
+        for (var i = 0; i < effectStacks[effectType].stacks.Count; i++)
         {
-            var effect = effectStacks[effectType].effects[i];
+            var effect = effectStacks[effectType].stacks[i];
             effect.curDelay--;
             effect.curDuration--;
 
