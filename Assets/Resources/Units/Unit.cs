@@ -10,9 +10,8 @@ public abstract class Unit
     internal UnitEffectsStacks effects = new UnitEffectsStacks();
     internal Dictionary<StatType, Stat> baseStats;
     internal List<Tactic> tactics;
-    internal int AP;
     
-    internal event Action<Unit> CooldownsUpdated;
+    internal event Action<Unit> CooldownsUpdated, HPChanged, EnergyChanged, APChanged;
     internal event Action<Unit, Damage> TookDamage;
     internal event Action<Unit, EffectOverTimeType> EffectAdded, EffectApplied, EffectRemoved;
 
@@ -21,18 +20,41 @@ public abstract class Unit
 
     #region STATS SHORTCUTS
 
+    int ap;
+    internal int AP
+    {
+        get => ap;
+        set
+        {
+            ap = value;
+            APChanged?.Invoke(this);
+        }
+    }
+
     internal int HP
     {
         get => (baseStats[StatType.Health] as StatDepletable).CurValue;
-        set => (baseStats[StatType.Health] as StatDepletable).CurValue = value;
+        set
+        {
+            (baseStats[StatType.Health] as StatDepletable).CurValue = value;
+            HPChanged?.Invoke(this);
+        }
     }
-    internal int HPMax => baseStats[StatType.Health].ModdedValue;
+
     internal int Energy
     {
         get => (baseStats[StatType.Energy] as StatDepletable).CurValue;
-        set => (baseStats[StatType.Energy] as StatDepletable).CurValue = value;
+        set
+        {
+            (baseStats[StatType.Energy] as StatDepletable).CurValue = value;
+            EnergyChanged?.Invoke(this); 
+        }
     }
+
+    internal int HPMax => baseStats[StatType.Health].ModdedValue;
     internal int EnergyMax => baseStats[StatType.Energy].ModdedValue;
+    internal int APMax => baseStats[StatType.Speed].ModdedValue * Combat.AP_AccumulationLimitMod;
+
     internal int Speed => baseStats[StatType.Speed].ModdedValue;
     internal int Attack => baseStats[StatType.Attack].ModdedValue;
     internal int Defence => baseStats[StatType.Defence].ModdedValue;

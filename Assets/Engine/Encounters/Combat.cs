@@ -30,6 +30,7 @@ public class Combat : NoEncounter
     #region EVENTS
 
     internal event Action<TacticAction> ActorActionPicked;
+    internal event Action NewCombatTurnStarted;
     
     #endregion
 
@@ -47,6 +48,7 @@ public class Combat : NoEncounter
         actor = hero.AP >= enemy.AP ? (Unit) hero : enemy;
         target = hero.AP >= enemy.AP ? (Unit) enemy : hero;
         fasterUnitFinishedTurn = false;
+        NewCombatTurnStarted?.Invoke();
         ActorTurnSetUp();
     }
 

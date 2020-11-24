@@ -11,6 +11,7 @@ public enum AnimatorStateMonitorType
 
 public class AnimatorStateMonitor : StateMachineBehaviour
 {
+    public bool selfDestroyOnStateExit;
     public AnimatorStateMonitorType animationFinishedEvent;
 
     internal event Action<Animator> AnimationFinished;
@@ -26,5 +27,7 @@ public class AnimatorStateMonitor : StateMachineBehaviour
     {
         if (animationFinishedEvent == AnimatorStateMonitorType.OnStateExit)
             AnimationFinished?.Invoke(animator);
+        if (selfDestroyOnStateExit)
+            Destroy(animator.gameObject);
     }
 }

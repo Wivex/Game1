@@ -31,8 +31,6 @@ public class FloatingText : MonoBehaviour
     void Awake()
     {
         animMon = animator.GetBehaviour<AnimatorStateMonitor>();
-        // destroy obj on animation finished
-        animMon.AnimationFinished += DestroyThis;
         targetOffsetPosX = Random.Range(-1, 1) < 0 ? Random.Range(-50, -25) : Random.Range(25, 50);
     }
 
@@ -40,6 +38,4 @@ public class FloatingText : MonoBehaviour
     {
         transform.localPosition = new Vector3(targetOffsetPosX * animator.GetCurrentAnimatorStateInfo(0).normalizedTime, transform.localPosition.y, transform.localPosition.z);
     }
-
-    void DestroyThis(Animator anim) => Destroy(gameObject);
 }
