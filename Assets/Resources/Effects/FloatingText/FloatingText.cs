@@ -25,6 +25,7 @@ public class FloatingText : MonoBehaviour
         floatingText.textComp.text = text;
         floatingText.textComp.color = color;
         floatingText.icon.sprite = icon;
+        // TODO: case for no icon?
     }
 
     // Start is called before the first frame update

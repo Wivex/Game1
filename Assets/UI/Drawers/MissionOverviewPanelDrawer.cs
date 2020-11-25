@@ -296,7 +296,6 @@ public class MissionOverviewPanelDrawer : Drawer
         targetPanel.RemoveCell(effectType);
     }
 
-    // TODO: change to OnHPChanged
     void OnUnitTookDamage(Unit unit, Damage dam)
     {
         var parent = unit is Hero ? heroTransform : enemyTransform;
@@ -305,6 +304,10 @@ public class MissionOverviewPanelDrawer : Drawer
             FloatingText.Create(parent, $"-{dam.amount}", Color.red, dam.icon);
             var HPBar = unit is Hero ? heroHPBar : enemyHPBar;
             HPBar.SetTargetShiftingValue((float) unit.HP / unit.HPMax);
+            if (unit is Hero)
+                animHero.animator.SetTrigger("Take Damage");
+            else
+                animEnemy.animator.SetTrigger("Take Damage");
         }
         else
             FloatingText.Create(parent, "No effect", Color.white);
