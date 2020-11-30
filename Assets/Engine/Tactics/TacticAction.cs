@@ -34,13 +34,13 @@ public class TacticAction
                 Flee(combat);
                 break;
             case ActionType.Attack:
-                Attack(combat);
+                ApplyAttack(combat);
                 break;
             case ActionType.UseAbility:
-                ApplyAbilityEffects(combat);
+                ApplyAbility(combat);
                 break;
             case ActionType.UseConsumable:
-                UseConsumable(combat);
+                ApplyConsumable(combat);
                 break;
         }
     }
@@ -57,12 +57,12 @@ public class TacticAction
         //combat.EndCombat();
     }
 
-    public void Attack(Combat combat)
+    public void ApplyAttack(Combat combat)
     {
         combat.target.ApplyDamage(new Damage(DamageType.Physical, combat.actor.Attack));
     }
 
-    public void ApplyAbilityEffects(Combat combat)
+    public void ApplyAbility(Combat combat)
     {
         var curAbility = combat.actor.abilities.Find(ab => ab.data.name == ability);
         curAbility.ApplyDirectEffects(combat);
@@ -74,7 +74,7 @@ public class TacticAction
         }
     }
 
-    public void UseConsumable(Combat combat)
+    public void ApplyConsumable(Combat combat)
     {
         //LogEvent(combat, $"{combat.hero.name} used {consumableData.name} on {combat.curTarget.name}.");
         var usedConsumable = combat.hero.consumables.First(cons => cons.data == consumableData);

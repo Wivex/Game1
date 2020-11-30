@@ -34,21 +34,13 @@ public abstract class Unit
     internal int HP
     {
         get => (baseStats[StatType.Health] as StatDepletable).CurValue;
-        set
-        {
-            (baseStats[StatType.Health] as StatDepletable).CurValue = value;
-            HPChanged?.Invoke(this);
-        }
+        set => (baseStats[StatType.Health] as StatDepletable).CurValue = value;
     }
 
     internal int Energy
     {
         get => (baseStats[StatType.Energy] as StatDepletable).CurValue;
-        set
-        {
-            (baseStats[StatType.Energy] as StatDepletable).CurValue = value;
-            EnergyChanged?.Invoke(this); 
-        }
+        set => (baseStats[StatType.Energy] as StatDepletable).CurValue = value;
     }
 
     internal int HPMax => baseStats[StatType.Health].ModdedValue;

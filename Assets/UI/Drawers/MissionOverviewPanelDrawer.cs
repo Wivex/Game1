@@ -47,7 +47,7 @@ public class MissionOverviewPanelDrawer : Drawer
     /// </summary>
     HashSet<Animator> busyAnimators = new HashSet<Animator>();
 
-    List<GameObject> mirroredObjects  = new List<GameObject>();
+    Dictionary<GameObject, bool> mirroredObjects  = new Dictionary<GameObject, bool>();
 
     internal static void CreateNew(Mission mis)
     {
@@ -183,26 +183,47 @@ public class MissionOverviewPanelDrawer : Drawer
         var actionName = mis.Combat.curAction.actionType;
         // start units animations
         var actorAnim = mis.Combat.actor is Hero ? animHero : animEnemy;
+        var targetAnim = mis.Combat.actor is Hero ? animEnemy : animHero;
         KeyAnimationsStart($"{actionName}", actorAnim.animator);
         // start picked action ability animation
         switch (action.actionType)
         {
+            case ActionType.Attack:
+                // run attack swing animation
+                var meleeAnimHandler =
+                    UIManager.i.prefabs.meleeHitEffectPrefab
+                        .InstantiateAndGetComp<AnimatorHandler>(targetAnim.transform);
+                // mark instantiated effect animation to be mirrored
+                if (mis.Combat.actor is Enemy)
+                {
+                    // mirror object by rotation once
+                    meleeAnimHandler.gameObject.transform.localEulerAngles += new Vector3(0, 180, 0);
+                    mirroredObjects.Add(meleeAnimHandler.gameObject, false);
+                }
+
+                busyAnimators.Add(meleeAnimHandler.animator);
+                AnimationHandlerEventSubscription(meleeAnimHandler);
+                break;
             case ActionType.UseAbility:
-                // run ability animation, if it has one
                 var ability = mis.Combat.actor.abilities.Find(abil => abil.data.name == action.ability);
                 if (ability.data.animationPrefab != null)
                 {
                     // run ability animation
                     var abilityAnimHandler =
-                        ability.data.animationPrefab.InstantiateAndGetComp<AnimatorHandler>(locationImage.transform.parent);
+                        ability.data.animationPrefab.InstantiateAndGetComp<AnimatorHandler>(locationImage.transform
+                            .parent);
                     // mark instantiated skill animation to be mirrored
                     if (mis.Combat.actor is Enemy)
-                        mirroredObjects.Add(abilityAnimHandler.gameObject);
+                    {
+                        // mirror object by rotation once
+                        abilityAnimHandler.gameObject.transform.localEulerAngles += new Vector3(0, 180, 0);
+                        mirroredObjects.Add(abilityAnimHandler.gameObject, false);
+                    }
+
                     busyAnimators.Add(abilityAnimHandler.animator);
                     AnimationHandlerEventSubscription(abilityAnimHandler);
                 }
-                break;
-            case ActionType.UseConsumable:
+
                 break;
         }
     }
@@ -299,15 +320,15 @@ public class MissionOverviewPanelDrawer : Drawer
     // TODO: change to OnHPChanged
     void OnUnitTookDamage(Unit unit, Damage dam)
     {
-        var parent = unit is Hero ? heroTransform : enemyTransform;
-        if (dam.amount > 0)
-        {
-            FloatingText.Create(parent, $"-{dam.amount}", Color.red, dam.icon);
-            var HPBar = unit is Hero ? heroHPBar : enemyHPBar;
-            HPBar.SetTargetShiftingValue((float) unit.HP / unit.HPMax);
-        }
-        else
-            FloatingText.Create(parent, "No effect", Color.white);
+        var targetTrans = unit is Hero ? heroTransform : enemyTransform;
+
+        FloatingText.Create(targetTrans, $"-{dam.amount}", Color.red, dam.icon);
+        var HPBar = unit is Hero ? heroHPBar : enemyHPBar;
+        HPBar.SetTargetShiftingValue((float) unit.HP / unit.HPMax);
+
+        var anim = unit is Hero ? animHero : animEnemy;
+        anim.animator.SetTrigger("Take Damage");
+        //FloatingText.Create(targetTrans, "No effect", Color.white);
     }
 
     #endregion
@@ -325,15 +346,16 @@ public class MissionOverviewPanelDrawer : Drawer
         // perform mirror transformation for mirrored objects after their animations
         for (var i = 0; i < mirroredObjects.Count; i++)
         {
-            if (mirroredObjects[i] == null)
+            var obj = mirroredObjects.ElementAt(i).Key;
+            if (obj == null)
             {
                 // remove from list if object destroyed
-                mirroredObjects.Remove(mirroredObjects[i]);
+                mirroredObjects.Remove(obj);
                 // index correction after removal
                 i--;
             }
             else
-                UIManager.MirrorByX(mirroredObjects[i].transform);
+                UIManager.MirrorByX(obj.transform, mirroredObjects.ElementAt(i).Value);
         }
     }
 }

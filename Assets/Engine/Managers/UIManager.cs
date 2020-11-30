@@ -58,27 +58,14 @@ public class UIManager : MonoBehaviour
         panels.missionPreviewContentPanel.DeactivateChild();
     }
 
-    //internal static void CreateFloatingTextForUnit(Mission exp, Unit curTarget, int value)
-    //{
-    //    CreateFloatingText(GetUnitUITarget(exp, curTarget), value);
-    //}
-
-    //internal static void CreateEffectAnimation(Mission exp, Unit curTarget, MonoBehaviour prefab)
-    //{
-    //    var effect = Instantiate(prefab, GetUnitUITarget(exp, curTarget));
-
-    //    // UNDONE: fine until not fine
-    //    if (curTarget is Enemy)
-    //        MirrorByX(effect);
-    //}
-
-    public static void MirrorByX(Transform trans)
+    /// <summary>
+    /// Mirror object position by X axis
+    /// </summary>
+    /// <param name="lockedRotation">Override rotation each frame it's locked by animation</param>
+    public static void MirrorByX(Transform trans, bool lockedRotation = false)
     {
+        if (lockedRotation) trans.localEulerAngles += new Vector3(0, 180, 0);
         var rect = (RectTransform) trans;
-        //TODO: can skip rotation each frame if not locked in animation
-        // mirror object sprite by X axis
-        trans.localEulerAngles = new Vector3(0, 180, 0);
-        // mirror object position by X axis
         rect.anchoredPosition = new Vector2(-rect.anchoredPosition.x, rect.anchoredPosition.y);
     }
 

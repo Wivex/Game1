@@ -19,8 +19,4 @@ MonoBehaviour:
   directEffect: 0
   damageType: 1
   amount: 5
-  statMods:
-  - stat: 3
-    statModType: 0
-    stacks: 0
-    value: -5
+  statMods: []
