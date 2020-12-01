@@ -1,0 +1,17 @@
+{
+"companyName": "GNS",
+"productName": "Game1",
+"productVersion": "1",
+"dataUrl": "Web.data.unityweb",
+"asmCodeUrl": "Web.asm.code.unityweb",
+"asmMemoryUrl": "Web.asm.memory.unityweb",
+"asmFrameworkUrl": "Web.asm.framework.unityweb",
+"TOTAL_MEMORY": 268435456,
+"graphicsAPI": ["WebGL 2.0","WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Light",
+"backgroundColor": "#828080",
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.4.3f1"
+}

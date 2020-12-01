@@ -18,7 +18,7 @@ MonoBehaviour:
     energy: 100
     attack: 10
     defence: 5
-    speed: 10
+    speed: 20
   abilities:
   - {fileID: 11400000, guid: 6b957e0346f315d45bdc856e0c0fa271, type: 2}
   tactics:
