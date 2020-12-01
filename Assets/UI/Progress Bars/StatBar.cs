@@ -11,7 +11,6 @@ public enum StatBarState
 
 public class StatBar : MonoBehaviour
 {
-    const float animationSpeed = 0.005f;
 
     public Color decreasingBackFillerColor, increasingBackFillerColor;
 
@@ -20,12 +19,13 @@ public class StatBar : MonoBehaviour
     Slider bar;
     float targetPercent;
 
+    float animationSpeed = 0.005f;
+
     void Awake()
     {
         backFiller = transform.GetChild(0).GetComponent<Image>();
         bar = GetComponent<Slider>();
     }
-
 
     internal void SetInstantValue(float percent)
     {
@@ -34,9 +34,10 @@ public class StatBar : MonoBehaviour
         backFiller.fillAmount = percent;
     }
 
-    internal void SetTargetShiftingValue(float percent)
+    internal void SetTargetShiftingValue(float percent, float animationSpeed = 0.005f)
     {
         targetPercent = percent;
+        this.animationSpeed = animationSpeed;
         if (targetPercent < bar.value)
         {
             state = StatBarState.Decreasing;

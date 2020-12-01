@@ -55,7 +55,7 @@ public class Combat : NoEncounter
     void ActorTurnSetUp()
     {
         actor.UpdateCooldowns();
-        actor.effects.CalculateEffectStacksPower();
+        actor.unitEffects.CalculateEffectPower();
         phase = CombatPhase.ApplyNextActorEffectOverTime;
         NextEncounterAction();
     }
@@ -87,9 +87,9 @@ public class Combat : NoEncounter
 
     void ApplyNextActorEffectOverTime()
     {
-        if (actor.effects.unappliedStacks > 0)
+        if (actor.unitEffects.unappliedEffectsNumber > 0)
         {
-            actor.ApplyNextEffectStack();
+            actor.ApplyNextEffectType();
             CombatFinishedCheck();
         }
         else

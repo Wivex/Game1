@@ -7,11 +7,11 @@ using UnityEngine;
 public abstract class Unit
 {
     internal List<Ability> abilities = new List<Ability>();
-    internal UnitEffectsStacks effects = new UnitEffectsStacks();
+    internal UnitEffects unitEffects = new UnitEffects();
     internal Dictionary<StatType, Stat> baseStats;
     internal List<Tactic> tactics;
     
-    internal event Action<Unit> CooldownsUpdated, HPChanged, EnergyChanged, APChanged;
+    internal event Action<Unit> CooldownsUpdated;
     internal event Action<Unit, Damage> TookDamage;
     internal event Action<Unit, EffectOverTimeType> EffectAdded, EffectApplied, EffectRemoved;
 
@@ -19,17 +19,6 @@ public abstract class Unit
     internal abstract string Name { get; }
 
     #region STATS SHORTCUTS
-
-    int ap;
-    internal int AP
-    {
-        get => ap;
-        set
-        {
-            ap = value;
-            APChanged?.Invoke(this);
-        }
-    }
 
     internal int HP
     {
@@ -42,6 +31,8 @@ public abstract class Unit
         get => (baseStats[StatType.Energy] as StatDepletable).CurValue;
         set => (baseStats[StatType.Energy] as StatDepletable).CurValue = value;
     }
+
+    internal int AP { get; set; }
 
     internal int HPMax => baseStats[StatType.Health].ModdedValue;
     internal int EnergyMax => baseStats[StatType.Energy].ModdedValue;
@@ -92,19 +83,19 @@ public abstract class Unit
     
     internal void AddEffect(EffectOverTimeData effectData)
     {
-        effects.Add(new EffectOverTime(effectData));
+        unitEffects.Add(new EffectOverTime(effectData));
         EffectAdded?.Invoke(this, effectData.type);
     }
     
-    internal void ApplyNextEffectStack()
+    internal void ApplyNextEffectType()
     {
-        var appliedType = effects.ApplyNextEffectStack(this);
+        var appliedType = unitEffects.ApplyNextEffectType(this);
         EffectApplied?.Invoke(this, appliedType);
     }
     
     internal void RemoveEffect(EffectOverTime effect)
     {
-        effects.Remove(effect);
+        unitEffects.Remove(effect);
         EffectRemoved?.Invoke(this, effect.data.type);
     }
 }

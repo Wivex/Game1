@@ -118,9 +118,6 @@ public class MissionOverviewPanelDrawer : Drawer
         unit.EffectAdded += OnEffectAdded;
         unit.EffectApplied += OnEffectApplied;
         unit.EffectRemoved += OnEffectRemoved;
-        unit.HPChanged += OnUnitHPChanged;
-        unit.EnergyChanged += OnUnitEnergyChanged;
-        unit.APChanged += OnUnitAPChanged;
     }
     
     void MissionEventsSubscription()
@@ -185,6 +182,10 @@ public class MissionOverviewPanelDrawer : Drawer
         var actorAnim = mis.Combat.actor is Hero ? animHero : animEnemy;
         var targetAnim = mis.Combat.actor is Hero ? animEnemy : animHero;
         KeyAnimationsStart($"{actionName}", actorAnim.animator);
+
+        var APBar = mis.Combat.actor is Hero ? heroAPBar : enemyAPBar;
+        APBar.SetTargetShiftingValue((float) mis.Combat.actor.AP / mis.Combat.actor.APMax, 0.01f);
+
         // start picked action ability animation
         switch (action.actionType)
         {
@@ -248,17 +249,6 @@ public class MissionOverviewPanelDrawer : Drawer
         }
     }
 
-    void OnUnitHPChanged(Unit unit)
-    {
-        var HPBar = unit is Hero ? heroHPBar : enemyHPBar;
-        HPBar.SetTargetShiftingValue((float) unit.HP / unit.HPMax);
-    }
-
-    void OnUnitEnergyChanged(Unit unit)
-    {
-        var energyBar = unit is Hero ? heroEnergyBar : enemyEnergyBar;
-        energyBar.SetTargetShiftingValue((float) unit.Energy / unit.EnergyMax);
-    }
 
     void OnUnitAPChanged(Unit unit)
     {
@@ -298,10 +288,10 @@ public class MissionOverviewPanelDrawer : Drawer
 
     void OnEffectApplied(Unit unit, EffectOverTimeType effectType)
     {
-        if (effectType.animationPrefab != null)
+        if (effectType.procAnimationPrefab != null)
         {
             var parent = unit is Hero ? heroTransform : enemyTransform;
-            var effectAnimHandler = effectType.animationPrefab.InstantiateAndGetComp<AnimatorHandler>(parent);
+            var effectAnimHandler = effectType.procAnimationPrefab.InstantiateAndGetComp<AnimatorHandler>(parent);
             busyAnimators.Add(effectAnimHandler.animator);
             AnimationHandlerEventSubscription(effectAnimHandler);
         }
@@ -328,7 +318,6 @@ public class MissionOverviewPanelDrawer : Drawer
 
         var anim = unit is Hero ? animHero : animEnemy;
         anim.animator.SetTrigger("Take Damage");
-        //FloatingText.Create(targetTrans, "No effect", Color.white);
     }
 
     #endregion

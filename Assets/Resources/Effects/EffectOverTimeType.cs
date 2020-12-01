@@ -13,7 +13,8 @@ public class StatMod
 {
     public StatType stat;
     public StatModType statModType;
-    public bool stacks;
+    //[Tooltip("Stack on itself each turn")]
+    //public bool progressive;
     public int value;
 }
 
@@ -21,11 +22,11 @@ public class StatMod
 public class EffectOverTimeType : ScriptableObject
 {
     public Sprite icon;
-    public GameObject animationPrefab;
+    public GameObject procAnimationPrefab;
     public EffectInfluenceType influence;
     public EffectDirectType directEffect;
     public DamageType damageType;
-    public int amount;
+    public bool stackable = true;
     public List<StatMod> statMods;
 
     internal bool IsNegative => influence == EffectInfluenceType.Negative;

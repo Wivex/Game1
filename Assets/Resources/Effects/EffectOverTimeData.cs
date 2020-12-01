@@ -6,6 +6,7 @@ using UnityEngine;
 public class EffectOverTimeData
 {
     public EffectOverTimeType type;
+    public int value;
     public TargetType target;
     public int duration, delay;
 
