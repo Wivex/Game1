@@ -3,19 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-internal class EffectStackElement
-{
-    internal int delay, duration, value;
-
-    internal EffectStackElement(EffectOverTime effect)
-    {
-        delay = effect.data.delay;
-        duration = effect.data.duration;
-        value = effect.data.value;
-    }
-}
-
-internal class EffectOverTime
+internal class DamageOverTime
 {
     internal EffectOverTimeData data;
     internal int curDuration, curDelay, curValue;

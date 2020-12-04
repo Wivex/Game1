@@ -311,6 +311,7 @@
     <Compile Include="Assets\GridLayoutHandler.cs" />
     <Compile Include="Assets\Resources\Abilities\Ability.cs" />
     <Compile Include="Assets\Resources\Abilities\AbilityData.cs" />
+    <Compile Include="Assets\Resources\Effects\DamageOverTime.cs" />
     <Compile Include="Assets\Resources\Effects\EffectDirect.cs" />
     <Compile Include="Assets\Resources\Effects\EffectOverTime.cs" />
     <Compile Include="Assets\Resources\Effects\EffectOverTimeData.cs" />
