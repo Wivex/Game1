@@ -16,19 +16,19 @@ public class Ability
         foreach (var effect in data.effectsDirect)
         {
             var targetUnit = effect.target == TargetType.Hero ? (Unit) combat.hero : combat.enemy;
-            switch (effect.directEffect)
+            switch (effect.overTimeEffect)
             {
                 case EffectDirectType.Damage:
                     targetUnit.ApplyDamage(new Damage(effect.damageType, effect.amount));
                     break;
                 case EffectDirectType.Heal:
-                    Debug.Log($"{effect.directEffect} is not yet implemented");
+                    Debug.Log($"{effect.overTimeEffect} is not yet implemented");
                     break;
                 case EffectDirectType.EnergyGain:
-                    Debug.Log($"{effect.directEffect} is not yet implemented");
+                    Debug.Log($"{effect.overTimeEffect} is not yet implemented");
                     break;
                 case EffectDirectType.EnergyLoss:
-                    Debug.Log($"{effect.directEffect} is not yet implemented");
+                    Debug.Log($"{effect.overTimeEffect} is not yet implemented");
                     break;
             }
         }

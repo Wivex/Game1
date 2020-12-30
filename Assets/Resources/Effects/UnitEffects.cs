@@ -6,48 +6,51 @@ using UnityEngine;
 
 internal class UnitEffects
 {
-    internal int unappliedEffectsNumber;
+    internal int unappliedEffectsCount;
 
-    Dictionary<EffectOverTimeType, EffectOverTime> activeEffects = new Dictionary<EffectOverTimeType, EffectOverTime>();
+    // Effect dictionary to for quick "by type" effect search
+    List<EffectOverTime> effects = new List<EffectOverTime>();
 
-    internal void Add(EffectOverTime effect)
+    internal void Add(EffectOverTime newEffect)
     {
-        var eType = effect.data.type;
-        if (activeEffects.ContainsKey(eType))
+        var sameEffect = effects.Find(eff => eff.type == newEffect.type);
+        if (sameEffect!=null)
         {
-            activeEffects[eType].AddStack(effect);
+            sameEffect.AddStackElement(newEffect);
         }
         else
-            activeEffects.Add(eType, effect);
+            effects.Add(newEffect);
     }
 
-    internal void CalculateEffectPower()
+    internal void UpdateEffects()
     {
-        unappliedEffectsNumber = effectTypes.Count;
-        effectTypes.ForEach(stack => stack.Value.CalculateCumulativeEffect());
+        unappliedEffectsCount = effects.Count;
+        for (var i = 0; i < effects.Count; i++)
+        {
+            effects[i].UpdateStack();
+            if (effects[i].duration <= 0)
+            {
+                effects.RemoveAt(i);
+                i--;
+            }
+        }
     }
 
-    internal void Remove(EffectOverTime effect)
+    internal EffectOverTimeType ApplyNextEffect(Unit unit)
     {
-        effectTypes[effect.data.type].stack.Remove(effect);
-    }
-
-    internal EffectOverTimeType ApplyNextEffectType(Unit unit)
-    {
-        var effectType = effectTypes.ElementAt(unappliedEffectsNumber - 1).Key;
-        switch (effectType.directEffect)
+        switch (effects[unappliedEffectsCount-1].type.directEffect)
         {
             case EffectDirectType.Damage:
-                unit.ApplyDamage(new Damage(effectType.damageType, effectTypes[effectType].cumulitiveDirectAmount));
+                unit.ApplyDamage(new Damage(eType.damageType, effectTypes[eType].cumulitiveDirectAmount));
                 break;
             default:
-                Debug.Log($"{effectType.directEffect} is not yet implemented");
+                Debug.Log($"{eType.directEffect} is not yet implemented");
                 break;
         }
 
-        for (var i = 0; i < effectTypes[effectType].stack.Count; i++)
+        for (var i = 0; i < effectTypes[eType].stack.Count; i++)
         {
-            var effect = effectTypes[effectType].stack[i];
+            var effect = effectTypes[eType].stack[i];
             effect.curDelay--;
             effect.curDuration--;
 
@@ -59,8 +62,8 @@ internal class UnitEffects
             }
         }
 
-        unappliedEffectsNumber--;
+        unappliedEffectsCount--;
 
-        return effectType;
+        return eType;
     }
 }

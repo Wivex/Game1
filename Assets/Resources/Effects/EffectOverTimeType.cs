@@ -2,10 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EffectDirectType
+{
+    Damage,
+    Heal,
+    EnergyGain,
+    EnergyLoss
+}
+
 public enum EffectInfluenceType
 {
     Positive,
     Negative
+}
+
+[Serializable]
+public class EffectDirect
+{
+    public TargetType target;
+    public EffectDirectType directEffect;
+    [HideIfNotEnumValues("directEffect", EffectDirectType.Damage)]
+    public DamageType damageType;
+    public int amount;
 }
 
 [Serializable]

@@ -81,21 +81,21 @@ public abstract class Unit
         TookDamage?.Invoke(this, damage);
     }
     
-    internal void AddEffect(EffectOverTimeData effectData)
+    internal void AddEffect(EffectOverTime effect)
     {
-        unitEffects.Add(new EffectOverTime(effectData));
-        EffectAdded?.Invoke(this, effectData.type);
+        unitEffects.Add(effect);
+        EffectAdded?.Invoke(this, effect.type);
     }
     
     internal void ApplyNextEffectType()
     {
-        var appliedType = unitEffects.ApplyNextEffectType(this);
+        var appliedType = unitEffects.ApplyNextEffect(this);
         EffectApplied?.Invoke(this, appliedType);
     }
     
     internal void RemoveEffect(EffectOverTime effect)
     {
         unitEffects.Remove(effect);
-        EffectRemoved?.Invoke(this, effect.data.type);
+        EffectRemoved?.Invoke(this, effect.type.type);
     }
 }

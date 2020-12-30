@@ -9,56 +9,47 @@ internal class EffectStackElement
 
     internal EffectStackElement(EffectOverTime effect)
     {
-        delay = effect.data.delay;
-        duration = effect.data.duration;
-        value = effect.data.value;
+        delay = effect.type.delay;
+        duration = effect.type.duration;
+        value = effect.type.value;
     }
 }
 
 internal class EffectOverTime
 {
-    internal EffectOverTimeData data;
-    internal int curDuration, curDelay, curValue;
+    internal EffectOverTimeType type;
+    internal int duration, delay, value;
 
     List<EffectStackElement> stack = new List<EffectStackElement>();
 
     internal EffectOverTime(EffectOverTimeData data)
     {
-        this.data = data;
+        type = data.type;
     }
         
-    internal void AddStack(EffectOverTime effect)
+    internal void AddStackElement(EffectOverTime effect)
     {
         stack.Add(new EffectStackElement(effect));
-        RecalculateCurrentEffect();
+        UpdateStack();
     }
 
-    internal void RemoveStack(EffectOverTime effect)
+    internal void UpdateStack()
     {
-        //stack.Add(new EffectStackElement(effect));
-        //RecalculateCumulativeEffect();
-    }
-
-    internal void Update()
-    {
-    }
-
-    internal void RecalculateCurrentEffect()
-    {
+        value = 0;
         // recalculate directEffect and statMod values
-        foreach (var effect in elements)
+        foreach (var stackElem in stack)
         {
-            if (effect.curDelay <= 0)
+            if (stackElem.delay <= 0)
             {
                 // sum all direct effect amounts
-                cumulativeEffect.value += effect.data.value;
-                foreach (var statMod in effect.data.type.statMods)
+                value += stackElem.value;
+                foreach (var statMod in stackElem.type.statMods)
                 {
                     
                 }
                 for (var i = 0; i < type.statMods.Count; i++)
                 {
-                    var statMod = effect.data.type.statMods[i];
+                    var statMod = type.type.statMods[i];
                     if (statMod.stacks)
                         cumulitiveStatMods[i].value += statMod.value;
                     else
